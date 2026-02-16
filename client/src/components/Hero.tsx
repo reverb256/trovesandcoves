@@ -10,18 +10,9 @@ export default function Hero() {
 
       {/* Floating crystal elements with enhanced animations */}
       <div className="absolute w-4 h-4 bg-ornate-gold rounded-full top-10 left-10 animate-pulse floating-crystal"></div>
-      <div
-        className="absolute w-4 h-4 bg-ornate-gold rounded-full top-1/3 left-1/4 animate-pulse floating-crystal"
-        style={{ animationDelay: '0.5s' }}
-      ></div>
-      <div
-        className="absolute w-4 h-4 bg-ornate-gold rounded-full top-2/3 left-1/2 animate-pulse floating-crystal"
-        style={{ animationDelay: '1s' }}
-      ></div>
-      <div
-        className="absolute w-4 h-4 bg-ornate-gold rounded-full bottom-10 right-10 animate-pulse floating-crystal"
-        style={{ animationDelay: '1.5s' }}
-      ></div>
+      <div className="absolute w-4 h-4 bg-ornate-gold rounded-full top-1/3 left-1/4 animate-pulse floating-crystal crystal-delay-1"></div>
+      <div className="absolute w-4 h-4 bg-ornate-gold rounded-full top-2/3 left-1/2 animate-pulse floating-crystal crystal-delay-2"></div>
+      <div className="absolute w-4 h-4 bg-ornate-gold rounded-full bottom-10 right-10 animate-pulse floating-crystal crystal-delay-3"></div>
       <div className="absolute inset-0 z-10 bg-black/30"></div>
 
       {/* Subtle light effects */}

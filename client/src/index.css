@@ -1337,6 +1337,18 @@ a:hover {
     animation: floating-crystal 6s ease-in-out infinite;
   }
 
+  .crystal-delay-1 {
+    animation-delay: 0.5s;
+  }
+
+  .crystal-delay-2 {
+    animation-delay: 1s;
+  }
+
+  .crystal-delay-3 {
+    animation-delay: 1.5s;
+  }
+
   /* Pearl and coral combinations */
   .pearl-coral-blend {
     background: linear-gradient(
