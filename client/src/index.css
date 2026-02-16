@@ -6,43 +6,97 @@
 
 /* Micro-Animations for Enhanced User Flow */
 @keyframes gentle-bounce {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
 }
 
 @keyframes sparkle-on-hover {
-  0% { opacity: 0; transform: scale(0) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
-  100% { opacity: 0; transform: scale(0) rotate(360deg); }
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
 }
 
 @keyframes crystal-glow {
-  0%, 100% { box-shadow: 0 0 5px var(--elegant-gold); }
-  50% { box-shadow: 0 0 20px var(--elegant-gold), 0 0 30px var(--troves-turquoise); }
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--elegant-gold);
+  }
+  50% {
+    box-shadow:
+      0 0 20px var(--elegant-gold),
+      0 0 30px var(--troves-turquoise);
+  }
 }
 
 @keyframes cart-wiggle {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-3deg); }
-  75% { transform: rotate(3deg); }
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
 }
 
 @keyframes price-highlight {
-  0% { background: transparent; }
-  50% { background: linear-gradient(90deg, transparent, var(--elegant-gold)/20, transparent); }
-  100% { background: transparent; }
+  0% {
+    background: transparent;
+  }
+  50% {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--elegant-gold) / 20,
+      transparent
+    );
+  }
+  100% {
+    background: transparent;
+  }
 }
 
 @keyframes button-press {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.98); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes success-pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Interactive Element Classes */
@@ -87,7 +141,11 @@
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle, var(--elegant-gold)/30 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    var(--elegant-gold) / 30 0%,
+    transparent 70%
+  );
   transition: all 0.3s ease;
   transform: translate(-50%, -50%);
   border-radius: 50%;
@@ -103,7 +161,9 @@
 }
 
 .cart-icon-animated.cart-updated {
-  animation: cart-wiggle 0.5s ease, gentle-bounce 1s ease 0.5s;
+  animation:
+    cart-wiggle 0.5s ease,
+    gentle-bounce 1s ease 0.5s;
 }
 
 .price-animated {
@@ -120,7 +180,9 @@
 }
 
 .input-focus-glow:focus {
-  box-shadow: 0 0 0 3px var(--troves-turquoise)/20, 0 0 15px var(--elegant-gold)/30;
+  box-shadow:
+    0 0 0 3px var(--troves-turquoise) / 20,
+    0 0 15px var(--elegant-gold) / 30;
 }
 
 .badge-interactive {
@@ -130,7 +192,7 @@
 
 .badge-interactive:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px var(--elegant-gold)/30;
+  box-shadow: 0 4px 12px var(--elegant-gold) / 30;
 }
 
 .loading-crystal {
@@ -138,8 +200,12 @@
   animation: gentle-bounce 1.5s ease-in-out infinite;
 }
 
-.loading-crystal:nth-child(2) { animation-delay: 0.2s; }
-.loading-crystal:nth-child(3) { animation-delay: 0.4s; }
+.loading-crystal:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loading-crystal:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 .success-feedback {
   animation: success-pulse 0.6s ease;
@@ -157,7 +223,11 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--troves-turquoise), var(--elegant-gold));
+  background: linear-gradient(
+    90deg,
+    var(--troves-turquoise),
+    var(--elegant-gold)
+  );
   transition: all 0.3s ease;
   transform: translateX(-50%);
 }
@@ -175,7 +245,7 @@
   --antique-gold: 35 45% 45%;
   --sterling-silver: 200 10% 75%;
   --oxidized-silver: 210 15% 25%;
-  
+
   /* Crystal-inspired colors - enhanced from authentic jewelry */
   --amethyst: 280 60% 70%;
   --amethyst-light: 280 40% 90%;
@@ -186,77 +256,98 @@
   --turquoise: 180 85% 65%;
   --lepidolite: 290 30% 80%;
   --clear-quartz: 0 0% 95%;
-  
+
   /* UPDATED AUTHENTIC PALETTE FROM WOODEN SIGN & SKULL ARTWORK - High Contrast */
-  --troves-turquoise: 174 75% 20%;     /* Much deeper turquoise for excellent contrast */
-  --coves-cursive-blue: 200 65% 20%;   /* Much deeper blue for excellent readability */
-  --wood-grain: 35 40% 45%;            /* Darker wood tone for better contrast */
-  --skull-turquoise: 174 85% 25%;      /* Darker turquoise from skull artwork */
-  --ornate-frame-gold: 43 90% 30%;     /* Much deeper gold for excellent contrast */
-  --crystal-accents: 240 15% 98%;      /* Maximum contrast crystal highlights */
-  --obsidian-black: 240 8% 8%;         /* True dark for maximum contrast */
+  --troves-turquoise: 174 75% 20%; /* Much deeper turquoise for excellent contrast */
+  --coves-cursive-blue: 200 65% 20%; /* Much deeper blue for excellent readability */
+  --wood-grain: 35 40% 45%; /* Darker wood tone for better contrast */
+  --skull-turquoise: 174 85% 25%; /* Darker turquoise from skull artwork */
+  --ornate-frame-gold: 43 90% 30%; /* Much deeper gold for excellent contrast */
+  --crystal-accents: 240 15% 98%; /* Maximum contrast crystal highlights */
+  --obsidian-black: 240 8% 8%; /* True dark for maximum contrast */
   --carnelian-orange: 25 85% 45%;
   --carnelian-light: 25 75% 60%;
   --raw-crystal: 200 8% 85%;
-  --leather-black: 0 0% 5%;            /* Near black for maximum contrast */
+  --leather-black: 0 0% 5%; /* Near black for maximum contrast */
   --pearl-cream: 45 30% 98%;
-  
+
   /* Natural textures - Cream accents for gold primary */
-  --warm-cream: 43 30% 96%;         /* Light cream accents */
-  --rich-cream: 43 25% 93%;         /* Deeper cream accents */
-  --golden-cream: 43 35% 90%;       /* Gold-cream blend accents */
+  --warm-cream: 43 30% 96%; /* Light cream accents */
+  --rich-cream: 43 25% 93%; /* Deeper cream accents */
+  --golden-cream: 43 35% 90%; /* Gold-cream blend accents */
   --stone-warm: 30 15% 92%;
   --stone-cool: 200 10% 88%;
   --copper-patina: 170 30% 50%;
   --sage-green: 90 25% 65%;
   --earth-brown: 25 30% 35%;
-  
+
   /* Base colors - Primary gold with cream accents */
-  --background: 43 60% 88%;           /* Rich gold primary base */
+  --background: 43 60% 88%; /* Rich gold primary base */
   --background-secondary: 43 55% 85%; /* Deep gold secondary */
-  --background-tertiary: 43 50% 82%;  /* Deeper gold foundation */
-  
+  --background-tertiary: 43 50% 82%; /* Deeper gold foundation */
+
   /* Mystical design elements - Improved visibility */
   --skull-overlay: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skull" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="30" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><circle cx="70" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><path d="M45 35 Q50 40 55 35" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><rect x="45" y="50" width="10" height="8" fill="none" stroke="hsl(43, 95%, 35%)" stroke-width="0.8" opacity="0.18"/></pattern></defs><rect width="100" height="100" fill="url(%23skull)"/></svg>');
   --foreground: 25 30% 3%;
   --foreground-muted: 25 25% 10%;
-  
+
   /* UI colors built from jewelry palette - Primary gold with cream accents */
-  --card: 43 70% 92%;            /* Rich gold cards */
+  --card: 43 70% 92%; /* Rich gold cards */
   --card-foreground: 25 30% 3%;
-  --popover: 43 70% 92%;          /* Rich gold popovers */
+  --popover: 43 70% 92%; /* Rich gold popovers */
   --popover-foreground: 25 30% 3%;
   --primary: 174 75% 20%;
-  --primary-foreground: 43 80% 95%;  /* Cream foreground on primary */
-  --secondary: 43 45% 78%;           /* Gold-toned secondary */
+  --primary-foreground: 43 80% 95%; /* Cream foreground on primary */
+  --secondary: 43 45% 78%; /* Gold-toned secondary */
   --secondary-foreground: 25 30% 8%;
-  --muted: 43 50% 80%;              /* Gold-toned muted backgrounds */
+  --muted: 43 50% 80%; /* Gold-toned muted backgrounds */
   --muted-foreground: 25 25% 8%;
   --accent: 174 85% 25%;
-  --accent-foreground: 43 80% 95%;  /* Cream accent foreground */
+  --accent-foreground: 43 80% 95%; /* Cream accent foreground */
   --destructive: 0 80% 45%;
   --destructive-foreground: 43 80% 95%;
-  --border: 43 40% 65%;             /* Gold-toned borders */
-  --input: 43 45% 75%;              /* Gold-toned inputs */
+  --border: 43 40% 65%; /* Gold-toned borders */
+  --input: 43 45% 75%; /* Gold-toned inputs */
   --ring: 174 75% 20%;
   --radius: 8px;
-  
+
   /* Enhanced shadows with warmth */
   --shadow-warm: 35 45% 45% / 0.15;
   --shadow-crystal: 280 60% 70% / 0.1;
   --shadow-deep: 210 15% 25% / 0.2;
-  
+
   /* Mystical glow effects */
   --glow-turquoise: 174 85% 30%;
   --glow-gold: 43 90% 35%;
   --glow-skull: 174 75% 25%;
   --glow-blue: 200 65% 25%;
-  
+
   /* Harmonized gradient combinations */
-  --gradient-primary: linear-gradient(135deg, hsl(174, 75%, 20%) 0%, hsl(174, 85%, 25%) 50%, hsl(200, 65%, 20%) 100%);
-  --gradient-secondary: linear-gradient(135deg, hsl(200, 65%, 20%) 0%, hsl(174, 85%, 25%) 50%, hsl(174, 75%, 20%) 100%);
-  --gradient-accent: linear-gradient(135deg, hsl(174, 85%, 25%) 0%, hsl(43, 90%, 30%) 50%, hsl(200, 65%, 20%) 100%);
-  --gradient-mystical: linear-gradient(135deg, hsl(174, 75%, 20%) 0%, hsl(174, 85%, 25%) 25%, hsl(200, 65%, 20%) 75%, hsl(43, 90%, 30%) 100%);
+  --gradient-primary: linear-gradient(
+    135deg,
+    hsl(174, 75%, 20%) 0%,
+    hsl(174, 85%, 25%) 50%,
+    hsl(200, 65%, 20%) 100%
+  );
+  --gradient-secondary: linear-gradient(
+    135deg,
+    hsl(200, 65%, 20%) 0%,
+    hsl(174, 85%, 25%) 50%,
+    hsl(174, 75%, 20%) 100%
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    hsl(174, 85%, 25%) 0%,
+    hsl(43, 90%, 30%) 50%,
+    hsl(200, 65%, 20%) 100%
+  );
+  --gradient-mystical: linear-gradient(
+    135deg,
+    hsl(174, 75%, 20%) 0%,
+    hsl(174, 85%, 25%) 25%,
+    hsl(200, 65%, 20%) 75%,
+    hsl(43, 90%, 30%) 100%
+  );
 }
 
 /* Harmonized Three-Color Accent System */
@@ -276,14 +367,122 @@
   background: var(--gradient-accent);
 }
 
+.accent-mystical-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(174, 75%, 20%) 0%,
+    hsl(174, 85%, 25%) 25%,
+    hsl(200, 65%, 20%) 75%,
+    hsl(43, 90%, 30%) 100%
+  );
+}
+
+.btn-luxury {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-luxury:hover::before {
+  left: 100%;
+}
+
+.btn-luxury-outline {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.btn-luxury-outline:hover {
+  transform: translateY(-2px);
+}
+
+/* Mystical gradient for Hero */
+.accent-mystical-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(174, 75%, 20%) 0%,
+    hsl(174, 85%, 25%) 25%,
+    hsl(200, 65%, 20%) 75%,
+    hsl(43, 90%, 30%) 100%
+  );
+}
+
+/* Luxury button styles */
+.btn-luxury {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-luxury:hover::before {
+  left: 100%;
+}
+
+.btn-luxury-outline {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.btn-luxury-outline:hover {
+  transform: translateY(-2px);
+}
+
 /* Border accents using all three colors */
 .border-tri-gradient {
-  border-image: linear-gradient(135deg, hsl(174, 75%, 20%), hsl(174, 85%, 25%), hsl(200, 65%, 20%)) 1;
+  border-image: linear-gradient(
+      135deg,
+      hsl(174, 75%, 20%),
+      hsl(174, 85%, 25%),
+      hsl(200, 65%, 20%)
+    )
+    1;
 }
 
 .border-tri-underline {
   border-bottom: 2px solid;
-  border-image: linear-gradient(90deg, hsl(174, 75%, 20%), hsl(174, 85%, 25%), hsl(200, 65%, 20%)) 1;
+  border-image: linear-gradient(
+      90deg,
+      hsl(174, 75%, 20%),
+      hsl(174, 85%, 25%),
+      hsl(200, 65%, 20%)
+    )
+    1;
 }
 
 /* Glow effects for all three colors */
@@ -300,7 +499,7 @@
 }
 
 .glow-tri-color {
-  box-shadow: 
+  box-shadow:
     0 0 10px hsl(var(--glow-turquoise) / 0.2),
     0 0 20px hsl(var(--glow-skull) / 0.2),
     0 0 30px hsl(var(--glow-blue) / 0.1);
@@ -335,20 +534,24 @@
 /* Accent dividers */
 .divider-tri-color {
   height: 3px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    hsl(var(--troves-turquoise)) 25%, 
-    hsl(var(--skull-turquoise)) 50%, 
-    hsl(var(--coves-cursive-blue)) 75%, 
-    transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--troves-turquoise)) 25%,
+    hsl(var(--skull-turquoise)) 50%,
+    hsl(var(--coves-cursive-blue)) 75%,
+    transparent 100%
+  );
 }
 
 .divider-simple {
   height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    hsl(var(--skull-turquoise)) 50%, 
-    transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--skull-turquoise)) 50%,
+    transparent 100%
+  );
 }
 
 /* High Contrast Text Utilities */
@@ -396,7 +599,7 @@
   --background-tertiary: 210 15% 10%;
   --foreground: 45 25% 98%;
   --foreground-muted: 200 10% 70%;
-  
+
   /* Dark mode jewelry colors - more luminous */
   --rose-gold: 14 85% 75%;
   --rose-gold-light: 14 65% 85%;
@@ -404,7 +607,7 @@
   --antique-gold: 35 45% 55%;
   --sterling-silver: 200 15% 80%;
   --oxidized-silver: 210 20% 85%;
-  
+
   /* Dark mode crystals - enhanced luminosity */
   --amethyst: 280 65% 75%;
   --amethyst-light: 280 45% 90%;
@@ -415,23 +618,23 @@
   --turquoise: 180 80% 70%;
   --lepidolite: 290 35% 80%;
   --clear-quartz: 0 0% 90%;
-  
+
   /* Floral Enamel and Magnolia Elements */
   --magnolia-white: 60 100% 97%;
   --magnolia-cream: 50 30% 92%;
   --leaf-green: 150 40% 25%;
   --leaf-emerald: 160 60% 30%;
-  
+
   /* Lapis Lazuli Deep Blues */
   --lapis-deep: 220 80% 25%;
   --lapis-medium: 225 70% 35%;
   --lapis-light: 230 60% 45%;
-  
+
   /* Mystical and Spiritual Elements */
   --spiritual-turquoise: 180 100% 50%;
   --mystical-purple: 270 60% 40%;
   --sacred-gold: 45 100% 60%;
-  
+
   --card: 210 15% 10%;
   --card-foreground: 45 25% 98%;
   --popover: 210 15% 10%;
@@ -455,19 +658,40 @@
 body {
   color: hsl(var(--foreground));
   background: hsl(var(--background));
-  font-family: 'Source Sans Pro', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Source Sans Pro',
+    system-ui,
+    -apple-system,
+    sans-serif;
   font-weight: 300;
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
-  background-image: 
-    radial-gradient(circle at 20% 80%, hsl(var(--moonstone)) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, hsl(var(--amethyst-light)) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, hsl(var(--rose-quartz)) 0%, transparent 50%);
+  background-image:
+    radial-gradient(
+      circle at 20% 80%,
+      hsl(var(--moonstone)) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      hsl(var(--amethyst-light)) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      hsl(var(--rose-quartz)) 0%,
+      transparent 50%
+    );
   background-attachment: fixed;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Playfair Display', serif;
   font-weight: 500;
   letter-spacing: -0.025em;
@@ -514,22 +738,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Ensure minimum contrast for interactive elements */
-button, a, input, textarea, select {
+button,
+a,
+input,
+textarea,
+select {
   color: hsl(var(--foreground));
   font-weight: 500;
 }
 
-button:hover, a:hover {
+button:hover,
+a:hover {
   color: hsl(var(--foreground));
 }
 
 /* Default text colors with enhanced contrast */
-p, span, div, li {
+p,
+span,
+div,
+li {
   color: hsl(25 30% 8%);
 }
 
 /* Headers with maximum contrast */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: hsl(25 30% 3%) !important;
   font-weight: 600;
 }
@@ -550,96 +787,115 @@ a:hover {
     -webkit-backdrop-filter: blur(16px);
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 
+    box-shadow:
       0 8px 32px rgba(0, 0, 0, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.2),
       inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   }
-  
+
   .dark .glass-jewelry {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
+    box-shadow:
       0 8px 32px rgba(0, 0, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
-  
+
   /* Organic crystal shapes */
   .crystal-frame {
-    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    clip-path: polygon(
+      20% 0%,
+      80% 0%,
+      100% 20%,
+      100% 80%,
+      80% 100%,
+      20% 100%,
+      0% 80%,
+      0% 20%
+    );
   }
-  
+
   .faceted-frame {
     clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
   }
-  
+
   /* Enhanced cream and gold gradients */
   .gradient-warm-cream {
-    background: linear-gradient(135deg, 
-      hsl(var(--warm-cream)), 
-      hsl(var(--rich-cream)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--warm-cream)),
+      hsl(var(--rich-cream)),
       hsl(var(--golden-cream))
     );
   }
-  
+
   .gradient-gold-cream {
-    background: linear-gradient(135deg, 
-      hsl(var(--ornate-frame-gold)), 
-      hsl(var(--warm-cream)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--ornate-frame-gold)),
+      hsl(var(--warm-cream)),
       hsl(var(--rich-cream))
     );
   }
-  
+
   .gradient-rose-gold {
-    background: linear-gradient(135deg, 
-      hsl(var(--rose-gold-light)), 
-      hsl(var(--rose-gold)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--rose-gold-light)),
+      hsl(var(--rose-gold)),
       hsl(var(--rose-gold-dark))
     );
   }
-  
+
   .gradient-silver {
-    background: linear-gradient(135deg, 
-      hsl(var(--sterling-silver)), 
-      hsl(var(--oxidized-silver)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--sterling-silver)),
+      hsl(var(--oxidized-silver)),
       hsl(var(--labradorite))
     );
   }
-  
+
   .gradient-warm-gold {
-    background: linear-gradient(135deg, 
-      hsl(var(--warm-gold)), 
-      hsl(var(--antique-gold)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--warm-gold)),
+      hsl(var(--antique-gold)),
       hsl(var(--copper-patina))
     );
   }
-  
+
   /* Gem-like text effects */
   .text-crystal {
-    background: linear-gradient(135deg, 
-      hsl(var(--amethyst)), 
-      hsl(var(--turquoise)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--amethyst)),
+      hsl(var(--turquoise)),
       hsl(var(--citrine))
     );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  
+
   /* AUTHENTIC MYSTICAL SKULL ARTWORK EFFECTS */
   .wooden-sign-bg {
     position: relative;
-    background: linear-gradient(45deg, 
-      hsl(var(--wood-grain)) 0%, 
-      hsl(var(--pearl-cream)) 50%, 
-      hsl(var(--crystal-accents)) 100%);
+    background: linear-gradient(
+      45deg,
+      hsl(var(--wood-grain)) 0%,
+      hsl(var(--pearl-cream)) 50%,
+      hsl(var(--crystal-accents)) 100%
+    );
   }
 
   .skull-artwork-influence {
     position: relative;
-    background: linear-gradient(135deg, 
-      hsl(var(--skull-turquoise) / 0.1) 0%, 
-      hsl(var(--crystal-accents)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--skull-turquoise) / 0.1) 0%,
+      hsl(var(--crystal-accents)) 100%
+    );
   }
 
   .skull-artwork-influence::before {
@@ -657,11 +913,16 @@ a:hover {
 
   .ornate-decorative-frame {
     border: 3px solid transparent;
-    background: linear-gradient(hsl(var(--crystal-accents)), hsl(var(--wood-grain))) padding-box,
-                linear-gradient(45deg, 
-                  hsl(var(--ornate-frame-gold)), 
-                  hsl(var(--skull-turquoise)), 
-                  hsl(var(--ornate-frame-gold))) border-box;
+    background:
+      linear-gradient(hsl(var(--crystal-accents)), hsl(var(--wood-grain)))
+        padding-box,
+      linear-gradient(
+          45deg,
+          hsl(var(--ornate-frame-gold)),
+          hsl(var(--skull-turquoise)),
+          hsl(var(--ornate-frame-gold))
+        )
+        border-box;
     border-radius: 12px;
     position: relative;
   }
@@ -670,10 +931,12 @@ a:hover {
     content: '';
     position: absolute;
     inset: -6px;
-    background: linear-gradient(45deg, 
-      hsl(var(--ornate-frame-gold) / 0.3), 
-      transparent, 
-      hsl(var(--skull-turquoise) / 0.3));
+    background: linear-gradient(
+      45deg,
+      hsl(var(--ornate-frame-gold) / 0.3),
+      transparent,
+      hsl(var(--skull-turquoise) / 0.3)
+    );
     border-radius: 16px;
     z-index: -1;
   }
@@ -718,13 +981,15 @@ a:hover {
   }
 
   .skull-turquoise-glow {
-    box-shadow: 0 0 25px hsl(var(--skull-turquoise) / 0.4),
-                0 0 50px hsl(var(--skull-turquoise) / 0.2);
+    box-shadow:
+      0 0 25px hsl(var(--skull-turquoise) / 0.4),
+      0 0 50px hsl(var(--skull-turquoise) / 0.2);
   }
 
   .ornate-gold-glow {
-    box-shadow: 0 0 20px hsl(var(--ornate-frame-gold) / 0.5),
-                0 0 40px hsl(var(--ornate-frame-gold) / 0.3);
+    box-shadow:
+      0 0 20px hsl(var(--ornate-frame-gold) / 0.5),
+      0 0 40px hsl(var(--ornate-frame-gold) / 0.3);
   }
 
   .authentic-mystical-card {
@@ -741,48 +1006,53 @@ a:hover {
   }
 
   .wooden-texture {
-    background-image: 
+    background-image:
       linear-gradient(90deg, hsl(var(--wood-grain) / 0.1) 50%, transparent 50%),
       linear-gradient(hsl(var(--wood-grain)), hsl(var(--natural-wood)));
-    background-size: 4px 4px, 100% 100%;
+    background-size:
+      4px 4px,
+      100% 100%;
   }
 
   .text-rose-gold {
-    background: linear-gradient(135deg, 
-      hsl(var(--rose-gold)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--rose-gold)),
       hsl(var(--warm-gold))
     );
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  
+
   /* Wire-wrap inspired elements */
   .wire-wrap {
     position: relative;
   }
-  
+
   .wire-wrap::before {
     content: '';
     position: absolute;
     inset: -2px;
-    background: linear-gradient(45deg, 
-      hsl(var(--antique-gold)), 
-      hsl(var(--rose-gold)), 
+    background: linear-gradient(
+      45deg,
+      hsl(var(--antique-gold)),
+      hsl(var(--rose-gold)),
       hsl(var(--sterling-silver))
     );
     border-radius: inherit;
     z-index: -1;
     opacity: 0.7;
   }
-  
+
   /* Organic button styles */
   .btn-organic {
     border-radius: 2rem 1rem 2rem 1rem;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, 
-      hsl(var(--rose-gold)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--rose-gold)),
       hsl(var(--warm-gold))
     );
     color: hsl(var(--background));
@@ -791,7 +1061,7 @@ a:hover {
     font-weight: 400;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .btn-organic::before {
     content: '';
     position: absolute;
@@ -799,40 +1069,43 @@ a:hover {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, 
-      transparent, 
-      rgba(255, 255, 255, 0.2), 
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
       transparent
     );
     transition: left 0.5s;
   }
-  
+
   .btn-organic:hover::before {
     left: 100%;
   }
-  
+
   .btn-organic:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px hsl(var(--shadow-warm));
   }
-  
+
   /* Crystal-inspired cards */
   .card-crystal {
-    background: linear-gradient(135deg, 
-      hsl(var(--clear-quartz)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--clear-quartz)),
       hsl(var(--moonstone))
     );
     border: 1px solid hsl(var(--rose-gold) / 0.2);
     border-radius: 1rem 0.5rem 1rem 0.5rem;
-    box-shadow: 
+    box-shadow:
       0 4px 16px hsl(var(--shadow-crystal)),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
-  
+
   /* Gemstone highlights */
   .highlight-amethyst {
-    background: linear-gradient(135deg, 
-      hsl(var(--amethyst-light)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--amethyst-light)),
       hsl(var(--amethyst))
     );
     padding: 0.125rem 0.5rem;
@@ -841,10 +1114,11 @@ a:hover {
     font-size: 0.875rem;
     font-weight: 500;
   }
-  
+
   .highlight-rose-quartz {
-    background: linear-gradient(135deg, 
-      hsl(var(--rose-quartz)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--rose-quartz)),
       hsl(var(--rose-gold-light))
     );
     padding: 0.125rem 0.5rem;
@@ -853,20 +1127,21 @@ a:hover {
     font-size: 0.875rem;
     font-weight: 500;
   }
-  
+
   /* Wire-wrapped pendant styles */
   .pendant-style {
     position: relative;
     border-radius: 50% 40% 60% 30%;
-    background: linear-gradient(135deg, 
-      hsl(var(--raw-crystal)), 
-      hsl(var(--clear-quartz)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--raw-crystal)),
+      hsl(var(--clear-quartz)),
       hsl(var(--pearl-cream))
     );
     border: 2px solid hsl(var(--wire-gold));
     padding: 1rem;
   }
-  
+
   .pendant-style::before {
     content: '';
     position: absolute;
@@ -875,18 +1150,19 @@ a:hover {
     transform: translateX(-50%);
     width: 4px;
     height: 16px;
-    background: linear-gradient(135deg, 
-      hsl(var(--wire-gold)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--wire-gold)),
       hsl(var(--antique-gold))
     );
     border-radius: 2px;
   }
-  
+
   /* Layered necklace effect */
   .layered-styling {
     position: relative;
   }
-  
+
   .layered-styling::before,
   .layered-styling::after {
     content: '';
@@ -897,26 +1173,28 @@ a:hover {
     height: 2px;
     border-radius: 1px;
   }
-  
+
   .layered-styling::before {
-    background: linear-gradient(90deg, 
-      transparent, 
-      hsl(var(--wire-gold)), 
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--wire-gold)),
       transparent
     );
     transform: translateY(-6px);
   }
-  
+
   .layered-styling::after {
-    background: linear-gradient(90deg, 
-      transparent, 
-      hsl(var(--leather-black)), 
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--leather-black)),
       transparent
     );
     transform: translateY(-10px);
     opacity: 0.7;
   }
-  
+
   /* Beaded bracelet pattern */
   .beaded-pattern {
     background: repeating-linear-gradient(
@@ -932,48 +1210,66 @@ a:hover {
     );
     height: 6px;
     border-radius: 3px;
-    box-shadow: 
+    box-shadow:
       0 2px 4px hsl(var(--obsidian-black) / 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
-  
+
   /* Raw crystal texture */
   .raw-crystal-texture {
-    background: linear-gradient(45deg, 
-      hsl(var(--raw-crystal)), 
+    background: linear-gradient(
+      45deg,
+      hsl(var(--raw-crystal)),
       hsl(var(--clear-quartz))
     );
     position: relative;
   }
-  
+
   .raw-crystal-texture::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: 
-      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
-      radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-      radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.4) 1.5px, transparent 1.5px);
-    background-size: 20px 20px, 15px 15px, 25px 25px;
+    background-image:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(255, 255, 255, 0.3) 2px,
+        transparent 2px
+      ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba(255, 255, 255, 0.2) 1px,
+        transparent 1px
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(255, 255, 255, 0.4) 1.5px,
+        transparent 1.5px
+      );
+    background-size:
+      20px 20px,
+      15px 15px,
+      25px 25px;
   }
-  
+
   /* Obsidian arrowhead style */
   .obsidian-arrowhead {
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background: linear-gradient(135deg, 
-      hsl(var(--obsidian-black)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--obsidian-black)),
       hsl(var(--leather-black))
     );
     position: relative;
   }
-  
+
   .obsidian-arrowhead::before {
     content: '';
     position: absolute;
     inset: 2px;
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background: linear-gradient(135deg, 
-      hsl(var(--oxidized-silver)), 
+    background: linear-gradient(
+      135deg,
+      hsl(var(--oxidized-silver)),
       transparent
     );
     opacity: 0.3;
@@ -981,30 +1277,42 @@ a:hover {
 
   /* Luxury animations */
   @keyframes shimmer-gold {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
-  
+
   @keyframes crystal-glow {
-    0%, 100% { 
+    0%,
+    100% {
       box-shadow: 0 0 20px hsl(var(--amethyst) / 0.3);
     }
-    50% { 
+    50% {
       box-shadow: 0 0 30px hsl(var(--amethyst) / 0.5);
     }
   }
-  
+
   @keyframes floating-crystal {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33% { transform: translateY(-8px) rotate(1deg); }
-    66% { transform: translateY(-4px) rotate(-1deg); }
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-8px) rotate(1deg);
+    }
+    66% {
+      transform: translateY(-4px) rotate(-1deg);
+    }
   }
-  
+
   .shimmer-effect {
     position: relative;
     overflow: hidden;
   }
-  
+
   .shimmer-effect::before {
     content: '';
     position: absolute;
@@ -1020,18 +1328,19 @@ a:hover {
     );
     animation: shimmer-gold 2s infinite;
   }
-  
+
   .crystal-glow {
     animation: crystal-glow 4s ease-in-out infinite;
   }
-  
+
   .floating-crystal {
     animation: floating-crystal 6s ease-in-out infinite;
   }
 
   /* Pearl and coral combinations */
   .pearl-coral-blend {
-    background: linear-gradient(90deg,
+    background: linear-gradient(
+      90deg,
       hsl(var(--pearl-cream)) 0%,
       hsl(var(--carnelian-orange)) 25%,
       hsl(var(--pearl-cream)) 50%,
@@ -1039,14 +1348,15 @@ a:hover {
       hsl(var(--pearl-cream)) 100%
     );
     border-radius: 50%;
-    box-shadow: 
+    box-shadow:
       inset 0 2px 4px rgba(255, 255, 255, 0.4),
       0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   /* Howlite marble texture */
   .howlite-marble {
-    background: linear-gradient(135deg,
+    background: linear-gradient(
+      135deg,
       hsl(var(--moonstone)) 0%,
       hsl(var(--clear-quartz)) 30%,
       hsl(var(--moonstone)) 60%,
@@ -1057,32 +1367,45 @@ a:hover {
   }
 
   @keyframes marble-flow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
   }
 
   /* Smoky quartz depth */
   .smoky-quartz-depth {
-    background: radial-gradient(circle at center,
+    background: radial-gradient(
+      circle at center,
       hsl(var(--obsidian-gray)) 0%,
       hsl(var(--leather-black)) 70%,
       hsl(var(--obsidian-black)) 100%
     );
-    box-shadow: 
+    box-shadow:
       inset 0 4px 8px rgba(255, 255, 255, 0.1),
       0 4px 16px rgba(0, 0, 0, 0.4);
   }
 
   /* Hamsa hand sacred geometry */
   .hamsa-sacred {
-    background: linear-gradient(135deg,
+    background: linear-gradient(
+      135deg,
       hsl(var(--sacred-gold)) 0%,
       hsl(var(--warm-gold)) 50%,
       hsl(var(--antique-gold)) 100%
     );
     clip-path: polygon(
-      50% 0%, 30% 25%, 35% 50%, 20% 75%, 50% 85%, 
-      80% 75%, 65% 50%, 70% 25%
+      50% 0%,
+      30% 25%,
+      35% 50%,
+      20% 75%,
+      50% 85%,
+      80% 75%,
+      65% 50%,
+      70% 25%
     );
     position: relative;
   }
@@ -1111,16 +1434,18 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, 
-    hsl(var(--rose-gold)), 
+  background: linear-gradient(
+    135deg,
+    hsl(var(--rose-gold)),
     hsl(var(--warm-gold))
   );
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, 
-    hsl(var(--warm-gold)), 
+  background: linear-gradient(
+    135deg,
+    hsl(var(--warm-gold)),
     hsl(var(--rose-gold-light))
   );
 }
@@ -1148,7 +1473,7 @@ a:hover {
     --coves-cursive-blue: 200 100% 20%;
     --border: 200 15% 60%;
   }
-  
+
   .dark {
     --foreground: 45 25% 100%;
     --foreground-muted: 200 10% 90%;
@@ -1303,7 +1628,7 @@ a:hover {
     flex: 1 1 100%;
     min-width: unset;
   }
-  
+
   .adaptive-grid,
   .adaptive-grid-large {
     grid-template-columns: 1fr;
