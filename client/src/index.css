@@ -282,9 +282,9 @@
   --earth-brown: 25 30% 35%;
 
   /* Base colors - Primary gold with cream accents */
-  --background: 43 60% 88%; /* Rich gold primary base */
-  --background-secondary: 43 55% 85%; /* Deep gold secondary */
-  --background-tertiary: 43 50% 82%; /* Deeper gold foundation */
+  --background: hsl(43, 60%, 88%); /* Rich gold primary base */
+  --background-secondary: hsl(43, 55%, 85%); /* Deep gold secondary */
+  --background-tertiary: hsl(43, 50%, 82%); /* Deeper gold foundation */
 
   /* Mystical design elements - Improved visibility */
   --skull-overlay: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skull" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="30" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><circle cx="70" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><path d="M45 35 Q50 40 55 35" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><rect x="45" y="50" width="10" height="8" fill="none" stroke="hsl(43, 95%, 35%)" stroke-width="0.8" opacity="0.18"/></pattern></defs><rect width="100" height="100" fill="url(%23skull)"/></svg>');
@@ -656,8 +656,8 @@
 }
 
 body {
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
+  color: hsl(25 30% 8%);
+  background: #f5f0e6;
   font-family:
     'Source Sans Pro',
     system-ui,
@@ -667,23 +667,6 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
-  background-image:
-    radial-gradient(
-      circle at 20% 80%,
-      hsl(var(--moonstone)) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      hsl(var(--amethyst-light)) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 40% 40%,
-      hsl(var(--rose-quartz)) 0%,
-      transparent 50%
-    );
-  background-attachment: fixed;
 }
 
 h1,
@@ -1365,6 +1348,25 @@ a:hover {
 
   .flex-basis-300 {
     flex-basis: 300px;
+  }
+
+  .and-gradient-text {
+    font-family: 'Dancing Script', 'Playfair Display', cursive, serif;
+    font-weight: 700;
+    font-size: 1.2em;
+    background: linear-gradient(90deg, #14b8a6 0%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .max-h-300 {
+    max-height: 300px;
+  }
+
+  .ui-progress-transform {
+    transform: translateX(-100%);
   }
 
   /* Pearl and coral combinations */

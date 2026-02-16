@@ -91,21 +91,7 @@ export default function Header() {
               <div className="flex flex-col">
                 <span className="text-2xl font-bold tracking-tight">
                   <span className="troves-text-style">Troves</span>
-                  <span
-                    className="and-text-style mx-2"
-                    style={{
-                      fontFamily:
-                        '"Dancing Script", "Playfair Display", "cursive", "serif"',
-                      fontWeight: 700,
-                      fontSize: '1.2em',
-                      background:
-                        'linear-gradient(90deg, #14b8a6 0%, #ffd700 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      display: 'inline-block',
-                      verticalAlign: 'middle',
-                    }}
-                  >
+                  <span className="and-text-style mx-2 and-gradient-text">
                     &
                   </span>
                   <span className="coves-text-style">Coves</span>
