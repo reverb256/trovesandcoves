@@ -70,12 +70,11 @@ export default function Header() {
     <>
       {/* Luxury Header */}
       <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 will-change-transform ${
+        className={`fixed top-0 w-full z-50 transition-all duration-300 will-change-transform translate-z-0 ${
           isScrolled
             ? 'glass-card backdrop-blur-xl border-b border-ornate-frame-gold/20'
             : 'bg-transparent'
         }`}
-        style={{ transform: 'translateZ(0)' }}
       >
         <div className="absolute top-0 left-0 w-full h-0.5 accent-tri-gradient"></div>
         <div className="container-luxury">

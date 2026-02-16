@@ -84,15 +84,9 @@ export default function About() {
             </span>
           </div>
 
-          <h1
-            className="text-5xl md:text-6xl font-bold mb-6"
-            style={{ fontFamily: 'var(--brand-font-heading)' }}
-          >
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
             <span className="text-troves-turquoise">About </span>
-            <span
-              className="text-coves-cursive-blue"
-              style={{ fontFamily: 'var(--brand-font-cursive)' }}
-            >
+            <span className="text-coves-cursive-blue font-brand-cursive">
               Troves & Coves
             </span>
           </h1>

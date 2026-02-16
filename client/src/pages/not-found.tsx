@@ -25,10 +25,7 @@ export default function NotFound() {
             </div>
           </div>
 
-          <h1
-            className="text-3xl font-bold text-troves-turquoise mb-4"
-            style={{ fontFamily: 'var(--brand-font-heading)' }}
-          >
+          <h1 className="text-3xl font-bold text-troves-turquoise mb-4 font-brand-heading">
             Lost in the Crystal Realm
           </h1>
 

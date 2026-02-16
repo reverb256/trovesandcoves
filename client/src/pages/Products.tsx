@@ -207,10 +207,7 @@ export default function Products() {
     <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
       {/* Mystical Header Section with Skull Overlay */}
       <section className="relative bg-gradient-to-br from-pearl-cream via-crystal-accents to-pearl-cream text-navy overflow-hidden py-20">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{ backgroundImage: 'var(--skull-overlay)' }}
-        />
+        <div className="absolute inset-0 opacity-5 bg-skull-overlay" />
         {/* Subtle turquoise accent borders */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
@@ -226,10 +223,7 @@ export default function Products() {
               </div>
             </div>
 
-            <h1
-              className="text-5xl md:text-6xl font-bold mb-6"
-              style={{ fontFamily: 'var(--brand-font-heading)' }}
-            >
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
               <span className="text-navy">
                 {currentCategory
                   ? currentCategory.name
@@ -262,7 +256,7 @@ export default function Products() {
 
         <div className="smart-flex">
           {/* Mystical Sidebar Filters */}
-          <aside className="flex-shrink-0" style={{ flexBasis: '300px' }}>
+          <aside className="flex-shrink-0 flex-basis-300">
             <Card className="sticky top-8 shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
               <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
                 <CardTitle className="flex items-center space-x-3 text-troves-turquoise">

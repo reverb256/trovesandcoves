@@ -71,10 +71,7 @@ export default function Warranty() {
             </span>
           </div>
 
-          <h1
-            className="text-5xl md:text-6xl font-bold mb-6"
-            style={{ fontFamily: 'var(--brand-font-heading)' }}
-          >
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
             <span className="text-navy">Warranty</span>
           </h1>
 

@@ -1340,13 +1340,31 @@ a:hover {
   .crystal-delay-1 {
     animation-delay: 0.5s;
   }
-
   .crystal-delay-2 {
     animation-delay: 1s;
   }
-
   .crystal-delay-3 {
     animation-delay: 1.5s;
+  }
+
+  .font-brand-heading {
+    font-family: var(--brand-font-heading), 'Playfair Display', serif;
+  }
+
+  .font-brand-cursive {
+    font-family: var(--brand-font-cursive), 'Dancing Script', cursive;
+  }
+
+  .bg-skull-overlay {
+    background-image: var(--skull-overlay);
+  }
+
+  .translate-z-0 {
+    transform: translateZ(0);
+  }
+
+  .flex-basis-300 {
+    flex-basis: 300px;
   }
 
   /* Pearl and coral combinations */
