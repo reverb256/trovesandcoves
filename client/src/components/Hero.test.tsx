@@ -6,7 +6,7 @@ describe('Hero Component', () => {
   it('renders correctly', () => {
     render(<Hero />);
     expect(screen.getByText('Troves & Coves')).toBeInTheDocument();
-    expect(screen.getByText(/Sacred crystal jewelry/)).toBeInTheDocument();
+    expect(screen.getByText(/Authentic crystal jewelry/)).toBeInTheDocument();
   });
 
   it('has proper accessibility attributes', () => {
@@ -17,15 +17,23 @@ describe('Hero Component', () => {
 
   it('contains navigation links', () => {
     render(<Hero />);
-    expect(screen.getByRole('link', { name: /browse our crystal jewelry/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /learn more about our spiritual/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /browse our crystal jewelry/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /learn more about our spiritual/i })
+    ).toBeInTheDocument();
   });
 
   it('has proper link destinations', () => {
     render(<Hero />);
-    const exploreLink = screen.getByRole('link', { name: /browse our crystal jewelry/i });
-    const storyLink = screen.getByRole('link', { name: /learn more about our spiritual/i });
-    
+    const exploreLink = screen.getByRole('link', {
+      name: /browse our crystal jewelry/i,
+    });
+    const storyLink = screen.getByRole('link', {
+      name: /learn more about our spiritual/i,
+    });
+
     expect(exploreLink).toHaveAttribute('href', '/products');
     expect(storyLink).toHaveAttribute('href', '/about');
   });

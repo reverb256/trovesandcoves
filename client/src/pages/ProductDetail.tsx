@@ -1,19 +1,31 @@
-import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useParams, useLocation, Link } from "wouter";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useCart } from "@/hooks/useCart";
-import { useToast } from "@/hooks/use-toast";
-import { useContextualAI } from "@/hooks/useContextualAI";
-import SmartProductInsights from "@/components/SmartProductInsights";
-import IntelligentShoppingFlow from "@/components/IntelligentShoppingFlow";
-import { Heart, ShoppingBag, Truck, Shield, Gem, Star, ArrowLeft, Minus, Plus, Share2, ChevronRight } from "lucide-react";
-import type { ProductWithCategory } from "@shared/schema";
+import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useParams, useLocation, Link } from 'wouter';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useCart } from '@/hooks/useCart';
+import { useToast } from '@/hooks/use-toast';
+import { useContextualAI } from '@/hooks/useContextualAI';
+import SmartProductInsights from '@/components/SmartProductInsights';
+import IntelligentShoppingFlow from '@/components/IntelligentShoppingFlow';
+import {
+  Heart,
+  ShoppingBag,
+  Truck,
+  Shield,
+  Gem,
+  Star,
+  ArrowLeft,
+  Minus,
+  Plus,
+  Share2,
+  ChevronRight,
+} from 'lucide-react';
+import type { ProductWithCategory } from '@shared/schema';
 
 export default function ProductDetail() {
   const params = useParams();
@@ -35,7 +47,11 @@ export default function ProductDetail() {
     return () => clearInterval(interval);
   }, [viewingStartTime]);
 
-  const { data: product, isLoading, error } = useQuery<ProductWithCategory>({
+  const {
+    data: product,
+    isLoading,
+    error,
+  } = useQuery<ProductWithCategory>({
     queryKey: [`/api/products/${productId}`],
     enabled: !!productId && !isNaN(productId),
   });
@@ -43,9 +59,9 @@ export default function ProductDetail() {
   // Update context when product loads
   useEffect(() => {
     if (product) {
-      updateContext({ 
+      updateContext({
         viewingProduct: product.name,
-        currentPage: `/product/${productId}`
+        currentPage: `/product/${productId}`,
       });
       trackCrystalInterest(product.name.toLowerCase());
     }
@@ -63,19 +79,19 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
     if (!product) return;
-    
+
     addToCart(product.id, quantity);
     toast({
-      title: "Added to Cart",
+      title: 'Added to Cart',
       description: `${quantity} x ${product.name} has been added to your cart.`,
     });
   };
 
   const handleWishlist = () => {
     if (!product) return;
-    
+
     toast({
-      title: "Added to Wishlist",
+      title: 'Added to Wishlist',
       description: `${product.name} has been added to your wishlist.`,
     });
   };
@@ -111,9 +127,17 @@ export default function ProductDetail() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="max-w-md">
           <CardContent className="pt-6 text-center">
-            <h2 className="text-2xl font-serif font-bold text-navy mb-4">Product Not Found</h2>
-            <p className="text-gray-600 mb-6">The product you're looking for doesn't exist or may have been removed.</p>
-            <Button onClick={() => setLocation('/products')} className="bg-navy hover:bg-rich-blue text-white">
+            <h2 className="text-2xl font-serif font-bold text-navy mb-4">
+              Product Not Found
+            </h2>
+            <p className="text-gray-600 mb-6">
+              The product you're looking for doesn't exist or may have been
+              removed.
+            </p>
+            <Button
+              onClick={() => setLocation('/products')}
+              className="bg-navy hover:bg-rich-blue text-white"
+            >
               Browse Products
             </Button>
           </CardContent>
@@ -122,28 +146,30 @@ export default function ProductDetail() {
     );
   }
 
-  const images = product.imageUrls && product.imageUrls.length > 0 ? product.imageUrls : [product.imageUrl];
+  const images =
+    product.imageUrls && product.imageUrls.length > 0
+      ? product.imageUrls
+      : [product.imageUrl];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
-      {/* Mystical Breadcrumb with Sacred Navigation */}
       <div className="bg-gradient-to-r from-crystal-accents/90 to-pearl-cream/90 border-b-2 border-ornate-frame-gold/30 shadow-lg backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4 text-sm">
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setLocation('/products')}
                 className="text-troves-turquoise hover:text-skull-turquoise hover:bg-skull-turquoise/10 border border-troves-turquoise/30 rounded-lg transition-all duration-200 font-medium"
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Sacred Collections
+                Crystal Collections
               </Button>
               <ChevronRight className="h-4 w-4 text-ornate-frame-gold" />
               {product.category && (
                 <>
-                  <Link 
+                  <Link
                     href={`/products/${product.category.slug}`}
                     className="text-coves-cursive-blue hover:text-skull-turquoise transition-colors font-medium"
                   >
@@ -152,17 +178,28 @@ export default function ProductDetail() {
                   <ChevronRight className="h-4 w-4 text-ornate-frame-gold" />
                 </>
               )}
-              <span className="text-troves-turquoise font-bold max-w-[300px] truncate" title={product.name}>
+              <span
+                className="text-troves-turquoise font-bold max-w-[300px] truncate"
+                title={product.name}
+              >
                 {product.name}
               </span>
             </div>
-            
+
             {/* Quick Share Actions */}
             <div className="hidden md:flex items-center space-x-2">
-              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-turquoise-600">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-gray-500 hover:text-turquoise-600"
+              >
                 <Heart className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="sm" className="text-gray-500 hover:text-turquoise-600">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-gray-500 hover:text-turquoise-600"
+              >
                 <Share2 className="h-4 w-4" />
               </Button>
             </div>
@@ -226,7 +263,10 @@ export default function ProductDetail() {
           <div className="space-y-6">
             {/* Category Badge */}
             {product.category && (
-              <Badge variant="outline" className="text-elegant-gold border-elegant-gold">
+              <Badge
+                variant="outline"
+                className="text-elegant-gold border-elegant-gold"
+              >
                 {product.category.name}
               </Badge>
             )}
@@ -245,12 +285,14 @@ export default function ProductDetail() {
             <div className="space-y-2">
               {product.materials && product.materials.length > 0 && (
                 <p className="text-gray-700">
-                  <span className="font-medium">Materials:</span> {product.materials.join(", ")}
+                  <span className="font-medium">Materials:</span>{' '}
+                  {product.materials.join(', ')}
                 </p>
               )}
               {product.gemstones && product.gemstones.length > 0 && (
                 <p className="text-gray-700">
-                  <span className="font-medium">Gemstones:</span> {product.gemstones.join(", ")}
+                  <span className="font-medium">Gemstones:</span>{' '}
+                  {product.gemstones.join(', ')}
                 </p>
               )}
               {product.weight && (
@@ -276,11 +318,15 @@ export default function ProductDetail() {
                   >
                     <Minus className="h-4 w-4" />
                   </Button>
-                  <span className="px-4 py-2 min-w-[3rem] text-center">{quantity}</span>
+                  <span className="px-4 py-2 min-w-[3rem] text-center">
+                    {quantity}
+                  </span>
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => setQuantity(Math.min(product.stockQuantity, quantity + 1))}
+                    onClick={() =>
+                      setQuantity(Math.min(product.stockQuantity, quantity + 1))
+                    }
                     disabled={quantity >= product.stockQuantity}
                     className="h-10 w-10 p-0"
                   >
@@ -291,7 +337,9 @@ export default function ProductDetail() {
 
               {/* Stock Status */}
               {product.stockQuantity > 0 ? (
-                <p className="text-green-600 text-sm">✓ In stock ({product.stockQuantity} available)</p>
+                <p className="text-green-600 text-sm">
+                  ✓ In stock ({product.stockQuantity} available)
+                </p>
               ) : (
                 <p className="text-red-600 text-sm">✗ Out of stock</p>
               )}
@@ -302,12 +350,16 @@ export default function ProductDetail() {
               <div className="flex space-x-4">
                 {(product as any).etsyLink ? (
                   <Button
-                    onClick={() => window.open((product as any).etsyLink, '_blank')}
+                    onClick={() =>
+                      window.open((product as any).etsyLink, '_blank')
+                    }
                     disabled={product.stockQuantity === 0}
                     className="flex-1 bg-navy text-white hover:bg-rich-blue h-12"
                   >
                     <ShoppingBag className="h-4 w-4 mr-2" />
-                    {product.stockQuantity === 0 ? 'Out of Stock' : 'Buy on Etsy'}
+                    {product.stockQuantity === 0
+                      ? 'Out of Stock'
+                      : 'Buy on Etsy'}
                   </Button>
                 ) : (
                   <Button
@@ -316,7 +368,9 @@ export default function ProductDetail() {
                     className="flex-1 bg-navy text-white hover:bg-rich-blue h-12"
                   >
                     <ShoppingBag className="h-4 w-4 mr-2" />
-                    {product.stockQuantity === 0 ? 'Out of Stock' : 'Add to Cart'}
+                    {product.stockQuantity === 0
+                      ? 'Out of Stock'
+                      : 'Add to Cart'}
                   </Button>
                 )}
                 <Button
@@ -357,12 +411,12 @@ export default function ProductDetail() {
 
         {/* AI-Powered Product Insights */}
         <div className="mt-12">
-          <SmartProductInsights 
+          <SmartProductInsights
             productId={productId}
             userBehavior={{
               timeViewing,
               interactions: ['view', 'scroll', 'hover'],
-              previousPurchases: []
+              previousPurchases: [],
             }}
           />
         </div>
@@ -376,21 +430,25 @@ export default function ProductDetail() {
               <TabsTrigger value="care">Care Guide</TabsTrigger>
               <TabsTrigger value="ai-insights">AI Insights</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="description" className="mt-8">
               <Card>
                 <CardContent className="pt-6">
-                  <p className="text-gray-700 leading-relaxed">{product.description}</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    {product.description}
+                  </p>
                 </CardContent>
               </Card>
             </TabsContent>
-            
+
             <TabsContent value="details" className="mt-8">
               <Card>
                 <CardContent className="pt-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h3 className="font-semibold text-navy mb-3">Specifications</h3>
+                      <h3 className="font-semibold text-navy mb-3">
+                        Specifications
+                      </h3>
                       <dl className="space-y-2">
                         <div className="flex justify-between">
                           <dt className="text-gray-600">SKU:</dt>
@@ -405,19 +463,25 @@ export default function ProductDetail() {
                         {product.materials && (
                           <div className="flex justify-between">
                             <dt className="text-gray-600">Materials:</dt>
-                            <dd className="font-medium">{product.materials.join(", ")}</dd>
+                            <dd className="font-medium">
+                              {product.materials.join(', ')}
+                            </dd>
                           </div>
                         )}
                         {product.gemstones && product.gemstones.length > 0 && (
                           <div className="flex justify-between">
                             <dt className="text-gray-600">Gemstones:</dt>
-                            <dd className="font-medium">{product.gemstones.join(", ")}</dd>
+                            <dd className="font-medium">
+                              {product.gemstones.join(', ')}
+                            </dd>
                           </div>
                         )}
                       </dl>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-navy mb-3">Certifications</h3>
+                      <h3 className="font-semibold text-navy mb-3">
+                        Certifications
+                      </h3>
                       <ul className="space-y-2 text-gray-700">
                         <li>✓ Ethically sourced materials</li>
                         <li>✓ Conflict-free diamonds</li>
@@ -429,26 +493,34 @@ export default function ProductDetail() {
                 </CardContent>
               </Card>
             </TabsContent>
-            
+
             <TabsContent value="care" className="mt-8">
               <Card>
                 <CardContent className="pt-6">
                   <div className="space-y-4">
                     <div>
-                      <h3 className="font-semibold text-navy mb-2">Care Instructions</h3>
+                      <h3 className="font-semibold text-navy mb-2">
+                        Care Instructions
+                      </h3>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Clean with a soft, lint-free cloth</li>
-                        <li>• Store in individual pouches to prevent scratching</li>
+                        <li>
+                          • Store in individual pouches to prevent scratching
+                        </li>
                         <li>• Avoid exposure to chemicals and perfumes</li>
                         <li>• Remove before swimming or exercising</li>
                         <li>• Professional cleaning recommended annually</li>
                       </ul>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-navy mb-2">Customer Support</h3>
+                      <h3 className="font-semibold text-navy mb-2">
+                        Customer Support
+                      </h3>
                       <p className="text-gray-700">
-                        Our crystal experts are available online to provide care guidance and answer questions about your jewelry. 
-                        Contact us through our website for personalized assistance with your sacred pieces.
+                        Our crystal experts are available online to provide care
+                        guidance and answer questions about your jewelry.
+                        Contact us through our website for personalized
+                        assistance with your crystal pieces.
                       </p>
                     </div>
                   </div>
@@ -460,8 +532,11 @@ export default function ProductDetail() {
       </div>
 
       {/* Related Products Section */}
-      <RelatedProducts categoryId={product.categoryId} currentProductId={product.id} />
-      
+      <RelatedProducts
+        categoryId={product.categoryId}
+        currentProductId={product.id}
+      />
+
       {/* Intelligent Shopping Flow */}
       <IntelligentShoppingFlow productId={productId} />
     </div>
@@ -469,13 +544,21 @@ export default function ProductDetail() {
 }
 
 // Related Products Component for Enhanced UX Flow
-function RelatedProducts({ categoryId, currentProductId }: { categoryId: number | null, currentProductId: number }) {
+function RelatedProducts({
+  categoryId,
+  currentProductId,
+}: {
+  categoryId: number | null;
+  currentProductId: number;
+}) {
   const { data: relatedProducts, isLoading } = useQuery<ProductWithCategory[]>({
     queryKey: ['/api/products', { category: categoryId, limit: 4 }],
     enabled: !!categoryId,
   });
 
-  const filteredProducts = relatedProducts?.filter(p => p.id !== currentProductId).slice(0, 3);
+  const filteredProducts = relatedProducts
+    ?.filter(p => p.id !== currentProductId)
+    .slice(0, 3);
 
   if (isLoading || !filteredProducts || filteredProducts.length === 0) {
     return null;
@@ -490,7 +573,7 @@ function RelatedProducts({ categoryId, currentProductId }: { categoryId: number 
             You Might Also Love
           </Badge>
           <h2 className="text-display text-3xl md:text-4xl mb-4 layered-styling">
-            <span className="text-crystal">Similar</span> Sacred Pieces
+            <span className="text-crystal">Similar</span> Pieces
           </h2>
           <p className="text-body text-foreground-muted max-w-xl mx-auto">
             Discover more crystalline treasures from our curated collection
@@ -498,7 +581,7 @@ function RelatedProducts({ categoryId, currentProductId }: { categoryId: number 
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map(product => (
             <Link key={product.id} href={`/products/${product.id}`}>
               <Card className="mystical-card hover:gold-glow transition-all duration-500 group cursor-pointer h-full skull-accent">
                 <CardContent className="p-6">

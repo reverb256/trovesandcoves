@@ -1,51 +1,58 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { RotateCcw, Package, Clock, CheckCircle2, XCircle, Heart } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import {
+  RotateCcw,
+  Package,
+  Clock,
+  CheckCircle2,
+  XCircle,
+  Heart,
+} from 'lucide-react';
 
 export default function Returns() {
   const returnPolicy = [
     {
-      category: "Satisfaction Guarantee",
-      duration: "30 Days",
+      category: 'Satisfaction Guarantee',
+      duration: '30 Days',
       icon: Heart,
       conditions: [
-        "Item must be in original condition",
-        "Original packaging and authenticity card included",
-        "No signs of wear or damage",
-        "Crystal energy must remain intact"
-      ]
+        'Item must be in original condition',
+        'Original packaging and authenticity card included',
+        'No signs of wear or damage',
+        'Crystal energy must remain intact',
+      ],
     },
     {
-      category: "Quality Issues",
-      duration: "60 Days",
+      category: 'Quality Issues',
+      duration: '60 Days',
       icon: CheckCircle2,
       conditions: [
-        "Manufacturing defects covered",
-        "Wire breakage under normal use",
-        "Crystal authenticity issues",
-        "Clasp or finding failures"
-      ]
+        'Manufacturing defects covered',
+        'Wire breakage under normal use',
+        'Crystal authenticity issues',
+        'Clasp or finding failures',
+      ],
     },
     {
-      category: "Custom Orders",
-      duration: "Exchange Only",
+      category: 'Custom Orders',
+      duration: 'Exchange Only',
       icon: Package,
       conditions: [
-        "Size adjustments within 14 days",
-        "Crystal substitutions if unavailable",
-        "Wire material changes",
-        "Energy cleansing included"
-      ]
-    }
+        'Size adjustments within 14 days',
+        'Crystal substitutions if unavailable',
+        'Wire material changes',
+        'Energy cleansing included',
+      ],
+    },
   ];
 
   const nonReturnable = [
-    "Pierced jewelry for hygiene reasons",
-    "Items damaged by misuse or accidents",
-    "Jewelry exposed to chemicals",
-    "Custom engraved pieces",
-    "Sale or clearance items",
-    "Items purchased over 60 days ago"
+    'Pierced jewelry for hygiene reasons',
+    'Items damaged by misuse or accidents',
+    'Jewelry exposed to chemicals',
+    'Custom engraved pieces',
+    'Sale or clearance items',
+    'Items purchased over 60 days ago',
   ];
 
   return (
@@ -54,22 +61,27 @@ export default function Returns() {
       <section className="relative bg-gradient-to-br from-pearl-cream via-crystal-accents to-pearl-cream text-navy overflow-hidden py-20">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
-        
+
         <div className="relative container mx-auto px-4 text-center">
           <div className="inline-block px-6 py-2 border border-ornate-frame-gold/20 rounded-lg bg-ornate-frame-gold/5 backdrop-blur-sm mb-6">
             <span className="text-ornate-frame-gold/80 text-sm font-medium tracking-wider uppercase">
-              Sacred Promise
+              Our Promise
             </span>
           </div>
-          
-          <h1 className="text-5xl md:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--brand-font-heading)' }}>
+
+          <h1
+            className="text-5xl md:text-6xl font-bold mb-6"
+            style={{ fontFamily: 'var(--brand-font-heading)' }}
+          >
             <span className="text-navy">Returns & Exchanges</span>
           </h1>
-          
+
           <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent rounded-full" />
-          
+
           <p className="text-navy/80 text-xl max-w-3xl mx-auto leading-relaxed">
-            Your satisfaction with our sacred jewelry is paramount. We offer generous return and exchange policies to ensure your crystal journey unfolds perfectly.
+            Your satisfaction with our jewelry is paramount. We offer generous
+            return and exchange policies to ensure you're completely happy with
+            your purchase.
           </p>
         </div>
       </section>
@@ -77,18 +89,28 @@ export default function Returns() {
       <div className="container mx-auto px-4 py-12">
         {/* Return Policy */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-navy mb-8 text-center">Return Policy</h2>
+          <h2 className="text-3xl font-bold text-navy mb-8 text-center">
+            Return Policy
+          </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {returnPolicy.map((policy) => {
+            {returnPolicy.map(policy => {
               const Icon = policy.icon;
               return (
-                <Card key={policy.category} className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+                <Card
+                  key={policy.category}
+                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm"
+                >
                   <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
                     <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                       <Icon className="h-6 w-6 text-ornate-frame-gold" />
                       <div>
-                        <div className="font-bold text-lg">{policy.category}</div>
-                        <Badge variant="secondary" className="bg-troves-turquoise/20 text-navy text-xs">
+                        <div className="font-bold text-lg">
+                          {policy.category}
+                        </div>
+                        <Badge
+                          variant="secondary"
+                          className="bg-troves-turquoise/20 text-navy text-xs"
+                        >
                           {policy.duration}
                         </Badge>
                       </div>
@@ -97,7 +119,10 @@ export default function Returns() {
                   <CardContent className="p-6">
                     <ul className="space-y-2">
                       {policy.conditions.map((condition, index) => (
-                        <li key={index} className="text-navy/80 text-sm flex items-start space-x-2">
+                        <li
+                          key={index}
+                          className="text-navy/80 text-sm flex items-start space-x-2"
+                        >
                           <span className="text-troves-turquoise mt-1">•</span>
                           <span>{condition}</span>
                         </li>
@@ -125,28 +150,38 @@ export default function Returns() {
                   <span className="text-navy font-bold">1</span>
                 </div>
                 <h4 className="font-semibold text-navy mb-2">Contact Us</h4>
-                <p className="text-navy/70 text-sm">Email us within the return window with your order details</p>
+                <p className="text-navy/70 text-sm">
+                  Email us within the return window with your order details
+                </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-navy font-bold">2</span>
                 </div>
-                <h4 className="font-semibold text-navy mb-2">Get Authorization</h4>
-                <p className="text-navy/70 text-sm">Receive return authorization and prepaid shipping label</p>
+                <h4 className="font-semibold text-navy mb-2">
+                  Get Authorization
+                </h4>
+                <p className="text-navy/70 text-sm">
+                  Receive return authorization and prepaid shipping label
+                </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-navy font-bold">3</span>
                 </div>
                 <h4 className="font-semibold text-navy mb-2">Ship Safely</h4>
-                <p className="text-navy/70 text-sm">Package securely and ship using our provided label</p>
+                <p className="text-navy/70 text-sm">
+                  Package securely and ship using our provided label
+                </p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-navy font-bold">4</span>
                 </div>
                 <h4 className="font-semibold text-navy mb-2">Get Refund</h4>
-                <p className="text-navy/70 text-sm">Receive refund within 3-5 business days of receipt</p>
+                <p className="text-navy/70 text-sm">
+                  Receive refund within 3-5 business days of receipt
+                </p>
               </div>
             </div>
           </CardContent>
@@ -164,7 +199,10 @@ export default function Returns() {
             <CardContent className="p-6">
               <ul className="space-y-3">
                 {nonReturnable.map((item, index) => (
-                  <li key={index} className="text-navy/80 text-sm flex items-start space-x-2">
+                  <li
+                    key={index}
+                    className="text-navy/80 text-sm flex items-start space-x-2"
+                  >
                     <XCircle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
                     <span>{item}</span>
                   </li>
@@ -207,23 +245,34 @@ export default function Returns() {
           </Card>
         </div>
 
-        {/* Sacred Promise */}
         <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
           <CardContent className="p-8 text-center">
             <Heart className="h-12 w-12 text-troves-turquoise mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-navy mb-4">Our Sacred Commitment</h3>
+            <h3 className="text-2xl font-bold text-navy mb-4">
+              Our Commitment
+            </h3>
             <p className="text-navy/80 mb-6 max-w-2xl mx-auto">
-              Every crystal carries sacred energy, and we want you to feel completely aligned with your purchase. 
-              If your jewelry doesn't resonate with your spiritual journey, we'll work together to find the perfect solution.
+              We want you to feel completely happy with your purchase. If your
+              jewelry doesn't meet your expectations, we'll work together to
+              find the perfect solution.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Badge variant="outline" className="border-troves-turquoise text-navy">
+              <Badge
+                variant="outline"
+                className="border-troves-turquoise text-navy"
+              >
                 Customer Satisfaction First
               </Badge>
-              <Badge variant="outline" className="border-skull-turquoise text-navy">
+              <Badge
+                variant="outline"
+                className="border-skull-turquoise text-navy"
+              >
                 Energy Alignment Guaranteed
               </Badge>
-              <Badge variant="outline" className="border-ornate-frame-gold text-navy">
+              <Badge
+                variant="outline"
+                className="border-ornate-frame-gold text-navy"
+              >
                 Spiritual Journey Support
               </Badge>
             </div>

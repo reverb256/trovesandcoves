@@ -1,26 +1,48 @@
 # Troves & Coves - Mystical Crystal Jewelry Platform
 
-[![Deploy to GitHub Pages](https://github.com/reverb256/trovesandcoves/workflows/Deploy%20to%20GitHub%20Pages%20and%20Cloudflare%20Workers/badge.svg)](https://github.com/reverb256/trovesandcoves/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Security: OWASP](https://img.shields.io/badge/Security-OWASP%20Compliant-green)](https://owasp.org/)
+[![Security: ISO 27001](https://img.shields.io/badge/Security-ISO%2027001-blue)](https://www.iso.org/iso-27001-information-security.html)
 
-A modern, full-stack e-commerce platform for authentic crystal jewelry, built with React, Node.js, and deployed on GitHub Pages + Cloudflare Workers.
+A production-ready, enterprise-grade e-commerce platform for authentic crystal jewelry with AI-powered customer service and comprehensive security compliance.
 
 ## 🌟 Features
 
-- **Modern Stack**: React 18, TypeScript, Node.js, Tailwind CSS
-- **Hybrid Deployment**: GitHub Pages (frontend) + Cloudflare Workers (API)
-- **AI Integration**: Personalized recommendations and customer service
-- **Enterprise Security**: OWASP compliant, secure payment processing
-- **Mobile Optimized**: Responsive design with PWA capabilities
-- **Zero Cost Hosting**: Maximizes free tiers of GitHub Pages and Cloudflare
+### **E-commerce Platform**
+- **Full-Stack Architecture**: React 18 + TypeScript frontend, Express.js backend
+- **Database**: PostgreSQL with Drizzle ORM for enterprise data management
+- **Payment Processing**: Stripe integration for secure transactions
+- **Product Catalog**: Advanced categorization, search, and filtering
+- **Shopping Cart**: Real-time cart management with React Query
+- **Admin Dashboard**: Complete order and inventory management
+
+### **AI-Powered Customer Service**
+- **7 Specialized AI Agents**: Crystal consultant, customer service, RAG, web scraper
+- **Multi-Model Support**: Anthropic Claude, OpenAI GPT, custom integrations
+- **Intelligent Recommendations**: AI-driven crystal selection guidance
+- **Natural Language Processing**: Advanced query understanding and response
+
+### **Enterprise Security & Compliance**
+- **OWASP Compliance**: Full security framework implementation
+- **ISO 27001 Standards**: Enterprise-grade security management
+- **Data Protection**: Encrypted data storage and transmission
+- **Access Control**: Role-based authentication and authorization
+- **Security Auditing**: Continuous vulnerability scanning and monitoring
+
+### **Modern Development Stack**
+- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, Radix UI
+- **Backend**: Express.js, TypeScript, PostgreSQL, Drizzle ORM
+- **State Management**: React Query, custom cart store
+- **Testing**: Vitest (unit), Playwright (e2e), Lighthouse CI (performance)
+- **Build Tools**: Vite with PWA support and optimization
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 18+
-- Git
-- GitHub account
-- Cloudflare account (free tier)
+- PostgreSQL 14+
+- Stripe account (for payments)
+- Anthropic/OpenAI API keys (for AI features)
 
 ### Installation
 
@@ -32,38 +54,77 @@ cd trovesandcoves
 # Install dependencies
 npm install
 
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your database and API keys
+
+# Set up database
+npm run db:migrate
+npm run db:seed
+
 # Start development server
 npm run dev
 ```
 
-### Deployment
+### Environment Configuration
 
-1. **Set up GitHub Pages**: Enable GitHub Actions in repository settings
-2. **Configure Cloudflare**: Add API tokens to GitHub secrets
-3. **Deploy**: Push to main branch triggers automatic deployment
+Required environment variables:
+```bash
+# Database
+DATABASE_URL=postgresql://user:password@localhost:5432/trovesandcoves
 
-For detailed deployment instructions, see [Deployment Guide](docs/deployment/README.md).
+# Payment Processing
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+
+# AI Services
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+
+# Security
+JWT_SECRET=your-jwt-secret
+SESSION_SECRET=your-session-secret
+```
+
+### Production Deployment
+
+For production deployment instructions, see [Deployment Guide](docs/deployment/README.md).
 
 ## 📁 Project Structure
 
 ```
 ├── client/                 # React frontend application
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/         # Route components
+│   │   ├── components/     # 50+ UI components (shadcn/ui Radix)
+│   │   │   ├── ui/        # Design system components
+│   │   │   ├── AIAssistant.tsx
+│   │   │   ├── Cart.tsx
+│   │   │   └── Header.tsx
+│   │   ├── pages/         # 15 route components
 │   │   ├── hooks/         # Custom React hooks
-│   │   └── lib/           # Utilities and configurations
+│   │   ├── lib/           # API client, utilities, store
+│   │   ├── App.tsx        # Main app with routing
+│   │   └── main.tsx       # React entry point
 │   └── public/            # Static assets
-├── server/                # Node.js backend (for local development)
+├── server/                # Express.js backend
+│   ├── index.ts           # Server entry point
+│   ├── routes.ts          # API route definitions
+│   ├── agents/            # 7 AI agent implementations
+│   ├── security/           # OWASP & ISO27001 compliance
+│   └── containers/         # Container management
+├── shared/                # Shared code
+│   ├── schema.ts          # Database schema (Drizzle ORM)
+│   └── types.ts           # TypeScript type definitions
 ├── docs/                  # Documentation
 │   ├── deployment/        # Deployment guides
 │   ├── development/       # Development guides
 │   ├── api/              # API documentation
-│   └── guides/           # User guides
+│   └── security/         # Security compliance docs
 ├── scripts/              # Build and utility scripts
 ├── .github/              # GitHub Actions workflows
-├── cloudflare-worker.js  # Cloudflare Worker (production API)
-└── cloudflare.toml       # Cloudflare configuration
+├── vite.config.ts        # Vite build configuration
+├── tailwind.config.ts    # Tailwind CSS configuration
+└── package.json          # Dependencies and scripts
 ```
 
 ## 🛠️ Development

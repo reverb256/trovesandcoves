@@ -180,7 +180,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Payment intent creation for Stripe
   if (stripe) {
     app.post("/api/create-payment-intent", async (req, res) => {
       try {
@@ -195,6 +194,74 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
     });
   }
+
+  app.post("/api/orders", async (req, res) => {
+    try {
+      const sessionId = getSessionId(req);
+      const cartItems = await storage.getCartItems(sessionId);
+
+      if (cartItems.length === 0) {
+        return res.status(400).json({ message: "Cart is empty" });
+      }
+
+      const totalAmount = cartItems.reduce((sum, item) => {
+        return sum + parseFloat(item.product.price) * item.quantity;
+      }, 0);
+
+      const result = insertOrderSchema.safeParse({
+        ...req.body,
+        totalAmount: totalAmount.toString(),
+        sessionId,
+      });
+
+      if (!result.success) {
+        return res.status(400).json({ message: "Invalid order data", errors: result.error.errors });
+      }
+
+      const order = await storage.createOrder(result.data);
+
+      for (const cartItem of cartItems) {
+        await storage.addOrderItem({
+          orderId: order.id,
+          productId: cartItem.productId,
+          quantity: cartItem.quantity,
+          price: cartItem.product.price,
+        });
+      }
+
+      res.status(201).json(order);
+    } catch (error: any) {
+      console.error("Error creating order:", error);
+      res.status(500).json({ message: "Error creating order" });
+    }
+  });
+
+  app.get("/api/orders/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const order = await storage.getOrder(id);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      res.json(order);
+    } catch (error: any) {
+      console.error("Error fetching order:", error);
+      res.status(500).json({ message: "Error fetching order" });
+    }
+  });
+
+  app.post("/api/orders/:id/status", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status, paymentIntentId } = req.body;
+
+      const order = await storage.updateOrderStatus(id, status);
+      res.json(order);
+    } catch (error: any) {
+      console.error("Error updating order status:", error);
+      res.status(500).json({ message: "Error updating order status" });
+    }
+  });
 
   // AI Status endpoint
   app.get("/api/ai/status", async (req, res) => {

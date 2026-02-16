@@ -34,8 +34,8 @@ export default function Hero() {
               Troves <span className="text-ornate-gold">& Coves</span>
             </h1>
             <p className="text-lg md:text-xl text-troves-turquoise/90 mb-8 leading-relaxed max-w-2xl">
-              Sacred crystal jewelry and healing gemstone talismans crafted with
-              intention in Winnipeg.
+              Authentic crystal jewelry and healing gemstone talismans crafted
+              with intention in Winnipeg.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a

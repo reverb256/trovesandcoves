@@ -14,6 +14,7 @@ import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import ProductDetail from "@/pages/ProductDetail";
 import Checkout from "@/pages/Checkout";
+import OrderConfirmation from "@/pages/OrderConfirmation";
 import Contact from "@/pages/Contact";
 import About from "@/pages/About";
 import SizeGuide from "@/pages/SizeGuide";
@@ -32,11 +33,12 @@ function Router() {
         <main className="flex-1">
           <Switch>
             <Route path="/" component={Home} />
-          <Route path="/products" component={Products} />
-          <Route path="/products/:category" component={Products} />
-          <Route path="/product/:id" component={ProductDetail} />
-          <Route path="/checkout" component={Checkout} />
-          <Route path="/contact" component={Contact} />
+            <Route path="/products" component={Products} />
+            <Route path="/products/:category" component={Products} />
+            <Route path="/product/:id" component={ProductDetail} />
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/order-confirmation" component={OrderConfirmation} />
+            <Route path="/contact" component={Contact} />
           <Route path="/about" component={About} />
           <Route path="/size-guide" component={SizeGuide} />
           <Route path="/jewelry-care" component={JewelleryCare} />

@@ -1,38 +1,145 @@
-// TypeScript
+const API_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://troves-coves-api.vercel.app' 
+  : 'http://localhost:3000';
 
-const PRIMARY_API = import.meta.env.VITE_API_URL;
-const FALLBACK_API = import.meta.env.VITE_GITHUB_PAGES_URL;
-const MAX_RETRIES = Number(import.meta.env.VITE_MAX_RETRIES) || 3;
-const REQUEST_TIMEOUT = Number(import.meta.env.VITE_REQUEST_TIMEOUT) || 10000;
+const FRONTEND_URL = process.env.NODE_ENV === 'production'
+  ? 'https://reverb256.github.io/troves-coves'
+  : 'http://localhost:5173';
+class SessionManager {
+  static getSessionId() {
+    let sessionId = sessionStorage.getItem('troves_session');
+    if (!sessionId) {
+      sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      sessionStorage.setItem('troves_session', sessionId);
+    }
+    return sessionId;
+  }
 
-function timeoutPromise<T>(promise: Promise<T>, ms: number): Promise<T> {
-  return Promise.race([
-    promise,
-    new Promise<T>((_, reject) => setTimeout(() => reject(new Error('Timeout')), ms)),
-  ]);
+  static clearSession() {
+    sessionStorage.removeItem('troves_session');
+    localStorage.removeItem('troves_cart_backup');
+  }
+
+  static backupCart(cartData) {
+    localStorage.setItem('troves_cart_backup', JSON.stringify(cartData));
+  }
+
+  static getCartBackup() {
+    const backup = localStorage.getItem('troves_cart_backup');
+    return backup ? JSON.parse(backup) : null;
+  }
 }
 
-export async function apiFetch(
-  path: string,
-  options?: RequestInit,
-  retries = MAX_RETRIES
-): Promise<any> {
-  let lastError: any;
-  const endpoints = [PRIMARY_API, FALLBACK_API].filter(Boolean);
+export async function apiFetch(endpoint, options = {}, retries = 3) {
+  const sessionId = SessionManager.getSessionId();
+  const url = `${API_BASE_URL}${endpoint}`;
+  
+  const defaultOptions = {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Session-ID': sessionId,
+      ...options.headers,
+    },
+    ...options,
+  };
 
-  for (let i = 0; i < endpoints.length; i++) {
-    const url = endpoints[i] + path;
+  let lastError;
+
+  for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const res = await timeoutPromise(fetch(url, options), REQUEST_TIMEOUT);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.json();
-    } catch (err) {
-      lastError = err;
-      if (i === endpoints.length - 1 && retries > 1) {
-        // Retry the whole sequence
-        return apiFetch(path, options, retries - 1);
+      const response = await fetch(url, defaultOptions);
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data;
+
+    } catch (error) {
+      lastError = error;
+      
+      if (attempt < retries) {
+        const delay = Math.min(1000 * Math.pow(2, attempt), 5000);
+        await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
   }
+
   throw lastError;
 }
+
+export const productsApi = {
+  getAll: (category) => apiFetch(category ? `/api/products?category=${category}` : '/api/products'),
+  getFeatured: () => apiFetch('/api/products/featured'),
+  getById: (id) => apiFetch(`/api/products?id=${id}`),
+};
+
+export const cartApi = {
+  get: () => apiFetch('/api/cart'),
+  add: (productId, quantity) => 
+    apiFetch('/api/cart', {
+      method: 'POST',
+      body: JSON.stringify({ productId, quantity }),
+    }),
+  update: (id, quantity) => 
+    apiFetch(`/api/cart?id=${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ quantity }),
+    }),
+  remove: (id) => 
+    apiFetch(`/api/cart?id=${id}`, { method: 'DELETE' }),
+};
+
+export const ordersApi = {
+  create: (orderData) => 
+    apiFetch('/api/orders', {
+      method: 'POST',
+      body: JSON.stringify(orderData),
+    }),
+  getById: (id) => apiFetch(`/api/orders?id=${id}`),
+  getAll: () => apiFetch('/api/orders'),
+  updateStatus: (id, status, paymentIntentId) => 
+    apiFetch(`/api/orders?id=${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ status, paymentIntentId }),
+    }),
+};
+
+export const paymentsApi = {
+  createIntent: (amount, metadata = {}) => 
+    apiFetch('/api/payments/create-intent', {
+      method: 'POST',
+      body: JSON.stringify({ amount, ...metadata }),
+    }),
+};
+
+export const contactApi = {
+  submit: (formData) => 
+    apiFetch('/api/contact', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+    }),
+};
+
+export const categoriesApi = {
+  getAll: () => apiFetch('/api/categories'),
+};
+
+export const apiUtils = {
+  SessionManager,
+  getApiUrl: () => API_BASE_URL,
+  getFrontendUrl: () => FRONTEND_URL,
+  isProduction: () => process.env.NODE_ENV === 'production',
+};
+export default {
+  fetch: apiFetch,
+  products: productsApi,
+  cart: cartApi,
+  orders: ordersApi,
+  payments: paymentsApi,
+  contact: contactApi,
+  categories: categoriesApi,
+  utils: apiUtils,
+};

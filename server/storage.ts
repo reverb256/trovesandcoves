@@ -581,4 +581,6 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = process.env.DATABASE_URL
+  ? (await import('./db-storage')).storage
+  : new MemStorage();

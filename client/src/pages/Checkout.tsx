@@ -114,7 +114,6 @@ const CheckoutForm = () => {
     setIsProcessing(true);
 
     try {
-      // Create order
       const orderData = {
         customerEmail: data.email,
         customerPhone: data.phone,
@@ -127,7 +126,6 @@ const CheckoutForm = () => {
       const orderResponse = await apiRequest("POST", "/api/orders", orderData);
       const order = await orderResponse.json();
 
-      // Confirm payment
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
@@ -142,7 +140,6 @@ const CheckoutForm = () => {
           variant: "destructive",
         });
       } else {
-        // Payment succeeded, clear cart and redirect
         clearCart();
         toast({
           title: "Order Placed Successfully!",

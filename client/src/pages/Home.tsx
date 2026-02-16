@@ -9,14 +9,16 @@ import type { ProductWithCategory } from '@shared/schema';
 import { ArrowRight } from 'lucide-react';
 
 export default function Home() {
-  const { data: featuredProducts, isLoading } = useQuery<ProductWithCategory[]>({
-    queryKey: ['/api/products/featured'],
-  });
+  const { data: featuredProducts, isLoading } = useQuery<ProductWithCategory[]>(
+    {
+      queryKey: ['/api/products/featured'],
+    }
+  );
 
   return (
     <>
       <SEOHead
-        title="Troves & Coves - Sacred Crystal Jewelry | Shop Winnipeg's Mystical Gemstone Collection"
+        title="Troves & Coves - Crystal Jewelry | Shop Winnipeg's Mystical Gemstone Collection"
         description="Discover handcrafted crystal jewelry, wire-wrapped pendants, and healing gemstone talismans. Shop our curated collection of necklaces, bracelets, and spiritual gifts. Ethically sourced, artisan made in Winnipeg."
         keywords="crystal jewelry, shop, Winnipeg, gemstone, necklace, bracelet, wire wrapped, healing, spiritual gifts"
         url="https://trovesandcoves.ca"
@@ -31,10 +33,15 @@ export default function Home() {
         <div className="container-jewelry">
           <div className="text-center mb-14">
             <h2 className="text-5xl md:text-6xl font-serif font-bold mb-4 tracking-tight text-troves-turquoise drop-shadow-lg">
-              Shop <span className="bg-gradient-to-r from-troves-turquoise to-gold-400 bg-clip-text text-transparent">Crystal Jewelry</span>
+              Shop{' '}
+              <span className="bg-gradient-to-r from-troves-turquoise to-gold-400 bg-clip-text text-transparent">
+                Crystal Jewelry
+              </span>
             </h2>
             <p className="text-lg md:text-xl text-troves-turquoise/80 max-w-2xl mx-auto">
-              Explore our curated collection of sacred gemstone jewelry, wire-wrapped pendants, and healing talismans. Each piece is artisan-crafted to amplify your energy and style.
+              Explore our curated collection of authentic gemstone jewelry,
+              wire-wrapped pendants, and healing talismans. Each piece is
+              artisan-crafted to amplify your energy and style.
             </p>
           </div>
 
@@ -42,7 +49,10 @@ export default function Home() {
           {isLoading ? (
             <div className="adaptive-grid">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="card-crystal p-6 card-uniform shimmer-effect">
+                <div
+                  key={i}
+                  className="card-crystal p-6 card-uniform shimmer-effect"
+                >
                   <div className="animate-pulse">
                     <div className="h-40 bg-gradient-to-br from-stone-200 to-stone-100 rounded-lg mb-4"></div>
                     <div className="h-4 bg-stone-200 rounded mb-2"></div>
@@ -53,7 +63,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="adaptive-grid">
-              {featuredProducts?.map((product) => (
+              {featuredProducts?.map(product => (
                 <Link key={product.id} href={`/products/${product.id}`}>
                   <Card className="rounded-3xl border border-gold-100 bg-white/80 shadow-lg hover:shadow-xl transition-all duration-500 group cursor-pointer h-full">
                     <CardContent className="p-6">

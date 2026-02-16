@@ -1,0 +1,21 @@
+{
+  "name": "troves-coves-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Serverless API for Troves & Coves e-commerce",
+  "main": "api/index.js",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "drizzle-orm": "^0.39.1",
+    "stripe": "^18.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.11"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Serverless functions are build-free'",
+    "deploy": "vercel --prod",
+    "logs": "vercel logs"
+  }
+}

@@ -1,7 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Compass, Home, Search } from "lucide-react";
-import { Link } from "wouter";
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Compass, Home, Search } from 'lucide-react';
+import { Link } from 'wouter';
 
 export default function NotFound() {
   return (
@@ -25,15 +25,18 @@ export default function NotFound() {
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold text-troves-turquoise mb-4" style={{ fontFamily: 'var(--brand-font-heading)' }}>
+          <h1
+            className="text-3xl font-bold text-troves-turquoise mb-4"
+            style={{ fontFamily: 'var(--brand-font-heading)' }}
+          >
             Lost in the Crystal Realm
           </h1>
 
           <div className="w-16 h-1 mx-auto mb-6 bg-gradient-to-r from-transparent via-ornate-frame-gold to-transparent rounded-full" />
 
           <p className="text-coves-cursive-blue/80 text-lg mb-8 leading-relaxed">
-            The sacred path you seek has not been found in our mystical collection. 
-            Let us guide you back to the treasures that await.
+            The path you seek has not been found in our collection. Let us guide
+            you back to the treasures that await.
           </p>
 
           {/* Navigation Options */}
@@ -41,12 +44,15 @@ export default function NotFound() {
             <Link href="/">
               <Button className="w-full bg-gradient-to-r from-troves-turquoise to-skull-turquoise hover:from-skull-turquoise hover:to-troves-turquoise text-crystal-accents font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                 <Home className="h-5 w-5 mr-2" />
-                Return to Sacred Sanctuary
+                Return to the Shop
               </Button>
             </Link>
-            
+
             <Link href="/products">
-              <Button variant="outline" className="w-full border-2 border-ornate-frame-gold/30 text-troves-turquoise hover:bg-ornate-frame-gold/10 py-3 rounded-lg transition-all duration-300">
+              <Button
+                variant="outline"
+                className="w-full border-2 border-ornate-frame-gold/30 text-troves-turquoise hover:bg-ornate-frame-gold/10 py-3 rounded-lg transition-all duration-300"
+              >
                 <Search className="h-5 w-5 mr-2" />
                 Explore Crystal Collections
               </Button>

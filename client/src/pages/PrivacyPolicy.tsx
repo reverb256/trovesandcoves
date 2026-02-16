@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Eye, Lock, Database, Globe, Mail } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Shield, Eye, Lock, Database, Globe, Mail } from 'lucide-react';
 
 export default function PrivacyPolicy() {
   return (
@@ -8,22 +8,27 @@ export default function PrivacyPolicy() {
       <section className="relative bg-gradient-to-br from-pearl-cream via-crystal-accents to-pearl-cream text-navy overflow-hidden py-20">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
-        
+
         <div className="relative container mx-auto px-4 text-center">
           <div className="inline-block px-6 py-2 border border-ornate-frame-gold/20 rounded-lg bg-ornate-frame-gold/5 backdrop-blur-sm mb-6">
             <span className="text-ornate-frame-gold/80 text-sm font-medium tracking-wider uppercase">
               Data Protection
             </span>
           </div>
-          
-          <h1 className="text-5xl md:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--brand-font-heading)' }}>
+
+          <h1
+            className="text-5xl md:text-6xl font-bold mb-6"
+            style={{ fontFamily: 'var(--brand-font-heading)' }}
+          >
             <span className="text-navy">Privacy Policy</span>
           </h1>
-          
+
           <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent rounded-full" />
-          
+
           <p className="text-navy/80 text-xl max-w-3xl mx-auto leading-relaxed">
-            Your privacy is sacred to us. We are committed to protecting your personal information with the same reverence we give to our crystal jewelry.
+            Your privacy matters to us. We are committed to protecting your
+            personal information with the same care we give to our crystal
+            jewelry.
           </p>
         </div>
       </section>
@@ -35,22 +40,30 @@ export default function PrivacyPolicy() {
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Database className="h-6 w-6 text-ornate-frame-gold" />
-                <span className="font-bold text-xl">Information We Collect</span>
+                <span className="font-bold text-xl">
+                  Information We Collect
+                </span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-navy mb-2">Personal Information</h4>
+                  <h4 className="font-semibold text-navy mb-2">
+                    Personal Information
+                  </h4>
                   <ul className="text-navy/80 text-sm space-y-1 ml-4">
                     <li>• Name, email address, and phone number</li>
                     <li>• Shipping and billing addresses</li>
-                    <li>• Payment information (processed securely through Etsy)</li>
+                    <li>
+                      • Payment information (processed securely through Etsy)
+                    </li>
                     <li>• Communication preferences</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy mb-2">Website Usage</h4>
+                  <h4 className="font-semibold text-navy mb-2">
+                    Website Usage
+                  </h4>
                   <ul className="text-navy/80 text-sm space-y-1 ml-4">
                     <li>• Pages visited and time spent on site</li>
                     <li>• Browser type and device information</li>
@@ -67,7 +80,9 @@ export default function PrivacyPolicy() {
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Eye className="h-6 w-6 text-ornate-frame-gold" />
-                <span className="font-bold text-xl">How We Use Your Information</span>
+                <span className="font-bold text-xl">
+                  How We Use Your Information
+                </span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
@@ -105,7 +120,9 @@ export default function PrivacyPolicy() {
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Lock className="h-6 w-6 text-ornate-frame-gold" />
-                <span className="font-bold text-xl">Data Protection & Security</span>
+                <span className="font-bold text-xl">
+                  Data Protection & Security
+                </span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
@@ -143,7 +160,10 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-navy/80 mb-4">We never sell your personal information. We may share information only in these limited circumstances:</p>
+              <p className="text-navy/80 mb-4">
+                We never sell your personal information. We may share
+                information only in these limited circumstances:
+              </p>
               <ul className="text-navy/80 space-y-2">
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
@@ -155,7 +175,10 @@ export default function PrivacyPolicy() {
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
-                  <span>With service providers under strict confidentiality agreements</span>
+                  <span>
+                    With service providers under strict confidentiality
+                    agreements
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
@@ -174,7 +197,9 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-navy/80 mb-4">Under Canadian privacy law, you have the right to:</p>
+              <p className="text-navy/80 mb-4">
+                Under Canadian privacy law, you have the right to:
+              </p>
               <ul className="text-navy/80 space-y-2">
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
@@ -190,11 +215,16 @@ export default function PrivacyPolicy() {
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
-                  <span>Request deletion of your information (subject to legal requirements)</span>
+                  <span>
+                    Request deletion of your information (subject to legal
+                    requirements)
+                  </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
-                  <span>File a complaint with the Privacy Commissioner of Canada</span>
+                  <span>
+                    File a complaint with the Privacy Commissioner of Canada
+                  </span>
                 </li>
               </ul>
             </CardContent>
@@ -209,10 +239,14 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-navy/80 mb-4">We use cookies to enhance your browsing experience:</p>
+              <p className="text-navy/80 mb-4">
+                We use cookies to enhance your browsing experience:
+              </p>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-semibold text-navy mb-2">Essential Cookies</h4>
+                  <h4 className="font-semibold text-navy mb-2">
+                    Essential Cookies
+                  </h4>
                   <ul className="text-navy/70 text-sm space-y-1">
                     <li>• Shopping cart functionality</li>
                     <li>• User authentication</li>
@@ -220,7 +254,9 @@ export default function PrivacyPolicy() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy mb-2">Analytics Cookies</h4>
+                  <h4 className="font-semibold text-navy mb-2">
+                    Analytics Cookies
+                  </h4>
                   <ul className="text-navy/70 text-sm space-y-1">
                     <li>• Website performance</li>
                     <li>• User behavior insights</li>
@@ -241,12 +277,20 @@ export default function PrivacyPolicy() {
             </CardHeader>
             <CardContent className="p-6">
               <p className="text-navy/80 mb-4">
-                If you have questions about this privacy policy or wish to exercise your privacy rights, please contact us:
+                If you have questions about this privacy policy or wish to
+                exercise your privacy rights, please contact us:
               </p>
               <div className="space-y-2 text-navy/80">
-                <p><strong>Email:</strong> privacy@trovesandcoves.ca</p>
-                <p><strong>Mail:</strong> Troves & Coves Privacy Officer, Winnipeg, MB, Canada</p>
-                <p><strong>Response Time:</strong> We will respond within 30 days</p>
+                <p>
+                  <strong>Email:</strong> privacy@trovesandcoves.ca
+                </p>
+                <p>
+                  <strong>Mail:</strong> Troves & Coves Privacy Officer,
+                  Winnipeg, MB, Canada
+                </p>
+                <p>
+                  <strong>Response Time:</strong> We will respond within 30 days
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -254,8 +298,10 @@ export default function PrivacyPolicy() {
           {/* Updates */}
           <div className="text-center py-8">
             <p className="text-navy/70 text-sm">
-              Last updated: January 2025<br />
-              We may update this privacy policy from time to time. Changes will be posted on this page.
+              Last updated: January 2025
+              <br />
+              We may update this privacy policy from time to time. Changes will
+              be posted on this page.
             </p>
           </div>
         </div>
