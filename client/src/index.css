@@ -281,10 +281,10 @@
   --sage-green: 90 25% 65%;
   --earth-brown: 25 30% 35%;
 
-  /* Base colors - Primary gold with cream accents */
-  --background: hsl(43, 60%, 88%); /* Rich gold primary base */
-  --background-secondary: hsl(43, 55%, 85%); /* Deep gold secondary */
-  --background-tertiary: hsl(43, 50%, 82%); /* Deeper gold foundation */
+  /* Base colors - Cream backgrounds */
+  --background: hsl(40, 80%, 96%); /* Cream primary base */
+  --background-secondary: hsl(40, 70%, 94%); /* Cream secondary */
+  --background-tertiary: hsl(40, 60%, 92%); /* Cream tertiary */
 
   /* Mystical design elements - Improved visibility */
   --skull-overlay: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skull" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="30" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><circle cx="70" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><path d="M45 35 Q50 40 55 35" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><rect x="45" y="50" width="10" height="8" fill="none" stroke="hsl(43, 95%, 35%)" stroke-width="0.8" opacity="0.18"/></pattern></defs><rect width="100" height="100" fill="url(%23skull)"/></svg>');
@@ -657,7 +657,7 @@
 
 body {
   color: hsl(25 30% 8%);
-  background: #f5f0e6;
+  background: #fff8e7;
   font-family:
     'Source Sans Pro',
     system-ui,
