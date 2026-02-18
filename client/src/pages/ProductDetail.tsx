@@ -9,9 +9,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCart } from '@/hooks/useCart';
 import { useToast } from '@/hooks/use-toast';
-import { useContextualAI } from '@/hooks/useContextualAI';
-import SmartProductInsights from '@/components/SmartProductInsights';
-import IntelligentShoppingFlow from '@/components/IntelligentShoppingFlow';
 import {
   Heart,
   ShoppingBag,
@@ -33,19 +30,8 @@ export default function ProductDetail() {
   const productId = parseInt(params.id!);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [viewingStartTime] = useState(Date.now());
-  const [timeViewing, setTimeViewing] = useState(0);
   const { addToCart } = useCart();
   const { toast } = useToast();
-  const { updateContext, trackCrystalInterest } = useContextualAI();
-
-  // Track viewing time
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeViewing(Math.floor((Date.now() - viewingStartTime) / 1000));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [viewingStartTime]);
 
   const {
     data: product,
@@ -55,17 +41,6 @@ export default function ProductDetail() {
     queryKey: [`/api/products/${productId}`],
     enabled: !!productId && !isNaN(productId),
   });
-
-  // Update context when product loads
-  useEffect(() => {
-    if (product) {
-      updateContext({
-        viewingProduct: product.name,
-        currentPage: `/product/${productId}`,
-      });
-      trackCrystalInterest(product.name.toLowerCase());
-    }
-  }, [product, productId]);
 
   const formatPrice = (price: string) => {
     const numPrice = parseFloat(price);
@@ -409,26 +384,13 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* AI-Powered Product Insights */}
-        <div className="mt-12">
-          <SmartProductInsights
-            productId={productId}
-            userBehavior={{
-              timeViewing,
-              interactions: ['view', 'scroll', 'hover'],
-              previousPurchases: [],
-            }}
-          />
-        </div>
-
         {/* Product Details Tabs */}
         <div className="mt-16">
           <Tabs defaultValue="description" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 max-w-lg">
+            <TabsList className="grid w-full grid-cols-3 max-w-lg">
               <TabsTrigger value="description">Description</TabsTrigger>
               <TabsTrigger value="details">Details</TabsTrigger>
               <TabsTrigger value="care">Care Guide</TabsTrigger>
-              <TabsTrigger value="ai-insights">AI Insights</TabsTrigger>
             </TabsList>
 
             <TabsContent value="description" className="mt-8">
@@ -536,9 +498,6 @@ export default function ProductDetail() {
         categoryId={product.categoryId}
         currentProductId={product.id}
       />
-
-      {/* Intelligent Shopping Flow */}
-      <IntelligentShoppingFlow productId={productId} />
     </div>
   );
 }
