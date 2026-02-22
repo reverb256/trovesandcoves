@@ -22,12 +22,12 @@ export const LOCKED_DESIGN_LANGUAGE = {
         transform: "none"
       },
       coves: {
-        text: "Coves", 
-        style: "elegant cursive blue",
+        text: "Coves",
+        fontStyle: "elegant cursive blue",
         typography: "Dancing Script, cursive",
         color: "hsl(200, 60%, 45%)", // Exact from wooden sign
         weight: "600",
-        style: "italic"
+        transform: "italic"
       },
       separator: {
         symbol: "&",
@@ -230,7 +230,7 @@ export function getAuthenticBrandMarkup(): string {
   return `<span class="troves-text-style">Troves</span><span class="text-ornate-frame-gold mx-2">&</span><span class="coves-text-style">Coves</span>`;
 }
 
-export function getRequiredCSSClasses(): string[] {
+export function getRequiredCSSClasses(): readonly string[] {
   return LOCKED_DESIGN_LANGUAGE.implementation.cssClasses.required;
 }
 

@@ -13,7 +13,7 @@ import { getEtsyLinkForProduct } from './etsy-links';
 // Initialize Stripe
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2023-10-16',
+      apiVersion: '2025-05-28.basil' as const,
     })
   : null;
 
@@ -51,7 +51,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           category as string
         );
         if (categoryRecord) {
-          products = products.filter(p => p.categoryId === categoryRecord.id);
+          products = products.filter((p: { categoryId?: number }) => p.categoryId === categoryRecord.id);
         }
       }
 
@@ -220,7 +220,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'Cart is empty' });
       }
 
-      const totalAmount = cartItems.reduce((sum, item) => {
+      const totalAmount = cartItems.reduce((sum: number, item: { product: { price: string }; quantity: number }) => {
         return sum + parseFloat(item.product.price) * item.quantity;
       }, 0);
 
