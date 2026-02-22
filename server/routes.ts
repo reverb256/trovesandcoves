@@ -343,6 +343,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Catch-all 404 handler for API routes
+  app.all('/api/*', (req, res) => {
+    res.status(404).json({
+      message: 'API endpoint not found',
+      path: req.path,
+      method: req.method
+    });
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
