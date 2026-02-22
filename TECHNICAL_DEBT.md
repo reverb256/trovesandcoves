@@ -5,17 +5,18 @@ This document tracks known technical debt and issues in the codebase.
 ## Critical Issues
 
 ### 1. Documentation Inaccuracies
-**Status**: Partially fixed
+**Status**: Fixed ✅
 - ✅ Updated README.md to reflect reality
 - ✅ Updated CLAUDE.md with accurate information
-- ❌ Old documentation files in `docs/` still contain false claims
-- **Action**: Update `docs/development/README.md`, `docs/api/README.md`, etc.
+- ✅ Updated docs/development/README.md with accurate architecture
+- ⚠️ docs/api/README.md and docs/deployment/README.md may still need updates
 
 ### 2. Dead Code After AI Removal
-**Status**: Known
+**Status**: Fixed ✅
 - Git commit `be3cb65` removed AI features
-- Potential leftover imports, references, or stub code
-- **Action**: Audit codebase for AI-related remnants and remove
+- ✅ Removed AI dependencies: @anthropic-ai/sdk, openai, node-telegram-bot-api, puppeteer, cheerio
+- ✅ Updated ROADMAP.md to remove AI features from Phase 5
+- No AI-related imports found in codebase
 
 ### 3. Unused Database Schema
 **Status**: Known
@@ -100,9 +101,10 @@ This document tracks known technical debt and issues in the codebase.
 - **Action**: Standardize on kebab-case for files, PascalCase for components
 
 ### 16. Unused Dependencies
+**Status**: Fixed ✅
 **Location**: `package.json`
-- Dependencies that may not be used
-- **Action**: Audit and remove unused packages
+- ✅ Removed unused AI dependencies: @anthropic-ai/sdk, openai, node-telegram-bot-api, @types/node-telegram-bot-api, puppeteer, cheerio
+- These packages were not imported anywhere in the codebase
 
 ### 17. Large Component Files
 **Location**: Some components may be too large

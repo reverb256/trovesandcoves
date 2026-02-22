@@ -114,19 +114,13 @@ This document outlines the planned features and improvements for Troves & Coves.
 
 **Goal**: Differentiation and enhanced value.
 
-#### 5.1 AI Features (Optional)
-- [ ] Product recommendation engine
-- [ ] Chatbot for customer service
-- [ ] Crystal selection quiz/consultation
-- [ ] AI-powered product descriptions
-
-#### 5.2 Community Features
+#### 5.1 Community Features
 - [ ] User profiles with public wishlists
 - [ ] Photo gallery/reviews
 - [ ] Q&A forum
 - [ ] Social sharing integration
 
-#### 5.3 International
+#### 5.2 International
 - [ ] Multi-currency support
 - [ ] International shipping
 - [ ] Language translations
