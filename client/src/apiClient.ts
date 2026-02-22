@@ -2,6 +2,19 @@ import { API_URL, FRONTEND_URL, API_TIMEOUT_MS, API_RETRY_ATTEMPTS } from '@shar
 
 const API_BASE_URL = API_URL;
 
+// Custom API Error class
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public status?: number,
+    public code?: string,
+    public response?: unknown
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
 interface RequestOptions extends RequestInit {
   headers?: Record<string, string>;
   timeout?: number;
@@ -81,8 +94,25 @@ export async function apiFetch(
       clearTimeout(timeoutId);
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error((errorData as { error?: string }).error || `HTTP ${response.status}`);
+        let errorMessage = `HTTP ${response.status}`;
+        let errorCode: string | undefined;
+
+        try {
+          const errorData = await response.json();
+          errorMessage = (errorData as { error?: string; message?: string }).error ||
+                        (errorData as { error?: string; message?: string }).message ||
+                        errorMessage;
+
+          // Set error code based on status
+          if (response.status === 401) errorCode = 'UNAUTHORIZED';
+          else if (response.status === 403) errorCode = 'FORBIDDEN';
+          else if (response.status === 404) errorCode = 'NOT_FOUND';
+          else if (response.status >= 500) errorCode = 'SERVER_ERROR';
+        } catch {
+          // If response is not JSON, use default message
+        }
+
+        throw new ApiError(errorMessage, response.status, errorCode);
       }
 
       const data = await response.json();
@@ -91,11 +121,29 @@ export async function apiFetch(
     } catch (error) {
       lastError = error;
 
+      // Don't retry on ApiError (except 5xx errors)
+      if (error instanceof ApiError) {
+        if (error.status && error.status >= 500 && attempt < retries) {
+          const delay = Math.min(1000 * Math.pow(2, attempt), 5000);
+          await new Promise(resolve => setTimeout(resolve, delay));
+          continue;
+        }
+        throw error;
+      }
+
       if (attempt < retries && error instanceof Error && error.name !== 'AbortError') {
         const delay = Math.min(1000 * Math.pow(2, attempt), 5000);
         await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
+  }
+
+  // Handle timeout or other errors
+  if (lastError instanceof Error) {
+    if (lastError.name === 'AbortError') {
+      throw new ApiError('Request timeout. Please check your connection and try again.', undefined, 'TIMEOUT');
+    }
+    throw new ApiError(lastError.message, undefined, 'NETWORK_ERROR');
   }
 
   throw lastError;
