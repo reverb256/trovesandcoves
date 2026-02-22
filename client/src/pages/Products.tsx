@@ -16,11 +16,6 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Search, Filter, SlidersHorizontal } from 'lucide-react';
 import type { ProductWithCategory, Category } from '@shared/schema';
-import {
-  SmartSearchBar,
-  SubtleMarketInsights,
-  KeywordMonitor,
-} from '@/components/SubtleAI';
 
 export default function Products() {
   const params = useParams();
@@ -248,12 +243,6 @@ export default function Products() {
       </section>
 
       <div className="container mx-auto px-4 py-12">
-        {/* Subtle market insights */}
-        <SubtleMarketInsights category={currentCategory?.name} />
-
-        {/* Background keyword monitoring */}
-        <KeywordMonitor />
-
         <div className="smart-flex">
           {/* Mystical Sidebar Filters */}
           <aside className="flex-shrink-0 flex-basis-300">
