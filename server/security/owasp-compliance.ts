@@ -2,6 +2,14 @@ import rateLimit from 'express-rate-limit';
 import slowDown from 'express-slow-down';
 import helmet from 'helmet';
 import type { Request, Response, NextFunction } from 'express';
+import {
+  RATE_LIMIT_WINDOW_MS,
+  RATE_LIMIT_MAX_REQUESTS,
+  SLOW_DOWN_AFTER,
+  SLOW_DOWN_DELAY_MS,
+  SESSION_SECRET,
+  SESSION_MAX_AGE
+} from '../../shared/config';
 
 // OWASP A02: Cryptographic Failures - Secure headers
 export const securityHeaders = helmet({
@@ -34,8 +42,8 @@ export const securityHeaders = helmet({
 
 // OWASP A07: Identification and Authentication Failures - Rate limiting
 export const generalRateLimit = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  max: RATE_LIMIT_MAX_REQUESTS,
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
@@ -43,21 +51,21 @@ export const generalRateLimit = rateLimit({
 
 // Slow down repeated requests
 export const slowDownMiddleware = slowDown({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  delayAfter: 50, // Allow 50 fast requests per 15 minutes
-  delayMs: 500, // Then delay by 500ms per request
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  delayAfter: SLOW_DOWN_AFTER,
+  delayMs: SLOW_DOWN_DELAY_MS,
   keyGenerator: (req: Request) => req.ip || 'unknown',
 });
 
 // Session configuration
 export const sessionConfig = {
-  secret: process.env.SESSION_SECRET || 'troves-coves-session-secret-change-in-production',
+  secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    maxAge: SESSION_MAX_AGE,
     sameSite: 'lax' as const,
   },
 };

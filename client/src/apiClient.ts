@@ -1,13 +1,10 @@
-const API_BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://troves-coves-api.vercel.app'
-  : 'http://localhost:3000';
+import { API_URL, FRONTEND_URL, API_TIMEOUT_MS, API_RETRY_ATTEMPTS } from '@shared/config';
 
-const FRONTEND_URL = process.env.NODE_ENV === 'production'
-  ? 'https://reverb256.github.io/troves-coves'
-  : 'http://localhost:5173';
+const API_BASE_URL = API_URL;
 
 interface RequestOptions extends RequestInit {
   headers?: Record<string, string>;
+  timeout?: number;
 }
 
 interface CartItem {
@@ -31,7 +28,7 @@ class SessionManager {
   static getSessionId(): string {
     let sessionId = sessionStorage.getItem('troves_session');
     if (!sessionId) {
-      sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      sessionId = `session_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
       sessionStorage.setItem('troves_session', sessionId);
     }
     return sessionId;
@@ -55,10 +52,11 @@ class SessionManager {
 export async function apiFetch(
   endpoint: string,
   options: RequestOptions = {},
-  retries = 3
+  retries = API_RETRY_ATTEMPTS
 ): Promise<unknown> {
   const sessionId = SessionManager.getSessionId();
   const url = `${API_BASE_URL}${endpoint}`;
+  const timeout = options.timeout || API_TIMEOUT_MS;
 
   const defaultOptions: RequestOptions = {
     headers: {
@@ -73,7 +71,14 @@ export async function apiFetch(
 
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const response = await fetch(url, defaultOptions);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+      const response = await fetch(url, {
+        ...defaultOptions,
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -86,7 +91,7 @@ export async function apiFetch(
     } catch (error) {
       lastError = error;
 
-      if (attempt < retries) {
+      if (attempt < retries && error instanceof Error && error.name !== 'AbortError') {
         const delay = Math.min(1000 * Math.pow(2, attempt), 5000);
         await new Promise(resolve => setTimeout(resolve, delay));
       }

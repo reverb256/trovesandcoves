@@ -2,37 +2,32 @@ import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { 
-  securityHeaders, 
-  generalRateLimit, 
-  slowDownMiddleware, 
-  sessionConfig, 
-  securityLogger, 
-  sanitizeInput 
+import {
+  securityHeaders,
+  generalRateLimit,
+  slowDownMiddleware,
+  sessionConfig,
+  securityLogger,
+  sanitizeInput
 } from "./security/owasp-compliance";
-import { 
-  SecureDevelopmentManager, 
-  SecurityAuditLogger, 
-  ComplianceManager 
+import {
+  SecureDevelopmentManager
 } from "./security/iso27001-compliance";
-
-// Optimize for Replit 1 vCPU / 512MB RAM constraints
-process.env.UV_THREADPOOL_SIZE = '2'; // Limit thread pool for single CPU
-const MEMORY_LIMIT_MB = 384; // Reserve 128MB for system
+import { MEMORY_LIMIT_MB, MEMORY_CHECK_INTERVAL_MS, SERVER_PORT, SERVER_HOST } from "../shared/config";
 
 // Memory monitoring and optimization
 const monitorMemory = () => {
   const usage = process.memoryUsage();
   const heapUsedMB = Math.round(usage.heapUsed / 1024 / 1024);
-  
+
   if (heapUsedMB > MEMORY_LIMIT_MB) {
     console.warn(`Memory usage: ${heapUsedMB}MB (${MEMORY_LIMIT_MB}MB limit)`);
     if (global.gc) global.gc(); // Force garbage collection
   }
 };
 
-// Check memory every 30 seconds
-setInterval(monitorMemory, 30000);
+// Check memory at configured interval
+setInterval(monitorMemory, MEMORY_CHECK_INTERVAL_MS);
 
 const app = express();
 
@@ -107,13 +102,13 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
+  // ALWAYS serve the app on configured port
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
-  const port = 5000;
+  const port = SERVER_PORT;
   server.listen({
     port,
-    host: "0.0.0.0",
+    host: SERVER_HOST,
     reusePort: true,
   }, () => {
     log(`serving on port ${port}`);
