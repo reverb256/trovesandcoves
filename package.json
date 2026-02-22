@@ -32,6 +32,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "db:push": "drizzle-kit push",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:seed": "tsx scripts/seed.ts",
     "cf:dev": "wrangler dev",
     "cf:tail": "wrangler tail --env production",
     "cf:kv:list": "wrangler kv:namespace list",
