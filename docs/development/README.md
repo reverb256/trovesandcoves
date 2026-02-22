@@ -5,7 +5,7 @@
 ### Prerequisites
 
 - **Node.js**: Version 18 or higher
-- **npm**: Version 8 or higher  
+- **npm**: Version 8 or higher
 - **Git**: Latest version
 - **VS Code**: Recommended IDE
 
@@ -22,113 +22,131 @@
    npm install
    ```
 
-3. **Set up environment variables**:
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your values
-   ```
-
-4. **Start development server**:
+3. **Start development server**:
    ```bash
    npm run dev
    ```
 
+The site will be available at:
+- Frontend: `http://localhost:5173`
+- API: `http://localhost:5000`
+
 ## 🏗️ Project Architecture
 
-### Frontend (React)
-- **Location**: `client/src/`
-- **Framework**: React 18 with TypeScript
-- **Styling**: Tailwind CSS
-- **State Management**: React Query + Zustand
-- **Routing**: Wouter (lightweight routing)
+### Current Architecture (Showcase Site)
 
-### Backend (Development)
+This is a **static showcase site** with the following architecture:
+
+**Frontend**:
+- **Location**: `src/` (Vite root is `./client`)
+- **Framework**: React 18 with TypeScript
+- **Styling**: Tailwind CSS with Material You-inspired design
+- **UI Components**: shadcn/ui (Radix UI primitives)
+- **Routing**: None currently (single-page app)
+
+**Backend (Development)**:
 - **Location**: `server/`
 - **Runtime**: Node.js with Express
-- **Database**: PostgreSQL with Drizzle ORM
-- **Authentication**: Passport.js
+- **Storage**: In-memory (MemStorage class)
+- **Session**: express-session for cart management
 
-### Backend (Production)
-- **Location**: `cloudflare-worker.js`
-- **Runtime**: Cloudflare Workers
-- **Storage**: Cloudflare KV
-- **Edge Computing**: Global distribution
+**Backend (Production - Optional)**:
+- **Runtime**: Cloudflare Workers (if configured)
+- **Storage**: Cloudflare KV (if configured)
+- **Note**: Currently uses GitHub Pages for static hosting only
+
+### What Exists Now
+
+```
+src/
+├── components/
+│   ├── Hero.tsx           # Landing page hero section
+│   ├── Dashboard.tsx      # Dashboard component cards
+│   └── ui/                # shadcn/ui base components
+├── main.tsx               # React entry point
+└── App.tsx                # Main app component
+
+server/
+├── index.ts               # Express server entry
+├── routes.ts              # API routes
+├── storage.ts             # In-memory storage with seeded data
+└── security/              # Security middleware (mostly stubs)
+
+shared/
+├── schema.ts              # Drizzle schema (currently UNUSED)
+├── brand-config.ts        # Brand tokens
+└── locked-design-language.ts  # Design system
+```
+
+### What Does NOT Exist
+
+The following are planned but not implemented:
+- ❌ No database (PostgreSQL schema exists but is unused)
+- ❌ No payment processing (Stripe code is stub only)
+- ❌ No user authentication
+- ❌ No admin dashboard with real functionality
+- ❌ No AI features (removed in commit be3cb65)
+
+See [ROADMAP.md](../../ROADMAP.md) for planned features.
 
 ## 📂 File Structure
 
 ### Frontend Structure
 ```
-client/
-├── src/
-│   ├── components/          # Reusable UI components
-│   │   ├── ui/             # Base UI components (shadcn/ui)
-│   │   ├── Header.tsx      # Site header
-│   │   ├── Footer.tsx      # Site footer
-│   │   └── ...
-│   ├── pages/              # Route components
-│   │   ├── Home.tsx        # Homepage
-│   │   ├── Products.tsx    # Product listing
-│   │   ├── ProductDetail.tsx # Product details
-│   │   └── ...
-│   ├── hooks/              # Custom React hooks
-│   ├── lib/                # Utilities and configurations
-│   ├── App.tsx             # Main app component
-│   └── main.tsx            # Entry point
-└── public/                 # Static assets
+src/
+├── components/          # React components
+│   ├── ui/             # shadcn/ui base components
+│   ├── Hero.tsx        # Landing hero section
+│   └── Dashboard.tsx   # Dashboard cards
+├── main.tsx            # Entry point
+└── App.tsx             # Main app
 ```
 
 ### Backend Structure
 ```
 server/
-├── index.ts                # Express server entry point
-├── routes/                 # API route handlers
-├── middleware/             # Express middleware
-├── lib/                    # Server utilities
-└── types/                  # TypeScript type definitions
+├── index.ts            # Express server with Vite HMR
+├── routes.ts           # API route definitions
+├── storage.ts          # In-memory storage (MemStorage)
+├── vite.ts             # Vite dev middleware
+└── security/           # Security middleware (boilerplate)
 ```
 
 ## 🔧 Development Commands
 
 ### Core Commands
 ```bash
-npm run dev                 # Start development server (frontend + backend)
-npm run build              # Build for production
-npm run preview            # Preview production build
-npm run check              # TypeScript type checking
+npm run dev              # Start dev server (frontend + backend on port 5000)
+npm run build           # Build for production
+npm run preview         # Preview production build
+npm run check           # TypeScript type checking
 ```
 
-### Cloudflare Commands
+### Testing Commands
 ```bash
-npm run cf:dev             # Test Cloudflare Worker locally
-npm run cf:tail            # View Worker logs in real-time
-npm run cf:kv:list         # List KV namespaces
+npm run test            # Run Vitest unit tests
+npm run test:e2e        # Run Playwright e2e tests
+npm run test:all        # Run all tests
 ```
 
-### Database Commands
+### Code Quality Commands
 ```bash
-npm run db:push            # Push schema changes to database
-npm run db:studio          # Open Drizzle Studio (database GUI)
+npm run lint            # Run ESLint
+npm run format          # Format with Prettier
 ```
 
-### Utility Commands
+### Cloudflare Commands (Optional)
 ```bash
-npm run optimize:images    # Optimize image assets
-npm run analyze:bundle     # Analyze bundle size
+npm run cf:dev          # Test Cloudflare Worker locally
+npm run cf:tail         # View Worker logs
+npm run cf:kv:list      # List KV namespaces
 ```
 
-## 🧪 Testing
-
-### Unit Testing
+### Deployment Commands
 ```bash
-npm run test               # Run unit tests
-npm run test:watch         # Run tests in watch mode
-npm run test:coverage      # Run tests with coverage
-```
-
-### Integration Testing
-```bash
-npm run test:e2e           # Run end-to-end tests
-npm run test:api           # Test API endpoints
+npm run deploy:all      # Deploy to Cloudflare + GitHub Pages
+npm run deploy:github-pages  # Deploy to GitHub Pages only
+npm run deploy:cloudflare    # Deploy to Cloudflare Workers only
 ```
 
 ## 🔄 Development Workflow
@@ -149,125 +167,136 @@ git commit -m "Add new feature"
 git push origin feature/new-feature
 ```
 
-### 2. Testing Deployment
+### 2. Before Committing
 ```bash
-# Test production build
-npm run build
-npm run preview
-
-# Test Cloudflare Worker
-npm run cf:dev
-```
-
-### 3. Code Quality
-```bash
-# Type checking
+# Type check
 npm run check
 
-# Linting
+# Lint
 npm run lint
 
-# Formatting
+# Format
 npm run format
+
+# Run tests
+npm run test
+```
+
+### 3. Testing Production Build
+```bash
+# Build
+npm run build
+
+# Preview
+npm run preview
 ```
 
 ## 🌐 API Development
 
 ### Local API Server
-The development server runs on `http://localhost:3000` with:
+The development server runs on `http://localhost:5000` with:
 - Express.js backend
-- PostgreSQL database
-- Full authentication
-- File uploads
-- WebSocket support
+- In-memory product storage
+- Session-based cart
+- Basic API routes
 
-### Production API (Cloudflare Worker)
-The production API runs on Cloudflare Workers with:
+### Current API Endpoints
+- `GET /api/products` - List all products
+- `GET /api/products/:id` - Get single product
+- `GET /api/categories` - List categories
+- `POST /api/cart` - Add item to cart
+- `PUT /api/cart/:id` - Update cart item
+- `DELETE /api/cart/:id` - Remove from cart
+- `POST /api/contact` - Submit contact form
+
+### Production API (Optional)
+If using Cloudflare Workers:
 - Serverless functions
 - KV storage
 - Edge computing
-- Global distribution
-
-### API Endpoints
-See [API Documentation](../api/README.md) for complete endpoint reference.
 
 ## 🎨 UI Development
 
 ### Component Library
-- **Base Components**: shadcn/ui components in `components/ui/`
+- **Base Components**: shadcn/ui in `components/ui/`
 - **Custom Components**: Application-specific components
 - **Styling**: Tailwind CSS with custom design system
 
 ### Design System
 ```css
-/* Brand Colors */
---troves-turquoise: #14B8A6
---coves-cursive-blue: #3B82F6
---skull-turquoise: #06B6D4
---ornate-frame-gold: #F59E0B
+/* Brand Colors - Cream Scheme */
+--surface-50: #fafaf9;
+--surface-100: #f5f5f4;
+--primary-600: #059669;
+--primary-800: #065f46;
 ```
+
+### Tailwind Classes
+- Backgrounds: `bg-surface-50`, `bg-surface-100`, etc.
+- Text: `text-on-surface`, `text-on-surface-variant`, etc.
+- Primary: `text-primary-600`, `bg-primary-600`, etc.
 
 ### Responsive Design
 - Mobile-first approach
 - Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
-- Touch-friendly interfaces
 
 ## 🔧 Configuration
 
-### Environment Variables
-```env
-# Development
-VITE_DEV_MODE=true
-VITE_API_URL=http://localhost:3000
-
-# Production
-VITE_API_URL=https://your-worker.workers.dev
-VITE_GITHUB_PAGES_URL=https://username.github.io/repo
+### Path Aliases
+Configured in both `tsconfig.json` and `vite.config.ts`:
+```typescript
+"@/*": "./client/src/*"
+"@shared/*": "./shared/*"
+"@assets/*": "./attached_assets/*"
 ```
 
 ### Build Configuration
 - **Vite**: Frontend build tool
-- **TypeScript**: Type checking and compilation
+- **TypeScript**: Type checking
 - **Tailwind**: CSS processing
-- **ESBuild**: Backend bundling
+- **ESBuild**: Backend bundling (if needed)
+
+### Vite Configuration
+- Root: `./client`
+- OutDir: `./dist/public`
+- Base path: `/trovesandcoves/` (for GitHub Pages)
 
 ## 🐛 Debugging
 
 ### Frontend Debugging
-- **React DevTools**: Browser extension for React debugging
-- **Console Logging**: Strategic console.log statements
-- **Source Maps**: Enabled in development builds
+- **React DevTools**: Browser extension
+- **Console**: Standard browser console
+- **Source Maps**: Enabled in development
 
 ### Backend Debugging
 - **VS Code Debugger**: Attach to Node.js process
-- **Cloudflare Wrangler**: Local worker testing
-- **Network Tab**: Inspect API requests/responses
+- **Console Logs**: Server logs in terminal
+- **Network Tab**: Inspect API requests
 
 ### Common Issues
 
-#### 1. Build Failures
+#### Build Failures
 ```bash
 # Clear cache and reinstall
 rm -rf node_modules package-lock.json
 npm install
 ```
 
-#### 2. TypeScript Errors
+#### TypeScript Errors
 ```bash
 # Check types
 npm run check
 
-# Generate types
-npm run build
+# Fix issues manually or use --skipLibCheck
 ```
 
-#### 3. Cloudflare Worker Issues
+#### Port Already in Use
 ```bash
-# Test locally
-npm run cf:dev
+# Kill process on port 5000
+npx kill-port 5000
 
-# Check logs
-npm run cf:tail
+# Or use different port
+PORT=3000 npm run dev
 ```
 
 ## 📚 Resources
@@ -276,13 +305,19 @@ npm run cf:tail
 - [React Documentation](https://react.dev/)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [Cloudflare Workers Docs](https://developers.cloudflare.com/workers/)
+- [Vite Guide](https://vitejs.dev/guide/)
+- [shadcn/ui](https://ui.shadcn.com/)
 
 ### Tools
-- [VS Code](https://code.visualstudio.com/) - Recommended IDE
-- [React DevTools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+- [VS Code](https://code.visualstudio.com/)
+- [React DevTools](https://chrome.google.com/webstore/detail/react-developer-tools)
 - [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/)
+
+### Internal Docs
+- [ROADMAP.md](../../ROADMAP.md) - Planned features
+- [TECHNICAL_DEBT.md](../../TECHNICAL_DEBT.md) - Known issues
+- [CLAUDE.md](../../CLAUDE.md) - AI assistant guide
 
 ---
 
-Need help? Check the [troubleshooting section](../guides/troubleshooting.md) or create an issue.
+Need help? Create an issue or check [TECHNICAL_DEBT.md](../../TECHNICAL_DEBT.md) for known problems.
