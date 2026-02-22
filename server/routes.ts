@@ -40,12 +40,43 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get unique materials for filters
+  app.get('/api/materials', async (_req, res) => {
+    try {
+      const products = await storage.getProducts();
+      const allMaterials = new Set<string>();
+      products.forEach((product: { materials?: string[] }) => {
+        product.materials?.forEach((material: string) => allMaterials.add(material));
+      });
+      res.json(Array.from(allMaterials).sort());
+    } catch (error: any) {
+      console.error('Error fetching materials:', error);
+      res.status(500).json({ message: 'Error fetching materials' });
+    }
+  });
+
+  // Get unique gemstones for filters
+  app.get('/api/gemstones', async (_req, res) => {
+    try {
+      const products = await storage.getProducts();
+      const allGemstones = new Set<string>();
+      products.forEach((product: { gemstones?: string[] }) => {
+        product.gemstones?.forEach((gemstone: string) => allGemstones.add(gemstone));
+      });
+      res.json(Array.from(allGemstones).sort());
+    } catch (error: any) {
+      console.error('Error fetching gemstones:', error);
+      res.status(500).json({ message: 'Error fetching gemstones' });
+    }
+  });
+
   // Products
   app.get('/api/products', async (req, res) => {
     try {
-      const { category } = req.query;
+      const { category, search, material, gemstone, minPrice, maxPrice } = req.query;
       let products = await storage.getProducts();
 
+      // Filter by category
       if (category && category !== 'all') {
         const categoryRecord = await storage.getCategoryBySlug(
           category as string
@@ -53,6 +84,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (categoryRecord) {
           products = products.filter((p: { categoryId?: number }) => p.categoryId === categoryRecord.id);
         }
+      }
+
+      // Search functionality
+      if (search && typeof search === 'string' && search.trim()) {
+        products = await storage.searchProducts(search.trim());
+      }
+
+      // Filter by material
+      if (material && typeof material === 'string') {
+        const materialLower = material.toLowerCase();
+        products = products.filter((p: { materials?: string[] }) =>
+          p.materials?.some((m: string) => m.toLowerCase().includes(materialLower))
+        );
+      }
+
+      // Filter by gemstone
+      if (gemstone && typeof gemstone === 'string') {
+        const gemstoneLower = gemstone.toLowerCase();
+        products = products.filter((p: { gemstones?: string[] }) =>
+          p.gemstones?.some((g: string) => g.toLowerCase().includes(gemstoneLower))
+        );
+      }
+
+      // Filter by price range
+      if (minPrice || maxPrice) {
+        const min = minPrice ? parseFloat(minPrice as string) : 0;
+        const max = maxPrice ? parseFloat(maxPrice as string) : Infinity;
+        products = products.filter((p: { price: string }) => {
+          const price = parseFloat(p.price);
+          return price >= min && price <= max;
+        });
       }
 
       res.json(products);
