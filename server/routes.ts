@@ -1,31 +1,25 @@
-import type { Express } from 'express';
+import type { Express, Request } from 'express';
 import { createServer, type Server } from 'http';
-import Stripe from 'stripe';
 import { storage } from './storage';
-import {
-  insertCartItemSchema,
-  insertOrderSchema,
-  insertOrderItemSchema,
-  insertContactSubmissionSchema,
-} from '@shared/schema';
 import { getEtsyLinkForProduct } from './etsy-links';
-
-// Initialize Stripe
-const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2025-05-28.basil' as const,
-    })
-  : null;
+import { getErrorMessage } from './types';
 
 // Session management for cart
-function getSessionId(req: any): string {
-  if (!req.session) {
-    req.session = {};
+// We extend Express Request with session property via type assertion
+interface SessionWithCart {
+  cartId?: string;
+}
+
+function getSessionId(req: Request): string {
+  const session = req.session as unknown as SessionWithCart | undefined;
+  if (!session) {
+    // If session middleware isn't set up, create a temporary ID
+    return `cart_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
   }
-  if (!req.session.cartId) {
-    req.session.cartId = `cart_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  if (!session.cartId) {
+    session.cartId = `cart_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
   }
-  return req.session.cartId;
+  return session.cartId;
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -34,8 +28,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const categories = await storage.getCategories();
       res.json(categories);
-    } catch (error: any) {
-      console.error('Error fetching categories:', error);
+    } catch (error: unknown) {
+      console.error('Error fetching categories:', getErrorMessage(error));
       res.status(500).json({ message: 'Error fetching categories' });
     }
   });
@@ -164,21 +158,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/cart', async (req, res) => {
     try {
       const sessionId = getSessionId(req);
-      const result = insertCartItemSchema.safeParse({
-        ...req.body,
-        sessionId,
-      });
+      const { productId, quantity } = req.body;
 
-      if (!result.success) {
-        return res
-          .status(400)
-          .json({
-            message: 'Invalid cart item data',
-            errors: result.error.errors,
-          });
+      if (!productId || !quantity || quantity <= 0) {
+        return res.status(400).json({ message: 'Invalid cart item data' });
       }
 
-      const cartItem = await storage.addToCart(result.data);
+      const cartItem = await storage.addToCart({ sessionId, productId, quantity });
       res.status(201).json(cartItem);
     } catch (error: any) {
       console.error('Error adding to cart:', error);
@@ -236,16 +222,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form
   app.post('/api/contact', async (req, res) => {
     try {
-      const result = insertContactSubmissionSchema.safeParse(req.body);
-
-      if (!result.success) {
-        return res.status(400).json({
-          message: 'Invalid contact form data',
-          errors: result.error.errors,
-        });
-      }
-
-      const submission = await storage.createContactSubmission(result.data);
+      const submission = await storage.createContactSubmission(req.body);
       res.status(201).json({
         message: "Thank you for your message! We'll get back to you soon.",
         id: submission.id,
@@ -255,23 +232,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: 'Error submitting contact form' });
     }
   });
-
-  if (stripe) {
-    app.post('/api/create-payment-intent', async (req, res) => {
-      try {
-        const { amount } = req.body;
-        const paymentIntent = await stripe.paymentIntents.create({
-          amount: Math.round(amount * 100),
-          currency: 'cad',
-        });
-        res.json({ clientSecret: paymentIntent.client_secret });
-      } catch (error: any) {
-        res
-          .status(500)
-          .json({ message: 'Error creating payment intent: ' + error.message });
-      }
-    });
-  }
 
   app.post('/api/orders', async (req, res) => {
     try {
@@ -286,19 +246,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return sum + parseFloat(item.product.price) * item.quantity;
       }, 0);
 
-      const result = insertOrderSchema.safeParse({
+      const order = await storage.createOrder({
         ...req.body,
         totalAmount: totalAmount.toString(),
         sessionId,
       });
-
-      if (!result.success) {
-        return res
-          .status(400)
-          .json({ message: 'Invalid order data', errors: result.error.errors });
-      }
-
-      const order = await storage.createOrder(result.data);
 
       for (const cartItem of cartItems) {
         await storage.addOrderItem({

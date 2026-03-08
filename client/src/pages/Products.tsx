@@ -1,26 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
-import ProductCard from '@/components/ProductCard';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Search, Filter, SlidersHorizontal } from 'lucide-react';
-import type { ProductWithCategory, Category } from '@shared/schema';
+import type { ProductWithCategory, Category } from '@shared/types';
+import { Filter, Search, X, Sparkles } from 'lucide-react';
 
 export default function Products() {
   const params = useParams();
   const [location] = useLocation();
-  const category = params.category;
+  const category = (params as Record<string, string>).category;
 
   // Parse search query from URL
   const urlParams = new URLSearchParams(location.split('?')[1] || '');
@@ -28,10 +15,6 @@ export default function Products() {
 
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [sortBy, setSortBy] = useState<string>('featured');
-  const [priceRange, setPriceRange] = useState<string>('all');
-  const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
-  const [selectedGemstones, setSelectedGemstones] = useState<string[]>([]);
-  const [showFilters, setShowFilters] = useState(false);
 
   // Build API URL based on filters
   const buildApiUrl = () => {
@@ -42,9 +25,7 @@ export default function Products() {
   };
 
   // Fetch products
-  const { data: products, isLoading: isLoadingProducts } = useQuery<
-    ProductWithCategory[]
-  >({
+  const { data: products, isLoading: isLoadingProducts } = useQuery<ProductWithCategory[]>({
     queryKey: [buildApiUrl()],
     enabled: true,
   });
@@ -54,87 +35,30 @@ export default function Products() {
     queryKey: ['/api/categories'],
   });
 
-  // Enhanced filtering and sorting with materials/gemstones
+  // Enhanced filtering and sorting
   const filteredAndSortedProducts = products
-    ? [...products]
-        .filter(product => {
-          // Price range filter
-          if (priceRange !== 'all') {
-            const price = parseFloat(product.price);
-            switch (priceRange) {
-              case 'under-50':
-                return price < 50;
-              case '50-100':
-                return price >= 50 && price < 100;
-              case '100-200':
-                return price >= 100 && price < 200;
-              case 'over-200':
-                return price >= 200;
-              default:
-                return true;
-            }
-          }
-
-          // Materials filter
-          if (selectedMaterials.length > 0 && product.materials) {
-            const hasSelectedMaterial = selectedMaterials.some(material =>
-              product.materials?.some(productMaterial =>
-                productMaterial.toLowerCase().includes(material.toLowerCase())
-              )
-            );
-            if (!hasSelectedMaterial) return false;
-          }
-
-          // Gemstones filter
-          if (selectedGemstones.length > 0 && product.gemstones) {
-            const hasSelectedGemstone = selectedGemstones.some(gemstone =>
-              product.gemstones?.some(productGemstone =>
-                productGemstone.toLowerCase().includes(gemstone.toLowerCase())
-              )
-            );
-            if (!hasSelectedGemstone) return false;
-          }
-
-          return true;
-        })
-        .sort((a, b) => {
-          switch (sortBy) {
-            case 'featured':
-              // Sort by stock quantity and price for featured items
-              const aScore =
-                (a.stockQuantity || 0) + (100 - parseFloat(a.price));
-              const bScore =
-                (b.stockQuantity || 0) + (100 - parseFloat(b.price));
-              return bScore - aScore;
-            case 'price-low':
-              return parseFloat(a.price) - parseFloat(b.price);
-            case 'price-high':
-              return parseFloat(b.price) - parseFloat(a.price);
-            case 'name':
-              return a.name.localeCompare(b.name);
-            case 'newest':
-              return (
-                new Date(b.createdAt || 0).getTime() -
-                new Date(a.createdAt || 0).getTime()
-              );
-            case 'popular':
-              return (b.stockQuantity || 0) - (a.stockQuantity || 0);
-            default:
-              return 0;
-          }
-        })
+    ? [...products].sort((a, b) => {
+        switch (sortBy) {
+          case 'featured':
+            const aScore = (a.stockQuantity || 0) + (100 - parseFloat(a.price));
+            const bScore = (b.stockQuantity || 0) + (100 - parseFloat(b.price));
+            return bScore - aScore;
+          case 'price-low':
+            return parseFloat(a.price) - parseFloat(b.price);
+          case 'price-high':
+            return parseFloat(b.price) - parseFloat(a.price);
+          case 'name':
+            return a.name.localeCompare(b.name);
+          case 'newest':
+            return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
+          default:
+            return 0;
+        }
+      })
     : [];
 
-  // Extract unique materials and gemstones for filter options
-  const allMaterials = Array.from(
-    new Set(products?.flatMap(p => p.materials || []) || [])
-  );
-  const allGemstones = Array.from(
-    new Set(products?.flatMap(p => p.gemstones || []) || [])
-  );
-
   // Get current category info
-  const currentCategory = categories?.find(cat => cat.slug === category);
+  const currentCategory = categories?.find((cat) => cat.slug === category);
 
   // Update search when URL changes
   useEffect(() => {
@@ -159,264 +83,233 @@ export default function Products() {
   const clearFilters = () => {
     setSearchQuery('');
     setSortBy('featured');
-    setPriceRange('all');
-    setSelectedMaterials([]);
-    setSelectedGemstones([]);
-    setShowFilters(false);
     window.history.pushState({}, '', '/products');
   };
 
-  const toggleMaterial = (material: string) => {
-    setSelectedMaterials(prev =>
-      prev.includes(material)
-        ? prev.filter(m => m !== material)
-        : [...prev, material]
-    );
-  };
-
-  const toggleGemstone = (gemstone: string) => {
-    setSelectedGemstones(prev =>
-      prev.includes(gemstone)
-        ? prev.filter(g => g !== gemstone)
-        : [...prev, gemstone]
-    );
-  };
-
-  const hasActiveFilters =
-    priceRange !== 'all' ||
-    selectedMaterials.length > 0 ||
-    selectedGemstones.length > 0 ||
-    searchQuery.trim() !== '';
-
-  const formatPrice = (price: string) => {
-    const numPrice = parseFloat(price);
-    return new Intl.NumberFormat('en-CA', {
-      style: 'currency',
-      currency: 'CAD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(numPrice);
-  };
+  const hasActiveFilters = searchQuery.trim() !== '' || category;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
-      {/* Mystical Header Section with Skull Overlay */}
-      <section className="relative bg-gradient-to-br from-pearl-cream via-crystal-accents to-pearl-cream text-navy overflow-hidden py-20">
-        <div className="absolute inset-0 opacity-5 bg-skull-overlay" />
-        {/* Subtle turquoise accent borders */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
+    <div className="min-h-screen bg-mystical-gradient content-layer">
+      {/* Mystical Header Section */}
+      <section className="relative py-20 border-b border-[hsla(174,85%,45%,0.1)]">
+        {/* Background glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsla(174,85%,45%,0.05)] via-transparent to-transparent"></div>
 
-        <div className="relative container mx-auto px-4">
+        <div className="chamber-container relative">
           <div className="text-center">
-            {/* Ornate Decorative Frame */}
-            <div className="mb-6">
-              <div className="inline-block px-6 py-2 border border-ornate-frame-gold/20 rounded-lg bg-ornate-frame-gold/5 backdrop-blur-sm">
-                <span className="text-ornate-frame-gold/80 text-sm font-medium tracking-wider uppercase">
-                  Crystal Collection
-                </span>
-              </div>
+            {/* Mystical Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[hsla(174,85%,45%,0.3)] rounded-full bg-crystal">
+              <Sparkles className="w-4 h-4 text-[hsl(174,85%,45%)]" />
+              <span className="text-xs tracking-widest uppercase text-[hsl(210,30%,85%)]">
+                Crystal Collection
+              </span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
-              <span className="text-navy">
-                {currentCategory
-                  ? currentCategory.name
-                  : searchQuery
-                    ? `Search Results for "${searchQuery}"`
-                    : 'Our Collections'}
-              </span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              {currentCategory ? (
+                <span className="text-shimmer">{currentCategory.name}</span>
+              ) : searchQuery ? (
+                <span>
+                  Searching for <span className="text-glow-turquoise">"{searchQuery}"</span>
+                </span>
+              ) : (
+                <span className="text-shimmer">Our Collections</span>
+              )}
             </h1>
 
-            <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent rounded-full" />
+            <div className="w-24 h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-[hsla(174,85%,45%,0.5)] to-transparent"></div>
 
-            <p className="text-navy/80 text-xl max-w-3xl mx-auto leading-relaxed">
+            <p className="text-[hsl(210,30%,85%)] opacity-70 text-lg max-w-2xl mx-auto">
               {currentCategory
                 ? currentCategory.description
-                : 'Where authentic gemstone energies merge with artisan craftsmanship. Each piece channels crystal wisdom to amplify your inner light, promote healing, and bring beauty to your life.'}
+                : 'Where authentic gemstone energies merge with artisan craftsmanship. Each piece channels crystal wisdom to amplify your inner light.'}
             </p>
-
-            {/* Mystical Underglow Effect */}
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-20 bg-skull-turquoise/30 blur-3xl rounded-full" />
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="smart-flex">
+      <div className="chamber-container py-12">
+        <div className="flex flex-col lg:flex-row gap-8">
           {/* Mystical Sidebar Filters */}
-          <aside className="flex-shrink-0 flex-basis-300">
-            <Card className="sticky top-8 shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
-              <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
-                <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
-                  <SlidersHorizontal className="h-6 w-6 text-ornate-frame-gold" />
-                  <span className="font-bold text-xl">Filters</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-8 p-6">
-                {/* Mystical Search */}
-                <form onSubmit={handleSearch}>
-                  <div className="relative">
-                    <Search className="absolute left-4 top-3 h-5 w-5 text-troves-turquoise" />
-                    <Input
-                      type="text"
-                      placeholder="Search jewelry..."
-                      value={searchQuery}
-                      onChange={e => setSearchQuery(e.target.value)}
-                      className="pl-12 pr-4 py-3 bg-crystal-accents/80 border-2 border-skull-turquoise/20 rounded-lg focus:border-ornate-frame-gold focus:ring-2 focus:ring-ornate-frame-gold/20 text-foreground placeholder-troves-turquoise/60"
-                    />
-                  </div>
-                </form>
+          <aside className="lg:w-72 flex-shrink-0">
+            <div className="crystal-card p-6 lg:sticky lg:top-24">
+              <h3 className="text-lg font-semibold text-[hsl(210,30%,85%)] mb-6 flex items-center gap-2">
+                <Filter className="w-5 h-5 text-[hsl(174,85%,45%)]" />
+                <span>Refine Your Search</span>
+              </h3>
 
-                {/* Categories */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-navy">Categories</h3>
-                  <div className="space-y-2">
-                    <Button
-                      variant={!category ? 'default' : 'ghost'}
-                      className="w-full justify-start"
-                      onClick={() => (window.location.href = '/products')}
-                    >
-                      All Collections
-                    </Button>
-                    {categories?.map(cat => (
-                      <Button
-                        key={cat.id}
-                        variant={category === cat.slug ? 'default' : 'ghost'}
-                        className="w-full justify-start"
-                        onClick={() =>
-                          (window.location.href = `/products/${cat.slug}`)
-                        }
-                      >
-                        {cat.name}
-                      </Button>
-                    ))}
-                  </div>
+              {/* Search */}
+              <form onSubmit={handleSearch} className="mb-6">
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[hsl(174,85%,45%)]" />
+                  <input
+                    type="text"
+                    placeholder="Search crystals..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3 bg-[hsla(240,15%,6%,0.5)] border border-[hsla(174,85%,45%,0.2)] rounded-lg text-[hsl(210,30%,85%)] placeholder-[hsl(210,30%,85%,0.4)] focus:border-[hsla(174,85%,45%,0.5)] focus:outline-none focus:ring-1 focus:ring-[hsla(174,85%,45%,0.3)] transition-colors duration-300"
+                  />
                 </div>
+              </form>
 
-                {/* Price Range */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-navy">Price Range</h3>
-                  <Select value={priceRange} onValueChange={setPriceRange}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select price range" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Prices</SelectItem>
-                      <SelectItem value="under-1000">Under $1,000</SelectItem>
-                      <SelectItem value="1000-5000">$1,000 - $5,000</SelectItem>
-                      <SelectItem value="5000-10000">
-                        $5,000 - $10,000
-                      </SelectItem>
-                      <SelectItem value="over-10000">Over $10,000</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Sort By */}
-                <div>
-                  <h3 className="font-semibold mb-3 text-navy">Sort By</h3>
-                  <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sort by" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="name">Name A-Z</SelectItem>
-                      <SelectItem value="price-low">
-                        Price: Low to High
-                      </SelectItem>
-                      <SelectItem value="price-high">
-                        Price: High to Low
-                      </SelectItem>
-                      <SelectItem value="newest">Newest First</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Clear Filters */}
-                {(searchQuery ||
-                  category ||
-                  priceRange !== 'all' ||
-                  sortBy !== 'name') && (
-                  <Button
-                    variant="outline"
-                    onClick={clearFilters}
-                    className="w-full"
+              {/* Categories */}
+              <div className="mb-6">
+                <h4 className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60 mb-3">
+                  Categories
+                </h4>
+                <div className="space-y-2">
+                  <button
+                    onClick={() => (window.location.href = '/products')}
+                    className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-300 ${
+                      !category
+                        ? 'bg-[hsla(174,85%,45%,0.2)] text-[hsl(174,85%,45%)] border border-[hsla(174,85%,45%,0.3)]'
+                        : 'text-[hsl(210,30%,85%)] opacity-70 hover:bg-[hsla(174,85%,45%,0.1)] hover:text-[hsl(174,85%,45%)]'
+                    }`}
                   >
-                    Clear All Filters
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
+                    All Collections
+                  </button>
+                  {categories?.map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => (window.location.href = `/products/${cat.slug}`)}
+                      className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-300 ${
+                        category === cat.slug
+                          ? 'bg-[hsla(174,85%,45%,0.2)] text-[hsl(174,85%,45%)] border border-[hsla(174,85%,45%,0.3)]'
+                          : 'text-[hsl(210,30%,85%)] opacity-70 hover:bg-[hsla(174,85%,45%,0.1)] hover:text-[hsl(174,85%,45%)]'
+                      }`}
+                    >
+                      {cat.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sort By */}
+              <div className="mb-6">
+                <h4 className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60 mb-3">
+                  Sort By
+                </h4>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="w-full px-4 py-3 bg-[hsla(240,15%,6%,0.5)] border border-[hsla(174,85%,45%,0.2)] rounded-lg text-[hsl(210,30%,85%)] focus:border-[hsla(174,85%,45%,0.5)] focus:outline-none focus:ring-1 focus:ring-[hsla(174,85%,45%,0.3)] transition-colors duration-300 cursor-pointer"
+                >
+                  <option value="featured">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="name">Name: A-Z</option>
+                  <option value="newest">Newest First</option>
+                </select>
+              </div>
+
+              {/* Clear Filters */}
+              {hasActiveFilters && (
+                <button
+                  onClick={clearFilters}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[hsla(43,95%,55%,0.3)] rounded-lg text-[hsl(43,95%,55%)] hover:bg-[hsla(43,95%,55%,0.1)] transition-colors duration-300"
+                >
+                  <X className="w-4 h-4" />
+                  <span>Clear All Filters</span>
+                </button>
+              )}
+            </div>
           </aside>
 
           {/* Products Grid */}
-          <main className="lg:col-span-3">
+          <main className="flex-1">
             {/* Results Header */}
             <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center space-x-4">
-                <h2 className="text-2xl font-serif font-bold text-navy">
-                  {filteredAndSortedProducts.length}{' '}
-                  {filteredAndSortedProducts.length === 1
-                    ? 'Product'
-                    : 'Products'}
-                </h2>
-                {searchQuery && (
-                  <Badge
-                    variant="secondary"
-                    className="bg-elegant-gold text-navy"
-                  >
-                    Search: "{searchQuery}"
-                  </Badge>
-                )}
-                {category && (
-                  <Badge variant="secondary" className="bg-navy text-white">
-                    {currentCategory?.name}
-                  </Badge>
-                )}
-              </div>
+              <h2 className="text-2xl font-semibold text-[hsl(210,30%,85%)]">
+                {filteredAndSortedProducts.length}{' '}
+                <span className="opacity-60">
+                  {filteredAndSortedProducts.length === 1 ? 'Crystal' : 'Crystals'}
+                </span>
+              </h2>
             </div>
 
             {/* Loading State */}
             {isLoadingProducts ? (
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+              <div className="crystal-grid">
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="space-y-4">
-                    <Skeleton className="h-64 w-full rounded-lg" />
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-4 w-1/2" />
-                    <Skeleton className="h-8 w-1/3" />
+                  <div
+                    key={i}
+                    className="crystal-card aspect-square animate-pulse"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    <div className="w-full h-full flex items-center justify-center">
+                      <div className="w-16 h-16 border-2 border-[hsla(174,85%,45%,0.3)] border-t-[hsla(174,85%,45%,0.8)] rounded-full animate-spin"></div>
+                    </div>
                   </div>
                 ))}
               </div>
             ) : filteredAndSortedProducts.length === 0 ? (
               /* No Results */
-              <Card className="text-center py-16">
-                <CardContent>
-                  <div className="max-w-md mx-auto">
-                    <Filter className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                      No products found
-                    </h3>
-                    <p className="text-gray-500 mb-6">
-                      {searchQuery
-                        ? `No products match your search for "${searchQuery}"`
-                        : 'No products match your current filters'}
-                    </p>
-                    <Button
-                      onClick={clearFilters}
-                      className="bg-elegant-gold hover:bg-yellow-400 text-navy"
-                    >
-                      Clear Filters
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="crystal-card p-16 text-center">
+                <Filter className="w-16 h-16 text-[hsl(210,30%,85%)] opacity-30 mx-auto mb-6" />
+                <h3 className="text-2xl font-semibold text-[hsl(210,30%,85%)] mb-4">
+                  No crystals found
+                </h3>
+                <p className="text-[hsl(210,30%,85%)] opacity-60 mb-8">
+                  {searchQuery
+                    ? `No crystals match your search for "${searchQuery}"`
+                    : 'No crystals match your current filters'}
+                </p>
+                <button
+                  onClick={clearFilters}
+                  className="btn-mystical-outline"
+                >
+                  Clear Filters
+                </button>
+              </div>
             ) : (
               /* Products Grid */
-              <div className="adaptive-grid">
-                {filteredAndSortedProducts.map(product => (
-                  <ProductCard key={product.id} product={product} />
+              <div className="crystal-grid">
+                {filteredAndSortedProducts.map((product, index) => (
+                  <a
+                    key={product.id}
+                    href={`/products/${product.id}`}
+                    className="group block animate-reveal"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <div className="crystal-card h-full p-6">
+                      {/* Product Image */}
+                      <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(240,20%,8%,0.5)] to-[hsla(240,15%,6%,0.8)] border border-[hsla(174,85%,45%,0.1)]">
+                        <img
+                          src={product.imageUrl || '/api/placeholder/300/300'}
+                          alt={product.name}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        {/* Hover overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[hsla(240,15%,6%,0.8)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                        {/* Category Badge */}
+                        {product.category && (
+                          <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(174,85%,45%,0.2)] border border-[hsla(174,85%,45%,0.3)] text-[hsl(174,85%,45%)] rounded-full backdrop-blur-sm">
+                            {product.category.name}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Product Info */}
+                      <div className="text-center">
+                        <h3 className="text-xl font-semibold text-[hsl(210,30%,85%)] mb-2 group-hover:text-[hsl(174,85%,45%)] transition-colors duration-300">
+                          {product.name}
+                        </h3>
+
+                        <p className="text-sm text-[hsl(210,30%,85%)] opacity-60 mb-4 line-clamp-2">
+                          {product.description}
+                        </p>
+
+                        <div className="flex items-center justify-between pt-4 border-t border-[hsla(174,85%,45%,0.1)]">
+                          <span className="text-lg font-semibold text-[hsl(43,95%,55%)]">
+                            ${product.price}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
                 ))}
               </div>
             )}

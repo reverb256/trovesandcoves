@@ -47,7 +47,7 @@ export function MobileProductCard({ product, onAddToCart }: any) {
             setIsLiked(!isLiked);
           }}
           className={`
-            absolute top-2 right-2 p-2 rounded-full transition-all duration-200 backdrop-blur-sm
+            absolute top-2 right-2 p-2 rounded-full transition-colors duration-200 transition-transform duration-200 backdrop-blur-sm
             ${isLiked ? 'bg-red-500 text-white' : 'bg-white/90 text-gray-600'}
             ${isMobile ? 'w-11 h-11' : 'w-9 h-9'}
             hover:scale-110 active:scale-95 touch-manipulation

@@ -29,10 +29,6 @@ interface OrderData {
   [key: string]: unknown;
 }
 
-interface PaymentMetadata {
-  [key: string]: unknown;
-}
-
 interface ContactFormData {
   [key: string]: unknown;
 }
@@ -179,19 +175,6 @@ export const ordersApi = {
     }),
   getById: (id: number) => apiFetch(`/api/orders?id=${id}`),
   getAll: () => apiFetch('/api/orders'),
-  updateStatus: (id: number, status: string, paymentIntentId?: string) =>
-    apiFetch(`/api/orders?id=${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ status, paymentIntentId }),
-    }),
-};
-
-export const paymentsApi = {
-  createIntent: (amount: number, metadata: PaymentMetadata = {}) =>
-    apiFetch('/api/payments/create-intent', {
-      method: 'POST',
-      body: JSON.stringify({ amount, ...metadata }),
-    }),
 };
 
 export const contactApi = {
@@ -218,7 +201,6 @@ export default {
   products: productsApi,
   cart: cartApi,
   orders: ordersApi,
-  payments: paymentsApi,
   contact: contactApi,
   categories: categoriesApi,
   utils: apiUtils,

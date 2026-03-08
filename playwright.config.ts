@@ -15,16 +15,25 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+      use: {
+        ...devices['Desktop Chrome'],
+        // Use system Chromium on NixOS (bundled browser installation doesn't work on NixOS)
+        channel: 'chromium',
+        // Find system chromium path: readlink $(which chromium)
+        launchOptions: {
+          executablePath: process.env.CHROMIUM_PATH || '/run/current-system/sw/bin/chromium',
+        }
+      }
     },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] }
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] }
-    }
+    // Disable firefox and webkit on NixOS (bundled browsers not available)
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] }
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] }
+    // }
   ],
   webServer: {
     command: 'npm run dev',

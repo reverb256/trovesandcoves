@@ -1,26 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import SEOHead from '@/components/SEOHead';
 import Hero from '@/components/Hero';
-import type { ProductWithCategory } from '@shared/schema';
-import { ArrowRight } from 'lucide-react';
+import type { ProductWithCategory } from '@shared/types';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Home() {
-  const { data: featuredProducts, isLoading } = useQuery<ProductWithCategory[]>(
-    {
-      queryKey: ['/api/products/featured'],
-    }
-  );
+  const { data: featuredProducts, isLoading } = useQuery<ProductWithCategory[]>({
+    queryKey: ['/api/products/featured'],
+  });
 
   return (
     <>
       <SEOHead
-        title="Troves & Coves - Crystal Jewelry | Shop Winnipeg's Mystical Gemstone Collection"
-        description="Discover handcrafted crystal jewelry, wire-wrapped pendants, and healing gemstone talismans. Shop our curated collection of necklaces, bracelets, and spiritual gifts. Ethically sourced, artisan made in Winnipeg."
-        keywords="crystal jewelry, shop, Winnipeg, gemstone, necklace, bracelet, wire wrapped, healing, spiritual gifts"
+        title="Troves & Coves - Mystical Crystal Jewelry | Authentic Gemstone Healing Talismans"
+        description="Where authentic gemstone energies merge with artisan craftsmanship. Discover handcrafted crystal jewelry, wire-wrapped pendants, and healing talismans. Each piece channels crystal wisdom to amplify your inner light."
+        keywords="crystal jewelry, gemstone healing, wire-wrapped pendants, crystal wisdom, artisan jewelry, Winnipeg, spiritual jewelry, healing crystals"
         url="https://trovesandcoves.ca"
         type="website"
       />
@@ -28,17 +23,24 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Shop Jewelry Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-white via-troves-turquoise/5 to-gold-50 relative">
-        <div className="container-jewelry">
-          <div className="text-center mb-14">
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-4 tracking-tight text-troves-turquoise drop-shadow-lg">
-              Shop{' '}
-              <span className="bg-gradient-to-r from-troves-turquoise to-gold-400 bg-clip-text text-transparent">
-                Crystal Jewelry
+      {/* Featured Collections Section */}
+      <section className="chamber-section content-layer">
+        <div className="chamber-container">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            {/* Mystical Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[hsla(174,85%,45%,0.3)] rounded-full bg-crystal">
+              <Sparkles className="w-4 h-4 text-[hsl(174,85%,45%)]" />
+              <span className="text-xs tracking-widest uppercase text-[hsl(210,30%,85%)]">
+                Curated With Intention
               </span>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              <span className="text-shimmer">Crystal Collection</span>
             </h2>
-            <p className="text-lg md:text-xl text-troves-turquoise/80 max-w-2xl mx-auto">
+
+            <p className="text-lg text-[hsl(210,30%,85%)] opacity-70 max-w-2xl mx-auto">
               Explore our curated collection of authentic gemstone jewelry,
               wire-wrapped pendants, and healing talismans. Each piece is
               artisan-crafted to amplify your energy and style.
@@ -47,64 +49,117 @@ export default function Home() {
 
           {/* Products Grid */}
           {isLoading ? (
-            <div className="adaptive-grid">
+            <div className="crystal-grid">
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="card-crystal p-6 card-uniform shimmer-effect"
+                  className="crystal-card aspect-square animate-pulse"
+                  style={{ animationDelay: `${i * 0.1}s` }}
                 >
-                  <div className="animate-pulse">
-                    <div className="h-40 bg-gradient-to-br from-stone-200 to-stone-100 rounded-lg mb-4"></div>
-                    <div className="h-4 bg-stone-200 rounded mb-2"></div>
-                    <div className="h-3 bg-stone-100 rounded w-2/3"></div>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-16 h-16 border-2 border-[hsla(174,85%,45%,0.3)] border-t-[hsla(174,85%,45%,0.8)] rounded-full animate-spin"></div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="adaptive-grid">
-              {featuredProducts?.map(product => (
-                <Link key={product.id} href={`/products/${product.id}`}>
-                  <Card className="rounded-3xl border border-gold-100 bg-white/80 shadow-lg hover:shadow-xl transition-all duration-500 group cursor-pointer h-full">
-                    <CardContent className="p-6">
-                      <div className="aspect-square mb-4 rounded-2xl overflow-hidden bg-gradient-to-br from-troves-turquoise/10 to-gold-50">
-                        <img
-                          src={product.imageUrl || '/api/placeholder/300/300'}
-                          alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                      <h3 className="text-2xl font-serif font-semibold mb-2 group-hover:text-troves-turquoise transition-colors">
+            <div className="crystal-grid">
+              {featuredProducts?.map((product, index) => (
+                <Link
+                  key={product.id}
+                  href={`/products/${product.id}`}
+                  className="group block animate-reveal"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="crystal-card h-full p-6">
+                    {/* Product Image */}
+                    <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(240,20%,8%,0.5)] to-[hsla(240,15%,6%,0.8)] border border-[hsla(174,85%,45%,0.1)]">
+                      <img
+                        src={product.imageUrl || '/api/placeholder/300/300'}
+                        alt={product.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[hsla(240,15%,6%,0.8)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                      {/* Category Badge */}
+                      {product.category && (
+                        <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(174,85%,45%,0.2)] border border-[hsla(174,85%,45%,0.3)] text-[hsl(174,85%,45%)] rounded-full backdrop-blur-sm">
+                          {product.category.name}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Product Info */}
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold text-[hsl(210,30%,85%)] mb-2 group-hover:text-[hsl(174,85%,45%)] transition-colors duration-300">
                         {product.name}
                       </h3>
-                      <p className="text-troves-turquoise/80 text-sm mb-3 line-clamp-2">
+
+                      <p className="text-sm text-[hsl(210,30%,85%)] opacity-60 mb-4 line-clamp-2">
                         {product.description}
                       </p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-lg font-semibold text-gold-500">
+
+                      <div className="flex items-center justify-between pt-4 border-t border-[hsla(174,85%,45%,0.1)]">
+                        <span className="text-lg font-semibold text-[hsl(43,95%,55%)] glow-gold">
                           ${product.price}
                         </span>
-                        {product.category && (
-                          <Badge className="bg-gold-50 border border-gold-200 text-troves-turquoise text-xs rounded-full px-3 py-1">
-                            {product.category.name}
-                          </Badge>
-                        )}
+
+                        <div className="flex items-center gap-1 text-xs text-[hsl(174,85%,45%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                          <span>View</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>
           )}
 
-          {/* View All Link */}
-          <div className="text-center mt-14">
+          {/* View All Button */}
+          <div className="text-center mt-16">
             <Link href="/products">
-              <Button className="bg-troves-turquoise hover:bg-troves-turquoise/90 text-white text-lg px-8 py-4 rounded-full shadow-lg font-semibold transition-all duration-300 border-2 border-gold-200">
-                View All Products
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
+              <button className="btn-mystical-outline group">
+                <span>View All Crystal Treasures</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Mystical Message Section */}
+      <section className="chamber-section content-layer relative">
+        {/* Background glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsla(174,85%,45%,0.05)] via-transparent to-[hsla(43,95%,55%,0.05)]"></div>
+
+        <div className="chamber-container relative">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="crystal-card p-12 md:p-16">
+              {/* Mystical Icon */}
+              <div className="inline-flex items-center justify-center w-20 h-20 mb-8 border-2 border-[hsla(43,95%,55%,0.3)] rounded-full bg-[hsla(43,95%,55%,0.05)] animate-pulse-glow">
+                <Sparkles className="w-10 h-10 text-[hsl(43,95%,55%)]" />
+              </div>
+
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                <span className="text-shimmer">Channel Your Inner Light</span>
+              </h2>
+
+              <p className="text-lg text-[hsl(210,30%,85%)] opacity-70 leading-relaxed mb-8">
+                Every crystal in our collection has been intuitively selected for its
+                unique healing properties and energetic vibrations. When you wear
+                our jewelry, you carry the ancient wisdom of the earth with you—
+                amplifying your intentions, supporting your journey, and connecting
+                you to the mystical energies that surround us all.
+              </p>
+
+              <p className="text-base text-[hsl(210,30%,85%)] opacity-50 italic">
+                ✨ Handcrafted with intention in Winnipeg, Canada ✨
+              </p>
+            </div>
           </div>
         </div>
       </section>

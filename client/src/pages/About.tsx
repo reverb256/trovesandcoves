@@ -161,7 +161,7 @@ export default function About() {
               return (
                 <Card
                   key={index}
-                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm group hover:scale-105 transition-all duration-300"
+                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm group hover:scale-105 transition-transform duration-300"
                 >
                   <CardHeader
                     className={`bg-gradient-to-r from-${chapter.color}/10 to-${chapter.color}/5 border-b border-ornate-frame-gold/20`}
@@ -215,7 +215,7 @@ export default function About() {
               return (
                 <Card
                   key={index}
-                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm text-center group hover:scale-105 transition-all duration-300"
+                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm text-center group hover:scale-105 transition-transform duration-300"
                 >
                   <CardContent className="p-6">
                     <div

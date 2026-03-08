@@ -85,12 +85,18 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+  app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+    const status = (err && typeof err === 'object' && ('status' in err || 'statusCode' in err))
+      ? (err as { status?: number; statusCode?: number }).status ?? (err as { status?: number; statusCode?: number }).statusCode ?? 500
+      : 500;
+    const message = (err && typeof err === 'object' && 'message' in err)
+      ? (err as { message?: string }).message ?? "Internal Server Error"
+      : "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
+    if (err instanceof Error) {
+      throw err;
+    }
   });
 
   // importantly only setup vite in development and after

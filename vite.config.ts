@@ -2,14 +2,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   base: '/trovesandcoves/',
   plugins: [
     react(),
-    runtimeErrorOverlay(),
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: { enabled: true },

@@ -1,1674 +1,662 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&family=Dancing+Script:wght@400;500;600;700&display=swap');
+/* ============================================================
+   MYSTICAL CRYSTAL CHAMBER - Complete Redesign
+   Dark atmospheric design with glowing crystals and floating particles
+   Preserving Troves & Coves mystical brand voice
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Micro-Animations for Enhanced User Flow */
-@keyframes gentle-bounce {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-@keyframes sparkle-on-hover {
-  0% {
-    opacity: 0;
-    transform: scale(0) rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2) rotate(180deg);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0) rotate(360deg);
-  }
-}
-
-@keyframes crystal-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 5px var(--elegant-gold);
-  }
-  50% {
-    box-shadow:
-      0 0 20px var(--elegant-gold),
-      0 0 30px var(--troves-turquoise);
-  }
-}
-
-@keyframes cart-wiggle {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-3deg);
-  }
-  75% {
-    transform: rotate(3deg);
-  }
-}
-
-@keyframes price-highlight {
-  0% {
-    background: transparent;
-  }
-  50% {
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--elegant-gold) / 20,
-      transparent
-    );
-  }
-  100% {
-    background: transparent;
-  }
-}
-
-@keyframes button-press {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.98);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes success-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* Interactive Element Classes */
-.hover-sparkle {
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.hover-sparkle:hover::before {
-  content: '✨';
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  animation: sparkle-on-hover 0.6s ease-out;
-  pointer-events: none;
-}
-
-.product-card-interactive {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
-}
-
-.product-card-interactive:hover {
-  transform: translateY(-8px) scale(1.02);
-  animation: crystal-glow 2s ease-in-out infinite;
-}
-
-.button-interactive {
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.button-interactive:active {
-  animation: button-press 0.15s ease;
-}
-
-.button-interactive::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(
-    circle,
-    var(--elegant-gold) / 30 0%,
-    transparent 70%
-  );
-  transition: all 0.3s ease;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-}
-
-.button-interactive:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-.cart-icon-animated {
-  transition: all 0.3s ease;
-}
-
-.cart-icon-animated.cart-updated {
-  animation:
-    cart-wiggle 0.5s ease,
-    gentle-bounce 1s ease 0.5s;
-}
-
-.price-animated {
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.price-animated.price-updated {
-  animation: price-highlight 1s ease;
-}
-
-.input-focus-glow {
-  transition: all 0.3s ease;
-}
-
-.input-focus-glow:focus {
-  box-shadow:
-    0 0 0 3px var(--troves-turquoise) / 20,
-    0 0 15px var(--elegant-gold) / 30;
-}
-
-.badge-interactive {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.badge-interactive:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px var(--elegant-gold) / 30;
-}
-
-.loading-crystal {
-  display: inline-block;
-  animation: gentle-bounce 1.5s ease-in-out infinite;
-}
-
-.loading-crystal:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.loading-crystal:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-.success-feedback {
-  animation: success-pulse 0.6s ease;
-}
-
-.nav-item-enhanced {
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.nav-item-enhanced::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--troves-turquoise),
-    var(--elegant-gold)
-  );
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.nav-item-enhanced:hover::after {
-  width: 100%;
-}
-
+/* ============================================================
+   CORE COLOR PALETTE - Obsidian Darkness with Glowing Crystals
+   ============================================================ */
 :root {
-  /* Jewelry-inspired color palette */
-  --rose-gold: 14 85% 70%;
-  --rose-gold-light: 14 85% 85%;
-  --rose-gold-dark: 14 65% 55%;
-  --warm-gold: 43 100% 65%;
-  --antique-gold: 35 45% 45%;
-  --sterling-silver: 200 10% 75%;
-  --oxidized-silver: 210 15% 25%;
+  /* Deep darkness */
+  --void-black: 240 20% 3%;
+  --obsidian-deep: 240 15% 6%;
+  --midnight-void: 225 25% 8%;
+  --shadow-realm: 240 10% 12%;
 
-  /* Crystal-inspired colors - enhanced from authentic jewelry */
-  --amethyst: 280 60% 70%;
-  --amethyst-light: 280 40% 90%;
-  --rose-quartz: 340 50% 85%;
-  --citrine: 50 100% 75%;
-  --labradorite: 210 25% 45%;
-  --moonstone: 45 15% 92%;
-  --turquoise: 180 85% 65%;
-  --lepidolite: 290 30% 80%;
-  --clear-quartz: 0 0% 95%;
+  /* Glowing crystals */
+  --mystic-turquoise: 174 85% 45%;
+  --crystal-glow: 174 90% 55%;
+  --ethereal-blue: 200 70% 50%;
+  --spirit-aqua: 180 80% 60%;
 
-  /* UPDATED AUTHENTIC PALETTE FROM WOODEN SIGN & SKULL ARTWORK - High Contrast */
-  --troves-turquoise: 174 75% 20%; /* Much deeper turquoise for excellent contrast */
-  --coves-cursive-blue: 200 65% 20%; /* Much deeper blue for excellent readability */
-  --wood-grain: 35 40% 45%; /* Darker wood tone for better contrast */
-  --skull-turquoise: 174 85% 25%; /* Darker turquoise from skull artwork */
-  --ornate-frame-gold: 43 90% 30%; /* Much deeper gold for excellent contrast */
-  --crystal-accents: 240 15% 98%; /* Maximum contrast crystal highlights */
-  --obsidian-black: 240 8% 8%; /* True dark for maximum contrast */
-  --carnelian-orange: 25 85% 45%;
-  --carnelian-light: 25 75% 60%;
-  --raw-crystal: 200 8% 85%;
-  --leather-black: 0 0% 5%; /* Near black for maximum contrast */
-  --pearl-cream: 45 30% 98%;
+  /* Sacred gold */
+  --ancient-gold: 43 95% 55%;
+  --gilded-light: 45 100% 65%;
+  --amber-shine: 40 98% 50%;
 
-  /* Natural textures - Cream accents for gold primary */
-  --warm-cream: 43 30% 96%; /* Light cream accents */
-  --rich-cream: 43 25% 93%; /* Deeper cream accents */
-  --golden-cream: 43 35% 90%; /* Gold-cream blend accents */
-  --stone-warm: 30 15% 92%;
-  --stone-cool: 200 10% 88%;
-  --copper-patina: 170 30% 50%;
-  --sage-green: 90 25% 65%;
-  --earth-brown: 25 30% 35%;
+  /* Mystical accents */
+  --amethyst-mystic: 280 65% 60%;
+  --moonlight: 210 30% 85%;
+  --phantom-pearl: 60 20% 92%;
 
-  /* Base colors - Cream backgrounds */
-  --background: hsl(40, 80%, 96%); /* Cream primary base */
-  --background-secondary: hsl(40, 70%, 94%); /* Cream secondary */
-  --background-tertiary: hsl(40, 60%, 92%); /* Cream tertiary */
+  /* Typography */
+  --font-mystical: 'Cinzel', serif;
+  --font-body: 'Cormorant Garamond', serif;
+  --font-brand-cursive: 'Dancing Script', cursive;
+  --font-clean: 'Source Sans Pro', sans-serif;
 
-  /* Mystical design elements - Improved visibility */
-  --skull-overlay: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skull" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="30" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><circle cx="70" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><path d="M45 35 Q50 40 55 35" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><rect x="45" y="50" width="10" height="8" fill="none" stroke="hsl(43, 95%, 35%)" stroke-width="0.8" opacity="0.18"/></pattern></defs><rect width="100" height="100" fill="url(%23skull)"/></svg>');
-  --foreground: 25 30% 3%;
-  --foreground-muted: 25 25% 10%;
-
-  /* UI colors built from jewelry palette - Primary gold with cream accents */
-  --card: 43 70% 92%; /* Rich gold cards */
-  --card-foreground: 25 30% 3%;
-  --popover: 43 70% 92%; /* Rich gold popovers */
-  --popover-foreground: 25 30% 3%;
-  --primary: 174 75% 20%;
-  --primary-foreground: 43 80% 95%; /* Cream foreground on primary */
-  --secondary: 43 45% 78%; /* Gold-toned secondary */
-  --secondary-foreground: 25 30% 8%;
-  --muted: 43 50% 80%; /* Gold-toned muted backgrounds */
-  --muted-foreground: 25 25% 8%;
-  --accent: 174 85% 25%;
-  --accent-foreground: 43 80% 95%; /* Cream accent foreground */
-  --destructive: 0 80% 45%;
-  --destructive-foreground: 43 80% 95%;
-  --border: 43 40% 65%; /* Gold-toned borders */
-  --input: 43 45% 75%; /* Gold-toned inputs */
-  --ring: 174 75% 20%;
-  --radius: 8px;
-
-  /* Enhanced shadows with warmth */
-  --shadow-warm: 35 45% 45% / 0.15;
-  --shadow-crystal: 280 60% 70% / 0.1;
-  --shadow-deep: 210 15% 25% / 0.2;
-
-  /* Mystical glow effects */
-  --glow-turquoise: 174 85% 30%;
-  --glow-gold: 43 90% 35%;
-  --glow-skull: 174 75% 25%;
-  --glow-blue: 200 65% 25%;
-
-  /* Harmonized gradient combinations */
-  --gradient-primary: linear-gradient(
-    135deg,
-    hsl(174, 75%, 20%) 0%,
-    hsl(174, 85%, 25%) 50%,
-    hsl(200, 65%, 20%) 100%
-  );
-  --gradient-secondary: linear-gradient(
-    135deg,
-    hsl(200, 65%, 20%) 0%,
-    hsl(174, 85%, 25%) 50%,
-    hsl(174, 75%, 20%) 100%
-  );
-  --gradient-accent: linear-gradient(
-    135deg,
-    hsl(174, 85%, 25%) 0%,
-    hsl(43, 90%, 30%) 50%,
-    hsl(200, 65%, 20%) 100%
-  );
-  --gradient-mystical: linear-gradient(
-    135deg,
-    hsl(174, 75%, 20%) 0%,
-    hsl(174, 85%, 25%) 25%,
-    hsl(200, 65%, 20%) 75%,
-    hsl(43, 90%, 30%) 100%
-  );
-}
-
-/* Harmonized Three-Color Accent System */
-.accent-tri-gradient {
-  background: var(--gradient-mystical);
-}
-
-.accent-primary-gradient {
-  background: var(--gradient-primary);
-}
-
-.accent-secondary-gradient {
-  background: var(--gradient-secondary);
-}
-
-.accent-gold-gradient {
-  background: var(--gradient-accent);
-}
-
-.accent-mystical-gradient {
-  background: linear-gradient(
-    135deg,
-    hsl(174, 75%, 20%) 0%,
-    hsl(174, 85%, 25%) 25%,
-    hsl(200, 65%, 20%) 75%,
-    hsl(43, 90%, 30%) 100%
-  );
-}
-
-.btn-luxury {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.btn-luxury::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-.btn-luxury:hover::before {
-  left: 100%;
-}
-
-.btn-luxury-outline {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background: transparent;
-}
-
-.btn-luxury-outline:hover {
-  transform: translateY(-2px);
-}
-
-/* Mystical gradient for Hero */
-.accent-mystical-gradient {
-  background: linear-gradient(
-    135deg,
-    hsl(174, 75%, 20%) 0%,
-    hsl(174, 85%, 25%) 25%,
-    hsl(200, 65%, 20%) 75%,
-    hsl(43, 90%, 30%) 100%
-  );
-}
-
-/* Luxury button styles */
-.btn-luxury {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.btn-luxury::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-.btn-luxury:hover::before {
-  left: 100%;
-}
-
-.btn-luxury-outline {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background: transparent;
-}
-
-.btn-luxury-outline:hover {
-  transform: translateY(-2px);
-}
-
-/* Border accents using all three colors */
-.border-tri-gradient {
-  border-image: linear-gradient(
-      135deg,
-      hsl(174, 75%, 20%),
-      hsl(174, 85%, 25%),
-      hsl(200, 65%, 20%)
-    )
-    1;
-}
-
-.border-tri-underline {
-  border-bottom: 2px solid;
-  border-image: linear-gradient(
-      90deg,
-      hsl(174, 75%, 20%),
-      hsl(174, 85%, 25%),
-      hsl(200, 65%, 20%)
-    )
-    1;
-}
-
-/* Glow effects for all three colors */
-.glow-troves {
-  box-shadow: 0 0 20px hsl(var(--glow-turquoise) / 0.3);
-}
-
-.glow-skull {
-  box-shadow: 0 0 20px hsl(var(--glow-skull) / 0.3);
-}
-
-.glow-coves {
-  box-shadow: 0 0 20px hsl(var(--glow-blue) / 0.3);
-}
-
-.glow-tri-color {
-  box-shadow:
-    0 0 10px hsl(var(--glow-turquoise) / 0.2),
-    0 0 20px hsl(var(--glow-skull) / 0.2),
-    0 0 30px hsl(var(--glow-blue) / 0.1);
-}
-
-/* Text color variants for all three */
-.text-troves-turquoise {
-  color: hsl(var(--troves-turquoise));
-}
-
-.text-coves-cursive-blue {
-  color: hsl(var(--coves-cursive-blue));
-}
-
-.text-skull-turquoise {
-  color: hsl(var(--skull-turquoise));
-}
-
-/* Background variants */
-.bg-troves-turquoise {
-  background-color: hsl(var(--troves-turquoise));
-}
-
-.bg-coves-cursive-blue {
-  background-color: hsl(var(--coves-cursive-blue));
-}
-
-.bg-skull-turquoise {
-  background-color: hsl(var(--skull-turquoise));
-}
-
-/* Accent dividers */
-.divider-tri-color {
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    hsl(var(--troves-turquoise)) 25%,
-    hsl(var(--skull-turquoise)) 50%,
-    hsl(var(--coves-cursive-blue)) 75%,
-    transparent 100%
-  );
-}
-
-.divider-simple {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    hsl(var(--skull-turquoise)) 50%,
-    transparent 100%
-  );
-}
-
-/* High Contrast Text Utilities */
-.text-readable {
-  color: hsl(25 30% 8%) !important;
-}
-
-.text-readable-muted {
-  color: hsl(25 25% 15%) !important;
-}
-
-.text-max-contrast {
-  color: hsl(0 0% 0%) !important;
-}
-
-.text-navy {
-  color: hsl(200 65% 15%) !important;
-}
-
-.text-navy-light {
-  color: hsl(200 65% 20%) !important;
-}
-
-/* Ensure all gray text meets contrast requirements */
-.text-gray-600 {
-  color: hsl(25 25% 15%) !important;
-}
-
-.text-gray-700 {
-  color: hsl(25 30% 8%) !important;
-}
-
-.text-gray-800 {
-  color: hsl(25 30% 5%) !important;
-}
-
-/* Override any low contrast text */
-.text-muted-foreground {
-  color: hsl(25 25% 15%) !important;
-}
-
-.dark {
-  --background: 210 15% 6%;
-  --background-secondary: 210 15% 8%;
-  --background-tertiary: 210 15% 10%;
-  --foreground: 45 25% 98%;
-  --foreground-muted: 200 10% 70%;
-
-  /* Dark mode jewelry colors - more luminous */
-  --rose-gold: 14 85% 75%;
-  --rose-gold-light: 14 65% 85%;
-  --warm-gold: 43 100% 70%;
-  --antique-gold: 35 45% 55%;
-  --sterling-silver: 200 15% 80%;
-  --oxidized-silver: 210 20% 85%;
-
-  /* Dark mode crystals - enhanced luminosity */
-  --amethyst: 280 65% 75%;
-  --amethyst-light: 280 45% 90%;
-  --rose-quartz: 340 55% 85%;
-  --citrine: 50 95% 80%;
-  --labradorite: 210 30% 55%;
-  --moonstone: 45 20% 90%;
-  --turquoise: 180 80% 70%;
-  --lepidolite: 290 35% 80%;
-  --clear-quartz: 0 0% 90%;
-
-  /* Floral Enamel and Magnolia Elements */
-  --magnolia-white: 60 100% 97%;
-  --magnolia-cream: 50 30% 92%;
-  --leaf-green: 150 40% 25%;
-  --leaf-emerald: 160 60% 30%;
-
-  /* Lapis Lazuli Deep Blues */
-  --lapis-deep: 220 80% 25%;
-  --lapis-medium: 225 70% 35%;
-  --lapis-light: 230 60% 45%;
-
-  /* Mystical and Spiritual Elements */
-  --spiritual-turquoise: 180 100% 50%;
-  --mystical-purple: 270 60% 40%;
-  --sacred-gold: 45 100% 60%;
-
-  --card: 210 15% 10%;
-  --card-foreground: 45 25% 98%;
-  --popover: 210 15% 10%;
-  --popover-foreground: 45 25% 98%;
-  --primary: 14 85% 70%;
-  --primary-foreground: 210 15% 6%;
-  --secondary: 210 15% 18%;
-  --secondary-foreground: 45 25% 98%;
-  --muted: 210 15% 18%;
-  --muted-foreground: 200 10% 75%;
-  --accent: 280 65% 70%;
-  --accent-foreground: 210 15% 6%;
-  --border: 210 15% 25%;
-  --input: 210 15% 25%;
+  /* Spacing */
+  --space-sm: clamp(0.5rem, 2vw, 1rem);
+  --space-md: clamp(1rem, 3vw, 2rem);
+  --space-lg: clamp(2rem, 5vw, 4rem);
+  --space-xl: clamp(3rem, 8vw, 6rem);
 }
 
 * {
-  border-color: hsl(var(--border));
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* ============================================================
+   BASE STYLES - The Chamber
+   ============================================================ */
 body {
-  color: hsl(25 30% 8%);
-  background: #fff8e7;
-  font-family:
-    'Source Sans Pro',
-    system-ui,
-    -apple-system,
-    sans-serif;
-  font-weight: 300;
-  line-height: 1.6;
-  overflow-x: hidden;
+  background: linear-gradient(
+    180deg,
+    hsl(var(--void-black)) 0%,
+    hsl(var(--obsidian-deep)) 50%,
+    hsl(var(--midnight-void)) 100%
+  );
+  color: hsl(var(--moonlight));
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
   min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Playfair Display', serif;
+/* Mystical particle overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 80%, hsla(174, 85%, 45%, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, hsla(43, 95%, 55%, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, hsla(200, 70%, 50%, 0.02) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+  animation: mystical-drift 20s ease-in-out infinite;
+}
+
+@keyframes mystical-drift {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Floating crystal particles */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, hsla(174, 85%, 45%, 0.4), transparent),
+    radial-gradient(1px 1px at 60% 70%, hsla(43, 95%, 55%, 0.3), transparent),
+    radial-gradient(1px 1px at 50% 50%, hsla(200, 70%, 50%, 0.3), transparent),
+    radial-gradient(2px 2px at 80% 10%, hsla(174, 85%, 45%, 0.5), transparent),
+    radial-gradient(1px 1px at 90% 60%, hsla(280, 65%, 60%, 0.3), transparent),
+    radial-gradient(1px 1px at 33% 80%, hsla(43, 95%, 55%, 0.4), transparent),
+    radial-gradient(2px 2px at 15% 90%, hsla(200, 70%, 50%, 0.4), transparent);
+  background-size: 200% 200%;
+  pointer-events: none;
+  z-index: 1;
+  animation: crystal-float 30s linear infinite;
+}
+
+@keyframes crystal-float {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 200%; }
+}
+
+#root {
+  --background: 240 15% 6%;
+  --foreground: 210 30% 85%;
+  --card: 240 20% 8%;
+  --card-foreground: 210 30% 90%;
+  --popover: 240 15% 10%;
+  --popover-foreground: 210 30% 90%;
+  --primary: 174 85% 45%;
+  --primary-foreground: 240 15% 6%;
+  --secondary: 43 95% 55%;
+  --secondary-foreground: 240 15% 6%;
+  --muted: 240 10% 12%;
+  --muted-foreground: 210 20% 60%;
+  --accent: 200 70% 50%;
+  --accent-foreground: 240 15% 6%;
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 210 30% 90%;
+  --border: 240 15% 15%;
+  --input: 240 15% 12%;
+  --ring: 174 85% 45%;
+  --radius: 0.5rem;
+}
+
+/* ============================================================
+   TYPOGRAPHY - Mystical & Ancient
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mystical);
   font-weight: 500;
-  letter-spacing: -0.025em;
-  color: hsl(var(--foreground));
+  letter-spacing: 0.05em;
+  color: hsl(var(--moonlight));
+  line-height: 1.3;
 }
 
-/* COMPREHENSIVE HIGH CONTRAST TEXT UTILITIES */
-.text-foreground {
-  color: hsl(var(--foreground)) !important;
-}
-
-.text-foreground-muted {
-  color: hsl(var(--foreground-muted)) !important;
-}
-
-.text-high-contrast {
-  color: hsl(25 30% 2%) !important;
-  font-weight: 500;
-}
-
-.dark .text-high-contrast {
-  color: hsl(45 25% 100%) !important;
-}
-
-/* Maximum contrast text for critical content */
-.text-max-contrast {
-  color: hsl(0 0% 0%) !important;
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 600;
 }
 
-.dark .text-max-contrast {
-  color: hsl(0 0% 100%) !important;
+h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
-/* Enhanced contrast for different text roles */
-.text-readable {
-  color: hsl(25 30% 8%) !important;
-  font-weight: 400;
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
-.text-readable-muted {
-  color: hsl(25 25% 20%) !important;
-  font-weight: 400;
+p {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: hsl(var(--moonlight));
+  opacity: 0.9;
 }
 
-/* Ensure minimum contrast for interactive elements */
-button,
-a,
-input,
-textarea,
-select {
-  color: hsl(var(--foreground));
-  font-weight: 500;
-}
-
-button:hover,
-a:hover {
-  color: hsl(var(--foreground));
-}
-
-/* Default text colors with enhanced contrast */
-p,
-span,
-div,
-li {
-  color: hsl(25 30% 8%);
-}
-
-/* Headers with maximum contrast */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: hsl(25 30% 3%) !important;
-  font-weight: 600;
-}
-
-/* Link contrast improvements */
 a {
-  color: hsl(174 75% 25%) !important;
+  color: hsl(var(--crystal-glow));
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 a:hover {
-  color: hsl(174 75% 20%) !important;
+  color: hsl(var(--spirit-aqua));
+  text-shadow: 0 0 20px hsla(174, 85%, 45%, 0.5);
 }
 
-@layer components {
-  /* Jewelry-inspired glass morphism */
-  .glass-jewelry {
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+/* Brand logo styles */
+.troves-text {
+  font-family: var(--font-clean);
+  font-weight: 700;
+  color: hsl(var(--mystic-turquoise));
+  text-shadow:
+    0 0 10px hsla(174, 85%, 45%, 0.5),
+    0 0 30px hsla(174, 85%, 45%, 0.3);
+  letter-spacing: 0.1em;
+}
+
+.coves-text {
+  font-family: var(--font-brand-cursive);
+  font-weight: 600;
+  font-style: italic;
+  color: hsl(var(--ancient-gold));
+  text-shadow:
+    0 0 10px hsla(43, 95%, 55%, 0.5),
+    0 0 30px hsla(43, 95%, 55%, 0.3);
+}
+
+/* ============================================================
+   ANIMATIONS - Mystical Movement
+   ============================================================ */
+@keyframes crystal-pulse {
+  0%, 100% {
     box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+      0 0 20px hsla(174, 85%, 45%, 0.3),
+      0 0 40px hsla(174, 85%, 45%, 0.1);
   }
-
-  .dark .glass-jewelry {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  50% {
     box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-
-  /* Organic crystal shapes */
-  .crystal-frame {
-    clip-path: polygon(
-      20% 0%,
-      80% 0%,
-      100% 20%,
-      100% 80%,
-      80% 100%,
-      20% 100%,
-      0% 80%,
-      0% 20%
-    );
-  }
-
-  .faceted-frame {
-    clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
-  }
-
-  /* Enhanced cream and gold gradients */
-  .gradient-warm-cream {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--warm-cream)),
-      hsl(var(--rich-cream)),
-      hsl(var(--golden-cream))
-    );
-  }
-
-  .gradient-gold-cream {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--ornate-frame-gold)),
-      hsl(var(--warm-cream)),
-      hsl(var(--rich-cream))
-    );
-  }
-
-  .gradient-rose-gold {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--rose-gold-light)),
-      hsl(var(--rose-gold)),
-      hsl(var(--rose-gold-dark))
-    );
-  }
-
-  .gradient-silver {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--sterling-silver)),
-      hsl(var(--oxidized-silver)),
-      hsl(var(--labradorite))
-    );
-  }
-
-  .gradient-warm-gold {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--warm-gold)),
-      hsl(var(--antique-gold)),
-      hsl(var(--copper-patina))
-    );
-  }
-
-  /* Gem-like text effects */
-  .text-crystal {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--amethyst)),
-      hsl(var(--turquoise)),
-      hsl(var(--citrine))
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* AUTHENTIC MYSTICAL SKULL ARTWORK EFFECTS */
-  .wooden-sign-bg {
-    position: relative;
-    background: linear-gradient(
-      45deg,
-      hsl(var(--wood-grain)) 0%,
-      hsl(var(--pearl-cream)) 50%,
-      hsl(var(--crystal-accents)) 100%
-    );
-  }
-
-  .skull-artwork-influence {
-    position: relative;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--skull-turquoise) / 0.1) 0%,
-      hsl(var(--crystal-accents)) 100%
-    );
-  }
-
-  .skull-artwork-influence::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: var(--skull-overlay);
-    opacity: 0.05;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .ornate-decorative-frame {
-    border: 3px solid transparent;
-    background:
-      linear-gradient(hsl(var(--crystal-accents)), hsl(var(--wood-grain)))
-        padding-box,
-      linear-gradient(
-          45deg,
-          hsl(var(--ornate-frame-gold)),
-          hsl(var(--skull-turquoise)),
-          hsl(var(--ornate-frame-gold))
-        )
-        border-box;
-    border-radius: 12px;
-    position: relative;
-  }
-
-  .ornate-decorative-frame::after {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    background: linear-gradient(
-      45deg,
-      hsl(var(--ornate-frame-gold) / 0.3),
-      transparent,
-      hsl(var(--skull-turquoise) / 0.3)
-    );
-    border-radius: 16px;
-    z-index: -1;
-  }
-
-  .troves-text-style {
-    color: hsl(var(--troves-turquoise));
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: bold;
-    text-transform: none;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  .coves-text-style {
-    color: hsl(var(--coves-cursive-blue));
-    font-family: 'Dancing Script', cursive;
-    font-weight: 600;
-    font-style: italic;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-
-  /* High contrast variants for accessibility */
-  .troves-text-style-high-contrast {
-    color: hsl(174 80% 25%);
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: bold;
-    text-transform: none;
-  }
-
-  .coves-text-style-high-contrast {
-    color: hsl(200 70% 25%);
-    font-family: 'Dancing Script', cursive;
-    font-weight: 600;
-    font-style: italic;
-  }
-
-  .dark .troves-text-style-high-contrast {
-    color: hsl(174 85% 75%);
-  }
-
-  .dark .coves-text-style-high-contrast {
-    color: hsl(200 65% 75%);
-  }
-
-  .skull-turquoise-glow {
-    box-shadow:
-      0 0 25px hsl(var(--skull-turquoise) / 0.4),
-      0 0 50px hsl(var(--skull-turquoise) / 0.2);
-  }
-
-  .ornate-gold-glow {
-    box-shadow:
-      0 0 20px hsl(var(--ornate-frame-gold) / 0.5),
-      0 0 40px hsl(var(--ornate-frame-gold) / 0.3);
-  }
-
-  .authentic-mystical-card {
-    @apply skull-artwork-influence ornate-decorative-frame;
-    backdrop-filter: blur(8px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .authentic-mystical-card:hover {
-    @apply skull-turquoise-glow;
-    transform: translateY(-4px) scale(1.02);
-  }
-
-  .wooden-texture {
-    background-image:
-      linear-gradient(90deg, hsl(var(--wood-grain) / 0.1) 50%, transparent 50%),
-      linear-gradient(hsl(var(--wood-grain)), hsl(var(--natural-wood)));
-    background-size:
-      4px 4px,
-      100% 100%;
-  }
-
-  .text-rose-gold {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--rose-gold)),
-      hsl(var(--warm-gold))
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Wire-wrap inspired elements */
-  .wire-wrap {
-    position: relative;
-  }
-
-  .wire-wrap::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(
-      45deg,
-      hsl(var(--antique-gold)),
-      hsl(var(--rose-gold)),
-      hsl(var(--sterling-silver))
-    );
-    border-radius: inherit;
-    z-index: -1;
-    opacity: 0.7;
-  }
-
-  /* Organic button styles */
-  .btn-organic {
-    border-radius: 2rem 1rem 2rem 1rem;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--rose-gold)),
-      hsl(var(--warm-gold))
-    );
-    color: hsl(var(--background));
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-weight: 400;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .btn-organic::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
-    transition: left 0.5s;
-  }
-
-  .btn-organic:hover::before {
-    left: 100%;
-  }
-
-  .btn-organic:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px hsl(var(--shadow-warm));
-  }
-
-  /* Crystal-inspired cards */
-  .card-crystal {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--clear-quartz)),
-      hsl(var(--moonstone))
-    );
-    border: 1px solid hsl(var(--rose-gold) / 0.2);
-    border-radius: 1rem 0.5rem 1rem 0.5rem;
-    box-shadow:
-      0 4px 16px hsl(var(--shadow-crystal)),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-
-  /* Gemstone highlights */
-  .highlight-amethyst {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--amethyst-light)),
-      hsl(var(--amethyst))
-    );
-    padding: 0.125rem 0.5rem;
-    border-radius: 0.25rem;
-    color: white;
-    font-size: 0.875rem;
-    font-weight: 500;
-  }
-
-  .highlight-rose-quartz {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--rose-quartz)),
-      hsl(var(--rose-gold-light))
-    );
-    padding: 0.125rem 0.5rem;
-    border-radius: 0.25rem;
-    color: hsl(var(--foreground));
-    font-size: 0.875rem;
-    font-weight: 500;
-  }
-
-  /* Wire-wrapped pendant styles */
-  .pendant-style {
-    position: relative;
-    border-radius: 50% 40% 60% 30%;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--raw-crystal)),
-      hsl(var(--clear-quartz)),
-      hsl(var(--pearl-cream))
-    );
-    border: 2px solid hsl(var(--wire-gold));
-    padding: 1rem;
-  }
-
-  .pendant-style::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 16px;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--wire-gold)),
-      hsl(var(--antique-gold))
-    );
-    border-radius: 2px;
-  }
-
-  /* Layered necklace effect */
-  .layered-styling {
-    position: relative;
-  }
-
-  .layered-styling::before,
-  .layered-styling::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    border-radius: 1px;
-  }
-
-  .layered-styling::before {
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--wire-gold)),
-      transparent
-    );
-    transform: translateY(-6px);
-  }
-
-  .layered-styling::after {
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--leather-black)),
-      transparent
-    );
-    transform: translateY(-10px);
-    opacity: 0.7;
-  }
-
-  /* Beaded bracelet pattern */
-  .beaded-pattern {
-    background: repeating-linear-gradient(
-      90deg,
-      hsl(var(--turquoise-deep)) 0px,
-      hsl(var(--turquoise-deep)) 8px,
-      hsl(var(--obsidian-black)) 8px,
-      hsl(var(--obsidian-black)) 16px,
-      hsl(var(--carnelian-orange)) 16px,
-      hsl(var(--carnelian-orange)) 24px,
-      hsl(var(--pearl-cream)) 24px,
-      hsl(var(--pearl-cream)) 32px
-    );
-    height: 6px;
-    border-radius: 3px;
-    box-shadow:
-      0 2px 4px hsl(var(--obsidian-black) / 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-
-  /* Raw crystal texture */
-  .raw-crystal-texture {
-    background: linear-gradient(
-      45deg,
-      hsl(var(--raw-crystal)),
-      hsl(var(--clear-quartz))
-    );
-    position: relative;
-  }
-
-  .raw-crystal-texture::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(
-        circle at 20% 30%,
-        rgba(255, 255, 255, 0.3) 2px,
-        transparent 2px
-      ),
-      radial-gradient(
-        circle at 70% 60%,
-        rgba(255, 255, 255, 0.2) 1px,
-        transparent 1px
-      ),
-      radial-gradient(
-        circle at 40% 80%,
-        rgba(255, 255, 255, 0.4) 1.5px,
-        transparent 1.5px
-      );
-    background-size:
-      20px 20px,
-      15px 15px,
-      25px 25px;
-  }
-
-  /* Obsidian arrowhead style */
-  .obsidian-arrowhead {
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background: linear-gradient(
-      135deg,
-      hsl(var(--obsidian-black)),
-      hsl(var(--leather-black))
-    );
-    position: relative;
-  }
-
-  .obsidian-arrowhead::before {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    background: linear-gradient(
-      135deg,
-      hsl(var(--oxidized-silver)),
-      transparent
-    );
-    opacity: 0.3;
-  }
-
-  /* Luxury animations */
-  @keyframes shimmer-gold {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
-  @keyframes crystal-glow {
-    0%,
-    100% {
-      box-shadow: 0 0 20px hsl(var(--amethyst) / 0.3);
-    }
-    50% {
-      box-shadow: 0 0 30px hsl(var(--amethyst) / 0.5);
-    }
-  }
-
-  @keyframes floating-crystal {
-    0%,
-    100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    33% {
-      transform: translateY(-8px) rotate(1deg);
-    }
-    66% {
-      transform: translateY(-4px) rotate(-1deg);
-    }
-  }
-
-  .shimmer-effect {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .shimmer-effect::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--rose-gold) / 0.3),
-      transparent
-    );
-    animation: shimmer-gold 2s infinite;
-  }
-
-  .crystal-glow {
-    animation: crystal-glow 4s ease-in-out infinite;
-  }
-
-  .floating-crystal {
-    animation: floating-crystal 6s ease-in-out infinite;
-  }
-
-  .crystal-delay-1 {
-    animation-delay: 0.5s;
-  }
-  .crystal-delay-2 {
-    animation-delay: 1s;
-  }
-  .crystal-delay-3 {
-    animation-delay: 1.5s;
-  }
-
-  .font-brand-heading {
-    font-family: var(--brand-font-heading), 'Playfair Display', serif;
-  }
-
-  .font-brand-cursive {
-    font-family: var(--brand-font-cursive), 'Dancing Script', cursive;
-  }
-
-  .bg-skull-overlay {
-    background-image: var(--skull-overlay);
-  }
-
-  .translate-z-0 {
-    transform: translateZ(0);
-  }
-
-  .flex-basis-300 {
-    flex-basis: 300px;
-  }
-
-  .and-gradient-text {
-    font-family: 'Dancing Script', 'Playfair Display', cursive, serif;
-    font-weight: 700;
-    font-size: 1.2em;
-    background: linear-gradient(90deg, #14b8a6 0%, #ffd700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .max-h-300 {
-    max-height: 300px;
-  }
-
-  .ui-progress-transform {
-    transform: translateX(-100%);
-  }
-
-  /* Pearl and coral combinations */
-  .pearl-coral-blend {
-    background: linear-gradient(
-      90deg,
-      hsl(var(--pearl-cream)) 0%,
-      hsl(var(--carnelian-orange)) 25%,
-      hsl(var(--pearl-cream)) 50%,
-      hsl(var(--rose-gold)) 75%,
-      hsl(var(--pearl-cream)) 100%
-    );
-    border-radius: 50%;
-    box-shadow:
-      inset 0 2px 4px rgba(255, 255, 255, 0.4),
-      0 2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Howlite marble texture */
-  .howlite-marble {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--moonstone)) 0%,
-      hsl(var(--clear-quartz)) 30%,
-      hsl(var(--moonstone)) 60%,
-      hsl(var(--oxidized-silver)) 100%
-    );
-    background-size: 200% 200%;
-    animation: marble-flow 8s ease-in-out infinite;
-  }
-
-  @keyframes marble-flow {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  /* Smoky quartz depth */
-  .smoky-quartz-depth {
-    background: radial-gradient(
-      circle at center,
-      hsl(var(--obsidian-gray)) 0%,
-      hsl(var(--leather-black)) 70%,
-      hsl(var(--obsidian-black)) 100%
-    );
-    box-shadow:
-      inset 0 4px 8px rgba(255, 255, 255, 0.1),
-      0 4px 16px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Hamsa hand sacred geometry */
-  .hamsa-sacred {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--sacred-gold)) 0%,
-      hsl(var(--warm-gold)) 50%,
-      hsl(var(--antique-gold)) 100%
-    );
-    clip-path: polygon(
-      50% 0%,
-      30% 25%,
-      35% 50%,
-      20% 75%,
-      50% 85%,
-      80% 75%,
-      65% 50%,
-      70% 25%
-    );
-    position: relative;
-  }
-
-  .hamsa-sacred::before {
-    content: '';
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20%;
-    height: 20%;
-    background: hsl(var(--mystical-purple));
-    border-radius: 50%;
-    box-shadow: 0 0 10px hsl(var(--spiritual-turquoise));
+      0 0 30px hsla(174, 85%, 45%, 0.5),
+      0 0 60px hsla(174, 85%, 45%, 0.2),
+      0 0 80px hsla(174, 85%, 45%, 0.1);
   }
 }
 
-/* Enhanced scrollbar with jewelry styling */
+@keyframes gold-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes reveal-mystical {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.9) translateY(20px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ============================================================
+   CRYSTAL SHAPES - Hexagonal Containers
+   ============================================================ */
+.crystal-card {
+  position: relative;
+  background: linear-gradient(
+    145deg,
+    hsla(240, 20%, 8%, 0.9) 0%,
+    hsla(240, 15%, 6%, 0.95) 100%
+  );
+  border: 1px solid hsla(174, 85%, 45%, 0.2);
+  clip-path: polygon(
+    5% 0%, 95% 0%, 100% 5%, 100% 95%,
+    95% 100%, 5% 100%, 0% 95%, 0% 5%
+  );
+  transition: border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.crystal-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsla(174, 85%, 45%, 0.1),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.crystal-card:hover::before {
+  left: 100%;
+}
+
+.crystal-card:hover {
+  border-color: hsla(174, 85%, 45%, 0.5);
+  box-shadow:
+    0 0 30px hsla(174, 85%, 45%, 0.2),
+    0 0 60px hsla(174, 85%, 45%, 0.1),
+    inset 0 0 30px hsla(174, 85%, 45%, 0.05);
+  transform: translateY(-5px);
+}
+
+/* Ornate frame borders */
+.ornate-border {
+  position: relative;
+  border: none;
+}
+
+.ornate-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  background: linear-gradient(
+    135deg,
+    hsla(174, 85%, 45%, 0.6),
+    hsla(43, 95%, 55%, 0.6),
+    hsla(200, 70%, 50%, 0.6),
+    hsla(174, 85%, 45%, 0.6)
+  ) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ============================================================
+   BUTTONS - Mystical Interactive Elements
+   ============================================================ */
+.btn-mystical {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-mystical);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--void-black));
+  background: linear-gradient(
+    135deg,
+    hsl(var(--mystic-turquoise)),
+    hsl(var(--crystal-glow))
+  );
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  clip-path: polygon(
+    10% 0%, 90% 0%, 100% 10%, 100% 90%,
+    90% 100%, 10% 100%, 0% 90%, 0% 10%
+  );
+}
+
+.btn-mystical::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsla(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.btn-mystical:hover::before {
+  left: 100%;
+}
+
+.btn-mystical:hover {
+  box-shadow:
+    0 0 30px hsla(174, 85%, 45%, 0.6),
+    0 0 60px hsla(174, 85%, 45%, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-mystical-outline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-mystical);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: hsl(var(--mystic-turquoise));
+  background: transparent;
+  border: 2px solid hsl(var(--mystic-turquoise));
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+  clip-path: polygon(
+    10% 0%, 90% 0%, 100% 10%, 100% 90%,
+    90% 100%, 10% 100%, 0% 90%, 0% 10%
+  );
+}
+
+.btn-mystical-outline:hover {
+  background: hsla(174, 85%, 45%, 0.1);
+  box-shadow:
+    0 0 20px hsla(174, 85%, 45%, 0.4),
+    inset 0 0 20px hsla(174, 85%, 45%, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   TEXT EFFECTS - Glowing Mystical Typography
+   ============================================================ */
+.text-glow-turquoise {
+  color: hsl(var(--mystic-turquoise));
+  text-shadow:
+    0 0 10px hsla(174, 85%, 45%, 0.6),
+    0 0 20px hsla(174, 85%, 45%, 0.4),
+    0 0 40px hsla(174, 85%, 45%, 0.2);
+}
+
+.text-glow-gold {
+  color: hsl(var(--ancient-gold));
+  text-shadow:
+    0 0 10px hsla(43, 95%, 55%, 0.6),
+    0 0 20px hsla(43, 95%, 55%, 0.4),
+    0 0 40px hsla(43, 95%, 55%, 0.2);
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--mystic-turquoise)),
+    hsl(var(--crystal-glow)),
+    hsl(var(--spirit-aqua)),
+    hsl(var(--ancient-gold)),
+    hsl(var(--mystic-turquoise))
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shimmer 4s linear infinite;
+}
+
+/* ============================================================
+   LAYOUT - Chamber Spaces
+   ============================================================ */
+.chamber-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  position: relative;
+  z-index: 2;
+}
+
+.chamber-section {
+  position: relative;
+  padding: var(--space-xl) 0;
+}
+
+.crystal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ============================================================
+   SCROLLBAR - Mystical Scroll
+   ============================================================ */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background-secondary));
+  background: hsl(var(--void-black));
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
-    135deg,
-    hsl(var(--rose-gold)),
-    hsl(var(--warm-gold))
+    180deg,
+    hsl(var(--mystic-turquoise)),
+    hsl(var(--ancient-gold))
   );
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
-    135deg,
-    hsl(var(--warm-gold)),
-    hsl(var(--rose-gold-light))
+    180deg,
+    hsl(var(--crystal-glow)),
+    hsl(var(--gilded-light))
   );
 }
 
-/* Selection styling */
+/* ============================================================
+   SELECTION - Crystal Highlight
+   ============================================================ */
 ::selection {
-  background: hsl(var(--rose-gold) / 0.3);
-  color: hsl(var(--foreground));
+  background: hsla(174, 85%, 45%, 0.3);
+  color: hsl(var(--moonlight));
 }
 
-/* Focus styles with jewelry inspiration - Enhanced contrast */
-*:focus-visible {
-  outline: 3px solid hsl(var(--troves-turquoise));
-  outline-offset: 2px;
-  border-radius: 4px;
-  box-shadow: 0 0 0 5px hsl(var(--troves-turquoise) / 0.2);
+/* ============================================================
+   FOCUS STYLES - Ethereal Focus
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid hsl(var(--mystic-turquoise));
+  outline-offset: 4px;
+  box-shadow:
+    0 0 0 4px hsla(174, 85%, 45%, 0.1),
+    0 0 20px hsla(174, 85%, 45%, 0.2);
 }
 
-/* High contrast mode utilities */
-@media (prefers-contrast: high) {
-  :root {
-    --foreground: 25 30% 0%;
-    --foreground-muted: 25 25% 10%;
-    --troves-turquoise: 174 100% 20%;
-    --coves-cursive-blue: 200 100% 20%;
-    --border: 200 15% 60%;
-  }
-
-  .dark {
-    --foreground: 45 25% 100%;
-    --foreground-muted: 200 10% 90%;
-    --troves-turquoise: 174 100% 80%;
-    --coves-cursive-blue: 200 100% 80%;
-    --border: 210 15% 40%;
-  }
+/* ============================================================
+   UTILITY CLASSES - Mystical Modifiers
+   ============================================================ */
+.animate-reveal {
+  animation: reveal-mystical 0.8s ease-out forwards;
 }
 
-/* Smooth transitions for luxury feel */
+.animate-fade-in {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: crystal-pulse 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-glow-breathe {
+  animation: glow-breathe 3s ease-in-out infinite;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Glow utilities */
+.glow-turquoise {
+  box-shadow: 0 0 30px hsla(174, 85%, 45%, 0.4);
+}
+
+.glow-gold {
+  box-shadow: 0 0 30px hsla(43, 95%, 55%, 0.4);
+}
+
+.glow-mystical {
+  box-shadow:
+    0 0 20px hsla(174, 85%, 45%, 0.3),
+    0 0 40px hsla(43, 95%, 55%, 0.2),
+    0 0 60px hsla(200, 70%, 50%, 0.1);
+}
+
+/* Backgrounds */
+.bg-void {
+  background: hsl(var(--void-black));
+}
+
+.bg-crystal {
+  background: linear-gradient(
+    145deg,
+    hsla(240, 20%, 8%, 0.9),
+    hsla(240, 15%, 6%, 0.95)
+  );
+}
+
+.bg-mystical-gradient {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--void-black)) 0%,
+    hsl(var(--obsidian-deep)) 50%,
+    hsl(var(--midnight-void)) 100%
+  );
+}
+
+/* Text colors */
+.text-moonlight {
+  color: hsl(var(--moonlight));
+}
+
+.text-turquoise {
+  color: hsl(var(--mystic-turquoise));
+}
+
+.text-gold {
+  color: hsl(var(--ancient-gold));
+}
+
+.text-phantom {
+  color: hsl(var(--phantom-pearl));
+}
+
+/* Borders */
+.border-crystal {
+  border: 1px solid hsla(174, 85%, 45%, 0.3);
+}
+
+.border-gold {
+  border: 1px solid hsla(43, 95%, 55%, 0.3);
+}
+
+/* Glass morphism for dark theme */
+.glass-mystical {
+  background: hsla(240, 15%, 6%, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsla(174, 85%, 45%, 0.1);
+}
+
+/* Relative positioning for z-index context */
+.content-layer {
+  position: relative;
+  z-index: 10;
+}
+
+/* Smooth transitions */
 * {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Typography enhancements */
-.text-display {
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-}
-
-.text-body {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-}
-
-/* Intelligent Container System - Eliminates Blank Areas */
-.container-jewelry {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 3rem);
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.container-luxury {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 clamp(0.75rem, 3vw, 2rem);
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-/* Smart Grid System - Adapts to Fill Space */
-.adaptive-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-  width: 100%;
-  align-items: stretch;
-}
-
-.adaptive-grid-large {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
-  width: 100%;
-  align-items: stretch;
-}
-
-.adaptive-grid-small {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: clamp(0.75rem, 2vw, 1.5rem);
-  width: 100%;
-  align-items: stretch;
-}
-
-/* Flex Systems That Eliminate Gaps */
-.smart-flex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1rem, 2.5vw, 2rem);
-  justify-content: space-between;
-  align-items: stretch;
-  width: 100%;
-}
-
-.smart-flex > * {
-  flex: 1 1 calc(50% - clamp(0.5rem, 1.25vw, 1rem));
-  min-width: 280px;
-}
-
-.smart-flex-thirds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1rem, 2vw, 2rem);
-  justify-content: space-between;
-  align-items: stretch;
-  width: 100%;
-}
-
-.smart-flex-thirds > * {
-  flex: 1 1 calc(33.333% - clamp(0.67rem, 1.33vw, 1.33rem));
-  min-width: 250px;
-}
-
-/* Responsive Containers That Grow to Fill Viewport */
-.fill-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.fill-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 50vh;
-}
-
-/* Dynamic Spacing - Prevents Awkward Gaps */
-.dynamic-spacing {
-  margin: clamp(1rem, 4vh, 3rem) 0;
-}
-
-.dynamic-padding {
-  padding: clamp(1rem, 4vw, 3rem);
-}
-
-/* Auto-adjusting Cards */
-.card-auto-size {
-  height: auto;
-  min-height: fit-content;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-uniform {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-uniform > .card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Responsive Breakpoints */
-@media (max-width: 640px) {
-  .smart-flex > *,
-  .smart-flex-thirds > * {
-    flex: 1 1 100%;
-    min-width: unset;
-  }
-
-  .adaptive-grid,
-  .adaptive-grid-large {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .smart-flex-thirds > * {
-    flex: 1 1 calc(50% - clamp(0.5rem, 1vw, 1rem));
-  }
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
 }

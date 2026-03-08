@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useReducer, useEffect, ReactNode } from "react";
+import { createContext, useContext, useReducer, useEffect, ReactNode } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import type { CartItemWithProduct } from "@shared/schema";
+import type { CartItemWithProduct } from "@shared/types";
+import { STALE_TIME_IMMEDIATE } from "@/constants";
 
 interface CartState {
   isOpen: boolean;
@@ -55,7 +56,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   // Fetch cart items
   const { data: cartItems = [], isLoading, refetch } = useQuery<CartItemWithProduct[]>({
     queryKey: ['/api/cart'],
-    staleTime: 0, // Always fresh
+    staleTime: STALE_TIME_IMMEDIATE, // Always fresh
   });
 
   // Update state when cart items change - with proper comparison
@@ -86,7 +87,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     refetch,
   };
 
-  return React.createElement(CartContext.Provider, { value: contextValue }, children);
+  return (
+    <CartContext.Provider value={contextValue}>
+      {children}
+    </CartContext.Provider>
+  );
 }
 
 export function useCartContext() {

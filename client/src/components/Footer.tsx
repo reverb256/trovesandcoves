@@ -1,18 +1,14 @@
 import { Link } from 'wouter';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from 'react';
 import {
   Facebook,
   Instagram,
-  Youtube,
-  MapPin,
-  Clock,
-  Phone,
   Mail,
+  MapPin,
   ExternalLink,
+  Sparkles,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export default function Footer() {
   const [email, setEmail] = useState('');
@@ -22,11 +18,9 @@ export default function Footer() {
     e.preventDefault();
     if (!email) return;
 
-    // Mock newsletter subscription
     toast({
       title: 'Thank you for subscribing!',
-      description:
-        "You'll receive updates about our latest collections and exclusive events.",
+      description: "You'll receive updates about our latest mystical collections and exclusive events.",
     });
     setEmail('');
   };
@@ -60,7 +54,7 @@ export default function Footer() {
     { name: 'Wire Wrapped Jewellery', href: '/products/wire-wrapped' },
     { name: 'All Products', href: '/products' },
     { name: 'Featured Items', href: '/' },
-    { name: 'Custom Crystal Consultations', href: '/contact' },
+    { name: 'Custom Consultations', href: '/contact' },
   ];
 
   const customerCare = [
@@ -73,40 +67,48 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-background border-t border-ornate-frame-gold/20 pt-16 pb-8">
-      <div className="absolute top-0 left-0 w-full h-1 accent-tri-gradient"></div>
-      <div className="container mx-auto px-4">
+    <footer className="border-t border-[hsla(174,85%,45%,0.1)] pt-16 pb-8 content-layer">
+      {/* Mystical top border */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[hsla(174,85%,45%,0.5)] to-transparent"></div>
+
+      <div className="chamber-container">
         {/* Newsletter Section */}
-        <div className="mb-12 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-foreground">
-              Stay Connected
+        <div className="mb-16 text-center">
+          <div className="crystal-card p-8 md:p-12 max-w-3xl mx-auto">
+            {/* Mystical Icon */}
+            <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-[hsla(43,95%,55%,0.3)] rounded-full bg-[hsla(43,95%,55%,0.05)] animate-pulse-glow">
+              <Sparkles className="w-8 h-8 text-[hsl(43,95%,55%)]" />
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-[hsl(210,30%,85%)] mb-4">
+              <span className="text-shimmer">Join Our Crystal Circle</span>
             </h2>
-            <p className="text-xl text-foreground-muted mb-8">
-              Be the first to discover new collections and exclusive events
+
+            <p className="text-lg text-[hsl(210,30%,85%)] opacity-70 mb-8">
+              Be the first to discover new collections, crystal wisdom, and exclusive mystical events
             </p>
 
             <form
               onSubmit={handleNewsletterSubmit}
               className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
             >
-              <Input
+              <input
                 type="email"
                 placeholder="Enter your email address"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
-                className="flex-1 bg-input border-border text-foreground placeholder-muted-foreground focus:border-primary"
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 px-6 py-3 bg-[hsla(240,15%,6%,0.5)] border border-[hsla(174,85%,45%,0.2)] rounded-lg text-[hsl(210,30%,85%)] placeholder-[hsl(210,30%,85%,0.4)] focus:border-[hsla(174,85%,45%,0.5)] focus:outline-none focus:ring-1 focus:ring-[hsla(174,85%,45%,0.3)] transition-colors duration-300"
                 required
               />
-              <Button
+              <button
                 type="submit"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
+                className="btn-mystical whitespace-nowrap"
               >
                 Subscribe
-              </Button>
+              </button>
             </form>
 
-            <p className="text-sm text-muted-foreground mt-4">
+            <p className="text-sm text-[hsl(210,30%,85%)] opacity-50 mt-4">
               We respect your privacy. Unsubscribe at any time.
             </p>
           </div>
@@ -116,29 +118,30 @@ export default function Footer() {
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <div className="text-2xl font-serif font-bold text-primary mb-6">
-              Troves & Coves
+            <div className="flex items-baseline gap-3 mb-6">
+              <span className="troves-text text-2xl">Troves</span>
+              <span className="text-[hsl(43,95%,55%)] text-3xl">×</span>
+              <span className="coves-text text-3xl">Coves</span>
             </div>
-            <p className="text-foreground-muted mb-6">
+            <p className="text-[hsl(210,30%,85%)] opacity-60 mb-6 leading-relaxed">
               Authentic crystal jewellery and healing gemstone talismans crafted
-              with intention. Serving seekers across Canada with mystical
-              guidance and spiritual awakening.
+              with intention. Each piece channels crystal wisdom to amplify your
+              inner light and promote healing.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map(social => {
+            <div className="flex gap-3">
+              {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
-                  <Button
+                  <a
                     key={social.label}
-                    variant="ghost"
-                    size="sm"
-                    className="text-muted-foreground hover:text-primary transition-colors p-2"
-                    asChild
+                    href={social.href}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 border border-[hsla(174,85%,45%,0.2)] rounded-lg bg-[hsla(174,85%,45%,0.05)] text-[hsl(174,85%,45%)] hover:border-[hsla(174,85%,45%,0.5)] hover:bg-[hsla(174,85%,45%,0.1)] transition-colors duration-300"
                   >
-                    <a href={social.href} aria-label={social.label}>
-                      <Icon className="h-5 w-5" />
-                    </a>
-                  </Button>
+                    <Icon className="w-5 h-5" />
+                  </a>
                 );
               })}
             </div>
@@ -146,15 +149,15 @@ export default function Footer() {
 
           {/* Collections */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-foreground">
+            <h3 className="font-semibold text-lg mb-6 text-[hsl(210,30%,85%)] tracking-wider uppercase">
               Collections
             </h3>
             <ul className="space-y-3">
-              {collections.map(item => (
+              {collections.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-foreground-muted hover:text-primary transition-colors"
+                    className="text-[hsl(210,30%,85%)] opacity-60 hover:text-[hsl(174,85%,45%)] hover:opacity-100 transition-colors duration-300"
                   >
                     {item.name}
                   </Link>
@@ -165,15 +168,15 @@ export default function Footer() {
 
           {/* Customer Care */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-foreground">
-              Customer Care
+            <h3 className="font-semibold text-lg mb-6 text-[hsl(210,30%,85%)] tracking-wider uppercase">
+              Guidance
             </h3>
             <ul className="space-y-3">
-              {customerCare.map(item => (
+              {customerCare.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-foreground-muted hover:text-primary transition-colors"
+                    className="text-[hsl(210,30%,85%)] opacity-60 hover:text-[hsl(174,85%,45%)] hover:opacity-100 transition-colors duration-300"
                   >
                     {item.name}
                   </Link>
@@ -184,41 +187,23 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-foreground">
-              Connect With Us
+            <h3 className="font-semibold text-lg mb-6 text-[hsl(210,30%,85%)] tracking-wider uppercase">
+              Connect
             </h3>
-            <div className="space-y-4 text-foreground-muted">
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-primary flex-shrink-0" />
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-[hsl(210,30%,85%)] opacity-60">
+                <Mail className="w-5 h-5 text-[hsl(174,85%,45%)] flex-shrink-0" />
                 <div>
-                  <div className="font-medium text-foreground">
-                    info@trovesandcoves.ca
-                  </div>
-                  <div className="text-sm">
-                    Crystal consultations & guidance
-                  </div>
+                  <div className="text-[hsl(210,30%,85%)]">info@trovesandcoves.ca</div>
+                  <div className="text-sm opacity-70">Crystal consultations & guidance</div>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-3">
-                <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <div className="flex items-center gap-3 text-[hsl(210,30%,85%)] opacity-60">
+                <MapPin className="w-5 h-5 text-[hsl(174,85%,45%)] flex-shrink-0" />
                 <div>
-                  <div className="font-medium text-foreground">
-                    Response Times
-                  </div>
-                  <div>Email inquiries: Within 24 hours</div>
-                  <div>Custom orders: 2-3 business days</div>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <div>
-                  <div className="font-medium text-foreground">
-                    Serving Canada
-                  </div>
-                  <div>Nationwide shipping from Winnipeg, MB</div>
-                  <div>Free shipping on orders over $75</div>
+                  <div className="text-[hsl(210,30%,85%)]">Winnipeg, Manitoba</div>
+                  <div className="text-sm opacity-70">Serving Canada with nationwide shipping</div>
                 </div>
               </div>
             </div>
@@ -226,38 +211,31 @@ export default function Footer() {
         </div>
 
         {/* Bottom Footer */}
-        <div className="border-t border-border pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-muted-foreground text-sm mb-4 md:mb-0">
+        <div className="border-t border-[hsla(174,85%,45%,0.1)] pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-[hsl(210,30%,85%)] opacity-50 text-sm">
               © 2025 Troves & Coves. All rights reserved. |
-              <a href="#" className="hover:text-primary transition-colors ml-1">
+              <Link href="/privacy-policy" className="hover:text-[hsl(174,85%,45%)] transition-colors ml-1">
                 Privacy Policy
-              </a>{' '}
-              |
-              <a href="#" className="hover:text-primary transition-colors ml-1">
-                Terms of Service
-              </a>
+              </Link>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-muted-foreground text-sm">
-                Secure payments powered by
-              </span>
-              <div className="flex space-x-2 text-muted-foreground">
-                <span className="text-2xl">💳</span>
-                <span className="text-sm">Visa, Mastercard, Amex, PayPal</span>
-              </div>
+
+            <div className="flex items-center gap-2 text-[hsl(210,30%,85%)] opacity-50 text-sm">
+              <span>✨</span>
+              <span>Handcrafted with crystal intention</span>
+              <span>✨</span>
             </div>
           </div>
 
           {/* Designer Credit */}
-          <div className="flex justify-center mt-6 pt-4 border-t border-border/50">
+          <div className="flex justify-center mt-6 pt-4 border-t border-[hsla(174,85%,45%,0.1)]">
             <a
               href="https://reverb256.ca"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary text-xs transition-colors"
+              className="text-[hsl(210,30%,85%)] opacity-40 hover:text-[hsl(174,85%,45%)] hover:opacity-100 text-xs transition-colors duration-300"
             >
-              vibecoded with ❤️ by Reverb Web Design
+              vibecoded with mystical energy ✦
             </a>
           </div>
         </div>

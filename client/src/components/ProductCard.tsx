@@ -5,7 +5,7 @@ import { Heart, ShoppingBag } from "lucide-react";
 import { useLocation } from "wouter";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
-import type { ProductWithCategory } from "@shared/schema";
+import type { ProductWithCategory } from "@shared/types";
 
 interface ProductCardProps {
   product: ProductWithCategory;
@@ -52,10 +52,12 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
       onClick={() => setLocation(`/product/${product.id}`)}
     >
       <div className="relative overflow-hidden">
-        <img 
-          src={product.imageUrl} 
+        <img
+          src={product.imageUrl}
           alt={product.name}
           className="product-image w-full h-64 object-cover"
+          loading="lazy"
+          decoding="async"
         />
         
         {/* Overlay Actions */}
@@ -89,13 +91,17 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
         </Button>
 
         {/* Stock Badge */}
-        {product.stockQuantity <= 5 && product.stockQuantity > 0 && (
+        {(product.stockQuantity === undefined || product.stockQuantity === null) ? (
+          product.inStock === false && (
+            <Badge variant="secondary" className="absolute top-4 left-4">
+              Out of Stock
+            </Badge>
+          )
+        ) : product.stockQuantity <= 5 && product.stockQuantity > 0 ? (
           <Badge variant="destructive" className="absolute top-4 left-4">
             Only {product.stockQuantity} left
           </Badge>
-        )}
-        
-        {product.stockQuantity === 0 && (
+        ) : product.stockQuantity === 0 && (
           <Badge variant="secondary" className="absolute top-4 left-4">
             Out of Stock
           </Badge>

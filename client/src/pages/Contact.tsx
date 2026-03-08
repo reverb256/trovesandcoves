@@ -44,7 +44,7 @@ import {
   Star,
 } from 'lucide-react';
 import { format } from 'date-fns';
-import { insertContactSubmissionSchema } from '@shared/schema';
+import { insertContactSubmissionSchema } from '@shared/types';
 import { z } from 'zod';
 
 const contactFormSchema = insertContactSubmissionSchema.extend({
@@ -196,6 +196,7 @@ export default function Contact() {
                             <FormControl>
                               <Input
                                 placeholder="Your name"
+                                autoComplete="name"
                                 className="bg-background-secondary/50 border-ornate-frame-gold/20 text-troves-turquoise placeholder-foreground-muted"
                                 {...field}
                               />
@@ -216,6 +217,8 @@ export default function Contact() {
                             <FormControl>
                               <Input
                                 type="email"
+                                inputMode="email"
+                                autoComplete="email"
                                 placeholder="your@email.com"
                                 className="bg-background-secondary/50 border-ornate-frame-gold/20 text-troves-turquoise placeholder-foreground-muted"
                                 {...field}
@@ -238,6 +241,8 @@ export default function Contact() {
                           <FormControl>
                             <Input
                               type="tel"
+                              inputMode="tel"
+                              autoComplete="tel"
                               placeholder="Your phone number"
                               className="bg-pearl-cream/50 border-ornate-frame-gold/20 text-navy placeholder-navy/60"
                               {...field}

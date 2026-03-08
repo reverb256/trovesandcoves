@@ -8,6 +8,12 @@ import {
   XCircle,
   Heart,
 } from 'lucide-react';
+import {
+  ContentPageWrapper,
+  ContentPageHeader,
+  ContentPageBody,
+  SectionHeader,
+} from '@/components/ContentPage';
 
 export default function Returns() {
   const returnPolicy = [
@@ -56,34 +62,14 @@ export default function Returns() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
-      {/* Header */}
-      <section className="relative bg-gradient-to-br from-pearl-cream via-crystal-accents to-pearl-cream text-navy overflow-hidden py-20">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
+    <ContentPageWrapper>
+      <ContentPageHeader
+        badgeLabel="Our Promise"
+        title={<span className="text-navy">Returns & Exchanges</span>}
+        description="Your satisfaction with our jewelry is paramount. We offer generous return and exchange policies to ensure you're completely happy with your purchase."
+      />
 
-        <div className="relative container mx-auto px-4 text-center">
-          <div className="inline-block px-6 py-2 border border-ornate-frame-gold/20 rounded-lg bg-ornate-frame-gold/5 backdrop-blur-sm mb-6">
-            <span className="text-ornate-frame-gold/80 text-sm font-medium tracking-wider uppercase">
-              Our Promise
-            </span>
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
-            <span className="text-navy">Returns & Exchanges</span>
-          </h1>
-
-          <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent rounded-full" />
-
-          <p className="text-navy/80 text-xl max-w-3xl mx-auto leading-relaxed">
-            Your satisfaction with our jewelry is paramount. We offer generous
-            return and exchange policies to ensure you're completely happy with
-            your purchase.
-          </p>
-        </div>
-      </section>
-
-      <div className="container mx-auto px-4 py-12">
+      <ContentPageBody>
         {/* Return Policy */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-navy mb-8 text-center">
@@ -275,7 +261,7 @@ export default function Returns() {
             </div>
           </CardContent>
         </Card>
-      </div>
-    </div>
+      </ContentPageBody>
+    </ContentPageWrapper>
   );
 }

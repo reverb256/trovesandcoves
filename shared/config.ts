@@ -43,10 +43,8 @@ export const API_RETRY_DELAY_MS = 1000;
 
 // Feature flags
 export const FEATURES = {
-  STRIPE_ENABLED: !!process.env.STRIPE_SECRET_KEY,
-  DATABASE_ENABLED: !!process.env.DATABASE_URL,
-  AUTH_ENABLED: false, // Not implemented yet
-  ADMIN_DASHBOARD: false, // Not implemented yet
+  AUTH_ENABLED: false,
+  DATABASE_ENABLED: false,
 } as const;
 
 // Currency configuration
@@ -86,10 +84,6 @@ export function validateConfig(): { valid: boolean; errors: string[] } {
 
   if (isProduction && SESSION_SECRET.includes('change-in-production')) {
     errors.push('SESSION_SECRET must be changed in production');
-  }
-
-  if (FEATURES.STRIPE_ENABLED && !process.env.STRIPE_PUBLISHABLE_KEY) {
-    errors.push('STRIPE_PUBLISHABLE_KEY is required when STRIPE_SECRET_KEY is set');
   }
 
   return {

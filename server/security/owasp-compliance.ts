@@ -13,24 +13,24 @@ import {
 
 // OWASP A02: Cryptographic Failures - Secure headers
 export const securityHeaders = helmet({
-  contentSecurityPolicy: {
+  contentSecurityPolicy: process.env.NODE_ENV === 'production' ? {
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc: ["'self'", 'https://fonts.gstatic.com'],
       imgSrc: ["'self'", 'data:', 'https:', 'blob:'],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      connectSrc: ["'self'", 'https://api.stripe.com'],
+      scriptSrc: ["'self'"],
+      connectSrc: ["'self'", 'https:'],
       frameSrc: ["'none'"],
       objectSrc: ["'none'"],
-      mediaSrc: ["'self'"],
+      mediaSrc: ["'self'", 'data:', 'blob:'],
       workerSrc: ["'self'"],
       childSrc: ["'none'"],
       formAction: ["'self'"],
       frameAncestors: ["'none'"],
       upgradeInsecureRequests: [],
     },
-  },
+  } : false, // Disable CSP in development for Vite HMR
   hsts: {
     maxAge: 31536000,
     includeSubDomains: true,
@@ -43,10 +43,17 @@ export const securityHeaders = helmet({
 // OWASP A07: Identification and Authentication Failures - Rate limiting
 export const generalRateLimit = rateLimit({
   windowMs: RATE_LIMIT_WINDOW_MS,
-  max: RATE_LIMIT_MAX_REQUESTS,
+  max: process.env.NODE_ENV === 'production' ? RATE_LIMIT_MAX_REQUESTS : 1000, // Much higher limit for dev
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => {
+    // Skip rate limiting for development and static assets
+    if (process.env.NODE_ENV !== 'production') return true;
+    // Skip for HMR requests
+    if (req.url?.includes('?v=')) return true;
+    return false;
+  },
 });
 
 // Slow down repeated requests
@@ -73,53 +80,47 @@ export const sessionConfig = {
 // Security logger
 export const securityLogger = (req: Request, _res: Response, next: NextFunction) => {
   const start = Date.now();
-  (_res as any).startTime = start;
+  (_res as Response & { startTime?: number }).startTime = start;
 
   next();
 };
 
 // Input sanitization
-export const sanitizeInput = (req: Request, res: Response, next: NextFunction) => {
+const sanitizeString = (str: string): string => {
+  return str.replace(/<script[^>]*>.*?<\/script>/gi, '')
+            .replace(/javascript:/gi, '')
+            .replace(/on\w+\s*=/gi, '');
+};
+
+const sanitizeObject = (obj: unknown): unknown => {
+  if (typeof obj === 'string') {
+    return sanitizeString(obj);
+  } else if (Array.isArray(obj)) {
+    return obj.map(sanitizeObject);
+  } else if (obj && typeof obj === 'object') {
+    const sanitized: Record<string, unknown> = {};
+    for (const key in obj) {
+      sanitized[key] = sanitizeObject((obj as Record<string, unknown>)[key]);
+    }
+    return sanitized;
+  }
+  return obj;
+};
+
+export const sanitizeInput = (req: Request, _res: Response, next: NextFunction) => {
   // Basic sanitization - remove potentially dangerous characters
   if (req.body) {
-    const sanitizeString = (str: string): string => {
-      return str.replace(/<script[^>]*>.*?<\/script>/gi, '')
-                .replace(/javascript:/gi, '')
-                .replace(/on\w+\s*=/gi, '');
-    };
-
-    const sanitizeObject = (obj: any): any => {
-      if (typeof obj === 'string') {
-        return sanitizeString(obj);
-      } else if (Array.isArray(obj)) {
-        return obj.map(sanitizeObject);
-      } else if (obj && typeof obj === 'object') {
-        const sanitized: any = {};
-        for (const key in obj) {
-          sanitized[key] = sanitizeObject(obj[key]);
-        }
-        return sanitized;
-      }
-      return obj;
-    };
-
     req.body = sanitizeObject(req.body);
   }
 
   if (req.query) {
-    const sanitized: any = {};
+    const sanitized: Record<string, unknown> = {};
     for (const key in req.query) {
       sanitized[key] = (req.query[key] as string).replace(/<[^>]*>/g, '');
     }
-    req.query = sanitized;
+    req.query = sanitized as typeof req.query;
   }
 
-  next();
-};
-
-// CSRF Token validation (stub for future use)
-export const validateCsrfToken = (_req: Request, _res: Response, next: NextFunction) => {
-  // CSRF validation to be implemented when needed
   next();
 };
 

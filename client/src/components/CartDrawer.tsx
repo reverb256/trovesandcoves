@@ -88,10 +88,12 @@ export default function CartDrawer() {
             <div className="flex-1 overflow-y-auto space-y-4 mb-6">
               {items.map((item) => (
                 <div key={item.id} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
-                  <img 
-                    src={item.product.imageUrl} 
+                  <img
+                    src={item.product.imageUrl}
                     alt={item.product.name}
                     className="w-16 h-16 object-cover rounded"
+                    loading="lazy"
+                    decoding="async"
                   />
                   
                   <div className="flex-1 min-w-0">

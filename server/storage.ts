@@ -1,54 +1,19 @@
-import { 
-  users, categories, products, cartItems, orders, orderItems, contactSubmissions,
-  type User, type InsertUser, 
+import {
+  type User, type InsertUser,
   type Category, type InsertCategory,
   type Product, type InsertProduct, type ProductWithCategory,
   type CartItem, type InsertCartItem, type CartItemWithProduct,
   type Order, type InsertOrder, type OrderWithItems,
   type OrderItem, type InsertOrderItem,
-  type ContactSubmission, type InsertContactSubmission
-} from "@shared/schema";
+  type ContactSubmission, type InsertContactSubmission,
+  type IStorage
+} from "@shared/types";
 import { crystalJewelryImages, categoryDescriptions } from "./mock-data";
 
-export interface IStorage {
-  // User operations
-  getUser(id: number): Promise<User | undefined>;
-  getUserByEmail(email: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
-  updateUserStripeInfo(userId: number, customerId: string, subscriptionId?: string): Promise<User>;
+// Re-export IStorage for convenience
+export type { IStorage } from "@shared/types";
 
-  // Category operations
-  getCategories(): Promise<Category[]>;
-  getCategory(id: number): Promise<Category | undefined>;
-  getCategoryBySlug(slug: string): Promise<Category | undefined>;
-  createCategory(category: InsertCategory): Promise<Category>;
-
-  // Product operations
-  getProducts(categoryId?: number): Promise<ProductWithCategory[]>;
-  getProduct(id: number): Promise<ProductWithCategory | undefined>;
-  getProductBySku(sku: string): Promise<Product | undefined>;
-  getFeaturedProducts(): Promise<ProductWithCategory[]>;
-  searchProducts(query: string): Promise<ProductWithCategory[]>;
-  createProduct(product: InsertProduct): Promise<Product>;
-  updateProductStock(productId: number, quantity: number): Promise<Product>;
-
-  // Cart operations
-  getCartItems(sessionId: string): Promise<CartItemWithProduct[]>;
-  addToCart(item: InsertCartItem): Promise<CartItem>;
-  updateCartItemQuantity(id: number, quantity: number): Promise<CartItem>;
-  removeFromCart(id: number): Promise<void>;
-  clearCart(sessionId: string): Promise<void>;
-
-  // Order operations
-  createOrder(order: InsertOrder): Promise<Order>;
-  addOrderItem(orderItem: InsertOrderItem): Promise<OrderItem>;
-  getOrder(id: number): Promise<OrderWithItems | undefined>;
-  updateOrderStatus(id: number, status: string): Promise<Order>;
-
-  // Contact operations
-  createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
-  getContactSubmissions(): Promise<ContactSubmission[]>;
-}
+// Local storage interface for MemStorage class implementation
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
@@ -306,14 +271,16 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
-    const user: User = { 
-      ...insertUser, 
+    const user: User = {
+      ...insertUser,
       id,
       firstName: insertUser.firstName || null,
       lastName: insertUser.lastName || null,
       phone: insertUser.phone || null,
       stripeCustomerId: null,
-      stripeSubscriptionId: null
+      stripeSubscriptionId: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
     this.users.set(id, user);
     return user;
@@ -469,12 +436,14 @@ export class MemStorage implements IStorage {
     }
 
     const id = this.currentCartItemId++;
-    const cartItem: CartItem = { 
-      ...insertItem, 
+    const product = this.products.get(insertItem.productId || 0);
+    const cartItem: CartItem = {
+      ...insertItem,
       id,
-      addedAt: new Date(),
-      productId: insertItem.productId || null,
-      quantity: insertItem.quantity || 1
+      createdAt: new Date(),
+      productId: insertItem.productId || 0,
+      quantity: insertItem.quantity || 1,
+      product: product || { id: insertItem.productId || 0, name: 'Unknown', description: '', price: '', imageUrl: '', categoryId: 0 }
     };
     this.cartItems.set(id, cartItem);
     return cartItem;
@@ -504,16 +473,13 @@ export class MemStorage implements IStorage {
   // Order operations
   async createOrder(insertOrder: InsertOrder): Promise<Order> {
     const id = this.currentOrderId++;
-    const order: Order = { 
-      ...insertOrder, 
+    const order: Order = {
+      ...insertOrder,
       id,
       createdAt: new Date(),
+      updatedAt: new Date(),
       status: insertOrder.status || "pending",
-      sessionId: insertOrder.sessionId || null,
-      userId: insertOrder.userId || null,
-      currency: insertOrder.currency || "CAD",
-      customerPhone: insertOrder.customerPhone || null,
-      stripePaymentIntentId: insertOrder.stripePaymentIntentId || null
+      sessionId: insertOrder.sessionId || ""
     };
     this.orders.set(id, order);
     return order;
@@ -582,6 +548,4 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = process.env.DATABASE_URL
-  ? (await import('./db-storage')).storage
-  : new MemStorage();
+export const storage = new MemStorage();

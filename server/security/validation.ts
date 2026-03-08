@@ -85,7 +85,7 @@ export const rateLimitConfig = {
 };
 
 // Data Sanitization
-export const sanitizeInput = (input: any): any => {
+export const sanitizeInput = (input: unknown): unknown => {
   if (typeof input === 'string') {
     return input.trim().replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
   }
@@ -93,7 +93,7 @@ export const sanitizeInput = (input: any): any => {
     return input.map(sanitizeInput);
   }
   if (typeof input === 'object' && input !== null) {
-    const sanitized: any = {};
+    const sanitized: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(input)) {
       sanitized[key] = sanitizeInput(value);
     }
