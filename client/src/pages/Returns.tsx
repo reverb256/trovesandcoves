@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { StepCard, ThemeCard } from '@/components/ui/themed-components';
 import {
   RotateCcw,
   Package,
@@ -12,7 +13,6 @@ import {
   ContentPageWrapper,
   ContentPageHeader,
   ContentPageBody,
-  SectionHeader,
 } from '@/components/ContentPage';
 
 export default function Returns() {
@@ -65,115 +65,90 @@ export default function Returns() {
     <ContentPageWrapper>
       <ContentPageHeader
         badgeLabel="Our Promise"
-        title={<span className="text-navy">Returns & Exchanges</span>}
+        title={<span style={{ color: 'hsl(var(--text-primary))' }}>Returns & Exchanges</span>}
         description="Your satisfaction with our jewelry is paramount. We offer generous return and exchange policies to ensure you're completely happy with your purchase."
       />
 
       <ContentPageBody>
         {/* Return Policy */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-navy mb-8 text-center">
+          <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: 'hsl(var(--text-primary))' }}>
             Return Policy
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {returnPolicy.map(policy => {
               const Icon = policy.icon;
               return (
-                <Card
+                <ThemeCard
                   key={policy.category}
-                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm"
-                >
-                  <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
-                    <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
-                      <Icon className="h-6 w-6 text-ornate-frame-gold" />
+                  title={
+                    <div className="flex items-center gap-3">
+                      <Icon className="h-6 w-6" />
                       <div>
-                        <div className="font-bold text-lg">
-                          {policy.category}
-                        </div>
-                        <Badge
-                          variant="secondary"
-                          className="bg-troves-turquoise/20 text-navy text-xs"
-                        >
+                        <div className="font-bold text-lg">{policy.category}</div>
+                        <Badge variant="turquoise" className="text-xs">
                           {policy.duration}
                         </Badge>
                       </div>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-6">
-                    <ul className="space-y-2">
-                      {policy.conditions.map((condition, index) => (
-                        <li
-                          key={index}
-                          className="text-navy/80 text-sm flex items-start space-x-2"
-                        >
-                          <span className="text-troves-turquoise mt-1">•</span>
-                          <span>{condition}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                    </div>
+                  }
+                >
+                  <ul className="space-y-2">
+                    {policy.conditions.map((condition, index) => (
+                      <li
+                        key={index}
+                        className="text-sm flex items-start space-x-2"
+                        style={{ color: 'hsl(var(--text-secondary))' }}
+                      >
+                        <span style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                        <span>{condition}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </ThemeCard>
               );
             })}
           </div>
         </div>
 
         {/* Return Process */}
-        <Card className="mb-12 shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
-          <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
+        <Card variant="elevated" theme="gradient" className="mb-12">
+          <CardHeader variant="gradient">
             <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
               <RotateCcw className="h-6 w-6 text-ornate-frame-gold" />
               <span className="font-bold text-xl">Easy Return Process</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-6">
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-navy font-bold">1</span>
-                </div>
-                <h4 className="font-semibold text-navy mb-2">Contact Us</h4>
-                <p className="text-navy/70 text-sm">
-                  Email us within the return window with your order details
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-navy font-bold">2</span>
-                </div>
-                <h4 className="font-semibold text-navy mb-2">
-                  Get Authorization
-                </h4>
-                <p className="text-navy/70 text-sm">
-                  Receive return authorization and prepaid shipping label
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-navy font-bold">3</span>
-                </div>
-                <h4 className="font-semibold text-navy mb-2">Ship Safely</h4>
-                <p className="text-navy/70 text-sm">
-                  Package securely and ship using our provided label
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-navy font-bold">4</span>
-                </div>
-                <h4 className="font-semibold text-navy mb-2">Get Refund</h4>
-                <p className="text-navy/70 text-sm">
-                  Receive refund within 3-5 business days of receipt
-                </p>
-              </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              <StepCard
+                step={1}
+                title="Contact Us"
+                description="Email us within the return window with your order details"
+              />
+              <StepCard
+                step={2}
+                title="Get Authorization"
+                description="Receive return authorization and prepaid shipping label"
+              />
+              <StepCard
+                step={3}
+                title="Ship Safely"
+                description="Package securely and ship using our provided label"
+              />
+              <StepCard
+                step={4}
+                title="Get Refund"
+                description="Receive refund within 3-5 business days of receipt"
+              />
             </div>
           </CardContent>
         </Card>
 
         {/* What Cannot Be Returned */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
+          <Card variant="elevated" theme="gradient">
+            <CardHeader variant="gradient">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <XCircle className="h-6 w-6 text-ornate-frame-gold" />
                 <span className="font-bold text-xl">Non-Returnable Items</span>
@@ -184,7 +159,8 @@ export default function Returns() {
                 {nonReturnable.map((item, index) => (
                   <li
                     key={index}
-                    className="text-navy/80 text-sm flex items-start space-x-2"
+                    className="text-sm flex items-start space-x-2"
+                    style={{ color: 'hsl(var(--text-secondary))' }}
                   >
                     <XCircle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
                     <span>{item}</span>
@@ -194,15 +170,15 @@ export default function Returns() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
+          <Card variant="elevated" theme="gradient">
+            <CardHeader variant="gradient">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Clock className="h-6 w-6 text-ornate-frame-gold" />
                 <span className="font-bold text-xl">Important Notes</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <ul className="space-y-3 text-navy/80">
+              <ul className="space-y-3" style={{ color: 'hsl(var(--text-secondary))' }}>
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
                   <span>Refunds processed to original payment method</span>
@@ -228,13 +204,13 @@ export default function Returns() {
           </Card>
         </div>
 
-        <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+        <Card variant="elevated" theme="gradient">
           <CardContent className="p-8 text-center">
-            <Heart className="h-12 w-12 text-troves-turquoise mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-navy mb-4">
+            <Heart className="h-12 w-12 mx-auto mb-4" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+            <h3 className="text-2xl font-bold mb-4" style={{ color: 'hsl(var(--text-primary))' }}>
               Our Commitment
             </h3>
-            <p className="text-navy/80 mb-6 max-w-2xl mx-auto">
+            <p className="mb-6 max-w-2xl mx-auto" style={{ color: 'hsl(var(--text-secondary))' }}>
               We want you to feel completely happy with your purchase. If your
               jewelry doesn't meet your expectations, we'll work together to
               find the perfect solution.

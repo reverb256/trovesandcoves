@@ -71,29 +71,33 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
+    <div className="min-h-screen" style={{ background: 'hsl(var(--bg-primary))' }}>
       {/* Header */}
-      <section className="relative bg-gradient-to-br from-pearl-cream via-crystal-accents to-pearl-cream text-navy overflow-hidden py-20">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
+      <section className="relative overflow-hidden py-20" style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
+        <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+        <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
 
         <div className="relative container mx-auto px-4 text-center">
-          <div className="inline-block px-6 py-2 border border-ornate-frame-gold/20 rounded-lg bg-ornate-frame-gold/5 backdrop-blur-sm mb-6">
-            <span className="text-ornate-frame-gold/80 text-sm font-medium tracking-wider uppercase">
+          <div className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full" style={{
+            backgroundColor: 'hsl(var(--gold-soft))',
+            color: 'hsl(var(--text-primary))',
+            boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)'
+          }}>
+            <span className="text-sm font-medium tracking-widest uppercase">
               Crystal Story
             </span>
           </div>
 
           <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
-            <span className="text-troves-turquoise">About </span>
-            <span className="text-coves-cursive-blue font-brand-cursive">
+            <span style={{ color: 'hsl(var(--accent-vibrant))' }}>About </span>
+            <span className="font-brand-cursive" style={{ color: 'hsl(215 95% 55%)' }}>
               Troves & Coves
             </span>
           </h1>
 
-          <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-troves-turquoise via-skull-turquoise to-coves-cursive-blue rounded-full" />
+          <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, hsl(var(--accent-vibrant)), hsl(215 95% 55%))' }} />
 
-          <p className="text-navy/80 text-xl max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl max-w-4xl mx-auto leading-relaxed" style={{ color: 'hsl(var(--text-secondary))' }}>
             We are artisan crystal jewellery creators, weaving ancient wisdom
             into modern wearable art. Each piece is hand-wrapped with mindful
             intention, connecting you to the mystical energy of genuine
@@ -105,17 +109,17 @@ export default function About() {
       <div className="container mx-auto px-4 py-16">
         {/* Mission Statement */}
         <section className="mb-20">
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card variant="elevated" theme="gradient"
             <CardContent className="p-12 text-center">
               <div className="mb-8">
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-troves-turquoise to-coves-cursive-blue rounded-full mb-6">
                   <Heart className="w-10 h-10 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold text-navy mb-6">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: 'hsl(var(--text-primary))' }}>
                   Our Crystal Mission
                 </h2>
               </div>
-              <p className="text-navy/80 text-lg leading-relaxed max-w-4xl mx-auto mb-8">
+              <p className="text-lg leading-relaxed max-w-4xl mx-auto mb-8" style={{ color: 'hsl(var(--text-secondary))' }}>
                 At Troves & Coves, we believe that jewellery should be more than
                 beautiful—it should be meaningful. Our mission is to create
                 handcrafted crystal jewellery that serves as a bridge between
@@ -125,7 +129,7 @@ export default function About() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Badge
                   variant="outline"
-                  className="border-troves-turquoise text-troves-turquoise bg-troves-turquoise/5 px-4 py-2"
+                  className="px-4 py-2" style={{ border: '1px solid hsl(var(--accent-vibrant))', color: 'hsl(var(--accent-vibrant))', backgroundColor: 'hsla(var(--accent-vibrant), 0.05)' }}
                 >
                   Handcrafted with Love
                 </Badge>
@@ -149,7 +153,7 @@ export default function About() {
         {/* Our Story */}
         <section className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-navy mb-4">
+            <h2 className="text-4xl font-bold mb-4" style={{ color: 'hsl(var(--text-primary))' }}>
               Our Crystal Journey
             </h2>
             <div className="w-24 h-1 mx-auto bg-gradient-to-r from-troves-turquoise to-coves-cursive-blue rounded-full" />
@@ -161,11 +165,10 @@ export default function About() {
               return (
                 <Card
                   key={index}
-                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm group hover:scale-105 transition-transform duration-300"
+                  variant="interactive"
+                  theme="gradient"
                 >
-                  <CardHeader
-                    className={`bg-gradient-to-r from-${chapter.color}/10 to-${chapter.color}/5 border-b border-ornate-frame-gold/20`}
-                  >
+                  <CardHeader variant="gradient">
                     <div className="flex items-center space-x-4">
                       <div
                         className={`w-12 h-12 bg-${chapter.color} rounded-full flex items-center justify-center`}
@@ -179,14 +182,14 @@ export default function About() {
                         >
                           {chapter.phase}
                         </Badge>
-                        <CardTitle className="text-navy text-xl">
+                        <CardTitle className="text-xl" style={{ color: 'hsl(var(--text-primary))' }}>
                           {chapter.title}
                         </CardTitle>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent className="p-6">
-                    <p className="text-navy/80 leading-relaxed">
+                    <p className="leading-relaxed" style={{ color: 'hsl(var(--text-secondary))' }}>
                       {chapter.description}
                     </p>
                   </CardContent>
@@ -199,11 +202,11 @@ export default function About() {
         {/* Values */}
         <section className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-navy mb-4">
+            <h2 className="text-4xl font-bold mb-4" style={{ color: 'hsl(var(--text-primary))' }}>
               Our Crystal Values
             </h2>
             <div className="w-24 h-1 mx-auto bg-gradient-to-r from-coves-cursive-blue to-skull-turquoise rounded-full" />
-            <p className="text-navy/70 text-lg mt-6 max-w-3xl mx-auto">
+            <p className="text-lg mt-6 max-w-3xl mx-auto" style={{ color: 'hsl(var(--text-muted))' }}>
               These core values guide every aspect of our craft, from crystal
               selection to the final blessing of each piece.
             </p>
@@ -215,7 +218,7 @@ export default function About() {
               return (
                 <Card
                   key={index}
-                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm text-center group hover:scale-105 transition-transform duration-300"
+                  className="shadow-2xl backdrop-blur-sm text-center group hover:scale-105 transition-transform duration-300" style={{ border: '1px solid hsl(var(--border-medium))', background: 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)' }}
                 >
                   <CardContent className="p-6">
                     <div
@@ -223,10 +226,10 @@ export default function About() {
                     >
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-navy mb-3">
+                    <h3 className="text-xl font-bold mb-3" style={{ color: 'hsl(var(--text-primary))' }}>
                       {value.title}
                     </h3>
-                    <p className="text-navy/70 text-sm leading-relaxed">
+                    <p className="text-sm leading-relaxed" style={{ color: 'hsl(var(--text-muted))' }}>
                       {value.description}
                     </p>
                   </CardContent>
@@ -238,10 +241,10 @@ export default function About() {
 
         {/* Artisan Process */}
         <section className="mb-20">
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 via-skull-turquoise/10 to-coves-cursive-blue/10 border-b border-ornate-frame-gold/20">
+          <Card variant="elevated" theme="gradient"
+            <CardHeader className="border-b" style={{ background: 'linear-gradient(90deg, hsla(var(--accent-vibrant), 0.1), hsla(var(--accent-vibrant), 0.05), hsla(215 95% 55%, 0.05))', borderBottomColor: 'hsl(var(--border-medium))' }}>
               <CardTitle className="text-center">
-                <div className="flex items-center justify-center space-x-3 text-navy">
+                <div className="flex items-center justify-center space-x-3" style={{ color: 'hsl(var(--text-primary))' }}>
                   <Zap className="w-8 h-8 text-troves-turquoise" />
                   <span className="text-3xl font-bold">Our Artisan Craft</span>
                   <Sparkles className="w-8 h-8 text-coves-cursive-blue" />
@@ -251,19 +254,19 @@ export default function About() {
             <CardContent className="p-12">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h3 className="text-2xl font-bold text-navy mb-6">
+                  <h3 className="text-2xl font-bold mb-6" style={{ color: 'hsl(var(--text-primary))' }}>
                     Hand-Wrapped with Intention
                   </h3>
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-troves-turquoise rounded-full flex items-center justify-center mt-1">
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center mt-1" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}>
                         <span className="text-white font-bold text-sm">1</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-2">
+                        <h4 className="font-semibold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
                           Crystal Selection
                         </h4>
-                        <p className="text-navy/70">
+                        <p style={{ color: 'hsl(var(--text-muted))' }}>
                           Each crystal is hand-selected for its energy, clarity,
                           and spiritual properties.
                         </p>
@@ -274,10 +277,10 @@ export default function About() {
                         <span className="text-white font-bold text-sm">2</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-2">
+                        <h4 className="font-semibold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
                           Mindful Wrapping
                         </h4>
-                        <p className="text-navy/70">
+                        <p style={{ color: 'hsl(var(--text-muted))' }}>
                           Wire is carefully wrapped with meditation and positive
                           intention.
                         </p>
@@ -288,10 +291,10 @@ export default function About() {
                         <span className="text-white font-bold text-sm">3</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-2">
+                        <h4 className="font-semibold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
                           Energy Blessing
                         </h4>
-                        <p className="text-navy/70">
+                        <p style={{ color: 'hsl(var(--text-muted))' }}>
                           Each finished piece receives a blessing to activate
                           its healing potential.
                         </p>
@@ -321,15 +324,15 @@ export default function About() {
 
         {/* Connection & Community */}
         <section className="mb-20">
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card variant="elevated" theme="gradient"
             <CardContent className="p-12 text-center">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-navy mb-6">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: 'hsl(var(--text-primary))' }}>
                   Join Our Crystal Community
                 </h2>
                 <div className="w-24 h-1 mx-auto bg-gradient-to-r from-troves-turquoise via-skull-turquoise to-coves-cursive-blue rounded-full mb-6" />
               </div>
-              <p className="text-navy/80 text-lg leading-relaxed max-w-4xl mx-auto mb-8">
+              <p className="text-lg leading-relaxed max-w-4xl mx-auto mb-8" style={{ color: 'hsl(var(--text-secondary))' }}>
                 Troves & Coves is more than a jewelry brand—we're a community of
                 spiritual seekers, crystal lovers, and conscious souls. When you
                 wear our pieces, you join a worldwide network of light workers
@@ -338,10 +341,10 @@ export default function About() {
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-troves-turquoise rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}>
                     <Sun className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-navy mb-2">
+                  <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
                     Daily Inspiration
                   </h3>
                   <p className="text-navy/70">
@@ -353,7 +356,7 @@ export default function About() {
                   <div className="w-20 h-20 bg-coves-cursive-blue rounded-full flex items-center justify-center mx-auto mb-4">
                     <Moon className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-navy mb-2">
+                  <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
                     Crystal Rituals
                   </h3>
                   <p className="text-navy/70">
@@ -365,7 +368,7 @@ export default function About() {
                   <div className="w-20 h-20 bg-skull-turquoise rounded-full flex items-center justify-center mx-auto mb-4">
                     <Star className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-navy mb-2">
+                  <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
                     Healing Circle
                   </h3>
                   <p className="text-navy/70">

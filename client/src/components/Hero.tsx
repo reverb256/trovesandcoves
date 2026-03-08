@@ -1,131 +1,142 @@
 import { Link } from 'wouter';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { Sparkles, Gem, Heart } from 'lucide-react';
 
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden content-layer"
+      className="relative min-h-screen flex items-center"
       role="banner"
       aria-label="Hero Section"
     >
-      {/* Mystical Background Effects */}
-      <div className="absolute inset-0">
-        {/* Radial glow from center */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[hsla(174,85%,45%,0.05)] rounded-full blur-3xl animate-glow-breathe"></div>
-        <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-[hsla(43,95%,55%,0.03)] rounded-full blur-3xl animate-glow-breathe" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[hsla(200,70%,50%,0.03)] rounded-full blur-3xl animate-glow-breathe" style={{ animationDelay: '2s' }}></div>
+      {/* Decorative floating elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Turquoise diamonds */}
+        <div className="absolute top-20 left-[10%] w-4 h-4 rotate-45 opacity-40" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}></div>
+        <div className="absolute top-40 left-[15%] w-3 h-3 rotate-45 opacity-30" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}></div>
+        <div className="absolute bottom-40 left-[8%] w-5 h-5 rotate-45 opacity-35" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}></div>
+
+        {/* Gold sparkles */}
+        <div className="absolute top-32 right-[12%] text-2xl opacity-50" style={{ color: 'hsl(var(--gold-medium))' }}>✦</div>
+        <div className="absolute top-60 right-[18%] text-xl opacity-40" style={{ color: 'hsl(var(--gold-medium))' }}>✦</div>
+        <div className="absolute bottom-32 right-[10%] text-3xl opacity-45" style={{ color: 'hsl(var(--gold-medium))' }}>✦</div>
+        <div className="absolute bottom-60 right-[22%] text-lg opacity-35" style={{ color: 'hsl(var(--gold-medium))' }}>✦</div>
       </div>
 
-      {/* Floating Crystal Particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+      <div className="relative z-10 w-full px-4 py-16">
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Subheader badge */}
           <div
-            key={i}
-            className="absolute w-1 h-1 bg-[hsla(174,85%,45%,0.6)] rounded-full animate-float"
+            className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 5}s`,
+              backgroundColor: 'hsl(var(--gold-soft))',
+              color: 'hsl(var(--text-primary))',
+              boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)'
             }}
-          />
-        ))}
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={`gold-${i}`}
-            className="absolute w-1 h-1 bg-[hsla(43,95%,55%,0.5)] rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${6 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Hero Content */}
-      <div className="chamber-container relative z-10">
-        <div className="max-w-4xl">
-          {/* Mystical Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-[hsla(174,85%,45%,0.3)] rounded-full bg-crystal animate-reveal">
-            <Sparkles className="w-4 h-4 text-[hsl(174,85%,45%)]" />
-            <span className="text-xs tracking-widest uppercase text-[hsl(210,30%,85%)]">
-              Handcrafted in Winnipeg
+          >
+            <span className="text-sm font-medium tracking-widest uppercase">
+              Winnipeg's Sacred Crystal Sanctuary
             </span>
           </div>
 
-          {/* Main Heading - Preserving mystical brand voice */}
-          <h1 className="mb-6 animate-reveal" style={{ animationDelay: '0.1s' }}>
-            <span className="text-shimmer text-5xl md:text-7xl lg:text-8xl font-bold">
-              Where Crystal{" "}
+          {/* Brand heading - matching Header styling */}
+          <h1 className="mb-4 leading-tight">
+            <span className="troves-text text-5xl md:text-7xl lg:text-8xl">
+              Troves
             </span>
-            <br />
-            <span className="text-shimmer text-5xl md:text-7xl lg:text-8xl font-bold">
-              Wisdom Meets{" "}
+            {' '}
+            <span
+              className="text-4xl md:text-6xl lg:text-7xl"
+              style={{ color: 'hsl(var(--frame-gold))' }}
+            >
+              &
             </span>
-            <span className="relative inline-block">
-              <span className="text-glow-turquoise text-6xl md:text-8xl lg:text-9xl font-bold">
-                Artisan Beauty
-              </span>
-              <span className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-[hsla(174,85%,45%,0.6)] to-transparent"></span>
+            {' '}
+            <span className="coves-text text-5xl md:text-7xl lg:text-8xl">
+              Coves
             </span>
           </h1>
 
-          {/* Mystical Description - Preserving brand voice */}
-          <p className="text-xl md:text-2xl text-[hsl(210,30%,85%)] opacity-80 mb-12 max-w-2xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            Authentic gemstone energies merge with artisan craftsmanship.
-            Each piece channels crystal wisdom to amplify your inner light,
-            promote healing, and bring beauty to your life.
+          {/* Secondary heading */}
+          <h2
+            className="text-2xl md:text-3xl lg:text-4xl mb-6 font-serif"
+            style={{ color: 'hsl(var(--text-primary))' }}
+          >
+            Handcrafted Crystal Jewellery
+          </h2>
+
+          {/* Body text */}
+          <p
+            className="text-base md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+            style={{ color: 'hsl(var(--text-secondary))' }}
+          >
+            Where authentic gemstone energies merge with artisan craftsmanship.
+            Each piece channels crystal wisdom to amplify your inner light.
           </p>
 
-          {/* Call to Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-            <Link href="/products">
-              <button className="btn-mystical group">
-                <span>Explore Crystal Collections</span>
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </button>
+          {/* Feature labels */}
+          <div className="flex flex-wrap justify-center gap-6 mb-10">
+            <div className="flex items-center gap-2 text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <Sparkles className="w-4 h-4" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+              <span>Sacred Wire-Wrapping</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <Gem className="w-4 h-4" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+              <span>Genuine Earth Crystals</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <Heart className="w-4 h-4" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+              <span>Metaphysical Healing</span>
+            </div>
+          </div>
+
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Link
+              href="/products"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold transition-all hover:scale-105 hover:shadow-lg"
+              style={{
+                backgroundColor: 'hsl(var(--gold-medium))',
+                color: 'hsl(var(--text-primary))'
+              }}
+            >
+              Shop Crystal Necklaces
             </Link>
-            <Link href="/about">
-              <button className="btn-mystical-outline">
-                <span>Our Spiritual Story</span>
-              </button>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold border-2 transition-all hover:scale-105 hover:shadow-lg"
+              style={{
+                backgroundColor: 'hsl(var(--bg-card))',
+                borderColor: 'hsl(var(--border-medium))',
+                color: 'hsl(var(--text-primary))'
+              }}
+            >
+              Get Crystal Guidance
+            </Link>
+          </div>
+
+          {/* Secondary links */}
+          <div className="flex flex-wrap justify-center gap-6 text-sm">
+            <Link href="/about" className="hover:underline" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <span className="mr-1">♥</span> Our Story
+            </Link>
+            <Link href="/jewelry-care" className="hover:underline" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <span className="mr-1">✦</span> Crystal Care
+            </Link>
+            <Link href="/contact" className="hover:underline" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <span className="mr-1">📍</span> Winnipeg, MB
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Crystal Corner Decorations */}
-      <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
-        <svg viewBox="0 0 100 100" className="w-full h-full text-[hsl(174,85%,45%)]">
-          <path
-            d="M50 0 L100 50 L50 100 L0 50 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            className="animate-[rotate-slow_20s_linear_infinite]"
-          />
-        </svg>
-      </div>
-      <div className="absolute bottom-0 right-0 w-40 h-40 opacity-20">
-        <svg viewBox="0 0 100 100" className="w-full h-full text-[hsl(43,95%,55%)]">
-          <path
-            d="M50 0 L93.3 25 L93.3 75 L50 100 L6.7 75 L6.7 25 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            className="animate-[rotate-slow_25s_linear_infinite_reverse]"
-          />
-        </svg>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <span className="text-xs tracking-widest uppercase text-[hsl(210,30%,85%)] opacity-50">
-          Discover More
-        </span>
-        <div className="w-px h-12 bg-gradient-to-b from-[hsla(174,85%,45%,0.5)] to-transparent"></div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="flex flex-col items-center gap-2" style={{ color: 'hsl(var(--accent-vibrant))' }}>
+          <span className="text-xs tracking-widest">DISCOVER</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 14l-5-5h10l-5 5z" />
+          </svg>
+        </div>
       </div>
     </section>
   );

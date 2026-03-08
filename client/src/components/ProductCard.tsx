@@ -5,6 +5,7 @@ import { Heart, ShoppingBag } from "lucide-react";
 import { useLocation } from "wouter";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
+import { memo } from "react";
 import type { ProductWithCategory } from "@shared/types";
 
 interface ProductCardProps {
@@ -12,7 +13,7 @@ interface ProductCardProps {
   featured?: boolean;
 }
 
-export default function ProductCard({ product, featured = false }: ProductCardProps) {
+function ProductCardComponent({ product, featured = false }: ProductCardProps) {
   const [, setLocation] = useLocation();
   const { addToCart } = useCart();
   const { toast } = useToast();
@@ -45,10 +46,14 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
   };
 
   return (
-    <Card 
-      className={`card-uniform product-card-interactive hover-sparkle cursor-pointer bg-warm-cream luxury-shadow hover:luxury-shadow-lg overflow-hidden ${
-        featured ? 'border-elegant-gold border-2' : ''
+    <Card
+      className={`card-uniform product-card-interactive hover-sparkle cursor-pointer overflow-hidden ${
+        featured ? 'border-2' : ''
       }`}
+      style={{
+        backgroundColor: 'hsl(var(--bg-card))',
+        boxShadow: '0 4px 12px hsla(var(--border-medium), 0.2)',
+      }}
       onClick={() => setLocation(`/product/${product.id}`)}
     >
       <div className="relative overflow-hidden">
@@ -59,21 +64,23 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
           loading="lazy"
           decoding="async"
         />
-        
+
         {/* Overlay Actions */}
-        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3">
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3" style={{ backgroundColor: 'hsla(var(--bg-primary), 0.2)' }}>
           <Button
             size="sm"
             variant="secondary"
             onClick={handleWishlist}
-            className="bg-white/90 hover:bg-white"
+            style={{ backgroundColor: 'hsl(var(--bg-card))' }}
+            className="hover:opacity-90"
           >
             <Heart className="h-4 w-4" />
           </Button>
           <Button
             size="sm"
             onClick={handleAddToCart}
-            className="button-interactive bg-elegant-gold hover:bg-yellow-400 text-navy"
+            style={{ backgroundColor: 'hsl(var(--gold-medium))', color: 'hsl(var(--text-primary))' }}
+            className="hover:opacity-90"
           >
             <ShoppingBag className="h-4 w-4 mr-2" />
             Add to Cart
@@ -85,9 +92,10 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
           size="sm"
           variant="secondary"
           onClick={handleWishlist}
-          className="absolute top-4 right-4 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 md:opacity-100 transition-opacity duration-300"
+          className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 md:opacity-100 transition-opacity duration-300"
+          style={{ backgroundColor: 'hsl(var(--bg-card))' }}
         >
-          <Heart className="h-4 w-4 text-gray-600 hover:text-deep-burgundy" />
+          <Heart className="h-4 w-4" style={{ color: 'hsl(var(--text-secondary))' }} />
         </Button>
 
         {/* Stock Badge */}
@@ -98,7 +106,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
             </Badge>
           )
         ) : product.stockQuantity <= 5 && product.stockQuantity > 0 ? (
-          <Badge variant="destructive" className="absolute top-4 left-4">
+          <Badge variant="turquoise" className="absolute top-4 left-4">
             Only {product.stockQuantity} left
           </Badge>
         ) : product.stockQuantity === 0 && (
@@ -108,7 +116,7 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
         )}
 
         {featured && (
-          <Badge className="absolute bottom-4 left-4 bg-elegant-gold text-navy">
+          <Badge variant="gold" className="absolute bottom-4 left-4">
             Featured
           </Badge>
         )}
@@ -122,30 +130,34 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
             </Badge>
           )}
         </div>
-        
-        <h3 className="font-serif text-lg font-semibold text-navy mb-2 line-clamp-2">
+
+        <h3 className="font-serif text-lg font-semibold mb-2 line-clamp-2" style={{ color: 'hsl(var(--text-primary))' }}>
           {product.name}
         </h3>
-        
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+
+        <p className="text-sm mb-3 line-clamp-2" style={{ color: 'hsl(var(--text-secondary))' }}>
           {product.materials?.join(", ")}
           {product.gemstones && product.gemstones.length > 0 && (
-            <span className="block text-xs text-elegant-gold font-medium">
+            <span className="block text-xs font-medium" style={{ color: 'hsl(var(--gold-medium))' }}>
               {product.gemstones.join(", ")}
             </span>
           )}
         </p>
-        
+
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold text-elegant-gold">
+          <span className="text-xl font-bold" style={{ color: 'hsl(var(--gold-medium))' }}>
             {formatPrice(product.price)}
           </span>
-          
+
           <Button
             size="sm"
             onClick={handleAddToCart}
             disabled={product.stockQuantity === 0}
-            className="bg-navy text-white hover:bg-rich-blue transition-colors"
+            style={{
+              backgroundColor: 'hsl(var(--accent-vibrant))',
+              color: 'hsl(var(--bg-primary))'
+            }}
+            className="hover:opacity-90"
           >
             {product.stockQuantity === 0 ? 'Out of Stock' : 'Add to Cart'}
           </Button>
@@ -154,3 +166,14 @@ export default function ProductCard({ product, featured = false }: ProductCardPr
     </Card>
   );
 }
+
+// Memoize component to prevent unnecessary re-renders
+// Only re-render when product.id or product.price changes
+export default memo(ProductCardComponent, (prevProps, nextProps) => {
+  return (
+    prevProps.product.id === nextProps.product.id &&
+    prevProps.product.price === nextProps.product.price &&
+    prevProps.product.stockQuantity === nextProps.product.stockQuantity &&
+    prevProps.featured === nextProps.featured
+  );
+});

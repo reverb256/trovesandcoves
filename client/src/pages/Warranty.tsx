@@ -58,26 +58,30 @@ export default function Warranty() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
+    <div className="min-h-screen" style={{ background: 'hsl(var(--bg-primary))' }}>
       {/* Header */}
-      <section className="relative bg-gradient-to-br from-pearl-cream via-crystal-accents to-pearl-cream text-navy overflow-hidden py-20">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
+      <section className="relative overflow-hidden py-20" style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
+        <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+        <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
 
         <div className="relative container mx-auto px-4 text-center">
-          <div className="inline-block px-6 py-2 border border-ornate-frame-gold/20 rounded-lg bg-ornate-frame-gold/5 backdrop-blur-sm mb-6">
-            <span className="text-ornate-frame-gold/80 text-sm font-medium tracking-wider uppercase">
+          <div className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full" style={{
+            backgroundColor: 'hsl(var(--gold-soft))',
+            color: 'hsl(var(--text-primary))',
+            boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)'
+          }}>
+            <span className="text-sm font-medium tracking-widest uppercase">
               Warranty Protection
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
-            <span className="text-navy">Warranty</span>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading" style={{ color: 'hsl(var(--text-primary))' }}>
+            Warranty
           </h1>
 
-          <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent rounded-full" />
+          <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
 
-          <p className="text-navy/80 text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'hsl(var(--text-secondary))' }}>
             Your crystal jewelry is protected by our comprehensive warranty,
             ensuring lasting quality and beauty for years to come.
           </p>
