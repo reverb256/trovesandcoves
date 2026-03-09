@@ -67,24 +67,24 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-[hsla(174,85%,45%,0.1)] pt-16 pb-8 content-layer">
+    <footer className="border-t border-[hsla(var(--border-light), 0.3)] pt-16 pb-8 content-layer">
       {/* Mystical top border */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[hsla(174,85%,45%,0.5)] to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[hsla(var(--accent-vibrant),0.5)] to-transparent"></div>
 
       <div className="chamber-container">
         {/* Newsletter Section */}
         <div className="mb-16 text-center">
           <div className="crystal-card p-8 md:p-12 max-w-3xl mx-auto">
             {/* Mystical Icon */}
-            <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-[hsla(43,95%,55%,0.3)] rounded-full bg-[hsla(43,95%,55%,0.05)] animate-pulse-glow">
-              <Sparkles className="w-8 h-8 text-[hsl(43,95%,55%)]" />
+            <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-[hsla(var(--gold-medium), 0.4)] rounded-full bg-[hsla(var(--gold-soft),0.05)] animate-pulse-glow">
+              <Sparkles className="w-8 h-8 text-[hsl(var(--gold-medium))]" />
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-[hsl(210,30%,85%)] mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-[hsl(var(--text-secondary))] mb-4">
               <span className="text-shimmer">Join Our Crystal Circle</span>
             </h2>
 
-            <p className="text-lg text-[hsl(210,30%,85%)] opacity-70 mb-8">
+            <p className="text-lg text-[hsl(var(--text-secondary))] mb-8">
               Be the first to discover new collections, crystal wisdom, and exclusive mystical events
             </p>
 
@@ -97,7 +97,7 @@ export default function Footer() {
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-6 py-3 bg-[hsla(240,15%,6%,0.5)] border border-[hsla(174,85%,45%,0.2)] rounded-lg text-[hsl(210,30%,85%)] placeholder-[hsl(210,30%,85%,0.4)] focus:border-[hsla(174,85%,45%,0.5)] focus:outline-none focus:ring-1 focus:ring-[hsla(174,85%,45%,0.3)] transition-colors duration-300"
+                className="flex-1 px-6 py-3 bg-[hsla(var(--bg-tertiary), 0.5)] border border-[hsla(var(--border-light), 0.4)] rounded-lg text-[hsl(var(--text-secondary))] placeholder-[hsla(var(--text-muted),0.4)] focus:border-[hsla(var(--accent-vibrant),0.5)] focus:outline-none focus:ring-1 focus:ring-[hsla(var(--accent-vibrant),0.3)] transition-colors duration-300"
                 required
               />
               <button
@@ -108,7 +108,7 @@ export default function Footer() {
               </button>
             </form>
 
-            <p className="text-sm text-[hsl(210,30%,85%)] opacity-50 mt-4">
+            <p className="text-sm text-[hsl(var(--text-secondary))] /70 mt-4">
               We respect your privacy. Unsubscribe at any time.
             </p>
           </div>
@@ -120,10 +120,10 @@ export default function Footer() {
           <div>
             <div className="flex items-baseline gap-3 mb-6">
               <span className="troves-text text-2xl">Troves</span>
-              <span className="text-[hsl(43,95%,55%)] text-3xl">×</span>
+              <span className="text-[hsl(var(--gold-medium))] text-3xl">×</span>
               <span className="coves-text text-3xl">Coves</span>
             </div>
-            <p className="text-[hsl(210,30%,85%)] opacity-60 mb-6 leading-relaxed">
+            <p className="text-[hsl(var(--text-secondary))]/80 mb-6 leading-relaxed">
               Authentic crystal jewellery and healing gemstone talismans crafted
               with intention. Each piece channels crystal wisdom to amplify your
               inner light and promote healing.
@@ -138,7 +138,7 @@ export default function Footer() {
                     aria-label={social.label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 border border-[hsla(174,85%,45%,0.2)] rounded-lg bg-[hsla(174,85%,45%,0.05)] text-[hsl(174,85%,45%)] hover:border-[hsla(174,85%,45%,0.5)] hover:bg-[hsla(174,85%,45%,0.1)] transition-colors duration-300"
+                    className="p-3 border border-[hsla(var(--border-light), 0.4)] rounded-lg bg-[hsla(var(--accent-vibrant),0.05)] text-[hsl(var(--accent-medium))] hover:border-[hsla(var(--accent-vibrant),0.5)] hover:bg-[hsla(var(--border-light), 0.3)] transition-colors duration-300"
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -149,7 +149,7 @@ export default function Footer() {
 
           {/* Collections */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-[hsl(210,30%,85%)] tracking-wider uppercase">
+            <h3 className="font-semibold text-lg mb-6 text-[hsl(var(--text-secondary))] tracking-wider uppercase">
               Collections
             </h3>
             <ul className="space-y-3">
@@ -157,7 +157,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-[hsl(210,30%,85%)] opacity-60 hover:text-[hsl(174,85%,45%)] hover:opacity-100 transition-colors duration-300"
+                    className="text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--accent-medium))] transition-colors duration-300"
                   >
                     {item.name}
                   </Link>
@@ -168,7 +168,7 @@ export default function Footer() {
 
           {/* Customer Care */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-[hsl(210,30%,85%)] tracking-wider uppercase">
+            <h3 className="font-semibold text-lg mb-6 text-[hsl(var(--text-secondary))] tracking-wider uppercase">
               Guidance
             </h3>
             <ul className="space-y-3">
@@ -176,7 +176,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-[hsl(210,30%,85%)] opacity-60 hover:text-[hsl(174,85%,45%)] hover:opacity-100 transition-colors duration-300"
+                    className="text-[hsl(var(--text-secondary))] hover:text-[hsl(var(--accent-medium))] transition-colors duration-300"
                   >
                     {item.name}
                   </Link>
@@ -187,23 +187,23 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-[hsl(210,30%,85%)] tracking-wider uppercase">
+            <h3 className="font-semibold text-lg mb-6 text-[hsl(var(--text-secondary))] tracking-wider uppercase">
               Connect
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center gap-3 text-[hsl(210,30%,85%)] opacity-60">
-                <Mail className="w-5 h-5 text-[hsl(174,85%,45%)] flex-shrink-0" />
+              <div className="flex items-center gap-3 text-[hsl(var(--text-secondary))]/80">
+                <Mail className="w-5 h-5 text-[hsl(var(--accent-medium))] flex-shrink-0" />
                 <div>
-                  <div className="text-[hsl(210,30%,85%)]">info@trovesandcoves.ca</div>
-                  <div className="text-sm opacity-70">Crystal consultations & guidance</div>
+                  <div className="text-[hsl(var(--text-secondary))]">info@trovesandcoves.ca</div>
+                  <div className="text-sm /70">Crystal consultations & guidance</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 text-[hsl(210,30%,85%)] opacity-60">
-                <MapPin className="w-5 h-5 text-[hsl(174,85%,45%)] flex-shrink-0" />
+              <div className="flex items-center gap-3 text-[hsl(var(--text-secondary))]/80">
+                <MapPin className="w-5 h-5 text-[hsl(var(--accent-medium))] flex-shrink-0" />
                 <div>
-                  <div className="text-[hsl(210,30%,85%)]">Winnipeg, Manitoba</div>
-                  <div className="text-sm opacity-70">Serving Canada with nationwide shipping</div>
+                  <div className="text-[hsl(var(--text-secondary))]">Winnipeg, Manitoba</div>
+                  <div className="text-sm /70">Serving Canada with nationwide shipping</div>
                 </div>
               </div>
             </div>
@@ -211,16 +211,20 @@ export default function Footer() {
         </div>
 
         {/* Bottom Footer */}
-        <div className="border-t border-[hsla(174,85%,45%,0.1)] pt-8">
+        <div className="border-t border-[hsla(var(--border-light), 0.3)] pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-[hsl(210,30%,85%)] opacity-50 text-sm">
+            <div className="text-[hsl(var(--text-secondary))] /70 text-sm">
               © 2025 Troves & Coves. All rights reserved. |
-              <Link href="/privacy-policy" className="hover:text-[hsl(174,85%,45%)] transition-colors ml-1">
+              <Link href="/privacy-policy" className="hover:text-[hsl(var(--accent-medium))] transition-colors ml-1">
                 Privacy Policy
+              </Link>
+              {" | "}
+              <Link href="/showcase" className="hover:text-[hsl(var(--accent-medium))] transition-colors">
+                Hero Showcase
               </Link>
             </div>
 
-            <div className="flex items-center gap-2 text-[hsl(210,30%,85%)] opacity-50 text-sm">
+            <div className="flex items-center gap-2 text-[hsl(var(--text-secondary))] /70 text-sm">
               <span>✨</span>
               <span>Handcrafted with crystal intention</span>
               <span>✨</span>
@@ -228,12 +232,12 @@ export default function Footer() {
           </div>
 
           {/* Designer Credit */}
-          <div className="flex justify-center mt-6 pt-4 border-t border-[hsla(174,85%,45%,0.1)]">
+          <div className="flex justify-center mt-6 pt-4 border-t border-[hsla(var(--border-light), 0.3)]">
             <a
               href="https://reverb256.ca"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[hsl(210,30%,85%)] opacity-40 hover:text-[hsl(174,85%,45%)] hover:opacity-100 text-xs transition-colors duration-300"
+              className="text-[hsl(var(--text-secondary))] /60 hover:text-[hsl(var(--accent-medium))] hover:opacity-100 text-xs transition-colors duration-300"
             >
               vibecoded with mystical energy ✦
             </a>

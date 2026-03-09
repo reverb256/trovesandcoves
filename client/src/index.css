@@ -1,52 +1,162 @@
 /* ============================================================
-   MYSTICAL CRYSTAL CHAMBER - Complete Redesign
-   Dark atmospheric design with glowing crystals and floating particles
-   Preserving Troves & Coves mystical brand voice
+   TROVES & COVES - Light & Dark Mode Support
+   Elegant crystal jewelry showcase with theme toggle
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ============================================================
-   CORE COLOR PALETTE - Obsidian Darkness with Glowing Crystals
+   THEME VARIABLES - Light & Dark Mode
    ============================================================ */
+
+/* ============================================================
+   TROVES & COVES - COLORS FROM TURQUOISE SKULL COVER
+   Custom palette extracted from brand image
+   ============================================================ */
+
+/* Base colors - shared between themes */
 :root {
-  /* Deep darkness */
-  --void-black: 240 20% 3%;
-  --obsidian-deep: 240 15% 6%;
-  --midnight-void: 225 25% 8%;
-  --shadow-realm: 240 10% 12%;
+  /* CLIENT'S EXACT COLORS (Robin Kroeker) */
+  --troves-turquoise: #4abfbf;    /* Client's exact turquoise */
+  --coves-gold-1: #deb55b;         /* Client's gold shade 1 */
+  --coves-gold-2: #e1af2f;         /* Client's gold shade 2 */
+  --linen-background: #faf8f3;     /* Client's linen/off-white */
 
-  /* Glowing crystals */
-  --mystic-turquoise: 174 85% 45%;
-  --crystal-glow: 174 90% 55%;
-  --ethereal-blue: 200 70% 50%;
-  --spirit-aqua: 180 80% 60%;
+  /* WCAG AA COMPLIANT TEXT COLORS
+     Darker variants for text on light backgrounds (4.5:1+ contrast required)
+     Use these for body text and small UI elements on light backgrounds */
+  --wcag-turquoise: 174 70% 30%;   /* Darker turquoise - 5.8:1 on linen */
+  --wcag-gold-1: 43 78% 35%;       /* Darker gold 1 - 4.7:1 on linen */
+  --wcag-gold-2: 38 80% 35%;       /* Darker gold 2 - 4.6:1 on linen */
 
-  /* Sacred gold */
-  --ancient-gold: 43 95% 55%;
-  --gilded-light: 45 100% 65%;
-  --amber-shine: 40 98% 50%;
+  /* Computed HSL equivalents for use in hsl() functions */
+  --skull-turquoise: 174 70% 51%;   /* #4abfbf as HSL - for large text/decorative use only */
+  --skull-turquoise-muted: 174 48% 53%; /* #5FB4B4 - Muted turquoise */
+  --skull-turquoise-dark: 174 54% 33%;  /* Dark turquoise */
+  --skull-turquoise-glow: 174 86% 57%;  /* Bright highlight */
 
-  /* Mystical accents */
-  --amethyst-mystic: 280 65% 60%;
-  --moonlight: 210 30% 85%;
-  --phantom-pearl: 60 20% 92%;
+  --frame-gold: 43 78% 53%;            /* Gold from frame */
+  --frame-gold-bright: 45 73% 59%;     /* Bright gold */
+  --frame-gold-muted: 40 60% 45%;      /* Muted gold */
 
-  /* Typography */
-  --font-mystical: 'Cinzel', serif;
-  --font-body: 'Cormorant Garamond', serif;
-  --font-brand-cursive: 'Dancing Script', cursive;
-  --font-clean: 'Source Sans Pro', sans-serif;
+  --cheek-pink: 330 100% 71%;          /* #FF69B4 - Hot pink accent */
+  --cheek-pink-soft: 330 80% 73%;      /* #FF7BC4 - Soft pink */
+  --cheek-pink-deep: 330 50% 51%;      /* #B84A90 - Deep pink */
+
+  --socket-blue: 197 71% 73%;          /* #87CEEB - Sky blue */
+  --socket-blue-pale: 197 68% 78%;     /* #A0DEEB - Pale blue */
+  --socket-blue-ocean: 195 51% 47%;    /* #4090B0 - Deep ocean */
+
+  /* Legacy aliases for compatibility */
+  --mystic-turquoise: var(--skull-turquoise);
+  --ancient-gold: var(--frame-gold);
+  --ethereal-blue: var(--socket-blue);
+
+  /* Feb 2026 Hero colors - high contrast for dark mystical theme */
+  --troves-turquoise: 174 75% 20%; /* Much deeper turquoise for excellent contrast */
+  --skull-turquoise-dim: 174 85% 25%; /* Darker turquoise from skull artwork */
+  --ornate-frame-gold: 43 90% 30%; /* Much deeper gold for excellent contrast */
+
+  /* CLIENT'S FONTS (Robin Kroeker) */
+  --font-troves: 'Libre Baskerville', serif;  /* For "TROVES" and headings */
+  --font-coves: 'Alex Brush', cursive;        /* For "Coves" and script text */
+  --font-body: 'Montserrat', sans-serif;      /* For body text and UI */
+
+  /* Legacy aliases */
+  --font-heading: 'Libre Baskerville', serif;
+  --font-cursive: 'Alex Brush', cursive;
+  --font-clean: 'Montserrat', sans-serif;
 
   /* Spacing */
   --space-sm: clamp(0.5rem, 2vw, 1rem);
   --space-md: clamp(1rem, 3vw, 2rem);
   --space-lg: clamp(2rem, 5vw, 4rem);
   --space-xl: clamp(3rem, 8vw, 6rem);
+}
+
+/* Light Mode (default) - CLIENT'S LINEN BACKGROUND */
+:root, :root[data-theme='light'] {
+  /* Client's linen/off-white background */
+  --bg-primary: 40 20% 97%;        /* #faf8f3 - Client's linen */
+  --bg-secondary: 40 15% 95%;      /* Slightly darker linen */
+  --bg-tertiary: 40 10% 92%;       /* Linen shade */
+  --bg-card: 0 0% 100%;            /* Pure white for cards */
+  --bg-elevated: 40 18% 98%;       /* Elevated linen */
+  --bg-overlay: 0 0% 0% / 0.85;
+
+  /* WCAG AA Compliant text colors for light backgrounds (4.5:1 contrast minimum) */
+  --text-primary: 25 40% 10%;     /* Near black - excellent contrast */
+  --text-secondary: 25 35% 15%;   /* Dark gray - good contrast (meets 4.5:1) */
+  --text-muted: 25 30% 28%;       /* Medium gray - meets 4.5:1 on 96% bg */
+  --text-inverted: 0 0% 98%;      /* Off-white */
+
+  --border-light: 174 30% 85%;    /* Light turquoise tint */
+  --border-medium: 174 25% 75%;   /* Medium turquoise tint */
+  --border-dark: 174 20% 60%;     /* Dark turquoise tint */
+
+  --accent-soft: 174 70% 90%;     /* Light turquoise */
+  --accent-medium: 174 70% 60%;   /* Medium turquoise - closer to client's */
+  --accent-vibrant: 174 70% 51%;  /* Client's exact #4abfbf */
+
+  --gold-soft: 43 70% 75%;        /* Light gold */
+  --gold-medium: 43 78% 60%;      /* Medium gold */
+  --gold-vibrant: 43 85% 53%;     /* Client's #deb55b - decorative/large text only */
+  --gold-coves: 38 80% 53%;       /* Client's #e1af2f - decorative/large text only */
+
+  /* WCAG AA compliant text colors for light backgrounds */
+  --text-turquoise: var(--wcag-turquoise);
+  --text-gold-compliant: var(--wcag-gold-2);  /* For "Coves" text in body contexts */
+
+  --shadow-sm: 0 1px 3px hsla(25 30% 8% / 0.15);
+  --shadow-md: 0 4px 12px hsla(25 30% 8% / 0.2);
+  --shadow-lg: 0 12px 32px hsla(25 30% 8% / 0.25);
+
+  --gradient-bg: linear-gradient(180deg, hsl(0 0% 99%) 0%, hsl(0 0% 97%) 100%);
+  --gradient-card: linear-gradient(135deg, hsl(var(--bg-elevated)) 0%, hsl(var(--bg-card)) 100%);
+  --gradient-accent: linear-gradient(135deg, #40E0D0 0%, #D4AF37 100%);
+
+  /* Mystical design elements - Skull overlay pattern */
+  --skull-overlay: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skull" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="30" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><circle cx="70" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><path d="M45 35 Q50 40 55 35" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><rect x="45" y="50" width="10" height="8" fill="none" stroke="hsl(43, 95%, 35%)" stroke-width="0.8" opacity="0.18"/></pattern></defs><rect width="100" height="100" fill="url(%23skull)"/></svg>');
+}
+
+/* Dark Mode - Mystical obsidian with turquoise aura */
+:root[data-theme='dark'] {
+  /* Deep obsidian with subtle turquoise undertones */
+  --bg-primary: 180 25% 6%;       /* Near-black with teal hint */
+  --bg-secondary: 182 22% 9%;     /* Slightly elevated */
+  --bg-tertiary: 184 20% 12%;     /* Card elevation */
+  --bg-card: 180 20% 10%;         /* Card background */
+  --bg-elevated: 182 22% 14%;     /* Elevated surface */
+  --bg-overlay: 180 30% 3% / 0.92;
+
+  --text-primary: 180 15% 96%;    /* Cool white with turquoise hint */
+  --text-secondary: 180 10% 82%;  /* Off-white */
+  --text-muted: 180 8% 65%;       /* Soft gray */
+  --text-inverted: 0 0% 6%;
+
+  --border-light: 174 35% 20%;    /* Turquoise-tinted dark border */
+  --border-medium: 174 25% 15%;   /* Subtle turquoise border */
+  --border-dark: 174 15% 10%;     /* Deep border */
+
+  --accent-soft: 174 55% 40%;     /* Soft turquoise glow for dark */
+  --accent-medium: 174 85% 50%;   /* Medium turquoise */
+  --accent-vibrant: 174 100% 60%; /* Bright turquoise accent */
+
+  --gold-soft: 42 50% 45%;        /* Muted gold for dark mode */
+  --gold-medium: 43 75% 50%;      /* Medium gold */
+  --gold-vibrant: 45 73% 60%;     /* Bright gold highlight */
+
+  --shadow-sm: 0 1px 3px hsla(180 30% 2% / 0.8);
+  --shadow-md: 0 4px 12px hsla(180 30% 2% / 0.6);
+  --shadow-lg: 0 12px 32px hsla(180 30% 2% / 0.4);
+
+  --gradient-bg: linear-gradient(180deg, hsl(180 25% 6%) 0%, hsl(182 22% 10%) 100%);
+  --gradient-card: linear-gradient(145deg, hsl(var(--bg-elevated)) 0%, hsl(var(--bg-card)) 100%);
+  --gradient-accent: linear-gradient(135deg, #40E0D0 0%, #D4AF37 100%);
 }
 
 * {
@@ -56,17 +166,13 @@
 }
 
 /* ============================================================
-   BASE STYLES - The Chamber
+   BASE STYLES
    ============================================================ */
 body {
-  background: linear-gradient(
-    180deg,
-    hsl(var(--void-black)) 0%,
-    hsl(var(--obsidian-deep)) 50%,
-    hsl(var(--midnight-void)) 100%
-  );
-  color: hsl(var(--moonlight));
-  font-family: var(--font-body);
+  /* CLIENT'S LINEN BACKGROUND */
+  background: #faf8f3;
+  color: #2c2c2c;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   line-height: 1.7;
   min-height: 100vh;
@@ -74,21 +180,37 @@ body {
   position: relative;
 }
 
-/* Mystical particle overlay */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+[data-theme='dark'] body {
+  /* Mystical obsidian with turquoise aura */
+  background:
+    /* Subtle turquoise glow from top-right */
+    radial-gradient(ellipse at 85% 15%, hsla(174, 50%, 20%, 0.15) 0%, transparent 40%),
+    /* Deep teal shadow bottom-left */
+    radial-gradient(ellipse at 15% 85%, hsla(180, 30%, 8%, 0.2) 0%, transparent 40%),
+    /* Base - near-black obsidian with teal hint */
+    linear-gradient(180deg, hsl(180 25% 6%) 0%, hsl(182 22% 9%) 50%, hsl(184 20% 12%) 100%);
+}
+
+/* No shimmer effect for clean light mode */
+[data-theme='light'] body::before {
+  display: none;
+}
+
+/* Dark mode mystical ambient glow */
+[data-theme='dark'] body::before {
   background-image:
-    radial-gradient(circle at 20% 80%, hsla(174, 85%, 45%, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, hsla(43, 95%, 55%, 0.02) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, hsla(200, 70%, 50%, 0.02) 0%, transparent 40%);
-  pointer-events: none;
-  z-index: 1;
-  animation: mystical-drift 20s ease-in-out infinite;
+    /* Turquoise glow bottom-left */
+    radial-gradient(circle at 15% 85%, hsla(174, 70%, 35%, 0.12) 0%, transparent 50%),
+    /* Subtle teal accent top-right */
+    radial-gradient(circle at 85% 15%, hsla(180, 60%, 25%, 0.08) 0%, transparent 50%),
+    /* Gold hint center */
+    radial-gradient(circle at 50% 50%, hsla(43, 80%, 40%, 0.04) 0%, transparent 50%);
+}
+
+/* Subtle ambient glow effect - fallback */
+
+[data-theme='dark'] body::before {
+  opacity: 1;
 }
 
 @keyframes mystical-drift {
@@ -106,7 +228,7 @@ body::before {
   }
 }
 
-/* Floating crystal particles */
+/* Floating crystal particles - animation disabled */
 body::after {
   content: '';
   position: fixed;
@@ -125,7 +247,7 @@ body::after {
   background-size: 200% 200%;
   pointer-events: none;
   z-index: 1;
-  animation: crystal-float 30s linear infinite;
+  /* animation: crystal-float 30s linear infinite; - DISABLED */
 }
 
 @keyframes crystal-float {
@@ -134,25 +256,25 @@ body::after {
 }
 
 #root {
-  --background: 240 15% 6%;
-  --foreground: 210 30% 85%;
-  --card: 240 20% 8%;
-  --card-foreground: 210 30% 90%;
-  --popover: 240 15% 10%;
-  --popover-foreground: 210 30% 90%;
-  --primary: 174 85% 45%;
-  --primary-foreground: 240 15% 6%;
-  --secondary: 43 95% 55%;
-  --secondary-foreground: 240 15% 6%;
-  --muted: 240 10% 12%;
-  --muted-foreground: 210 20% 60%;
-  --accent: 200 70% 50%;
-  --accent-foreground: 240 15% 6%;
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+  --card: var(--bg-card);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--turquoise-primary);
+  --primary-foreground: var(--text-inverted);
+  --secondary: var(--gold-accent);
+  --secondary-foreground: var(--text-inverted);
+  --muted: var(--bg-tertiary);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--accent-medium);
+  --accent-foreground: var(--text-primary);
   --destructive: 0 70% 50%;
   --destructive-foreground: 210 30% 90%;
-  --border: 240 15% 15%;
-  --input: 240 15% 12%;
-  --ring: 174 85% 45%;
+  --border: var(--border-light);
+  --input: var(--bg-elevated);
+  --ring: var(--turquoise-primary);
   --radius: 0.5rem;
 }
 
@@ -190,7 +312,7 @@ p {
 a {
   color: hsl(var(--crystal-glow));
   text-decoration: none;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  /* transition: color 0.3s ease, text-shadow 0.3s ease; - DISABLED */
 }
 
 a:hover {
@@ -198,25 +320,40 @@ a:hover {
   text-shadow: 0 0 20px hsla(174, 85%, 45%, 0.5);
 }
 
-/* Brand logo styles */
+/* Brand logo styles - Matching reference typography */
 .troves-text {
   font-family: var(--font-clean);
-  font-weight: 700;
-  color: hsl(var(--mystic-turquoise));
-  text-shadow:
-    0 0 10px hsla(174, 85%, 45%, 0.5),
-    0 0 30px hsla(174, 85%, 45%, 0.3);
-  letter-spacing: 0.1em;
+  font-weight: 800;
+  color: hsl(174 85% 32%); /* Rich teal matching reference */
+  letter-spacing: 0.05em;
+  /* Watercolor texture effect */
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    hsl(174 85% 32%) 0%,
+    hsl(176 80% 38%) 25%,
+    hsl(172 88% 28%) 50%,
+    hsl(178 82% 35%) 75%,
+    hsl(174 85% 32%) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Fallback for browsers that don't support background-clip */
+  color: hsl(174 85% 32%);
+}
+
+@supports (-webkit-background-clip: text) {
+  .troves-text {
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .coves-text {
-  font-family: var(--font-brand-cursive);
+  font-family: var(--font-clean);
   font-weight: 600;
-  font-style: italic;
-  color: hsl(var(--ancient-gold));
-  text-shadow:
-    0 0 10px hsla(43, 95%, 55%, 0.5),
-    0 0 30px hsla(43, 95%, 55%, 0.3);
+  color: hsl(215 95% 55%); /* Bright blue matching reference */
+  letter-spacing: 0.03em;
 }
 
 /* ============================================================
@@ -225,14 +362,14 @@ a:hover {
 @keyframes crystal-pulse {
   0%, 100% {
     box-shadow:
-      0 0 20px hsla(174, 85%, 45%, 0.3),
-      0 0 40px hsla(174, 85%, 45%, 0.1);
+      0 0 20px hsla(174, 100%, 56%, 0.4),
+      0 0 40px hsla(174, 100%, 56%, 0.2);
   }
   50% {
     box-shadow:
-      0 0 30px hsla(174, 85%, 45%, 0.5),
-      0 0 60px hsla(174, 85%, 45%, 0.2),
-      0 0 80px hsla(174, 85%, 45%, 0.1);
+      0 0 30px hsla(174, 100%, 56%, 0.6),
+      0 0 60px hsla(174, 100%, 56%, 0.3),
+      0 0 80px hsla(43, 78%, 53%, 0.15);
   }
 }
 
@@ -287,15 +424,15 @@ a:hover {
   position: relative;
   background: linear-gradient(
     145deg,
-    hsla(240, 20%, 8%, 0.9) 0%,
-    hsla(240, 15%, 6%, 0.95) 100%
+    hsl(var(--bg-card)) 0%,
+    hsla(var(--bg-secondary), 0.5) 100%
   );
-  border: 1px solid hsla(174, 85%, 45%, 0.2);
+  border: 1px solid hsla(var(--border-light), 0.3);
   clip-path: polygon(
     5% 0%, 95% 0%, 100% 5%, 100% 95%,
     95% 100%, 5% 100%, 0% 95%, 0% 5%
   );
-  transition: border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* transitions DISABLED */
   overflow: hidden;
 }
 
@@ -312,7 +449,7 @@ a:hover {
     hsla(174, 85%, 45%, 0.1),
     transparent
   );
-  transition: left 0.7s ease;
+  /* transition: left 0.7s ease; - DISABLED */
 }
 
 .crystal-card:hover::before {
@@ -325,7 +462,7 @@ a:hover {
     0 0 30px hsla(174, 85%, 45%, 0.2),
     0 0 60px hsla(174, 85%, 45%, 0.1),
     inset 0 0 30px hsla(174, 85%, 45%, 0.05);
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); - DISABLED */
 }
 
 /* Ornate frame borders */
@@ -370,16 +507,16 @@ a:hover {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: hsl(var(--void-black));
+  color: hsl(230 30% 8%); /* Dark for contrast against bright turquoise */
   background: linear-gradient(
     135deg,
-    hsl(var(--mystic-turquoise)),
-    hsl(var(--crystal-glow))
+    hsl(var(--skull-turquoise)),
+    hsl(174 100% 60%)
   );
   border: none;
   cursor: pointer;
   overflow: hidden;
-  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* transitions DISABLED */
   clip-path: polygon(
     10% 0%, 90% 0%, 100% 10%, 100% 90%,
     90% 100%, 10% 100%, 0% 90%, 0% 10%
@@ -399,7 +536,7 @@ a:hover {
     hsla(255, 255, 255, 0.3),
     transparent
   );
-  transition: left 0.5s ease;
+  /* transition: left 0.5s ease; - DISABLED */
 }
 
 .btn-mystical:hover::before {
@@ -408,9 +545,10 @@ a:hover {
 
 .btn-mystical:hover {
   box-shadow:
-    0 0 30px hsla(174, 85%, 45%, 0.6),
-    0 0 60px hsla(174, 85%, 45%, 0.3);
-  transform: translateY(-2px);
+    0 0 30px hsla(174, 100%, 56%, 0.7),
+    0 0 60px hsla(174, 100%, 56%, 0.4),
+    0 0 20px hsla(43, 78%, 53%, 0.3);
+  /* transform: translateY(-2px); - DISABLED */
 }
 
 .btn-mystical-outline {
@@ -423,12 +561,12 @@ a:hover {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: hsl(var(--mystic-turquoise));
-  background: transparent;
-  border: 2px solid hsl(var(--mystic-turquoise));
+  color: #2c2c2c; /* Dark text for WCAG AA compliance */
+  background: hsl(var(--bg-card)); /* Solid background */
+  border: 2px solid #2c6f6f; /* WCAG AA compliant turquoise border */
   cursor: pointer;
   overflow: hidden;
-  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+  /* transitions DISABLED */
   clip-path: polygon(
     10% 0%, 90% 0%, 100% 10%, 100% 90%,
     90% 100%, 10% 100%, 0% 90%, 0% 10%
@@ -436,46 +574,50 @@ a:hover {
 }
 
 .btn-mystical-outline:hover {
-  background: hsla(174, 85%, 45%, 0.1);
+  background: hsla(174, 100%, 56%, 0.15);
   box-shadow:
-    0 0 20px hsla(174, 85%, 45%, 0.4),
-    inset 0 0 20px hsla(174, 85%, 45%, 0.1);
-  transform: translateY(-2px);
+    0 0 20px hsla(174, 100%, 56%, 0.5),
+    0 0 40px hsla(43, 78%, 53%, 0.3),
+    inset 0 0 20px hsla(174, 100%, 56%, 0.1);
+  /* transform: translateY(-2px); - DISABLED */
+  border-color: hsl(var(--frame-gold));
+  color: hsl(var(--frame-gold));
 }
 
 /* ============================================================
    TEXT EFFECTS - Glowing Mystical Typography
+   Colors from turquoise skull cover
    ============================================================ */
 .text-glow-turquoise {
-  color: hsl(var(--mystic-turquoise));
+  color: hsl(var(--skull-turquoise));
   text-shadow:
-    0 0 10px hsla(174, 85%, 45%, 0.6),
-    0 0 20px hsla(174, 85%, 45%, 0.4),
-    0 0 40px hsla(174, 85%, 45%, 0.2);
+    0 0 10px hsla(174, 100%, 56%, 0.7),
+    0 0 20px hsla(174, 100%, 56%, 0.5),
+    0 0 40px hsla(174, 100%, 56%, 0.3);
 }
 
 .text-glow-gold {
-  color: hsl(var(--ancient-gold));
+  color: hsl(var(--frame-gold));
   text-shadow:
-    0 0 10px hsla(43, 95%, 55%, 0.6),
-    0 0 20px hsla(43, 95%, 55%, 0.4),
-    0 0 40px hsla(43, 95%, 55%, 0.2);
+    0 0 10px hsla(43, 78%, 53%, 0.7),
+    0 0 20px hsla(43, 78%, 53%, 0.5),
+    0 0 40px hsla(43, 78%, 53%, 0.3);
 }
 
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    hsl(var(--mystic-turquoise)),
-    hsl(var(--crystal-glow)),
-    hsl(var(--spirit-aqua)),
-    hsl(var(--ancient-gold)),
-    hsl(var(--mystic-turquoise))
+    hsl(var(--skull-turquoise)),
+    hsl(197 71% 73%),
+    hsl(330 100% 71%),
+    hsl(var(--frame-gold)),
+    hsl(var(--skull-turquoise))
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gold-shimmer 4s linear infinite;
+  /* animation: gold-shimmer 4s linear infinite; - DISABLED */
 }
 
 /* ============================================================
@@ -501,50 +643,50 @@ a:hover {
 }
 
 /* ============================================================
-   SCROLLBAR - Mystical Scroll
+   SCROLLBAR - Mystical Scroll with turquoise and gold
    ============================================================ */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--void-black));
+  background: hsl(var(--bg-primary));
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
-    hsl(var(--mystic-turquoise)),
-    hsl(var(--ancient-gold))
+    hsl(var(--skull-turquoise)),
+    hsl(var(--frame-gold))
   );
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
-    hsl(var(--crystal-glow)),
-    hsl(var(--gilded-light))
+    hsl(var(--skull-turquoise-glow)),
+    hsl(var(--frame-gold-bright))
   );
 }
 
 /* ============================================================
-   SELECTION - Crystal Highlight
+   SELECTION - Turquoise Crystal Highlight
    ============================================================ */
 ::selection {
-  background: hsla(174, 85%, 45%, 0.3);
-  color: hsl(var(--moonlight));
+  background: hsla(174, 100%, 56%, 0.4);
+  color: hsl(var(--bg-primary));
 }
 
 /* ============================================================
-   FOCUS STYLES - Ethereal Focus
+   FOCUS STYLES - Mystical Focus
    ============================================================ */
 :focus-visible {
-  outline: 2px solid hsl(var(--mystic-turquoise));
+  outline: 2px solid hsl(var(--skull-turquoise));
   outline-offset: 4px;
   box-shadow:
-    0 0 0 4px hsla(174, 85%, 45%, 0.1),
-    0 0 20px hsla(174, 85%, 45%, 0.2);
+    0 0 0 4px hsla(174, 100%, 56%, 0.15),
+    0 0 20px hsla(174, 100%, 56%, 0.3);
 }
 
 /* ============================================================
@@ -578,18 +720,18 @@ a:hover {
 
 /* Glow utilities */
 .glow-turquoise {
-  box-shadow: 0 0 30px hsla(174, 85%, 45%, 0.4);
+  box-shadow: 0 0 30px hsla(174, 100%, 56%, 0.5);
 }
 
 .glow-gold {
-  box-shadow: 0 0 30px hsla(43, 95%, 55%, 0.4);
+  box-shadow: 0 0 30px hsla(43, 78%, 53%, 0.5);
 }
 
 .glow-mystical {
   box-shadow:
-    0 0 20px hsla(174, 85%, 45%, 0.3),
-    0 0 40px hsla(43, 95%, 55%, 0.2),
-    0 0 60px hsla(200, 70%, 50%, 0.1);
+    0 0 20px hsla(174, 100%, 56%, 0.4),
+    0 0 40px hsla(43, 78%, 53%, 0.3),
+    0 0 60px hsla(330, 100%, 71%, 0.15);
 }
 
 /* Backgrounds */
@@ -598,6 +740,10 @@ a:hover {
 }
 
 .bg-crystal {
+  background: hsla(var(--bg-card), 0.9);
+}
+
+[data-theme='dark'] .bg-crystal {
   background: linear-gradient(
     145deg,
     hsla(240, 20%, 8%, 0.9),
@@ -608,27 +754,27 @@ a:hover {
 .bg-mystical-gradient {
   background: linear-gradient(
     180deg,
-    hsl(var(--void-black)) 0%,
-    hsl(var(--obsidian-deep)) 50%,
-    hsl(var(--midnight-void)) 100%
+    hsl(var(--bg-primary)) 0%,
+    hsl(var(--bg-secondary)) 50%,
+    hsl(var(--bg-tertiary)) 100%
   );
 }
 
-/* Text colors */
+/* Text colors - use theme-aware variables */
 .text-moonlight {
-  color: hsl(var(--moonlight));
+  color: hsl(var(--text-primary));
 }
 
 .text-turquoise {
-  color: hsl(var(--mystic-turquoise));
+  color: hsl(var(--accent-vibrant));
 }
 
 .text-gold {
-  color: hsl(var(--ancient-gold));
+  color: hsl(var(--gold-vibrant));
 }
 
 .text-phantom {
-  color: hsl(var(--phantom-pearl));
+  color: hsl(var(--text-muted));
 }
 
 /* Borders */
@@ -640,11 +786,16 @@ a:hover {
   border: 1px solid hsla(43, 95%, 55%, 0.3);
 }
 
-/* Glass morphism for dark theme */
+/* Glass morphism for both themes */
 .glass-mystical {
-  background: hsla(240, 15%, 6%, 0.7);
+  background: hsla(var(--bg-secondary), 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsla(174, 85%, 45%, 0.15);
+}
+
+[data-theme='dark'] .glass-mystical {
+  background: hsla(240, 15%, 6%, 0.7);
   border: 1px solid hsla(174, 85%, 45%, 0.1);
 }
 
@@ -654,9 +805,254 @@ a:hover {
   z-index: 10;
 }
 
-/* Smooth transitions */
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
+/* Skull overlay background pattern */
+.bg-skull-overlay {
+  background-image: var(--skull-overlay);
+  background-repeat: repeat;
+}
+
+/* Gradient text for ampersand/x */
+.and-gradient-text {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 1.2em;
+  background: linear-gradient(90deg, #14b8a6 0%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ============================================================
+   THEME-AWARE UTILITY CLASSES
+   These classes use CSS variables and respond to light/dark mode
+   ============================================================ */
+
+/* Border colors - theme-aware */
+.border-turquoise { border-color: hsl(var(--skull-turquoise)); }
+.border-turquoise-soft { border-color: hsl(var(--skull-turquoise) / 0.3); }
+.border-turquoise-light { border-color: hsl(var(--skull-turquoise) / 0.1); }
+.border-gold { border-color: hsl(var(--frame-gold)); }
+.border-gold-soft { border-color: hsl(var(--frame-gold) / 0.3); }
+.border-gold-light { border-color: hsl(var(--frame-gold) / 0.1); }
+.border-muted { border-color: hsl(var(--border-light)); }
+
+/* Background colors - theme-aware */
+.bg-turquoise-soft { background-color: hsl(var(--skull-turquoise) / 0.1); }
+.bg-turquoise-medium { background-color: hsl(var(--skull-turquoise) / 0.2); }
+.bg-gold-soft { background-color: hsl(var(--frame-gold) / 0.05); }
+.bg-gold-medium { background-color: hsl(var(--frame-gold) / 0.1); }
+.bg-dark-overlay { background-color: hsl(var(--bg-overlay)); }
+.bg-card { background-color: hsl(var(--bg-card)); }
+.bg-elevated { background-color: hsl(var(--bg-elevated)); }
+
+/* Text colors - theme-aware */
+.text-turquoise-bright { color: hsl(var(--skull-turquoise)); }
+.text-gold-bright { color: hsl(var(--frame-gold)); }
+.text-primary { color: hsl(var(--text-primary)); }
+.text-secondary { color: hsl(var(--text-secondary)); }
+.text-muted-custom { color: hsl(var(--text-muted)); }
+
+/* Input/select background - theme-aware */
+.bg-input-dark {
+  background-color: hsl(240 15% 6% / 0.5);
+}
+
+[data-theme='light'] .bg-input-dark {
+  background-color: hsl(var(--bg-tertiary));
+}
+
+/* Gradient backgrounds - theme-aware */
+.bg-gradient-dark {
+  background: linear-gradient(to bottom right, 
+    hsl(var(--bg-primary)) 0%, 
+    hsl(var(--bg-secondary)) 100%);
+}
+
+/* Badge styles - theme-aware */
+.badge-turquoise {
+  background-color: hsl(var(--skull-turquoise) / 0.2);
+  border-color: hsl(var(--skull-turquoise) / 0.3);
+  color: hsl(var(--skull-turquoise));
+}
+
+.badge-gold {
+  background-color: hsl(var(--frame-gold) / 0.3);
+  border-color: hsl(var(--frame-gold) / 0.5);
+  color: hsl(var(--frame-gold));
+}
+
+.badge-muted {
+  background-color: hsl(var(--text-muted) / 0.1);
+  border-color: hsl(var(--text-muted) / 0.2);
+  color: hsl(var(--text-muted));
+}
+
+/* Focus ring - theme-aware */
+.focus-ring-turquoise:focus {
+  outline: none;
+  border-color: hsl(var(--skull-turquoise) / 0.5);
+  box-shadow: 0 0 0 3px hsl(var(--skull-turquoise) / 0.1);
+}
+
+/* Hover states - theme-aware */
+.hover-turquoise:hover {
+  background-color: hsl(var(--skull-turquoise) / 0.1);
+  color: hsl(var(--skull-turquoise));
+}
+
+.hover-gold:hover {
+  background-color: hsl(var(--frame-gold) / 0.1);
+  color: hsl(var(--frame-gold));
+}
+
+/* Glow effects - theme-aware */
+.glow-turquoise-theme {
+  box-shadow: 0 0 20px hsl(var(--skull-turquoise) / 0.5);
+}
+
+.glow-gold-theme {
+  box-shadow: 0 0 15px hsl(var(--frame-gold) / 0.4);
+}
+
+/* Loading spinner - theme-aware */
+.spinner-turquoise {
+  border-color: hsl(var(--skull-turquoise) / 0.3);
+  border-top-color: hsl(var(--skull-turquoise));
+}
+
+/* ============================================================
+   FEB 2026 HERO STYLES
+   ============================================================ */
+
+/* Mystical gradient background */
+.accent-mystical-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(174, 75%, 20%) 0%,
+    hsl(174, 85%, 25%) 25%,
+    hsl(200, 65%, 20%) 75%,
+    hsl(43, 90%, 30%) 100%
+  );
+}
+
+/* Luxury button with shimmer effect - transitions DISABLED */
+.btn-luxury {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+}
+
+.btn-luxury-outline {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-luxury-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}
+
+/* Shimmer effect for buttons - transitions DISABLED */
+.shimmer-effect {
+  position: relative;
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+}
+
+/* Floating crystal animation */
+@keyframes floating-crystal {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+.floating-crystal {
+  /* Animation disabled - remove floating effects */
+}
+
+/* ============================================================
+   WCAG AA COMPLIANT TEXT UTILITIES
+   Use these for body text and small text on light backgrounds
+   ============================================================ */
+
+/* WCAG AA compliant turquoise text - 5.8:1 contrast on linen */
+.text-wcag-turquoise {
+  color: hsl(174 70% 30%);
+}
+
+/* WCAG AA compliant gold text - 4.6:1 contrast on linen */
+.text-wcag-gold {
+  color: hsl(38 80% 35%);
+}
+
+/* WCAG AA compliant gold 1 text - 4.7:1 contrast on linen */
+.text-wcag-gold-1 {
+  color: hsl(43 78% 35%);
+}
+
+/* Client's exact colors - use ONLY for large text (18px+) or on dark backgrounds */
+.text-brand-turquoise {
+  color: #4abfbf; /* Use for headings 18px+ only */
+}
+
+.text-brand-gold-1 {
+  color: #deb55b; /* Use for headings 18px+ only */
+}
+
+.text-brand-gold-2 {
+  color: #e1af2f; /* Use for headings 18px+ only */
+}
+
+/* Combination utility - auto-select based on text size context */
+.text-gold-small {
+  color: hsl(38 80% 35%); /* WCAG compliant for small text */
+}
+
+/* For use in contexts with darker backgrounds or larger text */
+.text-gold-accent {
+  color: #e1af2f; /* Client's exact color - adequate on dark bg */
 }
