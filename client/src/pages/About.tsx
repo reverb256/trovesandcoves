@@ -6,7 +6,6 @@ import {
   Star,
   Sparkles,
   Moon,
-  Sun,
   Compass,
   Zap,
 } from 'lucide-react';
@@ -334,64 +333,6 @@ export default function About() {
                       <Heart className="w-8 h-8 text-white" />
                     </div>
                   </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Connection & Community */}
-        <section className="mb-20">
-          <Card variant="elevated" theme="gradient">
-            <CardContent className="p-12 text-center">
-              <div className="mb-8">
-                <h2
-                  className="text-3xl font-bold mb-6"
-                  style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
-                >
-                  Join Our Community
-                </h2>
-                <div className="w-24 h-1 mx-auto rounded-full mb-6" style={{ background: 'linear-gradient(90deg, hsl(var(--accent-vibrant)), hsl(var(--gold-medium)))' }} />
-              </div>
-              <p className="text-lg leading-relaxed max-w-4xl mx-auto mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
-                Troves & Coves is more than a jewelry brand—we're a community of those
-                seeking transformation through beauty. When you wear our pieces, you embrace
-                bold femininity and strength, carrying energy that resonates with abundance
-                and confidence.
-              </p>
-              <div className="grid md:grid-cols-3 gap-8 mt-12">
-                <div className="text-center">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}>
-                    <Sun className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
-                    Empower Your Energy
-                  </h3>
-                  <p style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }}>
-                    Statement pieces crafted with intention to enhance your presence.
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}>
-                    <Moon className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
-                    Elevate Your Spirit
-                  </h3>
-                  <p style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }}>
-                    Each piece blends 14k gold-plated elegance with natural crystal beauty.
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}>
-                    <Star className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
-                    Embrace Transformation
-                  </h3>
-                  <p style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }}>
-                    Connect with pieces that resonate with abundance and confidence.
-                  </p>
                 </div>
               </div>
             </CardContent>
