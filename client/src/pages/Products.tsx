@@ -4,7 +4,6 @@ import { useParams, useLocation } from 'wouter';
 import type { ProductWithCategory, Category } from '@shared/types';
 import { Filter, Search, X, Sparkles } from 'lucide-react';
 import { MysticalCard } from '@/components/ui/card';
-import { MysticalHeading, MysticalBodyText } from '@/components/ui/typography';
 
 export default function Products() {
   const params = useParams();
@@ -109,24 +108,24 @@ export default function Products() {
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
               {currentCategory ? (
-                <span style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>{currentCategory.name}</span>
+                <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>{currentCategory.name}</span>
               ) : searchQuery ? (
                 <>
-                  <span style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>Searching for</span>
-                  <span style={{ fontFamily: '"Alex Brush", cursive', color: '#deb55b' }}>"{searchQuery}"</span>
+                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>Searching for</span>
+                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>"{searchQuery}"</span>
                 </>
               ) : (
                 <>
-                  <span style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf', textTransform: 'uppercase' }}>Our</span>
-                  <span style={{ fontFamily: '"Alex Brush", cursive', color: '#deb55b' }}>Crystal</span>
-                  <span style={{ fontFamily: '"Alex Brush", cursive', color: '#e1af2f' }}>Collections</span>
+                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Our</span>
+                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>Crystal</span>
+                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>Collections</span>
                 </>
               )}
             </h1>
 
-            <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #4abfbf, transparent)' }}></div>
+            <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }}></div>
 
-            <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: '"Montserrat", sans-serif', color: '#2c6f6f' }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "\"Montserrat\", sans-serif", color: 'hsl(var(--text-secondary))' }}>
               {currentCategory
                 ? currentCategory.description
                 : 'Statement pieces crafted with intention to empower your energy. Each piece blends 14k gold-plated elegance with natural crystal beauty.'}
@@ -254,7 +253,7 @@ export default function Products() {
             {/* Results Header */}
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-2xl font-semibold" style={{
-                fontFamily: "'Libre Baskerville", serif",
+                fontFamily: "\"Libre Baskerville\", serif",
                 color: 'hsl(var(--accent-vibrant))'
               }}>
                 {filteredAndSortedProducts.length}{' '}
@@ -365,7 +364,7 @@ export default function Products() {
                           borderTop: '1px solid hsla(var(--accent-vibrant),0.15)'
                         }}>
                           <span className="text-lg font-semibold" style={{
-                            fontFamily: "'Libre Baskerville", serif",
+                            fontFamily: "\"Libre Baskerville\", serif",
                             color: 'hsl(var(--gold-medium))'
                           }}>
                             ${product.price}
