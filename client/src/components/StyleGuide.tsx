@@ -79,9 +79,9 @@ export function StyleGuide() {
         {/* Header */}
         <header className="sg-header">
           <div className="sg-logo">
-            <span style={{ fontFamily: "Libre Baskerville, serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-4xl">TROVES</span>
-            <span style={{ color: "#deb55b", fontFamily: "Alex Brush", fontSize: "2rem" }}>&</span>
-            <span style={{ fontFamily: "Alex Brush, cursive", color: "#e1af2f", fontSize: "2.5rem" }}>Coves</span>
+            <span style={{ fontFamily: "Libre Baskerville, serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-4xl">TROVES</span>
+            <span style={{ color: "hsl(var(--gold-medium))", fontFamily: "Alex Brush", fontSize: "2rem" }}>&</span>
+            <span style={{ fontFamily: "Alex Brush, cursive", color: "hsl(var(--gold-medium))", fontSize: "2.5rem" }}>Coves</span>
           </div>
           <h1 className="sg-title">Brand Style Guide</h1>
           <p className="sg-subtitle">Mystical Crystal Jewelry • Winnipeg, Manitoba</p>
@@ -132,21 +132,21 @@ export function StyleGuide() {
 
           <div className="combo-grid">
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "#faf8f3", border: "2px solid #4abfbf" }}>
-                <span style={{ color: "#4abfbf", fontFamily: "Libre Baskerville, serif" }}>Primary</span>
+              <div className="combo-preview" style={{ backgroundColor: "#faf8f3", border: "2px solid hsl(var(--accent-vibrant))" }}>
+                <span style={{ color: "hsl(var(--accent-vibrant))", fontFamily: "Libre Baskerville, serif" }}>Primary</span>
               </div>
               <p>Turquoise on Linen</p>
             </div>
 
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "#faf8f3", border: "2px solid #e1af2f" }}>
-                <span style={{ color: "#e1af2f", fontFamily: "Alex Brush, cursive" }}>Accent</span>
+              <div className="combo-preview" style={{ backgroundColor: "#faf8f3", border: "2px solid hsl(var(--gold-medium))" }}>
+                <span style={{ color: "hsl(var(--gold-medium))", fontFamily: "Alex Brush, cursive" }}>Accent</span>
               </div>
               <p>Gold on Linen</p>
             </div>
 
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "#4abfbf" }}>
+              <div className="combo-preview" style={{ backgroundColor: "hsl(var(--accent-vibrant))" }}>
                 <span style={{ color: "#faf8f3", fontFamily: "Libre Baskerville, serif" }}>Inverse</span>
               </div>
               <p>Linen on Turquoise</p>
@@ -154,7 +154,7 @@ export function StyleGuide() {
 
             <div className="combo-card">
               <div className="combo-preview" style={{ backgroundColor: "#2c2c2c" }}>
-                <span style={{ color: "#4abfbf", fontFamily: "Libre Baskerville, serif" }}>Dark Mode</span>
+                <span style={{ color: "hsl(var(--accent-vibrant))", fontFamily: "Libre Baskerville, serif" }}>Dark Mode</span>
               </div>
               <p>Turquoise on Dark</p>
             </div>
@@ -206,9 +206,9 @@ export function StyleGuide() {
           <div className="logo-showcase">
             <div className="logo-display">
               <div className="logo-main">
-                <span style={{ fontFamily: "Libre Baskerville, serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase", fontSize: "3rem" }}>TROVES</span>
-                <span style={{ color: "#deb55b", fontFamily: "Alex Brush", fontSize: "2.5rem", margin: "0 0.5rem" }}>&</span>
-                <span style={{ fontFamily: "Alex Brush, cursive", color: "#e1af2f", fontSize: "3rem" }}>Coves</span>
+                <span style={{ fontFamily: "Libre Baskerville, serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase", fontSize: "3rem" }}>TROVES</span>
+                <span style={{ color: "hsl(var(--gold-medium))", fontFamily: "Alex Brush", fontSize: "2.5rem", margin: "0 0.5rem" }}>&</span>
+                <span style={{ fontFamily: "Alex Brush, cursive", color: "hsl(var(--gold-medium))", fontSize: "3rem" }}>Coves</span>
               </div>
               <p className="logo-tagline">Mystical Crystal Jewelry • Winnipeg</p>
             </div>
@@ -233,7 +233,7 @@ export function StyleGuide() {
           <div className="type-scale">
             <div className="type-level">
               <span className="type-label">Display (48px)</span>
-              <span style={{ fontFamily: "Libre Baskerville, serif", fontSize: "3rem", color: "#4abfbf" }}>Mystical Crystals</span>
+              <span style={{ fontFamily: "Libre Baskerville, serif", fontSize: "3rem", color: "hsl(var(--accent-vibrant))" }}>Mystical Crystals</span>
             </div>
             <div className="type-level">
               <span className="type-label">Heading (32px)</span>
@@ -310,11 +310,11 @@ export function StyleGuide() {
               <h3>Cards</h3>
               <div className="card-showcase">
                 <div className="preview-card">
-                  <div className="preview-card-img" style={{ backgroundColor: "#4abfbf" }}></div>
+                  <div className="preview-card-img" style={{ backgroundColor: "hsl(var(--accent-vibrant))" }}></div>
                   <div className="preview-card-body">
                     <h4 style={{ fontFamily: "Libre Baskerville, serif" }}>Crystal Name</h4>
                     <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "0.875rem" }}>Short description</p>
-                    <span className="preview-price" style={{ color: "#e1af2f" }}>$89.00</span>
+                    <span className="preview-price" style={{ color: "hsl(var(--gold-medium))" }}>$89.00</span>
                   </div>
                 </div>
               </div>
@@ -339,7 +339,7 @@ export function StyleGuide() {
             </ul>
             <p><strong>Sample Language:</strong></p>
             <blockquote style={{
-              borderLeft: "4px solid #4abfbf",
+              borderLeft: "4px solid hsl(var(--accent-vibrant))",
               paddingLeft: "1rem",
               fontStyle: "italic",
               fontFamily: "Montserrat, sans-serif"

@@ -49,8 +49,8 @@ export default function Hero() {
                 <svg width="128" height="128" viewBox="0 0 96 96" className="overflow-visible">
                   <defs>
                     <radialGradient id="gemGradient" cx="20%" cy="20%" r="70%">
-                      <stop offset="0%" stopColor="#deb55b" stopOpacity="1" />
-                      <stop offset="100%" stopColor="#deb55b" stopOpacity="0" />
+                      <stop offset="0%" stopColor="hsl(var(--gold-medium))" stopOpacity="1" />
+                      <stop offset="100%" stopColor="hsl(var(--gold-medium))" stopOpacity="0" />
                     </radialGradient>
                   </defs>
                   <path
@@ -67,7 +67,7 @@ export default function Hero() {
                 style={{
                   fontFamily: "'Libre Baskerville', serif",
                   fontWeight: 700,
-                  color: "#4abfbf",
+                  color: "hsl(var(--accent-vibrant))",
                   textTransform: "uppercase",
                   letterSpacing: "0.05em"
                 }}
@@ -77,20 +77,20 @@ export default function Hero() {
               </span>
             </div>
             {' '}
-            <span className="text-3xl md:text-4xl lg:text-5xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>
+            <span className="text-3xl md:text-4xl lg:text-5xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}>
               &amp;
             </span>
             {' '}
-            <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-4xl md:text-5xl lg:text-6xl">
+            <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }} className="text-4xl md:text-5xl lg:text-6xl">
               Coves
             </span>
           </h1>
 
-          <p className="text-base md:text-lg tracking-wide" style={{ fontFamily: "'Montserrat', sans-serif", color: "#4abfbf", fontWeight: 400 }}>
+          <p className="text-base md:text-lg tracking-wide" style={{ fontFamily: "'Montserrat', sans-serif", color: "hsl(var(--accent-vibrant))", fontWeight: 400 }}>
             Handcrafted Crystal Jewelry
           </p>
 
-          <p className="max-w-2xl text-sm md:text-base leading-relaxed mt-4" style={{ fontFamily: "'Montserrat', sans-serif", color: "#2c6f6f" }}>
+          <p className="max-w-2xl text-sm md:text-base leading-relaxed mt-4" style={{ fontFamily: "'Montserrat', sans-serif", color: "hsl(var(--text-secondary))" }}>
             Discover the power of transformation with our handcrafted crystal jewelry.
             Each piece is designed to elevate your style and spirit, blending elegance with raw beauty.
           </p>
@@ -98,7 +98,7 @@ export default function Hero() {
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style={{ color: "#4abfbf" }}>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" style={{ color: "hsl(var(--accent-vibrant))" }}>
           <path d="M10 14l-5-5h10l-5 5z" />
         </svg>
       </div>
