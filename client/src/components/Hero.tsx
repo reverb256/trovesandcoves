@@ -7,7 +7,7 @@ export default function Hero() {
     >
       {/* Mystical Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[hsla(174,85%,45%,0.03)] rounded-full blur-3xl animate-glow-breathe"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[hsla(174,85%,45%,0.02)] rounded-full blur-3xl animate-glow-breathe"></div>
         <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-[hsla(43,95%,55%,0.02)] rounded-full blur-3xl animate-glow-breathe" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[hsla(200,70%,50%,0.02)] rounded-full blur-3xl animate-glow-breathe" style={{ animationDelay: '2s' }}></div>
       </div>

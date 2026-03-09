@@ -38,28 +38,28 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
       {/* Mystical background effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-20"
-          style={{ backgroundColor: 'hsla(174,85%,45%,0.03)', filter: 'blur(60px)' }}
+          style={{ backgroundColor: 'hsla(174,85%,45%,0.02)', filter: 'blur(60px)' }}
         ></div>
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-15"
-          style={{ backgroundColor: 'hsla(43,95%,55%,0.03)', filter: 'blur(80px)' }}
+          style={{ backgroundColor: 'hsla(43,95%,55%,0.02)', filter: 'blur(80px)' }}
         ></div>
       </div>
 
       <div className="text-center max-w-md relative z-10">
         {/* Crystal icon with mystical glow */}
-        <div className="text-8xl mb-6 animate-pulse" style={{ filter: 'drop-shadow(0 0 20px hsla(174,85%,45%,0.3))' }}>💎</div>
+        <div className="text-8xl mb-8 animate-pulse" style={{ filter: 'drop-shadow(0 0 15px hsla(174,85%,45%,0.25))' }}>💎</div>
 
         {/* 404 Heading */}
-        <h1 className="text-6xl font-bold mb-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}>
+        <h1 className="text-6xl font-bold mb-3" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
           {type === 'api' ? '⚠️' : '404'}
         </h1>
 
-        <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>
+        <h2 className="text-2xl font-semibold mb-6" style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--text-primary))', letterSpacing: '0.02em' }}>
           {getTitle()}
         </h2>
 
         {/* Error message */}
-        <p className="mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
+        <p className="mb-10 leading-relaxed" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
           {getMessage()}
         </p>
 

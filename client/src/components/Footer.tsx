@@ -61,10 +61,10 @@ export default function Footer() {
       {/* Mystical background effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-30"
-          style={{ backgroundColor: 'hsla(174,85%,45%,0.03)', filter: 'blur(60px)' }}
+          style={{ backgroundColor: 'hsla(174,85%,45%,0.02)', filter: 'blur(60px)' }}
         ></div>
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-20"
-          style={{ backgroundColor: 'hsla(43,95%,55%,0.03)', filter: 'blur(80px)' }}
+          style={{ backgroundColor: 'hsla(43,95%,55%,0.02)', filter: 'blur(80px)' }}
         ></div>
       </div>
 

@@ -80,9 +80,8 @@ export default function About() {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 flex flex-col items-center justify-center gap-3">
             <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>About</span>
-            <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>&</span>
             <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>Troves & Coves</span>
           </h1>
 
@@ -91,7 +90,7 @@ export default function About() {
           <p className="text-xl max-w-4xl mx-auto leading-relaxed" style={{ fontFamily: "\"Montserrat\", sans-serif", color: 'hsl(var(--text-secondary))' }}>
             We create handcrafted crystal jewelry that elevates both style and spirit.
             Each piece blends 14k gold-plated elegance with natural crystal beauty—
-            crafted with intention to empower your energy and enhance your presence.
+            crafted with intention to empower your energy and enhance your presence…
           </p>
         </div>
       </section>
@@ -235,11 +234,11 @@ export default function About() {
               return (
                 <Card
                   key={index}
-                  className="shadow-2xl backdrop-blur-sm text-center group hover:scale-105 transition-transform duration-300" style={{ border: '1px solid hsl(var(--border-medium))', background: 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)' }}
+                  className="shadow-2xl backdrop-blur-sm text-center group hover:scale-105 motion-safe:transition-transform motion-safe:duration-300 motion-reduce:hover:scale-100" style={{ border: '1px solid hsl(var(--border-medium))', background: 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)' }}
                 >
                   <CardContent className="p-6">
                     <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}
+                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 motion-safe:transition-transform motion-safe:duration-300 motion-reduce:hover:scale-100" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}
                     >
                       <Icon className="w-8 h-8 text-white" />
                     </div>
@@ -259,7 +258,7 @@ export default function About() {
         {/* Artisan Process */}
         <section className="mb-20">
           <Card variant="elevated" theme="gradient">
-            <CardHeader className="border-b" style={{ background: 'linear-gradient(90deg, hsla(174,85%,45%,0.05), hsla(43,95%,55%,0.03))', borderBottomColor: 'hsla(174,85%,45%,0.15)' }}>
+            <CardHeader className="border-b" style={{ background: 'linear-gradient(90deg, hsla(174,85%,45%,0.05), hsla(43,95%,55%,0.02))', borderBottomColor: 'hsla(174,85%,45%,0.15)' }}>
               <CardTitle className="text-center">
                 <div className="flex items-center justify-center gap-3" style={{ color: 'hsl(var(--text-primary))' }}>
                   <Zap className="w-8 h-8" style={{ color: 'hsl(var(--accent-vibrant))' }} />
