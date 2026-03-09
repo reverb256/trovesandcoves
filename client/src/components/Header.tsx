@@ -96,7 +96,7 @@ export default function Header() {
                   <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-2xl">Coves</span>
                 </div>
                 <span className="text-xs tracking-widest uppercase"
-                  style={{ color: "#2c2c2c", fontFamily: "'Montserrat', sans-serif" }}
+                  style={{ color: "#2c6f6f", fontFamily: "'Montserrat', sans-serif" }}
                 >
                   Mystical Crystal Jewelry • Winnipeg
                 </span>
@@ -213,8 +213,8 @@ export default function Header() {
                 <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>&</span>
                 <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-4xl">Coves</span>
               </div>
-              <p className="text-sm tracking-widest uppercase opacity-60"
-                style={{ color: "#2c2c2c", fontFamily: "'Montserrat', sans-serif" }}
+              <p className="text-sm tracking-widest uppercase"
+                style={{ color: "#2c6f6f", fontFamily: "'Montserrat', sans-serif" }}
               >
                 Mystical Crystal Jewelry
               </p>

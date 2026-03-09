@@ -87,10 +87,10 @@ export default function Hero() {
           </h1>
 
           <p className="text-base md:text-lg tracking-wide" style={{ fontFamily: "'Montserrat', sans-serif", color: "#4abfbf", fontWeight: 400 }}>
-            Handcrafted Crystal Jewellery
+            Handcrafted Crystal Jewelry
           </p>
 
-          <p className="max-w-2xl text-sm md:text-base leading-relaxed mt-4" style={{ fontFamily: "'Montserrat', sans-serif", color: "hsla(var(--text-secondary),0.8)" }}>
+          <p className="max-w-2xl text-sm md:text-base leading-relaxed mt-4" style={{ fontFamily: "'Montserrat', sans-serif", color: "#2c6f6f" }}>
             Discover the power of transformation with our handcrafted crystal jewelry.
             Each piece is designed to elevate your style and spirit, blending elegance with raw beauty.
           </p>
