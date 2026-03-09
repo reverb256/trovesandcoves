@@ -34,22 +34,32 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-surface-50 px-4">
-      <div className="text-center max-w-md">
-        {/* Crystal emoji for visual interest */}
-        <div className="text-8xl mb-6 animate-pulse">💎</div>
+    <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+      {/* Mystical background effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-20"
+          style={{ backgroundColor: 'hsla(174,85%,45%,0.03)', filter: 'blur(60px)' }}
+        ></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-15"
+          style={{ backgroundColor: 'hsla(43,95%,55%,0.03)', filter: 'blur(80px)' }}
+        ></div>
+      </div>
+
+      <div className="text-center max-w-md relative z-10">
+        {/* Crystal icon with mystical glow */}
+        <div className="text-8xl mb-6 animate-pulse" style={{ filter: 'drop-shadow(0 0 20px hsla(174,85%,45%,0.3))' }}>💎</div>
 
         {/* 404 Heading */}
-        <h1 className="text-6xl font-bold text-on-surface mb-2">
+        <h1 className="text-6xl font-bold mb-2" style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}>
           {type === 'api' ? '⚠️' : '404'}
         </h1>
 
-        <h2 className="text-2xl font-semibold text-on-surface mb-4">
+        <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>
           {getTitle()}
         </h2>
 
         {/* Error message */}
-        <p className="text-on-surface-variant mb-8">
+        <p className="mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
           {getMessage()}
         </p>
 
@@ -57,7 +67,8 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
         <div className="flex gap-4 justify-center flex-wrap">
           <Button
             onClick={() => window.location.href = '/'}
-            className="bg-primary-600 hover:bg-primary-700 text-white"
+            className="hover:opacity-90 transition-all"
+            style={{ backgroundColor: '#4abfbf', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
           >
             <Home className="h-4 w-4 mr-2" />
             Go Home
@@ -67,6 +78,12 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
             <Button
               variant="outline"
               onClick={() => window.location.href = '/products'}
+              className="hover:opacity-80 transition-all"
+              style={{ 
+                borderColor: 'hsla(174,85%,45%,0.3)', 
+                color: '#4abfbf',
+                fontFamily: "'Montserrat', sans-serif"
+              }}
             >
               <Search className="h-4 w-4 mr-2" />
               Browse Products
@@ -75,28 +92,31 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
         </div>
 
         {/* Helpful links */}
-        <div className="mt-12 pt-8 border-t border-outline-variant">
-          <p className="text-sm text-on-surface-variant mb-4">
+        <div className="mt-12 pt-8 border-t" style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}>
+          <p className="text-sm mb-4" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
             Looking for something specific?
           </p>
           <div className="flex gap-4 justify-center text-sm">
             <a
               href="/products"
-              className="text-primary-600 hover:text-primary-700 underline"
+              className="hover:opacity-80 transition-opacity"
+              style={{ color: '#4abfbf', fontFamily: "'Montserrat', sans-serif" }}
             >
               All Products
             </a>
-            <span className="text-outline">•</span>
+            <span style={{ color: '#deb55b' }}>•</span>
             <a
               href="/products?category=necklaces"
-              className="text-primary-600 hover:text-primary-700 underline"
+              className="hover:opacity-80 transition-opacity"
+              style={{ color: '#4abfbf', fontFamily: "'Montserrat', sans-serif" }}
             >
               Necklaces
             </a>
-            <span className="text-outline">•</span>
+            <span style={{ color: '#deb55b' }}>•</span>
             <a
               href="/products?category=bracelets"
-              className="text-primary-600 hover:text-primary-700 underline"
+              className="hover:opacity-80 transition-opacity"
+              style={{ color: '#4abfbf', fontFamily: "'Montserrat', sans-serif" }}
             >
               Bracelets
             </a>

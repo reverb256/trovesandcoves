@@ -54,13 +54,13 @@ export default function CartDrawer() {
 
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
-      <SheetContent className="w-full sm:max-w-md bg-white">
-        <SheetHeader className="pb-6">
-          <SheetTitle className="flex items-center space-x-2 text-navy">
-            <ShoppingBag className="h-5 w-5" />
+      <SheetContent className="w-full sm:max-w-md" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+        <SheetHeader className="pb-6 border-b" style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}>
+          <SheetTitle className="flex items-center gap-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>
+            <ShoppingBag className="h-5 w-5" style={{ color: '#4abfbf' }} />
             <span>Shopping Cart</span>
             {itemCount > 0 && (
-              <Badge variant="secondary" className="bg-elegant-gold text-navy">
+              <Badge variant="secondary" className="ml-2" style={{ backgroundColor: '#deb55b', color: 'hsl(var(--bg-primary))' }}>
                 {itemCount} {itemCount === 1 ? 'item' : 'items'}
               </Badge>
             )}
@@ -69,15 +69,16 @@ export default function CartDrawer() {
 
         {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-96 text-center">
-            <ShoppingBag className="h-16 w-16 text-gray-300 mb-4" />
-            <h3 className="text-lg font-semibold text-gray-600 mb-2">Your cart is empty</h3>
-            <p className="text-gray-500 mb-6">Discover our beautiful jewelry collections</p>
+            <ShoppingBag className="h-16 w-16 mb-4" style={{ color: 'hsla(174,85%,45%,0.3)' }} />
+            <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>Your cart is empty</h3>
+            <p className="mb-6" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>Discover our beautiful jewelry collections</p>
             <Button 
               onClick={() => {
                 toggleCart();
                 setLocation('/products');
               }}
-              className="bg-elegant-gold hover:bg-yellow-400 text-navy"
+              style={{ backgroundColor: '#4abfbf', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
+              className="hover:opacity-90"
             >
               Browse Products
             </Button>
@@ -87,7 +88,7 @@ export default function CartDrawer() {
             {/* Cart Items */}
             <div className="flex-1 overflow-y-auto space-y-4 mb-6">
               {items.map((item) => (
-                <div key={item.id} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                <div key={item.id} className="flex items-center gap-4 p-4 border rounded-lg" style={{ borderColor: 'hsla(174,85%,45%,0.15)', backgroundColor: 'hsla(var(--bg-secondary),0.3)' }}>
                   <img
                     src={item.product.imageUrl}
                     alt={item.product.name}
@@ -97,10 +98,10 @@ export default function CartDrawer() {
                   />
                   
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-navy text-sm line-clamp-2">
+                    <h3 className="font-medium text-sm line-clamp-2" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-primary))' }}>
                       {item.product.name}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm" style={{ fontFamily: "'Libre Baskerville', serif", color: '#deb55b', fontWeight: 600 }}>
                       {formatPrice(item.product.price)}
                     </p>
                     
@@ -130,17 +131,18 @@ export default function CartDrawer() {
                     </div>
                   </div>
                   
-                  <div className="flex flex-col items-end space-y-2">
+                  <div className="flex flex-col items-end gap-2">
                     <Button
                       size="sm"
                       variant="ghost"
                       onClick={() => handleRemoveItem(item.id, item.product.name)}
-                      className="text-red-500 hover:text-red-700 h-8 w-8 p-0"
+                      className="h-8 w-8 p-0 hover:opacity-70"
+                      style={{ color: 'hsl(var(--text-muted))' }}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
                     
-                    <span className="text-sm font-semibold text-elegant-gold">
+                    <span className="text-sm font-semibold" style={{ fontFamily: "'Libre Baskerville', serif", color: '#e1af2f' }}>
                       {formatPrice((parseFloat(item.product.price) * item.quantity).toString())}
                     </span>
                   </div>
@@ -148,20 +150,21 @@ export default function CartDrawer() {
               ))}
             </div>
 
-            <Separator className="my-4" />
+            <Separator className="my-4" style={{ backgroundColor: 'hsla(174,85%,45%,0.15)' }} />
             
             {/* Cart Summary */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-lg font-semibold text-navy">Total:</span>
-                <span className="text-xl font-bold text-elegant-gold">
+                <span className="text-lg font-semibold" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>Total:</span>
+                <span className="text-xl font-bold" style={{ fontFamily: "'Libre Baskerville', serif", color: '#deb55b' }}>
                   {formatPrice(totalAmount.toString())}
                 </span>
               </div>
               
               <Button 
                 onClick={handleCheckout}
-                className="w-full bg-navy text-white py-3 font-semibold hover:bg-rich-blue transition-colors"
+                className="w-full py-3 font-semibold hover:opacity-90 transition-all"
+                style={{ backgroundColor: '#4abfbf', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
               >
                 Secure Checkout
               </Button>
@@ -172,7 +175,12 @@ export default function CartDrawer() {
                   toggleCart();
                   setLocation('/products');
                 }}
-                className="w-full border-navy text-navy hover:bg-navy hover:text-white"
+                className="w-full hover:opacity-80 transition-all"
+                style={{ 
+                  borderColor: 'hsla(174,85%,45%,0.3)', 
+                  color: '#4abfbf',
+                  fontFamily: "'Montserrat', sans-serif"
+                }}
               >
                 Continue Shopping
               </Button>

@@ -7,7 +7,11 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-100 to-amber-200 text-amber-800 shadow-lg transition-all hover:scale-110 hover:shadow-xl dark:from-slate-700 dark:to-slate-800 dark:text-amber-300"
+      className="relative inline-flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all hover:scale-110 hover:shadow-xl"
+      style={{ 
+        background: 'linear-gradient(135deg, hsla(43,95%,55%,0.3), hsla(43,95%,55%,0.5))',
+        color: '#e1af2f'
+      }}
       aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
       title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
     >
