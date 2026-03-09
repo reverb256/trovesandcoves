@@ -9,6 +9,7 @@ import {
   type IStorage
 } from "@shared/types";
 import { crystalJewelryImages, categoryDescriptions } from "./mock-data";
+import { ETSY_PRODUCTS } from "./seed-etsy-products";
 
 // Re-export IStorage for convenience
 export type { IStorage } from "@shared/types";
@@ -256,6 +257,11 @@ export class MemStorage implements IStorage {
 
     // Store all products in the system
     [lepidoliteNecklace, turquoiseBeadedNecklace, citrineNecklace, lapisLazuliPendant, roseQuartzPendant, lapisLazuliMensNecklace, lapisLazuliOnyx, turquoiseLapisNecklace, upcycledEnamelPendant].forEach(product => {
+      this.products.set(product.id, product);
+    });
+
+    // Add Etsy products from your shop
+    ETSY_PRODUCTS.forEach(product => {
       this.products.set(product.id, product);
     });
   }

@@ -22,7 +22,7 @@ export default function SEOHead({
   description = 'Discover the power of transformation with our handcrafted crystal jewelry. Each piece elevates your style and spirit, blending 14k gold-plated elegance with natural crystal beauty. Crafted with intention to empower your energy.',
   keywords = 'crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, crystal energy, transformation jewelry',
   image = '/og-image.jpg',
-  url = 'https://troves-and-coves.com',
+  url = 'https://trovesandcoves.ca',
   type = 'website',
   structuredData,
   location = {
@@ -58,18 +58,19 @@ export default function SEOHead({
       // Open Graph for Facebook, Discord, Messenger
       { property: 'og:title', content: title },
       { property: 'og:description', content: description },
-      { property: 'og:image', content: `${url}${image}` },
+      { property: 'og:image', content: image },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
-      { property: 'og:image:alt', content: 'Troves & Coves Crystal Jewelry' },
+      { property: 'og:image:alt', content: 'Troves & Coves Crystal Jewelry - Hero section with beautiful crystal jewelry display' },
       { property: 'og:url', content: url },
       { property: 'og:type', content: type },
       { property: 'og:site_name', content: 'Troves & Coves' },
       { property: 'og:locale', content: 'en_CA' },
-      { property: 'og:brand', content: 'Troves & Coves' },
 
       // Twitter Card
       { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@trovesandcoves' },
+      { name: 'twitter:creator', content: '@trovesandcoves' },
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
       { name: 'twitter:image', content: image },
@@ -224,6 +225,7 @@ export default function SEOHead({
             'https://www.facebook.com/trovesandcoves',
             'https://www.instagram.com/trovesandcoves',
             'https://www.etsy.com/shop/trovesandcoves',
+            'https://trovesandcoves.ca',
           ],
         },
         {
