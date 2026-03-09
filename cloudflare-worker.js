@@ -143,8 +143,20 @@ async function handleApiRequest(request, env, pathname, corsHeaders) {
 }
 
 async function handleProducts(request, env, corsHeaders) {
-  // Get products from KV storage or external API
-  const products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [
+  // Try to get products from Etsy sync first
+  let products = null;
+
+  if (env.ETSY_PRODUCTS) {
+    const etsyProducts = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
+    if (etsyProducts && etsyProducts.length > 0) {
+      console.log(`Using ${etsyProducts.length} synced Etsy products`);
+      products = etsyProducts;
+    }
+  }
+
+  // Fallback to PRODUCTS_KV or default products
+  if (!products) {
+    products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [
     {
       id: 1,
       name: "Wire Wrapped Crystal Pendant",
@@ -183,8 +195,19 @@ async function handleProducts(request, env, corsHeaders) {
 }
 
 async function handleFeaturedProducts(request, env, corsHeaders) {
-  const products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
-  const featured = products.filter(p => p.featured);
+  // Try Etsy sync first
+  let products = null;
+
+  if (env.ETSY_PRODUCTS) {
+    products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
+  }
+
+  // Fallback to PRODUCTS_KV
+  if (!products) {
+    products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
+  }
+
+  const featured = products.filter(p => p.isFeatured || p.featured);
   
   return new Response(JSON.stringify(featured), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -192,7 +215,17 @@ async function handleFeaturedProducts(request, env, corsHeaders) {
 }
 
 async function handleSingleProduct(request, env, productId, corsHeaders) {
-  const products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
+  // Try Etsy sync first
+  let products = null;
+
+  if (env.ETSY_PRODUCTS) {
+    products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
+  }
+
+  // Fallback to PRODUCTS_KV
+  if (!products) {
+    products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
+  }
   const product = products.find(p => p.id === parseInt(productId));
   
   if (!product) {
@@ -245,14 +278,24 @@ async function handleCart(request, env, corsHeaders) {
 async function handleSearch(request, env, corsHeaders) {
   const url = new URL(request.url);
   const query = url.searchParams.get('q');
-  
+
   if (!query) {
     return new Response(JSON.stringify([]), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
-  
-  const products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
+
+  // Try Etsy sync first
+  let products = null;
+
+  if (env.ETSY_PRODUCTS) {
+    products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
+  }
+
+  // Fallback to PRODUCTS_KV
+  if (!products) {
+    products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
+  }
   const results = products.filter(product => 
     product.name.toLowerCase().includes(query.toLowerCase()) ||
     product.description.toLowerCase().includes(query.toLowerCase()) ||

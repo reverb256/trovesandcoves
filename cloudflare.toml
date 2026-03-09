@@ -35,6 +35,10 @@ id = "analytics_namespace_prod" # Data retention: 30 days max
 binding = "TROVES_CACHE"
 id = "f86192bec4af4f86a8d467b2e565541e" # General caching
 
+[[env.production.kv_namespaces]]
+binding = "ETSY_PRODUCTS"
+id = "etsy_products_namespace_prod" # Shared with Etsy sync worker
+
 # Development environment (shares KV with production to stay within free limits)
 [env.development]
 name = "troves-coves-api-dev"
@@ -54,6 +58,10 @@ id = "analytics_namespace_prod" # Share analytics
 [[env.development.kv_namespaces]]
 binding = "TROVES_CACHE"
 id = "f86192bec4af4f86a8d467b2e565541e" # Share cache
+
+[[env.development.kv_namespaces]]
+binding = "ETSY_PRODUCTS"
+id = "etsy_products_namespace_prod" # Shared with production
 
 # Free tier optimized variables
 [vars]
