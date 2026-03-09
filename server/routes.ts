@@ -24,7 +24,7 @@ function getSessionId(req: Request): string {
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Categories
-  app.get('/api/categories', async (req, res) => {
+  app.get('/api/categories', async (_req, res) => {
     try {
       const categories = await storage.getCategories();
       res.json(categories);
@@ -39,11 +39,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const products = await storage.getProducts();
       const allMaterials = new Set<string>();
-      products.forEach((product: { materials?: string[] }) => {
+      products.forEach((product) => {
         product.materials?.forEach((material: string) => allMaterials.add(material));
       });
       res.json(Array.from(allMaterials).sort());
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching materials:', error);
       res.status(500).json({ message: 'Error fetching materials' });
     }
@@ -54,11 +54,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const products = await storage.getProducts();
       const allGemstones = new Set<string>();
-      products.forEach((product: { gemstones?: string[] }) => {
+      products.forEach((product) => {
         product.gemstones?.forEach((gemstone: string) => allGemstones.add(gemstone));
       });
       res.json(Array.from(allGemstones).sort());
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching gemstones:', error);
       res.status(500).json({ message: 'Error fetching gemstones' });
     }
@@ -76,7 +76,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           category as string
         );
         if (categoryRecord) {
-          products = products.filter((p: { categoryId?: number }) => p.categoryId === categoryRecord.id);
+          products = products.filter((p) => p.categoryId === categoryRecord.id);
         }
       }
 
@@ -88,16 +88,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Filter by material
       if (material && typeof material === 'string') {
         const materialLower = material.toLowerCase();
-        products = products.filter((p: { materials?: string[] }) =>
-          p.materials?.some((m: string) => m.toLowerCase().includes(materialLower))
+        products = products.filter((p) =>
+          p.materials?.some((m) => m.toLowerCase().includes(materialLower)) ?? false
         );
       }
 
       // Filter by gemstone
       if (gemstone && typeof gemstone === 'string') {
         const gemstoneLower = gemstone.toLowerCase();
-        products = products.filter((p: { gemstones?: string[] }) =>
-          p.gemstones?.some((g: string) => g.toLowerCase().includes(gemstoneLower))
+        products = products.filter((p) =>
+          p.gemstones?.some((g) => g.toLowerCase().includes(gemstoneLower)) ?? false
         );
       }
 
@@ -105,25 +105,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (minPrice || maxPrice) {
         const min = minPrice ? parseFloat(minPrice as string) : 0;
         const max = maxPrice ? parseFloat(maxPrice as string) : Infinity;
-        products = products.filter((p: { price: string }) => {
+        products = products.filter((p) => {
           const price = parseFloat(p.price);
           return price >= min && price <= max;
         });
       }
 
       res.json(products);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching products:', error);
       res.status(500).json({ message: 'Error fetching products' });
     }
   });
 
-  app.get('/api/products/featured', async (req, res) => {
+  app.get('/api/products/featured', async (_req, res) => {
     try {
       const products = await storage.getProducts();
       const featured = products.slice(0, 6);
       res.json(featured);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching featured products:', error);
       res.status(500).json({ message: 'Error fetching featured products' });
     }
@@ -137,7 +137,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: 'Product not found' });
       }
       res.json(product);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching product:', error);
       res.status(500).json({ message: 'Error fetching product' });
     }
@@ -149,7 +149,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const sessionId = getSessionId(req);
       const cartItems = await storage.getCartItems(sessionId);
       res.json(cartItems);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching cart:', error);
       res.status(500).json({ message: 'Error fetching cart' });
     }
@@ -166,7 +166,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const cartItem = await storage.addToCart({ sessionId, productId, quantity });
       res.status(201).json(cartItem);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error adding to cart:', error);
       res.status(500).json({ message: 'Error adding to cart' });
     }
@@ -184,7 +184,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const updatedItem = await storage.updateCartItemQuantity(id, quantity);
       res.json(updatedItem);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error updating cart:', error);
       res.status(500).json({ message: 'Error updating cart' });
     }
@@ -195,7 +195,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const id = parseInt(req.params.id);
       await storage.removeFromCart(id);
       res.json({ message: 'Item removed from cart' });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error removing from cart:', error);
       res.status(500).json({ message: 'Error removing from cart' });
     }
@@ -213,7 +213,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const etsyLink = getEtsyLinkForProduct(product.name);
       res.json({ etsyLink });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error generating Etsy link:', error);
       res.status(500).json({ message: 'Error generating Etsy link' });
     }
@@ -227,7 +227,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: "Thank you for your message! We'll get back to you soon.",
         id: submission.id,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error submitting contact form:', error);
       res.status(500).json({ message: 'Error submitting contact form' });
     }
@@ -262,7 +262,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       res.status(201).json(order);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error creating order:', error);
       res.status(500).json({ message: 'Error creating order' });
     }
@@ -276,7 +276,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: 'Order not found' });
       }
       res.json(order);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error fetching order:', error);
       res.status(500).json({ message: 'Error fetching order' });
     }
@@ -285,11 +285,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/orders/:id/status', async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const { status, paymentIntentId } = req.body;
+      const { status } = req.body;
 
       const order = await storage.updateOrderStatus(id, status);
       res.json(order);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error updating order status:', error);
       res.status(500).json({ message: 'Error updating order status' });
     }

@@ -91,16 +91,16 @@ export default function Products() {
   return (
     <div className="min-h-screen bg-mystical-gradient content-layer">
       {/* Mystical Header Section */}
-      <section className="relative py-20 border-b border-[hsla(174,85%,45%,0.1)]">
+      <section className="relative py-20 border-b border-turquoise-light">
         {/* Background glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsla(174,85%,45%,0.05)] via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsla(var(--accent-vibrant),0.05)] via-transparent to-transparent"></div>
 
         <div className="chamber-container relative">
           <div className="text-center">
             {/* Mystical Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[hsla(174,85%,45%,0.3)] rounded-full bg-crystal">
-              <Sparkles className="w-4 h-4 text-[hsl(174,85%,45%)]" />
-              <span className="text-xs tracking-widest uppercase text-[hsl(210,30%,85%)]">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-turquoise-soft rounded-full bg-crystal">
+              <Sparkles className="w-4 h-4 text-turquoise-bright" />
+              <span className="text-xs tracking-widest uppercase text-primary">
                 Crystal Collection
               </span>
             </div>
@@ -117,9 +117,9 @@ export default function Products() {
               )}
             </h1>
 
-            <div className="w-24 h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-[hsla(174,85%,45%,0.5)] to-transparent"></div>
+            <div className="w-24 h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-[hsla(var(--accent-vibrant),0.5)] to-transparent"></div>
 
-            <p className="text-[hsl(210,30%,85%)] opacity-70 text-lg max-w-2xl mx-auto">
+            <p className="text-primary opacity-70 text-lg max-w-2xl mx-auto">
               {currentCategory
                 ? currentCategory.description
                 : 'Where authentic gemstone energies merge with artisan craftsmanship. Each piece channels crystal wisdom to amplify your inner light.'}
@@ -133,28 +133,28 @@ export default function Products() {
           {/* Mystical Sidebar Filters */}
           <aside className="lg:w-72 flex-shrink-0">
             <div className="crystal-card p-6 lg:sticky lg:top-24">
-              <h3 className="text-lg font-semibold text-[hsl(210,30%,85%)] mb-6 flex items-center gap-2">
-                <Filter className="w-5 h-5 text-[hsl(174,85%,45%)]" />
+              <h3 className="text-lg font-semibold text-primary mb-6 flex items-center gap-2">
+                <Filter className="w-5 h-5 text-turquoise-bright" />
                 <span>Refine Your Search</span>
               </h3>
 
               {/* Search */}
               <form onSubmit={handleSearch} className="mb-6">
                 <div className="relative">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[hsl(174,85%,45%)]" />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-turquoise-bright" />
                   <input
                     type="text"
                     placeholder="Search crystals..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-[hsla(240,15%,6%,0.5)] border border-[hsla(174,85%,45%,0.2)] rounded-lg text-[hsl(210,30%,85%)] placeholder-[hsl(210,30%,85%,0.4)] focus:border-[hsla(174,85%,45%,0.5)] focus:outline-none focus:ring-1 focus:ring-[hsla(174,85%,45%,0.3)] transition-colors duration-300"
+                    className="w-full pl-12 pr-4 py-3 bg-input-dark border border-[hsla(var(--accent-vibrant),0.2)] rounded-lg text-primary placeholder:text-primary/40 focus:border-turquoise-soft focus:outline-none focus:ring-1 focus:ring-[hsla(var(--accent-vibrant),0.3)] transition-colors duration-300"
                   />
                 </div>
               </form>
 
               {/* Categories */}
               <div className="mb-6">
-                <h4 className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60 mb-3">
+                <h4 className="text-sm tracking-wider uppercase text-primary opacity-60 mb-3">
                   Categories
                 </h4>
                 <div className="space-y-2">
@@ -162,9 +162,10 @@ export default function Products() {
                     onClick={() => (window.location.href = '/products')}
                     className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-300 ${
                       !category
-                        ? 'bg-[hsla(174,85%,45%,0.2)] text-[hsl(174,85%,45%)] border border-[hsla(174,85%,45%,0.3)]'
-                        : 'text-[hsl(210,30%,85%)] opacity-70 hover:bg-[hsla(174,85%,45%,0.1)] hover:text-[hsl(174,85%,45%)]'
+                        ? 'bg-turquoise-medium border border-turquoise-soft'
+                        : 'text-primary opacity-70 hover:bg-turquoise-soft'
                     }`}
+                    style={{ color: !category ? 'hsl(174 70% 30%)' : undefined }}
                   >
                     All Collections
                   </button>
@@ -174,9 +175,10 @@ export default function Products() {
                       onClick={() => (window.location.href = `/products/${cat.slug}`)}
                       className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-300 ${
                         category === cat.slug
-                          ? 'bg-[hsla(174,85%,45%,0.2)] text-[hsl(174,85%,45%)] border border-[hsla(174,85%,45%,0.3)]'
-                          : 'text-[hsl(210,30%,85%)] opacity-70 hover:bg-[hsla(174,85%,45%,0.1)] hover:text-[hsl(174,85%,45%)]'
+                          ? 'bg-turquoise-medium border border-turquoise-soft'
+                          : 'text-primary opacity-70 hover:bg-turquoise-soft'
                       }`}
+                      style={{ color: category === cat.slug ? 'hsl(174 70% 30%)' : undefined }}
                     >
                       {cat.name}
                     </button>
@@ -186,13 +188,13 @@ export default function Products() {
 
               {/* Sort By */}
               <div className="mb-6">
-                <h4 className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60 mb-3">
+                <h4 className="text-sm tracking-wider uppercase text-primary opacity-60 mb-3">
                   Sort By
                 </h4>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full px-4 py-3 bg-[hsla(240,15%,6%,0.5)] border border-[hsla(174,85%,45%,0.2)] rounded-lg text-[hsl(210,30%,85%)] focus:border-[hsla(174,85%,45%,0.5)] focus:outline-none focus:ring-1 focus:ring-[hsla(174,85%,45%,0.3)] transition-colors duration-300 cursor-pointer"
+                  className="w-full px-4 py-3 bg-input-dark border border-[hsla(var(--accent-vibrant),0.2)] rounded-lg text-primary focus:border-turquoise-soft focus:outline-none focus:ring-1 focus:ring-[hsla(var(--accent-vibrant),0.3)] transition-colors duration-300 cursor-pointer"
                 >
                   <option value="featured">Featured</option>
                   <option value="price-low">Price: Low to High</option>
@@ -206,7 +208,8 @@ export default function Products() {
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-[hsla(43,95%,55%,0.3)] rounded-lg text-[hsl(43,95%,55%)] hover:bg-[hsla(43,95%,55%,0.1)] transition-colors duration-300"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gold-soft rounded-lg hover:bg-gold-soft transition-colors duration-300"
+                  style={{ color: 'hsl(38 80% 35%)' }}
                 >
                   <X className="w-4 h-4" />
                   <span>Clear All Filters</span>
@@ -219,7 +222,7 @@ export default function Products() {
           <main className="flex-1">
             {/* Results Header */}
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-semibold text-[hsl(210,30%,85%)]">
+              <h2 className="text-2xl font-semibold text-primary">
                 {filteredAndSortedProducts.length}{' '}
                 <span className="opacity-60">
                   {filteredAndSortedProducts.length === 1 ? 'Crystal' : 'Crystals'}
@@ -237,7 +240,7 @@ export default function Products() {
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     <div className="w-full h-full flex items-center justify-center">
-                      <div className="w-16 h-16 border-2 border-[hsla(174,85%,45%,0.3)] border-t-[hsla(174,85%,45%,0.8)] rounded-full animate-spin"></div>
+                      <div className="w-16 h-16 border-2 border-turquoise-soft border-t-[hsla(var(--accent-vibrant),0.8)] rounded-full animate-spin"></div>
                     </div>
                   </div>
                 ))}
@@ -245,11 +248,11 @@ export default function Products() {
             ) : filteredAndSortedProducts.length === 0 ? (
               /* No Results */
               <div className="crystal-card p-16 text-center">
-                <Filter className="w-16 h-16 text-[hsl(210,30%,85%)] opacity-30 mx-auto mb-6" />
-                <h3 className="text-2xl font-semibold text-[hsl(210,30%,85%)] mb-4">
+                <Filter className="w-16 h-16 text-primary opacity-30 mx-auto mb-6" />
+                <h3 className="text-2xl font-semibold text-primary mb-4">
                   No crystals found
                 </h3>
-                <p className="text-[hsl(210,30%,85%)] opacity-60 mb-8">
+                <p className="text-primary opacity-60 mb-8">
                   {searchQuery
                     ? `No crystals match your search for "${searchQuery}"`
                     : 'No crystals match your current filters'}
@@ -273,7 +276,7 @@ export default function Products() {
                   >
                     <div className="crystal-card h-full p-6">
                       {/* Product Image */}
-                      <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(240,20%,8%,0.5)] to-[hsla(240,15%,6%,0.8)] border border-[hsla(174,85%,45%,0.1)]">
+                      <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-turquoise-light">
                         <img
                           src={product.imageUrl || '/api/placeholder/300/300'}
                           alt={product.name}
@@ -282,11 +285,11 @@ export default function Products() {
                           decoding="async"
                         />
                         {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[hsla(240,15%,6%,0.8)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-[hsla(var(--bg-overlay),0.8)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                         {/* Category Badge */}
                         {product.category && (
-                          <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(174,85%,45%,0.2)] border border-[hsla(174,85%,45%,0.3)] text-[hsl(174,85%,45%)] rounded-full backdrop-blur-sm">
+                          <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase bg-turquoise-medium border border-turquoise-soft rounded-full backdrop-blur-sm" style={{ color: '#2c2c2c' }}>
                             {product.category.name}
                           </div>
                         )}
@@ -294,16 +297,16 @@ export default function Products() {
 
                       {/* Product Info */}
                       <div className="text-center">
-                        <h3 className="text-xl font-semibold text-[hsl(210,30%,85%)] mb-2 group-hover:text-[hsl(174,85%,45%)] transition-colors duration-300">
+                        <h3 className="text-xl font-semibold text-primary mb-2 group-hover:text-turquoise-bright transition-colors duration-300">
                           {product.name}
                         </h3>
 
-                        <p className="text-sm text-[hsl(210,30%,85%)] opacity-60 mb-4 line-clamp-2">
+                        <p className="text-sm text-primary opacity-60 mb-4 line-clamp-2">
                           {product.description}
                         </p>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-[hsla(174,85%,45%,0.1)]">
-                          <span className="text-lg font-semibold text-[hsl(43,95%,55%)]">
+                        <div className="flex items-center justify-between pt-4 border-t border-turquoise-light">
+                          <span className="text-lg font-semibold text-wcag-gold">
                             ${product.price}
                           </span>
                         </div>

@@ -37,7 +37,7 @@ export interface Product {
   imageUrl: string;
   images?: string[] | null;
   imageUrls?: string[] | null; // Alias for backward compatibility
-  categoryId: number;
+  categoryId: number | null;
   category?: Category | null;
   materials?: string[] | null;
   gemstones?: string[] | null;
@@ -52,6 +52,11 @@ export interface Product {
   careInstructions?: string | null; // Care instructions for the jewelry
   metadata?: Record<string, unknown> | null;
   createdAt?: Date | null;
+  // Additional UI properties
+  isNew?: boolean;
+  isOnSale?: boolean;
+  originalPrice?: string;
+  crystalType?: string;
 }
 
 export interface Category {
@@ -91,8 +96,8 @@ export interface Order {
 
 export interface OrderItem {
   id: number;
-  orderId: number;
-  productId: number;
+  orderId: number | null;
+  productId: number | null;
   quantity: number;
   price: string;
   product?: Product | null;

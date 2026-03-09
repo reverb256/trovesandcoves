@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useEffect, ReactNode } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import type { CartItemWithProduct } from "@shared/types";
 import { STALE_TIME_IMMEDIATE } from "@/constants";
 
@@ -51,7 +51,6 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
-  const queryClient = useQueryClient();
 
   // Fetch cart items
   const { data: cartItems = [], isLoading, refetch } = useQuery<CartItemWithProduct[]>({

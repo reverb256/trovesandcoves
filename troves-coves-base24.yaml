@@ -1,0 +1,38 @@
+# Tinted Base24 Scheme: Troves & Coves
+# Based on turquoise skull cover image analysis
+# Mystical Crystal Jewelry Theme
+
+system: "base24"
+name: "Troves & Coves"
+author: "Troves & Coves (https://linktr.ee/trovesandcoves)"
+variant: "dark"
+
+palette:
+  # Backgrounds - Dark mystical tones
+  base00: "#1a1a1e"  # Deepest background
+  base01: "#232329"  # Secondary background
+  base02: "#2d2d36"  # Tertiary background
+  base03: "#3d3d4a"  # Elevated surface
+
+  # Foregrounds
+  base04: "#a8a8b8"  # Muted text
+  base05: "#d4d4e0"  # Primary text
+  base06: "#e8e8f0"  # Bright text
+  base07: "#f5f5fa"  # Pure white text
+
+  # Core Brand Colors - From cover image
+  base08: "#40E0D0"  # TURQUOISE - Primary brand color
+  base09: "#D4AF37"  # GOLD - Secondary/accent color
+  base0A: "#FF69B4"  # HOT PINK - Accent
+  base0B: "#87CEEB"  # SKY BLUE - Soft accent
+  base0C: "#5FB4B4"  # MUTED TURQUOISE - Secondary
+
+  # Extended palette (base24)
+  base10: "#1e2528"  # Deep blue-green shadow
+  base11: "#2a3337"  # Warm stone background
+  base12: "#3AE0D0"  # BRIGHT TURQUOISE highlight
+  base13: "#E4C247"  # BRIGHT GOLD highlight
+  base14: "#FF7BC4"  # SOFT PINK
+  base15: "#A0DEEB"  # PALE BLUE
+  base16: "#4090B0"  # DEEP OCEAN
+  base17: "#B84A90"  # DEEP PINK

@@ -1,5 +1,31 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
+// Get API base URL from environment or use defaults
+const isDevelopment = import.meta.env.DEV || typeof window !== 'undefined' && window.location.hostname === 'localhost';
+const DEFAULT_DEV_API = '/api';
+const DEFAULT_PROD_API = import.meta.env.VITE_CLOUDFLARE_API || 'https://api.trovesandcoves.ca';
+
+// Session management with atomic get-or-create
+const SESSION_KEY = 'trovesandcoves_session';
+
+function getOrCreateSessionId(): string {
+  // Atomic get-or-create to prevent race conditions
+  let sessionId = localStorage.getItem(SESSION_KEY);
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem(SESSION_KEY, sessionId);
+  }
+  return sessionId;
+}
+
+function getApiUrl(path: string): string {
+  // Only route /api/ paths through Cloudflare in production
+  const isApiPath = path.startsWith('/api/');
+  if (!isApiPath) return path;
+
+  return isDevelopment ? DEFAULT_DEV_API : DEFAULT_PROD_API + path;
+}
+
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
@@ -12,22 +38,16 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  // Route API calls through Cloudflare for GitHub Pages deployment, local for development
-  const isDevelopment = import.meta.env.DEV || window.location.hostname === 'localhost';
-  const cloudflareApiBase = 'https://api.trovesandcoves.ca';
-  const finalUrl = url.startsWith('/api/') && !isDevelopment ? `${cloudflareApiBase}${url}` : url;
-  
-  const sessionId = localStorage.getItem('trovesandcoves_session') || crypto.randomUUID();
-  if (!localStorage.getItem('trovesandcoves_session')) {
-    localStorage.setItem('trovesandcoves_session', sessionId);
-  }
+  const finalUrl = getApiUrl(url);
+  const sessionId = getOrCreateSessionId();
+  const platform = isDevelopment ? 'development' : 'github-pages';
 
   const res = await fetch(finalUrl, {
     method,
     headers: {
       ...(data ? { "Content-Type": "application/json" } : {}),
       'x-session-id': sessionId,
-      'x-platform': isDevelopment ? 'development' : 'github-pages'
+      'x-platform': platform
     },
     body: data ? JSON.stringify(data) : undefined,
     credentials: "include",
@@ -43,22 +63,16 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    // Route API calls through Cloudflare for GitHub Pages deployment, local for development
-    const isDevelopment = import.meta.env.DEV || window.location.hostname === 'localhost';
-    const cloudflareApiBase = 'https://api.trovesandcoves.ca';
     const url = queryKey[0] as string;
-    const finalUrl = url.startsWith('/api/') && !isDevelopment ? `${cloudflareApiBase}${url}` : url;
-    
-    const sessionId = localStorage.getItem('trovesandcoves_session') || crypto.randomUUID();
-    if (!localStorage.getItem('trovesandcoves_session')) {
-      localStorage.setItem('trovesandcoves_session', sessionId);
-    }
+    const finalUrl = getApiUrl(url);
+    const sessionId = getOrCreateSessionId();
+    const platform = isDevelopment ? 'development' : 'github-pages';
 
     const res = await fetch(finalUrl, {
       credentials: "include",
       headers: {
         'x-session-id': sessionId,
-        'x-platform': isDevelopment ? 'development' : 'github-pages'
+        'x-platform': platform
       }
     });
 

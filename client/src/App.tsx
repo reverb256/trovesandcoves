@@ -4,6 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { CartProvider } from '@/lib/store';
+import { ThemeProvider } from '@/lib/theme';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
@@ -20,16 +21,22 @@ import Warranty from '@/pages/Warranty';
 import Returns from '@/pages/Returns';
 import Financing from '@/pages/Financing';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
+import Showcase from '@/pages/Showcase';
+import StyleGuide from '@/pages/StyleGuide';
 import NotFound from '@/pages/not-found';
+
+// Get base path from Vite's base config or default to '/'
+const basePath = import.meta.env.BASE_URL || '/';
 
 function Router() {
   return (
-    <WouterRouter>
-      <div className="min-h-screen bg-mystical-gradient">
+    <WouterRouter base={basePath}>
+      <div className="min-h-screen">
         <Header />
         <main id="main-content">
           <Switch>
             <Route path="/" component={Home} />
+            <Route path="/showcase" component={Showcase} />
             <Route path="/products" component={Products} />
             <Route path="/products/:category" component={Products} />
             <Route path="/products/:id" component={ProductDetail} />
@@ -43,6 +50,7 @@ function Router() {
             <Route path="/returns" component={Returns} />
             <Route path="/financing" component={Financing} />
             <Route path="/privacy-policy" component={PrivacyPolicy} />
+            <Route path="/style-guide" component={StyleGuide} />
             <Route component={NotFound} />
           </Switch>
         </main>
@@ -56,12 +64,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <CartProvider>
-          <Toaster />
-          <Router />
-        </CartProvider>
-      </TooltipProvider>
+      <ThemeProvider>
+        <TooltipProvider>
+          <CartProvider>
+            <Toaster />
+            <Router />
+          </CartProvider>
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

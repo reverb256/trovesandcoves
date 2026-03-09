@@ -109,7 +109,7 @@ export default function About() {
       <div className="container mx-auto px-4 py-16">
         {/* Mission Statement */}
         <section className="mb-20">
-          <Card variant="elevated" theme="gradient"
+          <Card variant="elevated" theme="gradient">
             <CardContent className="p-12 text-center">
               <div className="mb-8">
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-troves-turquoise to-coves-cursive-blue rounded-full mb-6">
@@ -241,7 +241,7 @@ export default function About() {
 
         {/* Artisan Process */}
         <section className="mb-20">
-          <Card variant="elevated" theme="gradient"
+          <Card variant="elevated" theme="gradient">
             <CardHeader className="border-b" style={{ background: 'linear-gradient(90deg, hsla(var(--accent-vibrant), 0.1), hsla(var(--accent-vibrant), 0.05), hsla(215 95% 55%, 0.05))', borderBottomColor: 'hsl(var(--border-medium))' }}>
               <CardTitle className="text-center">
                 <div className="flex items-center justify-center space-x-3" style={{ color: 'hsl(var(--text-primary))' }}>
@@ -324,7 +324,7 @@ export default function About() {
 
         {/* Connection & Community */}
         <section className="mb-20">
-          <Card variant="elevated" theme="gradient"
+          <Card variant="elevated" theme="gradient">
             <CardContent className="p-12 text-center">
               <div className="mb-8">
                 <h2 className="text-3xl font-bold mb-6" style={{ color: 'hsl(var(--text-primary))' }}>

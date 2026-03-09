@@ -8,9 +8,10 @@ import { apiUtils } from '@/apiClient';
 import { Collapsible, CollapsibleContent } from './ui/collapsible';
 import { Label } from './ui/label';
 import { Slider } from './ui/slider';
+import type { ProductWithCategory } from '@shared/types';
 
 interface SearchBarProps {
-  onResultsChange?: (results: any[]) => void;
+  onResultsChange?: (results: ProductWithCategory[]) => void;
   onFiltersChange?: (filters: FilterState) => void;
   initialSearch?: string;
 }

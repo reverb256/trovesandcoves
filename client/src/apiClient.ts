@@ -20,11 +20,6 @@ interface RequestOptions extends RequestInit {
   timeout?: number;
 }
 
-interface CartItem {
-  productId: number;
-  quantity: number;
-}
-
 interface OrderData {
   [key: string]: unknown;
 }

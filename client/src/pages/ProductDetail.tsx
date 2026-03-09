@@ -66,7 +66,7 @@ export default function ProductDetail() {
     return (
       <div className="min-h-screen bg-mystical-gradient flex items-center justify-center content-layer">
         <div className="crystal-card p-16">
-          <div className="w-20 h-20 border-4 border-[hsla(174,85%,45%,0.2)] border-t-[hsla(174,85%,45%,0.8)] rounded-full animate-spin"></div>
+          <div className="w-20 h-20 border-4 border-[hsla(var(--accent-vibrant),0.2)] border-t-[hsla(var(--accent-vibrant),0.8)] rounded-full animate-spin"></div>
         </div>
       </div>
     );
@@ -76,11 +76,11 @@ export default function ProductDetail() {
     return (
       <div className="min-h-screen bg-mystical-gradient flex items-center justify-center content-layer">
         <div className="crystal-card p-16 text-center max-w-md">
-          <Gem className="w-16 h-16 text-[hsl(174,85%,45%)] opacity-50 mx-auto mb-6" />
-          <h2 className="text-2xl font-semibold text-[hsl(210,30%,85%)] mb-4">
+          <Gem className="w-16 h-16 text-turquoise-bright opacity-50 mx-auto mb-6" />
+          <h2 className="text-2xl font-semibold text-primary mb-4">
             Crystal Not Found
           </h2>
-          <p className="text-[hsl(210,30%,85%)] opacity-60 mb-8">
+          <p className="text-primary opacity-60 mb-8">
             The crystal you seek does not exist or has transcended to another realm.
           </p>
           <button onClick={() => setLocation('/products')} className="btn-mystical">
@@ -96,29 +96,29 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen bg-mystical-gradient content-layer">
       {/* Breadcrumb Navigation */}
-      <div className="border-b border-[hsla(174,85%,45%,0.1)]">
+      <div className="border-b border-turquoise-light">
         <div className="chamber-container py-4">
           <div className="flex items-center gap-3 text-sm overflow-x-auto">
             <button
               onClick={() => setLocation('/products')}
-              className="flex items-center gap-2 text-[hsl(174,85%,45%)] hover:text-[hsl(180,80%,60%)] transition-colors whitespace-nowrap"
+              className="flex items-center gap-2 text-turquoise-bright hover:text-[hsl(var(--accent-vibrant))] transition-colors whitespace-nowrap"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Collections</span>
             </button>
-            <span className="text-[hsl(43,95%,55%,0.5)]">/</span>
+            <span className="text-[hsla(var(--gold-medium),0.5)]">/</span>
             {product.category && (
               <>
                 <Link
                   href={`/products/${product.category.slug}`}
-                  className="text-[hsl(210,30%,85%)] hover:text-[hsl(174,85%,45%)] transition-colors whitespace-nowrap"
+                  className="text-primary hover:text-turquoise-bright transition-colors whitespace-nowrap"
                 >
                   {product.category.name}
                 </Link>
-                <span className="text-[hsl(43,95%,55%,0.5)]">/</span>
+                <span className="text-[hsla(var(--gold-medium),0.5)]">/</span>
               </>
             )}
-            <span className="text-[hsl(210,30%,85%)] opacity-60 truncate max-w-[200px]" title={product.name}>
+            <span className="text-primary opacity-60 truncate max-w-[200px]" title={product.name}>
               {product.name}
             </span>
           </div>
@@ -131,7 +131,7 @@ export default function ProductDetail() {
           <div className="space-y-6">
             {/* Main Image */}
             <div className="crystal-card p-2">
-              <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[hsla(240,20%,8%,0.5)] to-[hsla(240,15%,6%,0.8)] border border-[hsla(174,85%,45%,0.1)]">
+              <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-turquoise-light">
                 <img
                   src={images[selectedImage]}
                   alt={product.name}
@@ -140,21 +140,21 @@ export default function ProductDetail() {
                 {/* Stock Badge */}
                 {product.stockQuantity !== undefined && product.stockQuantity !== null ? (
                   product.stockQuantity <= 5 && product.stockQuantity > 0 ? (
-                    <div className="absolute top-4 left-4 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(43,95%,55%,0.3)] border border-[hsla(43,95%,55%,0.5)] text-[hsl(43,95%,55%)] rounded-full backdrop-blur-sm">
+                    <div className="absolute top-4 left-4 px-3 py-1 text-xs tracking-wider uppercase bg-gold-medium border border-gold-soft text-gold-bright rounded-full backdrop-blur-sm">
                       Only {product.stockQuantity} left
                     </div>
                   ) : product.stockQuantity === 0 && (
-                    <div className="absolute top-4 left-4 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(210,30%,85%,0.2)] border border-[hsla(210,30%,85%,0.3)] text-[hsl(210,30%,85%)] rounded-full backdrop-blur-sm">
+                    <div className="absolute top-4 left-4 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(var(--bg-tertiary),0.3)] border border-[hsla(var(--border-medium),0.4)] text-primary rounded-full backdrop-blur-sm">
                       Out of Stock
                     </div>
                   )
                 ) : !product.inStock && (
-                  <div className="absolute top-4 left-4 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(210,30%,85%,0.2)] border border-[hsla(210,30%,85%,0.3)] text-[hsl(210,30%,85%)] rounded-full backdrop-blur-sm">
+                  <div className="absolute top-4 left-4 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(var(--bg-tertiary),0.3)] border border-[hsla(var(--border-medium),0.4)] text-primary rounded-full backdrop-blur-sm">
                     Out of Stock
                   </div>
                 )}
                 {product.isFeatured && (
-                  <div className="absolute top-4 right-4 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(43,95%,55%,0.3)] border border-[hsla(43,95%,55%,0.5)] text-[hsl(43,95%,55%)] rounded-full backdrop-blur-sm flex items-center gap-1">
+                  <div className="absolute top-4 right-4 px-3 py-1 text-xs tracking-wider uppercase bg-gold-medium border border-gold-soft text-gold-bright rounded-full backdrop-blur-sm flex items-center gap-1">
                     <Star className="w-3 h-3" />
                     <span>Featured</span>
                   </div>
@@ -172,7 +172,7 @@ export default function ProductDetail() {
                     className={`flex-shrink-0 w-20 h-20 border-2 overflow-hidden transition-colors duration-300 ${
                       selectedImage === index
                         ? 'border-[hsl(174,85%,45%)] glow-turquoise'
-                        : 'border-[hsla(174,85%,45%,0.2)] hover:border-[hsla(174,85%,45%,0.4)]'
+                        : 'border-[hsla(var(--accent-vibrant),0.2)] hover:border-[hsla(var(--accent-vibrant),0.4)]'
                     }`}
                   >
                     <img
@@ -192,26 +192,26 @@ export default function ProductDetail() {
           <div className="space-y-8">
             {/* Category Badge */}
             {product.category && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 border border-[hsla(174,85%,45%,0.3)] rounded-full bg-[hsla(174,85%,45%,0.1)]">
-                <Sparkles className="w-4 h-4 text-[hsl(174,85%,45%)]" />
-                <span className="text-xs tracking-wider uppercase text-[hsl(174,85%,45%)]">
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-turquoise-soft rounded-full bg-turquoise-soft">
+                <Sparkles className="w-4 h-4 text-turquoise-bright" />
+                <span className="text-xs tracking-wider uppercase text-turquoise-bright">
                   {product.category.name}
                 </span>
               </div>
             )}
 
             {/* Product Name */}
-            <h1 className="text-4xl md:text-5xl font-bold text-[hsl(210,30%,85%)]">
+            <h1 className="text-4xl md:text-5xl font-bold text-primary">
               {product.name}
             </h1>
 
             {/* Price */}
-            <div className="text-4xl font-bold text-[hsl(43,95%,55%)] glow-gold">
+            <div className="text-4xl font-bold text-gold-bright glow-gold">
               {formatPrice(product.price)}
             </div>
 
             {/* Description */}
-            <p className="text-lg text-[hsl(210,30%,85%)] opacity-80 leading-relaxed">
+            <p className="text-lg text-primary opacity-80 leading-relaxed">
               {product.description}
             </p>
 
@@ -220,33 +220,33 @@ export default function ProductDetail() {
               <div className="space-y-3 p-6 crystal-card">
                 {product.materials && product.materials.length > 0 && (
                   <div>
-                    <span className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60">
+                    <span className="text-sm tracking-wider uppercase text-primary opacity-60">
                       Materials:{' '}
                     </span>
-                    <span className="text-[hsl(210,30%,85%)]">{product.materials.join(', ')}</span>
+                    <span className="text-primary">{product.materials.join(', ')}</span>
                   </div>
                 )}
                 {product.gemstones && product.gemstones.length > 0 && (
                   <div>
-                    <span className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60">
+                    <span className="text-sm tracking-wider uppercase text-primary opacity-60">
                       Gemstones:{' '}
                     </span>
-                    <span className="text-[hsl(210,30%,85%)]">{product.gemstones.join(', ')}</span>
+                    <span className="text-primary">{product.gemstones.join(', ')}</span>
                   </div>
                 )}
                 {product.weight && (
                   <div>
-                    <span className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60">
+                    <span className="text-sm tracking-wider uppercase text-primary opacity-60">
                       Weight:{' '}
                     </span>
-                    <span className="text-[hsl(210,30%,85%)]">{product.weight}g</span>
+                    <span className="text-primary">{product.weight}g</span>
                   </div>
                 )}
                 <div>
-                  <span className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60">
+                  <span className="text-sm tracking-wider uppercase text-primary opacity-60">
                     SKU:{' '}
                   </span>
-                  <span className="text-[hsl(210,30%,85%)]">{product.sku}</span>
+                  <span className="text-primary">{product.sku}</span>
                 </div>
               </div>
             )}
@@ -254,23 +254,23 @@ export default function ProductDetail() {
             {/* Quantity Selector */}
             <div className="space-y-4">
               <div className="flex items-center gap-6">
-                <span className="text-sm tracking-wider uppercase text-[hsl(210,30%,85%)] opacity-60">
+                <span className="text-sm tracking-wider uppercase text-primary opacity-60">
                   Quantity
                 </span>
-                <div className="flex items-center border border-[hsla(174,85%,45%,0.3)] rounded-lg overflow-hidden">
+                <div className="flex items-center border border-turquoise-soft rounded-lg overflow-hidden">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-3 text-[hsl(174,85%,45%)] hover:bg-[hsla(174,85%,45%,0.1)] transition-colors"
+                    className="p-3 text-turquoise-bright hover:bg-turquoise-soft transition-colors"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="px-6 py-3 min-w-[4rem] text-center text-[hsl(210,30%,85%)] font-semibold">
+                  <span className="px-6 py-3 min-w-[4rem] text-center text-primary font-semibold">
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(Math.min(product.stockQuantity ?? 99, quantity + 1))}
                     disabled={quantity >= (product.stockQuantity ?? 99)}
-                    className="p-3 text-[hsl(174,85%,45%)] hover:bg-[hsla(174,85%,45%,0.1)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="p-3 text-turquoise-bright hover:bg-turquoise-soft transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -280,18 +280,18 @@ export default function ProductDetail() {
               {/* Stock Status */}
               {product.stockQuantity !== undefined && product.stockQuantity !== null ? (
                 product.stockQuantity > 0 ? (
-                  <p className="text-sm text-[hsl(174,85%,45%)]">
+                  <p className="text-sm text-turquoise-bright">
                     ✓ In stock ({product.stockQuantity} available)
                   </p>
                 ) : (
-                  <p className="text-sm text-[hsl(210,30%,85%)] opacity-60">
+                  <p className="text-sm text-primary opacity-60">
                     ✗ Out of stock
                   </p>
                 )
               ) : product.inStock ? (
-                <p className="text-sm text-[hsl(174,85%,45%)]">✓ In stock</p>
+                <p className="text-sm text-turquoise-bright">✓ In stock</p>
               ) : (
-                <p className="text-sm text-[hsl(210,30%,85%)] opacity-60">✗ Out of stock</p>
+                <p className="text-sm text-primary opacity-60">✗ Out of stock</p>
               )}
             </div>
 
@@ -308,7 +308,7 @@ export default function ProductDetail() {
                 </button>
                 <button
                   onClick={handleWishlist}
-                  className="p-4 border border-[hsla(43,95%,55%,0.3)] rounded-lg text-[hsl(43,95%,55%)] hover:bg-[hsla(43,95%,55%,0.1)] transition-colors duration-300"
+                  className="p-4 border border-gold-soft rounded-lg text-gold-bright hover:bg-gold-soft transition-colors duration-300"
                 >
                   <Heart className="w-5 h-5" />
                 </button>
@@ -322,18 +322,18 @@ export default function ProductDetail() {
             </div>
 
             {/* Features */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[hsla(174,85%,45%,0.1)]">
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-turquoise-light">
               <div className="text-center">
-                <Truck className="w-6 h-6 text-[hsl(43,95%,55%)] mx-auto mb-2" />
-                <p className="text-xs text-[hsl(210,30%,85%)] opacity-60">Free Shipping</p>
+                <Truck className="w-6 h-6 text-gold-bright mx-auto mb-2" />
+                <p className="text-xs text-primary opacity-60">Free Shipping</p>
               </div>
               <div className="text-center">
-                <Shield className="w-6 h-6 text-[hsl(43,95%,55%)] mx-auto mb-2" />
-                <p className="text-xs text-[hsl(210,30%,85%)] opacity-60">Lifetime Warranty</p>
+                <Shield className="w-6 h-6 text-gold-bright mx-auto mb-2" />
+                <p className="text-xs text-primary opacity-60">Lifetime Warranty</p>
               </div>
               <div className="text-center">
-                <Gem className="w-6 h-6 text-[hsl(43,95%,55%)] mx-auto mb-2" />
-                <p className="text-xs text-[hsl(210,30%,85%)] opacity-60">Ethically Sourced</p>
+                <Gem className="w-6 h-6 text-gold-bright mx-auto mb-2" />
+                <p className="text-xs text-primary opacity-60">Ethically Sourced</p>
               </div>
             </div>
           </div>
@@ -371,20 +371,20 @@ function RelatedProducts({
   }
 
   return (
-    <section className="chamber-section border-t border-[hsla(174,85%,45%,0.1)]">
+    <section className="chamber-section border-t border-turquoise-light">
       <div className="chamber-container">
         <div className="text-center mb-12">
           {/* Mystical Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[hsla(43,95%,55%,0.3)] rounded-full bg-[hsla(43,95%,55%,0.1)]">
-            <Star className="w-4 h-4 text-[hsl(43,95%,55%)]" />
-            <span className="text-xs tracking-widest uppercase text-[hsl(210,30%,85%)]">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-gold-soft rounded-full bg-gold-soft">
+            <Star className="w-4 h-4 text-gold-bright" />
+            <span className="text-xs tracking-widest uppercase text-primary">
               You Might Also Love
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="text-shimmer">Similar Pieces</span>
           </h2>
-          <p className="text-[hsl(210,30%,85%)] opacity-60 max-w-xl mx-auto">
+          <p className="text-primary opacity-60 max-w-xl mx-auto">
             Discover more crystalline treasures from our curated collection
           </p>
         </div>
@@ -393,7 +393,7 @@ function RelatedProducts({
           {filteredProducts.map((product) => (
             <Link key={product.id} href={`/products/${product.id}`} className="group block">
               <div className="crystal-card h-full p-6">
-                <div className="aspect-square mb-4 overflow-hidden bg-gradient-to-br from-[hsla(240,20%,8%,0.5)] to-[hsla(240,15%,6%,0.8)] border border-[hsla(174,85%,45%,0.1)]">
+                <div className="aspect-square mb-4 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-turquoise-light">
                   <img
                     src={product.imageUrl || '/api/placeholder/300/300'}
                     alt={product.name}
@@ -402,18 +402,18 @@ function RelatedProducts({
                     decoding="async"
                   />
                 </div>
-                <h3 className="text-lg font-semibold text-[hsl(210,30%,85%)] mb-2 group-hover:text-[hsl(174,85%,45%)] transition-colors">
+                <h3 className="text-lg font-semibold text-primary mb-2 group-hover:text-turquoise-bright transition-colors">
                   {product.name}
                 </h3>
-                <p className="text-sm text-[hsl(210,30%,85%)] opacity-60 mb-3 line-clamp-2">
+                <p className="text-sm text-primary opacity-60 mb-3 line-clamp-2">
                   {product.description}
                 </p>
-                <div className="flex items-center justify-between pt-4 border-t border-[hsla(174,85%,45%,0.1)]">
-                  <span className="text-lg font-semibold text-[hsl(43,95%,55%)]">
+                <div className="flex items-center justify-between pt-4 border-t border-turquoise-light">
+                  <span className="text-lg font-semibold text-gold-bright">
                     ${product.price}
                   </span>
                   {product.category && (
-                    <span className="text-xs px-3 py-1 bg-[hsla(174,85%,45%,0.1)] border border-[hsla(174,85%,45%,0.2)] text-[hsl(174,85%,45%)] rounded-full">
+                    <span className="text-xs px-3 py-1 bg-turquoise-soft border border-[hsla(var(--accent-vibrant),0.2)] text-turquoise-bright rounded-full">
                       {product.category.name}
                     </span>
                   )}

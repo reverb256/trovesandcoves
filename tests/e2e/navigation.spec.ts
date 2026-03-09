@@ -21,15 +21,15 @@ test.describe('Navigation and Routing', () => {
 
   test('hero section navigation buttons work', async ({ page }) => {
     await page.goto('/');
-    
-    // Test Explore Collection button
-    const exploreButton = page.getByRole('link', { name: /browse our crystal jewelry/i });
-    await exploreButton.click();
+
+    // Test Shop Crystal Necklaces button
+    const shopButton = page.getByRole('link', { name: /shop crystal necklaces/i });
+    await shopButton.click();
     await expect(page).toHaveURL(/.*\/products/);
-    
+
     // Go back and test Our Story button
     await page.goto('/');
-    const storyButton = page.getByRole('link', { name: /learn more about our spiritual/i });
+    const storyButton = page.getByRole('link', { name: /our story/i });
     await storyButton.click();
     await expect(page).toHaveURL(/.*\/about/);
   });

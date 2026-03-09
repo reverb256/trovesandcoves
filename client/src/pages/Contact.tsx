@@ -291,7 +291,7 @@ export default function Contact() {
                               defaultValue={field.value}
                             >
                               <FormControl>
-                                <SelectTrigger style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}">
+                                <SelectTrigger style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}>
                                   <SelectValue placeholder="Choose your crystal service" />
                                 </SelectTrigger>
                               </FormControl>
@@ -374,7 +374,8 @@ export default function Contact() {
                           <FormControl>
                             <Textarea
                               placeholder="Share your intentions and how we can assist your spiritual journey..."
-                              style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }} min-h-[120px]"
+                              style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}
+                              className="min-h-[120px]"
                               {...field}
                             />
                           </FormControl>

@@ -138,14 +138,14 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
         <p className="text-sm mb-3 line-clamp-2" style={{ color: 'hsl(var(--text-secondary))' }}>
           {product.materials?.join(", ")}
           {product.gemstones && product.gemstones.length > 0 && (
-            <span className="block text-xs font-medium" style={{ color: 'hsl(var(--gold-medium))' }}>
+            <span className="block text-xs font-medium" style={{ color: 'hsl(38 80% 35%)' }}>
               {product.gemstones.join(", ")}
             </span>
           )}
         </p>
 
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold" style={{ color: 'hsl(var(--gold-medium))' }}>
+          <span className="text-xl font-bold" style={{ color: 'hsl(38 80% 35%)' }}>
             {formatPrice(product.price)}
           </span>
 

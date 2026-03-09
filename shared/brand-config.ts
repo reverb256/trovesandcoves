@@ -1,68 +1,92 @@
 /**
  * TROVES & COVES BRAND CONFIGURATION
+ * CLIENT-SPECIFIED - ROBIN KROEKER
  * LOCKED DESIGN LANGUAGE - DO NOT MODIFY WITHOUT AUTHORIZATION
- * 
- * This configuration enforces the authentic brand identity based on:
- * 1. Wooden signage: "Troves" in turquoise print, "Coves" in cursive gold
- * 2. Mystical skull artwork: Turquoise skull with gold decorative frame
- * 3. Natural crystal and wood textures
+ *
+ * ════════════════════════════════════════════════════════════════
+ * CLIENT'S EXACT SPECIFICATIONS
+ * ════════════════════════════════════════════════════════════════
+ *
+ * COLORS (Hex):
+ * • Turquoise: #4abfbf
+ * • Gold 1:     #deb55b
+ * • Gold 2:     #e1af2f
+ * • Background: #faf8f3 (linen/off-white - "not so harsh on the eyes")
+ *
+ * FONTS:
+ * • Alex Brush        - Script font for "Coves"
+ * • Libre Baskerville  - Serif font for "Troves" and headings
+ * • Montserrat        - Supporting text/UI elements
+ *
+ * NEEDED:
+ * • Brand colors, feel, brand voice
+ * • Mission statement
+ * • About the designer (Robin)
+ * • Foundation materials
+ *
+ * ════════════════════════════════════════════════════════════════
  */
 
 export const BRAND_CONFIG = {
   // CORE BRAND IDENTITY - IMMUTABLE
   name: {
-    primary: "Troves", // MUST be turquoise, sans-serif, bold
-    secondary: "Coves", // MUST be gold, cursive script, italic
-    separator: "&", // Gold, lighter weight
+    primary: "Troves", // Turquoise, Libre Baskerville
+    secondary: "Coves", // Gold, Alex Brush script
+    separator: "&", // Gold accent
     tagline: "Mystical Crystal Jewelry • Winnipeg"
   },
 
-  // AUTHENTIC COLOR PALETTE FROM WOODEN SIGN & SKULL ARTWORK
+  // CLIENT'S EXACT COLOR SPECIFICATIONS (Robin)
   colors: {
-    // Exact colors from wooden sign reference
-    trovesTurquoise: "hsl(174, 70%, 45%)", // Clean turquoise print from sign
-    covesCursiveBlue: "hsl(200, 60%, 45%)", // Elegant cursive blue from sign
-    woodGrain: "hsl(35, 40%, 70%)", // Natural wood background from sign
-    
-    // Turquoise skull artwork colors
-    skullTurquoise: "hsl(174, 100%, 50%)", // Vibrant turquoise from skull
-    ornateFrameGold: "hsl(43, 85%, 60%)", // Golden decorative frame
-    crystalAccents: "hsl(240, 20%, 95%)", // White crystal highlights
-    
-    // Natural supporting palette
-    naturalWood: "hsl(35, 30%, 65%)",
-    pearlCream: "hsl(45, 25%, 92%)",
-    mysticAccent: "hsl(280, 40%, 65%)"
+    // Primary brand colors
+    turquoise: "#4abfbf", // Client's exact turquoise
+    gold1: "#deb55b", // Client's first gold shade
+    gold2: "#e1af2f", // Client's second gold shade
+    background: "#faf8f3", // Client's linen/off-white background
+
+    // Semantic color aliases
+    trovesTurquoise: "#4abfbf",
+    covesGold: "#e1af2f",
+    separatorGold: "#deb55b",
+    linenBackground: "#faf8f3",
+
+    // Supporting palette
+    darkText: "#2c2c2c",
+    lightText: "#faf8f3",
+    accent: "#4abfbf"
   },
 
-  // TYPOGRAPHY HIERARCHY
+  // CLIENT'S FONT SPECIFICATIONS
   typography: {
-    // "Troves" styling
+    // "Troves" styling - Libre Baskerville
     troves: {
-      fontFamily: "'Source Sans Pro', sans-serif",
-      fontWeight: "bold",
-      color: "var(--troves-turquoise)",
-      textTransform: "none" as const
+      fontFamily: "'Libre Baskerville', serif",
+      fontWeight: "700",
+      color: "#4abfbf",
+      textTransform: "uppercase" as const,
+      letterSpacing: "0.08em"
     },
-    
-    // "Coves" styling  
+
+    // "Coves" styling - Alex Brush
     coves: {
-      fontFamily: "'Dancing Script', cursive",
-      fontWeight: "600",
-      fontStyle: "italic",
-      color: "var(--coves-cursive-blue)"
+      fontFamily: "'Alex Brush', cursive",
+      fontWeight: "400",
+      fontStyle: "normal",
+      color: "#e1af2f"
     },
-    
-    // Body text
+
+    // Body & UI - Montserrat
     body: {
-      fontFamily: "'Source Sans Pro', sans-serif",
-      fontWeight: "400"
+      fontFamily: "'Montserrat', sans-serif",
+      fontWeight: "400",
+      color: "#2c2c2c"
     },
-    
-    // Headings
+
+    // Headings - Libre Baskerville
     heading: {
-      fontFamily: "'Playfair Display', serif",
-      fontWeight: "600"
+      fontFamily: "'Libre Baskerville', serif",
+      fontWeight: "700",
+      color: "#2c2c2c"
     }
   },
 
@@ -110,18 +134,19 @@ export const BRAND_CONFIG = {
 
   // AI ORCHESTRATION GUIDELINES
   aiGuidelines: {
-    brandVoice: "Always maintain mystical, spiritual tone while being authentic and personal",
-    colorUsage: "Turquoise for 'Troves', gold for 'Coves', never reverse or alter",
-    imagery: "Reference skull artwork aesthetic - turquoise and gold mystical themes",
-    messaging: "Focus on crystal healing properties, handcrafted quality, spiritual connection"
+    brandVoice: "Mystical, spiritual, authentic - personal connection to crystal energy",
+    colorUsage: "Use #4abfbf for Troves, #e1af2f/#deb55b for Coves, #faf8f3 for backgrounds",
+    imagery: "Crystal jewelry, turquoise and gold mystical themes, handcrafted quality",
+    messaging: "Crystal healing properties, handcrafted quality, spiritual connection"
   },
 
-  // IMMUTABLE RULES
+  // IMMUTABLE RULES - CLIENT SPECIFIED
   rules: {
     logoOrdering: "Always 'Troves & Coves' - never reverse",
-    colorConsistency: "Turquoise for Troves, gold for Coves - no exceptions",
-    fontPairing: "Sans-serif for Troves, cursive for Coves - locked pairing",
-    brandIntegrity: "All AI responses must reflect mystical crystal jewelry expertise"
+    colorConsistency: "#4abfbf for Troves, #e1af2f/#deb55b for Coves - no exceptions",
+    fontPairing: "Libre Baskerville for Troves, Alex Brush for Coves - locked pairing",
+    background: "#faf8f3 (linen) for primary backgrounds",
+    brandIntegrity: "All responses must reflect mystical crystal jewelry expertise from Robin"
   }
 } as const;
 
@@ -131,7 +156,7 @@ export type BrandColors = typeof BRAND_CONFIG.colors;
 export type BrandTypography = typeof BRAND_CONFIG.typography;
 
 // VALIDATION HELPERS
-export function validateBrandCompliance(element: any): boolean {
+export function validateBrandCompliance(_element: unknown): boolean {
   // Add validation logic to ensure brand guidelines are followed
   return true;
 }

@@ -78,9 +78,9 @@ export const sessionConfig = {
 };
 
 // Security logger
-export const securityLogger = (req: Request, _res: Response, next: NextFunction) => {
+export const securityLogger = (_req: Request, res: Response, next: NextFunction) => {
   const start = Date.now();
-  (_res as Response & { startTime?: number }).startTime = start;
+  (res as Response & { startTime?: number }).startTime = start;
 
   next();
 };

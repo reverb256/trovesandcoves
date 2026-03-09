@@ -1,8 +1,7 @@
 import { z } from 'zod';
-import { body, query, param, validationResult } from 'express-validator';
-import { Request, Response, NextFunction } from 'express';
 
 // AI Request Validation Schema (Zod-based for Canadian AI compliance)
+// Note: AI features have been removed, but schemas kept for potential future use
 export const AIRequestSchema = z.object({
   prompt: z.string()
     .min(1, 'Prompt is required')
@@ -24,11 +23,11 @@ function containsHarmfulContent(text: string): boolean {
     /\b(medical\s+advice|legal\s+advice)\b/i,
     /\b(illegal\s+activities|harmful\s+instructions)\b/i
   ];
-  
+
   return prohibitedPatterns.some(pattern => pattern.test(text));
 }
 
-// User Data Validation
+// User Data Validation Schema
 export const UserRegistrationSchema = z.object({
   email: z.string().email('Invalid email address'),
   username: z.string().min(3).max(50).regex(/^[a-zA-Z0-9_]+$/, 'Username contains invalid characters'),
@@ -39,50 +38,6 @@ export const UserRegistrationSchema = z.object({
   consentToDataProcessing: z.boolean().refine(val => val === true, 'Consent to data processing is required'),
   consentToMarketing: z.boolean().optional().default(false)
 });
-
-// Express Validators
-export const validateAIRequest = [
-  body('prompt').isLength({ min: 1, max: 2000 }).withMessage('Prompt must be 1-2000 characters'),
-  body('type').isIn(['text', 'image', 'audio']).optional(),
-  body('maxTokens').isInt({ min: 1, max: 2000 }).optional(),
-  body('temperature').isFloat({ min: 0, max: 2 }).optional(),
-  body('priority').isIn(['low', 'medium', 'high']).optional()
-];
-
-// Validation Error Handler
-export const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      message: 'Validation failed',
-      errors: errors.array().map(error => ({
-        field: error.type === 'field' ? error.path : 'unknown',
-        message: error.msg,
-        value: error.type === 'field' ? error.value : undefined
-      }))
-    });
-  }
-  next();
-};
-
-// Rate Limiting Configuration
-export const rateLimitConfig = {
-  ai: {
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 50, // 50 requests per window
-    message: 'Too many AI requests, please try again later'
-  },
-  general: {
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // 100 requests per window
-    message: 'Too many requests, please try again later'
-  },
-  auth: {
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // 5 auth attempts per window
-    message: 'Too many authentication attempts, please try again later'
-  }
-};
 
 // Data Sanitization
 export const sanitizeInput = (input: unknown): unknown => {
@@ -103,3 +58,4 @@ export const sanitizeInput = (input: unknown): unknown => {
 };
 
 export type AIRequestType = z.infer<typeof AIRequestSchema>;
+export type UserRegistrationType = z.infer<typeof UserRegistrationSchema>;

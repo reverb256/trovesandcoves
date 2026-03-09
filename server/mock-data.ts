@@ -5,8 +5,7 @@ export const crystalJewelryImages = {
     "/images/jewelry/lepidolite-flower-front-1.png",
     "/images/jewelry/lepidolite-flower-side-1.png",
     "/images/jewelry/lepidolite-flower-flat-1.png",
-    "/images/jewelry/lepidolite-flower-hand-1.png",
-    "/images/jewelry/lepidolite-wire-detail-1.png"
+    "/images/jewelry/lepidolite-flower-hand-1.png"
   ],
   citrine: [
     "/images/jewelry/citrine-necklace-set-1.png",
@@ -49,40 +48,27 @@ export const crystalJewelryImages = {
   goldEnamel: [
     "/images/jewelry/gold-enamel-flower-1.png",
     "/images/jewelry/gold-enamel-flower-2.png",
-    "/images/jewelry/gold-enamel-full-chain-1.png",
-    "/images/jewelry/gold-enamel-chain-detail-1.png"
+    "/images/jewelry/gold-enamel-full-chain-1.png"
   ],
   // Additional product variants - each with completely unique authentic images
   lapisOnyx: [
     "/images/jewelry/lapis-onyx-smoky-flower-display-1.png",
-    "/images/jewelry/lapis-onyx-smoky-frame-full-1.png",
     "/images/jewelry/lapis-onyx-smoky-frame-close-1.png",
+    "/images/jewelry/lapis-onyx-smoky-frame-full-1.png",
+    "/images/jewelry/lapis-onyx-smoky-full-length-1.png",
     "/images/jewelry/lapis-onyx-smoky-pendant-detail-1.png",
-    "/images/jewelry/lapis-onyx-smoky-pendant-side-1.png",
-    "/images/jewelry/lapis-onyx-smoky-full-length-1.png"
-  ],
-  lapisHematite: [
-    "/images/jewelry/lapis-smoky-pendant-detail-1.png",
-    "/images/jewelry/lapis-smoky-frame-display-1.png",
-    "/images/jewelry/lapis-smoky-frame-side-1.png",
-    "/images/jewelry/lapis-smoky-close-pendant-1.png",
-    "/images/jewelry/lapis-smoky-pendant-angle-1.png",
-    "/images/jewelry/lapis-smoky-full-length-1.png"
+    "/images/jewelry/lapis-onyx-smoky-pendant-side-1.png"
   ],
   lapisLeather: [
     "/images/jewelry/lapis-leather-flower-display-1.png",
     "/images/jewelry/lapis-leather-flower-close-1.png",
-    "/images/jewelry/lapis-leather-pendant-detail-1.png",
-    "/images/jewelry/lapis-leather-center-flower-1.png",
-    "/images/jewelry/lapis-leather-full-layout-1.png",
     "/images/jewelry/lapis-leather-worn-1.png",
     "/images/jewelry/lapis-leather-worn-close-1.png"
   ],
   upcycledEnamel: [
     "/images/jewelry/gold-enamel-flower-1.png",
     "/images/jewelry/gold-enamel-flower-2.png",
-    "/images/jewelry/gold-enamel-full-chain-1.png",
-    "/images/jewelry/gold-enamel-chain-detail-1.png"
+    "/images/jewelry/gold-enamel-full-chain-1.png"
   ]
 };
 

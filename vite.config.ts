@@ -3,9 +3,10 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { VitePWA } from 'vite-plugin-pwa';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default defineConfig({
-  base: '/trovesandcoves/',
+  base: process.env.NODE_ENV === 'production' ? '/trovesandcoves/' : '/',
   plugins: [
     react(),
     VitePWA({
@@ -27,14 +28,13 @@ export default defineConfig({
         ]
       }
     }),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
+    // Bundle analyzer - generates stats.html in build output
+    visualizer({
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+      filename: 'stats.html',
+    }),
   ],
   resolve: {
     alias: {

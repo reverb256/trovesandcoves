@@ -29,9 +29,9 @@ export default function Home() {
           {/* Section Header */}
           <div className="text-center mb-16">
             {/* Mystical Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[hsla(174,85%,45%,0.3)] rounded-full bg-crystal">
-              <Sparkles className="w-4 h-4 text-[hsl(174,85%,45%)]" />
-              <span className="text-xs tracking-widest uppercase text-[hsl(210,30%,85%)]">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-turquoise-soft rounded-full bg-crystal">
+              <Sparkles className="w-4 h-4 text-turquoise-bright" />
+              <span className="text-xs tracking-widest uppercase text-[hsl(var(--text-secondary))]">
                 Curated With Intention
               </span>
             </div>
@@ -40,7 +40,7 @@ export default function Home() {
               <span className="text-shimmer">Crystal Collection</span>
             </h2>
 
-            <p className="text-lg text-[hsl(210,30%,85%)] opacity-70 max-w-2xl mx-auto">
+            <p className="text-lg text-[hsl(var(--text-secondary))] opacity-70 max-w-2xl mx-auto">
               Explore our curated collection of authentic gemstone jewelry,
               wire-wrapped pendants, and healing talismans. Each piece is
               artisan-crafted to amplify your energy and style.
@@ -57,7 +57,7 @@ export default function Home() {
                   style={{ animationDelay: `${i * 0.1}s` }}
                 >
                   <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-16 h-16 border-2 border-[hsla(174,85%,45%,0.3)] border-t-[hsla(174,85%,45%,0.8)] rounded-full animate-spin"></div>
+                    <div className="w-16 h-16 border-2 border-turquoise-soft border-t-[hsla(var(--accent-vibrant),0.8)] rounded-full animate-spin"></div>
                   </div>
                 </div>
               ))}
@@ -73,7 +73,7 @@ export default function Home() {
                 >
                   <div className="crystal-card h-full p-6">
                     {/* Product Image */}
-                    <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(240,20%,8%,0.5)] to-[hsla(240,15%,6%,0.8)] border border-[hsla(174,85%,45%,0.1)]">
+                    <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-[hsla(var(--accent-vibrant),0.1)]">
                       <img
                         src={product.imageUrl || '/api/placeholder/300/300'}
                         alt={product.name}
@@ -82,11 +82,11 @@ export default function Home() {
                         decoding="async"
                       />
                       {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[hsla(240,15%,6%,0.8)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[hsla(var(--bg-overlay),0.7)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                       {/* Category Badge */}
                       {product.category && (
-                        <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(174,85%,45%,0.2)] border border-[hsla(174,85%,45%,0.3)] text-[hsl(174,85%,45%)] rounded-full backdrop-blur-sm">
+                        <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(var(--accent-vibrant),0.2)] border border-turquoise-soft text-turquoise-bright rounded-full backdrop-blur-sm">
                           {product.category.name}
                         </div>
                       )}
@@ -94,20 +94,20 @@ export default function Home() {
 
                     {/* Product Info */}
                     <div className="text-center">
-                      <h3 className="text-xl font-semibold text-[hsl(210,30%,85%)] mb-2 group-hover:text-[hsl(174,85%,45%)] transition-colors duration-300">
+                      <h3 className="text-xl font-semibold text-[hsl(var(--text-secondary))] mb-2 group-hover:text-turquoise-bright transition-colors duration-300">
                         {product.name}
                       </h3>
 
-                      <p className="text-sm text-[hsl(210,30%,85%)] opacity-60 mb-4 line-clamp-2">
+                      <p className="text-sm text-[hsl(var(--text-secondary))] opacity-60 mb-4 line-clamp-2">
                         {product.description}
                       </p>
 
-                      <div className="flex items-center justify-between pt-4 border-t border-[hsla(174,85%,45%,0.1)]">
-                        <span className="text-lg font-semibold text-[hsl(43,95%,55%)] glow-gold">
+                      <div className="flex items-center justify-between pt-4 border-t border-[hsla(var(--accent-vibrant),0.1)]">
+                        <span className="text-lg font-semibold text-gold-bright glow-gold">
                           ${product.price}
                         </span>
 
-                        <div className="flex items-center gap-1 text-xs text-[hsl(174,85%,45%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
+                        <div className="flex items-center gap-1 text-xs text-turquoise-bright opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
                           <span>View</span>
                           <ArrowRight className="w-4 h-4" />
                         </div>
@@ -134,21 +134,21 @@ export default function Home() {
       {/* Mystical Message Section */}
       <section className="chamber-section content-layer relative">
         {/* Background glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsla(174,85%,45%,0.05)] via-transparent to-[hsla(43,95%,55%,0.05)]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsla(var(--accent-soft),0.05)] via-transparent to-[hsla(var(--gold-soft),0.05)]"></div>
 
         <div className="chamber-container relative">
           <div className="max-w-4xl mx-auto text-center">
             <div className="crystal-card p-12 md:p-16">
               {/* Mystical Icon */}
-              <div className="inline-flex items-center justify-center w-20 h-20 mb-8 border-2 border-[hsla(43,95%,55%,0.3)] rounded-full bg-[hsla(43,95%,55%,0.05)] animate-pulse-glow">
-                <Sparkles className="w-10 h-10 text-[hsl(43,95%,55%)]" />
+              <div className="inline-flex items-center justify-center w-20 h-20 mb-8 border-2 border-gold-soft rounded-full bg-[hsla(var(--gold-soft),0.05)] animate-pulse-glow">
+                <Sparkles className="w-10 h-10 text-gold-bright" />
               </div>
 
               <h2 className="text-3xl md:text-5xl font-bold mb-6">
                 <span className="text-shimmer">Channel Your Inner Light</span>
               </h2>
 
-              <p className="text-lg text-[hsl(210,30%,85%)] opacity-70 leading-relaxed mb-8">
+              <p className="text-lg text-[hsl(var(--text-secondary))] opacity-70 leading-relaxed mb-8">
                 Every crystal in our collection has been intuitively selected for its
                 unique healing properties and energetic vibrations. When you wear
                 our jewelry, you carry the ancient wisdom of the earth with you—
@@ -156,7 +156,7 @@ export default function Home() {
                 you to the mystical energies that surround us all.
               </p>
 
-              <p className="text-base text-[hsl(210,30%,85%)] opacity-50 italic">
+              <p className="text-base text-[hsl(var(--text-secondary))] opacity-50 italic">
                 ✨ Handcrafted with intention in Winnipeg, Canada ✨
               </p>
             </div>

@@ -8,14 +8,14 @@ export default function NotFound() {
       <div className="crystal-card w-full max-w-lg p-12 text-center">
         {/* Mystical Icon */}
         <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full border-2 border-[hsla(174,85%,45%,0.3)] bg-[hsla(174,85%,45%,0.1)]">
-            <Gem className="w-12 h-12 text-[hsl(174,85%,45%)]" strokeWidth={1.5} />
+          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full border-2 border-turquoise-soft bg-turquoise-soft">
+            <Gem className="w-12 h-12 text-turquoise-bright" strokeWidth={1.5} />
           </div>
         </div>
 
         {/* Mystical Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[hsla(43,95%,55%,0.3)] rounded-full bg-[hsla(43,95%,55%,0.1)]">
-          <span className="text-xs tracking-widest uppercase text-[hsl(43,95%,55%)]">
+        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-gold-soft rounded-full bg-gold-soft">
+          <span className="text-xs tracking-widest uppercase text-gold-bright">
             404
           </span>
         </div>
@@ -25,9 +25,9 @@ export default function NotFound() {
         </h1>
 
         {/* Mystical Divider */}
-        <div className="w-24 h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-[hsla(174,85%,45%,0.5)] to-transparent"></div>
+        <div className="w-24 h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-[hsla(var(--accent-vibrant),0.5)] to-transparent"></div>
 
-        <p className="text-lg text-[hsl(210,30%,85%)] opacity-70 mb-8 leading-relaxed">
+        <p className="text-lg text-[hsl(var(--text-secondary))] opacity-70 mb-8 leading-relaxed">
           The crystal path you seek has faded into the mists.
           Let us guide you back to the treasures that await.
         </p>
@@ -51,7 +51,7 @@ export default function NotFound() {
         </div>
 
         {/* Mystical Glow */}
-        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-[hsla(174,85%,45%,0.2)] rounded-full blur-xl"></div>
+        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-[hsla(var(--accent-vibrant),0.2)] rounded-full blur-xl"></div>
       </div>
 
       {/* Floating Particles */}
@@ -59,7 +59,7 @@ export default function NotFound() {
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-[hsla(174,85%,45%,0.3)] rounded-full animate-float"
+            className="absolute w-1 h-1 bg-[hsla(var(--accent-vibrant),0.3)] rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,

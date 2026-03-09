@@ -20,10 +20,11 @@ export function useCart() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : "Failed to add item to cart";
       toast({
         title: "Error",
-        description: error.message || "Failed to add item to cart",
+        description: message,
         variant: "destructive",
       });
     },
@@ -40,10 +41,11 @@ export function useCart() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : "Failed to update item quantity";
       toast({
         title: "Error",
-        description: error.message || "Failed to update item quantity",
+        description: message,
         variant: "destructive",
       });
     },
@@ -58,10 +60,11 @@ export function useCart() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : "Failed to remove item from cart";
       toast({
         title: "Error",
-        description: error.message || "Failed to remove item from cart",
+        description: message,
         variant: "destructive",
       });
     },
@@ -76,10 +79,11 @@ export function useCart() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
     },
-    onError: (error: any) => {
+    onError: (error: unknown) => {
+      const message = error instanceof Error ? error.message : "Failed to clear cart";
       toast({
         title: "Error",
-        description: error.message || "Failed to clear cart",
+        description: message,
         variant: "destructive",
       });
     },

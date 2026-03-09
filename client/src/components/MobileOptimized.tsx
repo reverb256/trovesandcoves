@@ -1,28 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Gem, ShoppingBag, Star, Heart, Menu, X, Search, Filter } from 'lucide-react';
+import type { ProductWithCategory, CartItemWithProduct } from '@shared/types';
 
 // Mobile-first responsive hook
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const checkDevice = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkDevice();
     window.addEventListener('resize', checkDevice);
     return () => window.removeEventListener('resize', checkDevice);
   }, []);
-  
+
   return isMobile;
 }
 
 // Touch-optimized card component with performance optimizations
-export function MobileProductCard({ product, onAddToCart }: any) {
+interface MobileProductCardProps {
+  product: ProductWithCategory;
+  onAddToCart: (productId: number) => void;
+}
+
+export function MobileProductCard({ product, onAddToCart }: MobileProductCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const isMobile = useIsMobile();
 
@@ -108,7 +114,7 @@ export function MobileProductCard({ product, onAddToCart }: any) {
 
         <div className="flex gap-2 pt-1">
           <Button
-            onClick={() => onAddToCart(product)}
+            onClick={() => onAddToCart(product.id)}
             className="flex-1 h-9 text-xs bg-gradient-to-r from-gold to-amber-500 hover:from-gold/90 hover:to-amber-500/90 active:scale-95 transition-transform"
           >
             <ShoppingBag className="w-3 h-3 mr-1" />
@@ -128,8 +134,19 @@ export function MobileProductCard({ product, onAddToCart }: any) {
   );
 }
 
+// Memoize to prevent unnecessary re-renders
+export const MobileProductCardMemo = memo(MobileProductCard, (prevProps, nextProps) => {
+  return prevProps.product.id === nextProps.product.id;
+});
+
 // Mobile navigation with performance optimizations
-export function MobileNavigation({ isOpen, onToggle, onClose }: any) {
+interface MobileNavigationProps {
+  isOpen: boolean;
+  onToggle: () => void;
+  onClose: () => void;
+}
+
+export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigationProps) {
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -223,7 +240,7 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: any) {
 }
 
 // Performance-optimized search component
-export function MobileSearchFilter({ onSearch, onFilter }: any) {
+export function MobileSearchFilter({ onSearch }: { onSearch: (term: string) => void }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const isMobile = useIsMobile();
@@ -287,10 +304,16 @@ export function MobileSearchFilter({ onSearch, onFilter }: any) {
   );
 }
 
+interface MobileCartDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  cartItems?: CartItemWithProduct[];
+}
+
 // High-performance cart drawer
-export function MobileCartDrawer({ isOpen, onClose, cartItems = [] }: any) {
+export function MobileCartDrawer({ isOpen, onClose, cartItems = [] }: MobileCartDrawerProps) {
   const isMobile = useIsMobile();
-  const total = cartItems.reduce((sum: number, item: any) => sum + (item.price * item.quantity), 0);
+  const total = cartItems.reduce((sum: number, item: CartItemWithProduct) => sum + (parseFloat(item.product.price) * item.quantity), 0);
 
   useEffect(() => {
     if (isOpen) {
@@ -346,21 +369,21 @@ export function MobileCartDrawer({ isOpen, onClose, cartItems = [] }: any) {
             </div>
           ) : (
             <div className="space-y-3">
-              {cartItems.map((item: any, index: number) => (
+              {cartItems.map((item: CartItemWithProduct, index: number) => (
                 <div key={index} className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg bg-white">
-                  <img 
-                    src={item.image || '/api/placeholder/60/60'} 
-                    alt={item.name}
+                  <img
+                    src={item.product.imageUrl || '/api/placeholder/60/60'}
+                    alt={item.product.name}
                     className="w-12 h-12 object-cover rounded flex-shrink-0"
                     loading="lazy"
                   />
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-sm truncate">{item.name}</h4>
-                    <p className="text-gold font-semibold text-sm">${item.price}</p>
+                    <h4 className="font-medium text-sm truncate">{item.product.name}</h4>
+                    <p className="text-gold font-semibold text-sm">{item.product.price}</p>
                     <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <p className="font-semibold text-sm">${(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="font-semibold text-sm">{(parseFloat(item.product.price) * item.quantity).toFixed(2)}</p>
                   </div>
                 </div>
               ))}
