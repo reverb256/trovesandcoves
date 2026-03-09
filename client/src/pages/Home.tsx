@@ -35,10 +35,10 @@ export default function Home() {
                 backgroundColor: 'hsla(174,85%,45%,0.05)'
               }}
             >
-              <Sparkles className="w-4 h-4" style={{ color: '#deb55b' }} />
+              <Sparkles className="w-4 h-4" style={{ color: 'hsl(var(--gold-medium))' }} />
               <span 
                 className="text-xs tracking-widest uppercase"
-                style={{ fontFamily: "'Alex Brush', cursive", color: '#e1af2f' }}
+                style={{ fontFamily: "'Alex Brush', cursive", color: 'hsl(var(--gold-medium))' }}
               >
                 Curated With Intention
               </span>
@@ -46,12 +46,12 @@ export default function Home() {
 
             <h2 
               className="text-4xl md:text-6xl font-bold mb-6"
-              style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}
+              style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
             >
               Crystal Collection
             </h2>
 
-            <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Montserrat', sans-serif", color: '#2c6f6f' }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
               Explore our exquisite collection of statement necklaces and bracelets.
               Each piece blends elegance with natural crystal beauty—
               crafted with intention to empower your energy and enhance your presence.
@@ -119,12 +119,12 @@ export default function Home() {
                       <div className="flex items-center justify-between pt-4" style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}>
                         <span 
                           className="text-lg font-semibold"
-                          style={{ fontFamily: "'Libre Baskerville', serif", color: '#deb55b' }}
+                          style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))' }}
                         >
                           ${product.price}
                         </span>
 
-                        <div className="flex items-center gap-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: '#4abfbf' }}>
+                        <div className="flex items-center gap-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: 'hsl(var(--accent-vibrant))' }}>
                           <span style={{ fontFamily: "'Montserrat', sans-serif" }}>View</span>
                           <ArrowRight className="w-4 h-4" />
                         </div>
@@ -142,9 +142,9 @@ export default function Home() {
               <button 
                 className="group inline-flex items-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105"
                 style={{ 
-                  border: '2px solid #4abfbf',
+                  border: '2px solid hsl(var(--accent-vibrant))',
                   backgroundColor: 'transparent',
-                  color: '#4abfbf',
+                  color: 'hsl(var(--accent-vibrant))',
                   fontFamily: "'Montserrat', sans-serif"
                 }}
               >
@@ -183,24 +183,24 @@ export default function Home() {
                   backgroundColor: 'hsla(43,95%,55%,0.05)'
                 }}
               >
-                <Sparkles className="w-10 h-10" style={{ color: '#deb55b' }} />
+                <Sparkles className="w-10 h-10" style={{ color: 'hsl(var(--gold-medium))' }} />
               </div>
 
               <h2 
                 className="text-3xl md:text-5xl font-bold mb-6"
-                style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}
+                style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
               >
                 Embrace Your Transformation
               </h2>
 
-              <p className="text-lg leading-relaxed mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: '#2c6f6f' }}>
+              <p className="text-lg leading-relaxed mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
                 Every crystal in our collection is chosen for its unique energy and beauty.
                 When you wear our jewelry, you embrace bold femininity and masculine strength—
                 statement pieces crafted with intention to empower your energy and resonate
                 with abundance and confidence.
               </p>
 
-              <p className="text-base italic" style={{ fontFamily: "'Alex Brush', cursive", color: '#e1af2f' }}>
+              <p className="text-base italic" style={{ fontFamily: "'Alex Brush', cursive", color: 'hsl(var(--gold-medium))' }}>
                 ✨ Handcrafted with intention in Winnipeg, Canada ✨
               </p>
             </div>
