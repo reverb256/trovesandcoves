@@ -1009,19 +1009,6 @@ a:hover {
   }
 }
 
-@keyframes float-gem {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(3deg);
-  }
-}
-
-.animate-float-gem {
-  animation: float-gem 6s ease-in-out infinite;
-}
-
 .floating-crystal {
   /* Animation disabled - remove floating effects */
 }
