@@ -33,28 +33,6 @@ function monitorWebVitals() {
   fallbackMetrics();
 }
 
-function consoleMetric(name: string) {
-  return (metric: any) => {
-    const value = Math.round(metric.value * 100) / 100;
-    const rating = metric.rating; // 'good' | 'needs-improvement' | 'poor'
-
-    console.log(`⚡ ${name}:`, {
-      value,
-      rating,
-      rating_emoji: rating === 'good' ? '✅' : rating === 'needs-improvement' ? '⚠️' : '❌',
-    });
-
-    // Send to analytics if configured
-    if (window.gtag) {
-      window.gtag('event', name, {
-        value,
-        metric_rating: rating,
-        non_interaction: true,
-      });
-    }
-  };
-}
-
 function fallbackMetrics() {
   // Basic Performance API monitoring
   if ('PerformanceObserver' in window) {

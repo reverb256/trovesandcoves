@@ -35,7 +35,7 @@ export default function FeaturesBar() {
                     style={{ backgroundColor: 'hsla(174,85%,45%,0.2)', filter: 'blur(8px)' }}
                   ></div>
                   <Icon className="relative w-5 h-5 transition-colors duration-300"
-                    style={{ color: '#deb55b' }}
+                    style={{ color: 'hsl(var(--gold-medium))' }}
                   />
                 </div>
                 <span className="font-medium tracking-wide transition-colors duration-300"

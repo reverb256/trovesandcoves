@@ -50,7 +50,7 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
         <div className="text-8xl mb-6 animate-pulse" style={{ filter: 'drop-shadow(0 0 20px hsla(174,85%,45%,0.3))' }}>💎</div>
 
         {/* 404 Heading */}
-        <h1 className="text-6xl font-bold mb-2" style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}>
+        <h1 className="text-6xl font-bold mb-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}>
           {type === 'api' ? '⚠️' : '404'}
         </h1>
 
@@ -68,7 +68,7 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
           <Button
             onClick={() => window.location.href = '/'}
             className="hover:opacity-90 transition-all"
-            style={{ backgroundColor: '#4abfbf', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
+            style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
           >
             <Home className="h-4 w-4 mr-2" />
             Go Home
@@ -81,7 +81,7 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
               className="hover:opacity-80 transition-all"
               style={{ 
                 borderColor: 'hsla(174,85%,45%,0.3)', 
-                color: '#4abfbf',
+                color: 'hsl(var(--accent-vibrant))',
                 fontFamily: "'Montserrat', sans-serif"
               }}
             >
@@ -100,23 +100,23 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
             <a
               href="/products"
               className="hover:opacity-80 transition-opacity"
-              style={{ color: '#4abfbf', fontFamily: "'Montserrat', sans-serif" }}
+              style={{ color: 'hsl(var(--accent-vibrant))', fontFamily: "'Montserrat', sans-serif" }}
             >
               All Products
             </a>
-            <span style={{ color: '#deb55b' }}>•</span>
+            <span style={{ color: 'hsl(var(--gold-medium))' }}>•</span>
             <a
               href="/products?category=necklaces"
               className="hover:opacity-80 transition-opacity"
-              style={{ color: '#4abfbf', fontFamily: "'Montserrat', sans-serif" }}
+              style={{ color: 'hsl(var(--accent-vibrant))', fontFamily: "'Montserrat', sans-serif" }}
             >
               Necklaces
             </a>
-            <span style={{ color: '#deb55b' }}>•</span>
+            <span style={{ color: 'hsl(var(--gold-medium))' }}>•</span>
             <a
               href="/products?category=bracelets"
               className="hover:opacity-80 transition-opacity"
-              style={{ color: '#4abfbf', fontFamily: "'Montserrat', sans-serif" }}
+              style={{ color: 'hsl(var(--accent-vibrant))', fontFamily: "'Montserrat', sans-serif" }}
             >
               Bracelets
             </a>

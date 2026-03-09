@@ -137,9 +137,9 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-baseline gap-2 mb-6">
-              <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-2xl">Troves</span>
-              <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>&</span>
-              <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-2xl">Coves</span>
+              <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-2xl">Troves</span>
+              <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}>&</span>
+              <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }} className="text-2xl">Coves</span>
             </div>
             <p className="text-[hsl(var(--text-secondary))]/80 mb-6 leading-relaxed">
               Handcrafted crystal jewelry blending 14k gold-plated elegance with natural crystal beauty.

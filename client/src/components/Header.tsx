@@ -74,8 +74,8 @@ export default function Header() {
                 <svg width="36" height="36" viewBox="0 0 24 24" className="overflow-visible" fill="none">
                   <defs>
                     <radialGradient id="headerGemGradient" cx="20%" cy="20%" r="70%">
-                      <stop offset="0%" stopColor="#deb55b" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="#deb55b" stopOpacity="0.3" />
+                      <stop offset="0%" stopColor="hsl(var(--gold-medium))" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="hsl(var(--gold-medium))" stopOpacity="0.3" />
                     </radialGradient>
                   </defs>
                   <path
@@ -91,12 +91,12 @@ export default function Header() {
 
               <div className="flex flex-col">
                 <div className="flex items-end gap-2">
-                  <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-lg">TROVES</span>
-                  <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>&</span>
-                  <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-2xl">Coves</span>
+                  <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-lg">TROVES</span>
+                  <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}>&</span>
+                  <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }} className="text-2xl">Coves</span>
                 </div>
                 <span className="text-xs tracking-widest uppercase"
-                  style={{ color: "#2c6f6f", fontFamily: "'Montserrat', sans-serif" }}
+                  style={{ color: "hsl(var(--text-secondary))", fontFamily: "'Montserrat', sans-serif" }}
                 >
                   Mystical Crystal Jewelry • Winnipeg
                 </span>
@@ -112,18 +112,18 @@ export default function Header() {
                   className="relative py-2 text-sm tracking-widest uppercase transition-colors duration-300"
                   style={{
                     color: isActivePath(item.path)
-                      ? '#4abfbf'
+                      ? 'hsl(var(--accent-vibrant))'
                       : 'hsl(var(--text-primary))'
                   }}
-                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = '#4abfbf')}
+                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--accent-vibrant))')}
                   onMouseLeave={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--text-primary))')}
                 >
                   {item.name}
                   {isActivePath(item.path) && (
                     <span className="absolute bottom-0 left-0 w-full h-px"
                       style={{
-                        backgroundColor: '#4abfbf',
-                        boxShadow: '0 0 10px #4abfbf'
+                        backgroundColor: 'hsl(var(--accent-vibrant))',
+                        boxShadow: '0 0 10px hsl(var(--accent-vibrant))'
                       }}
                     ></span>
                   )}
@@ -205,12 +205,12 @@ export default function Header() {
             {/* Mobile Logo */}
             <div className="text-center mb-8">
               <div className="flex items-baseline justify-center gap-3 mb-2">
-                <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-2xl">TROVES</span>
-                <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>&</span>
-                <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-4xl">Coves</span>
+                <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-2xl">TROVES</span>
+                <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}>&</span>
+                <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }} className="text-4xl">Coves</span>
               </div>
               <p className="text-sm tracking-widest uppercase"
-                style={{ color: "#2c6f6f", fontFamily: "'Montserrat', sans-serif" }}
+                style={{ color: "hsl(var(--text-secondary))", fontFamily: "'Montserrat', sans-serif" }}
               >
                 Mystical Crystal Jewelry
               </p>
@@ -226,10 +226,10 @@ export default function Header() {
                   className="text-2xl tracking-widest uppercase transition-colors duration-300"
                   style={{
                     color: isActivePath(item.path)
-                      ? '#4abfbf'
+                      ? 'hsl(var(--accent-vibrant))'
                       : 'hsl(var(--text-primary))'
                   }}
-                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = '#4abfbf')}
+                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--accent-vibrant))')}
                   onMouseLeave={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--text-primary))')}
                 >
                   {item.name}

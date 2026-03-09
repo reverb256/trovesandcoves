@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { getWCAGCompliantColor, BRAND_COLORS, WCAG_COLORS } from '@/lib/color-utils';
+import { BRAND_COLORS, WCAG_COLORS } from '@/lib/color-utils';
 
 /**
  * Mystical heading component with WCAG AA compliance

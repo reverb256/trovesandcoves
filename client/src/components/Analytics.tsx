@@ -23,7 +23,8 @@ export function Analytics({ measurementId }: AnalyticsProps) {
 
   useEffect(() => {
     // Check if user has enabled Do Not Track
-    if (navigator.doNotTrack === '1' || window.doNotTrack === '1') {
+    const dnt = navigator.doNotTrack || (window as any).doNotTrack;
+    if (dnt === '1' || dnt === '1') {
       return;
     }
 
@@ -34,12 +35,15 @@ export function Analytics({ measurementId }: AnalyticsProps) {
 
     // Initialize analytics (placeholder for when you add GA4 or similar)
     initAnalytics();
-  }, []);
+  }, [measurementId]);
 
   useEffect(() => {
     // Track page views
-    if (import.meta.env.DEV || navigator.doNotTrack === '1') {
-      return;
+    if (import.meta.env.DEV) {
+      const dnt = navigator.doNotTrack || (window as any).doNotTrack;
+      if (dnt === '1' || dnt === '1') {
+        return;
+      }
     }
 
     trackPageView(location);

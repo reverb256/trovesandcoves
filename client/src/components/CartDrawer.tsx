@@ -57,10 +57,10 @@ export default function CartDrawer() {
       <SheetContent className="w-full sm:max-w-md" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
         <SheetHeader className="pb-6 border-b" style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}>
           <SheetTitle className="flex items-center gap-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>
-            <ShoppingBag className="h-5 w-5" style={{ color: '#4abfbf' }} />
+            <ShoppingBag className="h-5 w-5" style={{ color: 'hsl(var(--accent-vibrant))' }} />
             <span>Shopping Cart</span>
             {itemCount > 0 && (
-              <Badge variant="secondary" className="ml-2" style={{ backgroundColor: '#deb55b', color: 'hsl(var(--bg-primary))' }}>
+              <Badge variant="secondary" className="ml-2" style={{ backgroundColor: 'hsl(var(--gold-medium))', color: 'hsl(var(--bg-primary))' }}>
                 {itemCount} {itemCount === 1 ? 'item' : 'items'}
               </Badge>
             )}
@@ -77,7 +77,7 @@ export default function CartDrawer() {
                 toggleCart();
                 setLocation('/products');
               }}
-              style={{ backgroundColor: '#4abfbf', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
+              style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
               className="hover:opacity-90"
             >
               Browse Products
@@ -101,7 +101,7 @@ export default function CartDrawer() {
                     <h3 className="font-medium text-sm line-clamp-2" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-primary))' }}>
                       {item.product.name}
                     </h3>
-                    <p className="text-sm" style={{ fontFamily: "'Libre Baskerville', serif", color: '#deb55b', fontWeight: 600 }}>
+                    <p className="text-sm" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))', fontWeight: 600 }}>
                       {formatPrice(item.product.price)}
                     </p>
                     
@@ -142,7 +142,7 @@ export default function CartDrawer() {
                       <Trash2 className="h-4 w-4" />
                     </Button>
                     
-                    <span className="text-sm font-semibold" style={{ fontFamily: "'Libre Baskerville', serif", color: '#e1af2f' }}>
+                    <span className="text-sm font-semibold" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))' }}>
                       {formatPrice((parseFloat(item.product.price) * item.quantity).toString())}
                     </span>
                   </div>
@@ -156,7 +156,7 @@ export default function CartDrawer() {
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <span className="text-lg font-semibold" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>Total:</span>
-                <span className="text-xl font-bold" style={{ fontFamily: "'Libre Baskerville', serif", color: '#deb55b' }}>
+                <span className="text-xl font-bold" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))' }}>
                   {formatPrice(totalAmount.toString())}
                 </span>
               </div>
@@ -164,7 +164,7 @@ export default function CartDrawer() {
               <Button 
                 onClick={handleCheckout}
                 className="w-full py-3 font-semibold hover:opacity-90 transition-all"
-                style={{ backgroundColor: '#4abfbf', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
+                style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
               >
                 Secure Checkout
               </Button>
@@ -178,7 +178,7 @@ export default function CartDrawer() {
                 className="w-full hover:opacity-80 transition-all"
                 style={{ 
                   borderColor: 'hsla(174,85%,45%,0.3)', 
-                  color: '#4abfbf',
+                  color: 'hsl(var(--accent-vibrant))',
                   fontFamily: "'Montserrat', sans-serif"
                 }}
               >
