@@ -90,10 +90,10 @@ export default function Header() {
               </div>
 
               <div className="flex flex-col">
-                <div className="flex items-baseline gap-2">
-                  <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#2c6f6f", textTransform: "uppercase" }} className="text-xl">TROVES</span>
-                  <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#b8943d" }}>&</span>
-                  <span style={{ fontFamily: "'Alex Brush', cursive", color: "#a08022" }} className="text-2xl">Coves</span>
+                <div className="flex items-end gap-2">
+                  <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-xl">TROVES</span>
+                  <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>&</span>
+                  <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-2xl">Coves</span>
                 </div>
                 <span className="text-xs tracking-widest uppercase"
                   style={{ color: "#2c2c2c", fontFamily: "'Montserrat', sans-serif" }}
