@@ -45,8 +45,8 @@ export default function Hero() {
 
           <h1 className="leading-tight flex items-center justify-center gap-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
             <div className="flex-shrink-0 relative inline-block">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full">
-                <svg width="96" height="96" viewBox="0 0 96 96" className="overflow-visible">
+              <div className="absolute top-1/2 left-0" style={{ transform: 'translate(-50%, calc(-50% + 2%))' }}>
+                <svg width="128" height="128" viewBox="0 0 96 96" className="overflow-visible">
                   <defs>
                     <radialGradient id="gemGradient" cx="20%" cy="20%" r="70%">
                       <stop offset="0%" stopColor="#deb55b" stopOpacity="1" />
