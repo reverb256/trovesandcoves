@@ -133,8 +133,8 @@ export default function Contact() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="relative overflow-hidden py-20" style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
-        <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, #4abfbf, transparent)' }} />
-        <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, #6b9bd1, transparent)' }} />
+        <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+        <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
 
         <div className="relative container mx-auto px-4 text-center">
           <div className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full" style={{
@@ -148,12 +148,12 @@ export default function Contact() {
           </div>
 
           <h1 className="text-5xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
-            <span style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf', textTransform: 'uppercase' }}>Contact</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: '#deb55b' }}>&</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: '#e1af2f' }}>Connect With Us</span>
+            <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Contact</span>
+            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>&</span>
+            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Connect With Us</span>
           </h1>
 
-          <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, #4abfbf, #deb55b, #e1af2f)' }} />
+          <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, hsl(var(--accent-vibrant)), hsl(var(--gold-medium)), hsl(var(--gold-medium)))' }} />
 
           <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'hsl(var(--text-secondary))' }}>
             Connect with us to find your perfect piece. We're here to help you discover
@@ -169,7 +169,7 @@ export default function Contact() {
             <Card variant="elevated" theme="gradient">
               <CardHeader variant="gradient">
                 <CardTitle className="flex items-center gap-3">
-                  <MessageCircle className="h-6 w-6" style={{ color: '#deb55b' }} />
+                  <MessageCircle className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
                   <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>Send us a Message</span>
                 </CardTitle>
                 <p style={{ color: 'hsl(var(--text-secondary))' }}>
@@ -234,7 +234,7 @@ export default function Contact() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-semibold" style={{ color: '#2c6f6f' }}>
+                          <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-secondary))' }}>
                             Phone Number (Optional)
                           </FormLabel>
                           <FormControl>
@@ -265,7 +265,7 @@ export default function Contact() {
                                 type="checkbox"
                                 checked={field.value}
                                 onChange={field.onChange}
-                                className="w-4 h-4 rounded" style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: '#4abfbf' }}
+                                className="w-4 h-4 rounded" style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--accent-vibrant))' }}
                               />
                             </FormControl>
                             <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
@@ -368,7 +368,7 @@ export default function Contact() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-semibold" style={{ color: '#2c6f6f' }}>
+                          <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-secondary))' }}>
                             Message
                           </FormLabel>
                           <FormControl>
@@ -395,14 +395,14 @@ export default function Contact() {
             <Card variant="elevated" theme="gradient">
               <CardHeader variant="gradient">
                 <CardTitle className="flex items-center gap-3">
-                  <Compass className="h-6 w-6" style={{ color: '#deb55b' }} />
+                  <Compass className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
                   <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>Find Your Way to Us</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <Mail className="h-5 w-5 mt-1" style={{ color: '#4abfbf' }} />
+                    <Mail className="h-5 w-5 mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }} />
                     <div>
                       <p className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>Email</p>
                       <p style={{ color: 'hsl(var(--text-muted))' }}>hello@trovesandcoves.com</p>
@@ -410,7 +410,7 @@ export default function Contact() {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <Phone className="h-5 w-5 mt-1" style={{ color: '#4abfbf' }} />
+                    <Phone className="h-5 w-5 mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }} />
                     <div>
                       <p className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>Phone</p>
                       <p style={{ color: 'hsl(var(--text-muted))' }}>+1 (555) 123-GEMS</p>
@@ -418,7 +418,7 @@ export default function Contact() {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <MapPin className="h-5 w-5 mt-1" style={{ color: '#4abfbf' }} />
+                    <MapPin className="h-5 w-5 mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }} />
                     <div>
                       <p className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>Location</p>
                       <p style={{ color: 'hsl(var(--text-muted))' }}>
@@ -436,7 +436,7 @@ export default function Contact() {
             <Card variant="elevated" theme="gradient">
               <CardHeader variant="gradient">
                 <CardTitle className="flex items-center gap-3">
-                  <Clock className="h-6 w-6" style={{ color: '#deb55b' }} />
+                  <Clock className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
                   <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>Business Hours</span>
                 </CardTitle>
               </CardHeader>
@@ -468,7 +468,7 @@ export default function Contact() {
             <Card variant="elevated" theme="gradient">
               <CardHeader variant="gradient">
                 <CardTitle className="flex items-center gap-3">
-                  <Gem className="h-6 w-6" style={{ color: '#deb55b' }} />
+                  <Gem className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
                   <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>Crystal Services</span>
                 </CardTitle>
               </CardHeader>
@@ -481,7 +481,7 @@ export default function Contact() {
                         key={index}
                         className="flex items-start space-x-4 p-4 border rounded-lg" style={{ borderColor: 'hsl(var(--border-light))', backgroundColor: 'hsl(var(--bg-card))' }}
                       >
-                        <Icon className="h-6 w-6 mt-1" style={{ color: '#4abfbf' }} />
+                        <Icon className="h-6 w-6 mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }} />
                         <div>
                           <h3 className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
                             {service.title}
@@ -503,8 +503,8 @@ export default function Contact() {
         <div className="mt-12 text-center">
           <Card variant="elevated" theme="gradient" className="max-w-2xl mx-auto">
             <CardContent className="p-8">
-              <Sparkles className="h-12 w-12 mx-auto mb-4" style={{ color: '#4abfbf' }} />
-              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>Our Promise</h3>
+              <Sparkles className="h-12 w-12 mx-auto mb-4" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>Our Promise</h3>
               <p className="mb-6" style={{ color: 'hsl(var(--text-secondary))' }}>
                 Every message is received with intention and gratitude. We honor
                 your trust and will respond within 24 hours, often much sooner.
@@ -513,19 +513,19 @@ export default function Contact() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Badge
                   variant="outline"
-                  style={{ borderColor: '#4abfbf', color: 'hsl(var(--text-primary))' }}
+                  style={{ borderColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--text-primary))' }}
                 >
                   24 Hour Response
                 </Badge>
                 <Badge
                   variant="outline"
-                  style={{ borderColor: '#4abfbf', color: 'hsl(var(--text-primary))' }}
+                  style={{ borderColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--text-primary))' }}
                 >
                   Personal Guidance
                 </Badge>
                 <Badge
                   variant="outline"
-                  style={{ borderColor: '#4abfbf', color: 'hsl(var(--text-primary))' }}
+                  style={{ borderColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--text-primary))' }}
                 >
                   Crystal Connection
                 </Badge>
