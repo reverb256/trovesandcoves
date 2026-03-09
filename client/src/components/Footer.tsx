@@ -13,6 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 export default function Footer() {
   const [email, setEmail] = useState('');
   const { toast } = useToast();
+  const currentYear = new Date().getFullYear();
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -219,7 +220,7 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 text-[hsl(var(--accent-medium))] flex-shrink-0" />
                 <div>
                   <div className="text-[hsl(var(--text-secondary))]">Winnipeg, Manitoba</div>
-                  <div className="text-sm /70">Serving Canada with nationwide shipping</div>
+                  <div className="text-sm /70">Shipping worldwide from the heart of Canada</div>
                 </div>
               </div>
             </div>
@@ -230,7 +231,7 @@ export default function Footer() {
         <div className="border-t border-[hsla(var(--border-light), 0.3)] pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-[hsl(var(--text-secondary))] /70 text-sm">
-              © 2025 Troves & Coves. All rights reserved. |
+              © {currentYear} Troves & Coves. All rights reserved. |
               <Link href="/privacy-policy" className="hover:text-[hsl(var(--accent-medium))] transition-colors ml-1">
                 Privacy Policy
               </Link>
