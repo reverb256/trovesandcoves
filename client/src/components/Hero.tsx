@@ -71,7 +71,7 @@ export default function Hero() {
                   textTransform: "uppercase",
                   letterSpacing: "0.05em"
                 }}
-                className="text-4xl md:text-5xl lg:text-6xl relative z-10"
+                className="text-3xl md:text-4xl lg:text-5xl relative z-10"
               >
                 TROVES
               </span>

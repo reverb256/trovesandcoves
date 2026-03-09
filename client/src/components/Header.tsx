@@ -91,7 +91,7 @@ export default function Header() {
 
               <div className="flex flex-col">
                 <div className="flex items-end gap-2">
-                  <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-xl">TROVES</span>
+                  <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-lg">TROVES</span>
                   <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>&</span>
                   <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-2xl">Coves</span>
                 </div>
@@ -205,7 +205,7 @@ export default function Header() {
             {/* Mobile Logo */}
             <div className="text-center mb-8">
               <div className="flex items-baseline justify-center gap-3 mb-2">
-                <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-3xl">TROVES</span>
+                <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-2xl">TROVES</span>
                 <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>&</span>
                 <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-4xl">Coves</span>
               </div>

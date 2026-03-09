@@ -122,40 +122,41 @@
   --skull-overlay: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skull" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="30" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><circle cx="70" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><path d="M45 35 Q50 40 55 35" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><rect x="45" y="50" width="10" height="8" fill="none" stroke="hsl(43, 95%, 35%)" stroke-width="0.8" opacity="0.18"/></pattern></defs><rect width="100" height="100" fill="url(%23skull)"/></svg>');
 }
 
-/* Dark Mode - Mystical obsidian with turquoise aura */
+/* Dark Mode - Dark slate with turquoise aura */
 :root[data-theme='dark'] {
-  /* Deep obsidian with subtle turquoise undertones */
-  --bg-primary: 180 25% 6%;       /* Near-black with teal hint */
-  --bg-secondary: 182 22% 9%;     /* Slightly elevated */
-  --bg-tertiary: 184 20% 12%;     /* Card elevation */
-  --bg-card: 180 20% 10%;         /* Card background */
-  --bg-elevated: 182 22% 14%;     /* Elevated surface */
-  --bg-overlay: 180 30% 3% / 0.92;
+  /* Dark slate - cool gray-blue that complements Robin's turquoise */
+  --bg-primary: 215 20% 12%;      /* Deep slate blue-gray */
+  --bg-secondary: 215 18% 16%;    /* Slightly elevated slate */
+  --bg-tertiary: 215 16% 20%;     /* Card elevation */
+  --bg-card: 215 18% 14%;         /* Card background */
+  --bg-elevated: 215 20% 18%;     /* Elevated surface */
+  --bg-overlay: 215 25% 8% / 0.92;
 
-  --text-primary: 180 15% 96%;    /* Cool white with turquoise hint */
-  --text-secondary: 180 10% 82%;  /* Off-white */
-  --text-muted: 180 8% 65%;       /* Soft gray */
+  --text-primary: 215 15% 95%;     /* Cool white with slate hint */
+  --text-secondary: 215 10% 82%;   /* Off-white */
+  --text-muted: 215 8% 65%;        /* Soft gray */
   --text-inverted: 0 0% 6%;
 
-  --border-light: 174 35% 20%;    /* Turquoise-tinted dark border */
-  --border-medium: 174 25% 15%;   /* Subtle turquoise border */
-  --border-dark: 174 15% 10%;     /* Deep border */
+  --border-light: 215 25% 25%;     /* Slate-tinted border */
+  --border-medium: 215 20% 18%;    /* Subtle slate border */
+  --border-dark: 215 15% 12%;      /* Deep slate border */
 
-  --accent-soft: 174 55% 40%;     /* Soft turquoise glow for dark */
-  --accent-medium: 174 85% 50%;   /* Medium turquoise */
-  --accent-vibrant: 174 100% 60%; /* Bright turquoise accent */
+  /* Robin's turquoise pops beautifully against slate */
+  --accent-soft: 174 60% 45%;      /* Soft turquoise glow for dark */
+  --accent-medium: 174 85% 51%;    /* Medium turquoise - client's exact #4abfbf */
+  --accent-vibrant: 174 100% 65%;  /* Bright turquoise accent */
 
-  --gold-soft: 42 50% 45%;        /* Muted gold for dark mode */
-  --gold-medium: 43 75% 50%;      /* Medium gold */
-  --gold-vibrant: 45 73% 60%;     /* Bright gold highlight */
+  --gold-soft: 42 55% 50%;         /* Muted gold for dark mode */
+  --gold-medium: 43 78% 55%;       /* Medium gold */
+  --gold-vibrant: 45 75% 62%;      /* Bright gold highlight */
 
-  --shadow-sm: 0 1px 3px hsla(180 30% 2% / 0.8);
-  --shadow-md: 0 4px 12px hsla(180 30% 2% / 0.6);
-  --shadow-lg: 0 12px 32px hsla(180 30% 2% / 0.4);
+  --shadow-sm: 0 1px 3px hsla(215 30% 5% / 0.8);
+  --shadow-md: 0 4px 12px hsla(215 30% 5% / 0.6);
+  --shadow-lg: 0 12px 32px hsla(215 30% 5% / 0.4);
 
-  --gradient-bg: linear-gradient(180deg, hsl(180 25% 6%) 0%, hsl(182 22% 10%) 100%);
+  --gradient-bg: linear-gradient(180deg, hsl(215 20% 12%) 0%, hsl(215 18% 18%) 100%);
   --gradient-card: linear-gradient(145deg, hsl(var(--bg-elevated)) 0%, hsl(var(--bg-card)) 100%);
-  --gradient-accent: linear-gradient(135deg, #40E0D0 0%, #D4AF37 100%);
+  --gradient-accent: linear-gradient(135deg, #4abfbf 0%, #deb55b 100%);
 }
 
 * {
@@ -180,14 +181,14 @@ body {
 }
 
 [data-theme='dark'] body {
-  /* Mystical obsidian with turquoise aura */
+  /* Dark slate with turquoise glow */
   background:
     /* Subtle turquoise glow from top-right */
-    radial-gradient(ellipse at 85% 15%, hsla(174, 50%, 20%, 0.15) 0%, transparent 40%),
-    /* Deep teal shadow bottom-left */
-    radial-gradient(ellipse at 15% 85%, hsla(180, 30%, 8%, 0.2) 0%, transparent 40%),
-    /* Base - near-black obsidian with teal hint */
-    linear-gradient(180deg, hsl(180 25% 6%) 0%, hsl(182 22% 9%) 50%, hsl(184 20% 12%) 100%);
+    radial-gradient(ellipse at 85% 15%, hsla(174, 70%, 40%, 0.12) 0%, transparent 45%),
+    /* Slate shadow bottom-left */
+    radial-gradient(ellipse at 15% 85%, hsla(215, 25%, 8%, 0.15) 0%, transparent 40%),
+    /* Base - dark slate gradient */
+    linear-gradient(180deg, hsl(215 20% 12%) 0%, hsl(215 18% 16%) 50%, hsl(215 16% 22%) 100%);
 }
 
 /* No shimmer effect for clean light mode */
