@@ -34,7 +34,9 @@ describe('MysticalCard', () => {
       </MysticalCard>
     );
     const card = screen.getByText('Card content');
-    expect(card.parentElement).toHaveClass('glass-mystical');
+    // Glass variant has shadow-lg and backdrop-blur-sm classes
+    expect(card.parentElement).toHaveClass('shadow-lg');
+    expect(card.parentElement).toHaveClass('backdrop-blur-sm');
   });
 
   it('should support custom className', () => {
