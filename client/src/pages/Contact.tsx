@@ -143,14 +143,13 @@ export default function Contact() {
             boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)'
           }}>
             <span className="text-sm font-medium tracking-widest uppercase">
-              Get in Touch
+              Connect With Us
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 flex flex-col items-center justify-center gap-3">
             <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Contact</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>&</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Connect With Us</span>
+            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Troves & Coves</span>
           </h1>
 
           <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, hsl(var(--accent-vibrant)), hsl(var(--gold-medium)), hsl(var(--gold-medium)))' }} />
