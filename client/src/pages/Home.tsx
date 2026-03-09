@@ -13,9 +13,9 @@ export default function Home() {
   return (
     <>
       <SEOHead
-        title="Troves & Coves - Mystical Crystal Jewelry | Authentic Gemstone Healing Talismans"
-        description="Where authentic gemstone energies merge with artisan craftsmanship. Discover handcrafted crystal jewelry, wire-wrapped pendants, and healing talismans. Each piece channels crystal wisdom to amplify your inner light."
-        keywords="crystal jewelry, gemstone healing, wire-wrapped pendants, crystal wisdom, artisan jewelry, Winnipeg, spiritual jewelry, healing crystals"
+        title="Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces"
+        description="Discover the power of transformation with our handcrafted crystal jewelry. Each piece elevates your style and spirit, blending 14k gold-plated elegance with natural crystal beauty. Crafted with intention to empower your energy."
+        keywords="crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, crystal energy, transformation jewelry"
         url="https://trovesandcoves.ca"
         type="website"
       />
@@ -29,21 +29,32 @@ export default function Home() {
           {/* Section Header */}
           <div className="text-center mb-16">
             {/* Mystical Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-turquoise-soft rounded-full bg-crystal">
-              <Sparkles className="w-4 h-4 text-turquoise-bright" />
-              <span className="text-xs tracking-widest uppercase text-[hsl(var(--text-secondary))]">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full"
+              style={{ 
+                borderColor: 'hsla(174,85%,45%,0.2)', 
+                backgroundColor: 'hsla(174,85%,45%,0.05)'
+              }}
+            >
+              <Sparkles className="w-4 h-4" style={{ color: '#deb55b' }} />
+              <span 
+                className="text-xs tracking-widest uppercase"
+                style={{ fontFamily: "'Alex Brush', cursive", color: '#e1af2f' }}
+              >
                 Curated With Intention
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="text-shimmer">Crystal Collection</span>
+            <h2 
+              className="text-4xl md:text-6xl font-bold mb-6"
+              style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}
+            >
+              Crystal Collection
             </h2>
 
-            <p className="text-lg text-[hsl(var(--text-secondary))] opacity-70 max-w-2xl mx-auto">
-              Explore our curated collection of authentic gemstone jewelry,
-              wire-wrapped pendants, and healing talismans. Each piece is
-              artisan-crafted to amplify your energy and style.
+            <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Montserrat', sans-serif", color: '#2c6f6f' }}>
+              Explore our exquisite collection of statement necklaces and bracelets.
+              Each piece blends elegance with natural crystal beauty—
+              crafted with intention to empower your energy and enhance your presence.
             </p>
           </div>
 
@@ -94,21 +105,27 @@ export default function Home() {
 
                     {/* Product Info */}
                     <div className="text-center">
-                      <h3 className="text-xl font-semibold text-[hsl(var(--text-secondary))] mb-2 group-hover:text-turquoise-bright transition-colors duration-300">
+                      <h3 
+                        className="text-xl font-semibold mb-2 group-hover:opacity-90 transition-colors duration-300"
+                        style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-primary))' }}
+                      >
                         {product.name}
                       </h3>
 
-                      <p className="text-sm text-[hsl(var(--text-secondary))] opacity-60 mb-4 line-clamp-2">
+                      <p className="text-sm mb-4 line-clamp-2" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
                         {product.description}
                       </p>
 
-                      <div className="flex items-center justify-between pt-4 border-t border-[hsla(var(--accent-vibrant),0.1)]">
-                        <span className="text-lg font-semibold text-gold-bright glow-gold">
+                      <div className="flex items-center justify-between pt-4" style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}>
+                        <span 
+                          className="text-lg font-semibold"
+                          style={{ fontFamily: "'Libre Baskerville', serif", color: '#deb55b' }}
+                        >
                           ${product.price}
                         </span>
 
-                        <div className="flex items-center gap-1 text-xs text-turquoise-bright opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0">
-                          <span>View</span>
+                        <div className="flex items-center gap-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: '#4abfbf' }}>
+                          <span style={{ fontFamily: "'Montserrat', sans-serif" }}>View</span>
                           <ArrowRight className="w-4 h-4" />
                         </div>
                       </div>
@@ -122,7 +139,15 @@ export default function Home() {
           {/* View All Button */}
           <div className="text-center mt-16">
             <Link href="/products">
-              <button className="btn-mystical-outline group">
+              <button 
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105"
+                style={{ 
+                  border: '2px solid #4abfbf',
+                  backgroundColor: 'transparent',
+                  color: '#4abfbf',
+                  fontFamily: "'Montserrat', sans-serif"
+                }}
+              >
                 <span>View All Crystal Treasures</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </button>
@@ -132,31 +157,50 @@ export default function Home() {
       </section>
 
       {/* Mystical Message Section */}
-      <section className="chamber-section content-layer relative">
-        {/* Background glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsla(var(--accent-soft),0.05)] via-transparent to-[hsla(var(--gold-soft),0.05)]"></div>
+      <section className="chamber-section content-layer relative overflow-hidden">
+        {/* Mystical background effects */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-20"
+            style={{ backgroundColor: 'hsla(174,85%,45%,0.03)', filter: 'blur(60px)' }}
+          ></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-15"
+            style={{ backgroundColor: 'hsla(43,95%,55%,0.03)', filter: 'blur(80px)' }}
+          ></div>
+        </div>
 
         <div className="chamber-container relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="crystal-card p-12 md:p-16">
+            <div className="p-12 md:p-16 rounded-2xl"
+              style={{ 
+                backgroundColor: 'hsla(var(--bg-primary),0.5)',
+                border: '1px solid hsla(174,85%,45%,0.1)'
+              }}
+            >
               {/* Mystical Icon */}
-              <div className="inline-flex items-center justify-center w-20 h-20 mb-8 border-2 border-gold-soft rounded-full bg-[hsla(var(--gold-soft),0.05)] animate-pulse-glow">
-                <Sparkles className="w-10 h-10 text-gold-bright" />
+              <div className="inline-flex items-center justify-center w-20 h-20 mb-8 rounded-full"
+                style={{ 
+                  border: '2px solid hsla(43,95%,55%,0.3)', 
+                  backgroundColor: 'hsla(43,95%,55%,0.05)'
+                }}
+              >
+                <Sparkles className="w-10 h-10" style={{ color: '#deb55b' }} />
               </div>
 
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                <span className="text-shimmer">Channel Your Inner Light</span>
+              <h2 
+                className="text-3xl md:text-5xl font-bold mb-6"
+                style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}
+              >
+                Embrace Your Transformation
               </h2>
 
-              <p className="text-lg text-[hsl(var(--text-secondary))] opacity-70 leading-relaxed mb-8">
-                Every crystal in our collection has been intuitively selected for its
-                unique healing properties and energetic vibrations. When you wear
-                our jewelry, you carry the ancient wisdom of the earth with you—
-                amplifying your intentions, supporting your journey, and connecting
-                you to the mystical energies that surround us all.
+              <p className="text-lg leading-relaxed mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: '#2c6f6f' }}>
+                Every crystal in our collection is chosen for its unique energy and beauty.
+                When you wear our jewelry, you embrace bold femininity and masculine strength—
+                statement pieces crafted with intention to empower your energy and resonate
+                with abundance and confidence.
               </p>
 
-              <p className="text-base text-[hsl(var(--text-secondary))] opacity-50 italic">
+              <p className="text-base italic" style={{ fontFamily: "'Alex Brush', cursive", color: '#e1af2f' }}>
                 ✨ Handcrafted with intention in Winnipeg, Canada ✨
               </p>
             </div>

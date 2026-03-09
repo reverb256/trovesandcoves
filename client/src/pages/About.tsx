@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+
 import {
   Gem,
   Heart,
@@ -15,30 +15,30 @@ export default function About() {
   const values = [
     {
       icon: Gem,
-      title: 'Authentic Crystals',
+      title: 'Natural Crystals',
       description:
-        'Every piece features genuine, ethically sourced crystals selected for their unique energy and healing properties.',
+        'Every piece features genuine crystals selected for their raw beauty and unique energy—blending perfectly with 14k gold-plated elegance.',
       color: 'troves-turquoise',
     },
     {
       icon: Heart,
-      title: 'Artisan Craftsmanship',
+      title: 'Crafted with Intention',
       description:
-        'Hand-wrapped with intention and love, each piece is created to channel positive energy and spiritual connection.',
+        'Each piece is created to empower your energy and enhance your presence, resonating with abundance and confidence.',
       color: 'coves-cursive-blue',
     },
     {
       icon: Star,
-      title: 'Mystical Design',
+      title: 'Statement Design',
       description:
-        'Our designs blend ancient wisdom with modern aesthetics, creating wearable art that speaks to the soul.',
+        'Our statement necklaces and bracelets offer more than luxury—they elevate both your style and spirit.',
       color: 'skull-turquoise',
     },
     {
       icon: Moon,
-      title: 'Spiritual Guidance',
+      title: 'Personal Guidance',
       description:
-        'We provide personalized consultations to help you find the perfect crystal companions for your journey.',
+        'We provide personalized consultations to help you find pieces that embrace your bold femininity and strength.',
       color: 'troves-turquoise',
     },
   ];
@@ -46,25 +46,25 @@ export default function About() {
   const story = [
     {
       phase: 'Discovery',
-      title: 'The Crystal Calling',
+      title: 'The Power of Transformation',
       description:
-        'Born from a deep connection to crystal energy and ancient wisdom, Troves & Coves emerged as a welcoming space for crystal lovers.',
+        'Born from the belief that jewelry should elevate both style and spirit, Troves & Coves creates pieces that empower your energy.',
       icon: Compass,
       color: 'coves-cursive-blue',
     },
     {
       phase: 'Creation',
-      title: 'Artisan Awakening',
+      title: 'Crafted with Intention',
       description:
-        'We began hand-wrapping crystals with wire, infusing each piece with intention and creating jewellery that carries healing energy.',
+        'We blend 14k gold-plated elegance with natural crystal beauty, creating statement pieces that enhance your unique presence.',
       icon: Zap,
       color: 'troves-turquoise',
     },
     {
       phase: 'Connection',
-      title: 'Community of Light',
+      title: 'Embrace Your Strength',
       description:
-        'Our online sanctuary connects crystal lovers worldwide, sharing knowledge, energy, and beautiful handcrafted jewellery.',
+        'Our collection celebrates bold femininity and masculine strength—each piece resonating with abundance and confidence.',
       icon: Sparkles,
       color: 'skull-turquoise',
     },
@@ -88,20 +88,18 @@ export default function About() {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
-            <span style={{ color: 'hsl(var(--accent-vibrant))' }}>About </span>
-            <span className="font-brand-cursive" style={{ color: 'hsl(215 95% 55%)' }}>
-              Troves & Coves
-            </span>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
+            <span style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf', textTransform: 'uppercase' }}>About</span>
+            <span style={{ fontFamily: "'Alex Brush', cursive", color: '#deb55b' }}>&</span>
+            <span style={{ fontFamily: "'Alex Brush', cursive", color: '#e1af2f' }}>Troves & Coves</span>
           </h1>
 
-          <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, hsl(var(--accent-vibrant)), hsl(215 95% 55%))' }} />
+          <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, #4abfbf, #deb55b, #e1af2f)' }} />
 
-          <p className="text-xl max-w-4xl mx-auto leading-relaxed" style={{ color: 'hsl(var(--text-secondary))' }}>
-            We are artisan crystal jewellery creators, weaving ancient wisdom
-            into modern wearable art. Each piece is hand-wrapped with mindful
-            intention, connecting you to the mystical energy of genuine
-            crystals.
+          <p className="text-xl max-w-4xl mx-auto leading-relaxed" style={{ fontFamily: "'Montserrat', sans-serif", color: '#2c6f6f' }}>
+            We create handcrafted crystal jewelry that elevates both style and spirit.
+            Each piece blends 14k gold-plated elegance with natural crystal beauty—
+            crafted with intention to empower your energy and enhance your presence.
           </p>
         </div>
       </section>
@@ -112,39 +110,54 @@ export default function About() {
           <Card variant="elevated" theme="gradient">
             <CardContent className="p-12 text-center">
               <div className="mb-8">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-troves-turquoise to-coves-cursive-blue rounded-full mb-6">
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6" style={{ background: 'linear-gradient(135deg, #4abfbf, #e1af2f)' }}>
                   <Heart className="w-10 h-10 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold mb-6" style={{ color: 'hsl(var(--text-primary))' }}>
-                  Our Crystal Mission
+                <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}>
+                  Our Mission
                 </h2>
               </div>
-              <p className="text-lg leading-relaxed max-w-4xl mx-auto mb-8" style={{ color: 'hsl(var(--text-secondary))' }}>
-                At Troves & Coves, we believe that jewellery should be more than
-                beautiful—it should be meaningful. Our mission is to create
-                handcrafted crystal jewellery that serves as a bridge between
-                the earthly and divine, helping spiritual seekers connect with
-                their inner wisdom and the healing energy of authentic crystals.
+              <p className="text-lg leading-relaxed max-w-4xl mx-auto mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: '#2c6f6f' }}>
+                At Troves & Coves, we believe jewelry should be more than beautiful—
+                it should be transformative. Our mission is to create statement pieces
+                that empower your energy and enhance your presence. Each necklace and
+                bracelet blends 14k gold-plated elegance with natural crystal beauty,
+                crafted with intention to help you embrace bold femininity and strength.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Badge
-                  variant="outline"
-                  className="px-4 py-2" style={{ border: '1px solid hsl(var(--accent-vibrant))', color: 'hsl(var(--accent-vibrant))', backgroundColor: 'hsla(var(--accent-vibrant), 0.05)' }}
+                <span
+                  className="px-4 py-2 rounded-full text-sm font-medium tracking-wider uppercase border"
+                  style={{
+                    border: '1px solid #4abfbf',
+                    color: '#4abfbf',
+                    backgroundColor: 'hsla(174,85%,45%,0.05)',
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}
                 >
-                  Handcrafted with Love
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="border-coves-cursive-blue text-coves-cursive-blue bg-coves-cursive-blue/5 px-4 py-2"
+                  Crafted with Intention
+                </span>
+                <span
+                  className="px-4 py-2 rounded-full text-sm font-medium tracking-wider uppercase border"
+                  style={{
+                    border: '1px solid #deb55b',
+                    color: '#deb55b',
+                    backgroundColor: 'hsla(43,95%,55%,0.05)',
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}
                 >
-                  Ethically Sourced
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="border-skull-turquoise text-skull-turquoise bg-skull-turquoise/5 px-4 py-2"
+                  14k Gold-Plated
+                </span>
+                <span
+                  className="px-4 py-2 rounded-full text-sm font-medium tracking-wider uppercase border"
+                  style={{
+                    border: '1px solid #e1af2f',
+                    color: '#e1af2f',
+                    backgroundColor: 'hsla(38,80%,53%,0.05)',
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}
                 >
-                  Spiritually Infused
-                </Badge>
+                  Natural Crystals
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -153,10 +166,13 @@ export default function About() {
         {/* Our Story */}
         <section className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4" style={{ color: 'hsl(var(--text-primary))' }}>
-              Our Crystal Journey
+            <h2
+              className="text-4xl font-bold mb-4"
+              style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}
+            >
+              Our Journey
             </h2>
-            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-troves-turquoise to-coves-cursive-blue rounded-full" />
+            <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, #4abfbf, #deb55b, #e1af2f)' }} />
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -176,13 +192,18 @@ export default function About() {
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <Badge
-                          variant="outline"
-                          className={`border-${chapter.color} text-${chapter.color} mb-2`}
+                        <span
+                          className="inline-block px-3 py-1 text-xs tracking-wider uppercase rounded-full mb-2"
+                          style={{
+                            border: '1px solid #deb55b',
+                            color: '#deb55b',
+                            backgroundColor: 'hsla(43,95%,55%,0.05)',
+                            fontFamily: "'Montserrat', sans-serif"
+                          }}
                         >
                           {chapter.phase}
-                        </Badge>
-                        <CardTitle className="text-xl" style={{ color: 'hsl(var(--text-primary))' }}>
+                        </span>
+                        <CardTitle className="text-xl" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>
                           {chapter.title}
                         </CardTitle>
                       </div>
@@ -202,13 +223,16 @@ export default function About() {
         {/* Values */}
         <section className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4" style={{ color: 'hsl(var(--text-primary))' }}>
-              Our Crystal Values
+            <h2
+              className="text-4xl font-bold mb-4"
+              style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}
+            >
+              Our Values
             </h2>
-            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-coves-cursive-blue to-skull-turquoise rounded-full" />
-            <p className="text-lg mt-6 max-w-3xl mx-auto" style={{ color: 'hsl(var(--text-muted))' }}>
-              These core values guide every aspect of our craft, from crystal
-              selection to the final blessing of each piece.
+            <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, #e1af2f, #deb55b, #4abfbf)' }} />
+            <p className="text-lg mt-6 max-w-3xl mx-auto" style={{ fontFamily: "'Montserrat', sans-serif", color: '#2c6f6f' }}>
+              These principles guide every piece we create—crafted with intention to
+              empower your energy and enhance your presence.
             </p>
           </div>
 
@@ -222,7 +246,7 @@ export default function About() {
                 >
                   <CardContent className="p-6">
                     <div
-                      className={`w-16 h-16 bg-${value.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}
+                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: value.color === 'troves-turquoise' ? '#4abfbf' : value.color === 'coves-cursive-blue' ? '#4a90c2' : '#6b9bd1' }}
                     >
                       <Icon className="w-8 h-8 text-white" />
                     </div>
@@ -242,12 +266,12 @@ export default function About() {
         {/* Artisan Process */}
         <section className="mb-20">
           <Card variant="elevated" theme="gradient">
-            <CardHeader className="border-b" style={{ background: 'linear-gradient(90deg, hsla(var(--accent-vibrant), 0.1), hsla(var(--accent-vibrant), 0.05), hsla(215 95% 55%, 0.05))', borderBottomColor: 'hsl(var(--border-medium))' }}>
+            <CardHeader className="border-b" style={{ background: 'linear-gradient(90deg, hsla(174,85%,45%,0.05), hsla(43,95%,55%,0.03))', borderBottomColor: 'hsla(174,85%,45%,0.15)' }}>
               <CardTitle className="text-center">
-                <div className="flex items-center justify-center space-x-3" style={{ color: 'hsl(var(--text-primary))' }}>
-                  <Zap className="w-8 h-8 text-troves-turquoise" />
-                  <span className="text-3xl font-bold">Our Artisan Craft</span>
-                  <Sparkles className="w-8 h-8 text-coves-cursive-blue" />
+                <div className="flex items-center justify-center gap-3" style={{ color: 'hsl(var(--text-primary))' }}>
+                  <Zap className="w-8 h-8" style={{ color: '#4abfbf' }} />
+                  <span className="text-3xl font-bold" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>Our Artisan Craft</span>
+                  <Sparkles className="w-8 h-8" style={{ color: '#deb55b' }} />
                 </div>
               </CardTitle>
             </CardHeader>
@@ -259,7 +283,7 @@ export default function About() {
                   </h3>
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center mt-1" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}>
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center mt-1" style={{ backgroundColor: '#4abfbf' }}>
                         <span className="text-white font-bold text-sm">1</span>
                       </div>
                       <div>
@@ -273,7 +297,7 @@ export default function About() {
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-coves-cursive-blue rounded-full flex items-center justify-center mt-1">
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center mt-1" style={{ backgroundColor: '#4a90c2' }}>
                         <span className="text-white font-bold text-sm">2</span>
                       </div>
                       <div>
@@ -287,7 +311,7 @@ export default function About() {
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="w-8 h-8 bg-skull-turquoise rounded-full flex items-center justify-center mt-1">
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center mt-1" style={{ backgroundColor: '#6b9bd1' }}>
                         <span className="text-white font-bold text-sm">3</span>
                       </div>
                       <div>
@@ -304,15 +328,15 @@ export default function About() {
                 </div>
                 <div className="text-center">
                   <div className="relative inline-block">
-                    <div className="w-64 h-64 bg-gradient-to-br from-troves-turquoise via-skull-turquoise to-coves-cursive-blue rounded-full flex items-center justify-center mx-auto shadow-2xl">
-                      <div className="w-48 h-48 bg-background rounded-full flex items-center justify-center">
-                        <Gem className="w-24 h-24 text-troves-turquoise" />
+                    <div className="w-64 h-64 rounded-full flex items-center justify-center mx-auto shadow-2xl" style={{ background: 'linear-gradient(to bottom right, #4abfbf, #6b9bd1, #4a90c2)' }}>
+                      <div className="w-48 h-48 rounded-full flex items-center justify-center" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
+                        <Gem className="w-24 h-24" style={{ color: '#4abfbf' }} />
                       </div>
                     </div>
-                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-coves-cursive-blue rounded-full flex items-center justify-center">
+                    <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: '#4a90c2' }}>
                       <Sparkles className="w-8 h-8 text-white" />
                     </div>
-                    <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-skull-turquoise rounded-full flex items-center justify-center">
+                    <div className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: '#6b9bd1' }}>
                       <Heart className="w-8 h-8 text-white" />
                     </div>
                   </div>
@@ -327,52 +351,52 @@ export default function About() {
           <Card variant="elevated" theme="gradient">
             <CardContent className="p-12 text-center">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6" style={{ color: 'hsl(var(--text-primary))' }}>
-                  Join Our Crystal Community
+                <h2
+                  className="text-3xl font-bold mb-6"
+                  style={{ fontFamily: "'Libre Baskerville', serif", color: '#4abfbf' }}
+                >
+                  Join Our Community
                 </h2>
-                <div className="w-24 h-1 mx-auto bg-gradient-to-r from-troves-turquoise via-skull-turquoise to-coves-cursive-blue rounded-full mb-6" />
+                <div className="w-24 h-1 mx-auto rounded-full mb-6" style={{ background: 'linear-gradient(90deg, #4abfbf, #deb55b)' }} />
               </div>
-              <p className="text-lg leading-relaxed max-w-4xl mx-auto mb-8" style={{ color: 'hsl(var(--text-secondary))' }}>
-                Troves & Coves is more than a jewelry brand—we're a community of
-                spiritual seekers, crystal lovers, and conscious souls. When you
-                wear our pieces, you join a worldwide network of light workers
-                and healers, each carrying the pure energy of authentic
-                crystals.
+              <p className="text-lg leading-relaxed max-w-4xl mx-auto mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: '#2c6f6f' }}>
+                Troves & Coves is more than a jewelry brand—we're a community of those
+                seeking transformation through beauty. When you wear our pieces, you embrace
+                bold femininity and strength, carrying energy that resonates with abundance
+                and confidence.
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <div className="text-center">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}>
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#4abfbf' }}>
                     <Sun className="w-10 h-10 text-white" />
                   </div>
                   <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
-                    Daily Inspiration
+                    Empower Your Energy
                   </h3>
-                  <p className="text-navy/70">
-                    Crystal wisdom and spiritual guidance shared through our
-                    community.
+                  <p style={{ color: '#2c6f6f', opacity: 0.7 }}>
+                    Statement pieces crafted with intention to enhance your presence.
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-coves-cursive-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#4a90c2' }}>
                     <Moon className="w-10 h-10 text-white" />
                   </div>
                   <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
-                    Crystal Rituals
+                    Elevate Your Spirit
                   </h3>
-                  <p className="text-navy/70">
-                    Learn how to cleanse, charge, and work with your crystal
-                    jewelry.
+                  <p style={{ color: '#2c6f6f', opacity: 0.7 }}>
+                    Each piece blends 14k gold-plated elegance with natural crystal beauty.
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-skull-turquoise rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#6b9bd1' }}>
                     <Star className="w-10 h-10 text-white" />
                   </div>
                   <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
-                    Healing Circle
+                    Embrace Transformation
                   </h3>
-                  <p className="text-navy/70">
-                    Connect with like-minded souls on their spiritual journey.
+                  <p style={{ color: '#2c6f6f', opacity: 0.7 }}>
+                    Connect with pieces that resonate with abundance and confidence.
                   </p>
                 </div>
               </div>

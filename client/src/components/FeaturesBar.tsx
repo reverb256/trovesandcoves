@@ -8,11 +8,11 @@ export default function FeaturesBar() {
     },
     {
       icon: Shield,
-      text: "Lifetime Warranty"
+      text: "Crafted with Intention"
     },
     {
       icon: Gem,
-      text: "Ethically Sourced"
+      text: "Empower Your Energy"
     }
   ];
 

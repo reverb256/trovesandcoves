@@ -19,8 +19,8 @@ export default function Footer() {
     if (!email) return;
 
     toast({
-      title: 'Thank you for subscribing!',
-      description: "You'll receive updates about our latest mystical collections and exclusive events.",
+      title: 'Welcome to our circle!',
+      description: "You'll receive updates on our latest transformative collections and exclusive events.",
     });
     setEmail('');
   };
@@ -98,11 +98,11 @@ export default function Footer() {
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold text-[hsl(var(--text-secondary))] mb-4">
-              <span className="text-shimmer">Join Our Crystal Circle</span>
+              <span className="text-shimmer">Join Our Circle</span>
             </h2>
 
             <p className="text-lg text-[hsl(var(--text-secondary))] mb-8">
-              Be the first to discover new collections, crystal wisdom, and exclusive mystical events
+              Be the first to discover new collections, empowering energy pieces, and exclusive events
             </p>
 
             <form
@@ -141,9 +141,8 @@ export default function Footer() {
               <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-2xl">Coves</span>
             </div>
             <p className="text-[hsl(var(--text-secondary))]/80 mb-6 leading-relaxed">
-              Authentic crystal jewellery and healing gemstone talismans crafted
-              with intention. Each piece channels crystal wisdom to amplify your
-              inner light and promote healing.
+              Handcrafted crystal jewelry blending 14k gold-plated elegance with natural crystal beauty.
+              Each piece is crafted with intention to empower your energy and enhance your unique presence.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => {
@@ -212,7 +211,7 @@ export default function Footer() {
                 <Mail className="w-5 h-5 text-[hsl(var(--accent-medium))] flex-shrink-0" />
                 <div>
                   <div className="text-[hsl(var(--text-secondary))]">info@trovesandcoves.ca</div>
-                  <div className="text-sm /70">Crystal consultations & guidance</div>
+                  <div className="text-sm /70">Personal consultations for your perfect piece</div>
                 </div>
               </div>
 
@@ -243,7 +242,7 @@ export default function Footer() {
 
             <div className="flex items-center gap-2 text-[hsl(var(--text-secondary))] /70 text-sm">
               <span>✨</span>
-              <span>Handcrafted with crystal intention</span>
+              <span>Crafted with intention to empower your energy</span>
               <span>✨</span>
             </div>
           </div>

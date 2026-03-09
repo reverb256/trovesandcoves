@@ -18,9 +18,9 @@ interface SEOProps {
 }
 
 export default function SEOHead({
-  title = 'Troves & Coves - Premium Crystal Jewelry | Winnipeg Manitoba',
-  description = 'Discover exquisite crystal jewelry and healing stones in Winnipeg. Handcrafted necklaces, wire-wrapped pendants, and authentic crystals. Free local delivery, expert crystal consultations, premium quality guaranteed.',
-  keywords = 'crystal jewelry Winnipeg, healing crystals Manitoba, handmade necklaces, wire wrapped jewelry, lepidolite, turquoise, citrine, rose quartz, local jewelry store, spiritual jewelry',
+  title = 'Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces',
+  description = 'Discover the power of transformation with our handcrafted crystal jewelry. Each piece elevates your style and spirit, blending 14k gold-plated elegance with natural crystal beauty. Crafted with intention to empower your energy.',
+  keywords = 'crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, crystal energy, transformation jewelry',
   image = '/og-image.jpg',
   url = 'https://troves-and-coves.com',
   type = 'website',
@@ -117,7 +117,7 @@ export default function SEOHead({
           '@id': `${url}/#business`,
           name: 'Troves & Coves',
           description:
-            'Premium crystal jewelry and healing stones in Winnipeg, Manitoba. Handcrafted necklaces, wire-wrapped pendants, and authentic crystals.',
+            'Handcrafted crystal jewelry in Winnipeg, Manitoba. Statement necklaces and bracelets crafted with intention—blending 14k gold-plated elegance with natural crystal beauty to empower your energy.',
           url: url,
           telephone: '+1-204-xxx-xxxx',
           address: {

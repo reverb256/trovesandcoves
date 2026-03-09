@@ -33,7 +33,7 @@ export const BRAND_CONFIG = {
     primary: "Troves", // Turquoise, Libre Baskerville
     secondary: "Coves", // Gold, Alex Brush script
     separator: "&", // Gold accent
-    tagline: "Mystical Crystal Jewelry • Winnipeg"
+    tagline: "Crystal Jewelry • Winnipeg"
   },
 
   // CLIENT'S EXACT COLOR SPECIFICATIONS (Robin)
@@ -118,10 +118,10 @@ export const BRAND_CONFIG = {
 
   // VOICE AND MESSAGING
   voice: {
-    tone: "mystical, spiritual, authentic",
-    personality: "wise, nurturing, magical",
-    approach: "personal connection to crystal energy",
-    expertise: "handcrafted jewelry, crystal healing properties"
+    tone: "empowering, transformative, intentional",
+    personality: "confident, inclusive, authentic",
+    approach: "elevate style and spirit through crafted intention",
+    expertise: "14k gold-plated jewelry, natural crystals, statement pieces"
   },
 
   // VISUAL HIERARCHY
@@ -134,10 +134,10 @@ export const BRAND_CONFIG = {
 
   // AI ORCHESTRATION GUIDELINES
   aiGuidelines: {
-    brandVoice: "Mystical, spiritual, authentic - personal connection to crystal energy",
+    brandVoice: "Empowering, transformative, intentional - elevate style and spirit through crafted pieces",
     colorUsage: "Use #4abfbf for Troves, #e1af2f/#deb55b for Coves, #faf8f3 for backgrounds",
-    imagery: "Crystal jewelry, turquoise and gold mystical themes, handcrafted quality",
-    messaging: "Crystal healing properties, handcrafted quality, spiritual connection"
+    imagery: "Statement necklaces and bracelets, 14k gold-plated chains, natural crystals, handcrafted quality",
+    messaging: "Power of transformation, crafted with intention, empower your energy, enhance your presence, bold femininity and masculine strength"
   },
 
   // IMMUTABLE RULES - CLIENT SPECIFIED
@@ -146,7 +146,7 @@ export const BRAND_CONFIG = {
     colorConsistency: "#4abfbf for Troves, #e1af2f/#deb55b for Coves - no exceptions",
     fontPairing: "Libre Baskerville for Troves, Alex Brush for Coves - locked pairing",
     background: "#faf8f3 (linen) for primary backgrounds",
-    brandIntegrity: "All responses must reflect mystical crystal jewelry expertise from Robin"
+    brandIntegrity: "All responses must reflect transformative crystal jewelry expertise—elevating style and spirit through crafted intention"
   }
 } as const;
 

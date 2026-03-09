@@ -109,25 +109,21 @@ export default function Header() {
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`relative py-2 text-sm tracking-widest uppercase transition-colors duration-300 ${
-                    isActivePath(item.path)
-                      ? 'glow-turquoise'
-                      : ''
-                  }`}
+                  className="relative py-2 text-sm tracking-widest uppercase transition-colors duration-300"
                   style={{
                     color: isActivePath(item.path)
-                      ? 'hsl(var(--skull-turquoise))'
+                      ? '#4abfbf'
                       : 'hsl(var(--text-primary))'
                   }}
-                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--skull-turquoise))')}
+                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = '#4abfbf')}
                   onMouseLeave={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--text-primary))')}
                 >
                   {item.name}
                   {isActivePath(item.path) && (
                     <span className="absolute bottom-0 left-0 w-full h-px"
                       style={{
-                        backgroundColor: 'hsl(var(--skull-turquoise))',
-                        boxShadow: '0 0 10px hsla(var(--accent-vibrant),0.8)'
+                        backgroundColor: '#4abfbf',
+                        boxShadow: '0 0 10px #4abfbf'
                       }}
                     ></span>
                   )}
@@ -230,10 +226,10 @@ export default function Header() {
                   className="text-2xl tracking-widest uppercase transition-colors duration-300"
                   style={{
                     color: isActivePath(item.path)
-                      ? 'hsl(var(--skull-turquoise))'
+                      ? '#4abfbf'
                       : 'hsl(var(--text-primary))'
                   }}
-                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--skull-turquoise))')}
+                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = '#4abfbf')}
                   onMouseLeave={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--text-primary))')}
                 >
                   {item.name}

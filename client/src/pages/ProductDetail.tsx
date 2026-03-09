@@ -77,7 +77,7 @@ export default function ProductDetail() {
       <div className="min-h-screen bg-mystical-gradient flex items-center justify-center content-layer">
         <div className="crystal-card p-16 text-center max-w-md">
           <Gem className="w-16 h-16 text-turquoise-bright opacity-50 mx-auto mb-6" />
-          <h2 className="text-2xl font-semibold text-primary mb-4">
+          <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
             Crystal Not Found
           </h2>
           <p className="text-primary opacity-60 mb-8">
@@ -101,12 +101,12 @@ export default function ProductDetail() {
           <div className="flex items-center gap-3 text-sm overflow-x-auto">
             <button
               onClick={() => setLocation('/products')}
-              className="flex items-center gap-2 text-turquoise-bright hover:text-[hsl(var(--accent-vibrant))] transition-colors whitespace-nowrap"
+              className="flex items-center gap-2 hover:opacity-80 transition-colors whitespace-nowrap" style={{ color: '#4abfbf' }}
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Collections</span>
             </button>
-            <span className="text-[hsla(var(--gold-medium),0.5)]">/</span>
+            <span style={{ color: '#deb55b' }}>/</span>
             {product.category && (
               <>
                 <Link
@@ -115,7 +115,7 @@ export default function ProductDetail() {
                 >
                   {product.category.name}
                 </Link>
-                <span className="text-[hsla(var(--gold-medium),0.5)]">/</span>
+                <span style={{ color: '#deb55b' }}>/</span>
               </>
             )}
             <span className="text-primary opacity-60 truncate max-w-[200px]" title={product.name}>
@@ -201,17 +201,17 @@ export default function ProductDetail() {
             )}
 
             {/* Product Name */}
-            <h1 className="text-4xl md:text-5xl font-bold text-primary">
+            <h1 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
               {product.name}
             </h1>
 
             {/* Price */}
-            <div className="text-4xl font-bold text-gold-bright glow-gold">
+            <div className="text-4xl font-bold" style={{ fontFamily: '"Libre Baskerville", serif', color: '#deb55b' }}>
               {formatPrice(product.price)}
             </div>
 
             {/* Description */}
-            <p className="text-lg text-primary opacity-80 leading-relaxed">
+            <p className="text-lg leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: '#2c6f6f' }}>
               {product.description}
             </p>
 
@@ -220,33 +220,33 @@ export default function ProductDetail() {
               <div className="space-y-3 p-6 crystal-card">
                 {product.materials && product.materials.length > 0 && (
                   <div>
-                    <span className="text-sm tracking-wider uppercase text-primary opacity-60">
+                    <span className="text-sm tracking-wider uppercase" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                       Materials:{' '}
                     </span>
-                    <span className="text-primary">{product.materials.join(', ')}</span>
+                    <span style={{ color: 'hsl(var(--text-primary))' }}>{product.materials.join(', ')}</span>
                   </div>
                 )}
                 {product.gemstones && product.gemstones.length > 0 && (
                   <div>
-                    <span className="text-sm tracking-wider uppercase text-primary opacity-60">
+                    <span className="text-sm tracking-wider uppercase" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                       Gemstones:{' '}
                     </span>
-                    <span className="text-primary">{product.gemstones.join(', ')}</span>
+                    <span style={{ color: 'hsl(var(--text-primary))' }}>{product.gemstones.join(', ')}</span>
                   </div>
                 )}
                 {product.weight && (
                   <div>
-                    <span className="text-sm tracking-wider uppercase text-primary opacity-60">
+                    <span className="text-sm tracking-wider uppercase" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                       Weight:{' '}
                     </span>
-                    <span className="text-primary">{product.weight}g</span>
+                    <span style={{ color: 'hsl(var(--text-primary))' }}>{product.weight}g</span>
                   </div>
                 )}
                 <div>
-                  <span className="text-sm tracking-wider uppercase text-primary opacity-60">
+                  <span className="text-sm tracking-wider uppercase" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                     SKU:{' '}
                   </span>
-                  <span className="text-primary">{product.sku}</span>
+                  <span style={{ color: 'hsl(var(--text-primary))' }}>{product.sku}</span>
                 </div>
               </div>
             )}
@@ -254,23 +254,23 @@ export default function ProductDetail() {
             {/* Quantity Selector */}
             <div className="space-y-4">
               <div className="flex items-center gap-6">
-                <span className="text-sm tracking-wider uppercase text-primary opacity-60">
+                <span className="text-sm tracking-wider uppercase" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                   Quantity
                 </span>
                 <div className="flex items-center border border-turquoise-soft rounded-lg overflow-hidden">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-3 text-turquoise-bright hover:bg-turquoise-soft transition-colors"
+                    className="p-3 transition-colors" style={{ color: '#4abfbf' }}
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="px-6 py-3 min-w-[4rem] text-center text-primary font-semibold">
+                  <span className="px-6 py-3 min-w-[4rem] text-center font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(Math.min(product.stockQuantity ?? 99, quantity + 1))}
                     disabled={quantity >= (product.stockQuantity ?? 99)}
-                    className="p-3 text-turquoise-bright hover:bg-turquoise-soft transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                    className="p-3 transition-colors disabled:opacity-30 disabled:cursor-not-allowed" style={{ color: '#4abfbf' }}
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -280,18 +280,18 @@ export default function ProductDetail() {
               {/* Stock Status */}
               {product.stockQuantity !== undefined && product.stockQuantity !== null ? (
                 product.stockQuantity > 0 ? (
-                  <p className="text-sm text-turquoise-bright">
+                  <p className="text-sm" style={{ color: '#4abfbf' }}>
                     ✓ In stock ({product.stockQuantity} available)
                   </p>
                 ) : (
-                  <p className="text-sm text-primary opacity-60">
+                  <p className="text-sm" style={{ color: 'hsl(var(--text-muted))' }}>
                     ✗ Out of stock
                   </p>
                 )
               ) : product.inStock ? (
-                <p className="text-sm text-turquoise-bright">✓ In stock</p>
+                <p className="text-sm" style={{ color: '#4abfbf' }}>✓ In stock</p>
               ) : (
-                <p className="text-sm text-primary opacity-60">✗ Out of stock</p>
+                <p className="text-sm" style={{ color: 'hsl(var(--text-muted))' }}>✗ Out of stock</p>
               )}
             </div>
 
@@ -308,7 +308,7 @@ export default function ProductDetail() {
                 </button>
                 <button
                   onClick={handleWishlist}
-                  className="p-4 border border-gold-soft rounded-lg text-gold-bright hover:bg-gold-soft transition-colors duration-300"
+                  className="p-4 border rounded-lg hover:opacity-80 transition-colors duration-300" style={{ borderColor: '#deb55b', color: '#deb55b' }}
                 >
                   <Heart className="w-5 h-5" />
                 </button>
@@ -324,15 +324,15 @@ export default function ProductDetail() {
             {/* Features */}
             <div className="grid grid-cols-3 gap-4 pt-6 border-t border-turquoise-light">
               <div className="text-center">
-                <Truck className="w-6 h-6 text-gold-bright mx-auto mb-2" />
+                <Truck className="w-6 h-6 mx-auto mb-2" style={{ color: '#deb55b' }} />
                 <p className="text-xs text-primary opacity-60">Free Shipping</p>
               </div>
               <div className="text-center">
-                <Shield className="w-6 h-6 text-gold-bright mx-auto mb-2" />
+                <Shield className="w-6 h-6 mx-auto mb-2" style={{ color: '#deb55b' }} />
                 <p className="text-xs text-primary opacity-60">Lifetime Warranty</p>
               </div>
               <div className="text-center">
-                <Gem className="w-6 h-6 text-gold-bright mx-auto mb-2" />
+                <Gem className="w-6 h-6 mx-auto mb-2" style={{ color: '#deb55b' }} />
                 <p className="text-xs text-primary opacity-60">Ethically Sourced</p>
               </div>
             </div>
@@ -375,17 +375,17 @@ function RelatedProducts({
       <div className="chamber-container">
         <div className="text-center mb-12">
           {/* Mystical Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-gold-soft rounded-full bg-gold-soft">
-            <Star className="w-4 h-4 text-gold-bright" />
-            <span className="text-xs tracking-widest uppercase text-primary">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full" style={{ backgroundColor: 'hsla(43,95%,55%,0.1)', borderColor: '#deb55b' }}>
+            <Star className="w-4 h-4" style={{ color: '#deb55b' }} />
+            <span className="text-xs tracking-widest uppercase" style={{ fontFamily: '"Montserrat", sans-serif', color: '#deb55b' }}>
               You Might Also Love
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-shimmer">Similar Pieces</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
+            Similar Pieces
           </h2>
-          <p className="text-primary opacity-60 max-w-xl mx-auto">
-            Discover more crystalline treasures from our curated collection
+          <p className="max-w-xl mx-auto" style={{ fontFamily: '"Montserrat", sans-serif', color: '#2c6f6f' }}>
+            Discover more pieces crafted with intention to empower your energy
           </p>
         </div>
 
@@ -402,14 +402,14 @@ function RelatedProducts({
                     decoding="async"
                   />
                 </div>
-                <h3 className="text-lg font-semibold text-primary mb-2 group-hover:text-turquoise-bright transition-colors">
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-turquoise-bright transition-colors" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
                   {product.name}
                 </h3>
-                <p className="text-sm text-primary opacity-60 mb-3 line-clamp-2">
+                <p className="text-sm mb-3 line-clamp-2" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                   {product.description}
                 </p>
                 <div className="flex items-center justify-between pt-4 border-t border-turquoise-light">
-                  <span className="text-lg font-semibold text-gold-bright">
+                  <span className="text-lg font-semibold" style={{ fontFamily: '"Libre Baskerville", serif', color: '#deb55b' }}>
                     ${product.price}
                   </span>
                   {product.category && (
@@ -426,7 +426,7 @@ function RelatedProducts({
         <div className="text-center mt-12">
           <Link href="/products">
             <button className="btn-mystical-outline group">
-              <span>Explore Full Collection</span>
+              <span>View All Statement Pieces</span>
             </button>
           </Link>
         </div>

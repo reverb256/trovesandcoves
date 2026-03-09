@@ -105,24 +105,29 @@ export default function Products() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
               {currentCategory ? (
-                <span className="text-shimmer">{currentCategory.name}</span>
+                <span style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>{currentCategory.name}</span>
               ) : searchQuery ? (
-                <span>
-                  Searching for <span className="text-glow-turquoise">"{searchQuery}"</span>
-                </span>
+                <>
+                  <span style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>Searching for</span>
+                  <span style={{ fontFamily: '"Alex Brush", cursive', color: '#deb55b' }}>"{searchQuery}"</span>
+                </>
               ) : (
-                <span className="text-shimmer">Our Collections</span>
+                <>
+                  <span style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf', textTransform: 'uppercase' }}>Our</span>
+                  <span style={{ fontFamily: '"Alex Brush", cursive', color: '#deb55b' }}>Crystal</span>
+                  <span style={{ fontFamily: '"Alex Brush", cursive', color: '#e1af2f' }}>Collections</span>
+                </>
               )}
             </h1>
 
-            <div className="w-24 h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-[hsla(var(--accent-vibrant),0.5)] to-transparent"></div>
+            <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #4abfbf, transparent)' }}></div>
 
-            <p className="text-primary opacity-70 text-lg max-w-2xl mx-auto">
+            <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: '"Montserrat", sans-serif', color: '#2c6f6f' }}>
               {currentCategory
                 ? currentCategory.description
-                : 'Where authentic gemstone energies merge with artisan craftsmanship. Each piece channels crystal wisdom to amplify your inner light.'}
+                : 'Statement pieces crafted with intention to empower your energy. Each piece blends 14k gold-plated elegance with natural crystal beauty.'}
             </p>
           </div>
         </div>
@@ -133,15 +138,15 @@ export default function Products() {
           {/* Mystical Sidebar Filters */}
           <aside className="lg:w-72 flex-shrink-0">
             <div className="crystal-card p-6 lg:sticky lg:top-24">
-              <h3 className="text-lg font-semibold text-primary mb-6 flex items-center gap-2">
-                <Filter className="w-5 h-5 text-turquoise-bright" />
-                <span>Refine Your Search</span>
+              <h3 className="text-lg font-semibold mb-6 flex items-center gap-2" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
+                <Filter className="w-5 h-5" style={{ color: '#4abfbf' }} />
+                <span style={{ color: 'hsl(var(--text-primary))' }}>Refine Your Search</span>
               </h3>
 
               {/* Search */}
               <form onSubmit={handleSearch} className="mb-6">
                 <div className="relative">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-turquoise-bright" />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: '#4abfbf' }} />
                   <input
                     type="text"
                     placeholder="Search crystals..."
@@ -154,18 +159,18 @@ export default function Products() {
 
               {/* Categories */}
               <div className="mb-6">
-                <h4 className="text-sm tracking-wider uppercase text-primary opacity-60 mb-3">
+                <h4 className="text-sm tracking-wider uppercase mb-3" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                   Categories
                 </h4>
                 <div className="space-y-2">
                   <button
                     onClick={() => (window.location.href = '/products')}
-                    className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-300 ${
-                      !category
-                        ? 'bg-turquoise-medium border border-turquoise-soft'
-                        : 'text-primary opacity-70 hover:bg-turquoise-soft'
-                    }`}
-                    style={{ color: !category ? 'hsl(174 70% 30%)' : undefined }}
+                    className="w-full text-left px-4 py-2 rounded-lg transition-colors duration-300"
+                    style={{
+                      backgroundColor: !category ? '#4abfbf' : 'transparent',
+                      border: !category ? '1px solid #4abfbf' : '1px solid transparent',
+                      color: !category ? '#fff' : 'hsl(var(--text-primary))'
+                    }}
                   >
                     All Collections
                   </button>
@@ -173,12 +178,12 @@ export default function Products() {
                     <button
                       key={cat.id}
                       onClick={() => (window.location.href = `/products/${cat.slug}`)}
-                      className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-300 ${
-                        category === cat.slug
-                          ? 'bg-turquoise-medium border border-turquoise-soft'
-                          : 'text-primary opacity-70 hover:bg-turquoise-soft'
-                      }`}
-                      style={{ color: category === cat.slug ? 'hsl(174 70% 30%)' : undefined }}
+                      className="w-full text-left px-4 py-2 rounded-lg transition-colors duration-300"
+                      style={{
+                        backgroundColor: category === cat.slug ? '#4abfbf' : 'transparent',
+                        border: category === cat.slug ? '1px solid #4abfbf' : '1px solid transparent',
+                        color: category === cat.slug ? '#fff' : 'hsl(var(--text-primary))'
+                      }}
                     >
                       {cat.name}
                     </button>
@@ -188,7 +193,7 @@ export default function Products() {
 
               {/* Sort By */}
               <div className="mb-6">
-                <h4 className="text-sm tracking-wider uppercase text-primary opacity-60 mb-3">
+                <h4 className="text-sm tracking-wider uppercase mb-3" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                   Sort By
                 </h4>
                 <select
@@ -208,8 +213,8 @@ export default function Products() {
               {hasActiveFilters && (
                 <button
                   onClick={clearFilters}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border border-gold-soft rounded-lg hover:bg-gold-soft transition-colors duration-300"
-                  style={{ color: 'hsl(38 80% 35%)' }}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 border rounded-lg hover:opacity-80 transition-colors duration-300"
+                  style={{ border: '1px solid #deb55b', color: '#deb55b' }}
                 >
                   <X className="w-4 h-4" />
                   <span>Clear All Filters</span>
@@ -222,9 +227,9 @@ export default function Products() {
           <main className="flex-1">
             {/* Results Header */}
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-semibold text-primary">
+              <h2 className="text-2xl font-semibold" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
                 {filteredAndSortedProducts.length}{' '}
-                <span className="opacity-60">
+                <span style={{ color: 'hsl(var(--text-primary))' }}>
                   {filteredAndSortedProducts.length === 1 ? 'Crystal' : 'Crystals'}
                 </span>
               </h2>
@@ -249,10 +254,10 @@ export default function Products() {
               /* No Results */
               <div className="crystal-card p-16 text-center">
                 <Filter className="w-16 h-16 text-primary opacity-30 mx-auto mb-6" />
-                <h3 className="text-2xl font-semibold text-primary mb-4">
+                <h3 className="text-2xl font-semibold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
                   No crystals found
                 </h3>
-                <p className="text-primary opacity-60 mb-8">
+                <p className="mb-8" style={{ fontFamily: '"Montserrat", sans-serif', color: '#2c6f6f' }}>
                   {searchQuery
                     ? `No crystals match your search for "${searchQuery}"`
                     : 'No crystals match your current filters'}
@@ -289,7 +294,7 @@ export default function Products() {
 
                         {/* Category Badge */}
                         {product.category && (
-                          <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase bg-turquoise-medium border border-turquoise-soft rounded-full backdrop-blur-sm" style={{ color: '#2c2c2c' }}>
+                          <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase rounded-full backdrop-blur-sm" style={{ backgroundColor: '#4abfbf', border: '1px solid #4abfbf', color: '#fff' }}>
                             {product.category.name}
                           </div>
                         )}
@@ -297,16 +302,16 @@ export default function Products() {
 
                       {/* Product Info */}
                       <div className="text-center">
-                        <h3 className="text-xl font-semibold text-primary mb-2 group-hover:text-turquoise-bright transition-colors duration-300">
+                        <h3 className="text-xl font-semibold mb-2 group-hover:text-turquoise-bright transition-colors duration-300" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
                           {product.name}
                         </h3>
 
-                        <p className="text-sm text-primary opacity-60 mb-4 line-clamp-2">
+                        <p className="text-sm mb-4 line-clamp-2" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
                           {product.description}
                         </p>
 
                         <div className="flex items-center justify-between pt-4 border-t border-turquoise-light">
-                          <span className="text-lg font-semibold text-wcag-gold">
+                          <span className="text-lg font-semibold" style={{ fontFamily: '"Libre Baskerville", serif', color: '#deb55b' }}>
                             ${product.price}
                           </span>
                         </div>
