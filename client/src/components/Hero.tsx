@@ -43,10 +43,10 @@ export default function Hero() {
       <div className="chamber-container relative z-10">
         <div className="flex flex-col items-center justify-center gap-4 text-center">
 
-          <h1 className="leading-tight flex items-center justify-center gap-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            <div className="flex-shrink-0 relative inline-block">
-              <div className="absolute top-1/2 left-0" style={{ transform: 'translate(-50%, calc(-50% + 2%))' }}>
-                <svg width="128" height="128" viewBox="0 0 96 96" className="overflow-visible">
+          <h1 className="leading-tight flex items-center justify-center gap-2 px-4" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+            <div className="flex-shrink-0 relative inline-block pl-8 md:pl-0">
+              <div className="absolute top-1/2 left-4 md:left-0" style={{ transform: 'translate(-50%, calc(-50% + 2%))' }}>
+                <svg width="96" height="96" viewBox="0 0 96 96" className="overflow-visible w-20 h-20 md:w-[128px] md:h-[128px]">
                   <defs>
                     <radialGradient id="gemGradient" cx="20%" cy="20%" r="70%">
                       <stop offset="0%" stopColor="hsl(var(--gold-medium))" stopOpacity="1" />
