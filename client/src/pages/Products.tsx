@@ -102,7 +102,7 @@ export default function Products() {
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-turquoise-soft rounded-full bg-crystal">
               <Sparkles className="w-4 h-4 text-turquoise-bright" />
               <span className="text-xs tracking-widest uppercase text-primary">
-                Crystal Collection
+                Our Crystal Collections
               </span>
             </div>
 
@@ -116,9 +116,8 @@ export default function Products() {
                 </>
               ) : (
                 <>
-                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Our</span>
-                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>Crystal</span>
-                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>Collections</span>
+                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Troves</span>
+                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>&amp; Coves</span>
                 </>
               )}
             </h1>
