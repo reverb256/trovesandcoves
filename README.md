@@ -108,7 +108,7 @@ The app uses a Material You-inspired design system with a cream color scheme:
 
 ### Current Deployment
 
-- **Frontend**: GitHub Pages at [https://reverb256.github.io/trovesandcoves](https://reverb256.github.io/trovesandcoves)
+- **Frontend**: GitHub Pages with custom domain at [https://trovesandcoves.ca](https://trovesandcoves.ca)
 - **API**: Cloudflare Workers (if configured)
 
 ### Manual Deployment

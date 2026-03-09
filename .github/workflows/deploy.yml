@@ -39,7 +39,7 @@ jobs:
         env:
           NODE_ENV: production
           VITE_API_URL: https://troves-coves-api.reverb256.workers.dev
-          VITE_GITHUB_PAGES_URL: https://reverb256.github.io/trovesandcoves
+          VITE_GITHUB_PAGES_URL: https://trovesandcoves.ca
           VITE_CLOUDFLARE_ANALYTICS: ${{ secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
           VITE_ENABLE_HTTPS: true
       
