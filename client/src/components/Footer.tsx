@@ -1,30 +1,14 @@
 import { Link } from 'wouter';
-import { useState } from 'react';
 import {
   Facebook,
   Instagram,
   Mail,
   MapPin,
   ExternalLink,
-  Sparkles,
 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const { toast } = useToast();
   const currentYear = new Date().getFullYear();
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-
-    toast({
-      title: 'Welcome to our circle!',
-      description: "You'll receive updates on our latest transformative collections and exclusive events.",
-    });
-    setEmail('');
-  };
 
   const socialLinks = [
     {
@@ -90,48 +74,6 @@ export default function Footer() {
       ></div>
 
       <div className="chamber-container">
-        {/* Newsletter Section */}
-        <div className="mb-16 text-center">
-          <div className="crystal-card p-8 md:p-12 max-w-3xl mx-auto">
-            {/* Mystical Icon */}
-            <div className="inline-flex items-center justify-center w-16 h-16 mb-6 border-2 border-[hsla(var(--gold-medium), 0.4)] rounded-full bg-[hsla(var(--gold-soft),0.05)] animate-pulse-glow">
-              <Sparkles className="w-8 h-8 text-[hsl(var(--gold-medium))]" />
-            </div>
-
-            <h2 className="text-3xl md:text-4xl font-bold text-[hsl(var(--text-secondary))] mb-4">
-              <span className="text-shimmer">Join Our Circle</span>
-            </h2>
-
-            <p className="text-lg text-[hsl(var(--text-secondary))] mb-8">
-              Be the first to discover new collections, empowering energy pieces, and exclusive events
-            </p>
-
-            <form
-              onSubmit={handleNewsletterSubmit}
-              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
-            >
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-6 py-3 bg-[hsla(var(--bg-tertiary), 0.5)] border border-[hsla(var(--border-light), 0.4)] rounded-lg text-[hsl(var(--text-secondary))] placeholder-[hsla(var(--text-muted),0.4)] focus:border-[hsla(var(--accent-vibrant),0.5)] focus:outline-none focus:ring-1 focus:ring-[hsla(var(--accent-vibrant),0.3)] transition-colors duration-300"
-                required
-              />
-              <button
-                type="submit"
-                className="btn-mystical whitespace-nowrap"
-              >
-                Subscribe
-              </button>
-            </form>
-
-            <p className="text-sm text-[hsl(var(--text-secondary))] /70 mt-4">
-              We respect your privacy. Unsubscribe at any time.
-            </p>
-          </div>
-        </div>
-
         {/* Main Footer Content */}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
           {/* Company Info */}
