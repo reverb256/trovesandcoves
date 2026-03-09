@@ -1056,3 +1056,78 @@ a:hover {
 .text-gold-accent {
   color: #e1af2f; /* Client's exact color - adequate on dark bg */
 }
+
+/* ============================================================
+   ACCESSIBILITY - Enhanced Focus Indicators
+   WCAG 2.1 AA Compliance for keyboard navigation
+   ============================================================ */
+
+/* Reset and ensure focus is always visible */
+*:focus-visible {
+  outline: 3px solid hsl(174, 70%, 35%); /* WCAG turquoise - 5.8:1 contrast */
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove default outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Enhanced focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid hsl(174, 70%, 35%);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px hsla(174, 70%, 35%, 0.2);
+  border-radius: 4px;
+}
+
+/* Skip link special styling */
+.sr-only:focus {
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 1rem;
+  margin: 0.5rem;
+  background: hsl(174, 70%, 35%);
+  color: white;
+  z-index: 9999;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+}
+
+/* Ensure focus indicators work in dark mode */
+[data-theme='dark'] *:focus-visible {
+  outline: 3px solid hsl(174, 70%, 60%);
+  outline-offset: 2px;
+}
+
+[data-theme='dark'] a:focus-visible,
+[data-theme='dark'] button:focus-visible,
+[data-theme='dark'] input:focus-visible,
+[data-theme='dark'] textarea:focus-visible,
+[data-theme='dark'] select:focus-visible {
+  outline: 3px solid hsl(174, 70%, 60%);
+  box-shadow: 0 0 0 6px hsla(174, 70%, 60%, 0.2);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline: 4px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Reduced motion - respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  *:focus-visible {
+    transition: none;
+  }
+}
+

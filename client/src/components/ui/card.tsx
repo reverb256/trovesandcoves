@@ -11,6 +11,7 @@ const cardVariants = cva(
         elevated: "shadow-2xl",
         glass: "shadow-lg",
         interactive: "shadow-2xl group-hover:scale-105 transition-transform duration-300",
+        accent: "shadow-lg", // NEW: accent variant for mystical cards
       },
       theme: {
         default: "",
@@ -27,27 +28,70 @@ const cardVariants = cva(
 export interface CardProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof cardVariants> {
-  variant?: "default" | "elevated" | "glass" | "interactive"
+  variant?: "default" | "elevated" | "glass" | "interactive" | "accent"
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, theme, ...props }, ref) => {
     const isGradient = theme === "gradient"
+    const isAccent = variant === "accent"
 
     return (
       <div
         ref={ref}
         className={cn(cardVariants({ variant, theme }), className)}
-        style={isGradient ? {
-          border: '1px solid hsl(var(--border-medium))',
-          background: 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)'
-        } : undefined}
+        style={
+          isAccent
+            ? {
+                border: '1px solid hsla(174, 85%, 45%, 0.3)',
+                background: 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)'
+              }
+            : isGradient
+            ? {
+                border: '1px solid hsl(var(--border-medium))',
+                background: 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)'
+              }
+            : undefined
+        }
         {...props}
       />
     )
   }
 )
 Card.displayName = "Card"
+
+// MysticalCard - convenience component with gradient theme by default
+export interface MysticalCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: "default" | "elevated" | "glass" | "interactive" | "accent"
+  children: React.ReactNode
+}
+
+export const MysticalCard = React.forwardRef<HTMLDivElement, MysticalCardProps>(
+  ({ className, variant = 'default', children, ...props }, ref) => {
+    const isAccent = variant === 'accent';
+    const isGlass = variant === 'glass';
+
+    return (
+      <div
+        ref={ref}
+        className={cn(cardVariants({ variant, theme: 'gradient' }), className)}
+        style={{
+          border: isAccent
+            ? '1px solid hsla(174, 85%, 45%, 0.3)'
+            : undefined,
+          background: isGlass
+            ? undefined // glass-mystical class handles it
+            : 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)',
+          ...props.style
+        }}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+MysticalCard.displayName = "MysticalCard"
 
 const cardHeaderVariants = cva(
   "flex flex-col space-y-1.5 p-6",

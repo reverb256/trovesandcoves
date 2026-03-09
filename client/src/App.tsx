@@ -24,6 +24,8 @@ import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import Showcase from '@/pages/Showcase';
 import StyleGuide from '@/pages/StyleGuide';
 import NotFound from '@/pages/not-found';
+import Analytics from '@/components/Analytics';
+import PerformanceMonitor from '@/components/PerformanceMonitor';
 
 // Get base path from Vite's base config or default to '/'
 const basePath = import.meta.env.BASE_URL || '/';
@@ -32,6 +34,14 @@ function Router() {
   return (
     <WouterRouter base={basePath}>
       <div className="min-h-screen">
+        {/* Skip Navigation for Accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-on-primary focus:rounded focus:shadow-lg focus:font-medium"
+        >
+          Skip to main content
+        </a>
+
         <Header />
         <main id="main-content">
           <Switch>
@@ -67,6 +77,8 @@ function App() {
       <ThemeProvider>
         <TooltipProvider>
           <CartProvider>
+            <Analytics />
+            <PerformanceMonitor />
             <Toaster />
             <Router />
           </CartProvider>
