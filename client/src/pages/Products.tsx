@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
 import type { ProductWithCategory, Category } from '@shared/types';
 import { Filter, Search, X, Sparkles } from 'lucide-react';
+import { MysticalCard } from '@/components/ui/card';
+import { MysticalHeading, MysticalBodyText } from '@/components/ui/typography';
 
 export default function Products() {
   const params = useParams();
@@ -137,29 +139,41 @@ export default function Products() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Mystical Sidebar Filters */}
           <aside className="lg:w-72 flex-shrink-0">
-            <div className="crystal-card p-6 lg:sticky lg:top-24">
-              <h3 className="text-lg font-semibold mb-6 flex items-center gap-2" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
-                <Filter className="w-5 h-5" style={{ color: '#4abfbf' }} />
+            <MysticalCard variant="elevated" className="p-6 lg:sticky lg:top-24">
+              <h3 className="text-lg font-semibold mb-6 flex items-center gap-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}>
+                <Filter className="w-5 h-5" style={{ color: 'hsl(var(--accent-vibrant))' }} />
                 <span style={{ color: 'hsl(var(--text-primary))' }}>Refine Your Search</span>
               </h3>
 
               {/* Search */}
               <form onSubmit={handleSearch} className="mb-6">
                 <div className="relative">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: '#4abfbf' }} />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style={{ color: 'hsl(var(--accent-vibrant))' }} />
                   <input
                     type="text"
                     placeholder="Search crystals..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-input-dark border border-[hsla(var(--accent-vibrant),0.2)] rounded-lg text-primary placeholder:text-primary/40 focus:border-turquoise-soft focus:outline-none focus:ring-1 focus:ring-[hsla(var(--accent-vibrant),0.3)] transition-colors duration-300"
+                    className="w-full pl-12 pr-4 py-3 rounded-lg text-primary focus:outline-none focus:ring-1 focus:ring-[hsla(var(--accent-vibrant),0.3)] transition-colors duration-300"
+                    style={{
+                      backgroundColor: 'hsl(var(--bg-card))',
+                      borderColor: 'hsl(var(--border-medium))',
+                      color: 'hsl(var(--text-primary))'
+                    }}
                   />
                 </div>
               </form>
 
               {/* Categories */}
               <div className="mb-6">
-                <h4 className="text-sm tracking-wider uppercase mb-3" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
+                <h4 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  color: 'hsl(var(--text-muted))',
+                  fontSize: '0.875rem',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
+                  marginBottom: '0.75rem'
+                }}>
                   Categories
                 </h4>
                 <div className="space-y-2">
@@ -167,8 +181,8 @@ export default function Products() {
                     onClick={() => (window.location.href = '/products')}
                     className="w-full text-left px-4 py-2 rounded-lg transition-colors duration-300"
                     style={{
-                      backgroundColor: !category ? '#4abfbf' : 'transparent',
-                      border: !category ? '1px solid #4abfbf' : '1px solid transparent',
+                      backgroundColor: !category ? 'hsl(var(--accent-vibrant))' : 'transparent',
+                      border: !category ? '1px solid hsl(var(--accent-vibrant))' : '1px solid hsl(var(--border-light))',
                       color: !category ? '#fff' : 'hsl(var(--text-primary))'
                     }}
                   >
@@ -180,8 +194,8 @@ export default function Products() {
                       onClick={() => (window.location.href = `/products/${cat.slug}`)}
                       className="w-full text-left px-4 py-2 rounded-lg transition-colors duration-300"
                       style={{
-                        backgroundColor: category === cat.slug ? '#4abfbf' : 'transparent',
-                        border: category === cat.slug ? '1px solid #4abfbf' : '1px solid transparent',
+                        backgroundColor: category === cat.slug ? 'hsl(var(--accent-vibrant))' : 'transparent',
+                        border: category === cat.slug ? '1px solid hsl(var(--accent-vibrant))' : '1px solid hsl(var(--border-light))',
                         color: category === cat.slug ? '#fff' : 'hsl(var(--text-primary))'
                       }}
                     >
@@ -193,13 +207,25 @@ export default function Products() {
 
               {/* Sort By */}
               <div className="mb-6">
-                <h4 className="text-sm tracking-wider uppercase mb-3" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
+                <h4 style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  color: 'hsl(var(--text-muted))',
+                  fontSize: '0.875rem',
+                  letterSpacing: '0.05em',
+                  textTransform: 'uppercase',
+                  marginBottom: '0.75rem'
+                }}>
                   Sort By
                 </h4>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full px-4 py-3 bg-input-dark border border-[hsla(var(--accent-vibrant),0.2)] rounded-lg text-primary focus:border-turquoise-soft focus:outline-none focus:ring-1 focus:ring-[hsla(var(--accent-vibrant),0.3)] transition-colors duration-300 cursor-pointer"
+                  className="w-full px-4 py-3 rounded-lg cursor-pointer focus:outline-none focus:ring-1 focus:ring-[hsla(var(--accent-vibrant),0.3)] transition-colors duration-300"
+                  style={{
+                    backgroundColor: 'hsl(var(--bg-card))',
+                    borderColor: 'hsl(var(--border-medium))',
+                    color: 'hsl(var(--text-primary))'
+                  }}
                 >
                   <option value="featured">Featured</option>
                   <option value="price-low">Price: Low to High</option>
@@ -214,20 +240,23 @@ export default function Products() {
                 <button
                   onClick={clearFilters}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 border rounded-lg hover:opacity-80 transition-colors duration-300"
-                  style={{ border: '1px solid #deb55b', color: '#deb55b' }}
+                  style={{ border: '1px solid hsl(var(--gold-medium))', color: 'hsl(var(--gold-medium))' }}
                 >
                   <X className="w-4 h-4" />
                   <span>Clear All Filters</span>
                 </button>
               )}
-            </div>
+            </MysticalCard>
           </aside>
 
           {/* Products Grid */}
           <main className="flex-1">
             {/* Results Header */}
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-semibold" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
+              <h2 className="text-2xl font-semibold" style={{
+                fontFamily: "'Libre Baskerville", serif",
+                color: 'hsl(var(--accent-vibrant))'
+              }}>
                 {filteredAndSortedProducts.length}{' '}
                 <span style={{ color: 'hsl(var(--text-primary))' }}>
                   {filteredAndSortedProducts.length === 1 ? 'Crystal' : 'Crystals'}
@@ -252,23 +281,35 @@ export default function Products() {
               </div>
             ) : filteredAndSortedProducts.length === 0 ? (
               /* No Results */
-              <div className="crystal-card p-16 text-center">
-                <Filter className="w-16 h-16 text-primary opacity-30 mx-auto mb-6" />
-                <h3 className="text-2xl font-semibold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: '#4abfbf' }}>
+              <MysticalCard variant="elevated" className="p-16 text-center">
+                <Filter className="w-16 h-16 mx-auto mb-6" style={{ color: 'hsl(var(--text-muted))', opacity: 0.3 }} />
+                <h3 className="text-2xl font-semibold mb-4" style={{
+                  fontFamily: "'Libre Baskerville', serif",
+                  color: 'hsl(var(--accent-vibrant))'
+                }}>
                   No crystals found
                 </h3>
-                <p className="mb-8" style={{ fontFamily: '"Montserrat", sans-serif', color: '#2c6f6f' }}>
+                <p className="mb-8" style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  color: 'hsl(var(--text-secondary))'
+                }}>
                   {searchQuery
                     ? `No crystals match your search for "${searchQuery}"`
                     : 'No crystals match your current filters'}
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="btn-mystical-outline"
+                  className="px-8 py-3 rounded-lg border hover:opacity-80 transition-colors duration-300"
+                  style={{
+                    border: '2px solid hsl(var(--accent-vibrant))',
+                    backgroundColor: 'transparent',
+                    color: 'hsl(var(--accent-vibrant))',
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}
                 >
                   Clear Filters
                 </button>
-              </div>
+              </MysticalCard>
             ) : (
               /* Products Grid */
               <div className="crystal-grid">
@@ -279,9 +320,9 @@ export default function Products() {
                     className="group block animate-reveal"
                     style={{ animationDelay: `${index * 0.05}s` }}
                   >
-                    <div className="crystal-card h-full p-6">
+                    <MysticalCard variant="accent" className="h-full p-6">
                       {/* Product Image */}
-                      <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-turquoise-light">
+                      <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)]" style={{ border: '1px solid hsla(var(--border-light))' }}>
                         <img
                           src={product.imageUrl || '/api/placeholder/300/300'}
                           alt={product.name}
@@ -294,7 +335,11 @@ export default function Products() {
 
                         {/* Category Badge */}
                         {product.category && (
-                          <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase rounded-full backdrop-blur-sm" style={{ backgroundColor: '#4abfbf', border: '1px solid #4abfbf', color: '#fff' }}>
+                          <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase rounded-full backdrop-blur-sm" style={{
+                            backgroundColor: 'hsl(var(--accent-vibrant))',
+                            border: '1px solid hsl(var(--accent-vibrant))',
+                            color: '#fff'
+                          }}>
                             {product.category.name}
                           </div>
                         )}
@@ -302,21 +347,32 @@ export default function Products() {
 
                       {/* Product Info */}
                       <div className="text-center">
-                        <h3 className="text-xl font-semibold mb-2 group-hover:text-turquoise-bright transition-colors duration-300" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
+                        <h3 className="text-xl font-semibold mb-2 group-hover:text-turquoise-bright transition-colors duration-300" style={{
+                          fontFamily: "'Libre Baskerville', serif",
+                          color: 'hsl(var(--text-primary))'
+                        }}>
                           {product.name}
                         </h3>
 
-                        <p className="text-sm mb-4 line-clamp-2" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
+                        <p className="text-sm mb-4 line-clamp-2" style={{
+                          fontFamily: "'Montserrat', sans-serif",
+                          color: 'hsl(var(--text-muted))'
+                        }}>
                           {product.description}
                         </p>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-turquoise-light">
-                          <span className="text-lg font-semibold" style={{ fontFamily: '"Libre Baskerville", serif', color: '#deb55b' }}>
+                        <div className="flex items-center justify-between pt-4" style={{
+                          borderTop: '1px solid hsla(var(--accent-vibrant),0.15)'
+                        }}>
+                          <span className="text-lg font-semibold" style={{
+                            fontFamily: "'Libre Baskerville", serif",
+                            color: 'hsl(var(--gold-medium))'
+                          }}>
                             ${product.price}
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </MysticalCard>
                   </a>
                 ))}
               </div>
