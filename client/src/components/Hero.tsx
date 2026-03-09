@@ -1,9 +1,9 @@
-import { Gem } from 'lucide-react';
+
 
 export default function Hero() {
   return (
     <section
-      className="relative min-h-[60vh] flex items-center justify-center py-20"
+      className="relative min-h-[60vh] flex items-center justify-center py-20 overflow-hidden"
       aria-label="Welcome"
     >
       {/* Mystical Background Effects */}
@@ -41,8 +41,25 @@ export default function Hero() {
         ))}
       </div>
 
+      {/* Mystical Skull Decorations */}
+      <img
+        src="/hero-skull-1.png"
+        alt=""
+        className="absolute left-4 md:left-8 lg:left-16 top-1/2 -translate-y-1/2 w-24 md:w-32 lg:w-40 opacity-80 animate-float-gem"
+        style={{ filter: 'drop-shadow(0 0 30px hsla(174,85%,45%,0.4))' }}
+      />
+      <img
+        src="/hero-skull-2.png"
+        alt=""
+        className="absolute right-4 md:right-8 lg:right-16 top-1/2 -translate-y-1/2 w-24 md:w-32 lg:w-40 opacity-80 animate-float-gem"
+        style={{ 
+          filter: 'drop-shadow(0 0 30px hsla(174,85%,45%,0.4))',
+          animationDelay: '2s'
+        }}
+      />
+
       <div className="chamber-container relative z-10">
-        <div className="flex flex-col items-center justify-center gap-4 text-center">
+        <div className="flex flex-col items-center justify-center gap-4 text-center px-4 md:px-8">
 
           <h1 className="leading-tight flex items-center justify-center gap-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
             <div className="flex-shrink-0 relative inline-block">

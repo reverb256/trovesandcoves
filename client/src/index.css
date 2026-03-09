@@ -57,9 +57,8 @@
   --ethereal-blue: var(--socket-blue);
 
   /* Feb 2026 Hero colors - high contrast for dark mystical theme */
-  --troves-turquoise: 174 75% 20%; /* Much deeper turquoise for excellent contrast */
-  --skull-turquoise-dim: 174 85% 25%; /* Darker turquoise from skull artwork */
-  --ornate-frame-gold: 43 90% 30%; /* Much deeper gold for excellent contrast */
+  /* NOTE: Robin's exact colors #4abfbf, #deb55b, #e1af2f are defined above.
+     Use WCAG-compliant variants (--wcag-turquoise, --wcag-gold-*) for small text. */
 
   /* CLIENT'S FONTS (Robin Kroeker) */
   --font-troves: 'Libre Baskerville', serif;  /* For "TROVES" and headings */
@@ -1008,6 +1007,19 @@ a:hover {
     transform: translateY(-20px) rotate(180deg);
     opacity: 1;
   }
+}
+
+@keyframes float-gem {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(3deg);
+  }
+}
+
+.animate-float-gem {
+  animation: float-gem 6s ease-in-out infinite;
 }
 
 .floating-crystal {
