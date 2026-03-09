@@ -138,14 +138,14 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
         <p className="text-sm mb-3 line-clamp-2" style={{ color: 'hsl(var(--text-secondary))' }}>
           {product.materials?.join(", ")}
           {product.gemstones && product.gemstones.length > 0 && (
-            <span className="block text-xs font-medium" style={{ color: 'hsl(38 80% 35%)' }}>
+            <span className="block text-xs font-medium tracking-wide" style={{ color: '#e1af2f', fontFamily: "'Alex Brush', cursive" }}>
               {product.gemstones.join(", ")}
             </span>
           )}
         </p>
 
         <div className="flex items-center justify-between">
-          <span className="text-xl font-bold" style={{ color: 'hsl(38 80% 35%)' }}>
+          <span className="text-xl font-bold" style={{ color: '#deb55b', fontFamily: "'Libre Baskerville', serif" }}>
             {formatPrice(product.price)}
           </span>
 
@@ -154,10 +154,11 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
             onClick={handleAddToCart}
             disabled={product.stockQuantity === 0}
             style={{
-              backgroundColor: 'hsl(var(--accent-vibrant))',
-              color: 'hsl(var(--bg-primary))'
+              backgroundColor: '#4abfbf',
+              color: 'hsl(var(--bg-primary))',
+              fontFamily: "'Montserrat', sans-serif"
             }}
-            className="hover:opacity-90"
+            className="hover:opacity-90 transition-all duration-300"
           >
             {product.stockQuantity === 0 ? 'Out of Stock' : 'Add to Cart'}
           </Button>

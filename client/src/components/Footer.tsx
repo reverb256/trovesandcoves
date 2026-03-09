@@ -67,9 +67,26 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-[hsla(var(--border-light), 0.3)] pt-16 pb-8 content-layer">
+    <footer className="border-t pt-16 pb-8 content-layer relative overflow-hidden"
+      style={{ 
+        borderColor: 'hsla(174,85%,45%,0.15)',
+        backgroundColor: 'hsl(var(--bg-primary))'
+      }}
+    >
+      {/* Mystical background effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-30"
+          style={{ backgroundColor: 'hsla(174,85%,45%,0.03)', filter: 'blur(60px)' }}
+        ></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-20"
+          style={{ backgroundColor: 'hsla(43,95%,55%,0.03)', filter: 'blur(80px)' }}
+        ></div>
+      </div>
+
       {/* Mystical top border */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[hsla(var(--accent-vibrant),0.5)] to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-px"
+        style={{ background: 'linear-gradient(90deg, transparent, hsla(174,85%,45%,0.5), transparent)' }}
+      ></div>
 
       <div className="chamber-container">
         {/* Newsletter Section */}
@@ -118,10 +135,10 @@ export default function Footer() {
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-baseline gap-3 mb-6">
-              <span className="troves-text text-2xl">Troves</span>
-              <span className="text-[hsl(var(--gold-medium))] text-3xl">×</span>
-              <span className="coves-text text-3xl">Coves</span>
+            <div className="flex items-baseline gap-2 mb-6">
+              <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "#4abfbf", textTransform: "uppercase" }} className="text-2xl">Troves</span>
+              <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "#deb55b" }}>&</span>
+              <span style={{ fontFamily: "'Alex Brush', cursive", color: "#e1af2f" }} className="text-2xl">Coves</span>
             </div>
             <p className="text-[hsl(var(--text-secondary))]/80 mb-6 leading-relaxed">
               Authentic crystal jewellery and healing gemstone talismans crafted
