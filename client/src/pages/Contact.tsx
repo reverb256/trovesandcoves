@@ -81,16 +81,16 @@ export default function Contact() {
       await apiRequest('POST', '/api/contact', submissionData);
 
       toast({
-        title: 'Message sent successfully!',
-        description: "We'll get back to you within 24 hours.",
+        title: 'Message received! ✨',
+        description: "We'll respond within 24 hours. For immediate help, email us directly at info@trovesandcoves.ca",
       });
 
       form.reset();
       setSelectedDate(undefined);
     } catch (error) {
       toast({
-        title: 'Failed to send message',
-        description: 'Please try again or contact us directly.',
+        title: 'Message delivery delayed',
+        description: 'Please email us directly at info@trovesandcoves.ca for immediate assistance.',
         variant: 'destructive',
       });
     }
@@ -509,7 +509,7 @@ export default function Contact() {
                 your trust and will respond within 24 hours, often much sooner.
                 For urgent crystal guidance, please mention it in your message.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-4 mb-6">
                 <Badge
                   variant="outline"
                   style={{ borderColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--text-primary))' }}
@@ -528,6 +528,22 @@ export default function Contact() {
                 >
                   Crystal Connection
                 </Badge>
+              </div>
+
+              {/* Direct Contact Notice */}
+              <div className="mt-6 p-4 rounded-lg border-2" style={{
+                backgroundColor: 'hsla(43,95%,55%,0.1)',
+                borderColor: 'hsla(43,95%,55%,0.3)',
+                borderStyle: 'dashed'
+              }}>
+                <p className="text-sm font-semibold mb-2" style={{ color: 'hsl(var(--gold-medium))' }}>
+                  💎 For Immediate Response
+                </p>
+                <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
+                  Email us directly at <a href="mailto:info@trovesandcoves.ca" className="font-semibold hover:underline" style={{ color: 'hsl(var(--accent-vibrant))' }}>info@trovesandcoves.ca</a>
+                  <br />
+                  Or message us on <a href="https://instagram.com/Troves_and_Coves" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: 'hsl(var(--accent-vibrant))' }}>Instagram</a> or <a href="https://www.etsy.com/ca/shop/TrovesandCoves" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: 'hsl(var(--accent-vibrant))' }}>Etsy</a>
+                </p>
               </div>
             </CardContent>
           </Card>

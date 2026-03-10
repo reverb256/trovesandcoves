@@ -314,6 +314,31 @@ export default function ProductDetail() {
                 </button>
               </div>
 
+              {/* Etsy Purchase Button */}
+              <a
+                href="https://www.etsy.com/ca/shop/TrovesandCoves"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full"
+              >
+                <button className="w-full btn-etsy justify-center" style={{
+                  background: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+                  color: 'white',
+                  fontFamily: '"Montserrat", sans-serif',
+                  fontWeight: 600,
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '0.5rem',
+                  transition: 'all 0.3s ease',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="inline-block mr-2">
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12c0-6.627-5.373-12-12-12zm0 22C5.383 22 1 17.617 1 12S5.383 2 12 2s11 4.383 11 10-5.383 10-10 10zm0-16c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"/>
+                  </svg>
+                  Buy on Etsy
+                </button>
+              </a>
+
               <Link href="/contact">
                 <button className="w-full btn-mystical-outline justify-center">
                   Schedule Consultation

@@ -1,0 +1,25 @@
+# Robots.txt for Troves & Coves
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+
+# Disallow admin/private areas (if any in future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://trovesandcoves.ca/sitemap.xml
+
+# Crawl-delay (optional, be respectful)
+Crawl-delay: 1
+
+# Popular bot-specific rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /

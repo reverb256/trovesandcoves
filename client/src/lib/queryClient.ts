@@ -4,7 +4,8 @@ import {
   getEmbeddedProduct,
   getEmbeddedFeaturedProducts,
   getEmbeddedCategories,
-  searchEmbeddedProducts
+  searchEmbeddedProducts,
+  EMBEDDED_CATEGORIES
 } from "@shared/embedded-data";
 
 // Get API base URL from environment or use defaults
@@ -98,46 +99,68 @@ export async function apiRequest(
 type UnauthorizedBehavior = "returnNull" | "throw";
 export const getQueryFn: <T>(options: {
   on401: UnauthorizedBehavior;
-}) => QueryFunction<T> =
-  ({ on401: unauthorizedBehavior }) =>
-  async ({ queryKey }) => {
+}) => QueryFunction<T> = (options) => async ({ queryKey }) => {
+  const { on401: unauthorizedBehavior } = options;
     const url = queryKey[0] as string;
 
     // Use embedded data for GitHub Pages production
     if (shouldUseEmbeddedData) {
       // Handle embedded data requests
       if (url === '/api/products') {
-        return getEmbeddedProducts() as T;
+        return getEmbeddedProducts();
+      }
+      if (url.startsWith('/api/products?')) {
+        // Handle filters (category, search)
+        const searchParams = new URLSearchParams(url.split('?')[1]);
+        const categoryParam = searchParams.get('category');
+        const searchParam = searchParams.get('search');
+
+        if (categoryParam) {
+          // Find category by slug
+          const category = EMBEDDED_CATEGORIES.find(c => c.slug === categoryParam);
+          if (category) {
+            return getEmbeddedProducts(category.id);
+          }
+        }
+        if (searchParam) {
+          return searchEmbeddedProducts(searchParam);
+        }
+        return getEmbeddedProducts();
       }
       if (url.startsWith('/api/products/') && url !== '/api/products/featured') {
         const id = parseInt(url.split('/').pop()!);
-        return getEmbeddedProduct(id) as T;
+        return getEmbeddedProduct(id);
       }
       if (url === '/api/products/featured') {
-        return getEmbeddedFeaturedProducts() as T;
+        return getEmbeddedFeaturedProducts();
       }
       if (url === '/api/categories') {
-        return getEmbeddedCategories() as T;
+        return getEmbeddedCategories();
+      }
+      if (url.startsWith('/api/products?search=')) {
+        const searchParams = new URLSearchParams(url.split('?')[1]);
+        const query = searchParams.get('search') || '';
+        return searchEmbeddedProducts(query);
       }
       if (url.startsWith('/api/products/search')) {
         const searchParams = new URLSearchParams(url.split('?')[1]);
         const query = searchParams.get('q') || '';
-        return searchEmbeddedProducts(query) as T;
+        return searchEmbeddedProducts(query);
       }
 
         // For cart/contact forms, return empty/default responses
       if (url === '/api/cart') {
-        return [] as unknown as T;
+        return [] as unknown;
       }
       if (url.startsWith('/api/contact')) {
-        return { success: true } as unknown as T;
+        return { success: true } as unknown;
       }
       if (url.startsWith('/api/newsletter')) {
-        return { success: true } as unknown as T;
+        return { success: true } as unknown;
       }
 
       // Return null for unsupported endpoints
-      return null as unknown as T;
+      return null as unknown;
     }
 
     // Development: use actual API

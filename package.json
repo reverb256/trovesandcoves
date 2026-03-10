@@ -87,7 +87,7 @@
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.10.0",
-    "@playwright/test": "^1.53.1",
+    "@playwright/test": "^1.58.2",
     "@replit/vite-plugin-runtime-error-modal": "^0.0.3",
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "^4.1.3",

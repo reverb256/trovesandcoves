@@ -1,6 +1,8 @@
 /**
  * Embedded product data for production GitHub Pages deployment
  * This data is bundled with the frontend to avoid needing a separate API server
+ *
+ * NOTE: Images are placeholder Unsplash images. Replace with actual product photos.
  */
 
 import type { Product, Category, ProductWithCategory } from './types';
