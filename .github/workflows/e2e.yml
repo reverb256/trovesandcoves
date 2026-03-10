@@ -24,7 +24,7 @@ jobs:
         run: npx playwright install --with-deps
       
       - name: Build Frontend
-        run: npm run build:frontend
+        run: npm run build
       
       - name: Run Unit Tests
         run: npm run test:coverage
