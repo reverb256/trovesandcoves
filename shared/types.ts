@@ -125,11 +125,6 @@ export interface NewsletterSubscription {
   isActive: boolean;
 }
 
-export interface InsertNewsletterSubscription {
-  email: string;
-  firstName: string;
-}
-
 export interface SubscribeRequest {
   email: string;
   firstName: string;
