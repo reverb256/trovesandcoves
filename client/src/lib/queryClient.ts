@@ -150,17 +150,17 @@ export const getQueryFn: <T>(options: {
 
         // For cart/contact forms, return empty/default responses
       if (url === '/api/cart') {
-        return [] as unknown;
+        return [];
       }
       if (url.startsWith('/api/contact')) {
-        return { success: true } as unknown;
+        return { success: true };
       }
       if (url.startsWith('/api/newsletter')) {
-        return { success: true } as unknown;
+        return { success: true };
       }
 
       // Return null for unsupported endpoints
-      return null as unknown;
+      return null;
     }
 
     // Development: use actual API
