@@ -30,14 +30,115 @@ interface MobileProductCardProps {
 
 export function MobileProductCard({ product, onAddToCart }: MobileProductCardProps) {
   const [isLiked, setIsLiked] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
   const isMobile = useIsMobile();
 
+  const handleAdd = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onAddToCart(product.id);
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
+  };
+
   return (
-    <Card className={`
-      relative overflow-hidden transition-transform duration-200 will-change-transform
-      ${isMobile ? 'touch-manipulation select-none active:scale-95' : 'hover:scale-[1.02]'}
-      border-gold/20 bg-gradient-to-br from-white to-gold/5 h-full
-    `}>
+    <Card 
+      className="group relative overflow-hidden transition-all duration-500 ease-out hover:shadow-xl"
+      style={{
+        backgroundColor: '#ffffff',
+        border: '1px solid #f0f0f0',
+        borderRadius: '8px',
+      }}
+    >
+      <div className="relative aspect-square overflow-hidden">
+        <img 
+          src={product.imageUrl || `/api/placeholder/300/300`}
+          alt={product.name}
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+        
+        {/* Wishlist - Subtle */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsLiked(!isLiked);
+          }}
+          className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
+          style={{
+            backgroundColor: isLiked ? '#e1af2f' : 'rgba(255, 255, 255, 0.9)',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+          }}
+          aria-label={isLiked ? 'Remove from wishlist' : 'Add to wishlist'}
+        >
+          <Heart 
+            className="w-4 h-4 transition-colors duration-300"
+            style={{ 
+              color: isLiked ? '#ffffff' : '#1f1f1f',
+              fill: isLiked ? '#ffffff' : 'none'
+            }} 
+          />
+        </button>
+      </div>
+
+      <CardContent className="p-4 space-y-3">
+        {/* Product Name */}
+        <h3 
+          className="text-base leading-snug line-clamp-2"
+          style={{ 
+            fontFamily: "'Libre Baskerville', serif", 
+            color: '#1f1f1f',
+            fontWeight: 500
+          }}
+        >
+          {product.name}
+        </h3>
+        
+        {/* Price */}
+        <div className="flex items-center justify-between">
+          <span 
+            className="text-lg font-semibold"
+            style={{ 
+              fontFamily: "'Libre Baskerville', serif", 
+              color: '#e1af2f' 
+            }}
+          >
+            ${product.price}
+          </span>
+
+          {/* Add Button */}
+          <button
+            onClick={handleAdd}
+            className="px-4 py-2 text-xs tracking-wider uppercase transition-all duration-300"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 500,
+              backgroundColor: isAdded ? '#4abfbf' : '#1f1f1f',
+              color: '#faf8f3',
+              border: 'none',
+              borderRadius: '4px',
+            }}
+          >
+            {isAdded ? 'Added' : 'Add'}
+          </button>
+        </div>
+
+        {/* View Details */}
+        <a
+          href={`/product/${product.id}`}
+          className="block text-center text-xs tracking-wider uppercase"
+          style={{
+            fontFamily: "'Montserrat', sans-serif",
+            color: '#5f5f5f',
+            textDecoration: 'none',
+          }}
+        >
+          View Details
+        </a>
+      </CardContent>
+    </Card>
+  );
+}>
       <div className="relative aspect-square overflow-hidden">
         <img 
           src={product.imageUrl || `/api/placeholder/300/300`}
@@ -209,7 +310,7 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
             <nav className="p-4 space-y-2">
               {[
                 { href: '/', label: 'Home' },
-                { href: '/products', label: 'Collections' },
+                { href: '/products', label: 'Shop' },
                 { href: '/ai-assistant', label: 'AI Consultant' },
                 { href: '/contact', label: 'Contact' }
               ].map((item) => (
@@ -224,10 +325,28 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
               ))}
               
               <div className="pt-4 space-y-2">
-                <Button className="w-full h-11 bg-gradient-to-r from-gold to-amber-500 hover:from-gold/90 hover:to-amber-500/90 touch-manipulation">
+                <Button 
+                  className="w-full h-11 touch-manipulation"
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 500,
+                    backgroundColor: '#1f1f1f',
+                    color: '#faf8f3',
+                    border: 'none',
+                    borderRadius: '4px',
+                  }}
+                >
                   Shop Now
                 </Button>
-                <Button variant="outline" className="w-full h-11 border-gold/20 touch-manipulation">
+                <Button 
+                  variant="outline"
+                  className="w-full h-11 touch-manipulation"
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    borderColor: '#e1af2f',
+                    color: '#e1af2f',
+                  }}
+                >
                   Track Order
                 </Button>
               </div>
@@ -271,7 +390,15 @@ export function MobileSearchFilter({ onSearch }: { onSearch: (term: string) => v
         </Button>
         <Button
           onClick={() => onSearch(searchTerm)}
-          className="px-4 h-9 bg-gradient-to-r from-gold to-amber-500 text-sm touch-manipulation"
+          className="px-4 h-9 text-sm touch-manipulation"
+          style={{
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 500,
+            backgroundColor: '#4abfbf',
+            color: '#faf8f3',
+            border: 'none',
+            borderRadius: '4px',
+          }}
         >
           Search
         </Button>
@@ -401,7 +528,15 @@ export function MobileCartDrawer({ isOpen, onClose, cartItems = [] }: MobileCart
             </div>
             
             <Button 
-              className="w-full h-12 bg-gradient-to-r from-gold to-amber-500 hover:from-gold/90 hover:to-amber-500/90 touch-manipulation active:scale-95 transition-transform font-semibold"
+              className="w-full h-12 touch-manipulation font-semibold"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                backgroundColor: '#4abfbf',
+                color: '#faf8f3',
+                border: 'none',
+                borderRadius: '4px',
+              }}
               onClick={() => {
                 onClose();
                 window.location.href = '/checkout';
