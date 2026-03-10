@@ -14,7 +14,7 @@ export default function JewelleryCare() {
         'Remove before swimming or exercising',
       ],
       crystalCare:
-        'Silver amplifies crystal energies - keep pieces energetically cleansed',
+        'Silver enhances natural beauty - keep pieces polished and clean',
     },
     {
       name: 'Gold Filled',
@@ -26,7 +26,7 @@ export default function JewelleryCare() {
         'Professional cleaning annually',
       ],
       crystalCare:
-        'Gold preserves crystal vibrations - ideal for long-term wear',
+        'Gold maintains lasting beauty - ideal for everyday wear',
     },
     {
       name: 'Copper Wire',
@@ -38,35 +38,35 @@ export default function JewelleryCare() {
         'Seal with clear coat for lasting shine',
       ],
       crystalCare:
-        'Copper enhances crystal energy - embrace the natural aging',
+        'Copper develops natural patina - embrace the character of aged pieces',
     },
   ];
 
   const crystalCare = [
     {
       crystal: 'Amethyst',
-      care: 'Avoid direct sunlight to prevent fading. Cleanse with moonlight or sage smoke.',
-      energy: 'Enhances spiritual awareness and intuition',
+      care: 'Avoid direct sunlight to prevent fading. Clean with soft cloth and mild soap.',
+      energy: 'Rich purple hues add elegant sophistication',
     },
     {
       crystal: 'Rose Quartz',
-      care: 'Gentle cleaning with soft cloth. Charge under full moon for maximum love energy.',
-      energy: 'Promotes self-love and emotional healing',
+      care: 'Gentle cleaning with soft cloth. Avoid harsh chemicals.',
+      energy: 'Delicate pink tones bring warmth and elegance',
     },
     {
       crystal: 'Clear Quartz',
-      care: 'Versatile cleansing methods. Sun or moonlight charging both effective.',
-      energy: 'Amplifies intentions and other crystal energies',
+      care: 'Versatile and durable. Clean with warm water and mild soap.',
+      energy: 'Clarity and brilliance enhance any design',
     },
     {
       crystal: 'Citrine',
-      care: 'Enjoys sunlight charging. Clean with warm water and gentle soap.',
-      energy: 'Attracts abundance and positive manifestation',
+      care: 'Clean with warm water and gentle soap. Avoid harsh chemicals.',
+      energy: 'Warm golden tones bring brightness and style',
     },
     {
       crystal: 'Black Tourmaline',
-      care: 'Smudge regularly to clear absorbed negative energy. Earth burial for deep cleansing.',
-      energy: 'Provides protection and grounding',
+      care: 'Clean with soft cloth. Avoid prolonged water exposure.',
+      energy: 'Deep black tones create dramatic contrast',
     },
   ];
 
@@ -157,7 +157,7 @@ export default function JewelleryCare() {
             <CardTitle className="flex items-center space-x-3">
               <Sparkles className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
               <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
-                Crystal Care & Energy Maintenance
+                Crystal Care & Maintenance
               </span>
             </CardTitle>
           </CardHeader>
@@ -225,26 +225,26 @@ export default function JewelleryCare() {
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3">
                 <Droplets className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>Energy Cleansing</span>
+                <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>Polishing & Care</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <ul className="space-y-3 text-navy/80">
                 <li className="flex items-start space-x-2">
                   <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Smudge with sage or palo santo monthly</span>
+                  <span>Polish regularly with appropriate cleaning cloth</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Charge under full moon for maximum energy</span>
+                  <span>Store in soft pouches to prevent scratching</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Use singing bowls or bells for sound cleansing</span>
+                  <span>Professional cleaning available for deep restoration</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Set intentions when wearing for spiritual work</span>
+                  <span>Avoid exposure to harsh chemicals and perfumes</span>
                 </li>
               </ul>
             </CardContent>

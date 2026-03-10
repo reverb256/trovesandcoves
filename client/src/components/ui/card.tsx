@@ -11,7 +11,7 @@ const cardVariants = cva(
         elevated: "shadow-2xl",
         glass: "shadow-lg",
         interactive: "shadow-2xl group-hover:scale-105 transition-transform duration-300",
-        accent: "shadow-lg", // NEW: accent variant for mystical cards
+        accent: "shadow-lg", // accent variant for featured cards
       },
       theme: {
         default: "",
@@ -60,13 +60,13 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 )
 Card.displayName = "Card"
 
-// MysticalCard - convenience component with gradient theme by default
-export interface MysticalCardProps extends React.HTMLAttributes<HTMLDivElement> {
+// BrandCard - convenience component with gradient theme by default
+export interface BrandCardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "elevated" | "glass" | "interactive" | "accent"
   children: React.ReactNode
 }
 
-export const MysticalCard = React.forwardRef<HTMLDivElement, MysticalCardProps>(
+export const BrandCard = React.forwardRef<HTMLDivElement, BrandCardProps>(
   ({ className, variant = 'default', children, ...props }, ref) => {
     const isAccent = variant === 'accent';
     const isGlass = variant === 'glass';
@@ -80,7 +80,7 @@ export const MysticalCard = React.forwardRef<HTMLDivElement, MysticalCardProps>(
             ? '1px solid hsla(174, 85%, 45%, 0.3)'
             : undefined,
           background: isGlass
-            ? undefined // glass-mystical class handles it
+            ? 'rgba(255, 255, 255, 0.8)'
             : 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)',
           ...props.style
         }}
@@ -91,7 +91,7 @@ export const MysticalCard = React.forwardRef<HTMLDivElement, MysticalCardProps>(
     );
   }
 );
-MysticalCard.displayName = "MysticalCard"
+BrandCard.displayName = "BrandCard"
 
 const cardHeaderVariants = cva(
   "flex flex-col space-y-1.5 p-6",

@@ -25,7 +25,7 @@ export default function Returns() {
         'Item must be in original condition',
         'Original packaging and authenticity card included',
         'No signs of wear or damage',
-        'Crystal energy must remain intact',
+        'All components present and intact',
       ],
     },
     {
@@ -47,7 +47,7 @@ export default function Returns() {
         'Size adjustments within 14 days',
         'Crystal substitutions if unavailable',
         'Wire material changes',
-        'Energy cleansing included',
+        'Professional cleaning included',
       ],
     },
   ];
@@ -193,7 +193,7 @@ export default function Returns() {
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
-                  <span>Energy cleansing included with all exchanges</span>
+                  <span>Professional cleaning included with all exchanges</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
@@ -226,13 +226,13 @@ export default function Returns() {
                 variant="outline"
                 className="border-skull-turquoise text-navy"
               >
-                Energy Alignment Guaranteed
+                Quality Guaranteed
               </Badge>
               <Badge
                 variant="outline"
                 className="border-ornate-frame-gold text-navy"
               >
-                Spiritual Journey Support
+                Customer Support
               </Badge>
             </div>
           </CardContent>

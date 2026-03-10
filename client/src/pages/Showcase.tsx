@@ -39,7 +39,7 @@ const HeroVersions = {
             Troves & Coves
           </h1>
           <p className="text-lg md:text-xl mb-8 text-purple-100">
-            Sacred crystal jewelry & healing gemstone talismans in Winnipeg.
+            Handcrafted crystal jewelry & artisan gemstone pieces in Winnipeg.
           </p>
           <div className="flex gap-4 justify-center">
             <Link to="/products" className="bg-white text-purple-600 hover:bg-purple-50 px-6 py-3 rounded-full shadow-lg font-semibold">
@@ -77,7 +77,7 @@ const HeroVersions = {
             Handcrafted Crystal Jewellery
           </h2>
           <p className="text-base md:text-lg max-w-2xl mx-auto mb-10" style={{ color: 'hsla(var(--text-secondary), 0.8)' }}>
-            Sacred gemstone energies meet artisan craftsmanship.
+            Natural gemstone beauty meets artisan craftsmanship.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <div className="flex items-center gap-2 px-4 py-2 rounded-full border shadow-sm text-sm" style={{
@@ -130,14 +130,14 @@ const HeroVersions = {
               Troves <span className="text-yellow-400">& Coves</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 mb-8">
-              Sacred crystal jewelry and healing gemstone talismans in Winnipeg.
+              Handcrafted crystal jewelry and artisan gemstone pieces in Winnipeg.
             </p>
             <div className="flex gap-4">
               <Link to="/products" className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg transition-colors">
                 Browse our crystal jewelry
               </Link>
               <Link to="/about" className="border-2 border-teal-500 text-teal-400 px-6 py-3 rounded-lg hover:bg-teal-900/30 transition-colors">
-                Learn more about our spiritual story
+                Learn more about our story
               </Link>
             </div>
           </div>
@@ -146,10 +146,10 @@ const HeroVersions = {
     )
   },
 
-  mysticalGradient: {
-    name: "Feb 2026 - 'Modernize with Brand Colors' (Dark Mystical)",
+  brandGradient: {
+    name: "Feb 2026 - 'Modernize with Brand Colors' (Dark Gradient)",
     commit: "72708db",
-    description: "Deep mystical gradient (turquoise → blue → gold) with floating gold crystals and dark overlay.",
+    description: "Deep gradient (turquoise → blue → gold) with floating gold accents and dark overlay.",
     hero: (
       <section className="relative overflow-hidden min-h-[60vh] flex items-center">
         <div className="absolute inset-0 z-0" style={{
@@ -165,14 +165,14 @@ const HeroVersions = {
               Troves <span className="text-yellow-400">& Coves</span>
             </h1>
             <p className="text-lg md:text-xl text-teal-300 mb-8">
-              Sacred crystal jewelry and healing gemstone talismans crafted with intention in Winnipeg.
+              Handcrafted crystal jewelry and artisan gemstone pieces in Winnipeg.
             </p>
             <div className="flex gap-4">
               <Link to="/products" className="bg-yellow-500 text-slate-900 hover:bg-yellow-400 px-8 py-4 rounded-full font-semibold">
                 Browse our crystal jewelry
               </Link>
               <Link to="/about" className="border-2 border-yellow-500 text-yellow-400 hover:bg-yellow-500/10 px-8 py-4 rounded-full">
-                Learn more about our spiritual story
+                Learn more about our story
               </Link>
             </div>
           </div>

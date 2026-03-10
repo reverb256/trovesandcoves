@@ -73,7 +73,7 @@ export const crystalJewelryImages = {
 };
 
 export const categoryDescriptions = {
-  crystalNecklaces: "Handcrafted crystal necklaces featuring authentic gemstones with spiritual and healing properties. Each piece is uniquely wire-wrapped and designed to channel positive energy.",
-  healingCrystals: "Powerful healing crystal jewelry designed to balance chakras, enhance spiritual connection, and promote emotional well-being through ancient crystal wisdom.",
-  wirewrapped: "Artisan wire-wrapped jewelry featuring raw crystals and gemstones in organic, nature-inspired settings that preserve the stone's natural energy flow."
+  crystalNecklaces: "Handcrafted crystal necklaces featuring authentic gemstones and 14k gold-filled wire. Each piece is uniquely designed with attention to detail and quality materials.",
+  gemstoneNecklaces: "A curated collection of necklaces featuring genuine gemstones including citrine, lapis lazuli, and quartz. Crafted with pearls and hematite accents for refined elegance.",
+  leatherCordPendants: "Wire-wrapped pendants on leather cords featuring raw crystals and natural stones. The earthy leather combinations create distinctive, wearable art pieces."
 };

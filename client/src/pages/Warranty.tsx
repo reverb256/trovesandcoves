@@ -22,8 +22,8 @@ export default function Warranty() {
       coverage: [
         'Genuine natural crystal certification',
         'Accurate crystal identification',
-        'Metaphysical property verification',
-        'Energy quality assurance',
+        'Quality material verification',
+        'Authenticity guarantee',
       ],
     },
     {
@@ -45,7 +45,7 @@ export default function Warranty() {
     'Wire breakage under normal wear',
     'Crystal loosening from secure settings',
     'Clasp or finding failure',
-    'Energy cleansing and recharging services',
+    'Professional cleaning and polishing services',
   ];
 
   const notCovered = [
@@ -252,7 +252,7 @@ export default function Warranty() {
                 variant="outline"
                 className="border-skull-turquoise text-navy"
               >
-                Energetically Blessed
+                Handcrafted with Care
               </Badge>
               <Badge
                 variant="outline"

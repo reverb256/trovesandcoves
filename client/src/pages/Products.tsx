@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
 import type { ProductWithCategory, Category } from '@shared/types';
 import { Filter, Search, X, Sparkles } from 'lucide-react';
-import { MysticalCard } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function Products() {
   const params = useParams();
@@ -90,15 +90,15 @@ export default function Products() {
   const hasActiveFilters = searchQuery.trim() !== '' || category;
 
   return (
-    <div className="min-h-screen bg-mystical-gradient content-layer">
-      {/* Mystical Header Section */}
+    <div className="min-h-screen content-layer" style={{ backgroundColor: '#faf8f3' }}>
+      {/* Header Section */}
       <section className="relative py-20 border-b border-turquoise-light">
         {/* Background glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-[hsla(var(--accent-vibrant),0.05)] via-transparent to-transparent"></div>
 
         <div className="chamber-container relative">
           <div className="text-center">
-            {/* Mystical Badge */}
+            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-turquoise-soft rounded-full bg-crystal">
               <Sparkles className="w-4 h-4 text-turquoise-bright" />
               <span className="text-xs tracking-widest uppercase text-primary">
@@ -127,7 +127,7 @@ export default function Products() {
             <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "\"Montserrat\", sans-serif", color: 'hsl(var(--text-secondary))' }}>
               {currentCategory
                 ? currentCategory.description
-                : 'Statement pieces crafted with intention to empower your energy. Each piece blends 14k gold-plated elegance with natural crystal beauty.'}
+                : 'Statement pieces crafted with intention to empower your confidence. Each piece blends 14k gold-plated elegance with natural crystal beauty.'}
             </p>
           </div>
         </div>
@@ -135,9 +135,9 @@ export default function Products() {
 
       <div className="chamber-container py-12">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Mystical Sidebar Filters */}
+          {/* Sidebar Filters */}
           <aside className="lg:w-72 flex-shrink-0">
-            <MysticalCard variant="elevated" className="p-6 lg:sticky lg:top-24">
+            <Card className="bg-white rounded-lg shadow-sm p-6 lg:sticky lg:top-24">
               <h3 className="text-lg font-semibold mb-6 flex items-center gap-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}>
                 <Filter className="w-5 h-5" style={{ color: 'hsl(var(--accent-vibrant))' }} />
                 <span style={{ color: 'hsl(var(--text-primary))' }}>Refine Your Search</span>
@@ -244,7 +244,7 @@ export default function Products() {
                   <span>Clear All Filters</span>
                 </button>
               )}
-            </MysticalCard>
+            </Card>
           </aside>
 
           {/* Products Grid */}
@@ -264,11 +264,11 @@ export default function Products() {
 
             {/* Loading State */}
             {isLoadingProducts ? (
-              <div className="crystal-grid">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[...Array(6)].map((_, i) => (
                   <div
                     key={i}
-                    className="crystal-card aspect-square animate-pulse"
+                    className="aspect-square bg-white/50 rounded-lg animate-pulse"
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     <div className="w-full h-full flex items-center justify-center">
@@ -279,21 +279,21 @@ export default function Products() {
               </div>
             ) : filteredAndSortedProducts.length === 0 ? (
               /* No Results */
-              <MysticalCard variant="elevated" className="p-16 text-center">
+              <div className="bg-white rounded-lg shadow-sm p-16 text-center">
                 <Filter className="w-16 h-16 mx-auto mb-6" style={{ color: 'hsl(var(--text-muted))', opacity: 0.3 }} />
                 <h3 className="text-2xl font-semibold mb-4" style={{
                   fontFamily: "'Libre Baskerville', serif",
                   color: 'hsl(var(--accent-vibrant))'
                 }}>
-                  No crystals found
+                  No products found
                 </h3>
                 <p className="mb-8" style={{
                   fontFamily: "'Montserrat', sans-serif",
                   color: 'hsl(var(--text-secondary))'
                 }}>
                   {searchQuery
-                    ? `No crystals match your search for "${searchQuery}"`
-                    : 'No crystals match your current filters'}
+                    ? `No products match your search for "${searchQuery}"`
+                    : 'No products match your current filters'}
                 </p>
                 <button
                   onClick={clearFilters}
@@ -307,10 +307,10 @@ export default function Products() {
                 >
                   Clear Filters
                 </button>
-              </MysticalCard>
+              </div>
             ) : (
               /* Products Grid */
-              <div className="crystal-grid">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredAndSortedProducts.map((product, index) => (
                   <a
                     key={product.id}
@@ -318,7 +318,7 @@ export default function Products() {
                     className="group block animate-reveal"
                     style={{ animationDelay: `${index * 0.05}s` }}
                   >
-                    <MysticalCard variant="accent" className="h-full p-6">
+                    <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6">
                       {/* Product Image */}
                       <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)]" style={{ border: '1px solid hsla(var(--border-light))' }}>
                         <img
@@ -370,7 +370,7 @@ export default function Products() {
                           </span>
                         </div>
                       </div>
-                    </MysticalCard>
+                    </div>
                   </a>
                 ))}
               </div>

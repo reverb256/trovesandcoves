@@ -68,31 +68,31 @@ export class MemStorage implements IStorage {
       imageUrl: crystalJewelryImages.lepidolite[0]
     };
     
-    const healingCrystalsCategory: Category = {
+    const gemstoneNecklacesCategory: Category = {
       id: this.currentCategoryId++,
-      name: "Healing Crystals",
-      slug: "healing-crystals",
-      description: categoryDescriptions.healingCrystals,
+      name: "Gemstone Necklaces",
+      slug: "gemstone-necklaces",
+      description: categoryDescriptions.gemstoneNecklaces,
       imageUrl: crystalJewelryImages.turquoise[0]
     };
 
-    const wirewrappedCategory: Category = {
+    const leatherCordCategory: Category = {
       id: this.currentCategoryId++,
-      name: "Wire Wrapped Jewelry",
-      slug: "wire-wrapped",
-      description: categoryDescriptions.wirewrapped,
+      name: "Leather Cord Pendants",
+      slug: "leather-cord-pendants",
+      description: categoryDescriptions.leatherCordPendants,
       imageUrl: crystalJewelryImages.citrine[0]
     };
 
     this.categories.set(crystalNecklacesCategory.id, crystalNecklacesCategory);
-    this.categories.set(healingCrystalsCategory.id, healingCrystalsCategory);
-    this.categories.set(wirewrappedCategory.id, wirewrappedCategory);
+    this.categories.set(gemstoneNecklacesCategory.id, gemstoneNecklacesCategory);
+    this.categories.set(leatherCordCategory.id, leatherCordCategory);
 
     // Authentic product inventory from TrovesandCoves Etsy store
     const lepidoliteNecklace: Product = {
       id: this.currentProductId++,
       name: "Wire Wrapped Crystal Pendant Collection",
-      description: "Sacred collection of divine crystal pendants featuring lepidolite for tranquility, obsidian for protection, and citrine for manifestation. Each stone is lovingly wire-wrapped with golden intention, creating powerful talismans for spiritual awakening. This mystical assemblage channels ancient wisdom through carefully selected gemstones, offering protection, clarity, and cosmic connection to the divine feminine.",
+      description: "A curated collection of wire-wrapped crystal pendants featuring lepidolite, obsidian, and citrine. Each stone is hand-wrapped with 14k gold-filled wire, creating unique statement pieces. Lepidolite offers calming purple tones, obsidian provides grounding contrast, and citrine adds warm golden highlights. Handcrafted with attention to detail, each necklace is one of a kind.",
       price: "90.00",
       categoryId: crystalNecklacesCategory.id,
       imageUrl: crystalJewelryImages.lepidolite[0],
@@ -102,7 +102,7 @@ export class MemStorage implements IStorage {
       weight: "25g",
       materials: ["Wire wrap", "Gold filled", "Stone"],
       gemstones: ["Lepidolite", "Obsidian", "Citrine"],
-      careInstructions: "Honor these sacred talismans with moonlight cleansing and sage blessing. Store in sacred space away from harsh energies.",
+      careInstructions: "Clean gently with a soft cloth. Store separately to prevent scratching and protect the wire wrapping.",
       isActive: true,
       isFeatured: true,
       createdAt: new Date(),
@@ -111,7 +111,7 @@ export class MemStorage implements IStorage {
     const turquoiseBeadedNecklace: Product = {
       id: this.currentProductId++,
       name: "Gold Chain Crystal Necklace with Wire Wrapped Pendant",
-      description: "Luminous gold chain adorned with sacred crystal pendant, lovingly wire-wrapped to channel divine energy. This celestial piece features a delicate crystal suspended in golden embrace, creating a powerful talisman for spiritual awakening. The blessed gold chain carries ancient light vibrations while the wire-wrapped crystal amplifies intention and manifestation energy.",
+      description: "A delicate gold chain necklace featuring a wire-wrapped clear quartz pendant. The crystal is hand-wrapped in 14k gold-filled wire, suspended from a dainty chain that catches the light beautifully. A refined piece perfect for everyday elegance or special occasions.",
       price: "70.00",
       categoryId: crystalNecklacesCategory.id,
       imageUrl: crystalJewelryImages.turquoise[0],
@@ -121,7 +121,7 @@ export class MemStorage implements IStorage {
       weight: "30g",
       materials: ["Gold Filled", "Wire wrap", "Crystal"],
       gemstones: ["Clear Quartz"],
-      careInstructions: "Protect from water's harsh embrace - honor your divine vessel's sacred materials. Lovingly cleanse with gentle cloth and charge in moonlight's celestial blessing.",
+      careInstructions: "Keep dry and polish gently with a soft cloth. Store separately to prevent scratching.",
       isActive: true,
       isFeatured: true,
       createdAt: new Date(),
@@ -129,10 +129,10 @@ export class MemStorage implements IStorage {
 
     const citrineNecklace: Product = {
       id: this.currentProductId++,
-      name: "Pretty Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set",
-      description: "Divine twin vessel set channeling abundant solar manifestation through sacred citrine alchemy! The ethereal choker embraces throat chakra consciousness with luminous pink pearls and protective hematite grounding. The ceremonial companion radiates wire-wrapped citrine sunstone energy, weaving golden light through blessed pearls and earthen hematite protection. Perfect sacred offering for divine feminine awakening, goddess ceremonies, soul sister blessings, and manifestation rituals.",
+      name: "Citrine, Pearl, and Hematite Necklace Set",
+      description: "An elegant two-piece set featuring a choker and longer necklace. The choker combines luminous pearls with hematite accents, while the companion necklace showcases wire-wrapped citrine stones interspersed with pearls and hematite. Warm golden tones complement the refined sterling silver and gold-filled components.",
       price: "200.00",
-      categoryId: healingCrystalsCategory.id,
+      categoryId: gemstoneNecklacesCategory.id,
       imageUrl: crystalJewelryImages.citrine[0],
       imageUrls: crystalJewelryImages.citrine,
       sku: "TC-CIT-SET-001",
@@ -140,7 +140,7 @@ export class MemStorage implements IStorage {
       weight: "45g",
       materials: ["Citrine", "Pearl strung", "Gold filled", "14k", "14k gold filled", "Pearl", "Hematite", "EMF protecting", "Crystal", "Stone", "Mineral"],
       gemstones: ["Citrine", "Hematite", "Pearl"],
-      careInstructions: "Honor with gentle reverence. Protect from moisture's harsh energy. Cleanse in sacred moonlight or blessed sage smoke ceremonies.",
+      careInstructions: "Keep dry and clean gently with a soft cloth. Store in a jewelry box or pouch.",
       isActive: true,
       isFeatured: true,
       createdAt: new Date(),
@@ -148,10 +148,10 @@ export class MemStorage implements IStorage {
 
     const lapisLazuliPendant: Product = {
       id: this.currentProductId++,
-      name: "Lapis Lazuli, Wire Wrapped Necklace, Leather, Spiritual, Royal, Psychic Abilities",
-      description: "Sacred Lapis Lazuli vessel channeling ancient Egyptian royal consciousness through celestial blue depths. This divine talisman awakens third eye perception and psychic gifts while the blessed brown leather cord grounds earthen wisdom. Wire-wrapped through sacred ceremony to amplify protection, spiritual guidance, and mystical abilities. 15 inches of divine armor with leather closure blessing.",
+      name: "Lapis Lazuli Wire Wrapped Pendant on Leather Cord",
+      description: "A striking lapis lazuli pendant hand-wrapped and suspended from a brown leather cord. The deep blue stone naturally speckled with pyrite creates a bold, architectural statement. The 15-inch leather cord with a simple closure gives this piece an earthy, refined quality.",
       price: "40.00",
-      categoryId: wirewrappedCategory.id,
+      categoryId: leatherCordCategory.id,
       imageUrl: crystalJewelryImages.lapisLazuli[0],
       imageUrls: crystalJewelryImages.lapisLazuli,
       sku: "TC-LAP-001",
@@ -159,7 +159,7 @@ export class MemStorage implements IStorage {
       weight: "20g",
       materials: ["Leather", "Stone"],
       gemstones: ["Lapis Lazuli"],
-      careInstructions: "Protect from water's harsh energy and chemical disruption. Cradle in blessed soft cloth sanctuary.",
+      careInstructions: "Remove before water exposure. Store in a soft cloth pouch to protect the leather.",
       isActive: true,
       isFeatured: false,
       createdAt: new Date(),
@@ -168,9 +168,9 @@ export class MemStorage implements IStorage {
     const roseQuartzPendant: Product = {
       id: this.currentProductId++,
       name: "Medium Rose Quartz Pendant, Wire Wrapped, Brown Leather",
-      description: "Divine Rose Quartz talisman on sacred brown leather cord. Embrace the infinite loving vibrations of this ethereal piece featuring a raw Rose Quartz pendant blessed with healing light. The gentle pink essence harmonizes with the earthen leather to channel unconditional love, soul connections, divine self-love, compassion, empathy, grace, confidence, and heart chakra healing. 18 inches with sacred closure.",
+      description: "A soft pink rose quartz pendant hangs from a brown leather cord. The raw stone's gentle pink hue provides warmth against the earthy leather. Hand-wrapped setting showcases the stone's natural form. An 18-inch length with a simple, secure closure.",
       price: "40.00",
-      categoryId: wirewrappedCategory.id,
+      categoryId: leatherCordCategory.id,
       imageUrl: crystalJewelryImages.roseQuartz[0],
       imageUrls: crystalJewelryImages.roseQuartz,
       sku: "TC-ROS-001",
@@ -178,7 +178,7 @@ export class MemStorage implements IStorage {
       weight: "22g",
       materials: ["Leather", "Stone"],
       gemstones: ["Rose Quartz"],
-      careInstructions: "Honor with gentle sacred touch. Shield from harsh chemical energies. Cleanse in moonlight's divine blessing.",
+      careInstructions: "Clean gently with a soft cloth. Avoid harsh chemicals and prolonged sun exposure.",
       isActive: true,
       isFeatured: false,
       createdAt: new Date(),
@@ -186,10 +186,10 @@ export class MemStorage implements IStorage {
 
     const lapisLazuliMensNecklace: Product = {
       id: this.currentProductId++,
-      name: "Lapis Lazuli, Brown Leather, Masculine, Men's Necklace",
-      description: "Sacred masculine vessel channeling ancient pharaoh consciousness through divine Lapis Lazuli depths. This handcrafted talisman awakens inner king sovereignty while the blessed brown leather grounds earthen warrior wisdom. Striking celestial blue essence carries millennia of Egyptian mysteries, amplifying psychic perception, divine protection, and royal spiritual authority. Wire-wrapped through ceremony for 26 inches of sacred masculine power.",
+      name: "Men's Lapis Lazuli Necklace on Leather Cord",
+      description: "A substantial lapis lazuli pendant on an extended 26-inch brown leather cord. The rich blue stone with natural pyrite inclusions makes a bold statement. Hand-wrapped setting emphasizes the stone's character. The longer length creates a strong, masculine presence.",
       price: "40.00",
-      categoryId: wirewrappedCategory.id,
+      categoryId: leatherCordCategory.id,
       imageUrl: crystalJewelryImages.lapisLeather[0],
       imageUrls: crystalJewelryImages.lapisLeather,
       sku: "TC-LAP-MEN-001",
@@ -197,7 +197,7 @@ export class MemStorage implements IStorage {
       weight: "25g",
       materials: ["Leather", "Stone"],
       gemstones: ["Lapis Lazuli"],
-      careInstructions: "Honor leather's sacred nature - protect from water's embrace. Store in cool sacred sanctuary. Cleanse stone with blessed sage ceremony.",
+      careInstructions: "Protect leather from water. Store in a cool, dry place. Wipe stone gently with a soft cloth.",
       isActive: true,
       isFeatured: false,
       createdAt: new Date(),
@@ -205,10 +205,10 @@ export class MemStorage implements IStorage {
 
     const lapisLazuliOnyx: Product = {
       id: this.currentProductId++,
-      name: "Unique Lapis Lazuli, Onyx, Smoky Quartz, Jade, Lava Stone Crystal Necklace",
-      description: "Sacred five-stone harmony vessel weaving celestial wisdom through divine gemstone alchemy. Lapis Lazuli awakens third eye consciousness while Smoky Quartz grounds protective earthen energy. Jade channels heart healing prosperity as volcanic Lava Stone absorbs sacred oils and intentions. Onyx creates powerful psychic protection barriers. This unique ceremonial piece harmonizes all chakras for complete energetic balance and spiritual transformation.",
+      name: "Five-Stone Lapis Lazuli and Onyx Necklace",
+      description: "A unique five-stone necklace combining lapis lazuli, onyx, smoky quartz, jade, and lava stone. The deep blues of lapis contrast beautifully with the black onyx and translucent quartz. Jade adds subtle green depth while the lava stone provides texture. A harmonious composition that balances varied colors and materials.",
       price: "80.00",
-      categoryId: healingCrystalsCategory.id,
+      categoryId: gemstoneNecklacesCategory.id,
       imageUrl: crystalJewelryImages.lapisMixedStones[0],
       imageUrls: crystalJewelryImages.lapisMixedStones,
       sku: "TC-LAP-ONY-001",
@@ -216,7 +216,7 @@ export class MemStorage implements IStorage {
       weight: "35g",
       materials: ["Stone"],
       gemstones: ["Lapis Lazuli", "Onyx", "Smoky Quartz", "Jade", "Lava Stone"],
-      careInstructions: "Sacred lava stone absorbs blessed essential oils for enhanced spiritual practice. Store in individual sanctuary. Cleanse under moonlight's divine radiance.",
+      careInstructions: "The lava stone can absorb essential oils for fragrance. Store separately to protect softer stones. Clean gently with a soft cloth.",
       isActive: true,
       isFeatured: true,
       createdAt: new Date(),
@@ -224,8 +224,8 @@ export class MemStorage implements IStorage {
 
     const turquoiseLapisNecklace: Product = {
       id: this.currentProductId++,
-      name: "Unique Turquoise Beaded Necklace, Pearl Strung, lapis Lazuli, Pink Pearl, Hematite, Leaf, Handmade, Gold Filled, one of a kind",
-      description: "Sacred oceanic symphony vessel weaving ancient turquoise protection with celestial lapis wisdom. Divine turquoise channels protective fortune while enhancing sacred communication and honest expression from the soul. Lapis Lazuli awakens third eye truth and spiritual enlightenment, fostering deep inner connection to cosmic consciousness. Pink hematite harmonizes heart chakra grounding with loving protection, elevating self-worth and divine willpower. Luminous pink pearls radiate purity, wisdom, and nurturing compassion while attracting earthly prosperity and emotional balance. The blessed leaf pendant carries nature's eternal whispers. 21 inches of divine protection with gold filled sacred closure.",
+      name: "Turquoise and Lapis Lazuli Beaded Necklace",
+      description: "A 21-inch beaded necklace featuring turquoise beads, lapis lazuli, pink pearls, and hematite accents. The turquoise brings vibrant blue-green tones while lapis adds deeper blue notes. Pink pearls provide soft contrast and hematite offers subtle metallic shimmer. A delicate leaf pendant completes this one-of-a-kind piece with a gold-filled clasp.",
       price: "70.00",
       categoryId: crystalNecklacesCategory.id,
       imageUrl: crystalJewelryImages.turquoiseBeaded[0],
@@ -235,7 +235,7 @@ export class MemStorage implements IStorage {
       weight: "32g",
       materials: ["Stone", "Turquoise", "Lapis Lazuli", "Pink Pearl", "Hematite", "Gold Filled"],
       gemstones: ["Turquoise", "Lapis Lazuli", "Hematite", "Pink Pearl"],
-      careInstructions: "Shield from water's harsh energy. Honor pearls with gentle reverence. Store in blessed soft cloth sanctuary.",
+      careInstructions: "Protect from water and chemicals. Clean pearls gently with a soft cloth. Store in a padded jewelry box.",
       isActive: true,
       isFeatured: true,
       createdAt: new Date(),
@@ -243,8 +243,8 @@ export class MemStorage implements IStorage {
 
     const upcycledEnamelPendant: Product = {
       id: this.currentProductId++,
-      name: "Upcycled Gold Plated Enamel Pendant, 14k Gold Filled Necklace, Chain, 18KGF Lobster Clasp, Citrine, Peridot, Good Fortune, Lucky, Confident",
-      description: "Sacred alchemical transformation vessel born from upcycled enamel flower consciousness into divine stationary pendant power. Peridot channels heart prosperity while citrine ignites solar confidence manifestation. This divine duo embodies luck, fortune, and abundant wealth flowing into the wearer's sacred life journey. The mystical back cradles 18K Gold Filled lobster clasp with divine ease. 14-inch golden curb chain creates complete energetic circuit. This completely unique ceremonial piece undergoes Selenite lamp cleansing ritual before finding its destined soul home.",
+      name: "Upcycled Enamel Pendant with Citrine and Peridot",
+      description: "A unique upcycled enamel flower pendant adorned with citrine and peridot stones. The gold-plated enamel bloom serves as a stationary focal point on a 14-inch 14k gold-filled curb chain. Citrine adds warm golden tones while peridot provides fresh green accents. A distinctive piece that combines vintage charm with modern refinement.",
       price: "80.00",
       categoryId: crystalNecklacesCategory.id,
       imageUrl: crystalJewelryImages.upcycledEnamel[0],
@@ -254,7 +254,7 @@ export class MemStorage implements IStorage {
       weight: "18g",
       materials: ["14k Gold Filled", "Gold Plated Enamel", "18KGF", "5mm Curb Chain"],
       gemstones: ["Citrine", "Peridot"],
-      careInstructions: "Shield from water's harsh embrace to honor sacred longevity. Polish with gentle soft cloth to maintain divine radiance. Rest separately during sleep cycles.",
+      careInstructions: "Remove before water exposure. Polish gently with a soft cloth. Store separately to protect the enamel finish.",
       isActive: true,
       isFeatured: true,
       createdAt: new Date(),

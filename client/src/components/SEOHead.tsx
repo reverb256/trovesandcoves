@@ -19,8 +19,8 @@ interface SEOProps {
 
 export default function SEOHead({
   title = 'Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces',
-  description = 'Discover the power of transformation with our handcrafted crystal jewelry. Each piece elevates your style and spirit, blending 14k gold-plated elegance with natural crystal beauty. Crafted with intention to empower your energy.',
-  keywords = 'crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, crystal energy, transformation jewelry',
+  description = 'Discover handcrafted crystal jewelry with timeless elegance. Each piece elevates your style, blending 14k gold-plated sophistication with natural crystal beauty. Artisan-crafted jewelry from Winnipeg, Canada.',
+  keywords = 'crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, artisan jewelry, canadian jewelry',
   image = 'https://trovesandcoves.ca/og-image.jpg',
   url = 'https://trovesandcoves.ca',
   type = 'website',
@@ -119,7 +119,7 @@ export default function SEOHead({
           '@id': `${url}/#business`,
           name: 'Troves & Coves',
           description:
-            'Handcrafted crystal jewelry in Winnipeg, Manitoba. Statement necklaces and bracelets crafted with intention—blending 14k gold-plated elegance with natural crystal beauty to empower your energy.',
+            'Handcrafted crystal jewelry in Winnipeg, Manitoba. Statement necklaces and bracelets artisan-crafted with 14k gold-plated elegance and natural crystal beauty.',
           url: url,
           telephone: '+1-204-xxx-xxxx',
           address: {
@@ -208,7 +208,7 @@ export default function SEOHead({
               },
               {
                 '@type': 'OfferCatalog',
-                name: 'Healing Crystals',
+                name: 'Gemstone Jewelry',
               },
               {
                 '@type': 'OfferCatalog',

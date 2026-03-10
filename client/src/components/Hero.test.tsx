@@ -17,7 +17,7 @@ describe('Hero Component', () => {
     expect(heroSection).toHaveAttribute('aria-label', 'Welcome');
   });
 
-  it('displays mystical description', () => {
+  it('displays hero description', () => {
     render(<Hero />);
     expect(screen.getByText(/Discover the power of transformation/)).toBeInTheDocument();
     expect(screen.getByText(/blending elegance with raw beauty/)).toBeInTheDocument();

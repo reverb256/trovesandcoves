@@ -251,9 +251,9 @@ export default function Financing() {
               Start Your Crystal Journey Today
             </h3>
             <p className="mb-6 max-w-2xl mx-auto" style={{ color: 'hsl(var(--text-secondary))' }}>
-              Don't let budget constraints delay your spiritual growth. Our
+              Don't let budget constraints delay your jewelry journey. Our
               flexible payment plans make it easy to invest in authentic crystal
-              jewelry that will support your healing journey for years to come.
+              jewelry that will support your collection for years to come.
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-6">
               <Badge

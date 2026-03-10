@@ -14,8 +14,8 @@ export default function Home() {
     <>
       <SEOHead
         title="Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces"
-        description="Discover the power of transformation with our handcrafted crystal jewelry. Each piece elevates your style and spirit, blending 14k gold-plated elegance with natural crystal beauty. Crafted with intention to empower your energy."
-        keywords="crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, crystal energy, transformation jewelry"
+        description="Discover handcrafted crystal jewelry with timeless elegance. Each piece elevates your style, blending 14k gold-plated sophistication with natural crystal beauty. Artisan-crafted jewelry from Winnipeg, Canada."
+        keywords="crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, artisan jewelry, canadian jewelry"
         url="https://trovesandcoves.ca"
         type="website"
       />
@@ -28,7 +28,7 @@ export default function Home() {
         <div className="chamber-container">
           {/* Section Header */}
           <div className="text-center mb-16">
-            {/* Mystical Badge */}
+            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full"
               style={{ 
                 borderColor: 'hsla(174,85%,45%,0.2)', 
@@ -60,11 +60,11 @@ export default function Home() {
 
           {/* Products Grid */}
           {isLoading ? (
-            <div className="crystal-grid">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="crystal-card aspect-square animate-pulse"
+                  className="aspect-square bg-white/50 rounded-lg animate-pulse"
                   style={{ animationDelay: `${i * 0.1}s` }}
                 >
                   <div className="w-full h-full flex items-center justify-center">
@@ -74,7 +74,7 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className="crystal-grid">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProducts?.map((product, index) => (
                 <Link
                   key={product.id}
@@ -82,7 +82,7 @@ export default function Home() {
                   className="group block animate-reveal"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="crystal-card h-full p-6">
+                  <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6">
                     {/* Product Image */}
                     <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-[hsla(var(--accent-vibrant),0.1)]">
                       <img
@@ -156,9 +156,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mystical Message Section */}
+      {/* Message Section */}
       <section className="chamber-section content-layer relative overflow-hidden">
-        {/* Mystical background effects */}
+        {/* Background effects */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-20"
             style={{ backgroundColor: 'hsla(174,85%,45%,0.02)', filter: 'blur(60px)' }}
@@ -176,7 +176,7 @@ export default function Home() {
                 border: '1px solid hsla(174,85%,45%,0.1)'
               }}
             >
-              {/* Mystical Icon */}
+              {/* Decorative Icon */}
               <div className="inline-flex items-center justify-center w-20 h-20 mb-8 rounded-full"
                 style={{ 
                   border: '2px solid hsla(43,95%,55%,0.3)', 
@@ -194,10 +194,10 @@ export default function Home() {
               </h2>
 
               <p className="text-lg leading-relaxed mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
-                Every crystal in our collection is chosen for its unique energy and beauty.
+                Every crystal in our collection is chosen for its unique beauty and quality.
                 When you wear our jewelry, you embrace bold femininity and masculine strength—
-                statement pieces crafted with intention to empower your energy and resonate
-                with abundance and confidence.
+                statement pieces crafted with intention to empower your confidence and showcase
+                your unique style.
               </p>
 
               <p className="text-base italic" style={{ fontFamily: "'Alex Brush', cursive", color: 'hsl(var(--gold-medium))' }}>

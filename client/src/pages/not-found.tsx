@@ -1,73 +1,53 @@
-import { Gem, Home, Search, ArrowRight } from 'lucide-react';
+import { Home, ShoppingBag, ArrowRight } from 'lucide-react';
 import { Link } from 'wouter';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-mystical-gradient flex items-center justify-center px-4 content-layer">
-      {/* Mystical 404 Card */}
-      <div className="crystal-card w-full max-w-lg p-12 text-center">
-        {/* Mystical Icon */}
+    <div className="min-h-screen flex items-center justify-center px-4" style={{ backgroundColor: '#faf8f3' }}>
+      <div className="bg-white rounded-lg shadow-sm w-full max-w-lg p-12 text-center">
+        {/* Icon */}
         <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full border-2 border-turquoise-soft bg-turquoise-soft">
-            <Gem className="w-12 h-12 text-turquoise-bright" strokeWidth={1.5} />
+          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full" style={{ backgroundColor: 'hsla(174, 51%, 51%, 0.1)', border: '2px solid #4abfbf' }}>
+            <ShoppingBag className="w-12 h-12" style={{ color: '#4abfbf' }} strokeWidth={1.5} />
           </div>
         </div>
 
-        {/* Mystical Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-gold-soft rounded-full bg-gold-soft">
-          <span className="text-xs tracking-widest uppercase text-gold-bright">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full" style={{ backgroundColor: '#deb55b', border: '1px solid #deb55b' }}>
+          <span className="text-xs tracking-widest uppercase" style={{ color: '#1f1f1f', fontWeight: 600 }}>
             404
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-glow-turquoise mb-6">
-          Lost in the Void
+        <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: '#1f1f1f' }}>
+          Page Not Found
         </h1>
 
-        {/* Mystical Divider */}
-        <div className="w-24 h-px mx-auto mb-6 bg-gradient-to-r from-transparent via-[hsla(var(--accent-vibrant),0.5)] to-transparent"></div>
+        {/* Divider */}
+        <div className="w-24 h-px mx-auto mb-6" style={{ backgroundColor: '#e1af2f' }}></div>
 
-        <p className="text-lg text-[hsl(var(--text-secondary))] opacity-70 mb-8 leading-relaxed">
-          The crystal path you seek has faded into the mists.
-          Let us guide you back to the treasures that await.
+        <p className="text-lg mb-8 leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}>
+          The page you're looking for doesn't exist or has been moved.
+          Let us help you find your way.
         </p>
 
         {/* Navigation Options */}
         <div className="space-y-4">
           <Link href="/">
-            <button className="btn-mystical w-full justify-center group">
-              <Home className="w-5 h-5 mr-2" />
-              <span>Return to the Sanctuary</span>
-              <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+            <button className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 group" style={{ backgroundColor: '#4abfbf', color: '#faf8f3', fontFamily: '"Montserrat", sans-serif' }}>
+              <Home className="w-5 h-5" />
+              <span>Return Home</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </button>
           </Link>
 
           <Link href="/products">
-            <button className="btn-mystical-outline w-full justify-center">
-              <Search className="w-5 h-5 mr-2" />
+            <button className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 group" style={{ backgroundColor: 'transparent', border: '2px solid #4abfbf', color: '#4abfbf', fontFamily: '"Montserrat", sans-serif' }}>
+              <ShoppingBag className="w-5 h-5" />
               <span>Shop the Collection</span>
             </button>
           </Link>
         </div>
-
-        {/* Mystical Glow */}
-        <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-[hsla(var(--accent-vibrant),0.2)] rounded-full blur-xl"></div>
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-[hsla(var(--accent-vibrant),0.3)] rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${4 + Math.random() * 3}s`,
-            }}
-          />
-        ))}
       </div>
     </div>
   );

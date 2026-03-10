@@ -8,17 +8,17 @@ export default function FeaturesBar() {
     },
     {
       icon: Shield,
-      text: "Crafted with Intention"
+      text: "Quality Craftsmanship"
     },
     {
       icon: Gem,
-      text: "Empower Your Energy"
+      text: "Handcrafted Excellence"
     }
   ];
 
   return (
     <section className="relative py-8 border-b" style={{ backgroundColor: 'hsl(var(--bg-primary))', borderColor: 'hsla(var(--troves-turquoise),0.15)' }}>
-      {/* Mystical top border glow */}
+      {/* Top border accent */}
       <div className="absolute top-0 left-0 w-full h-px"
         style={{ background: 'linear-gradient(90deg, transparent, hsla(174,85%,45%,0.4), transparent)' }}
       ></div>
@@ -52,7 +52,7 @@ export default function FeaturesBar() {
         </div>
       </div>
 
-      {/* Mystical bottom border glow */}
+      {/* Bottom border accent */}
       <div className="absolute bottom-0 left-0 w-full h-px"
         style={{ background: 'linear-gradient(90deg, transparent, hsla(43,95%,55%,0.3), transparent)' }}
       ></div>

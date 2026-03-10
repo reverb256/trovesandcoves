@@ -233,20 +233,20 @@ export function StyleGuide() {
           <div className="type-scale">
             <div className="type-level">
               <span className="type-label">Display (48px)</span>
-              <span style={{ fontFamily: "Libre Baskerville, serif", fontSize: "3rem", color: "hsl(var(--accent-vibrant))" }}>Mystical Crystals</span>
+              <span style={{ fontFamily: "Libre Baskerville, serif", fontSize: "3rem", color: "hsl(var(--accent-vibrant))" }}>Handcrafted Jewelry</span>
             </div>
             <div className="type-level">
               <span className="type-label">Heading (32px)</span>
-              <span style={{ fontFamily: "Libre Baskerville, serif", fontSize: "2rem", color: "#2c2c2c" }}>Crystal Healing Properties</span>
+              <span style={{ fontFamily: "Libre Baskerville, serif", fontSize: "2rem", color: "#2c2c2c" }}>Natural Beauty Collection</span>
             </div>
             <div className="type-level">
               <span className="type-label">Subheading (24px)</span>
-              <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "1.5rem", fontWeight: 600, color: "#2c2c2c" }}>Handcrafted with Intention</span>
+              <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "1.5rem", fontWeight: 600, color: "#2c2c2c" }}>Artisan Crafted Excellence</span>
             </div>
             <div className="type-level">
               <span className="type-label">Body (16px)</span>
               <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "1rem", color: "#2c2c2c" }}>
-                Each crystal is carefully selected for its unique energy and healing properties.
+                Each piece is carefully selected for its unique beauty and quality craftsmanship.
               </span>
             </div>
             <div className="type-level">
@@ -327,15 +327,15 @@ export function StyleGuide() {
           <h2 className="sg-section-title">Brand Voice</h2>
 
           <div className="voice-content">
-            <p><strong>Tone:</strong> Mystical, spiritual, authentic, personal</p>
-            <p><strong>Personality:</strong> Wise, nurturing, magical, connected to earth's energies</p>
+            <p><strong>Tone:</strong> Elegant, refined, authentic, personal</p>
+            <p><strong>Personality:</strong> Sophisticated, nurturing, artistic, connected to natural beauty</p>
             <p><strong>Key Themes:</strong></p>
             <ul>
-              <li>Crystal healing properties and metaphysical benefits</li>
-              <li>Handcrafted quality and intention</li>
-              <li>Personal connection to crystal energy</li>
-              <li>Spiritual growth and transformation</li>
-              <li>Nature's wisdom and earth's gifts</li>
+              <li>Natural crystal beauty and artisan craftsmanship</li>
+              <li>Handcrafted quality and attention to detail</li>
+              <li>Personal connection to wearable art</li>
+              <li>Style elegance and transformation</li>
+              <li>Nature's beauty and earth's gifts</li>
             </ul>
             <p><strong>Sample Language:</strong></p>
             <blockquote style={{

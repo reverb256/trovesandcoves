@@ -45,7 +45,7 @@ export default function SkullIcon({ size = 24, className = "" }: SkullIconProps)
       <rect x="18" y="23" width="1" height="2" fill="#F8F6F0"/>
       <rect x="19.5" y="23" width="1" height="2" fill="#F8F6F0"/>
       
-      {/* Mystical Accents */}
+      {/* Gold Accents */}
       <circle cx="11" cy="12" r="0.5" fill="#D4AF37" opacity="0.8"/>
       <circle cx="21" cy="13" r="0.5" fill="#D4AF37" opacity="0.8"/>
       <circle cx="14" cy="20" r="0.3" fill="#FF69B4" opacity="0.7"/>

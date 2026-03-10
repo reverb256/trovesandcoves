@@ -3,10 +3,10 @@ import { cn } from '@/lib/utils';
 import { BRAND_COLORS, WCAG_COLORS } from '@/lib/color-utils';
 
 /**
- * Mystical heading component with WCAG AA compliance
+ * Brand heading component with WCAG AA compliance
  * Uses Libre Baskerville + turquoise (brand or WCAG compliant based on size)
  */
-export interface MysticalHeadingProps {
+export interface BrandHeadingProps {
   children: ReactNode;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
   size?: 'xl' | 'lg' | 'md' | 'sm';
@@ -20,12 +20,12 @@ const sizeMap = {
   sm: { fontSize: '1.125rem', pxSize: 18 }, // >= 18px, brand color OK
 };
 
-export function MysticalHeading({
+export function BrandHeading({
   children,
   level = 2,
   size = 'lg',
   className
-}: MysticalHeadingProps) {
+}: BrandHeadingProps) {
   const sizeConfig = sizeMap[size];
   const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
   const canUseBrandColor = sizeConfig.pxSize >= 18;
@@ -51,10 +51,10 @@ export function MysticalHeading({
 }
 
 /**
- * Mystical body text component
+ * Brand body text component
  * Uses Montserrat + theme-aware color
  */
-export interface MysticalBodyTextProps {
+export interface BrandBodyTextProps {
   children: ReactNode;
   size?: 'lg' | 'md' | 'sm';
   className?: string;
@@ -66,11 +66,11 @@ const bodySizeMap = {
   sm: { fontSize: '0.875rem' },
 };
 
-export function MysticalBodyText({
+export function BrandBodyText({
   children,
   size = 'md',
   className
-}: MysticalBodyTextProps) {
+}: BrandBodyTextProps) {
   const classes = cn('leading-relaxed', className);
 
   return (
@@ -88,10 +88,10 @@ export function MysticalBodyText({
 }
 
 /**
- * Mystical script text component (for "Coves" branding)
+ * Brand script text component (for "Coves" branding)
  * Uses Alex Brush + gold (brand or WCAG compliant based on size)
  */
-export interface MysticalScriptTextProps {
+export interface BrandScriptTextProps {
   children: ReactNode;
   size?: 'xl' | 'lg' | 'md' | 'sm';
   className?: string;
@@ -104,11 +104,11 @@ const scriptSizeMap = {
   sm: { fontSize: '1rem', pxSize: 16 },    // < 18px, use WCAG variant
 };
 
-export function MysticalScriptText({
+export function BrandScriptText({
   children,
   size = 'lg',
   className
-}: MysticalScriptTextProps) {
+}: BrandScriptTextProps) {
   const sizeConfig = scriptSizeMap[size];
   const canUseBrandColor = sizeConfig.pxSize >= 18;
   const color = canUseBrandColor ? BRAND_COLORS.gold : WCAG_COLORS.gold;

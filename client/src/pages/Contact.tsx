@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
 import { useForm } from 'react-hook-form';
@@ -17,33 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Calendar } from '@/components/ui/calendar';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import {
-  MapPin,
-  Clock,
-  Phone,
-  Mail,
-  CalendarIcon,
-  MessageCircle,
-  Gem,
-  Sparkles,
-  Compass,
-  Heart,
-  Star,
-} from 'lucide-react';
-import { format } from 'date-fns';
+import { Mail, MapPin, ShoppingBag } from 'lucide-react';
 import { insertContactSubmissionSchema } from '@shared/types';
 import { z } from 'zod';
 
@@ -54,7 +26,6 @@ const contactFormSchema = insertContactSubmissionSchema.extend({
 type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export default function Contact() {
-  const [selectedDate, setSelectedDate] = useState<Date>();
   const { toast } = useToast();
 
   const form = useForm<ContactFormData>({
@@ -69,182 +40,102 @@ export default function Contact() {
     },
   });
 
-  const isConsultation = form.watch('isConsultation');
-
   const handleSubmit = async (data: ContactFormData) => {
     try {
-      const submissionData = {
-        ...data,
-        preferredDate: selectedDate?.toISOString(),
-      };
-
-      await apiRequest('POST', '/api/contact', submissionData);
+      await apiRequest('POST', '/api/contact', data);
 
       toast({
-        title: 'Message received! ✨',
-        description: "We'll respond within 24 hours. For immediate help, email us directly at info@trovesandcoves.ca",
+        title: 'Message received',
+        description: "We'll respond within 24 hours.",
       });
 
       form.reset();
-      setSelectedDate(undefined);
     } catch (error) {
       toast({
-        title: 'Message delivery delayed',
-        description: 'Please email us directly at info@trovesandcoves.ca for immediate assistance.',
+        title: 'Unable to send message',
+        description: 'Please email us directly at info@trovesandcoves.ca',
         variant: 'destructive',
       });
     }
   };
 
-  const consultationTypes = [
-    'Personal Consultation',
-    'Custom Jewelry Design',
-    'Style Guidance',
-    'Energy Selection',
-    'Piece Blessing',
-    'General Inquiry',
-  ];
-
-  const businessHours = [
-    { day: 'Monday - Friday', hours: '10:00 AM - 6:00 PM' },
-    { day: 'Saturday', hours: '10:00 AM - 5:00 PM' },
-    { day: 'Sunday', hours: 'By Appointment Only' },
-  ];
-
-  const services = [
-    {
-      icon: Gem,
-      title: 'Personal Consultation',
-      description: 'Find pieces that empower your energy and style',
-    },
-    {
-      icon: Heart,
-      title: 'Custom Design',
-      description: 'Create statement pieces crafted with intention',
-    },
-    {
-      icon: Star,
-      title: 'Jewelry Guidance',
-      description: 'Learn how your piece enhances your presence',
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen" style={{ backgroundColor: '#faf8f3' }}>
       {/* Header */}
-      <section className="relative overflow-hidden py-20" style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
-        <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
-        <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
-
-        <div className="relative container mx-auto px-4 text-center">
-          <div className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full" style={{
-            backgroundColor: 'hsl(var(--gold-soft))',
-            color: 'hsl(var(--text-primary))',
-            boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)'
-          }}>
-            <span className="text-sm font-medium tracking-widest uppercase">
-              Connect With Us
-            </span>
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 flex flex-col items-center justify-center gap-3">
-            <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Contact</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Troves & Coves</span>
+      <section className="py-20 px-4">
+        <div className="container mx-auto text-center max-w-2xl">
+          <h1
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{
+              fontFamily: '"Libre Baskerville", serif',
+              color: '#1f1f1f',
+            }}
+          >
+            Get in Touch
           </h1>
-
-          <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, hsl(var(--accent-vibrant)), hsl(var(--gold-medium)), hsl(var(--gold-medium)))' }} />
-
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'hsl(var(--text-secondary))' }}>
-            Connect with us to find your perfect piece. We're here to help you discover
-            jewelry that empowers your energy and enhances your presence.
+          <div
+            className="w-16 h-0.5 mx-auto mb-6"
+            style={{ backgroundColor: '#e1af2f' }}
+          />
+          <p
+            className="text-lg leading-relaxed"
+            style={{ color: '#4a4a4a', fontFamily: '"Montserrat", sans-serif' }}
+          >
+            For custom orders, design consultations, or any questions about our
+            handcrafted crystal jewelry, we'd love to hear from you.
           </p>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-2 gap-12">
+      <div className="container mx-auto px-4 pb-20">
+        <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <div>
-            <Card variant="elevated" theme="gradient">
-              <CardHeader variant="gradient">
-                <CardTitle className="flex items-center gap-3">
-                  <MessageCircle className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                  <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>Send us a Message</span>
-                </CardTitle>
-                <p style={{ color: 'hsl(var(--text-secondary))' }}>
-                  Reach out to find pieces crafted with intention to empower your energy.
-                </p>
-              </CardHeader>
-              <CardContent className="p-6">
+          <div className="lg:col-span-3">
+            <Card
+              className="border-0 shadow-sm"
+              style={{ backgroundColor: '#ffffff' }}
+            >
+              <CardContent className="p-8 md:p-10">
+                <h2
+                  className="text-2xl font-semibold mb-6"
+                  style={{
+                    fontFamily: '"Libre Baskerville", serif',
+                    color: '#1f1f1f',
+                  }}
+                >
+                  Send a Message
+                </h2>
+
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(handleSubmit)}
                     className="space-y-6"
                   >
-                    {/* Personal Information */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
-                              Full Name
-                            </FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="Your name"
-                                autoComplete="name"
-                                style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
-                              Email Address
-                            </FormLabel>
-                            <FormControl>
-                              <Input
-                                type="email"
-                                inputMode="email"
-                                autoComplete="email"
-                                placeholder="your@email.com"
-                                style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
                     <FormField
                       control={form.control}
-                      name="phone"
+                      name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-secondary))' }}>
-                            Phone Number (Optional)
+                          <FormLabel
+                            className="text-sm font-medium"
+                            style={{
+                              color: '#1f1f1f',
+                              fontFamily: '"Montserrat", sans-serif',
+                            }}
+                          >
+                            Name
                           </FormLabel>
                           <FormControl>
                             <Input
-                              type="tel"
-                              inputMode="tel"
-                              autoComplete="tel"
-                              placeholder="Your phone number"
-                              style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}
+                              placeholder="Your name"
+                              autoComplete="name"
+                              className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
+                              style={{
+                                backgroundColor: '#faf8f3',
+                                borderColor: '#e5e5e5',
+                                fontFamily: '"Montserrat", sans-serif',
+                              }}
                               {...field}
-                              value={field.value || ''}
                             />
                           </FormControl>
                           <FormMessage />
@@ -252,129 +143,94 @@ export default function Contact() {
                       )}
                     />
 
-                    {/* Consultation Toggle */}
-                    <div className="flex items-center space-x-3">
-                      <FormField
-                        control={form.control}
-                        name="isConsultation"
-                        render={({ field }) => (
-                          <FormItem className="flex items-center space-x-2">
-                            <FormControl>
-                              <input
-                                type="checkbox"
-                                checked={field.value}
-                                onChange={field.onChange}
-                                className="w-4 h-4 rounded" style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--accent-vibrant))' }}
-                              />
-                            </FormControl>
-                            <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
-                              Request Crystal Consultation
-                            </FormLabel>
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
-                    {/* Consultation Type (conditional) */}
-                    {isConsultation && (
-                      <FormField
-                        control={form.control}
-                        name="subject"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
-                              Consultation Type
-                            </FormLabel>
-                            <Select
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                            >
-                              <FormControl>
-                                <SelectTrigger style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}>
-                                  <SelectValue placeholder="Choose your crystal service" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                {consultationTypes.map(type => (
-                                  <SelectItem key={type} value={type}>
-                                    {type}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    )}
-
-                    {/* Subject (non-consultation) */}
-                    {!isConsultation && (
-                      <FormField
-                        control={form.control}
-                        name="subject"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
-                              Subject
-                            </FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="What can we help you with?"
-                                style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    )}
-
-                    {/* Preferred Date (consultation only) */}
-                    {isConsultation && (
-                      <div>
-                        <Label className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
-                          Preferred Consultation Date
-                        </Label>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button
-                              variant="outline"
-                              className="w-full justify-start text-left font-normal mt-2" style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}
-                            >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
-                              {selectedDate
-                                ? format(selectedDate, 'PPP')
-                                : 'Select a date'}
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0">
-                            <Calendar
-                              mode="single"
-                              selected={selectedDate}
-                              onSelect={setSelectedDate}
-                              initialFocus
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel
+                            className="text-sm font-medium"
+                            style={{
+                              color: '#1f1f1f',
+                              fontFamily: '"Montserrat", sans-serif',
+                            }}
+                          >
+                            Email
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              type="email"
+                              inputMode="email"
+                              autoComplete="email"
+                              placeholder="your@email.com"
+                              className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
+                              style={{
+                                backgroundColor: '#faf8f3',
+                                borderColor: '#e5e5e5',
+                                fontFamily: '"Montserrat", sans-serif',
+                              }}
+                              {...field}
                             />
-                          </PopoverContent>
-                        </Popover>
-                      </div>
-                    )}
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                    {/* Message */}
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel
+                            className="text-sm font-medium"
+                            style={{
+                              color: '#1f1f1f',
+                              fontFamily: '"Montserrat", sans-serif',
+                            }}
+                          >
+                            Subject
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="How can we help?"
+                              className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
+                              style={{
+                                backgroundColor: '#faf8f3',
+                                borderColor: '#e5e5e5',
+                                fontFamily: '"Montserrat", sans-serif',
+                              }}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
                     <FormField
                       control={form.control}
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="font-semibold" style={{ color: 'hsl(var(--text-secondary))' }}>
+                          <FormLabel
+                            className="text-sm font-medium"
+                            style={{
+                              color: '#1f1f1f',
+                              fontFamily: '"Montserrat", sans-serif',
+                            }}
+                          >
                             Message
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Share your intentions and how we can assist your spiritual journey..."
-                              style={{ backgroundColor: 'hsl(var(--bg-card))', borderColor: 'hsl(var(--border-medium))', color: 'hsl(var(--text-primary))' }}
-                              className="min-h-[120px]"
+                              placeholder="Tell us about your custom order or inquiry..."
+                              className="min-h-[140px] border-gray-200 focus:border-gray-400 focus:ring-gray-200 resize-none"
+                              style={{
+                                backgroundColor: '#faf8f3',
+                                borderColor: '#e5e5e5',
+                                fontFamily: '"Montserrat", sans-serif',
+                              }}
                               {...field}
                             />
                           </FormControl>
@@ -382,48 +238,103 @@ export default function Contact() {
                         </FormItem>
                       )}
                     />
+
+                    <Button
+                      type="submit"
+                      className="w-full py-3 text-sm font-medium tracking-wide transition-all duration-200 hover:opacity-90"
+                      style={{
+                        backgroundColor: '#1f1f1f',
+                        color: '#faf8f3',
+                        fontFamily: '"Montserrat", sans-serif',
+                      }}
+                    >
+                      Send Message
+                    </Button>
                   </form>
                 </Form>
+
+                <p
+                  className="text-sm text-center mt-6"
+                  style={{ color: '#6b6b6b', fontFamily: '"Montserrat", sans-serif' }}
+                >
+                  We typically respond within 24 hours.
+                </p>
               </CardContent>
             </Card>
           </div>
 
-          {/* Contact Information & Services */}
-          <div className="space-y-8">
-            {/* Contact Details */}
-            <Card variant="elevated" theme="gradient">
-              <CardHeader variant="gradient">
-                <CardTitle className="flex items-center gap-3">
-                  <Compass className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                  <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>Find Your Way to Us</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6 space-y-6">
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <Mail className="h-5 w-5 mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+          {/* Contact Information */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Contact Card */}
+            <Card
+              className="border-0 shadow-sm"
+              style={{ backgroundColor: '#ffffff' }}
+            >
+              <CardContent className="p-8">
+                <h3
+                  className="text-lg font-semibold mb-6"
+                  style={{
+                    fontFamily: '"Libre Baskerville", serif',
+                    color: '#1f1f1f',
+                  }}
+                >
+                  Contact Information
+                </h3>
+
+                <div className="space-y-5">
+                  <div className="flex items-start gap-3">
+                    <Mail
+                      className="h-5 w-5 mt-0.5 flex-shrink-0"
+                      style={{ color: '#e1af2f' }}
+                    />
                     <div>
-                      <p className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>Email</p>
-                      <p style={{ color: 'hsl(var(--text-muted))' }}>hello@trovesandcoves.com</p>
+                      <p
+                        className="text-sm font-medium mb-1"
+                        style={{
+                          color: '#1f1f1f',
+                          fontFamily: '"Montserrat", sans-serif',
+                        }}
+                      >
+                        Email
+                      </p>
+                      <a
+                        href="mailto:info@trovesandcoves.ca"
+                        className="text-sm hover:underline transition-colors"
+                        style={{
+                          color: '#4abfbf',
+                          fontFamily: '"Montserrat", sans-serif',
+                        }}
+                      >
+                        info@trovesandcoves.ca
+                      </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3">
-                    <Phone className="h-5 w-5 mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+                  <div className="flex items-start gap-3">
+                    <MapPin
+                      className="h-5 w-5 mt-0.5 flex-shrink-0"
+                      style={{ color: '#e1af2f' }}
+                    />
                     <div>
-                      <p className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>Phone</p>
-                      <p style={{ color: 'hsl(var(--text-muted))' }}>+1 (555) 123-GEMS</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <MapPin className="h-5 w-5 mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }} />
-                    <div>
-                      <p className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>Location</p>
-                      <p style={{ color: 'hsl(var(--text-muted))' }}>
-                        Online Mystical Boutique
+                      <p
+                        className="text-sm font-medium mb-1"
+                        style={{
+                          color: '#1f1f1f',
+                          fontFamily: '"Montserrat", sans-serif',
+                        }}
+                      >
+                        Location
+                      </p>
+                      <p
+                        className="text-sm"
+                        style={{
+                          color: '#4a4a4a',
+                          fontFamily: '"Montserrat", sans-serif',
+                        }}
+                      >
+                        Winnipeg, Manitoba
                         <br />
-                        Serving Crystal Enthusiasts Worldwide
+                        Canada
                       </p>
                     </div>
                   </div>
@@ -431,122 +342,107 @@ export default function Contact() {
               </CardContent>
             </Card>
 
-            {/* Business Hours */}
-            <Card variant="elevated" theme="gradient">
-              <CardHeader variant="gradient">
-                <CardTitle className="flex items-center gap-3">
-                  <Clock className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                  <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>Business Hours</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-3">
-                  {businessHours.map((schedule, index) => (
-                    <div
-                      key={index}
-                      className="flex justify-between items-center py-2 border-b last:border-b-0" style={{ borderBottomColor: 'hsl(var(--border-light))' }}
-                    >
-                      <span className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
-                        {schedule.day}
-                      </span>
-                      <span style={{ color: 'hsl(var(--text-muted))' }}>{schedule.hours}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 p-4 rounded-lg border" style={{ backgroundColor: 'hsla(174,85%,45%,0.1)', borderColor: 'hsla(174,85%,45%,0.2)' }}>
-                  <p className="text-sm text-center" style={{ color: 'hsl(var(--text-secondary))' }}>
-                    <strong>Online consultations available 24/7</strong>
-                    <br />
-                    Book your crystal session at your convenience
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Social Links */}
+            <Card
+              className="border-0 shadow-sm"
+              style={{ backgroundColor: '#ffffff' }}
+            >
+              <CardContent className="p-8">
+                <h3
+                  className="text-lg font-semibold mb-6"
+                  style={{
+                    fontFamily: '"Libre Baskerville", serif',
+                    color: '#1f1f1f',
+                  }}
+                >
+                  Follow Us
+                </h3>
 
-            {/* Services */}
-            <Card variant="elevated" theme="gradient">
-              <CardHeader variant="gradient">
-                <CardTitle className="flex items-center gap-3">
-                  <Gem className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                  <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>Crystal Services</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
                 <div className="space-y-4">
-                  {services.map((service, index) => {
-                    const Icon = service.icon;
-                    return (
-                      <div
-                        key={index}
-                        className="flex items-start space-x-4 p-4 border rounded-lg" style={{ borderColor: 'hsl(var(--border-light))', backgroundColor: 'hsl(var(--bg-card))' }}
+                  <a
+                    href="https://www.etsy.com/ca/shop/TrovesandCoves"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-gray-50 group"
+                    style={{ fontFamily: '"Montserrat", sans-serif' }}
+                  >
+                    <ShoppingBag
+                      className="h-5 w-5"
+                      style={{ color: '#4abfbf' }}
+                    />
+                    <div>
+                      <p
+                        className="text-sm font-medium"
+                        style={{ color: '#1f1f1f' }}
                       >
-                        <Icon className="h-6 w-6 mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }} />
-                        <div>
-                          <h3 className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
-                            {service.title}
-                          </h3>
-                          <p className="text-sm" style={{ color: 'hsl(var(--text-muted))' }}>
-                            {service.description}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
+                        Etsy Shop
+                      </p>
+                      <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                        Browse our collection
+                      </p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://instagram.com/Troves_and_Coves"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-gray-50 group"
+                    style={{ fontFamily: "Montserrat, sans-serif" }}
+                  >
+                    <svg
+                      className="h-5 w-5"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      style={{ color: '#4abfbf' }}
+                    >
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.012.057-.353 1.085-.232 1.614-.053 1.877-.208.856.528 1.58 1.067 2.355c.537 1.378 1.52 2.25 1.52 4.025 0 2.447-.01 3.557-.602 4.317-.39.814-.57-.763-1.28-.876-1.004-.233-.232-.43-.448-.585-.646-.264-.312-.413-.585-.413-.585 0-.373.148-.585.413-.585.413 0 .083.012.17.035.256.11.153.247.325.476.667.59 1.107.336.696.645 1.12.645.424 0 .763-.108 1.34-.264 1.732-.455.474-.39.85-.866-1.13-1.453-.308-.526-.61-1.046-.91-1.566-.326-.685-.568-1.02-.568-1.485 0-.846.31-1.577.924-2.176 1.584-.726 1.576-1.636 2.604-.865 1.72-1.363 2.454-.726.892-1.21 1.538-1.21 2.454 0 .537.033.815.11.96.066.347.1.697.17 1.038.274 1.455.472.51.875.983.496 1.322.42.383.86.52 1.086.472 1.732.472.872 0 1.763-.508 2.866-1.394.782-.946 1.276-1.41 1.938-1.41 3.356 0 1.19-.367 2.188-1.1 2.987-.63.794-1.12-1.538-1.12-2.587 0-.855.308-1.533.924-2.032 1.584-.63 1.874-1.41 2.604-2.374.803-.983 1.26-1.484 2.03-1.484 3.27 0 .983.37 1.87 1.11 2.613.42.622.876.938.998 1.365.12.448.01 1.564.01 2.453-.002.887-.002 1.763-.508 2.866-1.394.782-.946 1.276-1.41 1.938-1.41 3.356 0 1.19-.367 2.188-1.1 2.987-.63.794-1.12-1.538-1.12-2.587 0-.855.308-1.533.924-2.032 1.584-.63 1.874-1.41 2.604-2.374.803-.983 1.26-1.484 2.03-1.484 3.27 0 .983.37 1.87 1.11 2.613.42.622.876.938.998 1.365.12.448.01 1.564.01 2.453z"/>
+                    </svg>
+                    <div>
+                      <p
+                        className="text-sm font-medium"
+                        style={{ color: '#1f1f1f' }}
+                      >
+                        Instagram
+                      </p>
+                      <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                        @Troves_and_Coves
+                      </p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://www.facebook.com/trovesandcoves"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-gray-50 group"
+                    style={{ fontFamily: '"Montserrat", sans-serif' }}
+                  >
+                    <div
+                      className="h-5 w-5 flex items-center justify-center text-xs font-bold rounded-sm"
+                      style={{
+                        backgroundColor: '#4abfbf',
+                        color: '#ffffff',
+                      }}
+                    >
+                      f
+                    </div>
+                    <div>
+                      <p
+                        className="text-sm font-medium"
+                        style={{ color: '#1f1f1f' }}
+                      >
+                        Facebook
+                      </p>
+                      <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                        Troves & Coves
+                      </p>
+                    </div>
+                  </a>
                 </div>
               </CardContent>
             </Card>
           </div>
-        </div>
-
-        {/* Response Time Promise */}
-        <div className="mt-12 text-center">
-          <Card variant="elevated" theme="gradient" className="max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <Sparkles className="h-12 w-12 mx-auto mb-4" style={{ color: 'hsl(var(--accent-vibrant))' }} />
-              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>Our Promise</h3>
-              <p className="mb-6" style={{ color: 'hsl(var(--text-secondary))' }}>
-                Every message is received with intention and gratitude. We honor
-                your trust and will respond within 24 hours, often much sooner.
-                For urgent crystal guidance, please mention it in your message.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 mb-6">
-                <Badge
-                  variant="outline"
-                  style={{ borderColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--text-primary))' }}
-                >
-                  24 Hour Response
-                </Badge>
-                <Badge
-                  variant="outline"
-                  style={{ borderColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--text-primary))' }}
-                >
-                  Personal Guidance
-                </Badge>
-                <Badge
-                  variant="outline"
-                  style={{ borderColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--text-primary))' }}
-                >
-                  Crystal Connection
-                </Badge>
-              </div>
-
-              {/* Direct Contact Notice */}
-              <div className="mt-6 p-4 rounded-lg border-2" style={{
-                backgroundColor: 'hsla(43,95%,55%,0.1)',
-                borderColor: 'hsla(43,95%,55%,0.3)',
-                borderStyle: 'dashed'
-              }}>
-                <p className="text-sm font-semibold mb-2" style={{ color: 'hsl(var(--gold-medium))' }}>
-                  💎 For Immediate Response
-                </p>
-                <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
-                  Email us directly at <a href="mailto:info@trovesandcoves.ca" className="font-semibold hover:underline" style={{ color: 'hsl(var(--accent-vibrant))' }}>info@trovesandcoves.ca</a>
-                  <br />
-                  Or message us on <a href="https://instagram.com/Troves_and_Coves" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: 'hsl(var(--accent-vibrant))' }}>Instagram</a> or <a href="https://www.etsy.com/ca/shop/TrovesandCoves" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: 'hsl(var(--accent-vibrant))' }}>Etsy</a>
-                </p>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>

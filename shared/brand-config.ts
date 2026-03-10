@@ -50,10 +50,11 @@ export const BRAND_CONFIG = {
     separatorGold: "#deb55b",
     linenBackground: "#faf8f3",
 
-    // Supporting palette
-    darkText: "#2c2c2c",
-    lightText: "#faf8f3",
-    accent: "#4abfbf"
+    // Supporting palette - LUXURY PALETTE 2026 (Robin's exact spec)
+    textPrimary: "#1f1f1f",   // Soft black / charcoal - main text
+    textSecondary: "#5f5f5f", // Muted grey - secondary text
+    lightText: "#faf8f3",     // Linen background
+    accent: "#4abfbf"         // Primary brand accent
   },
 
   // CLIENT'S FONT SPECIFICATIONS
@@ -79,14 +80,14 @@ export const BRAND_CONFIG = {
     body: {
       fontFamily: "'Montserrat', sans-serif",
       fontWeight: "400",
-      color: "#2c2c2c"
+      color: "#1f1f1f" // LUXURY PALETTE - soft black/charcoal
     },
 
     // Headings - Libre Baskerville
     heading: {
       fontFamily: "'Libre Baskerville', serif",
       fontWeight: "700",
-      color: "#2c2c2c"
+      color: "#1f1f1f" // LUXURY PALETTE - soft black/charcoal
     }
   },
 

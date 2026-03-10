@@ -35,7 +35,7 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
-      {/* Mystical background effects */}
+      {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-20"
           style={{ backgroundColor: 'hsla(174,85%,45%,0.02)', filter: 'blur(60px)' }}
@@ -46,7 +46,7 @@ export function NotFound({ type = 'page', resource }: NotFoundProps) {
       </div>
 
       <div className="text-center max-w-md relative z-10">
-        {/* Crystal icon with mystical glow */}
+        {/* Crystal icon with glow */}
         <div className="text-8xl mb-8 animate-pulse" style={{ filter: 'drop-shadow(0 0 15px hsla(174,85%,45%,0.25))' }}>💎</div>
 
         {/* 404 Heading */}

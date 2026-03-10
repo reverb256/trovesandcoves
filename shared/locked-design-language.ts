@@ -40,29 +40,28 @@ export const LOCKED_DESIGN_LANGUAGE = {
   },
 
   /**
-   * AUTHENTIC COLOR PALETTE
-   * Derived directly from wooden sign and turquoise skull artwork
+   * LUXURY COLOR PALETTE 2026 - Robin Kroeker's Exact Spec
+   * These hex values are LOCKED and must not be changed
    */
   colorPalette: {
-    // Primary brand colors from wooden sign
+    // CLIENT'S EXACT HEX VALUES
     primary: {
-      trovesTurquoise: "hsl(174, 70%, 45%)",
-      covesCursiveBlue: "hsl(200, 60%, 45%)",
-      woodGrain: "hsl(35, 40%, 70%)"
+      trovesTurquoise: "#4abfbf", // Primary brand accent - turquoise
+      covesGoldSoft: "#deb55b",    // Soft gold accent - refined luxury
+      covesGoldDeep: "#e1af2f",    // Deeper gold accent - sparing use
+      linenBackground: "#faf8f3",  // Main site background - soft linen
+      textPrimary: "#1f1f1f",      // Soft black / charcoal - main text
+      textSecondary: "#5f5f5f"     // Muted grey - secondary text
     },
-    
-    // Mystical skull artwork accent colors
-    accent: {
-      skullTurquoise: "hsl(174, 100%, 50%)",
-      ornateFrameGold: "hsl(43, 85%, 60%)",
-      crystalAccents: "hsl(240, 20%, 95%)"
-    },
-    
-    // Supporting natural palette
-    supporting: {
-      naturalWood: "hsl(35, 30%, 65%)",
-      pearlCream: "hsl(45, 25%, 92%)",
-      mysticAccent: "hsl(280, 40%, 65%)"
+
+    // Legacy HSL aliases (for reference only - use hex values above)
+    hslReference: {
+      trovesTurquoise: "hsl(174, 51%, 51%)",    // #4abfbf
+      covesGoldSoft: "hsl(43, 74%, 65%)",       // #deb55b
+      covesGoldDeep: "hsl(38, 74%, 56%)",       // #e1af2f
+      linenBackground: "hsl(40, 20%, 97%)",     // #faf8f3
+      textPrimary: "hsl(0, 0%, 12%)",           // #1f1f1f
+      textSecondary: "hsl(0, 0%, 37%)"          // #5f5f5f
     }
   },
 
@@ -164,12 +163,12 @@ export const LOCKED_DESIGN_LANGUAGE = {
     
     colorVariables: {
       required: [
-        "--troves-turquoise: 174 70% 45%",
-        "--coves-cursive-blue: 200 60% 45%", 
-        "--wood-grain: 35 40% 70%",
-        "--skull-turquoise: 174 100% 50%",
-        "--ornate-frame-gold: 43 85% 60%",
-        "--crystal-accents: 240 20% 95%"
+        "--troves-turquoise: #4abfbf",    // Primary brand accent
+        "--coves-gold-soft: #deb55b",      // Soft gold accent
+        "--coves-gold-deep: #e1af2f",      // Deeper gold accent
+        "--linen-background: #faf8f3",     // Main site background
+        "--text-primary: #1f1f1f",         // Soft black/charcoal
+        "--text-secondary: #5f5f5f"        // Muted grey
       ]
     },
     
@@ -190,12 +189,13 @@ export const LOCKED_DESIGN_LANGUAGE = {
       covesPattern: /class="coves-text-style"/,
       separatorPattern: /text-ornate-frame-gold.*&/
     },
-    
+
     colourUsage: {
       prohibitedCombinations: ["blue-and-gold-generic", "troves-gold", "coves-yellow"],
-      requiredCombinations: ["troves-turquoise", "coves-cursive-blue"]
+      requiredCombinations: ["troves-turquoise", "coves-gold-soft", "coves-gold-deep"],
+      allowedHexValues: ["#4abfbf", "#deb55b", "#e1af2f", "#faf8f3", "#1f1f1f", "#5f5f5f"]
     },
-    
+
     designElements: {
       requiredClasses: ["wooden-sign-bg", "skull-artwork-influence", "ornate-decorative-frame"],
       prohibitedClasses: ["minimalist", "clean", "simple", "modern-flat"]

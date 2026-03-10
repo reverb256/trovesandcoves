@@ -48,26 +48,26 @@ export default function Header() {
         Skip to main content
       </a>
 
-      {/* Mystical Navigation */}
+      {/* Navigation */}
       <header
         className={`fixed top-0 w-full z-50 transition-colors duration-500 ${
           isScrolled
-            ? 'glass-mystical border-b py-2'
+            ? 'bg-white/90 backdrop-blur-sm border-b py-2'
             : 'bg-transparent py-4'
         }`}
-        style={{ borderColor: isScrolled ? 'hsla(var(--skull-turquoise), 0.2)' : undefined }}
+        style={{ borderColor: isScrolled ? 'rgba(74, 191, 191, 0.2)' : undefined }}
       >
-        {/* Mystical top border - Turquoise glow */}
+        {/* Top border accent */}
         <div className="absolute top-0 left-0 w-full h-px"
-          style={{ background: 'linear-gradient(90deg, transparent, hsla(var(--skull-turquoise),0.5), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(74, 191, 191, 0.5), transparent)' }}
         ></div>
 
         <div className="chamber-container">
           <nav className="flex items-center justify-between" aria-label="Main navigation">
-            {/* Mystical Logo */}
+            {/* Logo */}
             <Link href="/" className="flex items-center gap-4 group">
               <div className="relative">
-                {/* Crystal icon with glow */}
+                {/* Gem icon with glow */}
                 <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{ backgroundColor: 'hsla(var(--skull-turquoise),0.3)', filter: 'blur(20px)' }}
                 ></div>
@@ -185,7 +185,7 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Mystical bottom border - Gold glow */}
+        {/* Bottom border accent */}
         <div className="absolute bottom-0 left-0 w-full h-px"
           style={{ background: 'linear-gradient(90deg, transparent, hsla(43,78%,53%,0.4), transparent)' }}
         ></div>
