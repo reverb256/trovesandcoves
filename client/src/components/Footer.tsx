@@ -193,12 +193,12 @@ export default function Footer() {
           {/* Designer Credit */}
           <div className="flex justify-center mt-6 pt-4 border-t border-[hsla(var(--border-light), 0.3)]">
             <a
-              href="https://reverb256.ca"
+              href="https://reverb256.github.io"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[hsl(var(--text-secondary))] /60 hover:text-[hsl(var(--accent-medium))] hover:opacity-100 text-xs transition-colors duration-300"
             >
-              vibecoded with mystical energy ✦
+              Web Design by Reverb256 ✦
             </a>
           </div>
         </div>

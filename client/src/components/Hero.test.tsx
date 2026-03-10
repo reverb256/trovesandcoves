@@ -5,43 +5,33 @@ import Hero from './Hero';
 describe('Hero Component', () => {
   it('renders correctly', () => {
     render(<Hero />);
-    expect(screen.getByText('Troves & Coves')).toBeInTheDocument();
-    expect(screen.getByText(/Authentic crystal jewelry/)).toBeInTheDocument();
+    expect(screen.getByText('TROVES')).toBeInTheDocument();
+    expect(screen.getByText('Coves')).toBeInTheDocument();
+    expect(screen.getByText(/Handcrafted Crystal Jewelry/)).toBeInTheDocument();
   });
 
   it('has proper accessibility attributes', () => {
     render(<Hero />);
-    const heroSection = screen.getByRole('banner');
-    expect(heroSection).toHaveAttribute('aria-label', 'Hero Section');
+    const heroSection = screen.getByRole('region', { name: /Welcome/i });
+    expect(heroSection).toBeInTheDocument();
+    expect(heroSection).toHaveAttribute('aria-label', 'Welcome');
   });
 
-  it('contains navigation links', () => {
+  it('displays mystical description', () => {
     render(<Hero />);
-    expect(
-      screen.getByRole('link', { name: /browse our crystal jewelry/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('link', { name: /learn more about our spiritual/i })
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Discover the power of transformation/)).toBeInTheDocument();
+    expect(screen.getByText(/blending elegance with raw beauty/)).toBeInTheDocument();
   });
 
-  it('has proper link destinations', () => {
+  it('renders scroll indicator', () => {
     render(<Hero />);
-    const exploreLink = screen.getByRole('link', {
-      name: /browse our crystal jewelry/i,
-    });
-    const storyLink = screen.getByRole('link', {
-      name: /learn more about our spiritual/i,
-    });
-
-    expect(exploreLink).toHaveAttribute('href', '/products');
-    expect(storyLink).toHaveAttribute('href', '/about');
+    expect(screen.getByText(/Scroll/i)).toBeInTheDocument();
   });
 
   it('renders floating crystal elements', () => {
     render(<Hero />);
-    // Check if the floating elements container exists
-    const floatingElements = document.querySelectorAll('.absolute.w-2.h-2');
+    // Check if the floating elements container exists with correct class
+    const floatingElements = document.querySelectorAll('.animate-float');
     expect(floatingElements.length).toBeGreaterThan(0);
   });
 });

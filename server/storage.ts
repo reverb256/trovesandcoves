@@ -6,6 +6,7 @@ import {
   type Order, type InsertOrder, type OrderWithItems,
   type OrderItem, type InsertOrderItem,
   type ContactSubmission, type InsertContactSubmission,
+  type NewsletterSubscription, type InsertNewsletterSubscription,
   type IStorage
 } from "@shared/types";
 import { crystalJewelryImages, categoryDescriptions } from "./mock-data";
@@ -24,7 +25,8 @@ export class MemStorage implements IStorage {
   private orders: Map<number, Order>;
   private orderItems: Map<number, OrderItem>;
   private contactSubmissions: Map<number, ContactSubmission>;
-  
+  private newsletterSubscriptions: Map<number, NewsletterSubscription>;
+
   private currentUserId: number;
   private currentCategoryId: number;
   private currentProductId: number;
@@ -32,6 +34,7 @@ export class MemStorage implements IStorage {
   private currentOrderId: number;
   private currentOrderItemId: number;
   private currentContactId: number;
+  private currentNewsletterId: number;
 
   constructor() {
     this.users = new Map();
@@ -41,7 +44,8 @@ export class MemStorage implements IStorage {
     this.orders = new Map();
     this.orderItems = new Map();
     this.contactSubmissions = new Map();
-    
+    this.newsletterSubscriptions = new Map();
+
     this.currentUserId = 1;
     this.currentCategoryId = 1;
     this.currentProductId = 1;
@@ -49,6 +53,7 @@ export class MemStorage implements IStorage {
     this.currentOrderId = 1;
     this.currentOrderItemId = 1;
     this.currentContactId = 1;
+    this.currentNewsletterId = 1;
 
     this.seedData();
   }
@@ -264,6 +269,15 @@ export class MemStorage implements IStorage {
     ETSY_PRODUCTS.forEach(product => {
       this.products.set(product.id, product);
     });
+  }
+
+  private generateDiscountCode(): string {
+    const characters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // No ambiguous chars
+    let code = '';
+    for (let i = 0; i < 5; i++) {
+      code += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return `CRYSTAL-${code}`;
   }
 
   // User operations
@@ -551,6 +565,40 @@ export class MemStorage implements IStorage {
 
   async getContactSubmissions(): Promise<ContactSubmission[]> {
     return Array.from(this.contactSubmissions.values());
+  }
+
+  // Newsletter operations
+  async createNewsletterSubscription(insertSubscription: InsertNewsletterSubscription): Promise<NewsletterSubscription> {
+    // Check for existing subscription
+    const existing = await this.getNewsletterSubscriptionByEmail(insertSubscription.email);
+    if (existing) {
+      throw new Error("Email already subscribed");
+    }
+
+    const id = this.currentNewsletterId++;
+    const discountCode = this.generateDiscountCode();
+
+    const subscription: NewsletterSubscription = {
+      id,
+      email: insertSubscription.email,
+      firstName: insertSubscription.firstName,
+      discountCode,
+      subscribedAt: new Date(),
+      isActive: true
+    };
+
+    this.newsletterSubscriptions.set(id, subscription);
+    return subscription;
+  }
+
+  async getNewsletterSubscriptionByEmail(email: string): Promise<NewsletterSubscription | undefined> {
+    return Array.from(this.newsletterSubscriptions.values()).find(
+      sub => sub.email === email && sub.isActive
+    );
+  }
+
+  async getNewsletterSubscriptions(): Promise<NewsletterSubscription[]> {
+    return Array.from(this.newsletterSubscriptions.values()).filter(sub => sub.isActive);
   }
 }
 
