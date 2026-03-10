@@ -20,11 +20,15 @@
 
 /* Base colors - shared between themes */
 :root {
-  /* CLIENT'S EXACT COLORS (Robin Kroeker) */
-  --troves-turquoise: #4abfbf;    /* Client's exact turquoise */
-  --coves-gold-1: #deb55b;         /* Client's gold shade 1 */
-  --coves-gold-2: #e1af2f;         /* Client's gold shade 2 */
-  --linen-background: #faf8f3;     /* Client's linen/off-white */
+  /* CLIENT'S EXACT COLORS (Robin Kroeker) - Luxury Palette 2026 */
+  --troves-turquoise: #4abfbf;    /* Primary brand accent - turquoise */
+  --coves-gold-soft: #deb55b;      /* Soft gold accent - refined luxury */
+  --coves-gold-deep: #e1af2f;      /* Deeper gold accent - sparing use */
+  --linen-background: #faf8f3;     /* Main site background - soft linen */
+
+  /* Text colors - luxury palette */
+  --text-primary: #1f1f1f;         /* Soft black / charcoal - main text */
+  --text-secondary: #5f5f5f;       /* Muted grey - secondary text */
 
   /* WCAG AA COMPLIANT TEXT COLORS
      Darker variants for text on light backgrounds (4.5:1+ contrast required)
@@ -87,10 +91,10 @@
   --bg-elevated: 40 18% 98%;       /* Elevated linen */
   --bg-overlay: 0 0% 0% / 0.85;
 
-  /* WCAG AA Compliant text colors for light backgrounds (4.5:1 contrast minimum) */
-  --text-primary: 25 40% 10%;     /* Near black - excellent contrast */
-  --text-secondary: 25 35% 15%;   /* Dark gray - good contrast (meets 4.5:1) */
-  --text-muted: 25 30% 28%;       /* Medium gray - meets 4.5:1 on 96% bg */
+  /* CLIENT'S TEXT COLORS - Luxury Palette */
+  --text-primary: 0 0% 12%;       /* #1f1f1f - soft black / charcoal */
+  --text-secondary: 0 0% 37%;     /* #5f5f5f - muted grey */
+  --text-muted: 0 0% 45%;         /* Softer muted text */
   --text-inverted: 0 0% 98%;      /* Off-white */
 
   --border-light: 174 30% 85%;    /* Light turquoise tint */
@@ -169,9 +173,9 @@
    BASE STYLES
    ============================================================ */
 body {
-  /* CLIENT'S LINEN BACKGROUND */
-  background: #faf8f3;
-  color: #2c2c2c;
+  /* CLIENT'S LINEN BACKGROUND - Luxury Palette */
+  background: #faf8f3; /* Soft linen - not harsh white */
+  color: #1f1f1f;      /* Soft black / charcoal */
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   line-height: 1.7;

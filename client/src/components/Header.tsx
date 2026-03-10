@@ -26,7 +26,7 @@ export default function Header() {
   }, []);
 
   const navigation = [
-    { name: 'Collections', path: '/products' },
+    { name: 'Shop', path: '/products' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -98,7 +98,7 @@ export default function Header() {
                 <span className="text-xs tracking-widest uppercase"
                   style={{ color: "hsl(var(--text-secondary))", fontFamily: "'Montserrat', sans-serif" }}
                 >
-                  Mystical Crystal Jewelry • Winnipeg
+                  Handcrafted Crystal Jewelry • Winnipeg
                 </span>
               </div>
             </Link>
@@ -212,7 +212,7 @@ export default function Header() {
               <p className="text-sm tracking-widest uppercase"
                 style={{ color: "hsl(var(--text-secondary))", fontFamily: "'Montserrat', sans-serif" }}
               >
-                Mystical Crystal Jewelry
+                Handcrafted Crystal Jewelry
               </p>
             </div>
 

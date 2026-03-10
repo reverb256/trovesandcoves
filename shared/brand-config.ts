@@ -33,7 +33,7 @@ export const BRAND_CONFIG = {
     primary: "Troves", // Turquoise, Libre Baskerville
     secondary: "Coves", // Gold, Alex Brush script
     separator: "&", // Gold accent
-    tagline: "Crystal Jewelry • Winnipeg"
+    tagline: "Handcrafted Crystal Jewelry • Winnipeg"
   },
 
   // CLIENT'S EXACT COLOR SPECIFICATIONS (Robin)
@@ -116,11 +116,11 @@ export const BRAND_CONFIG = {
     }
   },
 
-  // VOICE AND MESSAGING
+  // VOICE AND MESSAGING - Luxury Brand Positioning
   voice: {
-    tone: "empowering, transformative, intentional",
-    personality: "confident, inclusive, authentic",
-    approach: "elevate style and spirit through crafted intention",
+    tone: "refined, intentional, elevated",
+    personality: "authentic, confident, timeless",
+    approach: "curated jewelry for modern style",
     expertise: "14k gold-plated jewelry, natural crystals, statement pieces"
   },
 

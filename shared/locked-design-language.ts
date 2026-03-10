@@ -16,27 +16,27 @@ export const LOCKED_DESIGN_LANGUAGE = {
       troves: {
         text: "Troves",
         style: "clean turquoise print",
-        typography: "Source Sans Pro, sans-serif",
-        color: "hsl(174, 70%, 45%)", // Exact from wooden sign
+        typography: "Libre Baskerville, serif",
+        color: "#4abfbf", // Client's exact turquoise
         weight: "bold",
         transform: "none"
       },
       coves: {
         text: "Coves",
-        fontStyle: "elegant cursive blue",
-        typography: "Dancing Script, cursive",
-        color: "hsl(200, 60%, 45%)", // Exact from wooden sign
-        weight: "600",
-        transform: "italic"
+        fontStyle: "elegant cursive gold",
+        typography: "Alex Brush, cursive",
+        color: "#e1af2f", // Client's deeper gold
+        weight: "400",
+        transform: "none"
       },
       separator: {
         symbol: "&",
-        color: "hsl(43, 85%, 60%)", // Ornate frame gold
+        color: "#deb55b", // Soft gold
         weight: "300"
       }
     },
-    tagline: "Mystical Crystal Jewelry • Winnipeg",
-    voice: "mystical, spiritual, authentic crystal healing wisdom"
+    tagline: "Handcrafted Crystal Jewelry • Winnipeg",
+    voice: "refined, intentional, elevated luxury"
   },
 
   /**

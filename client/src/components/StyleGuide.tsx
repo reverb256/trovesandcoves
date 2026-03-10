@@ -84,7 +84,7 @@ export function StyleGuide() {
             <span style={{ fontFamily: "Alex Brush, cursive", color: "hsl(var(--gold-medium))", fontSize: "2.5rem" }}>Coves</span>
           </div>
           <h1 className="sg-title">Brand Style Guide</h1>
-          <p className="sg-subtitle">Mystical Crystal Jewelry • Winnipeg, Manitoba</p>
+          <p className="sg-subtitle">Handcrafted Crystal Jewelry • Winnipeg, Manitoba</p>
         </header>
 
         {/* Colors Section */}
@@ -175,7 +175,7 @@ export function StyleGuide() {
                   <span className="font-name-display">{font.name}</span>
                   <p className="font-sample">
                     {font.name === "Alex Brush"
-                      ? "Mystical Crystal Jewelry"
+                      ? "Handcrafted Crystal Jewelry"
                       : font.name === "Libre Baskerville"
                       ? "The quick brown fox jumps over the lazy dog."
                       : "Body text appears in Montserrat for optimal readability."
@@ -210,7 +210,7 @@ export function StyleGuide() {
                 <span style={{ color: "hsl(var(--gold-medium))", fontFamily: "Alex Brush", fontSize: "2.5rem", margin: "0 0.5rem" }}>&</span>
                 <span style={{ fontFamily: "Alex Brush, cursive", color: "hsl(var(--gold-medium))", fontSize: "3rem" }}>Coves</span>
               </div>
-              <p className="logo-tagline">Mystical Crystal Jewelry • Winnipeg</p>
+              <p className="logo-tagline">Handcrafted Crystal Jewelry • Winnipeg</p>
             </div>
 
             <div className="logo-rules">
@@ -355,7 +355,7 @@ export function StyleGuide() {
         <footer className="sg-footer">
           <p>Style Guide for Troves & Coves • Created 2026-03-08</p>
           <p style={{ fontSize: "0.875rem", opacity: 0.7 }}>
-            Specifications by Robin Kroeker • Mystical Crystal Jewelry • Winnipeg, Manitoba
+            Specifications by Robin Kroeker • Handcrafted Crystal Jewelry • Winnipeg, Manitoba
           </p>
         </footer>
       </div>

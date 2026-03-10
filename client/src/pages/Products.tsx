@@ -102,7 +102,7 @@ export default function Products() {
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-turquoise-soft rounded-full bg-crystal">
               <Sparkles className="w-4 h-4 text-turquoise-bright" />
               <span className="text-xs tracking-widest uppercase text-primary">
-                Our Crystal Collections
+                The Collection
               </span>
             </div>
 

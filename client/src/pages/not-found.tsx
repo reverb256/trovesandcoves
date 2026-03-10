@@ -45,7 +45,7 @@ export default function NotFound() {
           <Link href="/products">
             <button className="btn-mystical-outline w-full justify-center">
               <Search className="w-5 h-5 mr-2" />
-              <span>Explore Crystal Collections</span>
+              <span>Shop the Collection</span>
             </button>
           </Link>
         </div>

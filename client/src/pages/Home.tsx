@@ -48,11 +48,11 @@ export default function Home() {
               className="text-4xl md:text-6xl font-bold mb-6"
               style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
             >
-              Crystal Collection
+              The Collection
             </h2>
 
             <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
-              Explore our exquisite collection of statement necklaces and bracelets.
+              Explore our curated selection of handcrafted crystal jewelry.
               Each piece blends elegance with natural crystal beauty—
               crafted with intention to empower your energy and enhance your presence.
             </p>
