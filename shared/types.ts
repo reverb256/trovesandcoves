@@ -115,6 +115,32 @@ export interface ContactSubmission {
   createdAt: Date;
 }
 
+// Newsletter subscriptions
+export interface NewsletterSubscription {
+  id: number;
+  email: string;
+  firstName: string;
+  discountCode: string;
+  subscribedAt: Date;
+  isActive: boolean;
+}
+
+export interface InsertNewsletterSubscription {
+  email: string;
+  firstName: string;
+}
+
+export interface SubscribeRequest {
+  email: string;
+  firstName: string;
+}
+
+export interface SubscribeResponse {
+  success: boolean;
+  discountCode?: string;
+  message?: string;
+}
+
 export interface User {
   id: number;
   email: string;
@@ -137,6 +163,7 @@ export const cartItems = [];
 export const orders = [];
 export const orderItems = [];
 export const contactSubmissions = [];
+export const newsletterSubscriptions = [];
 
 // ============================================================================
 // Insert Types - flexible with null values
@@ -149,6 +176,7 @@ export type InsertOrder = Omit<Order, 'id' | 'createdAt' | 'updatedAt'>;
 export type InsertOrderItem = Omit<OrderItem, 'id' | 'product'>;
 export type InsertContactSubmission = Omit<ContactSubmission, 'id' | 'createdAt'>;
 export type InsertUser = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
+export type InsertNewsletterSubscription = Omit<NewsletterSubscription, 'id' | 'discountCode' | 'subscribedAt' | 'isActive'>;
 
 // ============================================================================
 // Extended Types (with relations) - more flexible
@@ -233,4 +261,9 @@ export interface IStorage {
   // Contact operations
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
   getContactSubmissions(): Promise<ContactSubmission[]>;
+
+  // Newsletter operations
+  createNewsletterSubscription(subscription: InsertNewsletterSubscription): Promise<NewsletterSubscription>;
+  getNewsletterSubscriptionByEmail(email: string): Promise<NewsletterSubscription | undefined>;
+  getNewsletterSubscriptions(): Promise<NewsletterSubscription[]>;
 }
