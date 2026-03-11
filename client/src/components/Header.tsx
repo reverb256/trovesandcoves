@@ -52,9 +52,10 @@ export default function Header() {
       <header
         className={`fixed top-0 w-full z-50 transition-colors duration-500 ${
           isScrolled
-            ? 'bg-white/90 backdrop-blur-sm border-b py-2'
+            ? 'backdrop-blur-sm border-b py-2'
             : 'bg-transparent py-4'
         }`}
+        style={{ backgroundColor: isScrolled ? 'hsl(var(--bg-card) / 0.9)' : undefined }}
         style={{ borderColor: isScrolled ? 'rgba(74, 191, 191, 0.2)' : undefined }}
       >
         {/* Top border accent */}
