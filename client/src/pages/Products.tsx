@@ -90,7 +90,7 @@ export default function Products() {
   const hasActiveFilters = searchQuery.trim() !== '' || category;
 
   return (
-    <div className="min-h-screen content-layer" style={{ backgroundColor: '#faf8f3' }}>
+    <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header Section */}
       <section className="relative py-20 border-b border-turquoise-light">
         {/* Background glow */}
@@ -268,7 +268,7 @@ export default function Products() {
                 {[...Array(6)].map((_, i) => (
                   <div
                     key={i}
-                    className="aspect-square bg-white/50 rounded-lg animate-pulse"
+                    className="aspect-square bg-[hsl(var(--bg-card))/50] rounded-lg animate-pulse"
                     style={{ animationDelay: `${i * 0.1}s` }}
                   >
                     <div className="w-full h-full flex items-center justify-center">
@@ -318,7 +318,7 @@ export default function Products() {
                     className="group block animate-reveal"
                     style={{ animationDelay: `${index * 0.05}s` }}
                   >
-                    <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6">
+                    <div className="rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                       {/* Product Image */}
                       <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)]" style={{ border: '1px solid hsla(var(--border-light))' }}>
                         <img

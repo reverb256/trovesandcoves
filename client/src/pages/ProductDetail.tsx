@@ -53,9 +53,9 @@ export default function ProductDetail() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#faf8f3] flex items-center justify-center content-layer">
+      <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }} flex items-center justify-center content-layer">
         <div className="p-16">
-          <div className="w-12 h-12 border-2 border-[#4abfbf]/20 border-t-[#4abfbf] rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-2 border-[hsl(var(--accent-vibrant))]/20 border-t-[hsl(var(--accent-vibrant))] rounded-full animate-spin"></div>
         </div>
       </div>
     );
@@ -63,18 +63,18 @@ export default function ProductDetail() {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen bg-[#faf8f3] flex items-center justify-center content-layer">
+      <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }} flex items-center justify-center content-layer">
         <div className="p-16 text-center max-w-md">
-          <Gem className="w-16 h-16 text-[#4abfbf]/50 mx-auto mb-6" />
-          <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: '#1f1f1f' }}>
+          <Gem className="w-16 h-16 text-[hsl(var(--accent-vibrant))]/50 mx-auto mb-6" />
+          <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
             Product Not Found
           </h2>
-          <p className="text-[#5f5f5f] mb-8" style={{ fontFamily: '"Montserrat", sans-serif' }}>
+          <p className="text-[hsl(var(--text-secondary))] mb-8" style={{ fontFamily: '"Montserrat", sans-serif' }}>
             The product you are looking for does not exist.
           </p>
           <button
             onClick={() => setLocation('/products')}
-            className="px-6 py-3 bg-[#4abfbf] hover:bg-[#3da8a8] text-white rounded-sm transition-colors duration-200"
+            className="px-6 py-3 bg-[hsl(var(--accent-vibrant))] hover:opacity-90 text-white rounded-sm transition-colors duration-200"
             style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 500 }}
           >
             Browse Products
@@ -87,33 +87,33 @@ export default function ProductDetail() {
   const images = product.imageUrls && product.imageUrls.length > 0 ? product.imageUrls : [product.imageUrl];
 
   return (
-    <div className="min-h-screen bg-[#faf8f3] content-layer">
+    <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }} content-layer">
       {/* Breadcrumb Navigation */}
-      <div className="border-b border-[#e8e6e1]">
+      <div className="border-b border-[hsl(var(--border-light))]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center gap-3 text-sm overflow-x-auto">
             <button
               onClick={() => setLocation('/products')}
               className="flex items-center gap-2 hover:opacity-70 transition-opacity whitespace-nowrap"
-              style={{ color: '#4abfbf', fontFamily: '"Montserrat", sans-serif' }}
+              style={{ color: 'hsl(var(--accent-vibrant))', fontFamily: '"Montserrat", sans-serif' }}
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Shop</span>
             </button>
-            <span style={{ color: '#deb55b' }}>/</span>
+            <span style={{ color: 'hsl(var(--gold-medium))' }}>/</span>
             {product.category && (
               <>
                 <Link
                   href={`/products/${product.category.slug}`}
-                  className="hover:text-[#4abfbf] transition-colors whitespace-nowrap"
-                  style={{ color: '#5f5f5f', fontFamily: '"Montserrat", sans-serif' }}
+                  className="hover:text-[hsl(var(--accent-vibrant))]" transition-colors whitespace-nowrap"
+                  style={{ color: 'hsl(var(--text-secondary))', fontFamily: '"Montserrat", sans-serif' }}
                 >
                   {product.category.name}
                 </Link>
-                <span style={{ color: '#deb55b' }}>/</span>
+                <span style={{ color: 'hsl(var(--gold-medium))' }}>/</span>
               </>
             )}
-            <span className="text-[#5f5f5f] truncate max-w-[200px]" style={{ fontFamily: '"Montserrat", sans-serif' }} title={product.name}>
+            <span className="text-[hsl(var(--text-secondary))] truncate max-w-[200px]" style={{ fontFamily: '"Montserrat", sans-serif' }} title={product.name}>
               {product.name}
             </span>
           </div>
@@ -126,7 +126,7 @@ export default function ProductDetail() {
           <div className="space-y-6">
             {/* Main Image */}
             <div className="p-2 shadow-sm" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
-              <div className="relative aspect-square overflow-hidden bg-[#f5f3f0]">
+              <div className="relative aspect-square overflow-hidden bg-[hsl(var(--bg-secondary))]">
                 <img
                   src={images[selectedImage]}
                   alt={product.name}
@@ -135,16 +135,16 @@ export default function ProductDetail() {
                 {/* Stock Badge */}
                 {product.stockQuantity !== undefined && product.stockQuantity !== null ? (
                   product.stockQuantity <= 5 && product.stockQuantity > 0 ? (
-                    <div className="absolute top-4 left-4 px-3 py-1.5 text-xs tracking-wider uppercase bg-white/90 backdrop-blur-sm rounded-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: '#e1af2f', border: '1px solid #e1af2f' }}>
+                    <div className="absolute top-4 left-4 px-3 py-1.5 text-xs tracking-wider uppercase bg-[hsl(var(--bg-card))/90] backdrop-blur-sm rounded-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--gold-medium))', border: '1px solid hsl(var(--gold-medium))' }}>
                       Only {product.stockQuantity} left
                     </div>
                   ) : product.stockQuantity === 0 && (
-                    <div className="absolute top-4 left-4 px-3 py-1.5 text-xs tracking-wider uppercase bg-[#1f1f1f]/90 backdrop-blur-sm text-white rounded-sm" style={{ fontFamily: '"Montserrat", sans-serif' }}>
+                    <div className="absolute top-4 left-4 px-3 py-1.5 text-xs tracking-wider uppercase bg-[hsl(var(--text-primary))/90] backdrop-blur-sm text-white rounded-sm" style={{ fontFamily: '"Montserrat", sans-serif' }}>
                       Out of Stock
                     </div>
                   )
                 ) : !product.inStock && (
-                  <div className="absolute top-4 left-4 px-3 py-1.5 text-xs tracking-wider uppercase bg-[#1f1f1f]/90 backdrop-blur-sm text-white rounded-sm" style={{ fontFamily: '"Montserrat", sans-serif' }}>
+                  <div className="absolute top-4 left-4 px-3 py-1.5 text-xs tracking-wider uppercase bg-[hsl(var(--text-primary))/90] backdrop-blur-sm text-white rounded-sm" style={{ fontFamily: '"Montserrat", sans-serif' }}>
                     Out of Stock
                   </div>
                 )}
@@ -160,8 +160,8 @@ export default function ProductDetail() {
                     onClick={() => setSelectedImage(index)}
                     className={`flex-shrink-0 w-20 h-20 border-2 overflow-hidden transition-colors duration-200 ${
                       selectedImage === index
-                        ? 'border-[#4abfbf]'
-                        : 'border-transparent hover:border-[#4abfbf]/50'
+                        ? 'border-[hsl(var(--accent-vibrant))]'
+                        : 'border-transparent hover:border-[hsl(var(--accent-vibrant))]/50'
                     }`}
                   >
                     <img
@@ -184,7 +184,7 @@ export default function ProductDetail() {
               <div className="inline-flex items-center">
                 <span
                   className="text-xs tracking-widest uppercase"
-                  style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f', letterSpacing: '0.2em' }}
+                  style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))', letterSpacing: '0.2em' }}
                 >
                   {product.category.name}
                 </span>
@@ -194,7 +194,7 @@ export default function ProductDetail() {
             {/* Product Name */}
             <h1
               className="text-4xl md:text-5xl font-bold leading-tight"
-              style={{ fontFamily: '"Libre Baskerville", serif', color: '#1f1f1f' }}
+              style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
             >
               {product.name}
             </h1>
@@ -219,10 +219,10 @@ export default function ProductDetail() {
 
             {/* Gemstones - Elegant Display */}
             {product.gemstones && product.gemstones.length > 0 && (
-              <div className="py-4 border-y border-[#e8e6e1]">
+              <div className="py-4 border-y border-[hsl(var(--border-light))]">
                 <span
                   className="text-xs tracking-widest uppercase block mb-3"
-                  style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f', letterSpacing: '0.15em' }}
+                  style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))', letterSpacing: '0.15em' }}
                 >
                   Gemstones
                 </span>
@@ -240,13 +240,13 @@ export default function ProductDetail() {
               <div>
                 <span
                   className="text-xs tracking-widest uppercase block mb-2"
-                  style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f', letterSpacing: '0.15em' }}
+                  style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))', letterSpacing: '0.15em' }}
                 >
                   Materials
                 </span>
                 <p
                   className="text-sm"
-                  style={{ fontFamily: '"Montserrat", sans-serif', color: '#1f1f1f' }}
+                  style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}
                 >
                   {product.materials.join(', ')}
                 </p>
@@ -258,13 +258,13 @@ export default function ProductDetail() {
               <div>
                 <span
                   className="text-xs tracking-widest uppercase block mb-2"
-                  style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f', letterSpacing: '0.15em' }}
+                  style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))', letterSpacing: '0.15em' }}
                 >
                   Weight
                 </span>
                 <p
                   className="text-sm"
-                  style={{ fontFamily: '"Montserrat", sans-serif', color: '#1f1f1f' }}
+                  style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}
                 >
                   {product.weight} grams
                 </p>
@@ -272,14 +272,14 @@ export default function ProductDetail() {
             )}
 
             {/* Care Instructions */}
-            <div className="p-4 bg-[#f5f3f0] rounded-sm">
+            <div className="p-4 bg-[hsl(var(--bg-secondary))] rounded-sm">
               <span
                 className="text-xs tracking-widest uppercase block mb-2"
-                style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f', letterSpacing: '0.15em' }}
+                style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))', letterSpacing: '0.15em' }}
               >
                 Care Instructions
               </span>
-              <ul className="text-sm space-y-1" style={{ fontFamily: '"Montserrat", sans-serif', color: '#1f1f1f' }}>
+              <ul className="text-sm space-y-1" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}>
                 <li>• Keep away from water and chemicals</li>
                 <li>• Store in a cool, dry place</li>
                 <li>• Clean gently with a soft cloth</li>
@@ -291,29 +291,29 @@ export default function ProductDetail() {
               <div className="flex items-center gap-6">
                 <span
                   className="text-xs tracking-widest uppercase"
-                  style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f', letterSpacing: '0.15em' }}
+                  style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))', letterSpacing: '0.15em' }}
                 >
                   Quantity
                 </span>
-                <div className="flex items-center border border-[#e8e6e1] rounded-sm overflow-hidden">
+                <div className="flex items-center border border-[hsl(var(--border-light))] rounded-sm overflow-hidden">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-3 hover:bg-[#f5f3f0] transition-colors duration-150"
-                    style={{ color: '#1f1f1f' }}
+                    className="p-3 hover:bg-[hsl(var(--bg-secondary))] transition-colors duration-150"
+                    style={{ color: 'hsl(var(--text-primary))' }}
                   >
                     <Minus className="w-4 h-4" />
                   </button>
                   <span
                     className="px-6 py-3 min-w-[4rem] text-center font-medium"
-                    style={{ fontFamily: '"Montserrat", sans-serif', color: '#1f1f1f' }}
+                    style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}
                   >
                     {quantity}
                   </span>
                   <button
                     onClick={() => setQuantity(Math.min(product.stockQuantity ?? 99, quantity + 1))}
                     disabled={quantity >= (product.stockQuantity ?? 99)}
-                    className="p-3 hover:bg-[#f5f3f0] transition-colors duration-150 disabled:opacity-30 disabled:cursor-not-allowed"
-                    style={{ color: '#1f1f1f' }}
+                    className="p-3 hover:bg-[hsl(var(--bg-secondary))] transition-colors duration-150 disabled:opacity-30 disabled:cursor-not-allowed"
+                    style={{ color: 'hsl(var(--text-primary))' }}
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -327,14 +327,14 @@ export default function ProductDetail() {
                     In stock ({product.stockQuantity} available)
                   </p>
                 ) : (
-                  <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}>
+                  <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
                     Out of stock
                   </p>
                 )
               ) : product.inStock ? (
                 <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: '#4abfbf' }}>In stock</p>
               ) : (
-                <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}>Out of stock</p>
+                <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>Out of stock</p>
               )}
             </div>
 
@@ -344,7 +344,7 @@ export default function ProductDetail() {
               <button
                 onClick={handleAddToCart}
                 disabled={product.stockQuantity === 0}
-                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-white border-2 border-[#4abfbf] hover:bg-[#4abfbf] hover:text-white text-[#4abfbf] rounded-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#4abfbf]"
+                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[hsl(var(--bg-card))] border-2 border-[hsl(var(--accent-vibrant))] hover:bg-[hsl(var(--accent-vibrant))] hover:text-white text-[hsl(var(--accent-vibrant))] rounded-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#4abfbf]"
                 style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 600, letterSpacing: '0.05em' }}
               >
                 <ShoppingBag className="w-5 h-5" />
@@ -361,14 +361,14 @@ export default function ProductDetail() {
                 <button
                   className="w-full flex items-center justify-center gap-2 px-8 py-4 rounded-sm transition-all duration-200"
                   style={{
-                    background: '#deb55b',
-                    color: '#1f1f1f',
+                    background: 'hsl(var(--gold-medium))',
+                    color: 'hsl(var(--text-primary))',
                     fontFamily: '"Montserrat", sans-serif',
                     fontWeight: 600,
                     letterSpacing: '0.05em',
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = '#c9a547'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = '#deb55b'}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '0.9'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12c0-6.627-5.373-12-12-12zm0 22C5.383 22 1 17.617 1 12S5.383 2 12 2s11 4.383 11 10-5.383 10-10 10zm0-16c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"/>
@@ -379,18 +379,18 @@ export default function ProductDetail() {
             </div>
 
             {/* Features */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[#e8e6e1]">
+            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-[hsl(var(--border-light))]">
               <div className="text-center">
-                <Truck className="w-5 h-5 mx-auto mb-2" style={{ color: '#deb55b' }} />
-                <p className="text-xs" style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}>Free Shipping</p>
+                <Truck className="w-5 h-5 mx-auto mb-2" style={{ color: 'hsl(var(--gold-medium))' }} />
+                <p className="text-xs" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>Free Shipping</p>
               </div>
               <div className="text-center">
-                <Shield className="w-5 h-5 mx-auto mb-2" style={{ color: '#deb55b' }} />
-                <p className="text-xs" style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}>Lifetime Warranty</p>
+                <Shield className="w-5 h-5 mx-auto mb-2" style={{ color: 'hsl(var(--gold-medium))' }} />
+                <p className="text-xs" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>Lifetime Warranty</p>
               </div>
               <div className="text-center">
-                <Gem className="w-5 h-5 mx-auto mb-2" style={{ color: '#deb55b' }} />
-                <p className="text-xs" style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}>Handcrafted</p>
+                <Gem className="w-5 h-5 mx-auto mb-2" style={{ color: 'hsl(var(--gold-medium))' }} />
+                <p className="text-xs" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>Handcrafted</p>
               </div>
             </div>
           </div>
@@ -428,12 +428,12 @@ function RelatedProducts({
   }
 
   return (
-    <section className="border-t border-[#e8e6e1]">
+    <section className="border-t border-[hsl(var(--border-light))]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
           <h2
             className="text-3xl md:text-4xl font-semibold mb-4"
-            style={{ fontFamily: '"Libre Baskerville", serif', color: '#1f1f1f' }}
+            style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
           >
             You May Also Like
           </h2>
@@ -443,7 +443,7 @@ function RelatedProducts({
           {filteredProducts.map((product) => (
             <Link key={product.id} href={`/products/${product.id}`} className="group block">
               <div className="shadow-sm overflow-hidden" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
-                <div className="aspect-square mb-4 overflow-hidden bg-[#f5f3f0]">
+                <div className="aspect-square mb-4 overflow-hidden bg-[hsl(var(--bg-secondary))]">
                   <img
                     src={product.imageUrl || '/api/placeholder/300/300'}
                     alt={product.name}
@@ -454,12 +454,12 @@ function RelatedProducts({
                 </div>
                 <div className="p-6">
                   <h3
-                    className="text-lg font-semibold mb-2 group-hover:text-[#4abfbf] transition-colors duration-200"
-                    style={{ fontFamily: '"Libre Baskerville", serif', color: '#1f1f1f' }}
+                    className="text-lg font-semibold mb-2 group-hover:text-[hsl(var(--accent-vibrant))] transition-colors duration-200"
+                    style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
                   >
                     {product.name}
                   </h3>
-                  <div className="flex items-center justify-between pt-4 border-t border-[#e8e6e1]">
+                  <div className="flex items-center justify-between pt-4 border-t border-[hsl(var(--border-light))]">
                     <span
                       className="text-lg font-semibold"
                       style={{ fontFamily: '"Libre Baskerville", serif', color: '#e1af2f' }}
@@ -468,7 +468,7 @@ function RelatedProducts({
                     </span>
                     {product.category && (
                       <span
-                        className="text-xs px-3 py-1 bg-[#f5f3f0] rounded-sm"
+                        className="text-xs px-3 py-1 bg-[hsl(var(--bg-secondary))] rounded-sm"
                         style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}
                       >
                         {product.category.name}
@@ -484,7 +484,7 @@ function RelatedProducts({
         <div className="text-center mt-12">
           <Link href="/products">
             <button
-              className="px-8 py-3 bg-white border-2 border-[#4abfbf] hover:bg-[#4abfbf] hover:text-white text-[#4abfbf] rounded-sm transition-all duration-200"
+              className="px-8 py-3 bg-[hsl(var(--bg-card))] border-2 border-[hsl(var(--accent-vibrant))] hover:bg-[hsl(var(--accent-vibrant))] hover:text-white text-[hsl(var(--accent-vibrant))] rounded-sm transition-all duration-200"
               style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 500, letterSpacing: '0.05em' }}
             >
               View All Products

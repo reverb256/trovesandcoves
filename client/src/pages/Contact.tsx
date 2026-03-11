@@ -60,7 +60,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#faf8f3' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header */}
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-2xl">
@@ -68,18 +68,18 @@ export default function Contact() {
             className="text-4xl md:text-5xl font-bold mb-4"
             style={{
               fontFamily: '"Libre Baskerville", serif',
-              color: '#1f1f1f',
+              color: 'hsl(var(--text-primary))',
             }}
           >
             Get in Touch
           </h1>
           <div
             className="w-16 h-0.5 mx-auto mb-6"
-            style={{ backgroundColor: '#e1af2f' }}
+            style={{ backgroundColor: 'hsl(var(--gold-medium))' }}
           />
           <p
             className="text-lg leading-relaxed"
-            style={{ color: '#4a4a4a', fontFamily: '"Montserrat", sans-serif' }}
+            style={{ color: 'hsl(var(--text-secondary))', fontFamily: '"Montserrat", sans-serif' }}
           >
             For custom orders, design consultations, or any questions about our
             handcrafted crystal jewelry, we'd love to hear from you.
@@ -93,14 +93,14 @@ export default function Contact() {
           <div className="lg:col-span-3">
             <Card
               className="border-0 shadow-sm"
-              style={{ backgroundColor: '#ffffff' }}
+              style={{ backgroundColor: 'hsl(var(--bg-card))' }}
             >
               <CardContent className="p-8 md:p-10">
                 <h2
                   className="text-2xl font-semibold mb-6"
                   style={{
                     fontFamily: '"Libre Baskerville", serif',
-                    color: '#1f1f1f',
+                    color: 'hsl(var(--text-primary))',
                   }}
                 >
                   Send a Message
@@ -119,7 +119,7 @@ export default function Contact() {
                           <FormLabel
                             className="text-sm font-medium"
                             style={{
-                              color: '#1f1f1f',
+                              color: 'hsl(var(--text-primary))',
                               fontFamily: '"Montserrat", sans-serif',
                             }}
                           >
@@ -132,7 +132,7 @@ export default function Contact() {
                               className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
                               style={{
                                 backgroundColor: '#faf8f3',
-                                borderColor: '#e5e5e5',
+                                borderColor: 'hsl(var(--border-medium))',
                                 fontFamily: '"Montserrat", sans-serif',
                               }}
                               {...field}
@@ -151,7 +151,7 @@ export default function Contact() {
                           <FormLabel
                             className="text-sm font-medium"
                             style={{
-                              color: '#1f1f1f',
+                              color: 'hsl(var(--text-primary))',
                               fontFamily: '"Montserrat", sans-serif',
                             }}
                           >
@@ -166,7 +166,7 @@ export default function Contact() {
                               className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
                               style={{
                                 backgroundColor: '#faf8f3',
-                                borderColor: '#e5e5e5',
+                                borderColor: 'hsl(var(--border-medium))',
                                 fontFamily: '"Montserrat", sans-serif',
                               }}
                               {...field}
@@ -185,7 +185,7 @@ export default function Contact() {
                           <FormLabel
                             className="text-sm font-medium"
                             style={{
-                              color: '#1f1f1f',
+                              color: 'hsl(var(--text-primary))',
                               fontFamily: '"Montserrat", sans-serif',
                             }}
                           >
@@ -197,7 +197,7 @@ export default function Contact() {
                               className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
                               style={{
                                 backgroundColor: '#faf8f3',
-                                borderColor: '#e5e5e5',
+                                borderColor: 'hsl(var(--border-medium))',
                                 fontFamily: '"Montserrat", sans-serif',
                               }}
                               {...field}
@@ -216,7 +216,7 @@ export default function Contact() {
                           <FormLabel
                             className="text-sm font-medium"
                             style={{
-                              color: '#1f1f1f',
+                              color: 'hsl(var(--text-primary))',
                               fontFamily: '"Montserrat", sans-serif',
                             }}
                           >
@@ -228,7 +228,7 @@ export default function Contact() {
                               className="min-h-[140px] border-gray-200 focus:border-gray-400 focus:ring-gray-200 resize-none"
                               style={{
                                 backgroundColor: '#faf8f3',
-                                borderColor: '#e5e5e5',
+                                borderColor: 'hsl(var(--border-medium))',
                                 fontFamily: '"Montserrat", sans-serif',
                               }}
                               {...field}
@@ -243,8 +243,8 @@ export default function Contact() {
                       type="submit"
                       className="w-full py-3 text-sm font-medium tracking-wide transition-all duration-200 hover:opacity-90"
                       style={{
-                        backgroundColor: '#1f1f1f',
-                        color: '#faf8f3',
+                        backgroundColor: 'hsl(var(--text-primary))',
+                        color: 'hsl(var(--bg-primary))',
                         fontFamily: '"Montserrat", sans-serif',
                       }}
                     >
@@ -255,7 +255,7 @@ export default function Contact() {
 
                 <p
                   className="text-sm text-center mt-6"
-                  style={{ color: '#6b6b6b', fontFamily: '"Montserrat", sans-serif' }}
+                  style={{ color: 'hsl(var(--text-muted))', fontFamily: '"Montserrat", sans-serif' }}
                 >
                   We typically respond within 24 hours.
                 </p>
@@ -268,14 +268,14 @@ export default function Contact() {
             {/* Contact Card */}
             <Card
               className="border-0 shadow-sm"
-              style={{ backgroundColor: '#ffffff' }}
+              style={{ backgroundColor: 'hsl(var(--bg-card))' }}
             >
               <CardContent className="p-8">
                 <h3
                   className="text-lg font-semibold mb-6"
                   style={{
                     fontFamily: '"Libre Baskerville", serif',
-                    color: '#1f1f1f',
+                    color: 'hsl(var(--text-primary))',
                   }}
                 >
                   Contact Information
@@ -285,13 +285,13 @@ export default function Contact() {
                   <div className="flex items-start gap-3">
                     <Mail
                       className="h-5 w-5 mt-0.5 flex-shrink-0"
-                      style={{ color: '#e1af2f' }}
+                      style={{ color: 'hsl(var(--gold-medium))' }}
                     />
                     <div>
                       <p
                         className="text-sm font-medium mb-1"
                         style={{
-                          color: '#1f1f1f',
+                          color: 'hsl(var(--text-primary))',
                           fontFamily: '"Montserrat", sans-serif',
                         }}
                       >
@@ -301,7 +301,7 @@ export default function Contact() {
                         href="mailto:info@trovesandcoves.ca"
                         className="text-sm hover:underline transition-colors"
                         style={{
-                          color: '#4abfbf',
+                          color: 'hsl(var(--accent-vibrant))',
                           fontFamily: '"Montserrat", sans-serif',
                         }}
                       >
@@ -313,13 +313,13 @@ export default function Contact() {
                   <div className="flex items-start gap-3">
                     <MapPin
                       className="h-5 w-5 mt-0.5 flex-shrink-0"
-                      style={{ color: '#e1af2f' }}
+                      style={{ color: 'hsl(var(--gold-medium))' }}
                     />
                     <div>
                       <p
                         className="text-sm font-medium mb-1"
                         style={{
-                          color: '#1f1f1f',
+                          color: 'hsl(var(--text-primary))',
                           fontFamily: '"Montserrat", sans-serif',
                         }}
                       >
@@ -328,7 +328,7 @@ export default function Contact() {
                       <p
                         className="text-sm"
                         style={{
-                          color: '#4a4a4a',
+                          color: 'hsl(var(--text-secondary))',
                           fontFamily: '"Montserrat", sans-serif',
                         }}
                       >
@@ -345,14 +345,14 @@ export default function Contact() {
             {/* Social Links */}
             <Card
               className="border-0 shadow-sm"
-              style={{ backgroundColor: '#ffffff' }}
+              style={{ backgroundColor: 'hsl(var(--bg-card))' }}
             >
               <CardContent className="p-8">
                 <h3
                   className="text-lg font-semibold mb-6"
                   style={{
                     fontFamily: '"Libre Baskerville", serif',
-                    color: '#1f1f1f',
+                    color: 'hsl(var(--text-primary))',
                   }}
                 >
                   Follow Us
@@ -368,16 +368,16 @@ export default function Contact() {
                   >
                     <ShoppingBag
                       className="h-5 w-5"
-                      style={{ color: '#4abfbf' }}
+                      style={{ color: 'hsl(var(--accent-vibrant))' }}
                     />
                     <div>
                       <p
                         className="text-sm font-medium"
-                        style={{ color: '#1f1f1f' }}
+                        style={{ color: 'hsl(var(--text-primary))' }}
                       >
                         Etsy Shop
                       </p>
-                      <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                      <p className="text-xs" style={{ color: 'hsl(var(--text-muted))' }}>
                         Browse our collection
                       </p>
                     </div>
@@ -394,18 +394,18 @@ export default function Contact() {
                       className="h-5 w-5"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      style={{ color: '#4abfbf' }}
+                      style={{ color: 'hsl(var(--accent-vibrant))' }}
                     >
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.012.057-.353 1.085-.232 1.614-.053 1.877-.208.856.528 1.58 1.067 2.355c.537 1.378 1.52 2.25 1.52 4.025 0 2.447-.01 3.557-.602 4.317-.39.814-.57-.763-1.28-.876-1.004-.233-.232-.43-.448-.585-.646-.264-.312-.413-.585-.413-.585 0-.373.148-.585.413-.585.413 0 .083.012.17.035.256.11.153.247.325.476.667.59 1.107.336.696.645 1.12.645.424 0 .763-.108 1.34-.264 1.732-.455.474-.39.85-.866-1.13-1.453-.308-.526-.61-1.046-.91-1.566-.326-.685-.568-1.02-.568-1.485 0-.846.31-1.577.924-2.176 1.584-.726 1.576-1.636 2.604-.865 1.72-1.363 2.454-.726.892-1.21 1.538-1.21 2.454 0 .537.033.815.11.96.066.347.1.697.17 1.038.274 1.455.472.51.875.983.496 1.322.42.383.86.52 1.086.472 1.732.472.872 0 1.763-.508 2.866-1.394.782-.946 1.276-1.41 1.938-1.41 3.356 0 1.19-.367 2.188-1.1 2.987-.63.794-1.12-1.538-1.12-2.587 0-.855.308-1.533.924-2.032 1.584-.63 1.874-1.41 2.604-2.374.803-.983 1.26-1.484 2.03-1.484 3.27 0 .983.37 1.87 1.11 2.613.42.622.876.938.998 1.365.12.448.01 1.564.01 2.453-.002.887-.002 1.763-.508 2.866-1.394.782-.946 1.276-1.41 1.938-1.41 3.356 0 1.19-.367 2.188-1.1 2.987-.63.794-1.12-1.538-1.12-2.587 0-.855.308-1.533.924-2.032 1.584-.63 1.874-1.41 2.604-2.374.803-.983 1.26-1.484 2.03-1.484 3.27 0 .983.37 1.87 1.11 2.613.42.622.876.938.998 1.365.12.448.01 1.564.01 2.453z"/>
                     </svg>
                     <div>
                       <p
                         className="text-sm font-medium"
-                        style={{ color: '#1f1f1f' }}
+                        style={{ color: 'hsl(var(--text-primary))' }}
                       >
                         Instagram
                       </p>
-                      <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                      <p className="text-xs" style={{ color: 'hsl(var(--text-muted))' }}>
                         @Troves_and_Coves
                       </p>
                     </div>
@@ -421,8 +421,8 @@ export default function Contact() {
                     <div
                       className="h-5 w-5 flex items-center justify-center text-xs font-bold rounded-sm"
                       style={{
-                        backgroundColor: '#4abfbf',
-                        color: '#ffffff',
+                        backgroundColor: 'hsl(var(--accent-vibrant))',
+                        color: 'hsl(var(--bg-overlay))',
                       }}
                     >
                       f
@@ -430,11 +430,11 @@ export default function Contact() {
                     <div>
                       <p
                         className="text-sm font-medium"
-                        style={{ color: '#1f1f1f' }}
+                        style={{ color: 'hsl(var(--text-primary))' }}
                       >
                         Facebook
                       </p>
-                      <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                      <p className="text-xs" style={{ color: 'hsl(var(--text-muted))' }}>
                         Troves & Coves
                       </p>
                     </div>
