@@ -13,6 +13,8 @@ import {
   Gem,
 } from 'lucide-react';
 import type { ProductWithCategory } from '@shared/types';
+import SEOHead from '@/components/SEOHead';
+import { ProductSchema, BreadcrumbSchema } from '@/components/SchemaOrg';
 
 export default function ProductDetail() {
   const params = useParams();
@@ -53,7 +55,7 @@ export default function ProductDetail() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }} flex items-center justify-center content-layer">
+      <div className="min-h-screen content-layer flex items-center justify-center" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
         <div className="p-16">
           <div className="w-12 h-12 border-2 border-[hsl(var(--accent-vibrant))]/20 border-t-[hsl(var(--accent-vibrant))] rounded-full animate-spin"></div>
         </div>
@@ -63,7 +65,7 @@ export default function ProductDetail() {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }} flex items-center justify-center content-layer">
+      <div className="min-h-screen content-layer flex items-center justify-center" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
         <div className="p-16 text-center max-w-md">
           <Gem className="w-16 h-16 text-[hsl(var(--accent-vibrant))]/50 mx-auto mb-6" />
           <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
@@ -87,7 +89,32 @@ export default function ProductDetail() {
   const images = product.imageUrls && product.imageUrls.length > 0 ? product.imageUrls : [product.imageUrl];
 
   return (
-    <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }} content-layer">
+    <>
+      <SEOHead
+        title={`${product.name} | ${product.category?.name || 'Crystal Jewelry'} | Troves & Coves`}
+        description={`${product.description?.substring(0, 150)}... Handcrafted in Winnipeg, Canada. ${product.price} CAD.`}
+        url={`https://trovesandcoves.ca/products/${product.id}`}
+        type="product"
+        image={product.imageUrl}
+      />
+      <ProductSchema
+        name={product.name}
+        description={product.description || ''}
+        imageUrl={product.imageUrl}
+        price={product.price}
+        stockQuantity={product.stockQuantity || 0}
+        category={product.category}
+        id={product.id.toString()}
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Shop', path: '/products' },
+          ...(product.category ? [{ name: product.category.name, path: `/products/${product.category.slug}` }] : []),
+          { name: product.name, path: `/products/${product.id}` }
+        ]}
+      />
+      <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Breadcrumb Navigation */}
       <div className="border-b border-[hsl(var(--border-light))]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -105,7 +132,7 @@ export default function ProductDetail() {
               <>
                 <Link
                   href={`/products/${product.category.slug}`}
-                  className="hover:text-[hsl(var(--accent-vibrant))]" transition-colors whitespace-nowrap"
+                  className="hover:text-[hsl(var(--accent-vibrant))] transition-colors whitespace-nowrap"
                   style={{ color: 'hsl(var(--text-secondary))', fontFamily: '"Montserrat", sans-serif' }}
                 >
                   {product.category.name}
@@ -403,6 +430,7 @@ export default function ProductDetail() {
         currentProductId={product.id}
       />
     </div>
+    </>
   );
 }
 

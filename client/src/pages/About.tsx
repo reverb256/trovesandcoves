@@ -1,5 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Award, Gem, MapPin, Hand, Mail } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
+import { BreadcrumbSchema } from '@/components/SchemaOrg';
 
 export default function About() {
   const values = [
@@ -44,10 +46,23 @@ export default function About() {
   ];
 
   return (
-    <div
-      className="min-h-screen"
-      style={{ background: 'hsl(var(--bg-primary))' }}
-    >
+    <>
+      <SEOHead
+        title="About Troves & Coves | Handcrafted Crystal Jewelry | Winnipeg, Canada"
+        description="Learn about Troves & Coves' story. Every crystal necklace and bracelet is handcrafted in Winnipeg with 14k gold-filled wire and genuine gemstones."
+        url="https://trovesandcoves.ca/about"
+        type="website"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' }
+        ]}
+      />
+      <div
+        className="min-h-screen"
+        style={{ background: 'hsl(var(--bg-primary))' }}
+      >
       {/* Header */}
       <section className="relative overflow-hidden py-24 md:py-32">
         <div className="absolute top-0 left-0 w-full h-0.5" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--gold-medium)), transparent)' }} />
@@ -315,5 +330,6 @@ export default function About() {
         </section>
       </div>
     </div>
+    </>
   );
 }

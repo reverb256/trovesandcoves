@@ -18,6 +18,8 @@ import {
 import { Mail, MapPin, ShoppingBag } from 'lucide-react';
 import { insertContactSubmissionSchema } from '@shared/types';
 import { z } from 'zod';
+import SEOHead from '@/components/SEOHead';
+import { BreadcrumbSchema } from '@/components/SchemaOrg';
 
 const contactFormSchema = insertContactSubmissionSchema.extend({
   preferredDate: z.date().optional(),
@@ -60,7 +62,20 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+    <>
+      <SEOHead
+        title="Contact Us | Custom Crystal Jewelry Orders | Troves & Coves"
+        description="Get in touch with Troves & Coves. Custom crystal jewelry orders, questions about our handcrafted necklaces, or inquiries about healing crystals."
+        url="https://trovesandcoves.ca/contact"
+        type="website"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Contact', path: '/contact' }
+        ]}
+      />
+      <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header */}
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-2xl">
@@ -446,5 +461,6 @@ export default function Contact() {
         </div>
       </div>
     </div>
+    </>
   );
 }

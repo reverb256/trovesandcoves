@@ -5,6 +5,8 @@ import { ShoppingBag, ExternalLink, ArrowLeft } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
+import SEOHead from "@/components/SEOHead";
+import { BreadcrumbSchema } from "@/components/SchemaOrg";
 
 const ETSY_SHOP_URL = "https://www.etsy.com/shop/TrovesAndCoves";
 
@@ -43,7 +45,20 @@ export default function Checkout() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
+      <SEOHead
+        title="Checkout | Complete Your Crystal Jewelry Purchase | Troves & Coves"
+        description="Complete your purchase on our secure Etsy store. Handcrafted crystal jewelry with 14k gold-plated elegance."
+        url="https://trovesandcoves.ca/checkout"
+        type="website"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Checkout', path: '/checkout' }
+        ]}
+      />
+      <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
@@ -166,5 +181,6 @@ export default function Checkout() {
         </div>
       </div>
     </div>
+    </>
   );
 }

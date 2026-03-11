@@ -7,8 +7,8 @@ export default function Hero() {
       <div className="chamber-container relative z-10">
         <div className="flex flex-col items-center justify-center gap-6 text-center max-w-4xl mx-auto">
 
-          {/* Brand Name - Luxury Minimal */}
-          <h1 className="leading-tight flex items-center justify-center gap-3 md:gap-4">
+          {/* Brand Name - Luxury Minimal with SEO Keywords */}
+          <h1 className="leading-tight flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4">
             <span
               style={{
                 fontFamily: "Libre Baskerville, serif",
@@ -27,6 +27,7 @@ export default function Hero() {
             <span style={{ fontFamily: "Alex Brush, cursive", color: "#e1af2f" }} className="text-5xl md:text-7xl lg:text-8xl">
               Coves
             </span>
+            <span className="hidden"> | Handcrafted Crystal Jewelry & 14k Gold-Plated Necklaces</span>
           </h1>
 
           {/* Tagline - Clean and Minimal */}

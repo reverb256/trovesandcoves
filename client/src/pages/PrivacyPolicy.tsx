@@ -1,9 +1,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Eye, Lock, Database, Globe, Mail } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
+    <>
+      <SEOHead
+        title="Privacy Policy | Troves & Coves Crystal Jewelry"
+        description="Your privacy matters to us. Learn how Troves & Coves protects your personal information with the same care we give to our crystal jewelry."
+        url="https://trovesandcoves.ca/privacy"
+        type="website"
+      />
+      <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
       {/* Header */}
       <section className="relative overflow-hidden py-20" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
@@ -304,5 +312,6 @@ export default function PrivacyPolicy() {
         </div>
       </div>
     </div>
+    </>
   );
 }

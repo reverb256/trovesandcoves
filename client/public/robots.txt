@@ -1,11 +1,13 @@
 # Troves & Coves - Crystal Jewelry Winnipeg
-# Updated: 2026-03-09
+# Updated: 2026-03-10
+# Dynamic sitemap generated at build time
 
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemaps (dynamic + static)
 Sitemap: https://trovesandcoves.ca/sitemap.xml
+Sitemap: https://trovesandcoves.ca/sitemap-images.xml
 
 # Block unnecessary crawling
 Disallow: /admin/
@@ -15,30 +17,29 @@ Disallow: /tmp/
 Disallow: /style-guide
 Disallow: /showcase
 
-# Allow specific bots
-User-agent: Googlebot
-Allow: /
-
+# Allow social media crawlers for better sharing previews
 User-agent: facebookexternalhit
 Allow: /
 
 User-agent: Twitterbot
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: pinterest
+Allow: /
+
 # Crawl delay for respectful crawling
 Crawl-delay: 1
 
-# Location (for local businesses)
-User-agent: *
-Allow: /
-
-# Block common bot paths
+# Block common bot paths (security through obscurity)
 Disallow: /wp-admin/
 Disallow: /wp-includes/
 Disallow: /comments/
 Disallow: /trackback/
 
-# Allow images for preview
+# Allow images for preview and sharing
 Allow: /images/
 Allow: /og-image.jpg
 Allow: /*.png

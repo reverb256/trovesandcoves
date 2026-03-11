@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 import SEOHead from '@/components/SEOHead';
 import Hero from '@/components/Hero';
+import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema } from '@/components/SchemaOrg';
 import type { ProductWithCategory } from '@shared/types';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -19,6 +20,9 @@ export default function Home() {
         url="https://trovesandcoves.ca"
         type="website"
       />
+      <WebsiteSchema />
+      <OrganizationSchema />
+      <LocalBusinessSchema />
 
       {/* Hero Section */}
       <Hero />
@@ -64,8 +68,8 @@ export default function Home() {
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="aspect-square rounded-lg animate-pulse" style={{ backgroundColor: 'hsl(var(--bg-card) / 0.5)' }}
-                  style={{ animationDelay: `${i * 0.1}s` }}
+                  className="aspect-square rounded-lg animate-pulse"
+                  style={{ backgroundColor: 'hsl(var(--bg-card) / 0.5)', animationDelay: `${i * 0.1}s` }}
                 >
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="w-16 h-16 border-2 border-turquoise-soft border-t-[hsla(var(--accent-vibrant),0.8)] rounded-full animate-spin"></div>

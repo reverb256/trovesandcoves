@@ -4,6 +4,7 @@ import { useParams, useLocation } from 'wouter';
 import type { ProductWithCategory, Category } from '@shared/types';
 import { Filter, Search, X, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import SEOHead from '@/components/SEOHead';
 
 export default function Products() {
   const params = useParams();
@@ -90,7 +91,29 @@ export default function Products() {
   const hasActiveFilters = searchQuery.trim() !== '' || category;
 
   return (
-    <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+      <>
+      <SEOHead
+        title={currentCategory
+          ? `${currentCategory.name} | Handcrafted Crystal Jewelry | Troves & Coves`
+          : searchQuery
+          ? `Search: "${searchQuery}" | Crystal Jewelry | Troves & Coves`
+          : `Shop Crystal Jewelry | Handcrafted Necklaces & Bracesets | Troves & Coves`
+        }
+        description={currentCategory
+          ? `Browse our ${currentCategory.name} collection. ${currentCategory.description}`
+          : searchQuery
+          ? `Search results for "${searchQuery}" in our handcrafted crystal jewelry collection.`
+          : "Explore our curated selection of handcrafted crystal jewelry. Each piece blends elegance with natural crystal beauty—crafted with intention."
+        }
+        url={currentCategory
+          ? `https://trovesandcoves.ca/products/${currentCategory.slug}`
+          : searchQuery
+          ? `https://trovesandcoves.ca/products?search=${encodeURIComponent(searchQuery)}`
+          : 'https://trovesandcoves.ca/products'
+        }
+        type="website"
+      />
+      <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header Section */}
       <section className="relative py-20 border-b border-turquoise-light">
         {/* Background glow */}
@@ -106,9 +129,14 @@ export default function Products() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 flex flex-col md:flex-row items-center justify-center gap-3">
               {currentCategory ? (
-                <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>{currentCategory.name}</span>
+                <>
+                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>{currentCategory.name}</span>
+                  <span className="text-sm md:text-base font-normal" style={{ fontFamily: "\"Montserrat\", sans-serif", color: 'hsl(var(--text-secondary))' }}>
+                    | Handcrafted Crystal Jewelry
+                  </span>
+                </>
               ) : searchQuery ? (
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>Searching for</span>
@@ -116,8 +144,12 @@ export default function Products() {
                 </>
               ) : (
                 <>
-                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Troves</span>
-                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>&amp; Coves</span>
+                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>
+                    Shop Crystal Jewelry
+                  </span>
+                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>
+                    &amp; Collections
+                  </span>
                 </>
               )}
             </h1>
@@ -379,5 +411,6 @@ export default function Products() {
         </div>
       </div>
     </div>
+      </>
   );
 }
