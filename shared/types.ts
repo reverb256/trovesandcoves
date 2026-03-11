@@ -52,6 +52,7 @@ export interface Product {
   careInstructions?: string | null; // Care instructions for the jewelry
   metadata?: Record<string, unknown> | null;
   createdAt?: Date | null;
+  listingUrl?: string | null; // Etsy listing URL for sync tracking
   // Additional UI properties
   isNew?: boolean;
   isOnSale?: boolean;

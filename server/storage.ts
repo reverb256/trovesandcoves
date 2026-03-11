@@ -418,10 +418,26 @@ export class MemStorage implements IStorage {
   async updateProductStock(productId: number, quantity: number): Promise<Product> {
     const product = this.products.get(productId);
     if (!product) throw new Error("Product not found");
-    
+
     const updatedProduct = { ...product, stockQuantity: quantity };
     this.products.set(productId, updatedProduct);
     return updatedProduct;
+  }
+
+  async updateProduct(productId: number, updates: Partial<Product>): Promise<Product> {
+    const product = this.products.get(productId);
+    if (!product) throw new Error("Product not found");
+
+    const updatedProduct = { ...product, ...updates };
+    this.products.set(productId, updatedProduct);
+    return updatedProduct;
+  }
+
+  async deleteProduct(productId: number): Promise<void> {
+    if (!this.products.has(productId)) {
+      throw new Error("Product not found");
+    }
+    this.products.delete(productId);
   }
 
   // Cart operations
