@@ -228,7 +228,7 @@ export default function ProductDetail() {
                 </span>
                 <p
                   className="text-xl"
-                  style={{ fontFamily: '"Alex Brush", cursive', color: '#e1af2f' }}
+                  style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}
                 >
                   {product.gemstones.join('  •  ')}
                 </p>
