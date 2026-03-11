@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Brand Redesign', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5000');
+    await page.goto('/');
   });
 
   test('hero renders with brand title and product cards', async ({ page }) => {
@@ -29,7 +29,7 @@ test.describe('Brand Redesign', () => {
   });
 
   test('products page shows product grid', async ({ page }) => {
-    await page.goto('http://localhost:5000/products');
+    await page.goto('/products');
     await page.waitForLoadState('networkidle');
 
     const productLinks = page.locator('a[href^="/products/"]');
@@ -39,7 +39,7 @@ test.describe('Brand Redesign', () => {
   });
 
   test('product detail has interactive elements', async ({ page }) => {
-    await page.goto('http://localhost:5000/products/1');
+    await page.goto('/products/1');
     await page.waitForLoadState('networkidle');
 
     const addToCart = page.locator('button:has-text("Add to Cart")');
