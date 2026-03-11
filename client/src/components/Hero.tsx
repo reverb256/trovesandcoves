@@ -31,7 +31,7 @@ export default function Hero() {
 
           {/* Tagline - Clean and Minimal */}
           <p className="text-lg md:text-xl tracking-[0.25em] uppercase"
-             style={{ fontFamily: "Montserrat, sans-serif", color: "#1f1f1f", fontWeight: 500 }}>
+             style={{ fontFamily: "Montserrat, sans-serif", color: "hsl(var(--text-secondary))", fontWeight: 500 }}>
             Handcrafted Crystal Jewelry
           </p>
 

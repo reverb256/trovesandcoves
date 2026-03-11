@@ -38,7 +38,7 @@ export default function Home() {
               <Sparkles className="w-4 h-4" style={{ color: 'hsl(var(--gold-medium))' }} />
               <span 
                 className="text-xs tracking-widest uppercase"
-                style={{ fontFamily: "'Alex Brush', cursive", color: 'hsl(var(--gold-medium))' }}
+                style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--gold-medium))', fontWeight: 600 }}
               >
                 Curated With Intention
               </span>
@@ -82,7 +82,7 @@ export default function Home() {
                   className="group block animate-reveal"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6">
+                  <div className="rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                     {/* Product Image */}
                     <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-[hsla(var(--accent-vibrant),0.1)]">
                       <img
@@ -199,7 +199,7 @@ export default function Home() {
                 and genuine crystals—designed to be timeless and made to stand out.
               </p>
 
-              <p className="text-base italic" style={{ fontFamily: "'Alex Brush', cursive", color: 'hsl(var(--gold-medium))' }}>
+              <p className="text-base" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))', fontWeight: 500 }}>
                 ✨ Handcrafted with intention in Winnipeg, Canada ✨
               </p>
             </div>

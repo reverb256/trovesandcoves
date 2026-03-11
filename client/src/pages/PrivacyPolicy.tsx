@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Information Collection */}
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Database className="h-6 w-6 text-ornate-frame-gold" />
@@ -73,7 +73,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* How We Use Information */}
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Eye className="h-6 w-6 text-ornate-frame-gold" />
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Data Protection */}
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Lock className="h-6 w-6 text-ornate-frame-gold" />
@@ -149,7 +149,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Information Sharing */}
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Globe className="h-6 w-6 text-ornate-frame-gold" />
@@ -186,7 +186,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Your Rights */}
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Shield className="h-6 w-6 text-ornate-frame-gold" />
@@ -228,7 +228,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Cookies */}
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Database className="h-6 w-6 text-ornate-frame-gold" />
@@ -265,7 +265,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Contact Information */}
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Mail className="h-6 w-6 text-ornate-frame-gold" />

@@ -115,7 +115,7 @@ export default function JewelleryCare() {
               return (
                 <Card
                   key={material.name}
-                  className="shadow-lg border border-ornate-frame-gold/20 bg-white"
+                  className="shadow-lg border border-ornate-frame-gold/20"
                 >
                   <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
                     <CardTitle className="flex items-center space-x-3">
@@ -152,7 +152,7 @@ export default function JewelleryCare() {
         </div>
 
         {/* Crystal Care */}
-        <Card className="mb-12 shadow-lg border border-ornate-frame-gold/20 bg-white">
+        <Card className="mb-12 shadow-lg border border-ornate-frame-gold/20">
           <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
             <CardTitle className="flex items-center space-x-3">
               <Sparkles className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />

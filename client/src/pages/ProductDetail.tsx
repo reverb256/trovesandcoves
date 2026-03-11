@@ -125,7 +125,7 @@ export default function ProductDetail() {
           {/* Product Images */}
           <div className="space-y-6">
             {/* Main Image */}
-            <div className="bg-white p-2 shadow-sm">
+            <div className="p-2 shadow-sm" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
               <div className="relative aspect-square overflow-hidden bg-[#f5f3f0]">
                 <img
                   src={images[selectedImage]}
@@ -442,7 +442,7 @@ function RelatedProducts({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
             <Link key={product.id} href={`/products/${product.id}`} className="group block">
-              <div className="bg-white shadow-sm overflow-hidden">
+              <div className="shadow-sm overflow-hidden" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                 <div className="aspect-square mb-4 overflow-hidden bg-[#f5f3f0]">
                   <img
                     src={product.imageUrl || '/api/placeholder/300/300'}

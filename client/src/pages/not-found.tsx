@@ -4,7 +4,7 @@ import { Link } from 'wouter';
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4" style={{ backgroundColor: '#faf8f3' }}>
-      <div className="bg-white rounded-lg shadow-sm w-full max-w-lg p-12 text-center">
+      <div className="rounded-lg shadow-sm w-full max-w-lg p-12 text-center" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
         {/* Icon */}
         <div className="mb-8">
           <div className="inline-flex items-center justify-center w-24 h-24 rounded-full" style={{ backgroundColor: 'hsla(174, 51%, 51%, 0.1)', border: '2px solid #4abfbf' }}>

@@ -137,7 +137,7 @@ export default function Products() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
           <aside className="lg:w-72 flex-shrink-0">
-            <Card className="bg-white rounded-lg shadow-sm p-6 lg:sticky lg:top-24">
+            <Card className="rounded-lg shadow-sm p-6 lg:sticky lg:top-24">
               <h3 className="text-lg font-semibold mb-6 flex items-center gap-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}>
                 <Filter className="w-5 h-5" style={{ color: 'hsl(var(--accent-vibrant))' }} />
                 <span style={{ color: 'hsl(var(--text-primary))' }}>Refine Your Search</span>
@@ -279,7 +279,7 @@ export default function Products() {
               </div>
             ) : filteredAndSortedProducts.length === 0 ? (
               /* No Results */
-              <div className="bg-white rounded-lg shadow-sm p-16 text-center">
+              <div className="rounded-lg shadow-sm p-16 text-center" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                 <Filter className="w-16 h-16 mx-auto mb-6" style={{ color: 'hsl(var(--text-muted))', opacity: 0.3 }} />
                 <h3 className="text-2xl font-semibold mb-4" style={{
                   fontFamily: "'Libre Baskerville', serif",

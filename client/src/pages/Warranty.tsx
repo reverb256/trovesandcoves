@@ -100,7 +100,7 @@ export default function Warranty() {
               return (
                 <Card
                   key={term.category}
-                  className="shadow-lg border border-ornate-frame-gold/20 bg-white"
+                  className="shadow-lg border border-ornate-frame-gold/20"
                 >
                   <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
                     <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
