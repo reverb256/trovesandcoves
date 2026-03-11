@@ -105,6 +105,38 @@ export default {
 };
 
 /**
+ * Clean up mystical language from product descriptions for luxury positioning
+ */
+function cleanDescriptionForLuxury(description) {
+  if (!description) return description;
+
+  let cleaned = description
+    // Remove mystical/spiritual phrases
+    .replace(/sacred|divine|celestial|ethereal|channeling|manifestation|alchemy/gi, '')
+    .replace(/talisman|spiritual.*awakening|consciousness/gi, '')
+    .replace(/throat.*chakra|heart.*chakra|third.*eye/gi, '')
+    .replace(/psychic|intuition|meditation|mindfulness/gi, '')
+    .replace(/protective.*energy|grounding.*energy|healing.*energy/gi, '')
+    .replace(/vibrations|frequencies|resonance/gi, '')
+    .replace(/abundance|prosperity|good.*fortune/gi, '')
+    .replace(/tranquility|serenity|calming.*energy/gi, '')
+    .replace(/emotional.*balance|inner.*wisdom/gi, '')
+    .replace(/lovingly.*wire.*wrapped|wire.*wrapped.*with.*golden.*intention/gi, 'Hand-wrapped with 14k gold-filled wire')
+    .replace(/sacred.*transformation|divine.*stationary.*pendant.*power/gi, 'Unique stationary pendant')
+    .replace(/Ancient.*wisdom|celestial.*guidance/gi, '')
+    // Fix extra whitespace and punctuation
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // Ensure it starts with capital letter
+  if (cleaned.length > 0) {
+    cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+  }
+
+  return cleaned;
+}
+
+/**
  * Sync products from Etsy to KV storage
  */
 async function syncEtsyProducts(env) {
@@ -131,6 +163,18 @@ async function syncEtsyProducts(env) {
   const products = parseEtsyProductsFromHtml(html);
 
   console.log(`✅ Parsed ${products.length} products from Etsy`);
+
+  // Clean up descriptions for luxury positioning
+  products.forEach(product => {
+    if (product.description) {
+      product.description = cleanDescriptionForLuxury(product.description);
+    }
+    if (product.metaphysicalProperties) {
+      delete product.metaphysicalProperties; // Remove this field entirely
+    }
+  });
+
+  console.log(`✨ Cleaned ${products.length} product descriptions for luxury positioning`);
 
   // Store products in KV
   await env.ETSY_PRODUCTS.put('products', JSON.stringify(products), {
