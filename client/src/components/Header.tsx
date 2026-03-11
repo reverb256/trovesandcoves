@@ -52,9 +52,9 @@ export default function Header() {
       <header
         className={`fixed top-0 w-full z-50 transition-colors duration-500 ${
           isScrolled
-            ? 'backdrop-blur-sm border-b py-2'
-            : 'bg-transparent py-4'
-        }`}
+            ? 'backdrop-blur-sm border-b'
+            : 'bg-transparent'
+        } py-4`}
         style={{
           backgroundColor: isScrolled ? 'hsl(var(--bg-card) / 0.97)' : undefined,
           borderColor: isScrolled ? 'hsla(176, 42%, 39%, 0.2)' : undefined
