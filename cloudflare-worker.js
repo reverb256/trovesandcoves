@@ -489,3 +489,4 @@ async function handleStaticFallback(request, env) {
     });
   }
 }
+}
