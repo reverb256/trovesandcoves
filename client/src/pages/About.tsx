@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { Award, Gem, MapPin, Hand, Mail } from 'lucide-react';
+import { Award, Gem, MapPin, Hand, Mail, Sparkles } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import { BreadcrumbSchema } from '@/components/SchemaOrg';
 
@@ -64,15 +64,16 @@ export default function About() {
         style={{ background: 'hsl(var(--bg-primary))' }}
       >
       {/* Header */}
-      <section className="relative overflow-hidden py-24 md:py-32">
+      <section className="relative overflow-hidden py-24">
         <div className="absolute top-0 left-0 w-full h-0.5" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--gold-medium)), transparent)' }} />
 
-        <div className="relative container mx-auto px-4 text-center">
-          <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full" style={{
+        <div className="relative chamber-container text-center">
+          <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full gap-2" style={{
             backgroundColor: 'hsla(43, 78%, 60%, 0.15)',
             color: 'hsl(var(--gold-medium))',
             border: '1px solid hsl(var(--gold-medium))'
           }}>
+            <Sparkles className="w-4 h-4" style={{ color: 'hsl(var(--gold-medium))' }} />
             <span className="text-xs font-medium tracking-[0.2em] uppercase">
               Our Story
             </span>
@@ -104,7 +105,7 @@ export default function About() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="chamber-container py-16 md:py-24">
         {/* Brand Story */}
         <section className="mb-24 md:mb-32">
           <div className="text-center mb-12">

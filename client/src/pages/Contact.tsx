@@ -76,8 +76,8 @@ export default function Contact() {
       />
       <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto text-center max-w-2xl">
+      <section className="py-24">
+        <div className="chamber-container text-center max-w-2xl">
           <h1
             className="text-4xl md:text-5xl font-bold mb-4"
             style={{
@@ -101,7 +101,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 pb-20">
+      <div className="chamber-container pb-20">
         <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
           <div className="lg:col-span-3">
