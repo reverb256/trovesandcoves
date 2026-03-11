@@ -110,7 +110,7 @@ export default function Financing() {
                         <div className="font-bold text-lg">{option.name}</div>
                         <Badge
                           variant="secondary"
-                          className="bg-troves-turquoise/20 text-navy text-xs"
+                          className="bg-troves-turquoise/20 text-primary text-xs"
                         >
                           {option.terms}
                         </Badge>
@@ -230,8 +230,8 @@ export default function Financing() {
                   </div>
                   <div className="border-t border-ornate-frame-gold/20 pt-2 mt-2">
                     <div className="flex justify-between font-semibold">
-                      <span className="text-navy">Total:</span>
-                      <span className="text-navy">$200.00</span>
+                      <span className="text-primary">Total:</span>
+                      <span className="text-primary">$200.00</span>
                     </div>
                     <p className="text-xs text-green-600 mt-1">
                       No interest or fees!
@@ -258,19 +258,19 @@ export default function Financing() {
             <div className="flex flex-wrap justify-center gap-4 mb-6">
               <Badge
                 variant="outline"
-                className="border-troves-turquoise text-navy"
+                className="border-troves-turquoise text-primary"
               >
                 No Hidden Fees
               </Badge>
               <Badge
                 variant="outline"
-                className="border-skull-turquoise text-navy"
+                className="border-skull-turquoise text-primary"
               >
                 Instant Approval
               </Badge>
               <Badge
                 variant="outline"
-                className="border-ornate-frame-gold text-navy"
+                className="border-ornate-frame-gold text-primary"
               >
                 Secure Processing
               </Badge>

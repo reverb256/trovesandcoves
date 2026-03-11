@@ -106,7 +106,7 @@ export default function SizeGuide() {
                     <h3 className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>{size.name}</h3>
                     <Badge
                       variant="secondary"
-                      className="bg-troves-turquoise/20 text-navy text-xs"
+                      className="bg-troves-turquoise/20 text-primary text-xs"
                     >
                       {size.fit}
                     </Badge>
@@ -191,7 +191,7 @@ export default function SizeGuide() {
                     </h3>
                     <Badge
                       variant="outline"
-                      className="border-troves-turquoise text-navy"
+                      className="border-troves-turquoise text-primary"
                     >
                       {size.length}
                     </Badge>
@@ -271,7 +271,7 @@ export default function SizeGuide() {
                   <span>Wire wrapping adjustments</span>
                 </li>
               </ul>
-              <p className="text-navy/60 text-xs mt-4">
+              <p className="text-primary/60 text-xs mt-4">
                 Contact us before ordering for custom sizing consultation.
               </p>
             </CardContent>
@@ -294,19 +294,19 @@ export default function SizeGuide() {
             <div className="flex flex-wrap justify-center gap-4">
               <Badge
                 variant="outline"
-                className="border-troves-turquoise text-navy"
+                className="border-troves-turquoise text-primary"
               >
                 Style Optimized
               </Badge>
               <Badge
                 variant="outline"
-                className="border-skull-turquoise text-navy"
+                className="border-skull-turquoise text-primary"
               >
                 Comfort First
               </Badge>
               <Badge
                 variant="outline"
-                className="border-ornate-frame-gold text-navy"
+                className="border-ornate-frame-gold text-primary"
               >
                 Perfect Alignment
               </Badge>

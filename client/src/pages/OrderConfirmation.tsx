@@ -99,7 +99,7 @@ export default function OrderConfirmation() {
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 mb-6">
               <CheckCircle className="h-10 w-10 text-green-600" />
             </div>
-            <h1 className="text-4xl font-serif font-bold text-navy mb-4">
+            <h1 className="text-4xl font-serif font-bold text-primary mb-4">
               Order Confirmed!
             </h1>
             <p className="text-xl text-gray-600">
@@ -118,11 +118,11 @@ export default function OrderConfirmation() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-gray-600">Order Number</p>
-                  <p className="text-lg font-semibold text-navy">#{order.id}</p>
+                  <p className="text-lg font-semibold text-primary">#{order.id}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Order Date</p>
-                  <p className="text-lg font-semibold text-navy">{formatDate(order.createdAt)}</p>
+                  <p className="text-lg font-semibold text-primary">{formatDate(order.createdAt)}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Status</p>
@@ -170,7 +170,7 @@ export default function OrderConfirmation() {
                       className="w-20 h-20 object-cover rounded"
                     />
                     <div className="flex-1">
-                      <h3 className="font-semibold text-navy">{item.product.name}</h3>
+                      <h3 className="font-semibold text-primary">{item.product.name}</h3>
                       <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
                     </div>
                     <div className="text-right">
@@ -190,7 +190,7 @@ export default function OrderConfirmation() {
           <Card className="mb-8">
             <CardContent className="pt-6">
               <div className="text-center space-y-4">
-                <h3 className="text-lg font-semibold text-navy">What's Next?</h3>
+                <h3 className="text-lg font-semibold text-primary">What's Next?</h3>
                 <div className="space-y-2 text-sm text-gray-600">
                   <p>✓ Order confirmation sent to {order.customerEmail}</p>
                   <p>✓ Processing your items (1-2 business days)</p>
@@ -203,7 +203,7 @@ export default function OrderConfirmation() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
               onClick={() => setLocation("/products")}
-              className="flex-1 bg-navy text-white hover:bg-rich-blue"
+              className="flex-1 style={{ backgroundColor: 'hsl(var(--bg-elevated))' }} text-white hover:bg-rich-blue"
             >
               Continue Shopping
             </Button>

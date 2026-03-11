@@ -5,7 +5,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
       {/* Header */}
-      <section className="relative bg-gradient-to-br from-pearl-cream via-crystal-accents to-pearl-cream text-navy overflow-hidden py-20">
+      <section className="relative overflow-hidden py-20" style={{ backgroundColor: '#faf8f3' }}>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
 
@@ -17,12 +17,12 @@ export default function PrivacyPolicy() {
           </div>
 
           <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading">
-            <span className="text-navy">Privacy Policy</span>
+            <span className="text-primary">Privacy Policy</span>
           </h1>
 
           <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent rounded-full" />
 
-          <p className="text-navy/80 text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="style={{ color: 'hsl(var(--text-secondary))' }} text-xl max-w-3xl mx-auto leading-relaxed">
             Your privacy matters to us. We are committed to protecting your
             personal information with the same care we give to our crystal
             jewelry.
@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Information Collection */}
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Database className="h-6 w-6 text-ornate-frame-gold" />
@@ -45,10 +45,10 @@ export default function PrivacyPolicy() {
             <CardContent className="p-6">
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-navy mb-2">
+                  <h4 className="font-semibold text-primary mb-2">
                     Personal Information
                   </h4>
-                  <ul className="text-navy/80 text-sm space-y-1 ml-4">
+                  <ul className="style={{ color: 'hsl(var(--text-secondary))' }} text-sm space-y-1 ml-4">
                     <li>• Name, email address, and phone number</li>
                     <li>• Shipping and billing addresses</li>
                     <li>
@@ -58,10 +58,10 @@ export default function PrivacyPolicy() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy mb-2">
+                  <h4 className="font-semibold text-primary mb-2">
                     Website Usage
                   </h4>
-                  <ul className="text-navy/80 text-sm space-y-1 ml-4">
+                  <ul className="style={{ color: 'hsl(var(--text-secondary))' }} text-sm space-y-1 ml-4">
                     <li>• Pages visited and time spent on site</li>
                     <li>• Browser type and device information</li>
                     <li>• IP address and location data</li>
@@ -73,7 +73,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* How We Use Information */}
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Eye className="h-6 w-6 text-ornate-frame-gold" />
@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <ul className="text-navy/80 space-y-2">
+              <ul className="style={{ color: 'hsl(var(--text-secondary))' }} space-y-2">
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
                   <span>Process and fulfill your jewelry orders</span>
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Data Protection */}
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Lock className="h-6 w-6 text-ornate-frame-gold" />
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <ul className="text-navy/80 space-y-2">
+              <ul className="style={{ color: 'hsl(var(--text-secondary))' }} space-y-2">
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
                   <span>SSL encryption for all data transmission</span>
@@ -149,7 +149,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Information Sharing */}
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Globe className="h-6 w-6 text-ornate-frame-gold" />
@@ -157,11 +157,11 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-navy/80 mb-4">
+              <p className="style={{ color: 'hsl(var(--text-secondary))' }} mb-4">
                 We never sell your personal information. We may share
                 information only in these limited circumstances:
               </p>
-              <ul className="text-navy/80 space-y-2">
+              <ul className="style={{ color: 'hsl(var(--text-secondary))' }} space-y-2">
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
                   <span>With Etsy for order processing and payment</span>
@@ -186,7 +186,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Your Rights */}
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Shield className="h-6 w-6 text-ornate-frame-gold" />
@@ -194,10 +194,10 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-navy/80 mb-4">
+              <p className="style={{ color: 'hsl(var(--text-secondary))' }} mb-4">
                 Under Canadian privacy law, you have the right to:
               </p>
-              <ul className="text-navy/80 space-y-2">
+              <ul className="style={{ color: 'hsl(var(--text-secondary))' }} space-y-2">
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
                   <span>Access your personal information we hold</span>
@@ -228,7 +228,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Cookies */}
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Database className="h-6 w-6 text-ornate-frame-gold" />
@@ -236,25 +236,25 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-navy/80 mb-4">
+              <p className="style={{ color: 'hsl(var(--text-secondary))' }} mb-4">
                 We use cookies to enhance your browsing experience:
               </p>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-semibold text-navy mb-2">
+                  <h4 className="font-semibold text-primary mb-2">
                     Essential Cookies
                   </h4>
-                  <ul className="text-navy/70 text-sm space-y-1">
+                  <ul className="style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }} text-sm space-y-1">
                     <li>• Shopping cart functionality</li>
                     <li>• User authentication</li>
                     <li>• Security features</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy mb-2">
+                  <h4 className="font-semibold text-primary mb-2">
                     Analytics Cookies
                   </h4>
-                  <ul className="text-navy/70 text-sm space-y-1">
+                  <ul className="style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }} text-sm space-y-1">
                     <li>• Website performance</li>
                     <li>• User behavior insights</li>
                     <li>• Site improvement data</li>
@@ -265,7 +265,7 @@ export default function PrivacyPolicy() {
           </Card>
 
           {/* Contact Information */}
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <Mail className="h-6 w-6 text-ornate-frame-gold" />
@@ -273,11 +273,11 @@ export default function PrivacyPolicy() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="text-navy/80 mb-4">
+              <p className="style={{ color: 'hsl(var(--text-secondary))' }} mb-4">
                 If you have questions about this privacy policy or wish to
                 exercise your privacy rights, please contact us:
               </p>
-              <div className="space-y-2 text-navy/80">
+              <div className="space-y-2 style={{ color: 'hsl(var(--text-secondary))' }}">
                 <p>
                   <strong>Email:</strong> privacy@trovesandcoves.ca
                 </p>
@@ -294,7 +294,7 @@ export default function PrivacyPolicy() {
 
           {/* Updates */}
           <div className="text-center py-8">
-            <p className="text-navy/70 text-sm">
+            <p className="style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }} text-sm">
               Last updated: January 2025
               <br />
               We may update this privacy policy from time to time. Changes will

@@ -1,0 +1,244 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e3]:
+    - link "Skip to main content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+    - link "Skip to main content" [ref=e5] [cursor=pointer]:
+      - /url: "#main-content"
+    - banner [ref=e6]:
+      - navigation "Main navigation" [ref=e9]:
+        - link "TROVES & Coves Handcrafted Crystal Jewelry • Winnipeg" [ref=e10] [cursor=pointer]:
+          - /url: //
+          - img [ref=e13]
+          - generic [ref=e15]:
+            - generic [ref=e16]:
+              - generic [ref=e17]: TROVES
+              - generic [ref=e18]: "&"
+              - generic [ref=e19]: Coves
+            - generic [ref=e20]: Handcrafted Crystal Jewelry • Winnipeg
+        - generic [ref=e21]:
+          - link "Shop" [ref=e22] [cursor=pointer]:
+            - /url: //products
+          - link "About" [ref=e23] [cursor=pointer]:
+            - /url: //about
+          - link "Contact" [ref=e24] [cursor=pointer]:
+            - /url: //contact
+        - generic [ref=e25]:
+          - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+            - img [ref=e27]
+            - img
+            - generic [ref=e33]: Switch to dark mode
+          - link "Shopping cart" [ref=e34] [cursor=pointer]:
+            - /url: //checkout
+            - button "Shopping cart" [ref=e35]:
+              - img [ref=e36]
+    - main [ref=e43]:
+      - region "Welcome" [ref=e44]:
+        - generic [ref=e46]:
+          - heading "TROVES & Coves" [level=1] [ref=e47]:
+            - generic [ref=e48]: TROVES
+            - generic [ref=e49]: "&"
+            - generic [ref=e50]: Coves
+          - paragraph [ref=e51]: Handcrafted Crystal Jewelry
+          - paragraph [ref=e52]: Made in Canada
+          - link "Shop the Collection" [ref=e53] [cursor=pointer]:
+            - /url: /products
+        - generic [ref=e55]:
+          - generic [ref=e56]: Scroll
+          - img [ref=e57]
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - img [ref=e63]
+            - generic [ref=e65]: Curated With Intention
+          - heading "The Collection" [level=2] [ref=e66]
+          - paragraph [ref=e67]: Explore our curated selection of handcrafted crystal jewelry. Each piece blends elegance with natural crystal beauty— crafted with intention to empower your energy and enhance your presence.
+        - generic [ref=e68]:
+          - link "Wire Wrapped Crystal Pendant Collection Crystal Necklaces Wire Wrapped Crystal Pendant Collection Sacred collection of divine crystal pendants featuring lepidolite for tranquility, obsidian for protection, and citrine for manifestation. Each stone is lovingly wire-wrapped with golden intention, creating powerful talismans for spiritual awakening. $90.00 View" [ref=e69] [cursor=pointer]:
+            - /url: //products/1
+            - generic [ref=e70]:
+              - generic [ref=e71]:
+                - img "Wire Wrapped Crystal Pendant Collection" [ref=e72]
+                - generic [ref=e74]: Crystal Necklaces
+              - generic [ref=e75]:
+                - heading "Wire Wrapped Crystal Pendant Collection" [level=3] [ref=e76]
+                - paragraph [ref=e77]: Sacred collection of divine crystal pendants featuring lepidolite for tranquility, obsidian for protection, and citrine for manifestation. Each stone is lovingly wire-wrapped with golden intention, creating powerful talismans for spiritual awakening.
+                - generic [ref=e78]:
+                  - generic [ref=e79]: $90.00
+                  - generic [ref=e80]:
+                    - generic [ref=e81]: View
+                    - img [ref=e82]
+          - link "Gold Chain Crystal Necklace with Wire Wrapped Pendant Crystal Necklaces Gold Chain Crystal Necklace with Wire Wrapped Pendant Luminous gold chain adorned with sacred crystal pendant, lovingly wire-wrapped to channel divine energy. This celestial piece features a delicate crystal suspended in golden embrace. $70.00 View" [ref=e84] [cursor=pointer]:
+            - /url: //products/2
+            - generic [ref=e85]:
+              - generic [ref=e86]:
+                - img "Gold Chain Crystal Necklace with Wire Wrapped Pendant" [ref=e87]
+                - generic [ref=e89]: Crystal Necklaces
+              - generic [ref=e90]:
+                - heading "Gold Chain Crystal Necklace with Wire Wrapped Pendant" [level=3] [ref=e91]
+                - paragraph [ref=e92]: Luminous gold chain adorned with sacred crystal pendant, lovingly wire-wrapped to channel divine energy. This celestial piece features a delicate crystal suspended in golden embrace.
+                - generic [ref=e93]:
+                  - generic [ref=e94]: $70.00
+                  - generic [ref=e95]:
+                    - generic [ref=e96]: View
+                    - img [ref=e97]
+          - link "Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set Healing Crystals Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set Divine twin vessel set channeling abundant solar manifestation through sacred citrine alchemy! The ethereal choker embraces throat chakra consciousness with luminous pink pearls and protective hematite grounding. $200.00 View" [ref=e99] [cursor=pointer]:
+            - /url: //products/3
+            - generic [ref=e100]:
+              - generic [ref=e101]:
+                - img "Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set" [ref=e102]
+                - generic [ref=e104]: Healing Crystals
+              - generic [ref=e105]:
+                - heading "Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set" [level=3] [ref=e106]
+                - paragraph [ref=e107]: Divine twin vessel set channeling abundant solar manifestation through sacred citrine alchemy! The ethereal choker embraces throat chakra consciousness with luminous pink pearls and protective hematite grounding.
+                - generic [ref=e108]:
+                  - generic [ref=e109]: $200.00
+                  - generic [ref=e110]:
+                    - generic [ref=e111]: View
+                    - img [ref=e112]
+          - link "Unique Lapis Lazuli, Onyx, Smoky Quartz Multi-Stone Necklace Healing Crystals Unique Lapis Lazuli, Onyx, Smoky Quartz Multi-Stone Necklace Sacred five-stone harmony vessel weaving celestial wisdom through divine gemstone alchemy. Lapis Lazuli awakens third eye consciousness while Smoky Quartz grounds protective earthen energy. $80.00 View" [ref=e114] [cursor=pointer]:
+            - /url: //products/7
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - img "Unique Lapis Lazuli, Onyx, Smoky Quartz Multi-Stone Necklace" [ref=e117]
+                - generic [ref=e119]: Healing Crystals
+              - generic [ref=e120]:
+                - heading "Unique Lapis Lazuli, Onyx, Smoky Quartz Multi-Stone Necklace" [level=3] [ref=e121]
+                - paragraph [ref=e122]: Sacred five-stone harmony vessel weaving celestial wisdom through divine gemstone alchemy. Lapis Lazuli awakens third eye consciousness while Smoky Quartz grounds protective earthen energy.
+                - generic [ref=e123]:
+                  - generic [ref=e124]: $80.00
+                  - generic [ref=e125]:
+                    - generic [ref=e126]: View
+                    - img [ref=e127]
+          - link "Turquoise Beaded Necklace with Pearl Accents Crystal Necklaces Turquoise Beaded Necklace with Pearl Accents Sacred oceanic symphony vessel weaving ancient turquoise protection with celestial lapis wisdom. Divine turquoise channels protective fortune while enhancing sacred communication. 21 inches of divine protection. $70.00 View" [ref=e129] [cursor=pointer]:
+            - /url: //products/8
+            - generic [ref=e130]:
+              - generic [ref=e131]:
+                - img "Turquoise Beaded Necklace with Pearl Accents" [ref=e132]
+                - generic [ref=e134]: Crystal Necklaces
+              - generic [ref=e135]:
+                - heading "Turquoise Beaded Necklace with Pearl Accents" [level=3] [ref=e136]
+                - paragraph [ref=e137]: Sacred oceanic symphony vessel weaving ancient turquoise protection with celestial lapis wisdom. Divine turquoise channels protective fortune while enhancing sacred communication. 21 inches of divine protection.
+                - generic [ref=e138]:
+                  - generic [ref=e139]: $70.00
+                  - generic [ref=e140]:
+                    - generic [ref=e141]: View
+                    - img [ref=e142]
+          - link "Upcycled Gold Plated Enamel Pendant Necklace Crystal Necklaces Upcycled Gold Plated Enamel Pendant Necklace Sacred alchemical transformation vessel born from upcycled enamel flower consciousness into divine stationary pendant power. Peridot channels heart prosperity while citrine ignites solar confidence manifestation. $80.00 View" [ref=e144] [cursor=pointer]:
+            - /url: //products/9
+            - generic [ref=e145]:
+              - generic [ref=e146]:
+                - img "Upcycled Gold Plated Enamel Pendant Necklace" [ref=e147]
+                - generic [ref=e149]: Crystal Necklaces
+              - generic [ref=e150]:
+                - heading "Upcycled Gold Plated Enamel Pendant Necklace" [level=3] [ref=e151]
+                - paragraph [ref=e152]: Sacred alchemical transformation vessel born from upcycled enamel flower consciousness into divine stationary pendant power. Peridot channels heart prosperity while citrine ignites solar confidence manifestation.
+                - generic [ref=e153]:
+                  - generic [ref=e154]: $80.00
+                  - generic [ref=e155]:
+                    - generic [ref=e156]: View
+                    - img [ref=e157]
+        - link "View All Crystal Treasures" [ref=e160] [cursor=pointer]:
+          - /url: //products
+          - button "View All Crystal Treasures" [ref=e161]:
+            - generic [ref=e162]: View All Crystal Treasures
+            - img [ref=e163]
+      - generic [ref=e168]:
+        - img [ref=e170]
+        - heading "Embrace Your Transformation" [level=2] [ref=e172]
+        - paragraph [ref=e173]: Every crystal in our collection is chosen for its unique beauty and quality. When you wear our jewelry, you embrace bold femininity and masculine strength— statement pieces crafted with intention to empower your confidence and showcase your unique style.
+        - paragraph [ref=e174]: ✨ Handcrafted with intention in Winnipeg, Canada ✨
+    - contentinfo [ref=e175]:
+      - generic [ref=e177]:
+        - generic [ref=e178]:
+          - generic [ref=e179]:
+            - generic [ref=e180]:
+              - generic [ref=e181]: Troves
+              - generic [ref=e182]: "&"
+              - generic [ref=e183]: Coves
+            - paragraph [ref=e184]: Handcrafted crystal jewelry featuring 14k gold-filled wire and genuine gemstones. Each piece is thoughtfully designed and crafted in Winnipeg, Canada.
+            - generic [ref=e185]:
+              - link "Facebook" [ref=e186] [cursor=pointer]:
+                - /url: https://www.facebook.com/trovesandcoves
+                - img [ref=e187]
+              - link "Instagram" [ref=e189] [cursor=pointer]:
+                - /url: https://instagram.com/Troves_and_Coves
+                - img [ref=e190]
+              - link "Etsy Shop" [ref=e193] [cursor=pointer]:
+                - /url: https://www.etsy.com/ca/shop/TrovesandCoves
+                - img [ref=e194]
+              - link "Linktree" [ref=e198] [cursor=pointer]:
+                - /url: https://linktr.ee/TrovesandCoves
+                - img [ref=e199]
+          - generic [ref=e203]:
+            - heading "Collections" [level=3] [ref=e204]
+            - list [ref=e205]:
+              - listitem [ref=e206]:
+                - link "Crystal Necklaces" [ref=e207] [cursor=pointer]:
+                  - /url: //products/crystal-necklaces
+              - listitem [ref=e208]:
+                - link "Gemstone Necklaces" [ref=e209] [cursor=pointer]:
+                  - /url: //products/gemstone-necklaces
+              - listitem [ref=e210]:
+                - link "Leather Cord Pendants" [ref=e211] [cursor=pointer]:
+                  - /url: //products/leather-cord-pendants
+              - listitem [ref=e212]:
+                - link "All Products" [ref=e213] [cursor=pointer]:
+                  - /url: //products
+              - listitem [ref=e214]:
+                - link "Featured Items" [ref=e215] [cursor=pointer]:
+                  - /url: //
+              - listitem [ref=e216]:
+                - link "Contact" [ref=e217] [cursor=pointer]:
+                  - /url: //contact
+          - generic [ref=e218]:
+            - heading "Customer Care" [level=3] [ref=e219]
+            - list [ref=e220]:
+              - listitem [ref=e221]:
+                - link "Size Guide" [ref=e222] [cursor=pointer]:
+                  - /url: //size-guide
+              - listitem [ref=e223]:
+                - link "Jewelry Care" [ref=e224] [cursor=pointer]:
+                  - /url: //jewelry-care
+              - listitem [ref=e225]:
+                - link "Warranty" [ref=e226] [cursor=pointer]:
+                  - /url: //warranty
+              - listitem [ref=e227]:
+                - link "Returns & Exchanges" [ref=e228] [cursor=pointer]:
+                  - /url: //returns
+              - listitem [ref=e229]:
+                - link "Financing" [ref=e230] [cursor=pointer]:
+                  - /url: //financing
+              - listitem [ref=e231]:
+                - link "Contact Us" [ref=e232] [cursor=pointer]:
+                  - /url: //contact
+          - generic [ref=e233]:
+            - heading "Connect" [level=3] [ref=e234]
+            - generic [ref=e235]:
+              - generic [ref=e236]:
+                - img [ref=e237]
+                - generic [ref=e240]:
+                  - generic [ref=e241]: info@trovesandcoves.ca
+                  - generic [ref=e242]: We'd love to hear from you
+              - generic [ref=e243]:
+                - img [ref=e244]
+                - generic [ref=e247]:
+                  - generic [ref=e248]: Winnipeg, Manitoba
+                  - generic [ref=e249]: Handcrafted in Canada
+        - generic [ref=e250]:
+          - generic [ref=e251]:
+            - generic [ref=e252]:
+              - text: © 2026 Troves & Coves. All rights reserved. |
+              - link "Privacy Policy" [ref=e253] [cursor=pointer]:
+                - /url: //privacy-policy
+            - generic [ref=e254]:
+              - generic [ref=e255]: ◆
+              - generic [ref=e256]: Handcrafted in Winnipeg, Canada
+              - generic [ref=e257]: ◆
+          - link "Web Design by Reverb256 ✦" [ref=e259] [cursor=pointer]:
+            - /url: https://reverb256.github.io
+```

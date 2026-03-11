@@ -218,19 +218,19 @@ export default function Returns() {
             <div className="flex flex-wrap justify-center gap-4">
               <Badge
                 variant="outline"
-                className="border-troves-turquoise text-navy"
+                className="border-troves-turquoise text-primary"
               >
                 Customer Satisfaction First
               </Badge>
               <Badge
                 variant="outline"
-                className="border-skull-turquoise text-navy"
+                className="border-skull-turquoise text-primary"
               >
                 Quality Guaranteed
               </Badge>
               <Badge
                 variant="outline"
-                className="border-ornate-frame-gold text-navy"
+                className="border-ornate-frame-gold text-primary"
               >
                 Customer Support
               </Badge>

@@ -7,7 +7,7 @@ const HeroVersions = {
     commit: "063c27d",
     description: "Full-screen background image with navy overlay. Classic luxury jewelry aesthetic.",
     hero: (
-      <section className="relative bg-navy overflow-hidden min-h-[60vh] flex items-center">
+      <section className="relative style={{ backgroundColor: 'hsl(var(--bg-elevated))' }} overflow-hidden min-h-[60vh] flex items-center">
         <div className="absolute inset-0 z-10 bg-gradient-to-br from-blue-900/90 to-slate-900/90"></div>
         <div className="relative container mx-auto px-4 z-20">
           <div className="max-w-3xl">

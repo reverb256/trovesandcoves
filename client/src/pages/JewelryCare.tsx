@@ -115,7 +115,7 @@ export default function JewelleryCare() {
               return (
                 <Card
                   key={material.name}
-                  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm"
+                  className="shadow-lg border border-ornate-frame-gold/20 bg-white"
                 >
                   <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
                     <CardTitle className="flex items-center space-x-3">
@@ -139,7 +139,7 @@ export default function JewelleryCare() {
                         ))}
                       </ul>
                       <div className="p-3 bg-skull-turquoise/10 rounded-lg border border-ornate-frame-gold/20">
-                        <p className="text-navy text-sm font-medium">
+                        <p className="text-primary text-sm font-medium">
                           {material.crystalCare}
                         </p>
                       </div>
@@ -152,7 +152,7 @@ export default function JewelleryCare() {
         </div>
 
         {/* Crystal Care */}
-        <Card className="mb-12 shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+        <Card className="mb-12 shadow-lg border border-ornate-frame-gold/20 bg-white">
           <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
             <CardTitle className="flex items-center space-x-3">
               <Sparkles className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
@@ -166,7 +166,7 @@ export default function JewelleryCare() {
               {crystalCare.map(item => (
                 <div
                   key={item.crystal}
-                  className="border border-ornate-frame-gold/10 rounded-lg p-4 bg-pearl-cream/50"
+                  className="border border-ornate-frame-gold/10 rounded-lg p-4 style={{ backgroundColor: 'rgba(250, 248, 243, 0.5)' }}"
                 >
                   <h3 className="font-semibold mb-2" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
                     {item.crystal}
@@ -174,7 +174,7 @@ export default function JewelleryCare() {
                   <p className="text-sm mb-3" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>{item.care}</p>
                   <Badge
                     variant="secondary"
-                    className="bg-troves-turquoise/20 text-navy text-xs"
+                    className="bg-troves-turquoise/20 text-primary text-xs"
                   >
                     {item.energy}
                   </Badge>
@@ -186,7 +186,7 @@ export default function JewelleryCare() {
 
         {/* General Care Tips */}
         <div className="grid md:grid-cols-2 gap-8">
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3">
                 <Shield className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
@@ -194,7 +194,7 @@ export default function JewelleryCare() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <ul className="space-y-3 text-navy/80">
+              <ul className="space-y-3 text-primary/80">
                 <li className="flex items-start space-x-2">
                   <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
                   <span>
@@ -221,7 +221,7 @@ export default function JewelleryCare() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3">
                 <Droplets className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
@@ -229,7 +229,7 @@ export default function JewelleryCare() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <ul className="space-y-3 text-navy/80">
+              <ul className="space-y-3 text-primary/80">
                 <li className="flex items-start space-x-2">
                   <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
                   <span>Polish regularly with appropriate cleaning cloth</span>
@@ -252,7 +252,7 @@ export default function JewelleryCare() {
         </div>
 
         {/* Professional Services */}
-        <Card className="mt-12 shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
+        <Card className="mt-12 shadow-lg border border-ornate-frame-gold/20 bg-white">
           <CardContent className="p-8 text-center">
             <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
               Professional Care Services
@@ -264,7 +264,7 @@ export default function JewelleryCare() {
             </p>
             <Badge
               variant="outline"
-              className="border-troves-turquoise text-navy"
+              className="border-troves-turquoise text-primary"
             >
               Contact us for personalized care guidance
             </Badge>
