@@ -100,7 +100,7 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
             className="text-lg font-semibold"
             style={{
               fontFamily: "'Libre Baskerville', serif",
-              color: '#e1af2f'
+              color: '#C9A24A'
             }}
           >
             ${product.price}

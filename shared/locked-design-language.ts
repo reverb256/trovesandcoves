@@ -17,7 +17,7 @@ export const LOCKED_DESIGN_LANGUAGE = {
         text: "Troves",
         style: "clean turquoise print",
         typography: "Libre Baskerville, serif",
-        color: "#4abfbf", // Client's exact turquoise
+        color: "#3A8E8B", // Robin's luxury turquoise
         weight: "bold",
         transform: "none"
       },
@@ -25,13 +25,13 @@ export const LOCKED_DESIGN_LANGUAGE = {
         text: "Coves",
         fontStyle: "elegant cursive gold",
         typography: "Alex Brush, cursive",
-        color: "#e1af2f", // Client's deeper gold
+        color: "#C9A24A", // Robin's luxury gold (unified)
         weight: "400",
         transform: "none"
       },
       separator: {
         symbol: "&",
-        color: "#deb55b", // Soft gold
+        color: "#C9A24A", // Robin's luxury gold (unified)
         weight: "300"
       }
     },
@@ -44,22 +44,20 @@ export const LOCKED_DESIGN_LANGUAGE = {
    * These hex values are LOCKED and must not be changed
    */
   colorPalette: {
-    // CLIENT'S EXACT HEX VALUES
+    // ROBIN'S LUXURY PALETTE 2026 - Client's exact specifications
     primary: {
-      trovesTurquoise: "#4abfbf", // Primary brand accent - turquoise
-      covesGoldSoft: "#deb55b",    // Soft gold accent - refined luxury
-      covesGoldDeep: "#e1af2f",    // Deeper gold accent - sparing use
-      linenBackground: "#faf8f3",  // Main site background - soft linen
+      trovesTurquoise: "#3A8E8B", // Robin's luxury turquoise
+      covesGoldUnified: "#C9A24A", // Robin's luxury gold (unified - was soft/deep)
+      linenBackground: "#FFFFFF",  // Pure white background (was #faf8f3 linen)
       textPrimary: "#1f1f1f",      // Soft black / charcoal - main text
       textSecondary: "#5f5f5f"     // Muted grey - secondary text
     },
 
-    // Legacy HSL aliases (for reference only - use hex values above)
+    // HSL equivalents (for reference only - use hex values above)
     hslReference: {
-      trovesTurquoise: "hsl(174, 51%, 51%)",    // #4abfbf
-      covesGoldSoft: "hsl(43, 74%, 65%)",       // #deb55b
-      covesGoldDeep: "hsl(38, 74%, 56%)",       // #e1af2f
-      linenBackground: "hsl(40, 20%, 97%)",     // #faf8f3
+      trovesTurquoise: "hsl(176, 42%, 39%)",    // #3A8E8B
+      covesGoldUnified: "hsl(42, 74%, 54%)",    // #C9A24A
+      linenBackground: "hsl(0, 0%, 100%)",      // #FFFFFF
       textPrimary: "hsl(0, 0%, 12%)",           // #1f1f1f
       textSecondary: "hsl(0, 0%, 37%)"          // #5f5f5f
     }
@@ -163,10 +161,9 @@ export const LOCKED_DESIGN_LANGUAGE = {
     
     colorVariables: {
       required: [
-        "--troves-turquoise: #4abfbf",    // Primary brand accent
-        "--coves-gold-soft: #deb55b",      // Soft gold accent
-        "--coves-gold-deep: #e1af2f",      // Deeper gold accent
-        "--linen-background: #faf8f3",     // Main site background
+        "--troves-turquoise: #3A8E8B",    // Robin's luxury turquoise
+        "--coves-gold-unified: #C9A24A",   // Robin's luxury gold (unified)
+        "--linen-background: #FFFFFF",     // Pure white background
         "--text-primary: #1f1f1f",         // Soft black/charcoal
         "--text-secondary: #5f5f5f"        // Muted grey
       ]
@@ -192,8 +189,8 @@ export const LOCKED_DESIGN_LANGUAGE = {
 
     colourUsage: {
       prohibitedCombinations: ["blue-and-gold-generic", "troves-gold", "coves-yellow"],
-      requiredCombinations: ["troves-turquoise", "coves-gold-soft", "coves-gold-deep"],
-      allowedHexValues: ["#4abfbf", "#deb55b", "#e1af2f", "#faf8f3", "#1f1f1f", "#5f5f5f"]
+      requiredCombinations: ["troves-turquoise", "coves-gold-unified"],
+      allowedHexValues: ["#3A8E8B", "#C9A24A", "#FFFFFF", "#1f1f1f", "#5f5f5f"]
     },
 
     designElements: {

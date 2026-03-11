@@ -13,7 +13,7 @@ export default function Hero() {
               style={{
                 fontFamily: "Libre Baskerville, serif",
                 fontWeight: 700,
-                color: "#4abfbf",
+                color: "#3A8E8B",
                 textTransform: "uppercase",
                 letterSpacing: "0.12em"
               }}
@@ -21,10 +21,10 @@ export default function Hero() {
             >
               TROVES
             </span>
-            <span className="text-4xl md:text-6xl lg:text-7xl" style={{ fontFamily: "Alex Brush, cursive", color: "#e1af2f" }}>
+            <span className="text-4xl md:text-6xl lg:text-7xl" style={{ fontFamily: "Alex Brush, cursive", color: "#C9A24A" }}>
               &amp;
             </span>
-            <span style={{ fontFamily: "Alex Brush, cursive", color: "#e1af2f" }} className="text-5xl md:text-7xl lg:text-8xl">
+            <span style={{ fontFamily: "Alex Brush, cursive", color: "#C9A24A" }} className="text-5xl md:text-7xl lg:text-8xl">
               Coves
             </span>
             <span className="hidden"> | Handcrafted Crystal Jewelry & 14k Gold-Plated Necklaces</span>
@@ -50,13 +50,13 @@ export default function Hero() {
               fontWeight: 600,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "#faf8f3",
-              backgroundColor: "#4abfbf",
+              color: "#FFFFFF",
+              backgroundColor: "#3A8E8B",
               border: "none",
               borderRadius: "4px"
             }}
           >
-            Shop the Collection
+            Shop Collection
           </a>
 
         </div>
@@ -69,7 +69,7 @@ export default function Hero() {
                 style={{ color: "#5f5f5f", fontFamily: "Montserrat, sans-serif" }}>
             Scroll
           </span>
-          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style={{ color: "#4abfbf" }}>
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" style={{ color: "#3A8E8B" }}>
             <path d="M10 14l-5-5h10l-5 5z" />
           </svg>
         </div>

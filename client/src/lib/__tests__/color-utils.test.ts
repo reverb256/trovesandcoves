@@ -1,49 +1,33 @@
 import { getWCAGCompliantColor, isBrandColorLargeEnough } from '../color-utils';
 
-describe('WCAG Color Utilities', () => {
+describe('WCAG Color Utilities - Robin\'s Luxury Palette 2026', () => {
   describe('getWCAGCompliantColor', () => {
     it('should return WCAG compliant turquoise for small text', () => {
       const result = getWCAGCompliantColor('turquoise', 14);
-      expect(result).toBe('hsl(174 70% 30%)'); // WCAG AA compliant
+      expect(result).toBe('hsl(176 42% 30%)'); // WCAG AA compliant
     });
 
     it('should return brand turquoise for large text (18px+)', () => {
       const result = getWCAGCompliantColor('turquoise', 24);
-      expect(result).toBe('#4abfbf'); // Brand color OK for large text
+      expect(result).toBe('#3A8E8B'); // Robin's luxury turquoise - OK for large text
     });
 
     it('should return WCAG compliant gold for small text', () => {
       const result = getWCAGCompliantColor('gold', 14);
-      expect(result).toBe('hsl(38 80% 35%)'); // WCAG AA compliant
+      expect(result).toBe('hsl(42 74% 35%)'); // WCAG AA compliant
     });
 
     it('should return brand gold for large text (18px+)', () => {
       const result = getWCAGCompliantColor('gold', 24);
-      expect(result).toBe('#e1af2f'); // Brand color OK for large text
+      expect(result).toBe('#C9A24A'); // Robin's luxury gold - OK for large text
     });
 
     it('should return brand color for exactly 18px text', () => {
       const turquoiseResult = getWCAGCompliantColor('turquoise', 18);
-      expect(turquoiseResult).toBe('#4abfbf');
+      expect(turquoiseResult).toBe('#3A8E8B');
 
       const goldResult = getWCAGCompliantColor('gold', 18);
-      expect(goldResult).toBe('#e1af2f');
-    });
-
-    it('should return WCAG compliant variant for gold1', () => {
-      const smallResult = getWCAGCompliantColor('gold1', 14);
-      expect(smallResult).toBe('hsl(43 78% 35%)');
-
-      const largeResult = getWCAGCompliantColor('gold1', 24);
-      expect(largeResult).toBe('#deb55b');
-    });
-
-    it('should return WCAG compliant variant for gold2', () => {
-      const smallResult = getWCAGCompliantColor('gold2', 14);
-      expect(smallResult).toBe('hsl(38 80% 35%)');
-
-      const largeResult = getWCAGCompliantColor('gold2', 24);
-      expect(largeResult).toBe('#e1af2f');
+      expect(goldResult).toBe('#C9A24A');
     });
   });
 

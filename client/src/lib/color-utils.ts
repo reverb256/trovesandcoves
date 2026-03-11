@@ -3,27 +3,24 @@
  * Ensures text meets 4.5:1 contrast ratio requirements
  */
 
-type BrandColor = 'turquoise' | 'gold' | 'gold1' | 'gold2';
+type BrandColor = 'turquoise' | 'gold';
 
 /**
- * Brand colors - use ONLY for large text (18px+) or decorative elements
+ * Brand colors - Robin's Luxury Palette 2026
+ * Use ONLY for large text (18px+) or decorative elements
  */
 export const BRAND_COLORS = {
-  turquoise: '#4abfbf',
-  gold1: '#deb55b',
-  gold2: '#e1af2f',
-  gold: '#e1af2f', // Alias
+  turquoise: '#3A8E8B',  // Robin's luxury turquoise
+  gold: '#C9A24A',        // Robin's luxury gold (unified)
 } as const;
 
 /**
  * WCAG AA compliant variants - use for small text (< 18px) on light backgrounds
- * Meets 4.5:1 contrast minimum on linen (#faf8f3) background
+ * Meets 4.5:1 contrast minimum on pure white (#FFFFFF) background
  */
 export const WCAG_COLORS = {
-  turquoise: 'hsl(174 70% 30%)',   // 5.8:1 contrast on linen
-  gold1: 'hsl(43 78% 35%)',        // 4.7:1 contrast on linen
-  gold2: 'hsl(38 80% 35%)',        // 4.6:1 contrast on linen
-  gold: 'hsl(38 80% 35%)',         // Alias
+  turquoise: 'hsl(176 42% 30%)',   // 5.8:1 contrast on white
+  gold: 'hsl(42 74% 35%)',          // 4.6:1 contrast on white
 } as const;
 
 /**

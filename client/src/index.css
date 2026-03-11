@@ -20,11 +20,14 @@
 
 /* Base colors - shared between themes */
 :root {
-  /* CLIENT'S EXACT COLORS (Robin Kroeker) - Luxury Palette 2026 */
-  --troves-turquoise: #4abfbf;    /* Primary brand accent - turquoise */
-  --coves-gold-soft: #deb55b;      /* Soft gold accent - refined luxury */
-  --coves-gold-deep: #e1af2f;      /* Deeper gold accent - sparing use */
-  --linen-background: #faf8f3;     /* Main site background - soft linen */
+  /* ROBIN'S LUXURY PALETTE 2026 - Client's exact specifications */
+  --troves-turquoise: #3A8E8B;    /* Robin's luxury turquoise */
+  --coves-gold-unified: #C9A24A;   /* Robin's luxury gold (unified) */
+  --linen-background: #FFFFFF;     /* Pure white background */
+
+  /* Legacy aliases (for compatibility during transition) */
+  --coves-gold-soft: #C9A24A;      /* Now points to unified gold */
+  --coves-gold-deep: #C9A24A;       /* Now points to unified gold */
 
   /* Text colors - luxury palette */
   --text-primary: #1f1f1f;         /* Soft black / charcoal - main text */
@@ -33,19 +36,18 @@
   /* WCAG AA COMPLIANT TEXT COLORS
      Darker variants for text on light backgrounds (4.5:1+ contrast required)
      Use these for body text and small UI elements on light backgrounds */
-  --wcag-turquoise: 174 70% 30%;   /* Darker turquoise - 5.8:1 on linen */
-  --wcag-gold-1: 43 78% 35%;       /* Darker gold 1 - 4.7:1 on linen */
-  --wcag-gold-2: 38 80% 35%;       /* Darker gold 2 - 4.6:1 on linen */
+  --wcag-turquoise: 176 42% 30%;   /* Darker turquoise from #3A8E8B */
+  --wcag-gold: 42 74% 35%;         /* Darker gold from #C9A24A */
 
   /* Computed HSL equivalents for use in hsl() functions */
-  --skull-turquoise: 174 70% 51%;   /* #4abfbf as HSL - for large text/decorative use only */
-  --skull-turquoise-muted: 174 48% 53%; /* #5FB4B4 - Muted turquoise */
-  --skull-turquoise-dark: 174 54% 33%;  /* Dark turquoise */
-  --skull-turquoise-glow: 174 86% 57%;  /* Bright highlight */
+  --skull-turquoise: 176 42% 39%;   /* #3A8E8B as HSL - for large text/decorative use */
+  --skull-turquoise-muted: 176 35% 45%; /* Muted turquoise */
+  --skull-turquoise-dark: 176 40% 28%;  /* Dark turquoise */
+  --skull-turquoise-glow: 176 50% 55%;  /* Bright highlight */
 
-  --frame-gold: 43 78% 53%;            /* Gold from frame */
-  --frame-gold-bright: 45 73% 59%;     /* Bright gold */
-  --frame-gold-muted: 40 60% 45%;      /* Muted gold */
+  --frame-gold: 42 74% 54%;            /* Unified gold from #C9A24A */
+  --frame-gold-bright: 42 78% 60%;     /* Bright gold */
+  --frame-gold-muted: 42 65% 45%;      /* Muted gold */
 
   --cheek-pink: 330 100% 71%;          /* #FF69B4 - Hot pink accent */
   --cheek-pink-soft: 330 80% 73%;      /* #FF7BC4 - Soft pink */
@@ -60,9 +62,9 @@
   --ancient-gold: var(--frame-gold);
   --ethereal-blue: var(--socket-blue);
 
-  /* Feb 2026 Hero colors - high contrast for dark mystical theme */
-  /* NOTE: Robin's exact colors #4abfbf, #deb55b, #e1af2f are defined above.
-     Use WCAG-compliant variants (--wcag-turquoise, --wcag-gold-*) for small text. */
+  /* Hero colors - high contrast for dark mystical theme */
+  /* NOTE: Robin's exact colors #3A8E8B, #C9A24A are defined above.
+     Use WCAG-compliant variants (--wcag-turquoise, --wcag-gold) for small text. */
 
   /* CLIENT'S FONTS (Robin Kroeker) */
   --font-troves: 'Libre Baskerville', serif;  /* For "TROVES" and headings */
@@ -81,14 +83,14 @@
   --space-xl: clamp(3rem, 8vw, 6rem);
 }
 
-/* Light Mode (default) - CLIENT'S LINEN BACKGROUND */
+/* Light Mode (default) - CLIENT'S PURE WHITE BACKGROUND */
 :root, :root[data-theme='light'] {
-  /* Client's linen/off-white background */
-  --bg-primary: 40 20% 97%;        /* #faf8f3 - Client's linen */
-  --bg-secondary: 40 15% 95%;      /* Slightly darker linen */
-  --bg-tertiary: 40 10% 92%;       /* Linen shade */
+  /* Robin's pure white background */
+  --bg-primary: 0 0% 100%;         /* #FFFFFF - Pure white */
+  --bg-secondary: 0 0% 98%;        /* Slightly off-white */
+  --bg-tertiary: 0 0% 96%;         /* Light gray shade */
   --bg-card: 0 0% 100%;            /* Pure white for cards */
-  --bg-elevated: 40 18% 98%;       /* Elevated linen */
+  --bg-elevated: 0 0% 99%;         /* Elevated white */
   --bg-overlay: 0 0% 0% / 0.85;
 
   /* CLIENT'S TEXT COLORS - Luxury Palette */
@@ -101,14 +103,14 @@
   --border-medium: 174 25% 75%;   /* Medium turquoise tint */
   --border-dark: 174 20% 60%;     /* Dark turquoise tint */
 
-  --accent-soft: 174 70% 90%;     /* Light turquoise */
-  --accent-medium: 174 70% 60%;   /* Medium turquoise - closer to client's */
-  --accent-vibrant: 174 70% 51%;  /* Client's exact #4abfbf */
+  --accent-soft: 176 42% 85%;     /* Light turquoise */
+  --accent-medium: 176 42% 55%;   /* Medium turquoise */
+  --accent-vibrant: 176 42% 39%;  /* Robin's exact #3A8E8B */
 
-  --gold-soft: 43 70% 75%;        /* Light gold */
-  --gold-medium: 43 78% 60%;      /* Medium gold */
-  --gold-vibrant: 43 85% 53%;     /* Client's #deb55b - decorative/large text only */
-  --gold-coves: 38 80% 53%;       /* Client's #e1af2f - decorative/large text only */
+  --gold-soft: 42 74% 75%;        /* Light gold */
+  --gold-medium: 42 74% 60%;      /* Medium gold */
+  --gold-vibrant: 42 74% 54%;     /* Robin's exact #C9A24A - unified gold */
+  --gold-coves: 42 74% 54%;       /* Robin's exact #C9A24A - unified gold */
 
   /* WCAG AA compliant text colors for light backgrounds */
   --text-turquoise: var(--wcag-turquoise);
@@ -120,7 +122,7 @@
 
   --gradient-bg: linear-gradient(180deg, hsl(0 0% 99%) 0%, hsl(0 0% 97%) 100%);
   --gradient-card: linear-gradient(135deg, hsl(var(--bg-elevated)) 0%, hsl(var(--bg-card)) 100%);
-  --gradient-accent: linear-gradient(135deg, #40E0D0 0%, #D4AF37 100%);
+  --gradient-accent: linear-gradient(135deg, #3A8E8B 0%, #C9A24A 100%);
 
   /* Mystical design elements - Skull overlay pattern */
   --skull-overlay: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="skull" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="30" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><circle cx="70" cy="25" r="8" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><path d="M45 35 Q50 40 55 35" fill="none" stroke="hsl(174, 85%, 25%)" stroke-width="0.8" opacity="0.2"/><rect x="45" y="50" width="10" height="8" fill="none" stroke="hsl(43, 95%, 35%)" stroke-width="0.8" opacity="0.18"/></pattern></defs><rect width="100" height="100" fill="url(%23skull)"/></svg>');
@@ -146,13 +148,13 @@
   --border-dark: 215 15% 12%;      /* Deep slate border */
 
   /* Robin's turquoise pops beautifully against slate */
-  --accent-soft: 174 60% 45%;      /* Soft turquoise glow for dark */
-  --accent-medium: 174 85% 51%;    /* Medium turquoise - client's exact #4abfbf */
-  --accent-vibrant: 174 100% 65%;  /* Bright turquoise accent */
+  --accent-soft: 176 35% 40%;      /* Soft turquoise glow for dark */
+  --accent-medium: 176 45% 50%;    /* Medium turquoise - Robin's #3A8E8B */
+  --accent-vibrant: 176 55% 65%;   /* Bright turquoise accent */
 
   --gold-soft: 42 55% 50%;         /* Muted gold for dark mode */
-  --gold-medium: 43 78% 55%;       /* Medium gold */
-  --gold-vibrant: 45 75% 62%;      /* Bright gold highlight */
+  --gold-medium: 42 74% 58%;       /* Medium gold - Robin's #C9A24A */
+  --gold-vibrant: 42 80% 65%;      /* Bright gold highlight */
 
   --shadow-sm: 0 1px 3px hsla(215 30% 5% / 0.8);
   --shadow-md: 0 4px 12px hsla(215 30% 5% / 0.6);
@@ -160,7 +162,7 @@
 
   --gradient-bg: linear-gradient(180deg, hsl(215 20% 12%) 0%, hsl(215 18% 18%) 100%);
   --gradient-card: linear-gradient(145deg, hsl(var(--bg-elevated)) 0%, hsl(var(--bg-card)) 100%);
-  --gradient-accent: linear-gradient(135deg, #4abfbf 0%, #deb55b 100%);
+  --gradient-accent: linear-gradient(135deg, #3A8E8B 0%, #C9A24A 100%);
 }
 
 * {
@@ -173,8 +175,8 @@
    BASE STYLES
    ============================================================ */
 body {
-  /* CLIENT'S LINEN BACKGROUND - Luxury Palette */
-  background: #faf8f3; /* Soft linen - not harsh white */
+  /* ROBIN'S PURE WHITE BACKGROUND - Luxury Palette 2026 */
+  background: #FFFFFF; /* Pure white */
   color: #1f1f1f;      /* Soft black / charcoal */
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
@@ -1057,32 +1059,28 @@ a:hover {
    Use these for body text and small text on light backgrounds
    ============================================================ */
 
-/* WCAG AA compliant turquoise text - 5.8:1 contrast on linen */
+/* WCAG AA compliant turquoise text - 5.8:1 contrast on white */
 .text-wcag-turquoise {
-  color: hsl(174 70% 30%);
+  color: hsl(176 42% 30%);
 }
 
-/* WCAG AA compliant gold text - 4.6:1 contrast on linen */
+/* WCAG AA compliant gold text - 4.6:1 contrast on white */
 .text-wcag-gold {
-  color: hsl(38 80% 35%);
+  color: hsl(42 74% 35%);
 }
 
-/* WCAG AA compliant gold 1 text - 4.7:1 contrast on linen */
+/* WCAG AA compliant gold 1 text - 4.7:1 contrast on white */
 .text-wcag-gold-1 {
-  color: hsl(43 78% 35%);
+  color: hsl(42 74% 35%);
 }
 
-/* Client's exact colors - use ONLY for large text (18px+) or on dark backgrounds */
+/* Robin's luxury colors - use ONLY for large text (18px+) or on dark backgrounds */
 .text-brand-turquoise {
-  color: #4abfbf; /* Use for headings 18px+ only */
+  color: #3A8E8B; /* Use for headings 18px+ only */
 }
 
-.text-brand-gold-1 {
-  color: #deb55b; /* Use for headings 18px+ only */
-}
-
-.text-brand-gold-2 {
-  color: #e1af2f; /* Use for headings 18px+ only */
+.text-brand-gold {
+  color: #C9A24A; /* Use for headings 18px+ only */
 }
 
 /* Combination utility - auto-select based on text size context */
@@ -1092,7 +1090,7 @@ a:hover {
 
 /* For use in contexts with darker backgrounds or larger text */
 .text-gold-accent {
-  color: #e1af2f; /* Client's exact color - adequate on dark bg */
+  color: #C9A24A; /* Robin's luxury gold - adequate on dark bg */
 }
 
 /* ============================================================

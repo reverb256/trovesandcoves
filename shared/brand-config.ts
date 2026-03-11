@@ -38,23 +38,23 @@ export const BRAND_CONFIG = {
 
   // CLIENT'S EXACT COLOR SPECIFICATIONS (Robin)
   colors: {
-    // Primary brand colors
-    turquoise: "#4abfbf", // Client's exact turquoise
-    gold1: "#deb55b", // Client's first gold shade
-    gold2: "#e1af2f", // Client's second gold shade
-    background: "#faf8f3", // Client's linen/off-white background
+    // Primary brand colors - Robin's Luxury Palette 2026
+    turquoise: "#3A8E8B", // Robin's luxury turquoise
+    gold1: "#C9A24A",     // Robin's luxury gold (unified)
+    gold2: "#C9A24A",     // Robin's luxury gold (unified - was separate shades)
+    background: "#FFFFFF", // Pure white background
 
     // Semantic color aliases
-    trovesTurquoise: "#4abfbf",
-    covesGold: "#e1af2f",
-    separatorGold: "#deb55b",
-    linenBackground: "#faf8f3",
+    trovesTurquoise: "#3A8E8B",
+    covesGold: "#C9A24A",
+    separatorGold: "#C9A24A",
+    linenBackground: "#FFFFFF",
 
     // Supporting palette - LUXURY PALETTE 2026 (Robin's exact spec)
     textPrimary: "#1f1f1f",   // Soft black / charcoal - main text
     textSecondary: "#5f5f5f", // Muted grey - secondary text
-    lightText: "#faf8f3",     // Linen background
-    accent: "#4abfbf"         // Primary brand accent
+    lightText: "#FFFFFF",     // Pure white background
+    accent: "#3A8E8B"         // Primary brand accent
   },
 
   // CLIENT'S FONT SPECIFICATIONS
@@ -63,7 +63,7 @@ export const BRAND_CONFIG = {
     troves: {
       fontFamily: "'Libre Baskerville', serif",
       fontWeight: "700",
-      color: "#4abfbf",
+      color: "#3A8E8B",
       textTransform: "uppercase" as const,
       letterSpacing: "0.08em"
     },
@@ -73,7 +73,7 @@ export const BRAND_CONFIG = {
       fontFamily: "'Alex Brush', cursive",
       fontWeight: "400",
       fontStyle: "normal",
-      color: "#e1af2f"
+      color: "#C9A24A"
     },
 
     // Body & UI - Montserrat
@@ -136,7 +136,7 @@ export const BRAND_CONFIG = {
   // AI ORCHESTRATION GUIDELINES
   aiGuidelines: {
     brandVoice: "Empowering, transformative, intentional - elevate style and spirit through crafted pieces",
-    colorUsage: "Use #4abfbf for Troves, #e1af2f/#deb55b for Coves, #faf8f3 for backgrounds",
+    colorUsage: "Use #3A8E8B for Troves, #C9A24A for Coves (unified gold), #FFFFFF for backgrounds",
     imagery: "Statement necklaces and bracelets, 14k gold-plated chains, natural crystals, handcrafted quality",
     messaging: "Power of transformation, crafted with intention, empower your energy, enhance your presence, bold femininity and masculine strength"
   },
@@ -144,9 +144,9 @@ export const BRAND_CONFIG = {
   // IMMUTABLE RULES - CLIENT SPECIFIED
   rules: {
     logoOrdering: "Always 'Troves & Coves' - never reverse",
-    colorConsistency: "#4abfbf for Troves, #e1af2f/#deb55b for Coves - no exceptions",
+    colorConsistency: "#3A8E8B for Troves, #C9A24A for Coves - no exceptions",
     fontPairing: "Libre Baskerville for Troves, Alex Brush for Coves - locked pairing",
-    background: "#faf8f3 (linen) for primary backgrounds",
+    background: "#FFFFFF (pure white) for primary backgrounds",
     brandIntegrity: "All responses must reflect transformative crystal jewelry expertise—elevating style and spirit through crafted intention"
   }
 } as const;

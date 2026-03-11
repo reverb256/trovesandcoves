@@ -19,7 +19,7 @@
 .sg-header {
   text-align: center;
   padding: 4rem 0;
-  border-bottom: 2px solid #deb55b;
+  border-bottom: 2px solid #C9A24A;
   margin-bottom: 3rem;
 }
 
@@ -35,7 +35,7 @@
   font-family: 'Libre Baskerville', serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #4abfbf;
+  color: #3A8E8B;
   margin-bottom: 0.5rem;
 }
 
@@ -61,7 +61,7 @@
   font-family: 'Libre Baskerville', serif;
   font-size: 1.75rem;
   font-weight: 700;
-  color: #4abfbf;
+  color: #3A8E8B;
   margin-bottom: 0.5rem;
 }
 
@@ -135,8 +135,8 @@
 .color-code {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.875rem;
-  color: #4abfbf;
-  background: #faf8f3;
+  color: #3A8E8B;
+  background: #FFFFFF;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   flex: 1;
@@ -153,7 +153,7 @@
 }
 
 .copy-btn:hover {
-  background: #faf8f3;
+  background: #FFFFFF;
 }
 
 .color-usage {
@@ -206,7 +206,7 @@
 
 .font-preview {
   padding: 2rem;
-  background: #faf8f3;
+  background: #FFFFFF;
   text-align: center;
   min-height: 150px;
   display: flex;
@@ -242,7 +242,7 @@
 .font-category {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
-  color: #e1af2f;
+  color: #C9A24A;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -273,7 +273,7 @@
 .weight-badge {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
-  background: #4abfbf;
+  background: #3A8E8B;
   color: white;
   padding: 0.125rem 0.5rem;
   border-radius: 12px;
@@ -283,7 +283,7 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
   color: #2c2c2c;
-  background: #faf8f3;
+  background: #FFFFFF;
   padding: 0.5rem;
   border-radius: 4px;
   display: block;
@@ -300,7 +300,7 @@
 .logo-display {
   text-align: center;
   padding: 3rem;
-  background: #faf8f3;
+  background: #FFFFFF;
   border-radius: 12px;
 }
 
@@ -324,7 +324,7 @@
 .logo-rules h3 {
   font-family: 'Libre Baskerville', serif;
   font-size: 1.25rem;
-  color: #4abfbf;
+  color: #3A8E8B;
   margin-bottom: 1rem;
 }
 
@@ -346,7 +346,7 @@
   content: "◆";
   position: absolute;
   left: 0;
-  color: #deb55b;
+  color: #C9A24A;
 }
 
 /* Type Scale */
@@ -361,7 +361,7 @@
   align-items: baseline;
   gap: 2rem;
   padding: 1rem;
-  background: #faf8f3;
+  background: #FFFFFF;
   border-radius: 8px;
 }
 
@@ -387,14 +387,14 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #faf8f3;
+  background: #FFFFFF;
   border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
 }
 
 .spacing-bar {
   height: 24px;
-  background: linear-gradient(90deg, #4abfbf, #e1af2f);
+  background: linear-gradient(90deg, #3A8E8B, #C9A24A);
   border-radius: 4px;
 }
 
@@ -427,7 +427,7 @@
 }
 
 .btn-primary {
-  background: #4abfbf;
+  background: #3A8E8B;
   color: white;
   border: none;
 }
@@ -437,7 +437,7 @@
 }
 
 .btn-secondary {
-  background: #e1af2f;
+  background: #C9A24A;
   color: white;
   border: none;
 }
@@ -448,12 +448,12 @@
 
 .btn-outline {
   background: transparent;
-  color: #4abfbf;
-  border: 2px solid #4abfbf;
+  color: #3A8E8B;
+  border: 2px solid #3A8E8B;
 }
 
 .btn-outline:hover {
-  background: #4abfbf;
+  background: #3A8E8B;
   color: white;
 }
 
@@ -523,7 +523,7 @@
   content: "✦";
   position: absolute;
   left: 0;
-  color: #e1af2f;
+  color: #C9A24A;
 }
 
 .voice-content blockquote {
@@ -534,7 +534,7 @@
 .sg-footer {
   text-align: center;
   padding: 3rem 0;
-  border-top: 2px solid #deb55b;
+  border-top: 2px solid #C9A24A;
   font-family: 'Montserrat', sans-serif;
   color: #2c2c2c;
 }

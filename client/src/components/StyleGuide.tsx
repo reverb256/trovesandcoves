@@ -18,28 +18,22 @@ export function StyleGuide() {
 
   const colors = [
     {
-      name: "Troves Turquoise",
-      hex: "#4abfbf",
-      rgb: "rgb(74, 191, 191)",
+      name: "Troves Turquoise (Luxury 2026)",
+      hex: "#3A8E8B",
+      rgb: "rgb(58, 142, 139)",
       usage: "Primary brand color, 'TROVES' text, links, CTAs"
     },
     {
-      name: "Coves Gold 1",
-      hex: "#deb55b",
-      rgb: "rgb(222, 181, 91)",
-      usage: "Ampersand (&), accents, borders"
+      name: "Coves Gold (Unified)",
+      hex: "#C9A24A",
+      rgb: "rgb(201, 162, 74)",
+      usage: "'Coves' text, ampersand (&), accents, decorative elements"
     },
     {
-      name: "Coves Gold 2",
-      hex: "#e1af2f",
-      rgb: "rgb(225, 175, 47)",
-      usage: "'Coves' text, highlights, decorative elements"
-    },
-    {
-      name: "Linen Background",
-      hex: "#faf8f3",
-      rgb: "rgb(250, 248, 243)",
-      usage: "Primary background, 'not so harsh on the eyes'"
+      name: "Pure White Background",
+      hex: "#FFFFFF",
+      rgb: "rgb(255, 255, 255)",
+      usage: "Primary background - clean white aesthetic"
     },
     {
       name: "Dark Text",
@@ -74,7 +68,7 @@ export function StyleGuide() {
   ];
 
   return (
-    <div className="style-guide-page" style={{ backgroundColor: "#faf8f3", minHeight: "100vh" }}>
+    <div className="style-guide-page" style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}>
       <div className="style-guide-container">
         {/* Header */}
         <header className="sg-header">
@@ -132,24 +126,24 @@ export function StyleGuide() {
 
           <div className="combo-grid">
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "#faf8f3", border: "2px solid hsl(var(--accent-vibrant))" }}>
+              <div className="combo-preview" style={{ backgroundColor: "#FFFFFF", border: "2px solid hsl(var(--accent-vibrant))" }}>
                 <span style={{ color: "hsl(var(--accent-vibrant))", fontFamily: "Libre Baskerville, serif" }}>Primary</span>
               </div>
-              <p>Turquoise on Linen</p>
+              <p>Turquoise on White</p>
             </div>
 
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "#faf8f3", border: "2px solid hsl(var(--gold-medium))" }}>
+              <div className="combo-preview" style={{ backgroundColor: "#FFFFFF", border: "2px solid hsl(var(--gold-medium))" }}>
                 <span style={{ color: "hsl(var(--gold-medium))", fontFamily: "Alex Brush, cursive" }}>Accent</span>
               </div>
-              <p>Gold on Linen</p>
+              <p>Gold on White</p>
             </div>
 
             <div className="combo-card">
               <div className="combo-preview" style={{ backgroundColor: "hsl(var(--accent-vibrant))" }}>
-                <span style={{ color: "#faf8f3", fontFamily: "Libre Baskerville, serif" }}>Inverse</span>
+                <span style={{ color: "#FFFFFF", fontFamily: "Libre Baskerville, serif" }}>Inverse</span>
               </div>
-              <p>Linen on Turquoise</p>
+              <p>White on Turquoise</p>
             </div>
 
             <div className="combo-card">
@@ -214,12 +208,12 @@ export function StyleGuide() {
             </div>
 
             <div className="logo-rules">
-              <h3>Logo Rules</h3>
+              <h3>Logo Rules (Luxury Palette 2026)</h3>
               <ul>
                 <li>Always display as "TROVES & Coves" - never reverse order</li>
-                <li>"TROVES" must be Libre Baskerville, uppercase, #4abfbf</li>
-                <li>"Coves" must be Alex Brush, #e1af2f</li>
-                <li>Ampersand (&) must be Alex Brush, #deb55b</li>
+                <li>"TROVES" must be Libre Baskerville, uppercase, #3A8E8B</li>
+                <li>"Coves" must be Alex Brush, #C9A24A (unified gold)</li>
+                <li>Ampersand (&) must be Alex Brush, #C9A24A (unified gold)</li>
                 <li>Maintain clear space around logo equal to height of "&"</li>
               </ul>
             </div>

@@ -41,8 +41,8 @@
       "purpose": "any"
     }
   ],
-  "theme_color": "#4abfbf",
-  "background_color": "#faf8f3",
+  "theme_color": "#3A8E8B",
+  "background_color": "#FFFFFF",
   "display": "standalone",
   "orientation": "portrait-primary",
   "start_url": "/",

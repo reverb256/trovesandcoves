@@ -4,8 +4,8 @@
   "description": "Handcrafted crystal jewelry featuring 14k gold-filled wire and genuine gemstones. Each piece is thoughtfully designed and crafted in Winnipeg, Canada.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#faf8f3",
-  "theme_color": "#4abfbf",
+  "background_color": "#FFFFFF",
+  "theme_color": "#3A8E8B",
   "orientation": "portrait-primary",
   "categories": ["shopping", "lifestyle", "jewelry"],
   "icons": [
