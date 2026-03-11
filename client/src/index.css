@@ -1055,6 +1055,119 @@ a:hover {
 }
 
 /* ============================================================
+   COLOR CONSISTENCY & DISPLAY GAMUT SUPPORT
+   Modern CSS for consistent colors across different displays
+
+   IMPORTANT: After deploying changes, clear service worker cache:
+   1. Open DevTools > Application > Service Workers
+   2. Click "Unregister" to remove old service worker
+   3. Hard refresh (Ctrl+Shift+R / Cmd+Shift+R)
+   ============================================================ */
+
+/* Color scheme preference - helps browsers render colors correctly */
+:root {
+  color-scheme: light dark;
+  /* Allow user's color preference to influence rendering */
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* Display P3 (wide gamut) - richer, more vibrant colors on modern displays */
+@media (color-gamut: p3) {
+  :root {
+    /* P3 colors are more vibrant - use color() function for wide gamut */
+    --troves-turquoise-p3: color(display-p3 0.29 0.62 0.61);
+    --coves-gold-p3: color(display-p3 0.82 0.67 0.33);
+
+    /* Enhanced accent colors for P3 displays */
+    --accent-vibrant-p3: color(display-p3 0.23 0.56 0.55);
+    --gold-vibrant-p3: color(display-p3 0.79 0.64 0.29);
+  }
+
+  /* Use P3 colors where they make the most impact */
+  .text-brand-turquoise,
+  .text-turquoise-bright,
+  .text-turquoise {
+    color: color(display-p3 0.23 0.56 0.55);
+  }
+
+  .text-brand-gold,
+  .text-gold-bright,
+  .text-gold {
+    color: color(display-p3 0.79 0.64 0.29);
+  }
+
+  /* Gradient accents get extra vibrancy on P3 */
+  .gradient-accent-p3 {
+    background: linear-gradient(
+      135deg,
+      color(display-p3 0.23 0.56 0.55) 0%,
+      color(display-p3 0.79 0.64 0.29) 100%
+    );
+  }
+}
+
+/* Rec.2020 (ultra-wide gamut) - professional displays */
+@media (color-gamut: rec2020) {
+  :root {
+    /* Rec.2020 offers the widest color gamut */
+    --troves-turquoise-2020: color(rec2020 0.23 0.56 0.55);
+    --coves-gold-2020: color(rec2020 0.82 0.67 0.33);
+  }
+}
+
+/* sRGB fallback - standard displays (already handled by default hex values) */
+@media (color-gamut: srgb) {
+  /* sRGB is the default - our hex colors work perfectly here */
+  /* No changes needed - hex values are interpreted as sRGB */
+}
+
+/* High contrast mode support - Windows accessibility feature */
+@media (forced-colors: active) {
+  /* Respect user's high contrast preferences */
+  :root {
+    --troves-turquoise: LinkText;
+    --coves-gold-unified: ButtonText;
+    --text-primary: WindowText;
+    --bg-primary: Window;
+    --bg-card: Window;
+  }
+
+  /* Ensure borders are visible in high contrast mode */
+  * {
+    border-color: CanvasText !important;
+  }
+}
+
+/* Color rendering strategy - consistent color appearance */
+:root {
+  /* Use 'auto' for browser-optimized color rendering */
+  color-rendering: optimizeQuality;
+  /* Ensure consistent color interpolation for animations */
+  color-interpolation: sRGB;
+}
+
+/* Prevent unwanted color shifts in images */
+img,
+svg,
+video {
+  color-rendering: auto;
+}
+
+/* Support for modern color() function - graceful fallback */
+@supports (color: color(display-p3 1 1 1)) {
+  .wide-gamut-accent {
+    color: color(display-p3 0.23 0.56 0.55);
+  }
+}
+
+/* ============================================================
    WCAG AA COMPLIANT TEXT UTILITIES
    Use these for body text and small text on light backgrounds
    ============================================================ */

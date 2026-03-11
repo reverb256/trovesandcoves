@@ -13,11 +13,11 @@ export default defineConfig({
       registerType: 'autoUpdate',
       devOptions: { enabled: true },
       manifest: {
-        name: 'Troves & Coves - Mystical Crystal Jewelry',
+        name: 'Troves & Coves - Handcrafted Crystal Jewelry',
         short_name: 'Troves & Coves',
-        description: 'Sacred crystal jewelry & healing gemstone talismans in Winnipeg',
-        theme_color: '#2dd4bf',
-        background_color: '#ffffff',
+        description: 'Handcrafted crystal jewelry with timeless elegance. Each piece elevates your style with 14k gold-plated sophistication and natural crystal beauty.',
+        theme_color: '#3A8E8B', // Robin's luxury turquoise
+        background_color: '#ffffff', // Pure white background
         display: 'standalone',
         icons: [
           {
@@ -26,6 +26,56 @@ export default defineConfig({
             type: 'image/x-icon'
           }
         ]
+      },
+      workbox: {
+        // Ensure CSS and JS are updated promptly
+        runtimeCaching: [
+          {
+            // CSS files - use NetworkFirst for freshness
+            urlPattern: /\.css$/i,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'css-cache',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 24 * 60 * 60 // 24 hours
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            // JS files - StaleWhileRevalidate for performance
+            urlPattern: /\.js$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'js-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
+              }
+            }
+          },
+          {
+            // Images - CacheFirst for performance
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'image-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+              }
+            }
+          }
+        ],
+        // Navigate requests - NetworkFirst for fresh content
+        navigateFallback: null,
+        // Cleanup outdated caches
+        cleanupOutdatedCaches: true,
+        // Don't cache HTTP errors
+        navigateFallbackDenylist: [/^\/api/],
       }
     }),
     // Bundle analyzer - generates stats.html in build output
