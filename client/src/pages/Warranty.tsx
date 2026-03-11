@@ -137,7 +137,7 @@ export default function Warranty() {
 
         {/* What's Covered vs Not Covered */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <CheckCircle className="h-6 w-6 text-ornate-frame-gold" />
@@ -159,7 +159,7 @@ export default function Warranty() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                 <AlertCircle className="h-6 w-6 text-ornate-frame-gold" />
@@ -232,7 +232,7 @@ export default function Warranty() {
           </CardContent>
         </Card>
 
-        <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+        <Card className="shadow-lg border border-ornate-frame-gold/20">
           <CardContent className="p-8 text-center">
             <Heart className="h-12 w-12 text-troves-turquoise mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-primary mb-4">Our Promise</h3>

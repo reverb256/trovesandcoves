@@ -202,7 +202,7 @@ export default function ProductDetail() {
             {/* Price */}
             <div
               className="text-3xl md:text-4xl font-semibold"
-              style={{ fontFamily: '"Libre Baskerville", serif', color: '#e1af2f' }}
+              style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--gold-medium))' }}
             >
               {formatPrice(product.price)}
             </div>
@@ -211,7 +211,7 @@ export default function ProductDetail() {
             {product.description && (
               <p
                 className="text-base leading-relaxed max-w-lg"
-                style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}
+                style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
               >
                 {product.description}
               </p>
@@ -323,7 +323,7 @@ export default function ProductDetail() {
               {/* Stock Status */}
               {product.stockQuantity !== undefined && product.stockQuantity !== null ? (
                 product.stockQuantity > 0 ? (
-                  <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: '#4abfbf' }}>
+                  <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--accent-vibrant))' }}>
                     In stock ({product.stockQuantity} available)
                   </p>
                 ) : (
@@ -332,7 +332,7 @@ export default function ProductDetail() {
                   </p>
                 )
               ) : product.inStock ? (
-                <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: '#4abfbf' }}>In stock</p>
+                <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--accent-vibrant))' }}>In stock</p>
               ) : (
                 <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>Out of stock</p>
               )}
@@ -344,7 +344,7 @@ export default function ProductDetail() {
               <button
                 onClick={handleAddToCart}
                 disabled={product.stockQuantity === 0}
-                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[hsl(var(--bg-card))] border-2 border-[hsl(var(--accent-vibrant))] hover:bg-[hsl(var(--accent-vibrant))] hover:text-white text-[hsl(var(--accent-vibrant))] rounded-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-[#4abfbf]"
+                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[hsl(var(--bg-card))] border-2 border-[hsl(var(--accent-vibrant))] hover:bg-[hsl(var(--accent-vibrant))] hover:text-white text-[hsl(var(--accent-vibrant))] rounded-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[hsl(var(--bg-card))] disabled:hover:text-[hsl(var(--accent-vibrant))]"
                 style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 600, letterSpacing: '0.05em' }}
               >
                 <ShoppingBag className="w-5 h-5" />
@@ -462,7 +462,7 @@ function RelatedProducts({
                   <div className="flex items-center justify-between pt-4 border-t border-[hsl(var(--border-light))]">
                     <span
                       className="text-lg font-semibold"
-                      style={{ fontFamily: '"Libre Baskerville", serif', color: '#e1af2f' }}
+                      style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--gold-medium))' }}
                     >
                       ${product.price}
                     </span>

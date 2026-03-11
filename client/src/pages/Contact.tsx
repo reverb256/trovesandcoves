@@ -131,7 +131,7 @@ export default function Contact() {
                               autoComplete="name"
                               className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
                               style={{
-                                backgroundColor: '#faf8f3',
+                                backgroundColor: 'hsl(var(--bg-primary))',
                                 borderColor: 'hsl(var(--border-medium))',
                                 fontFamily: '"Montserrat", sans-serif',
                               }}
@@ -165,7 +165,7 @@ export default function Contact() {
                               placeholder="your@email.com"
                               className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
                               style={{
-                                backgroundColor: '#faf8f3',
+                                backgroundColor: 'hsl(var(--bg-primary))',
                                 borderColor: 'hsl(var(--border-medium))',
                                 fontFamily: '"Montserrat", sans-serif',
                               }}
@@ -196,7 +196,7 @@ export default function Contact() {
                               placeholder="How can we help?"
                               className="border-gray-200 focus:border-gray-400 focus:ring-gray-200"
                               style={{
-                                backgroundColor: '#faf8f3',
+                                backgroundColor: 'hsl(var(--bg-primary))',
                                 borderColor: 'hsl(var(--border-medium))',
                                 fontFamily: '"Montserrat", sans-serif',
                               }}
@@ -227,7 +227,7 @@ export default function Contact() {
                               placeholder="Tell us about your custom order or inquiry..."
                               className="min-h-[140px] border-gray-200 focus:border-gray-400 focus:ring-gray-200 resize-none"
                               style={{
-                                backgroundColor: '#faf8f3',
+                                backgroundColor: 'hsl(var(--bg-primary))',
                                 borderColor: 'hsl(var(--border-medium))',
                                 fontFamily: '"Montserrat", sans-serif',
                               }}

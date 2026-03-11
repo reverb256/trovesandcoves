@@ -65,7 +65,7 @@ export default function About() {
 
           <h1 className="text-5xl md:text-7xl font-bold mb-8 flex flex-col items-center justify-center gap-2">
             <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase', letterSpacing: '0.08em' }}>About</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: '#e1af2f' }}>Troves & Coves</span>
+            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Troves & Coves</span>
           </h1>
 
           <div className="w-16 h-0.5 mx-auto mb-8" style={{ background: 'hsl(var(--gold-medium))' }} />
@@ -147,7 +147,7 @@ export default function About() {
             >
               <CardContent className="p-8">
                 <div className="w-12 h-12 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'hsla(43, 78%, 60%, 0.15)' }}>
-                  <Award className="w-6 h-6" style={{ color: '#e1af2f' }} />
+                  <Award className="w-6 h-6" style={{ color: 'hsl(var(--gold-medium))' }} />
                 </div>
                 <h3 className="text-xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
                   14k Gold-Filled
@@ -212,7 +212,7 @@ export default function About() {
                       className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
                       style={{ backgroundColor: 'hsla(43, 78%, 60%, 0.15)' }}
                     >
-                      <Icon className="w-6 h-6" style={{ color: '#e1af2f' }} />
+                      <Icon className="w-6 h-6" style={{ color: 'hsl(var(--gold-medium))' }} />
                     </div>
                     <h3 className="text-lg font-bold mb-3" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
                       {value.title}
@@ -261,12 +261,12 @@ export default function About() {
           <Card
             className="max-w-3xl mx-auto"
             style={{
-              background: '#1f1f1f',
+              background: 'hsl(var(--text-primary))',
               borderRadius: '8px'
             }}
           >
             <CardContent className="p-10 md:p-14 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: '#faf8f3' }}>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--bg-primary))' }}>
                 Get in Touch
               </h2>
               <p className="text-base md:text-lg mb-10 leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
@@ -278,7 +278,7 @@ export default function About() {
                   href="mailto:hello@trovesandcoves.com"
                   className="inline-flex items-center gap-3 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
                   style={{
-                    backgroundColor: '#e1af2f',
+                    backgroundColor: 'hsl(var(--gold-medium))',
                     color: 'hsl(var(--text-primary))',
                     fontFamily: '"Montserrat", sans-serif',
                     fontWeight: 500

@@ -64,7 +64,7 @@ export default function Home() {
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="aspect-square bg-white/50 rounded-lg animate-pulse"
+                  className="aspect-square rounded-lg animate-pulse" style={{ backgroundColor: 'hsl(var(--bg-card) / 0.5)' }}
                   style={{ animationDelay: `${i * 0.1}s` }}
                 >
                   <div className="w-full h-full flex items-center justify-center">

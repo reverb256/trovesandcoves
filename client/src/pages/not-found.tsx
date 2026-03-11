@@ -19,14 +19,14 @@ export default function NotFound() {
           </span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: '#1f1f1f' }}>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
           Page Not Found
         </h1>
 
         {/* Divider */}
         <div className="w-24 h-px mx-auto mb-6" style={{ backgroundColor: 'hsl(var(--gold-medium))' }}></div>
 
-        <p className="text-lg mb-8 leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: '#5f5f5f' }}>
+        <p className="text-lg mb-8 leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
           The page you're looking for doesn't exist or has been moved.
           Let us help you find your way.
         </p>
@@ -34,7 +34,7 @@ export default function NotFound() {
         {/* Navigation Options */}
         <div className="space-y-4">
           <Link href="/">
-            <button className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 group" style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: '#faf8f3', fontFamily: '"Montserrat", sans-serif' }}>
+            <button className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 group" style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--bg-primary))', fontFamily: '"Montserrat", sans-serif' }}>
               <Home className="w-5 h-5" />
               <span>Return Home</span>
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -42,7 +42,7 @@ export default function NotFound() {
           </Link>
 
           <Link href="/products">
-            <button className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 group" style={{ backgroundColor: 'transparent', border: '2px solid hsl(var(--accent-vibrant))', color: '#4abfbf', fontFamily: '"Montserrat", sans-serif' }}>
+            <button className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 group" style={{ backgroundColor: 'transparent', border: '2px solid hsl(var(--accent-vibrant))', color: 'hsl(var(--accent-vibrant))', fontFamily: '"Montserrat", sans-serif' }}>
               <ShoppingBag className="w-5 h-5" />
               <span>Shop the Collection</span>
             </button>

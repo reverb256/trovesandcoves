@@ -59,8 +59,8 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
     <Card
       className="group cursor-pointer overflow-hidden transition-all duration-500 ease-out hover:shadow-2xl"
       style={{
-        backgroundColor: '#ffffff',
-        border: featured ? '2px solid #e1af2f' : '1px solid #f0f0f0',
+        backgroundColor: 'hsl(var(--bg-card))',
+        border: featured ? '2px solid hsl(var(--gold-medium))' : '1px solid hsl(var(--border-light))',
         borderRadius: '8px',
       }}
       onClick={() => setLocation(`/product/${product.id}`)}
@@ -80,7 +80,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
           onClick={handleWishlist}
           className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
           style={{
-            backgroundColor: isWishlisted ? '#e1af2f' : 'rgba(255, 255, 255, 0.9)',
+            backgroundColor: isWishlisted ? 'hsl(var(--gold-medium))' : 'hsl(var(--bg-card) / 0.9)',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           }}
           aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
@@ -88,18 +88,18 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
           <Heart 
             className="w-4 h-4 transition-colors duration-300" 
             style={{ 
-              color: isWishlisted ? '#ffffff' : '#1f1f1f',
-              fill: isWishlisted ? '#ffffff' : 'none'
+              color: isWishlisted ? 'hsl(var(--bg-overlay))' : 'hsl(var(--text-primary))',
+              fill: isWishlisted ? 'hsl(var(--bg-overlay))' : 'none'
             }} 
           />
         </button>
 
         {/* Out of Stock Overlay - Elegant */}
         {isOutOfStock && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm">
+          <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm" style={{ backgroundColor: 'hsl(var(--bg-card) / 0.8)' }}>
             <span 
               className="text-sm tracking-widest uppercase"
-              style={{ fontFamily: "'Montserrat', sans-serif", color: '#5f5f5f' }}
+              style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}
             >
               Sold Out
             </span>
@@ -113,7 +113,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
         {product.category && (
           <p 
             className="text-xs tracking-wider uppercase mb-2"
-            style={{ fontFamily: "'Montserrat', sans-serif", color: '#5f5f5f' }}
+            style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}
           >
             {product.category.name}
           </p>
@@ -124,7 +124,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
           className="text-lg leading-snug mb-3 line-clamp-2 transition-colors duration-300"
           style={{ 
             fontFamily: "'Libre Baskerville', serif", 
-            color: '#1f1f1f',
+            color: 'hsl(var(--text-primary))',
             fontWeight: 500
           }}
         >
@@ -137,7 +137,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
             className="text-sm mb-4"
             style={{ 
               fontFamily: "'Alex Brush', cursive", 
-              color: '#e1af2f',
+              color: 'hsl(var(--gold-medium))',
               fontSize: '1.1rem'
             }}
           >
@@ -152,7 +152,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
             className="text-xl font-semibold"
             style={{ 
               fontFamily: "'Libre Baskerville', serif", 
-              color: '#e1af2f' 
+              color: 'hsl(var(--gold-medium))' 
             }}
           >
             {formatPrice(product.price)}
@@ -166,19 +166,19 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 500,
-              backgroundColor: isAdded ? '#4abfbf' : '#1f1f1f',
-              color: '#faf8f3',
+              backgroundColor: isAdded ? 'hsl(var(--accent-vibrant))' : 'hsl(var(--text-primary))',
+              color: 'hsl(var(--bg-primary))',
               border: 'none',
               borderRadius: '4px',
             }}
             onMouseEnter={(e) => {
               if (!isAdded && !isOutOfStock) {
-                e.currentTarget.style.backgroundColor = '#4abfbf';
+                e.currentTarget.style.backgroundColor = 'hsl(var(--accent-vibrant))';
               }
             }}
             onMouseLeave={(e) => {
               if (!isAdded && !isOutOfStock) {
-                e.currentTarget.style.backgroundColor = '#1f1f1f';
+                e.currentTarget.style.backgroundColor = 'hsl(var(--text-primary))';
               }
             }}
           >

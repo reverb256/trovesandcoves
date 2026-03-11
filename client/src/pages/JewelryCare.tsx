@@ -186,7 +186,7 @@ export default function JewelleryCare() {
 
         {/* General Care Tips */}
         <div className="grid md:grid-cols-2 gap-8">
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3">
                 <Shield className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
@@ -221,7 +221,7 @@ export default function JewelleryCare() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg border border-ornate-frame-gold/20 bg-white">
+          <Card className="shadow-lg border border-ornate-frame-gold/20">
             <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
               <CardTitle className="flex items-center space-x-3">
                 <Droplets className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />

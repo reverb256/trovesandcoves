@@ -44,8 +44,8 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
     <Card
       className="group relative overflow-hidden transition-all duration-500 ease-out hover:shadow-xl"
       style={{
-        backgroundColor: '#ffffff',
-        border: '1px solid #f0f0f0',
+        backgroundColor: 'hsl(var(--bg-card))',
+        border: '1px solid hsl(var(--border-light))',
         borderRadius: '8px',
       }}
     >
@@ -66,7 +66,7 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
           }}
           className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
           style={{
-            backgroundColor: isLiked ? '#e1af2f' : 'rgba(255, 255, 255, 0.9)',
+            backgroundColor: isLiked ? 'hsl(var(--gold-medium))' : 'hsl(var(--bg-card) / 0.9)',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           }}
           aria-label={isLiked ? 'Remove from wishlist' : 'Add to wishlist'}
@@ -74,8 +74,8 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
           <Heart
             className="w-4 h-4 transition-colors duration-300"
             style={{
-              color: isLiked ? '#ffffff' : '#1f1f1f',
-              fill: isLiked ? '#ffffff' : 'none'
+              color: isLiked ? 'hsl(var(--bg-overlay))' : 'hsl(var(--text-primary))',
+              fill: isLiked ? 'hsl(var(--bg-overlay))' : 'none'
             }}
           />
         </button>
@@ -113,8 +113,8 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 500,
-              backgroundColor: isAdded ? '#4abfbf' : '#1f1f1f',
-              color: '#faf8f3',
+              backgroundColor: isAdded ? 'hsl(var(--accent-vibrant))' : 'hsl(var(--text-primary))',
+              color: 'hsl(var(--bg-primary))',
               border: 'none',
               borderRadius: '4px',
             }}
@@ -196,8 +196,8 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
             <div className="p-4 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Gem className="h-7 w-7" style={{ color: '#e1af2f' }} />
-                  <span className="text-lg font-bold" style={{ color: '#1f1f1f' }}>
+                  <Gem className="h-7 w-7" style={{ color: 'hsl(var(--gold-medium))' }} />
+                  <span className="text-lg font-bold" style={{ color: 'hsl(var(--text-primary))' }}>
                     Troves & Coves
                   </span>
                 </div>
@@ -222,7 +222,7 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
                   key={item.href}
                   href={item.href}
                   className="block py-3 px-2 text-base font-medium border-b border-gray-100 touch-manipulation transition-colors"
-                  style={{ color: '#1f1f1f' }}
+                  style={{ color: 'hsl(var(--text-primary))' }}
                   onClick={onClose}
                 >
                   {item.label}
