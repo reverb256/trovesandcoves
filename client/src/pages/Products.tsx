@@ -94,16 +94,16 @@ export default function Products() {
       <>
       <SEOHead
         title={currentCategory
-          ? `${currentCategory.name} | Handcrafted Crystal Jewelry | Troves & Coves`
+          ? `${currentCategory.name} | Handcrafted Jewelry | Troves & Coves`
           : searchQuery
-          ? `Search: "${searchQuery}" | Crystal Jewelry | Troves & Coves`
-          : `Shop Crystal Jewelry | Handcrafted Necklaces & Bracesets | Troves & Coves`
+          ? `Search: "${searchQuery}" | Jewelry Collection | Troves & Coves`
+          : `Shop Jewelry | Handcrafted Necklaces & Bracelets | Troves & Coves`
         }
         description={currentCategory
           ? `Browse our ${currentCategory.name} collection. ${currentCategory.description}`
           : searchQuery
-          ? `Search results for "${searchQuery}" in our handcrafted crystal jewelry collection.`
-          : "Explore our curated selection of handcrafted crystal jewelry. Each piece blends elegance with natural crystal beauty—crafted with intention."
+          ? `Search results for "${searchQuery}" in our handcrafted jewelry collection.`
+          : "Explore our curated selection of handcrafted jewelry. Each piece blends 14k gold-plated elegance with natural beauty—crafted with intention."
         }
         url={currentCategory
           ? `https://trovesandcoves.ca/products/${currentCategory.slug}`
@@ -134,7 +134,7 @@ export default function Products() {
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>{currentCategory.name}</span>
                   <span className="text-sm md:text-base font-normal" style={{ fontFamily: "\"Montserrat\", sans-serif", color: 'hsl(var(--text-secondary))' }}>
-                    | Handcrafted Crystal Jewelry
+                    | Handcrafted Jewelry
                   </span>
                 </>
               ) : searchQuery ? (
@@ -145,7 +145,7 @@ export default function Products() {
               ) : (
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>
-                    Shop Crystal Jewelry
+                    Shop Jewelry
                   </span>
                   <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>
                     &amp; Collections
@@ -289,7 +289,7 @@ export default function Products() {
               }}>
                 {filteredAndSortedProducts.length}{' '}
                 <span style={{ color: 'hsl(var(--text-primary))' }}>
-                  {filteredAndSortedProducts.length === 1 ? 'Crystal' : 'Crystals'}
+                  {filteredAndSortedProducts.length === 1 ? 'Piece' : 'Pieces'}
                 </span>
               </h2>
             </div>

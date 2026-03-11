@@ -33,7 +33,7 @@ describe('Hero Component', () => {
 
   it('renders CTA button', () => {
     render(<Hero />);
-    const ctaButton = screen.getByRole('link', { name: /Shop Collection/i });
+    const ctaButton = screen.getByRole('link', { name: /Shop the Collection/i });
     expect(ctaButton).toBeInTheDocument();
     expect(ctaButton).toHaveAttribute('href', '/products');
   });

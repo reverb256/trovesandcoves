@@ -56,7 +56,7 @@ export default function Hero() {
               borderRadius: "4px"
             }}
           >
-            Shop Collection
+            Shop the Collection
           </a>
 
         </div>
