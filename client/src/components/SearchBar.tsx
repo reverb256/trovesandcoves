@@ -113,9 +113,11 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
             type="text"
+            name="search"
+            autoComplete="on"
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
-            placeholder="Search crystals, jewelry, gemstones..."
+            placeholder="Search crystals, jewelry, gemstones…"
             className="pl-10 pr-10"
           />
           {searchQuery && (
@@ -234,6 +236,7 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
             <div className="space-y-4">
               <div className="px-2">
                 <Slider
+                  aria-label="Minimum price"
                   value={[filters.minPrice]}
                   max={10000}
                   step={100}
@@ -243,6 +246,7 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
               </div>
               <div className="px-2">
                 <Slider
+                  aria-label="Maximum price"
                   value={[filters.maxPrice]}
                   max={10000}
                   step={100}

@@ -92,6 +92,8 @@ export default function CartDrawer() {
                   <img
                     src={item.product.imageUrl}
                     alt={item.product.name}
+                    width={64}
+                    height={64}
                     className="w-16 h-16 object-cover rounded"
                     loading="lazy"
                     decoding="async"
@@ -108,6 +110,7 @@ export default function CartDrawer() {
                     {/* Quantity Controls */}
                     <div className="flex items-center space-x-2 mt-2">
                       <Button
+                        aria-label="Decrease quantity"
                         size="sm"
                         variant="outline"
                         onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
@@ -115,12 +118,13 @@ export default function CartDrawer() {
                       >
                         <Minus className="h-3 w-3" />
                       </Button>
-                      
+
                       <span className="text-sm font-medium min-w-[2rem] text-center">
                         {item.quantity}
                       </span>
-                      
+
                       <Button
+                        aria-label="Increase quantity"
                         size="sm"
                         variant="outline"
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
@@ -133,6 +137,7 @@ export default function CartDrawer() {
                   
                   <div className="flex flex-col items-end gap-2">
                     <Button
+                      aria-label={`Remove ${item.product.name} from cart`}
                       size="sm"
                       variant="ghost"
                       onClick={() => handleRemoveItem(item.id, item.product.name)}
@@ -161,23 +166,23 @@ export default function CartDrawer() {
                 </span>
               </div>
               
-              <Button 
+              <Button
                 onClick={handleCheckout}
-                className="w-full py-3 font-semibold hover:opacity-90 transition-all"
+                className="w-full py-3 font-semibold hover:opacity-90 transition-colors duration-200"
                 style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
               >
                 Secure Checkout
               </Button>
-              
-              <Button 
-                variant="outline" 
+
+              <Button
+                variant="outline"
                 onClick={() => {
                   toggleCart();
                   setLocation('/products');
                 }}
-                className="w-full hover:opacity-80 transition-all"
-                style={{ 
-                  borderColor: 'hsla(174,85%,45%,0.3)', 
+                className="w-full hover:opacity-80 transition-colors duration-200"
+                style={{
+                  borderColor: 'hsla(174,85%,45%,0.3)',
                   color: 'hsl(var(--accent-vibrant))',
                   fontFamily: "'Montserrat', sans-serif"
                 }}

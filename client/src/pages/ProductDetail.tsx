@@ -157,6 +157,8 @@ export default function ProductDetail() {
                 <img
                   src={images[selectedImage]}
                   alt={product.name}
+                  width={800}
+                  height={800}
                   className="w-full h-full object-cover"
                 />
                 {/* Stock Badge */}
@@ -194,6 +196,8 @@ export default function ProductDetail() {
                     <img
                       src={image}
                       alt={`${product.name} view ${index + 1}`}
+                      width={80}
+                      height={80}
                       className="w-full h-full object-cover"
                       loading="lazy"
                       decoding="async"
@@ -323,6 +327,7 @@ export default function ProductDetail() {
                 </span>
                 <div className="flex items-center border border-[hsl(var(--border-light))] rounded-sm overflow-hidden">
                   <button
+                    aria-label="Decrease quantity"
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
                     className="p-3 hover:bg-[hsl(var(--bg-secondary))] transition-colors duration-150"
                     style={{ color: 'hsl(var(--text-primary))' }}
@@ -336,6 +341,7 @@ export default function ProductDetail() {
                     {quantity}
                   </span>
                   <button
+                    aria-label="Increase quantity"
                     onClick={() => setQuantity(Math.min(product.stockQuantity ?? 99, quantity + 1))}
                     disabled={quantity >= (product.stockQuantity ?? 99)}
                     className="p-3 hover:bg-[hsl(var(--bg-secondary))] transition-colors duration-150 disabled:opacity-30 disabled:cursor-not-allowed"
@@ -370,7 +376,7 @@ export default function ProductDetail() {
               <button
                 onClick={handleAddToCart}
                 disabled={product.stockQuantity === 0}
-                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[hsl(var(--bg-card))] border-2 border-[hsl(var(--accent-vibrant))] hover:bg-[hsl(var(--accent-vibrant))] hover:text-white text-[hsl(var(--accent-vibrant))] rounded-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[hsl(var(--bg-card))] disabled:hover:text-[hsl(var(--accent-vibrant))]"
+                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-[hsl(var(--bg-card))] border-2 border-[hsl(var(--accent-vibrant))] hover:bg-[hsl(var(--accent-vibrant))] hover:text-white text-[hsl(var(--accent-vibrant))] rounded-sm transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[hsl(var(--bg-card))] disabled:hover:text-[hsl(var(--accent-vibrant))]"
                 style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 600, letterSpacing: '0.05em' }}
               >
                 <ShoppingBag className="w-5 h-5" />
@@ -474,6 +480,8 @@ function RelatedProducts({
                   <img
                     src={product.imageUrl || '/api/placeholder/300/300'}
                     alt={product.name}
+                    width={300}
+                    height={300}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"

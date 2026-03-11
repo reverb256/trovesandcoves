@@ -55,12 +55,14 @@ export default function Header() {
             ? 'backdrop-blur-sm border-b py-2'
             : 'bg-transparent py-4'
         }`}
-        style={{ backgroundColor: isScrolled ? 'hsl(var(--bg-card) / 0.9)' : undefined }}
-        style={{ borderColor: isScrolled ? 'rgba(74, 191, 191, 0.2)' : undefined }}
+        style={{
+          backgroundColor: isScrolled ? 'hsl(var(--bg-card) / 0.9)' : undefined,
+          borderColor: isScrolled ? 'hsla(176, 42%, 39%, 0.2)' : undefined
+        }}
       >
         {/* Top border accent */}
         <div className="absolute top-0 left-0 w-full h-px"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(74, 191, 191, 0.5), transparent)' }}
+          style={{ background: 'linear-gradient(90deg, transparent, hsla(176, 42%, 39%, 0.5), transparent)' }}
         ></div>
 
         <div className="chamber-container">

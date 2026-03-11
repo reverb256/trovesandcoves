@@ -57,7 +57,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
 
   return (
     <Card
-      className="group cursor-pointer overflow-hidden transition-all duration-500 ease-out hover:shadow-2xl"
+      className="group cursor-pointer overflow-hidden transition-shadow duration-500 ease-out hover:shadow-2xl"
       style={{
         backgroundColor: 'hsl(var(--bg-card))',
         border: featured ? '2px solid hsl(var(--gold-medium))' : '1px solid hsl(var(--border-light))',
@@ -70,6 +70,8 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
         <img
           src={product.imageUrl}
           alt={product.name}
+          width={400}
+          height={440}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
           decoding="async"
@@ -78,7 +80,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
         {/* Subtle Wishlist Icon - Top Right */}
         <button
           onClick={handleWishlist}
-          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110"
           style={{
             backgroundColor: isWishlisted ? 'hsl(var(--gold-medium))' : 'hsl(var(--bg-card) / 0.9)',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
@@ -162,7 +164,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
           <button
             onClick={handleAddToCart}
             disabled={isOutOfStock}
-            className="px-5 py-2.5 text-sm tracking-wider uppercase transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-5 py-2.5 text-sm tracking-wider uppercase transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 500,
