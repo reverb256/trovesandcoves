@@ -2,65 +2,73 @@
 
 **Last Updated:** March 11, 2026
 **Status:** Active - Site is live at trovesandcoves.ca
-
-## Brand Identity
-
-**Brand Voice:** Mystical, transformative, empowering, elegant
-
-**Tagline:** "Handcrafted Crystal Jewelry"
-
-**Core Transformation Message:**
-```
-Discover the power of transformation with our handcrafted crystal jewelry.
-
-Each piece is designed to elevate your style and spirit, blending the elegance
-of 14k gold-plated chains with the raw beauty of natural crystals.
-
-Our statement necklaces and bracelets offer more than just luxury—they're
-crafted with intention to empower your energy and enhance your unique presence.
-
-Embrace bold femininity and masculine strength with our exquisite collection,
-where every detail resonates with abundance and confidence.
-```
-
-**Uniqueness Statement:**
-"Each piece uniquely one of a kind"
+**Primary Source:** Robin's Luxury Refinement Guide
 
 ---
 
-## Color Palette
+## Brand Positioning
 
-### Primary Brand Colors (Robin's Exact Specifications)
+### Troves & Coves Is
 
-| Color Name | Hex | HSLA | Usage |
-|------------|-----|------|-------|
-| Turquoise | `#4abfbf` | `hsla(174, 85%, 45%, 1)` | TROVES text, primary actions, links, accents |
-| Gold 1 | `#deb55b` | `hsla(43, 95%, 55%, 1)` | & symbol, prices, icons, decorative elements |
-| Gold 2 | `#e1af2f` | `hsla(38, 80%, 53%, 1)` | Coves text, gemstone labels |
-| Linen | `#faf8f3` | N/A | Background (off-white/cream) |
+**Luxury Artisan Jewelry**
+- Intentional crystal pieces
+- Curated boutique brand
+- Handmade but elevated
+- Authentic handmade luxury
+- Edgy artisan energy
+- Real materials with real intention
 
-### WCAG Compliant Variants
+### Troves & Coves Is NOT
 
-For small text and accessibility requirements:
-- Dark turquoise: `#2c6f6f` (WCAG AA compliant for body text)
-- Dark gold 1: `#b8943d` (WCAG AA compliant)
-- Dark gold 2: `#a08022` (WCAG AA compliant)
+❌ Craft show jewelry
+❌ Etsy-style crystal shop
+❌ Mystical / spiritual supply store
+❌ New-age / metaphysical store
+
+**The pieces are strong. The presentation must match their value.**
+
+---
+
+## Color Palette (Robin's Exact Specifications)
+
+### Primary Luxury Palette
+
+| Color Name | Hex | Usage |
+|------------|-----|-------|
+| Background | `#FFFFFF` | Main site background (pure white, not cream) |
+| Primary Text | `#1F1F1F` | Main text (soft black/charcoal) |
+| Secondary Text | `#5F5F5F` | Muted grey for supporting text |
+| Accent Turquoise | `#3A8E8B` | Signature turquoise (luxury version) |
+| Gold Accent | `#C9A24A` | Refined gold for highlights only |
+
+### Usage Principles
+
+**Gold Should Be Used Sparingly**
+- Too much gold looks cheap
+- Use for refined luxury details, borders, subtle highlights
+- Premium emphasis only - not loud
+- Less gold = more luxury feel
+
+**Overall Direction**
+- Luxury, clean, airy, feminine, intentional, high-end
+- Avoid looking too bright, childish, or overly mystical
+- Let the pieces speak for themselves
 
 ### Theme Variables (CSS)
 
 ```css
 :root, :root[data-theme='light'] {
-  --accent-vibrant: 174 85% 51%;    /* #4abfbf */
-  --gold-medium: 43 78% 60%;          /* #deb55b */
-  --gold-coves: 38 80% 53%;           /* #e1af2f */
-  --bg-primary: 40 20% 97%;            /* #faf8f3 */
-  --text-primary: 0 0% 12%;           /* #1f1f1f */
-  --text-secondary: 0 0% 37%;         /* #5f5f5f */
+  /* Robin's luxury palette */
+  --accent-vibrant: 176 42% 39%;    /* #3A8E8B - luxury turquoise */
+  --gold-medium: 42 74% 54%;        /* #C9A24A - refined gold */
+  --bg-primary: 0 0% 100%;          /* #FFFFFF - pure white */
+  --text-primary: 0 0% 12%;         /* #1F1F1F - soft black */
+  --text-secondary: 0 0% 37%;       /* #5F5F5F - muted grey */
 }
 
 :root[data-theme='dark'] {
-  --accent-vibrant: 174 100% 65%;   /* Brighter for dark mode */
-  --gold-medium: 43 78% 55%;
+  --accent-vibrant: 176 42% 49%;    /* Slightly brighter for dark mode */
+  --gold-medium: 42 74% 54%;
   --bg-primary: 215 20% 12%;
   --text-primary: 215 15% 95%;
   --text-secondary: 215 10% 82%;
@@ -71,13 +79,25 @@ For small text and accessibility requirements:
 
 ## Typography
 
-### Font Families
+### Font Families (Keep Current Trio)
 
 | Purpose | Font | Weight | Style |
 |---------|------|--------|-------|
-| Brand/Titles | **Libre Baskerville** | 700 (Bold) | Uppercase, text-transform |
-| Accent/Script | **Alex Brush** | Regular | Cursive, decorative |
-| Body/UI | **Montserrat** | 400-600 | Sans-serif |
+| Headlines | **Libre Baskerville** | 700 (Bold) | Elegant, editorial |
+| Accent/Script | **Alex Brush** | Regular | Decorative, cursive |
+| Body/UI | **Montserrat** | 400-600 | Clean, readable |
+
+### Typography Principles
+
+**Headlines Should Feel:**
+- Elegant and editorial
+- Luxurious without being ornate
+- Strong and confident
+
+**Body Text Should Be:**
+- Clean and readable
+- Professional and understated
+- Let the jewelry shine
 
 ### Typography Hierarchy
 
@@ -85,41 +105,131 @@ For small text and accessibility requirements:
 HERO TITLE (TROVES)
 ├── Font: Libre Baskerville
 ├── Weight: 700 (Bold)
-├── Color: hsl(var(--accent-vibrant))
+├── Color: #3A8E8B (luxury turquoise)
 ├── Transform: Uppercase
 └── Size: 4xl → 6xl (responsive)
 
 & SYMBOL
 ├── Font: Alex Brush
-├── Color: hsl(var(--gold-medium))
+├── Color: #C9A24A (refined gold)
 └── Size: 3xl → 5xl
 
 HERO TITLE (Coves)
 ├── Font: Alex Brush
-├── Color: hsl(var(--gold-coves))
+├── Color: #C9A24A (refined gold)
 └── Size: 4xl → 6xl
 
 TAGLINE/SUBTITLE
 ├── Font: Montserrat
-├── Color: hsl(var(--text-secondary))
+├── Color: #5F5F5F (muted grey)
 ├── Weight: 400
 └── Text: "Handcrafted Crystal Jewelry"
 
 BODY TEXT
 ├── Font: Montserrat
-├── Color: hsl(var(--text-primary))
+├── Color: #1F1F1F (soft black)
 └── Weight: 400-500
 
 PRICES
 ├── Font: Libre Baskerville
-├── Color: hsl(var(--gold-medium))
+├── Color: #C9A24A (refined gold)
 └── Weight: 700 (Bold)
-
-GEMSTONE LABELS
-├── Font: Alex Brush
-├── Color: hsl(var(--gold-coves))
-└── Size: text-xl
 ```
+
+---
+
+## Copy Standards
+
+### Hero Section
+
+**Structure (Simple, Clean, Elevated):**
+
+```
+TROVES & COVES
+
+Handcrafted Crystal Jewelry
+Made in Canada
+
+[Shop the Collection]
+```
+
+**That's it.**
+- Minimal text
+- Large image
+- Elegant spacing
+- Let the pieces speak
+
+### Product Descriptions
+
+**Avoid Heavy Metaphysical Language:**
+❌ "psychic protection energy crystal vibration talisman"
+
+**Keep Descriptions Short and Refined:**
+✅ "Lapis Lazuli Necklace
+   14k Gold Filled
+
+   A deep blue stone traditionally associated with wisdom and inner clarity."
+
+### Tagline
+
+**Primary:** "Handcrafted Crystal Jewelry"
+**Subtitle:** "Made in Canada"
+
+### About the Brand
+
+**Example Copy:**
+
+```
+Troves & Coves creates one-of-a-kind crystal jewelry using genuine
+stones and high quality metals.
+
+Each piece is handcrafted in Canada and designed to feel powerful,
+grounded, and timeless.
+```
+
+### Uniqueness Statement
+
+**Display Prominently:**
+"Each piece uniquely one of a kind"
+
+---
+
+## Collection Structure
+
+### Remove "Mystical Collection"
+
+This wording pushes the brand into new-age crystal shop identity.
+
+### Replace With Minimal Luxury Names
+
+**Recommended:**
+- Signature Pieces
+- One of a Kind
+- Crystal Editions
+- The Collection
+- Troves
+- Limited Pieces
+
+**Or Keep It Simpler:**
+- Necklaces
+- Bracelets
+
+**Luxury brands keep categories minimal.**
+
+### Recommended Shop Structure
+
+```
+Shop
+
+• Necklaces
+• Bracelets
+• One of a Kind (optional)
+
+Later expansion options:
+• Limited Editions
+```
+
+**Don't overwhelm visitors with many categories.**
 
 ---
 
@@ -131,6 +241,98 @@ GEMSTONE LABELS
 ```
 • Avoid water, perfumes, and lotions.
 • Wipe with a dry jewelry cloth
+```
+
+---
+
+## Homepage Structure
+
+### 1. Hero Section
+
+**Large image of jewelry**
+
+```
+TROVES & COVES
+
+Handcrafted Crystal Jewelry
+Made in Canada
+
+[Shop Collection]
+```
+
+### 2. Featured Pieces
+
+**Display 3 to 6 products only**
+- Focus on your strongest pieces
+- Let photography shine
+
+### 3. About the Brand
+
+```
+Troves & Coves creates one-of-a-kind crystal jewelry using genuine
+stones and high quality metals.
+
+Each piece is handcrafted in Canada and designed to feel powerful,
+grounded, and timeless.
+```
+
+### 4. Shop Section
+
+```
+Shop Necklaces
+Shop Bracelets
+
+Optional later:
+One of a Kind
+```
+
+---
+
+## Key Luxury Brand Principles
+
+**Luxury Websites Remove Noise**
+
+✓ Fewer words
+✓ Fewer categories
+✓ More white space
+✓ Stronger photography
+✓ Cleaner typography
+
+**Let the pieces speak for themselves.**
+
+---
+
+## Component Patterns
+
+### Hero Section
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│         [Large Jewelry Image]               │
+│                                             │
+│  TROVES & COVES                             │
+│  Handcrafted Crystal Jewelry                 │
+│  Made in Canada                             │
+│                                             │
+│                    [Shop Collection]        │
+└─────────────────────────────────────────────┘
+```
+
+### Product Card
+
+```
+┌─────────────────────────────┐
+│  [Product Image]            │
+│  💎 Featured Badge          │
+│                             │
+│  Product Name               │
+│  Materials                  │
+│  Gemstones (Alex Brush)     │
+│                             │
+│  Price (#C9A24A)    [Cart]  │
+│              (#3A8E8B btn)  │
+└─────────────────────────────┘
 ```
 
 ---
@@ -161,107 +363,6 @@ GEMSTONE LABELS
 - Frontend: `https://trovesandcoves.ca` (GitHub Pages)
 - API: Cloudflare Workers (optional for serverless functions)
 - Repository: `github.com/reverb256/trovesandcoves`
-
----
-
-## Component Patterns
-
-### Hero Section
-
-```
-┌─────────────────────────────────────────────┐
-│         [Mystical Background Glows]         │
-│  ┌──────────────┐                            │
-│  │   💎         │  [Gem Icon: 128px]        │
-│  │              │  Position: Center          │
-│  │   TROVES &   │  Font: Libre + Alex Brush │
-│  │   Coves      │  Color: #4abfbf, golds    │
-│  └──────────────┘                            │
-│                                              │
-│  Handcrafted Crystal Jewelry                 │
-│  Made in Canada                             │
-│                                              │
-│                    ▼                         │
-└─────────────────────────────────────────────┘
-```
-
-### Product Card
-
-```
-┌─────────────────────────────┐
-│  [Product Image]            │
-│  💎 Featured Badge          │
-│                             │
-│  Category Badge             │
-│  Product Name               │
-│  Materials                  │
-│  Gemstones (Alex Brush)     │
-│                             │
-│  Price (#deb55b)    [Cart]  │
-│              (#4abfbf btn)  │
-└─────────────────────────────┘
-```
-
-### Product Detail Page
-
-```
-┌─────────────────────────────────────────┐
-│  [Breadcrumbs] Home → Shop → Product │
-│                                           │
-│  ┌──────────────┐  [Product Info]    │
-│  │              │                   │
-│  │ [Main Image]  │  Product Name      │
-│  │              │  Description       │
-│  │ [Thumbnails]  │  Materials         │
-│  │              │  Gemstones         │
-│  │              │  Price             │
-│  └──────────────┘  [Add to Cart]     │
-│                                           │
-│  Care:                                   │
-│  • Avoid water, perfumes, and lotions  │
-│  • Wipe with a dry jewelry cloth        │
-│                                           │
-└─────────────────────────────────────────┘
-```
-
-### Features Bar
-
-```
-┌──────────────────────────────────────────────┐
-│   Free Shipping Across Canada    🚚         │
-│   Lifetime Warranty               🛡️         │
-│   Ethically Sourced               💎         │
-│                                              │
-│  [Gold Glow Border]                         │
-└──────────────────────────────────────────────┘
-```
-
----
-
-## Copy Guidelines
-
-### Brand Voice
-
-- **Mystical** - Use words like "transform," "energy," "intention," "crystal wisdom"
-- **Empowering** - Focus on elevation, amplification, inner light
-- **Elegant** - Sophisticated language, avoid slang
-- **Authentic** - Emphasize handcrafted, one-of-a-kind, genuine
-
-### Mandatory Copy Elements
-
-**Hero Section (Hero.tsx):**
-- Tagline: "Handcrafted Crystal Jewelry"
-- Subtitle: "Made in Canada"
-
-**Product Detail (ProductDetail.tsx):**
-- Care section with label "Care:"
-- Instructions:
-  - "Avoid water, perfumes, and lotions."
-  - "Wipe with a dry jewelry cloth"
-
-**About Page (About.tsx):**
-- Hero transformation message (full 4 paragraphs)
-- "Each piece uniquely one of a kind" (prominent display)
 
 ---
 
@@ -297,7 +398,7 @@ Large:    > 1280px  (xl:)
 ## Animation Timing
 
 ```css
-/* Gentle mystical animations */
+/* Gentle luxury animations */
 float: 6-10s ease-in-out infinite
 glow-breathe: 4-6s ease-in-out infinite
 pulse-glow: 2-3s ease-in-out infinite
@@ -309,7 +410,7 @@ transition: 500ms (card hover states)
 
 ## Accessibility Notes
 
-- Use Robin's exact colors (`#4abfbf`, `#deb55b`, `#e1af2f`) for large text only
+- Use Robin's exact colors (#3A8E8B, #C9A24A) for large text only
 - Use WCAG-compliant dark variants for body text
 - Minimum contrast ratio: 4.5:1 for normal text, 3:1 for large text
 - All interactive elements must have visible hover/focus states
@@ -323,8 +424,8 @@ transition: 500ms (card hover states)
 
 ### ✅ Completed Features
 
-- [x] Color palette with CSS variables
-- [x] Typography system with 3 fonts
+- [x] Color palette with CSS variables (luxury version)
+- [x] Typography system with 3 fonts (Libre + Alex + Montserrat)
 - [x] Hero component with brand identity
 - [x] Product cards with proper styling
 - [x] Dark mode support throughout
@@ -336,19 +437,14 @@ transition: 500ms (card hover states)
 - [x] Static deployment to GitHub Pages
 - [x] Etsy product synchronizer
 
-### 📝 Copy Elements Implemented
-
-- [x] Hero tagline: "Handcrafted Crystal Jewelry"
-- [x] "Made in Canada" subtitle
-- [x] Product care instructions (exact copy)
-- [x] SEO-optimized titles and descriptions
-- [ ] About page transformation message (needs manual update)
-
 ### 🔄 In Progress
 
-- [ ] About page hero section (transformation message)
-- [ ] "Each piece uniquely one of a kind" prominent display
-- [ ] Value proposition statements
+- [ ] Transition background from #faf8f3 to #FFFFFF (pure white)
+- [ ] Update accent turquoise from #4abfbf to #3A8E8B (luxury version)
+- [ ] Update gold accent from #deb55b/#e1af2f to #C9A24A (unified gold)
+- [ ] Simplify hero section to minimal structure
+- [ ] Update category names (remove "Mystical Collection")
+- [ ] Reduce metaphysical language in product descriptions
 
 ---
 
@@ -389,7 +485,7 @@ trovesandcoves/
 │   └── manifest.json             # PWA manifest
 └── docs/                       # Documentation
     ├── DESIGN_SPEC.md           # This file
-    └── REFACTOR_SUMMARY.md      # Architecture guide
+    └── COMPLIANCE_REPORT.md      # Implementation tracking
 ```
 
 ---
@@ -443,8 +539,9 @@ npm run dev
 ## Compliance Checklist
 
 ### Brand Identity
-- [ ] All turquoise accents use `#4abfbf` (no variations)
-- [ ] All gold elements use `#deb55b` (primary) or `#e1af2f` (secondary)
+- [ ] Background is pure white (#FFFFFF) not cream
+- [ ] All turquoise accents use #3A8E8B (luxury version)
+- [ ] All gold elements use #C9A24A (unified refined gold)
 - [ ] Libre Baskerville used for brand text
 - [ ] Alex Brush used for script/accent text
 - [ ] Montserrat used for body/UI text
@@ -452,8 +549,10 @@ npm run dev
 ### Copy Standards
 - [ ] Hero tagline: "Handcrafted Crystal Jewelry"
 - [ ] Care instructions: "Care:" + exact copy
-- [ ] About page: Full transformation message
+- [ ] Hero section is minimal (3-4 lines max)
 - [ ] "Each piece uniquely one of a kind" prominent
+- [ ] No "Mystical Collection" category name
+- [ ] Product descriptions are refined, not overly spiritual
 
 ### Technical Standards
 - [ ] All pages have unique title tags
@@ -479,7 +578,8 @@ npm run dev
 
 ---
 
-**Version:** 2.0
-**Status:** Live
+**Version:** 3.0 (Luxury Refinement)
+**Status:** Live - Transitioning to Luxury Brand
 **URL:** https://trovesandcoves.ca
 **Last Review:** March 11, 2026
+**Primary Source:** Robin's Luxury Refinement Guide
