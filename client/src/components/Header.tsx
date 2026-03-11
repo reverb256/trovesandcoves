@@ -241,12 +241,8 @@ export default function Header() {
             </nav>
 
             {/* Decorative Crystal */}
-            <div className="mt-8 relative animate-pulse-glow">
-              {/* Circular glow background */}
-              <div className="absolute inset-0 rounded-full blur-xl"
-                style={{ backgroundColor: 'hsla(var(--frame-gold),0.3)' }}
-              ></div>
-              <Sparkles className="w-8 h-8 relative z-10" style={{ color: 'hsl(var(--frame-gold))' }} />
+            <div className="mt-8 relative">
+              <Sparkles className="w-8 h-8" style={{ color: 'hsl(var(--frame-gold))' }} />
             </div>
           </div>
         </div>
