@@ -304,12 +304,11 @@ export default function ProductDetail() {
                 className="text-xs tracking-widest uppercase block mb-2"
                 style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))', letterSpacing: '0.15em' }}
               >
-                Care Instructions
+                Care:
               </span>
               <ul className="text-sm space-y-1" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}>
-                <li>• Keep away from water and chemicals</li>
-                <li>• Store in a cool, dry place</li>
-                <li>• Clean gently with a soft cloth</li>
+                <li>• Avoid water, perfumes, and lotions.</li>
+                <li>• Wipe with a dry jewelry cloth</li>
               </ul>
             </div>
 
