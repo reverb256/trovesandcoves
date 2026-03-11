@@ -24,6 +24,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
+    // Prevent unnecessary DOM updates if theme hasn't changed
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === theme) {
+      return;
+    }
+
     // Update localStorage when theme changes
     localStorage.setItem(THEME_STORAGE_KEY, theme);
 

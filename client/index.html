@@ -110,6 +110,20 @@
     -->
   </head>
   <body>
+    <!-- Theme Initialization Script - Prevents flash of unstyled content -->
+    <script>
+      (function() {
+        const THEME_STORAGE_KEY = 'trovesandcoves-theme';
+        const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+        const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'light';
+
+        // Set theme immediately, before React loads
+        document.documentElement.classList.remove('light', 'dark');
+        document.documentElement.classList.add(theme);
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
