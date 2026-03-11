@@ -325,7 +325,7 @@ async function handleAIRequest(request, env, pathname, corsHeaders) {
 async function handleAIRecommendations(request, env, corsHeaders) {
   // AI-powered product recommendations
   const { productId, userId } = await request.json();
-  
+
   // Use Anthropic API for intelligent recommendations
   if (env.ANTHROPIC_API_KEY) {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -340,11 +340,11 @@ async function handleAIRecommendations(request, env, corsHeaders) {
         max_tokens: 1000,
         messages: [{
           role: 'user',
-          content: `As a Canadian crystal jewellery expert, recommend 3 complementary products for someone viewing product ${productId}. Focus on healing properties and aesthetic harmony. Return JSON array with product IDs and reasons.`
+          content: `As a Canadian crystal jewellery expert, recommend 3 complementary products for someone viewing product ${productId}. Focus on design aesthetics, materials harmony, and luxury brand positioning. Return JSON array with product IDs and reasons.`
         }]
       })
     });
-    
+
     if (response.ok) {
       const aiResponse = await response.json();
       return new Response(aiResponse.content[0].text, {
@@ -353,10 +353,10 @@ async function handleAIRecommendations(request, env, corsHeaders) {
     }
   }
   
-  // Fallback recommendations based on product categories and healing properties
+  // Fallback recommendations based on product categories and design aesthetics
   const recommendations = [
-    { productId: 2, reason: "Complementary healing properties for emotional balance" },
-    { productId: 3, reason: "Aesthetic harmony with rose gold wire wrapping" }
+    { productId: 2, reason: "Complementary gold tones and elegant styling" },
+    { productId: 3, reason: "Beautiful color harmony with rose gold wire wrapping" }
   ];
   
   return new Response(JSON.stringify(recommendations), {
@@ -367,7 +367,7 @@ async function handleAIRecommendations(request, env, corsHeaders) {
 async function handleMarketAnalysis(request, env, corsHeaders) {
   // Real-time market analysis using AI and authentic Canadian market data
   const trends = {
-    popularCategories: ["Healing Crystals", "Wire Wrapped Jewellery", "Chakra Accessories"],
+    popularCategories: ["Crystal Necklaces", "Gemstone Necklaces", "Wire Wrapped Jewellery"],
     seasonalTrends: "Spring collection showing increased demand for rose quartz and green aventurine",
     priceInsights: "Premium handcrafted pieces commanding 15-20% higher prices in Canadian market",
     customerPreferences: "Canadian customers prefer authentic, ethically-sourced crystals with verified origins"
