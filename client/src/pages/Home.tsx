@@ -54,7 +54,7 @@ export default function Home() {
             <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
               Explore our curated selection of handcrafted crystal jewelry.
               Each piece blends elegance with natural crystal beauty—
-              crafted with intention to empower your energy and enhance your presence.
+              crafted with intention and designed to make a statement.
             </p>
           </div>
 
@@ -148,7 +148,7 @@ export default function Home() {
                   fontFamily: "'Montserrat', sans-serif"
                 }}
               >
-                <span>View All Crystal Treasures</span>
+                <span>View All Jewelry</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </button>
             </Link>
@@ -190,14 +190,13 @@ export default function Home() {
                 className="text-3xl md:text-5xl font-bold mb-6"
                 style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
               >
-                Embrace Your Transformation
+                Handcrafted With Intention
               </h2>
 
               <p className="text-lg leading-relaxed mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
                 Every crystal in our collection is chosen for its unique beauty and quality.
-                When you wear our jewelry, you embrace bold femininity and masculine strength—
-                statement pieces crafted with intention to empower your confidence and showcase
-                your unique style.
+                Each piece is handcrafted in Winnipeg with 14k gold-plated materials
+                and genuine crystals—designed to be timeless and made to stand out.
               </p>
 
               <p className="text-base italic" style={{ fontFamily: "'Alex Brush', cursive", color: 'hsl(var(--gold-medium))' }}>

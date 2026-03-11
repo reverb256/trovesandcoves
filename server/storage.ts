@@ -64,7 +64,7 @@ export class MemStorage implements IStorage {
       id: this.currentCategoryId++,
       name: "Crystal Necklaces",
       slug: "crystal-necklaces",
-      description: categoryDescriptions.crystalNecklaces,
+      description: "Handcrafted crystal necklaces featuring authentic gemstones and wire wrapping.",
       imageUrl: crystalJewelryImages.lepidolite[0]
     };
     
@@ -72,7 +72,7 @@ export class MemStorage implements IStorage {
       id: this.currentCategoryId++,
       name: "Gemstone Necklaces",
       slug: "gemstone-necklaces",
-      description: categoryDescriptions.gemstoneNecklaces,
+      description: "Elegant gemstone necklaces with premium materials and refined craftsmanship.",
       imageUrl: crystalJewelryImages.turquoise[0]
     };
 
@@ -80,7 +80,7 @@ export class MemStorage implements IStorage {
       id: this.currentCategoryId++,
       name: "Leather Cord Pendants",
       slug: "leather-cord-pendants",
-      description: categoryDescriptions.leatherCordPendants,
+      description: "Artisan leather cord pendants showcasing natural crystals and stones.",
       imageUrl: crystalJewelryImages.citrine[0]
     };
 

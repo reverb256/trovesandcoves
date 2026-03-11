@@ -20,14 +20,6 @@ interface RequestOptions extends RequestInit {
   timeout?: number;
 }
 
-interface OrderData {
-  [key: string]: unknown;
-}
-
-interface ContactFormData {
-  [key: string]: unknown;
-}
-
 class SessionManager {
   static getSessionId(): string {
     let sessionId = sessionStorage.getItem('troves_session');
@@ -146,43 +138,9 @@ export const productsApi = {
   getById: (id: number) => apiFetch(`/api/products?id=${id}`),
 };
 
-export const cartApi = {
-  get: () => apiFetch('/api/cart'),
-  add: (productId: number, quantity: number) =>
-    apiFetch('/api/cart', {
-      method: 'POST',
-      body: JSON.stringify({ productId, quantity }),
-    }),
-  update: (id: number, quantity: number) =>
-    apiFetch(`/api/cart?id=${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ quantity }),
-    }),
-  remove: (id: number) =>
-    apiFetch(`/api/cart?id=${id}`, { method: 'DELETE' }),
-};
-
-export const ordersApi = {
-  create: (orderData: OrderData) =>
-    apiFetch('/api/orders', {
-      method: 'POST',
-      body: JSON.stringify(orderData),
-    }),
-  getById: (id: number) => apiFetch(`/api/orders?id=${id}`),
-  getAll: () => apiFetch('/api/orders'),
-};
-
-export const contactApi = {
-  submit: (formData: ContactFormData) =>
-    apiFetch('/api/contact', {
-      method: 'POST',
-      body: JSON.stringify(formData),
-    }),
-};
-
-export const categoriesApi = {
-  getAll: () => apiFetch('/api/categories'),
-};
+// NOTE: cartApi, ordersApi, contactApi, and categoriesApi were removed
+// as they referenced deleted /api/ endpoints. The app now uses in-memory
+// storage (MemStorage) and localStorage for cart functionality.
 
 export const apiUtils = {
   SessionManager,
@@ -194,9 +152,5 @@ export const apiUtils = {
 export default {
   fetch: apiFetch,
   products: productsApi,
-  cart: cartApi,
-  orders: ordersApi,
-  contact: contactApi,
-  categories: categoriesApi,
   utils: apiUtils,
 };
