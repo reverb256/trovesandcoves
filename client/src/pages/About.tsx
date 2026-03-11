@@ -86,12 +86,20 @@ export default function About() {
           <div className="w-16 h-0.5 mx-auto mb-8" style={{ background: 'hsl(var(--gold-medium))' }} />
 
           <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mb-6" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}>
-            Handcrafted crystal jewelry, made in Winnipeg with care and intention.
+            Discover the power of transformation with our handcrafted crystal jewelry.
+          </p>
+
+          <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-4" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}>
+            Each piece is designed to elevate your style and spirit, blending the elegance
+            of 14k gold-plated chains with the raw beauty of natural crystals.
           </p>
 
           <p className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
-            Each piece begins with carefully selected materials—14k gold-filled components and genuine crystals—
-            and is transformed into wearable art through meticulous craftsmanship.
+            Our statement necklaces and bracelets offer more than just luxury - they are crafted
+            with intention to empower your energy and enhance your unique presence.
+            <br /><br />
+            Embrace bold femininity and masculine strength with our exquisite collection, where
+            every detail resonates with abundance and confidence.
           </p>
         </div>
       </section>
@@ -138,6 +146,14 @@ export default function About() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Uniqueness Statement */}
+          <p className="text-xl md:text-2xl font-semibold text-center mt-12" style={{
+            fontFamily: '"Alex Brush", cursive',
+            color: 'hsl(var(--gold-medium))'
+          }}>
+            Each piece uniquely one of a kind
+          </p>
         </section>
 
         {/* Materials */}

@@ -6,9 +6,10 @@
   "description": "Crystal jewelry showcase site",
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
-    "build": "vite build && node scripts/postbuild-copy.cjs",
+    "build": "vite build && node scripts/postbuild-copy.cjs && tsx scripts/generate-sitemap.ts",
     "build:analyze": "vite build && node scripts/postbuild-copy.cjs",
     "build:github-pages": "vite build --mode github-pages",
+    "generate-sitemap": "tsx scripts/generate-sitemap.ts",
     "preview": "vite preview",
     "check": "tsc",
     "test": "vitest",
