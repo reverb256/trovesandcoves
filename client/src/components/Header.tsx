@@ -56,7 +56,7 @@ export default function Header() {
             : 'bg-transparent py-4'
         }`}
         style={{
-          backgroundColor: isScrolled ? 'hsl(var(--bg-card) / 0.9)' : undefined,
+          backgroundColor: isScrolled ? 'hsl(var(--bg-card) / 0.97)' : undefined,
           borderColor: isScrolled ? 'hsla(176, 42%, 39%, 0.2)' : undefined
         }}
       >
