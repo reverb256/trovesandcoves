@@ -1,0 +1,176 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e3]:
+    - link "Skip to main content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+    - link "Skip to main content" [ref=e5] [cursor=pointer]:
+      - /url: "#main-content"
+    - banner [ref=e6]:
+      - navigation "Main navigation" [ref=e9]:
+        - link "TROVES & Coves Mystical Crystal Jewelry • Winnipeg" [ref=e10] [cursor=pointer]:
+          - /url: //
+          - img [ref=e13]
+          - generic [ref=e15]:
+            - generic [ref=e16]:
+              - generic [ref=e17]: TROVES
+              - generic [ref=e18]: "&"
+              - generic [ref=e19]: Coves
+            - generic [ref=e20]: Mystical Crystal Jewelry • Winnipeg
+        - generic [ref=e21]:
+          - link "Collections" [ref=e22] [cursor=pointer]:
+            - /url: //products
+            - text: Collections
+          - link "About" [ref=e24] [cursor=pointer]:
+            - /url: //about
+          - link "Contact" [ref=e25] [cursor=pointer]:
+            - /url: //contact
+        - generic [ref=e26]:
+          - button "Switch to dark mode" [ref=e27] [cursor=pointer]:
+            - img [ref=e28]
+            - img
+            - generic [ref=e34]: Switch to dark mode
+          - link "Shopping cart" [ref=e35] [cursor=pointer]:
+            - /url: //checkout
+            - button "Shopping cart" [ref=e36]:
+              - img [ref=e37]
+    - main [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - img [ref=e51]
+            - generic [ref=e53]: Our Crystal Collections
+          - heading "Searching for \"amethyst\"" [level=1] [ref=e54]:
+            - generic [ref=e55]: Searching for
+            - generic [ref=e56]: "\"amethyst\""
+          - paragraph [ref=e58]: Statement pieces crafted with intention to empower your energy. Each piece blends 14k gold-plated elegance with natural crystal beauty.
+        - generic [ref=e60]:
+          - complementary [ref=e61]:
+            - generic [ref=e62]:
+              - heading "Refine Your Search" [level=3] [ref=e63]:
+                - img [ref=e64]
+                - generic [ref=e66]: Refine Your Search
+              - generic [ref=e68]:
+                - img [ref=e69]
+                - textbox "Search crystals..." [active] [ref=e72]: amethyst
+              - generic [ref=e73]:
+                - heading "Categories" [level=4] [ref=e74]
+                - generic [ref=e75]:
+                  - button "All Collections" [ref=e76] [cursor=pointer]
+                  - button "Crystal Necklaces" [ref=e77] [cursor=pointer]
+                  - button "Healing Crystals" [ref=e78] [cursor=pointer]
+                  - button "Wire Wrapped Jewelry" [ref=e79] [cursor=pointer]
+              - generic [ref=e80]:
+                - heading "Sort By" [level=4] [ref=e81]
+                - combobox [ref=e82] [cursor=pointer]:
+                  - option "Featured" [selected]
+                  - 'option "Price: Low to High"'
+                  - 'option "Price: High to Low"'
+                  - 'option "Name: A-Z"'
+                  - option "Newest First"
+              - button "Clear All Filters" [ref=e83] [cursor=pointer]:
+                - img [ref=e84]
+                - generic [ref=e87]: Clear All Filters
+          - main [ref=e88]:
+            - heading "0 Crystals" [level=2] [ref=e90]
+            - generic [ref=e91]:
+              - img [ref=e92]
+              - heading "No crystals found" [level=3] [ref=e94]
+              - paragraph [ref=e95]: No crystals match your search for "amethyst"
+              - button "Clear Filters" [ref=e96] [cursor=pointer]
+    - contentinfo [ref=e97]:
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - generic [ref=e101]:
+            - generic [ref=e102]:
+              - generic [ref=e103]: Troves
+              - generic [ref=e104]: "&"
+              - generic [ref=e105]: Coves
+            - paragraph [ref=e106]: Handcrafted crystal jewelry blending 14k gold-plated elegance with natural crystal beauty. Each piece is crafted with intention to empower your energy and enhance your unique presence.
+            - generic [ref=e107]:
+              - link "Facebook" [ref=e108] [cursor=pointer]:
+                - /url: https://www.facebook.com/TrovesandCoves
+                - img [ref=e109]
+              - link "Instagram" [ref=e111] [cursor=pointer]:
+                - /url: https://instagram.com/Troves_and_Coves
+                - img [ref=e112]
+              - link "Etsy Shop" [ref=e115] [cursor=pointer]:
+                - /url: https://www.etsy.com/ca/shop/TrovesandCoves
+                - img [ref=e116]
+              - link "Linktree" [ref=e120] [cursor=pointer]:
+                - /url: https://linktr.ee/TrovesandCoves
+                - img [ref=e121]
+          - generic [ref=e125]:
+            - heading "Collections" [level=3] [ref=e126]
+            - list [ref=e127]:
+              - listitem [ref=e128]:
+                - link "Crystal Necklaces" [ref=e129] [cursor=pointer]:
+                  - /url: //products/crystal-necklaces
+              - listitem [ref=e130]:
+                - link "Healing Crystals" [ref=e131] [cursor=pointer]:
+                  - /url: //products/healing-crystals
+              - listitem [ref=e132]:
+                - link "Wire Wrapped Jewellery" [ref=e133] [cursor=pointer]:
+                  - /url: //products/wire-wrapped
+              - listitem [ref=e134]:
+                - link "All Products" [ref=e135] [cursor=pointer]:
+                  - /url: //products
+              - listitem [ref=e136]:
+                - link "Featured Items" [ref=e137] [cursor=pointer]:
+                  - /url: //
+              - listitem [ref=e138]:
+                - link "Custom Consultations" [ref=e139] [cursor=pointer]:
+                  - /url: //contact
+          - generic [ref=e140]:
+            - heading "Guidance" [level=3] [ref=e141]
+            - list [ref=e142]:
+              - listitem [ref=e143]:
+                - link "Size Guide" [ref=e144] [cursor=pointer]:
+                  - /url: //size-guide
+              - listitem [ref=e145]:
+                - link "Jewellery Care" [ref=e146] [cursor=pointer]:
+                  - /url: //jewelry-care
+              - listitem [ref=e147]:
+                - link "Warranty" [ref=e148] [cursor=pointer]:
+                  - /url: //warranty
+              - listitem [ref=e149]:
+                - link "Returns & Exchanges" [ref=e150] [cursor=pointer]:
+                  - /url: //returns
+              - listitem [ref=e151]:
+                - link "Financing" [ref=e152] [cursor=pointer]:
+                  - /url: //financing
+              - listitem [ref=e153]:
+                - link "Contact Us" [ref=e154] [cursor=pointer]:
+                  - /url: //contact
+          - generic [ref=e155]:
+            - heading "Connect" [level=3] [ref=e156]
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - img [ref=e159]
+                - generic [ref=e162]:
+                  - generic [ref=e163]: info@trovesandcoves.ca
+                  - generic [ref=e164]: Personal consultations for your perfect piece
+              - generic [ref=e165]:
+                - img [ref=e166]
+                - generic [ref=e169]:
+                  - generic [ref=e170]: Winnipeg, Manitoba
+                  - generic [ref=e171]: Shipping worldwide from the heart of Canada
+        - generic [ref=e172]:
+          - generic [ref=e173]:
+            - generic [ref=e174]:
+              - text: © 2026 Troves & Coves. All rights reserved. |
+              - link "Privacy Policy" [ref=e175] [cursor=pointer]:
+                - /url: //privacy-policy
+              - text: "|"
+              - link "Hero Showcase" [ref=e176] [cursor=pointer]:
+                - /url: //showcase
+            - generic [ref=e177]:
+              - generic [ref=e178]: ✨
+              - generic [ref=e179]: Crafted with intention to empower your energy
+              - generic [ref=e180]: ✨
+          - link "Web Design by Reverb256 ✦" [ref=e182] [cursor=pointer]:
+            - /url: https://reverb256.github.io
+```

@@ -1,0 +1,262 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e3]:
+    - link "Skip to main content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+    - link "Skip to main content" [ref=e5] [cursor=pointer]:
+      - /url: "#main-content"
+    - banner [ref=e6]:
+      - navigation "Main navigation" [ref=e9]:
+        - link "TROVES & Coves Mystical Crystal Jewelry • Winnipeg" [ref=e10] [cursor=pointer]:
+          - /url: //
+          - img [ref=e13]
+          - generic [ref=e15]:
+            - generic [ref=e16]:
+              - generic [ref=e17]: TROVES
+              - generic [ref=e18]: "&"
+              - generic [ref=e19]: Coves
+            - generic [ref=e20]: Mystical Crystal Jewelry • Winnipeg
+        - generic [ref=e21]:
+          - link "Collections" [ref=e22] [cursor=pointer]:
+            - /url: //products
+            - text: Collections
+          - link "About" [ref=e24] [cursor=pointer]:
+            - /url: //about
+          - link "Contact" [ref=e25] [cursor=pointer]:
+            - /url: //contact
+        - generic [ref=e26]:
+          - button "Switch to dark mode" [ref=e27] [cursor=pointer]:
+            - img [ref=e28]
+            - img
+            - generic [ref=e34]: Switch to dark mode
+          - link "Shopping cart" [ref=e35] [cursor=pointer]:
+            - /url: //checkout
+            - button "Shopping cart" [ref=e36]:
+              - img [ref=e37]
+    - main [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - img [ref=e51]
+            - generic [ref=e53]: Our Crystal Collections
+          - heading "Troves & Coves" [level=1] [ref=e54]:
+            - generic [ref=e55]: Troves
+            - generic [ref=e56]: "& Coves"
+          - paragraph [ref=e58]: Statement pieces crafted with intention to empower your energy. Each piece blends 14k gold-plated elegance with natural crystal beauty.
+        - generic [ref=e60]:
+          - complementary [ref=e61]:
+            - generic [ref=e62]:
+              - heading "Refine Your Search" [level=3] [ref=e63]:
+                - img [ref=e64]
+                - generic [ref=e66]: Refine Your Search
+              - generic [ref=e68]:
+                - img [ref=e69]
+                - textbox "Search crystals..." [ref=e72]
+              - generic [ref=e73]:
+                - heading "Categories" [level=4] [ref=e74]
+                - generic [ref=e75]:
+                  - button "All Collections" [ref=e76] [cursor=pointer]
+                  - button "Crystal Necklaces" [ref=e77] [cursor=pointer]
+                  - button "Healing Crystals" [ref=e78] [cursor=pointer]
+                  - button "Wire Wrapped Jewelry" [ref=e79] [cursor=pointer]
+              - generic [ref=e80]:
+                - heading "Sort By" [level=4] [ref=e81]
+                - combobox [ref=e82] [cursor=pointer]:
+                  - option "Featured" [selected]
+                  - 'option "Price: Low to High"'
+                  - 'option "Price: High to Low"'
+                  - 'option "Name: A-Z"'
+                  - option "Newest First"
+              - button "Clear All Filters" [ref=e83] [cursor=pointer]:
+                - img [ref=e84]
+                - generic [ref=e87]: Clear All Filters
+          - main [ref=e88]:
+            - heading "9 Crystals" [level=2] [ref=e90]
+            - generic [ref=e91]:
+              - link "Lapis Lazuli, Wire Wrapped Necklace, Leather Wire Wrapped Jewelry Lapis Lazuli, Wire Wrapped Necklace, Leather Sacred Lapis Lazuli vessel channeling ancient Egyptian royal consciousness through celestial blue depths. This divine talisman awakens third eye perception and psychic gifts. 15 inches of divine armor. $40.00" [ref=e92] [cursor=pointer]:
+                - /url: /products/4
+                - generic [ref=e93]:
+                  - generic [ref=e94]:
+                    - img "Lapis Lazuli, Wire Wrapped Necklace, Leather" [ref=e95]
+                    - generic [ref=e97]: Wire Wrapped Jewelry
+                  - generic [ref=e98]:
+                    - heading "Lapis Lazuli, Wire Wrapped Necklace, Leather" [level=3] [ref=e99]
+                    - paragraph [ref=e100]: Sacred Lapis Lazuli vessel channeling ancient Egyptian royal consciousness through celestial blue depths. This divine talisman awakens third eye perception and psychic gifts. 15 inches of divine armor.
+                    - generic [ref=e102]: $40.00
+              - link "Medium Rose Quartz Pendant, Wire Wrapped Wire Wrapped Jewelry Medium Rose Quartz Pendant, Wire Wrapped Divine Rose Quartz talisman on sacred brown leather cord. Embrace the infinite loving vibrations of this ethereal piece featuring a raw Rose Quartz pendant blessed with healing light. 18 inches. $40.00" [ref=e103] [cursor=pointer]:
+                - /url: /products/5
+                - generic [ref=e104]:
+                  - generic [ref=e105]:
+                    - img "Medium Rose Quartz Pendant, Wire Wrapped" [ref=e106]
+                    - generic [ref=e108]: Wire Wrapped Jewelry
+                  - generic [ref=e109]:
+                    - heading "Medium Rose Quartz Pendant, Wire Wrapped" [level=3] [ref=e110]
+                    - paragraph [ref=e111]: Divine Rose Quartz talisman on sacred brown leather cord. Embrace the infinite loving vibrations of this ethereal piece featuring a raw Rose Quartz pendant blessed with healing light. 18 inches.
+                    - generic [ref=e113]: $40.00
+              - link "Lapis Lazuli, Brown Leather, Masculine Necklace Wire Wrapped Jewelry Lapis Lazuli, Brown Leather, Masculine Necklace Sacred masculine vessel channeling ancient pharaoh consciousness through divine Lapis Lazuli depths. This handcrafted talisman awakens inner king sovereignty. 26 inches of sacred masculine power. $40.00" [ref=e114] [cursor=pointer]:
+                - /url: /products/6
+                - generic [ref=e115]:
+                  - generic [ref=e116]:
+                    - img "Lapis Lazuli, Brown Leather, Masculine Necklace" [ref=e117]
+                    - generic [ref=e119]: Wire Wrapped Jewelry
+                  - generic [ref=e120]:
+                    - heading "Lapis Lazuli, Brown Leather, Masculine Necklace" [level=3] [ref=e121]
+                    - paragraph [ref=e122]: Sacred masculine vessel channeling ancient pharaoh consciousness through divine Lapis Lazuli depths. This handcrafted talisman awakens inner king sovereignty. 26 inches of sacred masculine power.
+                    - generic [ref=e124]: $40.00
+              - link "Gold Chain Crystal Necklace with Wire Wrapped Pendant Crystal Necklaces Gold Chain Crystal Necklace with Wire Wrapped Pendant Luminous gold chain adorned with sacred crystal pendant, lovingly wire-wrapped to channel divine energy. This celestial piece features a delicate crystal suspended in golden embrace. $70.00" [ref=e125] [cursor=pointer]:
+                - /url: /products/2
+                - generic [ref=e126]:
+                  - generic [ref=e127]:
+                    - img "Gold Chain Crystal Necklace with Wire Wrapped Pendant" [ref=e128]
+                    - generic [ref=e130]: Crystal Necklaces
+                  - generic [ref=e131]:
+                    - heading "Gold Chain Crystal Necklace with Wire Wrapped Pendant" [level=3] [ref=e132]
+                    - paragraph [ref=e133]: Luminous gold chain adorned with sacred crystal pendant, lovingly wire-wrapped to channel divine energy. This celestial piece features a delicate crystal suspended in golden embrace.
+                    - generic [ref=e135]: $70.00
+              - link "Turquoise Beaded Necklace with Pearl Accents Crystal Necklaces Turquoise Beaded Necklace with Pearl Accents Sacred oceanic symphony vessel weaving ancient turquoise protection with celestial lapis wisdom. Divine turquoise channels protective fortune while enhancing sacred communication. 21 inches of divine protection. $70.00" [ref=e136] [cursor=pointer]:
+                - /url: /products/8
+                - generic [ref=e137]:
+                  - generic [ref=e138]:
+                    - img "Turquoise Beaded Necklace with Pearl Accents" [ref=e139]
+                    - generic [ref=e141]: Crystal Necklaces
+                  - generic [ref=e142]:
+                    - heading "Turquoise Beaded Necklace with Pearl Accents" [level=3] [ref=e143]
+                    - paragraph [ref=e144]: Sacred oceanic symphony vessel weaving ancient turquoise protection with celestial lapis wisdom. Divine turquoise channels protective fortune while enhancing sacred communication. 21 inches of divine protection.
+                    - generic [ref=e146]: $70.00
+              - link "Unique Lapis Lazuli, Onyx, Smoky Quartz Multi-Stone Necklace Healing Crystals Unique Lapis Lazuli, Onyx, Smoky Quartz Multi-Stone Necklace Sacred five-stone harmony vessel weaving celestial wisdom through divine gemstone alchemy. Lapis Lazuli awakens third eye consciousness while Smoky Quartz grounds protective earthen energy. $80.00" [ref=e147] [cursor=pointer]:
+                - /url: /products/7
+                - generic [ref=e148]:
+                  - generic [ref=e149]:
+                    - img "Unique Lapis Lazuli, Onyx, Smoky Quartz Multi-Stone Necklace" [ref=e150]
+                    - generic [ref=e152]: Healing Crystals
+                  - generic [ref=e153]:
+                    - heading "Unique Lapis Lazuli, Onyx, Smoky Quartz Multi-Stone Necklace" [level=3] [ref=e154]
+                    - paragraph [ref=e155]: Sacred five-stone harmony vessel weaving celestial wisdom through divine gemstone alchemy. Lapis Lazuli awakens third eye consciousness while Smoky Quartz grounds protective earthen energy.
+                    - generic [ref=e157]: $80.00
+              - link "Upcycled Gold Plated Enamel Pendant Necklace Crystal Necklaces Upcycled Gold Plated Enamel Pendant Necklace Sacred alchemical transformation vessel born from upcycled enamel flower consciousness into divine stationary pendant power. Peridot channels heart prosperity while citrine ignites solar confidence manifestation. $80.00" [ref=e158] [cursor=pointer]:
+                - /url: /products/9
+                - generic [ref=e159]:
+                  - generic [ref=e160]:
+                    - img "Upcycled Gold Plated Enamel Pendant Necklace" [ref=e161]
+                    - generic [ref=e163]: Crystal Necklaces
+                  - generic [ref=e164]:
+                    - heading "Upcycled Gold Plated Enamel Pendant Necklace" [level=3] [ref=e165]
+                    - paragraph [ref=e166]: Sacred alchemical transformation vessel born from upcycled enamel flower consciousness into divine stationary pendant power. Peridot channels heart prosperity while citrine ignites solar confidence manifestation.
+                    - generic [ref=e168]: $80.00
+              - link "Wire Wrapped Crystal Pendant Collection Crystal Necklaces Wire Wrapped Crystal Pendant Collection Sacred collection of divine crystal pendants featuring lepidolite for tranquility, obsidian for protection, and citrine for manifestation. Each stone is lovingly wire-wrapped with golden intention, creating powerful talismans for spiritual awakening. $90.00" [ref=e169] [cursor=pointer]:
+                - /url: /products/1
+                - generic [ref=e170]:
+                  - generic [ref=e171]:
+                    - img "Wire Wrapped Crystal Pendant Collection" [ref=e172]
+                    - generic [ref=e174]: Crystal Necklaces
+                  - generic [ref=e175]:
+                    - heading "Wire Wrapped Crystal Pendant Collection" [level=3] [ref=e176]
+                    - paragraph [ref=e177]: Sacred collection of divine crystal pendants featuring lepidolite for tranquility, obsidian for protection, and citrine for manifestation. Each stone is lovingly wire-wrapped with golden intention, creating powerful talismans for spiritual awakening.
+                    - generic [ref=e179]: $90.00
+              - link "Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set Healing Crystals Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set Divine twin vessel set channeling abundant solar manifestation through sacred citrine alchemy! The ethereal choker embraces throat chakra consciousness with luminous pink pearls and protective hematite grounding. $200.00" [ref=e180] [cursor=pointer]:
+                - /url: /products/3
+                - generic [ref=e181]:
+                  - generic [ref=e182]:
+                    - img "Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set" [ref=e183]
+                    - generic [ref=e185]: Healing Crystals
+                  - generic [ref=e186]:
+                    - heading "Handwrapped Citrine, Pearl, Hematite, Crystal Necklace Set" [level=3] [ref=e187]
+                    - paragraph [ref=e188]: Divine twin vessel set channeling abundant solar manifestation through sacred citrine alchemy! The ethereal choker embraces throat chakra consciousness with luminous pink pearls and protective hematite grounding.
+                    - generic [ref=e190]: $200.00
+    - contentinfo [ref=e191]:
+      - generic [ref=e193]:
+        - generic [ref=e194]:
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e197]: Troves
+              - generic [ref=e198]: "&"
+              - generic [ref=e199]: Coves
+            - paragraph [ref=e200]: Handcrafted crystal jewelry blending 14k gold-plated elegance with natural crystal beauty. Each piece is crafted with intention to empower your energy and enhance your unique presence.
+            - generic [ref=e201]:
+              - link "Facebook" [ref=e202] [cursor=pointer]:
+                - /url: https://www.facebook.com/TrovesandCoves
+                - img [ref=e203]
+              - link "Instagram" [ref=e205] [cursor=pointer]:
+                - /url: https://instagram.com/Troves_and_Coves
+                - img [ref=e206]
+              - link "Etsy Shop" [ref=e209] [cursor=pointer]:
+                - /url: https://www.etsy.com/ca/shop/TrovesandCoves
+                - img [ref=e210]
+              - link "Linktree" [ref=e214] [cursor=pointer]:
+                - /url: https://linktr.ee/TrovesandCoves
+                - img [ref=e215]
+          - generic [ref=e219]:
+            - heading "Collections" [level=3] [ref=e220]
+            - list [ref=e221]:
+              - listitem [ref=e222]:
+                - link "Crystal Necklaces" [ref=e223] [cursor=pointer]:
+                  - /url: //products/crystal-necklaces
+              - listitem [ref=e224]:
+                - link "Healing Crystals" [ref=e225] [cursor=pointer]:
+                  - /url: //products/healing-crystals
+              - listitem [ref=e226]:
+                - link "Wire Wrapped Jewellery" [ref=e227] [cursor=pointer]:
+                  - /url: //products/wire-wrapped
+              - listitem [ref=e228]:
+                - link "All Products" [ref=e229] [cursor=pointer]:
+                  - /url: //products
+              - listitem [ref=e230]:
+                - link "Featured Items" [ref=e231] [cursor=pointer]:
+                  - /url: //
+              - listitem [ref=e232]:
+                - link "Custom Consultations" [ref=e233] [cursor=pointer]:
+                  - /url: //contact
+          - generic [ref=e234]:
+            - heading "Guidance" [level=3] [ref=e235]
+            - list [ref=e236]:
+              - listitem [ref=e237]:
+                - link "Size Guide" [ref=e238] [cursor=pointer]:
+                  - /url: //size-guide
+              - listitem [ref=e239]:
+                - link "Jewellery Care" [ref=e240] [cursor=pointer]:
+                  - /url: //jewelry-care
+              - listitem [ref=e241]:
+                - link "Warranty" [ref=e242] [cursor=pointer]:
+                  - /url: //warranty
+              - listitem [ref=e243]:
+                - link "Returns & Exchanges" [ref=e244] [cursor=pointer]:
+                  - /url: //returns
+              - listitem [ref=e245]:
+                - link "Financing" [ref=e246] [cursor=pointer]:
+                  - /url: //financing
+              - listitem [ref=e247]:
+                - link "Contact Us" [ref=e248] [cursor=pointer]:
+                  - /url: //contact
+          - generic [ref=e249]:
+            - heading "Connect" [level=3] [ref=e250]
+            - generic [ref=e251]:
+              - generic [ref=e252]:
+                - img [ref=e253]
+                - generic [ref=e256]:
+                  - generic [ref=e257]: info@trovesandcoves.ca
+                  - generic [ref=e258]: Personal consultations for your perfect piece
+              - generic [ref=e259]:
+                - img [ref=e260]
+                - generic [ref=e263]:
+                  - generic [ref=e264]: Winnipeg, Manitoba
+                  - generic [ref=e265]: Shipping worldwide from the heart of Canada
+        - generic [ref=e266]:
+          - generic [ref=e267]:
+            - generic [ref=e268]:
+              - text: © 2026 Troves & Coves. All rights reserved. |
+              - link "Privacy Policy" [ref=e269] [cursor=pointer]:
+                - /url: //privacy-policy
+              - text: "|"
+              - link "Hero Showcase" [ref=e270] [cursor=pointer]:
+                - /url: //showcase
+            - generic [ref=e271]:
+              - generic [ref=e272]: ✨
+              - generic [ref=e273]: Crafted with intention to empower your energy
+              - generic [ref=e274]: ✨
+          - link "Web Design by Reverb256 ✦" [ref=e276] [cursor=pointer]:
+            - /url: https://reverb256.github.io
+```

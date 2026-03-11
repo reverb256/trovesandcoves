@@ -41,5 +41,5 @@ describe('API Client', () => {
     (global.fetch as any).mockRejectedValue(new Error('Network error'));
 
     await expect(apiFetch('/api/test')).rejects.toThrow('Network error');
-  });
+  }, 10000); // 10 second timeout to account for retry delays
 });

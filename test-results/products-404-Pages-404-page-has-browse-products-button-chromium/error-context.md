@@ -1,0 +1,149 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e3]:
+    - link "Skip to main content" [ref=e4] [cursor=pointer]:
+      - /url: "#main-content"
+    - link "Skip to main content" [ref=e5] [cursor=pointer]:
+      - /url: "#main-content"
+    - banner [ref=e6]:
+      - navigation "Main navigation" [ref=e9]:
+        - link "TROVES & Coves Mystical Crystal Jewelry • Winnipeg" [ref=e10] [cursor=pointer]:
+          - /url: //
+          - img [ref=e13]
+          - generic [ref=e15]:
+            - generic [ref=e16]:
+              - generic [ref=e17]: TROVES
+              - generic [ref=e18]: "&"
+              - generic [ref=e19]: Coves
+            - generic [ref=e20]: Mystical Crystal Jewelry • Winnipeg
+        - generic [ref=e21]:
+          - link "Collections" [ref=e22] [cursor=pointer]:
+            - /url: //products
+          - link "About" [ref=e23] [cursor=pointer]:
+            - /url: //about
+          - link "Contact" [ref=e24] [cursor=pointer]:
+            - /url: //contact
+        - generic [ref=e25]:
+          - button "Switch to dark mode" [ref=e26] [cursor=pointer]:
+            - img [ref=e27]
+            - img
+            - generic [ref=e33]: Switch to dark mode
+          - link "Shopping cart" [ref=e34] [cursor=pointer]:
+            - /url: //checkout
+            - button "Shopping cart" [ref=e35]:
+              - img [ref=e36]
+    - main [ref=e43]:
+      - generic [ref=e45]:
+        - img [ref=e48]
+        - generic [ref=e52]: "404"
+        - heading "Lost in the Void" [level=1] [ref=e53]
+        - paragraph [ref=e55]: The crystal path you seek has faded into the mists. Let us guide you back to the treasures that await.
+        - generic [ref=e56]:
+          - link "Return to the Sanctuary" [ref=e57] [cursor=pointer]:
+            - /url: //
+            - button "Return to the Sanctuary" [ref=e58]:
+              - img [ref=e59]
+              - generic [ref=e62]: Return to the Sanctuary
+              - img [ref=e63]
+          - link "Explore Crystal Collections" [ref=e65] [cursor=pointer]:
+            - /url: //products
+            - button "Explore Crystal Collections" [ref=e66]:
+              - img [ref=e67]
+              - generic [ref=e70]: Explore Crystal Collections
+    - contentinfo [ref=e72]:
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - generic [ref=e78]: Troves
+              - generic [ref=e79]: "&"
+              - generic [ref=e80]: Coves
+            - paragraph [ref=e81]: Handcrafted crystal jewelry blending 14k gold-plated elegance with natural crystal beauty. Each piece is crafted with intention to empower your energy and enhance your unique presence.
+            - generic [ref=e82]:
+              - link "Facebook" [ref=e83] [cursor=pointer]:
+                - /url: https://www.facebook.com/TrovesandCoves
+                - img [ref=e84]
+              - link "Instagram" [ref=e86] [cursor=pointer]:
+                - /url: https://instagram.com/Troves_and_Coves
+                - img [ref=e87]
+              - link "Etsy Shop" [ref=e90] [cursor=pointer]:
+                - /url: https://www.etsy.com/ca/shop/TrovesandCoves
+                - img [ref=e91]
+              - link "Linktree" [ref=e95] [cursor=pointer]:
+                - /url: https://linktr.ee/TrovesandCoves
+                - img [ref=e96]
+          - generic [ref=e100]:
+            - heading "Collections" [level=3] [ref=e101]
+            - list [ref=e102]:
+              - listitem [ref=e103]:
+                - link "Crystal Necklaces" [ref=e104] [cursor=pointer]:
+                  - /url: //products/crystal-necklaces
+              - listitem [ref=e105]:
+                - link "Healing Crystals" [ref=e106] [cursor=pointer]:
+                  - /url: //products/healing-crystals
+              - listitem [ref=e107]:
+                - link "Wire Wrapped Jewellery" [ref=e108] [cursor=pointer]:
+                  - /url: //products/wire-wrapped
+              - listitem [ref=e109]:
+                - link "All Products" [ref=e110] [cursor=pointer]:
+                  - /url: //products
+              - listitem [ref=e111]:
+                - link "Featured Items" [ref=e112] [cursor=pointer]:
+                  - /url: //
+              - listitem [ref=e113]:
+                - link "Custom Consultations" [ref=e114] [cursor=pointer]:
+                  - /url: //contact
+          - generic [ref=e115]:
+            - heading "Guidance" [level=3] [ref=e116]
+            - list [ref=e117]:
+              - listitem [ref=e118]:
+                - link "Size Guide" [ref=e119] [cursor=pointer]:
+                  - /url: //size-guide
+              - listitem [ref=e120]:
+                - link "Jewellery Care" [ref=e121] [cursor=pointer]:
+                  - /url: //jewelry-care
+              - listitem [ref=e122]:
+                - link "Warranty" [ref=e123] [cursor=pointer]:
+                  - /url: //warranty
+              - listitem [ref=e124]:
+                - link "Returns & Exchanges" [ref=e125] [cursor=pointer]:
+                  - /url: //returns
+              - listitem [ref=e126]:
+                - link "Financing" [ref=e127] [cursor=pointer]:
+                  - /url: //financing
+              - listitem [ref=e128]:
+                - link "Contact Us" [ref=e129] [cursor=pointer]:
+                  - /url: //contact
+          - generic [ref=e130]:
+            - heading "Connect" [level=3] [ref=e131]
+            - generic [ref=e132]:
+              - generic [ref=e133]:
+                - img [ref=e134]
+                - generic [ref=e137]:
+                  - generic [ref=e138]: info@trovesandcoves.ca
+                  - generic [ref=e139]: Personal consultations for your perfect piece
+              - generic [ref=e140]:
+                - img [ref=e141]
+                - generic [ref=e144]:
+                  - generic [ref=e145]: Winnipeg, Manitoba
+                  - generic [ref=e146]: Shipping worldwide from the heart of Canada
+        - generic [ref=e147]:
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - text: © 2026 Troves & Coves. All rights reserved. |
+              - link "Privacy Policy" [ref=e150] [cursor=pointer]:
+                - /url: //privacy-policy
+              - text: "|"
+              - link "Hero Showcase" [ref=e151] [cursor=pointer]:
+                - /url: //showcase
+            - generic [ref=e152]:
+              - generic [ref=e153]: ✨
+              - generic [ref=e154]: Crafted with intention to empower your energy
+              - generic [ref=e155]: ✨
+          - link "Web Design by Reverb256 ✦" [ref=e157] [cursor=pointer]:
+            - /url: https://reverb256.github.io
+```

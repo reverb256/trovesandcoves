@@ -19,8 +19,8 @@ describe('Hero Component', () => {
 
   it('displays hero description', () => {
     render(<Hero />);
-    expect(screen.getByText(/Discover the power of transformation/)).toBeInTheDocument();
-    expect(screen.getByText(/blending elegance with raw beauty/)).toBeInTheDocument();
+    expect(screen.getByText(/Handcrafted Crystal Jewelry/)).toBeInTheDocument();
+    expect(screen.getByText(/Made in Canada/)).toBeInTheDocument();
   });
 
   it('renders scroll indicator', () => {
@@ -28,10 +28,10 @@ describe('Hero Component', () => {
     expect(screen.getByText(/Scroll/i)).toBeInTheDocument();
   });
 
-  it('renders floating crystal elements', () => {
+  it('renders CTA button', () => {
     render(<Hero />);
-    // Check if the floating elements container exists with correct class
-    const floatingElements = document.querySelectorAll('.animate-float');
-    expect(floatingElements.length).toBeGreaterThan(0);
+    const ctaButton = screen.getByRole('link', { name: /Shop the Collection/i });
+    expect(ctaButton).toBeInTheDocument();
+    expect(ctaButton).toHaveAttribute('href', '/products');
   });
 });
