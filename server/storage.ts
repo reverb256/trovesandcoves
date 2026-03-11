@@ -9,7 +9,7 @@ import {
   type NewsletterSubscription, type InsertNewsletterSubscription,
   type IStorage
 } from "@shared/types";
-import { crystalJewelryImages, categoryDescriptions } from "./mock-data";
+import { crystalJewelryImages } from "./mock-data";
 import { ETSY_PRODUCTS } from "./seed-etsy-products";
 
 // Re-export IStorage for convenience

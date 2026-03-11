@@ -1,7 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Heart, ShoppingBag } from "lucide-react";
+import { Heart } from "lucide-react";
 import { useLocation } from "wouter";
 import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";

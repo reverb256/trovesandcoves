@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
 import type { ProductWithCategory, Category } from '@shared/types';
 import { Filter, Search, X, Sparkles } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import SEOHead from '@/components/SEOHead';
 
 export default function Products() {

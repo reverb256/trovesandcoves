@@ -1,8 +1,7 @@
 import { useState, useEffect, memo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Gem, ShoppingBag, Star, Heart, Menu, X } from 'lucide-react';
+import { Gem, Heart, Menu, X } from 'lucide-react';
 import type { ProductWithCategory } from '@shared/types';
 
 // Mobile-first responsive hook
@@ -31,7 +30,6 @@ interface MobileProductCardProps {
 export function MobileProductCard({ product, onAddToCart }: MobileProductCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
-  const isMobile = useIsMobile();
 
   const handleAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
