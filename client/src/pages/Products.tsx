@@ -365,9 +365,8 @@ export default function Products() {
 
                         {/* Category Badge */}
                         {product.category && (
-                          <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase rounded-full backdrop-blur-sm" style={{
-                            backgroundColor: 'hsl(var(--accent-vibrant))',
-                            border: '1px solid hsl(var(--accent-vibrant))',
+                          <div className="absolute top-2 right-2 px-2 py-0.5 text-[10px] tracking-wider uppercase rounded-full backdrop-blur-sm" style={{
+                            backgroundColor: 'hsla(var(--accent-vibrant), 0.9)',
                             color: '#fff'
                           }}>
                             {product.category.name}

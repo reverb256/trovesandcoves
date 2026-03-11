@@ -101,7 +101,7 @@ export default function Home() {
 
                       {/* Category Badge */}
                       {product.category && (
-                        <div className="absolute top-3 right-3 px-3 py-1 text-xs tracking-wider uppercase bg-[hsla(var(--accent-vibrant),0.2)] border border-turquoise-soft text-turquoise-bright rounded-full backdrop-blur-sm">
+                        <div className="absolute top-2 right-2 px-2 py-0.5 text-[10px] tracking-wider uppercase bg-[hsla(var(--accent-vibrant),0.2)] border border-turquoise-soft text-turquoise-bright rounded-full backdrop-blur-sm">
                           {product.category.name}
                         </div>
                       )}
