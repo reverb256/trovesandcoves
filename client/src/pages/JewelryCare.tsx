@@ -46,27 +46,27 @@ export default function JewelleryCare() {
     {
       crystal: 'Amethyst',
       care: 'Avoid direct sunlight to prevent fading. Clean with soft cloth and mild soap.',
-      energy: 'Rich purple hues add elegant sophistication',
+      appearance: 'Rich purple hues add elegant sophistication',
     },
     {
       crystal: 'Rose Quartz',
       care: 'Gentle cleaning with soft cloth. Avoid harsh chemicals.',
-      energy: 'Delicate pink tones bring warmth and elegance',
+      appearance: 'Delicate pink tones bring warmth and elegance',
     },
     {
       crystal: 'Clear Quartz',
       care: 'Versatile and durable. Clean with warm water and mild soap.',
-      energy: 'Clarity and brilliance enhance any design',
+      appearance: 'Clarity and brilliance enhance any design',
     },
     {
       crystal: 'Citrine',
       care: 'Clean with warm water and gentle soap. Avoid harsh chemicals.',
-      energy: 'Warm golden tones bring brightness and style',
+      appearance: 'Warm golden tones bring brightness and style',
     },
     {
       crystal: 'Black Tourmaline',
       care: 'Clean with soft cloth. Avoid prolonged water exposure.',
-      energy: 'Deep black tones create dramatic contrast',
+      appearance: 'Deep black tones create dramatic contrast',
     },
   ];
 
@@ -176,7 +176,7 @@ export default function JewelleryCare() {
                     variant="secondary"
                     className="bg-troves-turquoise/20 text-primary text-xs"
                   >
-                    {item.energy}
+                    {item.appearance}
                   </Badge>
                 </div>
               ))}

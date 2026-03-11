@@ -86,20 +86,20 @@ export default function About() {
           <div className="w-16 h-0.5 mx-auto mb-8" style={{ background: 'hsl(var(--gold-medium))' }} />
 
           <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mb-6" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}>
-            Discover the power of transformation with our handcrafted crystal jewelry.
+            Discover handcrafted crystal jewelry designed for modern elegance.
           </p>
 
           <p className="text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-4" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}>
-            Each piece is designed to elevate your style and spirit, blending the elegance
-            of 14k gold-plated chains with the raw beauty of natural crystals.
+            Each piece is designed to elevate your style with timeless beauty,
+            blending the elegance of 14k gold-plated chains with the natural beauty of crystals.
           </p>
 
           <p className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
             Our statement necklaces and bracelets offer more than just luxury - they are crafted
-            with intention to empower your energy and enhance your unique presence.
+            with intention for pieces that feel powerful and grounded.
             <br /><br />
-            Embrace bold femininity and masculine strength with our exquisite collection, where
-            every detail resonates with abundance and confidence.
+            Embrace bold elegance with our exquisite collection, where
+            every detail reflects quality craftsmanship and confidence.
           </p>
         </div>
       </section>
@@ -325,8 +325,8 @@ export default function About() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-6 py-3 rounded-full border transition-all duration-300 hover:scale-105"
                   style={{
-                    borderColor: 'rgba(225, 175, 47, 0.3)',
-                    color: '#faf8f3',
+                    borderColor: 'rgba(201, 162, 74, 0.3)',
+                    color: '#FFFFFF',
                     fontFamily: '"Montserrat", sans-serif',
                     fontWeight: 500
                   }}
