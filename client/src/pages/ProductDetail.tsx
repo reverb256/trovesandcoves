@@ -13,6 +13,7 @@ import {
   Gem,
 } from 'lucide-react';
 import type { ProductWithCategory } from '@shared/types';
+import { WebPImage } from '@/components/WebPImage';
 import SEOHead from '@/components/SEOHead';
 import { ProductSchema, BreadcrumbSchema } from '@/components/SchemaOrg';
 
@@ -154,7 +155,7 @@ export default function ProductDetail() {
             {/* Main Image */}
             <div className="p-2 shadow-sm" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
               <div className="relative aspect-square overflow-hidden bg-[hsl(var(--bg-secondary))]">
-                <img
+                <WebPImage
                   src={images[selectedImage]}
                   alt={product.name}
                   width={800}
@@ -193,7 +194,7 @@ export default function ProductDetail() {
                         : 'border-transparent hover:border-[hsl(var(--accent-vibrant))]/50'
                     }`}
                   >
-                    <img
+                    <WebPImage
                       src={image}
                       alt={`${product.name} view ${index + 1}`}
                       width={80}
@@ -477,7 +478,7 @@ function RelatedProducts({
             <Link key={product.id} href={`/products/${product.id}`} className="group block">
               <div className="shadow-sm overflow-hidden" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                 <div className="aspect-square mb-4 overflow-hidden bg-[hsl(var(--bg-secondary))]">
-                  <img
+                  <WebPImage
                     src={product.imageUrl || '/api/placeholder/300/300'}
                     alt={product.name}
                     width={300}

@@ -7,6 +7,7 @@ import { useCart } from "@/hooks/useCart";
 import { useToast } from "@/hooks/use-toast";
 import { memo, useState } from "react";
 import type { ProductWithCategory } from "@shared/types";
+import { WebPImage } from "@/components/WebPImage";
 
 interface ProductCardProps {
   product: ProductWithCategory;
@@ -67,7 +68,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
     >
       {/* Image Container - Luxury Framed */}
       <div className="relative overflow-hidden" style={{ aspectRatio: '1 / 1.1' }}>
-        <img
+        <WebPImage
           src={product.imageUrl}
           alt={product.name}
           width={400}
