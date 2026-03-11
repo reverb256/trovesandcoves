@@ -109,9 +109,9 @@ export default function Home() {
 
                     {/* Product Info */}
                     <div className="text-center">
-                      <h3 
+                      <h3
                         className="text-xl font-semibold mb-2 group-hover:opacity-90 transition-colors duration-300"
-                        style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-primary))' }}
+                        style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}
                       >
                         {product.name}
                       </h3>

@@ -118,7 +118,7 @@ export default function About() {
             className="max-w-4xl mx-auto"
             style={{
               background: 'hsl(var(--bg-card))',
-              border: '1px solid rgba(225, 175, 47, 0.2)',
+              border: '1px solid hsla(var(--gold-medium), 0.15)',
               borderRadius: '8px'
             }}
           >
@@ -172,7 +172,7 @@ export default function About() {
             <Card
               style={{
                 background: 'hsl(var(--bg-card))',
-                border: '1px solid rgba(225, 175, 47, 0.2)',
+                border: '1px solid hsla(var(--gold-medium), 0.15)',
                 borderRadius: '8px'
               }}
             >
@@ -306,7 +306,7 @@ export default function About() {
 
               <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
                 <a
-                  href="mailto:hello@trovesandcoves.com"
+                  href="mailto:info@trovesandcoves.ca"
                   className="inline-flex items-center gap-3 px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
                   style={{
                     backgroundColor: 'hsl(var(--gold-medium))',
@@ -316,7 +316,7 @@ export default function About() {
                   }}
                 >
                   <Mail className="w-5 h-5" />
-                  <span>hello@trovesandcoves.com</span>
+                  <span>info@trovesandcoves.ca</span>
                 </a>
 
                 <a
