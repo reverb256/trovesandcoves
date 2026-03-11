@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Mystical Crystal Chamber Redesign', () => {
+test.describe('Brand Redesign', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:5000');
   });
 
-  test('hero renders with mystical title and crystal cards', async ({ page }) => {
+  test('hero renders with brand title and product cards', async ({ page }) => {
     await page.waitForLoadState('networkidle');
 
     const h1 = page.locator('h1').first();
@@ -13,13 +13,12 @@ test.describe('Mystical Crystal Chamber Redesign', () => {
     const titleText = await h1.textContent();
     console.log('Hero title:', titleText?.substring(0, 50));
 
-    const crystalCards = page.locator('.crystal-card');
-    const count = await crystalCards.count();
-    console.log('Crystal cards on home:', count);
-    expect(count).toBeGreaterThan(0);
+    // Check for brand elements
+    await expect(page.locator('text=Handcrafted Crystal Jewelry')).toBeVisible();
+    await expect(page.locator('text=Made in Canada')).toBeVisible();
   });
 
-  test('mystical turquoise color scheme is present', async ({ page }) => {
+  test('turquoise color scheme is present', async ({ page }) => {
     await page.waitForLoadState('networkidle');
 
     // Check for HSL turquoise values (174, 85%, 45%)
@@ -29,17 +28,17 @@ test.describe('Mystical Crystal Chamber Redesign', () => {
     expect(count).toBeGreaterThan(5);
   });
 
-  test('products page shows crystal grid', async ({ page }) => {
+  test('products page shows product grid', async ({ page }) => {
     await page.goto('http://localhost:5000/products');
     await page.waitForLoadState('networkidle');
 
-    const products = page.locator('.crystal-card');
-    const count = await products.count();
+    const productLinks = page.locator('a[href^="/products/"]');
+    const count = await productLinks.count();
     console.log('Products on listing page:', count);
     expect(count).toBeGreaterThan(0);
   });
 
-  test('product detail has mystical elements', async ({ page }) => {
+  test('product detail has interactive elements', async ({ page }) => {
     await page.goto('http://localhost:5000/products/1');
     await page.waitForLoadState('networkidle');
 
@@ -50,13 +49,13 @@ test.describe('Mystical Crystal Chamber Redesign', () => {
     expect(await qtyButtons.count()).toBeGreaterThan(0);
   });
 
-  test('footer Crystal Circle newsletter exists', async ({ page }) => {
+  test('footer has brand information', async ({ page }) => {
     await page.waitForLoadState('networkidle');
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await page.waitForTimeout(500);
 
-    const crystalCircle = page.locator('text=Crystal Circle');
-    await expect(crystalCircle).toBeVisible();
+    await expect(page.locator('text=Handcrafted in Winnipeg, Canada')).toBeVisible();
+    await expect(page.locator('text=Handcrafted crystal jewelry')).toBeVisible();
   });
 
   test('navigation cart has aria-label', async ({ page }) => {
