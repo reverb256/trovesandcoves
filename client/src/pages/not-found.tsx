@@ -1,5 +1,7 @@
 import { Home, ShoppingBag, ArrowRight } from 'lucide-react';
-import { Link } from 'wouter';
+import CTAButton from '@/components/CTAButton';
+import SectionPill from '@/components/SectionPill';
+import SectionDivider from '@/components/SectionDivider';
 
 export default function NotFound() {
   return (
@@ -13,18 +15,16 @@ export default function NotFound() {
         </div>
 
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full" style={{ backgroundColor: 'hsl(var(--gold-medium))', border: '1px solid hsl(var(--gold-medium))' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'hsl(var(--text-primary))', fontWeight: 600 }}>
-            404
-          </span>
-        </div>
+        <SectionPill variant="gold" showIcon={false} className="mb-6">
+          404
+        </SectionPill>
 
         <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
           Page Not Found
         </h1>
 
         {/* Divider */}
-        <div className="w-24 h-px mx-auto mb-6" style={{ backgroundColor: 'hsl(var(--gold-medium))' }}></div>
+        <SectionDivider variant="gold" className="mb-6" />
 
         <p className="text-lg mb-8 leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
           The page you're looking for doesn't exist or has been moved.
@@ -33,20 +33,16 @@ export default function NotFound() {
 
         {/* Navigation Options */}
         <div className="space-y-4">
-          <Link href="/">
-            <button className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 group" style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--bg-primary))', fontFamily: '"Montserrat", sans-serif' }}>
-              <Home className="w-5 h-5" />
-              <span>Return Home</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </button>
-          </Link>
+          <CTAButton variant="primary" href="/" className="w-full group">
+            <Home className="w-5 h-5" />
+            <span>Return Home</span>
+            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+          </CTAButton>
 
-          <Link href="/products">
-            <button className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 group" style={{ backgroundColor: 'transparent', border: '2px solid hsl(var(--accent-vibrant))', color: 'hsl(var(--accent-vibrant))', fontFamily: '"Montserrat", sans-serif' }}>
-              <ShoppingBag className="w-5 h-5" />
-              <span>Shop the Collection</span>
-            </button>
-          </Link>
+          <CTAButton variant="secondary" href="/products" className="w-full">
+            <ShoppingBag className="w-5 h-5" />
+            <span>Shop the Collection</span>
+          </CTAButton>
         </div>
       </div>
     </div>

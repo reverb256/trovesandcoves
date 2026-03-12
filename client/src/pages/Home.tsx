@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import SEOHead from '@/components/SEOHead';
 import Hero from '@/components/Hero';
 import SectionPill from '@/components/SectionPill';
+import CTAButton from '@/components/CTAButton';
 import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema } from '@/components/SchemaOrg';
 import type { ProductWithCategory } from '@shared/types';
 import { ArrowRight, Sparkles } from 'lucide-react';
@@ -132,20 +133,10 @@ export default function Home() {
 
           {/* View All Button */}
           <div className="text-center mt-16">
-            <Link href="/products">
-              <button 
-                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full transition-all duration-300 hover:opacity-90 hover:scale-105"
-                style={{ 
-                  border: '2px solid hsl(var(--accent-vibrant))',
-                  backgroundColor: 'transparent',
-                  color: 'hsl(var(--accent-vibrant))',
-                  fontFamily: "'Montserrat', sans-serif"
-                }}
-              >
-                <span>View All Jewelry</span>
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </button>
-            </Link>
+            <CTAButton variant="secondary" href="/products" className="group">
+              <span>View All Jewelry</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </CTAButton>
           </div>
         </div>
       </section>
