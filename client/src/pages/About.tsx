@@ -3,7 +3,9 @@ import { Award, Gem, MapPin, Hand, Mail } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
+import SectionHeader from '@/components/SectionHeader';
 import CTAButton from '@/components/CTAButton';
+import IconCircle from '@/components/IconCircle';
 import { BreadcrumbSchema } from '@/components/SchemaOrg';
 
 export default function About() {
@@ -104,12 +106,10 @@ export default function About() {
       <div className="chamber-container py-16 md:py-24">
         {/* Brand Story */}
         <section className="mb-24 md:mb-32">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
-              Our Story
-            </h2>
-            <SectionDivider variant="gold" className="mb-8" />
-          </div>
+          <SectionHeader
+            title="Our Story"
+            variant="gold"
+          />
 
           <Card
             className="max-w-4xl mx-auto"
@@ -155,15 +155,11 @@ export default function About() {
 
         {/* Materials */}
         <section className="mb-24 md:mb-32">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
-              Materials
-            </h2>
-            <SectionDivider variant="gold" className="mb-8" />
-            <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
-              Quality materials form the foundation of every piece we create.
-            </p>
-          </div>
+          <SectionHeader
+            title="Materials"
+            description="Quality materials form the foundation of every piece we create."
+            variant="gold"
+          />
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Card
@@ -174,9 +170,7 @@ export default function About() {
               }}
             >
               <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'hsla(43, 78%, 60%, 0.15)' }}>
-                  <Award className="w-6 h-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                </div>
+                <IconCircle icon={Award} variant="gold-soft" size="sm" className="mb-6" />
                 <h3 className="text-xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
                   14k Gold-Filled
                 </h3>
@@ -196,9 +190,7 @@ export default function About() {
               }}
             >
               <CardContent className="p-8">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'hsla(174, 70%, 63%, 0.15)' }}>
-                  <Gem className="w-6 h-6" style={{ color: 'hsl(var(--accent-vibrant))' }} />
-                </div>
+                <IconCircle icon={Gem} variant="turquoise" size="sm" className="mb-6" />
                 <h3 className="text-xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
                   Genuine Crystals
                 </h3>
@@ -215,12 +207,10 @@ export default function About() {
 
         {/* Values */}
         <section className="mb-24 md:mb-32">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
-              What We Stand For
-            </h2>
-            <SectionDivider variant="gold" className="mb-8" />
-          </div>
+          <SectionHeader
+            title="What We Stand For"
+            variant="gold"
+          />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => {
@@ -236,12 +226,7 @@ export default function About() {
                   }}
                 >
                   <CardContent className="p-6">
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
-                      style={{ backgroundColor: 'hsla(43, 78%, 60%, 0.15)' }}
-                    >
-                      <Icon className="w-6 h-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                    </div>
+                    <IconCircle icon={Icon} variant="gold-soft" size="md" className="mx-auto mb-4" />
                     <h3 className="text-lg font-bold mb-3" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
                       {value.title}
                     </h3>
@@ -257,15 +242,11 @@ export default function About() {
 
         {/* Process */}
         <section className="mb-24 md:mb-32">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
-              Our Process
-            </h2>
-            <SectionDivider variant="gold" className="mb-8" />
-            <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
-              From concept to completion, every piece receives careful attention.
-            </p>
-          </div>
+          <SectionHeader
+            title="Our Process"
+            description="From concept to completion, every piece receives careful attention."
+            variant="gold"
+          />
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {process.map((item, index) => (

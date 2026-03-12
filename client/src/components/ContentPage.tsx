@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
+import IconCircle from '@/components/IconCircle';
 
 /**
  * Shared page header component for content pages
@@ -112,9 +113,7 @@ interface InfoCardProps {
 export function InfoCard({ icon: Icon, title, children }: InfoCardProps) {
   return (
     <div className="text-center">
-      <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}>
-        <Icon className="w-10 h-10" style={{ color: 'hsl(var(--bg-primary))' }} />
-      </div>
+      <IconCircle icon={Icon} variant="turquoise" size="lg" className="mx-auto mb-4" />
       <h3 className="text-xl font-bold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>{title}</h3>
       <p style={{ color: 'hsl(var(--text-secondary))' }}>{children}</p>
     </div>

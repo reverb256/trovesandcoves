@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
+import IconCircle from '@/components/IconCircle';
 
 /**
  * Reusable themed section header for pages
@@ -112,9 +113,9 @@ export interface StepCardProps {
 export function StepCard({ step, title, description }: StepCardProps) {
   return (
     <div className="flex items-start space-x-4">
-      <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'hsla(var(--accent-vibrant), 0.2)' }}>
-        <span className="font-bold" style={{ color: 'hsl(var(--text-primary))' }}>{step}</span>
-      </div>
+      <IconCircle variant="turquoise-soft" size="sm" className="flex-shrink-0">
+        <span className="font-bold">{step}</span>
+      </IconCircle>
       <div className="flex-1">
         <h4 className="font-semibold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>{title}</h4>
         <p className="text-sm leading-relaxed" style={{ color: 'hsl(var(--text-muted))' }}>{description}</p>

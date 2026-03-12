@@ -2,6 +2,7 @@ import { Component, ReactNode } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AlertCircle, RefreshCw, Home } from 'lucide-react';
+import IconCircle from '@/components/IconCircle';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -77,9 +78,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
           <Card className="max-w-2xl w-full shadow-2xl border border-destructive/50">
             <CardHeader className="text-center">
               <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center">
-                  <AlertCircle className="w-8 h-8 text-destructive" />
-                </div>
+                <IconCircle icon={AlertCircle} variant="error" size="base" />
               </div>
               <CardTitle className="text-2xl text-destructive">
                 Something went wrong

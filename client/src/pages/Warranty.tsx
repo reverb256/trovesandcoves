@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Shield, Clock, Heart, CheckCircle, AlertCircle } from 'lucide-react';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
+import IconCircle from '@/components/IconCircle';
 
 export default function Warranty() {
   const warrantyTerms = [
@@ -189,36 +190,36 @@ export default function Warranty() {
           <CardContent className="p-6">
             <div className="grid md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-primary font-bold">1</span>
-                </div>
+                <IconCircle variant="turquoise-soft" size="sm" className="mx-auto mb-3">
+                  <span className="font-bold">1</span>
+                </IconCircle>
                 <h4 className="font-semibold text-primary mb-2">Contact Us</h4>
                 <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }}>
                   Email us with photos and your order details
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-primary font-bold">2</span>
-                </div>
+                <IconCircle variant="turquoise-soft" size="sm" className="mx-auto mb-3">
+                  <span className="font-bold">2</span>
+                </IconCircle>
                 <h4 className="font-semibold text-primary mb-2">Assessment</h4>
                 <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }}>
                   We review your claim within 24 hours
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-primary font-bold">3</span>
-                </div>
+                <IconCircle variant="turquoise-soft" size="sm" className="mx-auto mb-3">
+                  <span className="font-bold">3</span>
+                </IconCircle>
                 <h4 className="font-semibold text-primary mb-2">Return</h4>
                 <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }}>
                   Ship your item using our prepaid label
                 </p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-troves-turquoise/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-primary font-bold">4</span>
-                </div>
+                <IconCircle variant="turquoise-soft" size="sm" className="mx-auto mb-3">
+                  <span className="font-bold">4</span>
+                </IconCircle>
                 <h4 className="font-semibold text-primary mb-2">Resolution</h4>
                 <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))', opacity: 0.7 }}>
                   Repair or replacement within 5-7 days

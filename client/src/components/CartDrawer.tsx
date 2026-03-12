@@ -2,6 +2,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import EmptyState from "@/components/EmptyState";
 import { useCart } from "@/hooks/useCart";
 import { useLocation } from "wouter";
 import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
@@ -68,21 +69,20 @@ export default function CartDrawer() {
         </SheetHeader>
 
         {items.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-96 text-center">
-            <ShoppingBag className="h-16 w-16 mb-4" style={{ color: 'hsla(174,85%,45%,0.3)' }} />
-            <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>Your cart is empty</h3>
-            <p className="mb-6" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>Discover our beautiful jewelry collections</p>
-            <Button 
-              onClick={() => {
+          <EmptyState
+            icon={ShoppingBag}
+            title="Your cart is empty"
+            description="Discover our beautiful jewelry collections"
+            variant="cart"
+            action={{
+              label: "Browse Products",
+              onClick: () => {
                 toggleCart();
                 setLocation('/products');
-              }}
-              style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
-              className="hover:opacity-90"
-            >
-              Browse Products
-            </Button>
-          </div>
+              },
+            }}
+            className="flex items-center justify-center"
+          />
         ) : (
           <>
             {/* Cart Items */}

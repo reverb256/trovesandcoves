@@ -2,6 +2,7 @@ import { Home, ShoppingBag, ArrowRight } from 'lucide-react';
 import CTAButton from '@/components/CTAButton';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
+import IconCircle from '@/components/IconCircle';
 
 export default function NotFound() {
   return (
@@ -9,9 +10,7 @@ export default function NotFound() {
       <div className="rounded-lg shadow-sm w-full max-w-lg p-12 text-center" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
         {/* Icon */}
         <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full" style={{ backgroundColor: 'hsla(174, 51%, 51%, 0.1)', border: '2px solid hsl(var(--accent-vibrant))' }}>
-            <ShoppingBag className="w-12 h-12" style={{ color: 'hsl(var(--accent-vibrant))' }} strokeWidth={1.5} />
-          </div>
+          <IconCircle icon={ShoppingBag} variant="outline" size="xl" />
         </div>
 
         {/* Badge */}

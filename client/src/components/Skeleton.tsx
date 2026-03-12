@@ -36,7 +36,11 @@ export function Skeleton({
         animationStyles[animation],
         className
       )}
-      style={{ width, height }}
+      style={{
+        width,
+        height,
+        backgroundColor: 'hsl(var(--bg-secondary))',
+      }}
       {...props}
     />
   );
@@ -45,7 +49,10 @@ export function Skeleton({
 // Product Card Skeleton
 export function ProductCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-surface-800 rounded-lg shadow-md overflow-hidden">
+    <div
+      className="rounded-lg shadow-sm overflow-hidden"
+      style={{ backgroundColor: 'hsl(var(--bg-card))' }}
+    >
       <Skeleton
         variant="rectangular"
         height={200}
@@ -66,12 +73,14 @@ export function ProductCardSkeleton() {
 // Hero Section Skeleton
 export function HeroSkeleton() {
   return (
-    <div className="bg-gradient-to-br from-primary-20 to-primary-40 dark:from-primary-30 dark:to-primary-50 min-h-[600px] flex items-center justify-center">
-      <div className="container mx-auto px-4 py-16">
+    <div
+      className="min-h-[400px] flex items-center justify-center"
+      style={{ backgroundColor: 'hsl(var(--bg-primary))' }}
+    >
+      <div className="chamber-container px-4 py-16">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <Skeleton variant="text" height={48} className="mx-auto max-w-2xl" />
           <Skeleton variant="text" height={24} className="mx-auto max-w-xl" />
-          <Skeleton variant="text" height={24} className="mx-auto max-w-lg" />
           <div className="flex justify-center gap-4 mt-8">
             <Skeleton variant="rectangular" width={160} height={48} />
             <Skeleton variant="rectangular" width={160} height={48} />
@@ -85,7 +94,7 @@ export function HeroSkeleton() {
 // Product List Skeleton
 export function ProductListSkeleton({ count = 6 }: { count?: number }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {Array.from({ length: count }).map((_, i) => (
         <ProductCardSkeleton key={i} />
       ))}
@@ -96,15 +105,19 @@ export function ProductListSkeleton({ count = 6 }: { count?: number }) {
 // Loading Spinner
 export function LoadingSpinner({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
   const sizeStyles = {
-    sm: 'w-4 h-4',
-    md: 'w-8 h-8',
-    lg: 'w-12 h-12',
+    sm: 'w-4 h-4 border-2',
+    md: 'w-8 h-8 border-2',
+    lg: 'w-12 h-12 border-2',
   };
 
   return (
     <div className="flex items-center justify-center">
       <div
-        className={`border-4 border-primary border-t-transparent rounded-full animate-spin ${sizeStyles[size]}`}
+        className={`${sizeStyles[size]} rounded-full animate-spin`}
+        style={{
+          borderColor: 'hsl(var(--accent-vibrant))',
+          borderLeftColor: 'transparent',
+        }}
         role="status"
         aria-label="Loading"
       >
@@ -117,9 +130,9 @@ export function LoadingSpinner({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
 // Full Page Loading Skeleton
 export function PageSkeleton() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       <HeroSkeleton />
-      <div className="container mx-auto px-4 py-12 space-y-8">
+      <div className="chamber-container px-4 py-12 space-y-8">
         <div className="text-center space-y-4">
           <Skeleton variant="text" width="30%" className="mx-auto" height={32} />
           <Skeleton variant="text" width="50%" className="mx-auto" />

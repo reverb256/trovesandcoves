@@ -4,6 +4,7 @@ import SEOHead from '@/components/SEOHead';
 import Hero from '@/components/Hero';
 import SectionPill from '@/components/SectionPill';
 import CTAButton from '@/components/CTAButton';
+import IconCircle from '@/components/IconCircle';
 import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema } from '@/components/SchemaOrg';
 import type { ProductWithCategory } from '@shared/types';
 import { ArrowRight, Sparkles } from 'lucide-react';
@@ -162,13 +163,8 @@ export default function Home() {
               }}
             >
               {/* Decorative Icon */}
-              <div className="inline-flex items-center justify-center w-20 h-20 mb-8 rounded-full"
-                style={{ 
-                  border: '2px solid hsla(43,95%,55%,0.3)', 
-                  backgroundColor: 'hsla(43,95%,55%,0.05)'
-                }}
-              >
-                <Sparkles className="w-10 h-10" style={{ color: 'hsl(var(--gold-medium))' }} />
+              <div className="mb-8">
+                <IconCircle icon={Sparkles} variant="gold-soft" size="lg" className="border-2" style={{ borderColor: 'hsla(43,95%,55%,0.3)' }} />
               </div>
 
               <h2 

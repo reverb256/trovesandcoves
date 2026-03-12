@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLocation } from "wouter";
 import { CheckCircle, Package, ShoppingBag, Mail } from "lucide-react";
+import IconCircle from "@/components/IconCircle";
 
 type Order = {
   id: number;
@@ -96,9 +97,7 @@ export default function OrderConfirmation() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 mb-6">
-              <CheckCircle className="h-10 w-10 text-green-600" />
-            </div>
+            <IconCircle icon={CheckCircle} variant="success" size="lg" className="mb-6" />
             <h1 className="text-4xl font-serif font-bold text-primary mb-4">
               Order Confirmed!
             </h1>

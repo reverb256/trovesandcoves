@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { StepCard } from '@/components/ui/themed-components';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
+import SectionHeader from '@/components/SectionHeader';
 import {
   CreditCard,
   Calendar,
@@ -88,9 +89,10 @@ export default function Financing() {
       <div className="container mx-auto px-4 py-12">
         {/* Payment Options */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: 'hsl(var(--text-primary))' }}>
-            Payment Plans Available
-          </h2>
+          <SectionHeader
+            title="Payment Plans Available"
+            variant="turquoise"
+          />
           <div className="grid md:grid-cols-3 gap-8">
             {paymentOptions.map(option => {
               const Icon = option.icon;

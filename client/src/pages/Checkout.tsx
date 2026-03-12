@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import SEOHead from "@/components/SEOHead";
 import { BreadcrumbSchema } from "@/components/SchemaOrg";
+import EmptyState from "@/components/EmptyState";
 
 const ETSY_SHOP_URL = "https://www.etsy.com/shop/TrovesAndCoves";
 
@@ -78,7 +79,14 @@ export default function Checkout() {
                 <CardContent className="p-6">
                   <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
                   {items.length === 0 ? (
-                    <p className="text-muted-foreground">Your cart is empty</p>
+                    <EmptyState
+                      icon={ShoppingBag}
+                      title="Your cart is empty"
+                      description="Add items to your cart before checking out"
+                      variant="cart"
+                      action={{ label: "Browse Products", href: "/products" }}
+                      className="py-8"
+                    />
                   ) : (
                     <div className="space-y-4">
                       {items.map((item) => (
