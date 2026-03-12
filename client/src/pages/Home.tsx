@@ -28,10 +28,12 @@ export default function Home() {
       <LocalBusinessSchema />
 
       {/* Hero Section */}
-      <Hero />
+      <div className="page-section-hero">
+        <Hero />
+      </div>
 
       {/* Featured Collections Section */}
-      <section className="chamber-section content-layer">
+      <section className="chamber-section content-layer page-section">
         <div className="chamber-container">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -143,7 +145,7 @@ export default function Home() {
       </section>
 
       {/* Message Section */}
-      <section className="chamber-section content-layer relative overflow-hidden">
+      <section className="chamber-section content-layer page-section relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-20"

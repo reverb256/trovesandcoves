@@ -107,29 +107,21 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navigation.map((item) => (
                 <Link
                   key={item.path}
                   href={item.path}
-                  className="relative py-2 text-sm tracking-widest uppercase transition-colors duration-300"
+                  className={`desktop-nav-link relative py-2 text-sm tracking-widest uppercase ${
+                    isActivePath(item.path) ? 'active' : ''
+                  }`}
                   style={{
                     color: isActivePath(item.path)
                       ? 'hsl(var(--accent-vibrant))'
                       : 'hsl(var(--text-primary))'
                   }}
-                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--accent-vibrant))')}
-                  onMouseLeave={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--text-primary))')}
                 >
                   {item.name}
-                  {isActivePath(item.path) && (
-                    <span className="absolute bottom-0 left-0 w-full h-px"
-                      style={{
-                        backgroundColor: 'hsl(var(--accent-vibrant))',
-                        boxShadow: '0 0 10px hsl(var(--accent-vibrant))'
-                      }}
-                    ></span>
-                  )}
                 </Link>
               ))}
             </div>
@@ -143,17 +135,17 @@ export default function Header() {
               <Link href="/checkout">
                 <button
                   aria-label="Shopping cart"
-                  className="relative p-3 rounded-lg transition-colors duration-300 group"
+                  className="cart-button-glow relative p-3 rounded-lg group"
                   style={{
                     backgroundColor: 'hsl(var(--bg-card))',
-                    border: '1px solid hsla(var(--accent-vibrant),0.2)'
+                    border: '1px solid hsla(var(--accent-vibrant),0.2)',
+                    transition: 'border-color 0.3s ease',
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = 'hsla(var(--skull-turquoise),0.5)'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = 'hsla(var(--accent-vibrant),0.2)'}
                 >
                   <ShoppingCart className="w-5 h-5" style={{ color: 'hsl(var(--skull-turquoise))' }} />
                   {itemCount > 0 && (
-                    <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold rounded-full glow-turquoise"
+                    <span
+                      className="cart-badge absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold rounded-full"
                       style={{
                         backgroundColor: 'hsl(var(--skull-turquoise))',
                         color: 'hsl(var(--bg-overlay))'
@@ -162,27 +154,29 @@ export default function Header() {
                       {itemCount}
                     </span>
                   )}
-                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ backgroundColor: 'hsla(var(--accent-vibrant),0.1)' }}
-                  ></div>
                 </button>
               </Link>
 
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-3 rounded-lg transition-colors duration-300"
+                className="menu-button lg:hidden rounded-lg"
                 style={{
                   backgroundColor: 'hsl(var(--bg-card))',
-                  border: '1px solid hsla(var(--accent-vibrant),0.2)'
+                  border: '1px solid hsla(var(--accent-vibrant),0.2)',
+                  transition: 'border-color 0.3s ease',
                 }}
                 aria-label="Toggle menu"
+                aria-expanded={isMobileMenuOpen}
               >
-                {isMobileMenuOpen ? (
-                  <X className="w-5 h-5" style={{ color: 'hsl(var(--skull-turquoise))' }} />
-                ) : (
-                  <Menu className="w-5 h-5" style={{ color: 'hsl(var(--skull-turquoise))' }} />
-                )}
+                <Menu
+                  className={`menu-icon w-5 h-5 ${isMobileMenuOpen ? 'hidden' : 'visible'}`}
+                  style={{ color: 'hsl(var(--skull-turquoise))' }}
+                />
+                <X
+                  className={`menu-icon w-5 h-5 ${isMobileMenuOpen ? 'visible' : 'hidden'}`}
+                  style={{ color: 'hsl(var(--skull-turquoise))' }}
+                />
               </button>
             </div>
           </nav>
@@ -198,55 +192,74 @@ export default function Header() {
       <div className="h-20" />
 
       {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 backdrop-blur-xl z-40 lg:hidden content-layer"
-          style={{ backgroundColor: 'hsla(var(--bg-secondary),0.95)' }}
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          <div className="flex flex-col items-center justify-center h-full gap-8" onClick={(e) => e.stopPropagation()}>
-            {/* Mobile Logo */}
-            <div className="text-center mb-8">
-              <div className="flex items-baseline justify-center gap-3 mb-2">
-                <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-2xl">TROVES</span>
-                <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}>&</span>
-                <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }} className="text-4xl">Coves</span>
-              </div>
-              <p className="text-sm tracking-widest uppercase"
-                style={{ color: "hsl(var(--text-secondary))", fontFamily: "'Montserrat', sans-serif" }}
+      <div
+        className={`mobile-menu-overlay lg:hidden ${isMobileMenuOpen ? 'open' : ''}`}
+        onClick={() => setIsMobileMenuOpen(false)}
+        aria-hidden={!isMobileMenuOpen}
+      >
+        <div className="mobile-menu-container" onClick={(e) => e.stopPropagation()}>
+          {/* Mobile Logo */}
+          <div className="mobile-menu-logo text-center">
+            <div className="flex items-baseline justify-center gap-3 mb-2">
+              <span
+                className="text-2xl sm:text-3xl"
+                style={{
+                  fontFamily: "'Libre Baskerville', serif",
+                  fontWeight: 700,
+                  color: "hsl(var(--accent-vibrant))",
+                  textTransform: "uppercase"
+                }}
+              >TROVES</span>
+              <span
+                className="text-4xl sm:text-5xl"
+                style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}
+              >&</span>
+              <span
+                className="text-4xl sm:text-5xl"
+                style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}
+              >Coves</span>
+            </div>
+            <p
+              className="text-xs sm:text-sm tracking-widest uppercase"
+              style={{
+                color: "hsl(var(--text-secondary))",
+                fontFamily: "'Montserrat', sans-serif"
+              }}
+            >
+              Handcrafted Crystal Jewelry
+            </p>
+          </div>
+
+          {/* Mobile Navigation */}
+          <nav className="mobile-menu-nav">
+            {navigation.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`mobile-menu-nav-item desktop-nav-link text-xl sm:text-2xl md:text-3xl tracking-widest uppercase ${
+                  isActivePath(item.path) ? 'active' : ''
+                }`}
+                style={{
+                  color: isActivePath(item.path)
+                    ? 'hsl(var(--accent-vibrant))'
+                    : 'hsl(var(--text-primary))'
+                }}
               >
-                Handcrafted Crystal Jewelry
-              </p>
-            </div>
+                {item.name}
+              </Link>
+            ))}
+          </nav>
 
-            {/* Mobile Navigation */}
-            <nav className="flex flex-col items-center gap-6">
-              {navigation.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl tracking-widest uppercase transition-colors duration-300"
-                  style={{
-                    color: isActivePath(item.path)
-                      ? 'hsl(var(--accent-vibrant))'
-                      : 'hsl(var(--text-primary))'
-                  }}
-                  onMouseEnter={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--accent-vibrant))')}
-                  onMouseLeave={(e) => !isActivePath(item.path) && (e.currentTarget.style.color = 'hsl(var(--text-primary))')}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Decorative Crystal */}
-            <div className="mt-8 relative">
-              <Sparkles className="w-8 h-8" style={{ color: 'hsl(var(--frame-gold))' }} />
-            </div>
+          {/* Decorative Crystal */}
+          <div className="mobile-menu-decoration mt-4 sm:mt-8 relative">
+            <Sparkles
+              className="w-8 h-8 sm:w-10 sm:h-10"
+              style={{ color: 'hsl(var(--frame-gold))' }}
+            />
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

@@ -342,12 +342,11 @@ export default function Products() {
             ) : (
               /* Products Grid */
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredAndSortedProducts.map((product, index) => (
+                {filteredAndSortedProducts.map((product) => (
                   <a
                     key={product.id}
                     href={`/products/${product.id}`}
-                    className="group block animate-reveal"
-                    style={{ animationDelay: `${index * 0.05}s` }}
+                    className="group block product-card-stagger"
                   >
                     <div className="rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                       {/* Product Image */}

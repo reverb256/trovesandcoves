@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/lib/theme';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
+import PageTransition, { SectionReveal } from '@/components/PageTransition';
 import Home from '@/pages/Home';
 import Products from '@/pages/Products';
 import ProductDetail from '@/pages/ProductDetail';
@@ -44,25 +45,29 @@ function Router() {
 
         <Header />
         <main id="main-content">
-          <Switch>
-            <Route path="/" component={Home} />
-            <Route path="/showcase" component={Showcase} />
-            <Route path="/products" component={Products} />
-            <Route path="/products/:category" component={Products} />
-            <Route path="/products/:id" component={ProductDetail} />
-            <Route path="/checkout" component={Checkout} />
-            <Route path="/order-confirmation" component={OrderConfirmation} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/about" component={About} />
-            <Route path="/size-guide" component={SizeGuide} />
-            <Route path="/jewelry-care" component={JewelryCare} />
-            <Route path="/warranty" component={Warranty} />
-            <Route path="/returns" component={Returns} />
-            <Route path="/financing" component={Financing} />
-            <Route path="/privacy-policy" component={PrivacyPolicy} />
-            <Route path="/style-guide" component={StyleGuide} />
-            <Route component={NotFound} />
-          </Switch>
+          <PageTransition>
+            <SectionReveal>
+              <Switch>
+                <Route path="/" component={Home} />
+                <Route path="/showcase" component={Showcase} />
+                <Route path="/products" component={Products} />
+                <Route path="/products/:category" component={Products} />
+                <Route path="/products/:id" component={ProductDetail} />
+                <Route path="/checkout" component={Checkout} />
+                <Route path="/order-confirmation" component={OrderConfirmation} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/about" component={About} />
+                <Route path="/size-guide" component={SizeGuide} />
+                <Route path="/jewelry-care" component={JewelryCare} />
+                <Route path="/warranty" component={Warranty} />
+                <Route path="/returns" component={Returns} />
+                <Route path="/financing" component={Financing} />
+                <Route path="/privacy-policy" component={PrivacyPolicy} />
+                <Route path="/style-guide" component={StyleGuide} />
+                <Route component={NotFound} />
+              </Switch>
+            </SectionReveal>
+          </PageTransition>
         </main>
         <Footer />
         <CartDrawer />

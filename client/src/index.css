@@ -592,6 +592,7 @@ a:hover {
 
 /* ============================================================
    ETSY BUTTON - External purchase link
+   Following Web Interface Guidelines: explicit transitions only
    ============================================================ */
 .btn-etsy {
   position: relative;
@@ -609,7 +610,10 @@ a:hover {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -1277,6 +1281,505 @@ select:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   *:focus-visible {
     transition: none;
+  }
+
+  .page-transition-container,
+  .page-transition-enter,
+  .page-transition-exit {
+    transition: none !important;
+  }
+
+  .mobile-menu-overlay,
+  .mobile-menu-logo,
+  .mobile-menu-nav-item,
+  .mobile-menu-decoration,
+  .menu-icon,
+  .desktop-nav-link::after,
+  .cart-button-glow::before {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   MOBILE MENU ANIMATIONS
+   Following Web Interface Guidelines:
+   - Animate transform/opacity only (compositor-friendly)
+   - No transition: all - list properties explicitly
+   - Honor prefers-reduced-motion
+   - Interruptible animations
+   ============================================================ */
+
+/* Mobile menu overlay - fade and scale in */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: hsla(var(--bg-secondary), 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: scale(0.95);
+  transform-origin: center center;
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Normal animation - smooth fade and scale */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu-overlay {
+    transition:
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .mobile-menu-overlay.open {
+    pointer-events: auto;
+  }
+}
+
+/* Mobile menu container - centers content */
+.mobile-menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh; /* Use dynamic viewport height for mobile */
+  padding: clamp(1rem, 4vw, 3rem);
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Mobile logo - fade in from top */
+.mobile-menu-logo {
+  opacity: 0;
+  transform: translateY(-20px);
+  will-change: opacity, transform;
+}
+
+.mobile-menu-overlay.open .mobile-menu-logo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu-logo {
+    transition:
+      opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.1s;
+  }
+}
+
+/* Mobile nav items - staggered fade in from bottom */
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.mobile-menu-nav-item {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.mobile-menu-overlay.open .mobile-menu-nav-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu-nav-item {
+    transition:
+      opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Stagger delays for each item */
+  .mobile-menu-nav-item:nth-child(1) { transition-delay: 0.15s; }
+  .mobile-menu-nav-item:nth-child(2) { transition-delay: 0.2s; }
+  .mobile-menu-nav-item:nth-child(3) { transition-delay: 0.25s; }
+  .mobile-menu-nav-item:nth-child(4) { transition-delay: 0.3s; }
+}
+
+/* Mobile menu decorative element - fade in last */
+.mobile-menu-decoration {
+  opacity: 0;
+  transform: scale(0.8);
+  will-change: opacity, transform;
+}
+
+.mobile-menu-overlay.open .mobile-menu-decoration {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu-decoration {
+    transition:
+      opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 0.35s;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE MENU BUTTON ANIMATION
+   Hamburger to X transformation
+   ============================================================ */
+
+.menu-button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Menu icon transition */
+.menu-icon {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.menu-icon.hidden {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+  position: absolute;
+  pointer-events: none;
+}
+
+.menu-icon.visible {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-icon {
+    transition: opacity 0.15s ease;
+  }
+
+  .menu-icon.hidden {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   HEADER RESPONSIVE ENHANCEMENTS
+   ============================================================ */
+
+/* Responsive spacing for all screen sizes */
+@media (max-width: 380px) {
+  .mobile-menu-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .mobile-menu-nav-item {
+    font-size: 1.5rem;
+  }
+}
+
+/* Larger mobile devices */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .mobile-menu-nav-item {
+    font-size: 2rem;
+  }
+
+  .mobile-menu-container {
+    gap: 2rem;
+  }
+}
+
+/* Tablet landscape optimizations */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+  .mobile-menu-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    min-height: 100vh;
+  }
+
+  .mobile-menu-nav {
+    flex-direction: row;
+  }
+
+  .mobile-menu-decoration {
+    position: absolute;
+    bottom: 2rem;
+  }
+}
+
+/* Ultra-wide screens (4K+) */
+@media (min-width: 2560px) {
+  .mobile-menu-container {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+}
+
+/* ============================================================
+   DESKTOP NAV HOVER STATES
+   Using CSS instead of JS for better performance
+   ============================================================ */
+
+.desktop-nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.desktop-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: hsl(var(--accent-vibrant));
+  box-shadow: 0 0 10px hsl(var(--accent-vibrant));
+  transform: scaleX(0);
+  transform-origin: center;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .desktop-nav-link::after {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.desktop-nav-link.active::after,
+.desktop-nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Cart button hover glow effect */
+.cart-button-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.cart-button-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: hsla(var(--accent-vibrant), 0.1);
+  opacity: 0;
+  will-change: opacity;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cart-button-glow::before {
+    transition: opacity 0.3s ease;
+  }
+}
+
+.cart-button-glow:hover::before,
+.cart-button-glow:focus-visible::before {
+  opacity: 1;
+}
+
+/* Cart badge pulse animation */
+@media (prefers-reduced-motion: no-preference) {
+  .cart-badge {
+    animation: badge-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsla(var(--skull-turquoise), 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px hsla(var(--skull-turquoise), 0);
+  }
+}
+
+/* ============================================================
+   PAGE TRANSITION ANIMATIONS
+   Following Web Interface Guidelines:
+   - Animate transform/opacity only (compositor-friendly)
+   - No transition: all - list properties explicitly
+   - Honor prefers-reduced-motion
+   ============================================================ */
+
+/* Page transition container */
+.page-transition-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Page enter animation - fade in from bottom */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-transition-enter-active {
+    transition:
+      opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Page exit animation - fade out to top (faster exit) */
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: opacity, transform;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-transition-exit-active {
+    transition:
+      opacity 0.2s cubic-bezier(0.4, 0, 1, 1),
+      transform 0.2s cubic-bezier(0.4, 0, 1, 1);
+  }
+}
+
+/* Staggered children animations for sections */
+.page-section {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
+}
+
+.page-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-section.visible {
+    transition:
+      opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Stagger delays for sequential section reveals */
+.page-section:nth-child(1) { transition-delay: 0s; }
+.page-section:nth-child(2) { transition-delay: 0.1s; }
+.page-section:nth-child(3) { transition-delay: 0.2s; }
+.page-section:nth-child(4) { transition-delay: 0.3s; }
+.page-section:nth-child(5) { transition-delay: 0.4s; }
+.page-section:nth-child(6) { transition-delay: 0.5s; }
+.page-section:nth-child(7) { transition-delay: 0.6s; }
+.page-section:nth-child(8) { transition-delay: 0.7s; }
+
+/* Hero section - special treatment (immediate reveal) */
+.page-section-hero {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  will-change: opacity, transform;
+}
+
+.page-section-hero.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-section-hero.visible {
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0s;
+  }
+}
+
+/* Product card stagger animation */
+.product-card-stagger {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.product-card-stagger.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .product-card-stagger.visible {
+    transition:
+      opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.product-card-stagger:nth-child(1) { transition-delay: 0.05s; }
+.product-card-stagger:nth-child(2) { transition-delay: 0.1s; }
+.product-card-stagger:nth-child(3) { transition-delay: 0.15s; }
+.product-card-stagger:nth-child(4) { transition-delay: 0.2s; }
+.product-card-stagger:nth-child(5) { transition-delay: 0.25s; }
+.product-card-stagger:nth-child(6) { transition-delay: 0.3s; }
+.product-card-stagger:nth-child(7) { transition-delay: 0.35s; }
+.product-card-stagger:nth-child(8) { transition-delay: 0.4s; }
+.product-card-stagger:nth-child(9) { transition-delay: 0.45s; }
+.product-card-stagger:nth-child(10) { transition-delay: 0.5s; }
+.product-card-stagger:nth-child(11) { transition-delay: 0.55s; }
+.product-card-stagger:nth-child(12) { transition-delay: 0.6s; }
+
+/* Smooth scroll behavior for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Loading skeleton shimmer animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--bg-secondary)) 0%,
+    hsl(var(--bg-tertiary)) 50%,
+    hsl(var(--bg-secondary)) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-loading {
+    animation: none;
+    background: hsl(var(--bg-tertiary));
   }
 }
 
