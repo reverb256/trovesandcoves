@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
 import SectionPill from '@/components/SectionPill';
+import SectionDivider from '@/components/SectionDivider';
 
 /**
  * Shared page header component for content pages
@@ -31,7 +32,7 @@ export function ContentPageHeader({
           {title}
         </h1>
 
-        <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+        <SectionDivider variant="gradient" className="mb-6" />
 
         {description && (
           <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: 'hsl(var(--text-secondary))' }}>
@@ -94,7 +95,7 @@ export function SectionHeader({ title, description, centered = true }: SectionHe
           {description}
         </p>
       )}
-      <div className="w-24 h-1 mx-auto mt-6 rounded-full" style={{ background: 'linear-gradient(90deg, hsl(var(--accent-vibrant)), hsl(215 95% 55%))' }} />
+      <SectionDivider variant="gradient" className="mt-6" />
     </div>
   );
 }

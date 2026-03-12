@@ -2,6 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Award, Gem, MapPin, Hand, Mail } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import SectionPill from '@/components/SectionPill';
+import SectionDivider from '@/components/SectionDivider';
 import { BreadcrumbSchema } from '@/components/SchemaOrg';
 
 export default function About() {
@@ -78,7 +79,7 @@ export default function About() {
             <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Troves & Coves</span>
           </h1>
 
-          <div className="w-16 h-0.5 mx-auto mb-8" style={{ background: 'hsl(var(--gold-medium))' }} />
+          <SectionDivider variant="gold" className="mb-8" />
 
           <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed mb-6" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}>
             Discover handcrafted crystal jewelry designed for modern elegance.
@@ -106,7 +107,7 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
               Our Story
             </h2>
-            <div className="w-16 h-0.5 mx-auto mb-8" style={{ background: 'hsl(var(--gold-medium))' }} />
+            <SectionDivider variant="gold" className="mb-8" />
           </div>
 
           <Card
@@ -157,7 +158,7 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
               Materials
             </h2>
-            <div className="w-16 h-0.5 mx-auto mb-8" style={{ background: 'hsl(var(--gold-medium))' }} />
+            <SectionDivider variant="gold" className="mb-8" />
             <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
               Quality materials form the foundation of every piece we create.
             </p>
@@ -217,7 +218,7 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
               What We Stand For
             </h2>
-            <div className="w-16 h-0.5 mx-auto mb-8" style={{ background: 'hsl(var(--gold-medium))' }} />
+            <SectionDivider variant="gold" className="mb-8" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -259,7 +260,7 @@ export default function About() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
               Our Process
             </h2>
-            <div className="w-16 h-0.5 mx-auto mb-8" style={{ background: 'hsl(var(--gold-medium))' }} />
+            <SectionDivider variant="gold" className="mb-8" />
             <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
               From concept to completion, every piece receives careful attention.
             </p>

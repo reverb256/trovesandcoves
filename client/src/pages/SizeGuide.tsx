@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Ruler, Circle, Square, ArrowUpDown } from 'lucide-react';
 import SectionPill from '@/components/SectionPill';
+import SectionDivider from '@/components/SectionDivider';
 
 export default function SizeGuide() {
   const necklaceSizes = [
@@ -72,8 +73,7 @@ export default function SizeGuide() {
             Size Guide
           </h1>
 
-          <div className="w-24 h-1 mx-auto mb-6 rounded-full"
-               style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+          <SectionDivider variant="gradient" className="mb-6" />
 
           <p className="text-xl max-w-3xl mx-auto leading-relaxed"
              style={{ color: 'hsl(var(--text-secondary))' }}>

@@ -6,6 +6,7 @@ import { Filter, Search, X } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import SEOHead from '@/components/SEOHead';
 import SectionPill from '@/components/SectionPill';
+import SectionDivider from '@/components/SectionDivider';
 
 export default function Products() {
   const params = useParams();
@@ -152,7 +153,7 @@ export default function Products() {
               )}
             </h1>
 
-            <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }}></div>
+            <SectionDivider variant="gradient" className="mb-6" />
 
             <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "\"Montserrat\", sans-serif", color: 'hsl(var(--text-secondary))' }}>
               {currentCategory

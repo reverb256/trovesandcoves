@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Droplets, Shield, Sun, Moon, Heart, Sparkles } from 'lucide-react';
 import SectionPill from '@/components/SectionPill';
+import SectionDivider from '@/components/SectionDivider';
 
 export default function JewelleryCare() {
   const materials = [
@@ -89,7 +90,7 @@ export default function JewelleryCare() {
             <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Care Guide</span>
           </h1>
 
-          <div className="w-24 h-1 mx-auto mb-6 rounded-full" style={{ background: 'linear-gradient(90deg, hsl(var(--accent-vibrant)), hsl(var(--gold-medium)), hsl(var(--gold-medium)))' }} />
+          <SectionDivider variant="gradient" className="mb-6" />
 
           <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
             Preserve the beauty of your crystal jewelry with proper care. Each

@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { StepCard } from '@/components/ui/themed-components';
 import SectionPill from '@/components/SectionPill';
+import SectionDivider from '@/components/SectionDivider';
 import {
   CreditCard,
   Calendar,
@@ -74,8 +75,7 @@ export default function Financing() {
             Financing Options
           </h1>
 
-          <div className="w-24 h-1 mx-auto mb-6 rounded-full"
-               style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+          <SectionDivider variant="gradient" className="mb-6" />
 
           <p className="text-xl max-w-3xl mx-auto leading-relaxed"
              style={{ color: 'hsl(var(--text-secondary))' }}>
