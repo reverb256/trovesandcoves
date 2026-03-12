@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Droplets, Shield, Sun, Moon, Heart, Sparkles } from 'lucide-react';
+import SectionPill from '@/components/SectionPill';
 
 export default function JewelleryCare() {
   const materials = [
@@ -77,16 +78,10 @@ export default function JewelleryCare() {
         <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
         <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--gold-medium)), transparent)' }} />
 
-        <div className="relative container mx-auto px-4 text-center">
-          <div className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full" style={{
-            backgroundColor: 'hsl(var(--gold-soft))',
-            color: 'hsl(var(--text-primary))',
-            boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)'
-          }}>
-            <span className="text-sm font-medium tracking-widest uppercase">
-              Jewelry Care
-            </span>
-          </div>
+        <div className="relative chamber-container text-center">
+          <SectionPill variant="gold" className="mb-8">
+            Jewelry Care
+          </SectionPill>
 
           <h1 className="text-5xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
             <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Jewelry</span>

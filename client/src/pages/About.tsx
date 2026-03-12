@@ -1,6 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { Award, Gem, MapPin, Hand, Mail, Sparkles } from 'lucide-react';
+import { Award, Gem, MapPin, Hand, Mail } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import SectionPill from '@/components/SectionPill';
 import { BreadcrumbSchema } from '@/components/SchemaOrg';
 
 export default function About() {
@@ -68,16 +69,9 @@ export default function About() {
         <div className="absolute top-0 left-0 w-full h-0.5" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--gold-medium)), transparent)' }} />
 
         <div className="relative chamber-container text-center">
-          <div className="inline-flex items-center justify-center px-5 py-2 mb-10 rounded-full gap-2" style={{
-            backgroundColor: 'hsla(43, 78%, 60%, 0.15)',
-            color: 'hsl(var(--gold-medium))',
-            border: '1px solid hsl(var(--gold-medium))'
-          }}>
-            <Sparkles className="w-4 h-4" style={{ color: 'hsl(var(--gold-medium))' }} />
-            <span className="text-xs font-medium tracking-[0.2em] uppercase">
-              Our Story
-            </span>
-          </div>
+          <SectionPill variant="gold" className="mb-10">
+            Our Story
+          </SectionPill>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-8 flex flex-col items-center justify-center gap-2">
             <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase', letterSpacing: '0.08em' }}>About</span>

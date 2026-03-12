@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
 import type { ProductWithCategory, Category } from '@shared/types';
-import { Filter, Search, X, Sparkles } from 'lucide-react';
+import { Filter, Search, X } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import SEOHead from '@/components/SEOHead';
+import SectionPill from '@/components/SectionPill';
 
 export default function Products() {
   const params = useParams();
@@ -122,12 +123,9 @@ export default function Products() {
         <div className="chamber-container relative">
           <div className="text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-turquoise-soft rounded-full bg-crystal">
-              <Sparkles className="w-4 h-4 text-turquoise-bright" />
-              <span className="text-xs tracking-widest uppercase text-primary">
-                The Collection
-              </span>
-            </div>
+            <SectionPill variant="turquoise" className="mb-6">
+              The Collection
+            </SectionPill>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6 flex flex-col md:flex-row items-center justify-center gap-3">
               {currentCategory ? (

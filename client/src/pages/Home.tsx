@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 import SEOHead from '@/components/SEOHead';
 import Hero from '@/components/Hero';
+import SectionPill from '@/components/SectionPill';
 import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema } from '@/components/SchemaOrg';
 import type { ProductWithCategory } from '@shared/types';
 import { ArrowRight, Sparkles } from 'lucide-react';
@@ -33,20 +34,9 @@ export default function Home() {
           {/* Section Header */}
           <div className="text-center mb-16">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border rounded-full"
-              style={{ 
-                borderColor: 'hsla(174,85%,45%,0.2)', 
-                backgroundColor: 'hsla(174,85%,45%,0.05)'
-              }}
-            >
-              <Sparkles className="w-4 h-4" style={{ color: 'hsl(var(--gold-medium))' }} />
-              <span 
-                className="text-xs tracking-widest uppercase"
-                style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--gold-medium))', fontWeight: 600 }}
-              >
-                Curated With Intention
-              </span>
-            </div>
+            <SectionPill variant="turquoise" className="mb-6">
+              Curated With Intention
+            </SectionPill>
 
             <h2 
               className="text-4xl md:text-6xl font-bold mb-6"

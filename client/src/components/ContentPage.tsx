@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
+import SectionPill from '@/components/SectionPill';
 
 /**
  * Shared page header component for content pages
@@ -21,16 +22,10 @@ export function ContentPageHeader({
       <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
       <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
 
-      <div className="relative container mx-auto px-4 text-center">
-        <div className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full" style={{
-          backgroundColor: 'hsl(var(--gold-soft))',
-          color: 'hsl(var(--text-primary))',
-          boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)'
-        }}>
-          <span className="text-sm font-medium tracking-widest uppercase">
-            {badgeLabel}
-          </span>
-        </div>
+      <div className="relative chamber-container text-center">
+        <SectionPill variant="gold" className="mb-8">
+          {badgeLabel}
+        </SectionPill>
 
         <h1 className="text-5xl md:text-6xl font-bold mb-6 font-brand-heading" style={{ color: 'hsl(var(--text-primary))' }}>
           {title}
