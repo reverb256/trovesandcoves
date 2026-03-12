@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
       />
       <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
       {/* Header */}
-      <section className="relative overflow-hidden py-20" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+      <section className="relative overflow-hidden py-24" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-troves-turquoise to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-skull-turquoise to-transparent" />
 

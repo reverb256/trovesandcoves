@@ -117,7 +117,7 @@ export default function Products() {
       />
       <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header Section */}
-      <section className="relative py-20 border-b border-turquoise-light">
+      <section className="relative py-24 border-b border-turquoise-light">
         {/* Background glow */}
         <div className="absolute inset-0 bg-gradient-to-b from-[hsla(var(--accent-vibrant),0.05)] via-transparent to-transparent"></div>
 
