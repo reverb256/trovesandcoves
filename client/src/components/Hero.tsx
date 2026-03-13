@@ -21,13 +21,15 @@ export default function Hero() {
             >
               TROVES
             </span>
-            <span className="text-4xl md:text-6xl lg:text-7xl" style={{ fontFamily: "Alex Brush, cursive", color: "#C9A24A" }}>
+            <span className="text-4xl md:text-6xl lg:text-7xl" style={{ fontFamily: "Alex Brush, cursive", color: "#C9A2A" }}>
               &amp;
             </span>
-            <span style={{ fontFamily: "Alex Brush, cursive", color: "#C9A24A" }} className="text-5xl md:text-7xl lg:text-8xl">
+            <span style={{ fontFamily: "Alex Brush, cursive", color: "#C9A2A" }} className="text-5xl md:text-7xl lg:text-8xl">
               Coves
             </span>
-            <span className="hidden"> | Handcrafted Crystal Jewelry & 14k Gold-Plated Necklaces</span>
+            <span className="text-3xl md:text-4xl lg:text-5xl" style={{ color: "#5f5f5f", fontWeight: 400 }}>
+              | Handcrafted Crystal Jewelry & 14k Gold-Plated Necklaces
+            </span>
           </h1>
 
           {/* Tagline - Clean and Minimal */}

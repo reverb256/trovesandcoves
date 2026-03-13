@@ -140,21 +140,21 @@ export default function Products() {
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>{currentCategory.name}</span>
                   <span className="text-sm md:text-base font-normal" style={{ fontFamily: "\"Montserrat\", sans-serif", color: 'hsl(var(--text-secondary))' }}>
-                    | Handcrafted Jewelry
+                    | Handcrafted in Winnipeg
                   </span>
                 </>
               ) : searchQuery ? (
                 <>
-                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>Searching for</span>
+                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>Search Results for</span>
                   <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>"{searchQuery}"</span>
                 </>
               ) : (
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>
-                    Shop Jewelry
+                    Shop Crystal Jewelry
                   </span>
                   <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>
-                    &amp; Collections
+                    &amp; Necklaces &amp; Bracelets
                   </span>
                 </>
               )}
