@@ -3,6 +3,7 @@
 **Handcrafted Crystal Jewelry | Made in Winnipeg, Canada**
 
 [![Live Site](https://img.shields.io/badge/Visit-trovesandcoves.ca-teal.svg)](https://trovesandcoves.ca)
+[![Portfolio](https://img.shields.io/badge/By-reverb256-purple.svg)](https://reverb256.ca)
 [![Etsy](https://img.shields.io/badge/Shop-Etsy-orange.svg)](https://www.etsy.com/ca/shop/TrovesandCoves)
 
 ---
@@ -87,7 +88,18 @@ Every Troves & Coves piece is:
 
 ---
 
-## For Developers
+## Design & Development
+
+This website was designed and developed as a portfolio project showcasing modern web craftsmanship. The codebase is open source and serves as an example of:
+
+- **Performance-first design** — Fast loading, smooth animations
+- **SEO optimization** — Structured data, meta tags, sitemaps
+- **Accessibility** — WCAG-compliant components
+- **Modern stack** — React, TypeScript, Tailwind CSS
+
+**🎨 Portfolio:** [reverb256.ca](https://reverb256.ca) — View more projects
+
+The implementation details are documented in [CLAUDE.md](CLAUDE.md) for those interested in the technical approach.
 
 This website is built with modern web technologies:
 
