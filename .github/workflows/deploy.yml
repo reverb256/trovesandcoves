@@ -58,6 +58,29 @@ jobs:
           NODE_ENV: production
           VITE_GITHUB_PAGES_URL: https://trovesandcoves.ca
 
+      - name: Generate Open Graph image
+        run: |
+          # Start preview server in background
+          npx vite preview --port 4173 &
+          PREVIEW_PID=$!
+
+          # Wait for server to be ready
+          for i in {1..30}; do
+            if curl -s http://localhost:4173 > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+          # Generate og:image from Hero component
+          npx tsx scripts/generate-og-image.ts --url=http://localhost:4173
+
+          # Copy generated image to dist
+          cp client/public/og-image.jpg dist/public/og-image.jpg
+
+          # Cleanup
+          kill $PREVIEW_PID 2>/dev/null || true
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

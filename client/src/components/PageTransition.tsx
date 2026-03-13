@@ -1,147 +1,149 @@
 /**
  * Page Transition Component
+ *
  * Handles smooth page transitions following Web Interface Guidelines:
  * - Animate transform/opacity only (compositor-friendly)
  * - No transition: all - list properties explicitly
  * - Honor prefers-reduced-motion
+ *
+ * IMPORTANT: IntersectionObserver cleanup must happen synchronously
+ * before React unmounts DOM nodes to avoid "removeChild" errors.
  */
 
-import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'wouter';
+import { useEffect, useRef } from 'react';
 
 interface PageTransitionProps {
   children: React.ReactNode;
 }
 
+/**
+ * Simple page transition wrapper that doesn't hold state.
+ * This avoids race conditions during route transitions.
+ */
 export function PageTransition({ children }: PageTransitionProps) {
-  const [location] = useLocation();
-  const [displayChildren, setDisplayChildren] = useState(children);
-  const [transitionClass, setTransitionClass] = useState('');
-  const transitionEndRef = useRef(false);
-  const prevLocationRef = useRef(location);
-
-  useEffect(() => {
-    // Skip transition on first render
-    if (!transitionEndRef.current) {
-      transitionEndRef.current = true;
-      setDisplayChildren(children);
-      prevLocationRef.current = location;
-      return;
-    }
-
-    // Only animate if location actually changed
-    if (location === prevLocationRef.current) {
-      setDisplayChildren(children);
-      return;
-    }
-
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (prefersReducedMotion) {
-      // No animation, just swap content
-      setDisplayChildren(children);
-      prevLocationRef.current = location;
-      return;
-    }
-
-    // Start exit animation
-    setTransitionClass('page-transition-exit page-transition-exit-active');
-
-    const exitTimer = setTimeout(() => {
-      // Change content after exit animation
-      setDisplayChildren(children);
-      prevLocationRef.current = location;
-
-      // Start enter animation
-      setTransitionClass('page-transition-enter');
-
-      requestAnimationFrame(() => {
-        setTransitionClass('page-transition-enter page-transition-enter-active');
-      });
-
-      // Clear transition class after animation completes
-      const enterTimer = setTimeout(() => {
-        setTransitionClass('');
-      }, 500);
-
-      return () => clearTimeout(enterTimer);
-    }, 200); // Match exit animation duration
-
-    return () => clearTimeout(exitTimer);
-  }, [location, children]);
-
-  return (
-    <div className="page-transition-container">
-      <div className={transitionClass}>
-        {displayChildren}
-      </div>
-    </div>
-  );
+  return <>{children}</>;
 }
 
 /**
- * Hook to trigger section reveal animations on scroll
- * Usage: Add 'page-section' class to sections and call this hook in parent
+ * Hook to trigger section reveal animations on scroll.
+ *
+ * This hook uses IntersectionObserver to add 'visible' class to elements
+ * when they enter the viewport. The observer is properly cleaned up
+ * before React unmounts DOM nodes.
+ *
+ * USAGE: Add 'page-section', 'page-section-hero', or 'product-card-stagger'
+ * classes to elements you want to animate.
  */
 export function useSectionReveal(options: {
   rootMargin?: string;
   threshold?: number;
 } = {}) {
   const { rootMargin = '0px 0px -100px 0px', threshold = 0.1 } = options;
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const cleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     // Only run on client
     if (typeof window === 'undefined') return;
 
-    // Delay observation to let DOM settle
-    const initialTimer = setTimeout(() => {
-      observeSections();
-    }, 100);
+    // Respect prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function observeSections() {
-      // Respect prefers-reduced-motion
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReducedMotion) {
-        // Immediately show all sections
-        document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger')
-          .forEach(el => el.classList.add('visible'));
-        return;
-      }
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              // Stop observing once visible (one-time animation)
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { rootMargin, threshold }
-      );
-
-      // Observe all sections
-      document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger')
-        .forEach((el) => observer.observe(el));
-
-      return () => observer.disconnect();
+    // Immediately show all sections if reduced motion is preferred
+    if (prefersReducedMotion) {
+      const elements = document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger');
+      elements.forEach((el) => {
+        if (el.isConnected) {
+          el.classList.add('visible');
+        }
+      });
+      return;
     }
 
-    // Capture the cleanup function from observeSections
-    const cleanupObserver = observeSections();
+    // Create the observer with proper error handling
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Use requestAnimationFrame to avoid manipulating DOM during React's render phase
+        requestAnimationFrame(() => {
+          entries.forEach((entry) => {
+            // Double-check that the target is still connected to the DOM
+            // This prevents errors when React has already started unmounting
+            if (entry.target.isConnected && observerRef.current === observer) {
+              if (entry.isIntersecting) {
+                try {
+                  entry.target.classList.add('visible');
+                  // Stop observing once visible (one-time animation)
+                  if (observerRef.current) {
+                    observerRef.current.unobserve(entry.target);
+                  }
+                } catch {
+                  // Element was removed, ignore error
+                }
+              }
+            }
+          });
+        });
+      },
+      { rootMargin, threshold }
+    );
 
-    return () => {
-      clearTimeout(initialTimer);
-      // Properly disconnect the observer when component unmounts or route changes
-      cleanupObserver?.();
+    observerRef.current = observer;
+
+    // Function to observe all sections
+    const observeSections = () => {
+      const elements = document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger');
+      elements.forEach((el) => {
+        if (el.isConnected) {
+          try {
+            observer.observe(el);
+          } catch {
+            // Element was removed or invalid, ignore
+          }
+        }
+      });
     };
+
+    // Use requestAnimationFrame to ensure DOM is ready
+    const rafId = requestAnimationFrame(() => {
+      observeSections();
+    });
+
+    // Store cleanup function
+    cleanupRef.current = () => {
+      // Cancel pending observation
+      cancelAnimationFrame(rafId);
+
+      // Disconnect observer synchronously
+      // This MUST happen before React removes DOM nodes
+      if (observerRef.current) {
+        try {
+          observerRef.current.disconnect();
+        } catch {
+          // Observer already disconnected or invalid
+        }
+        observerRef.current = null;
+      }
+    };
+
+    // Return cleanup function
+    return cleanupRef.current;
   }, [rootMargin, threshold]);
+
+  // Ensure cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (cleanupRef.current) {
+        cleanupRef.current();
+      }
+    };
+  }, []);
 }
 
 /**
- * Component wrapper that automatically sets up section reveal animations
+ * Component wrapper that automatically sets up section reveal animations.
+ *
+ * This component is rendered once at the app level and wraps all routes.
+ * The useSectionReveal hook handles its own cleanup on route changes.
  */
 export function SectionReveal({ children }: { children: React.ReactNode }) {
   useSectionReveal();
