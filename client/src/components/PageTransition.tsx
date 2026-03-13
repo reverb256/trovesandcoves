@@ -89,18 +89,15 @@ export function useSectionReveal(options: {
   threshold?: number;
 } = {}) {
   const { rootMargin = '0px 0px -100px 0px', threshold = 0.1 } = options;
-  const hasInitialized = useRef(false);
 
   useEffect(() => {
-    // Only run on client and after initial render
-    if (typeof window === 'undefined' || !hasInitialized.current) {
-      hasInitialized.current = true;
-      // Delay observation to let DOM settle
-      const initialTimer = setTimeout(() => {
-        observeSections();
-      }, 100);
-      return () => clearTimeout(initialTimer);
-    }
+    // Only run on client
+    if (typeof window === 'undefined') return;
+
+    // Delay observation to let DOM settle
+    const initialTimer = setTimeout(() => {
+      observeSections();
+    }, 100);
 
     function observeSections() {
       // Respect prefers-reduced-motion
@@ -132,9 +129,9 @@ export function useSectionReveal(options: {
       return () => observer.disconnect();
     }
 
-    const cleanup = observeSections();
+    observeSections();
     return () => {
-      if (cleanup) cleanup();
+      clearTimeout(initialTimer);
     };
   }, [rootMargin, threshold]);
 }
