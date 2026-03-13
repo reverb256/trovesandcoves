@@ -82,7 +82,9 @@ export function ProductSchema({
     document.head.appendChild(script);
 
     return () => {
-      script.remove();
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, [name, description, imageUrl, price, stockQuantity, category, id, brand, sku]);
 
@@ -128,7 +130,9 @@ export function WebsiteSchema() {
     document.head.appendChild(script);
 
     return () => {
-      script.remove();
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, []);
 
@@ -187,7 +191,9 @@ export function OrganizationSchema() {
     document.head.appendChild(script);
 
     return () => {
-      script.remove();
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, []);
 
@@ -270,7 +276,9 @@ export function LocalBusinessSchema() {
     document.head.appendChild(script);
 
     return () => {
-      script.remove();
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, []);
 
