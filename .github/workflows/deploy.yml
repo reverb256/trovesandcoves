@@ -58,6 +58,9 @@ jobs:
           NODE_ENV: production
           VITE_GITHUB_PAGES_URL: https://trovesandcoves.ca
 
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+
       - name: Generate Open Graph image
         run: |
           # Start preview server in background
