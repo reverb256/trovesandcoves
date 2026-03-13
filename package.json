@@ -9,6 +9,7 @@
     "build": "vite build && node scripts/postbuild-copy.cjs && tsx scripts/generate-sitemap.ts",
     "build:analyze": "vite build && node scripts/postbuild-copy.cjs",
     "build:github-pages": "vite build --mode github-pages",
+    "generate:og-image": "tsx scripts/generate-og-image.ts",
     "generate-sitemap": "tsx scripts/generate-sitemap.ts",
     "preview": "vite preview",
     "check": "tsc",

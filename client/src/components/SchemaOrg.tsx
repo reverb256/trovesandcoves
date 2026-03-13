@@ -82,8 +82,10 @@ export function ProductSchema({
     document.head.appendChild(script);
 
     return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
+      // Use remove() which is safer than parentNode.removeChild()
+      // Handles the case where the node might already be removed
+      if (script.isConnected) {
+        script.remove();
       }
     };
   }, [name, description, imageUrl, price, stockQuantity, category, id, brand, sku]);
@@ -130,8 +132,10 @@ export function WebsiteSchema() {
     document.head.appendChild(script);
 
     return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
+      // Use remove() which is safer than parentNode.removeChild()
+      // Handles the case where the node might already be removed
+      if (script.isConnected) {
+        script.remove();
       }
     };
   }, []);
@@ -191,8 +195,10 @@ export function OrganizationSchema() {
     document.head.appendChild(script);
 
     return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
+      // Use remove() which is safer than parentNode.removeChild()
+      // Handles the case where the node might already be removed
+      if (script.isConnected) {
+        script.remove();
       }
     };
   }, []);
@@ -276,8 +282,10 @@ export function LocalBusinessSchema() {
     document.head.appendChild(script);
 
     return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
+      // Use remove() which is safer than parentNode.removeChild()
+      // Handles the case where the node might already be removed
+      if (script.isConnected) {
+        script.remove();
       }
     };
   }, []);
