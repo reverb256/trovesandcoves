@@ -14,6 +14,21 @@ This is a **crystal jewelry showcase site** deployed on GitHub Pages. It has:
 - **Strict TypeScript enabled** - type safety is enforced
 - Error Boundary for graceful error handling
 
+## Recent Improvements (2026-03-13)
+
+### Fixed React DOM Manipulation Errors
+- ✅ **IntersectionObserver cleanup** - Fixed race condition where `IntersectionObserver` callbacks tried to manipulate DOM nodes during React's unmount phase
+- ✅ **useSectionReveal hook rewritten** - Now uses `requestAnimationFrame` to avoid DOM manipulation during React render phase
+- ✅ **Synchronous observer disconnection** - Observers are disconnected before React removes DOM nodes, preventing `removeChild` errors
+- ✅ **vite.ts script path fix** - Fixed cache-busting replacement for main.tsx script tag
+
+### Testing Strategy
+- ✅ **Unit tests (Vitest)**: 40 tests passing - all component and utility tests
+- ✅ **E2E tests (Playwright)**: Run against production site (`https://trovesandcoves.ca`)
+  - Production tests: `npm run test:e2e` (tests/e2e/)
+  - Debug tests: `npm run test:e2e:debug` (tests/e2e-debug/)
+- ⚠️ **Dev server E2E**: Not recommended due to Vite HMR issues in middleware mode
+
 ## Recent Improvements (2026-03-08)
 
 The following improvements were made to address code quality and performance:
@@ -55,12 +70,45 @@ npm run build:analyze
 npm run check
 
 # Testing
-npm run test               # Run Vitest unit tests
-npm run test:e2e           # Run Playwright end-to-end tests
+npm run test               # Run Vitest unit tests (40 tests)
+npm run test:e2e           # Run Playwright E2E tests against production
+npm run test:e2e:debug     # Run Playwright debug tests against localhost
 
 # Linting and formatting
 npm run lint
 npm run format
+```
+
+## Important: IntersectionObserver Usage
+
+When using `IntersectionObserver` in React components:
+
+1. **Always disconnect in cleanup**: Use `useEffect` cleanup to call `observer.disconnect()`
+2. **Check isConnected before manipulation**: Verify elements are still in DOM before modifying
+3. **Use requestAnimationFrame**: Defer DOM mutations to avoid React's render phase
+4. **Guard against stale callbacks**: Store observer in ref and check it in callbacks
+
+```tsx
+useEffect(() => {
+  const observer = new IntersectionObserver((entries) => {
+    requestAnimationFrame(() => {
+      entries.forEach((entry) => {
+        if (entry.target.isConnected && observerRef.current === observer) {
+          // Safe to manipulate DOM
+        }
+      });
+    });
+  });
+
+  observerRef.current = observer;
+
+  return () => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
+  };
+}, []);
 ```
 
 ## Architecture

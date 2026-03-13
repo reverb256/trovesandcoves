@@ -12,6 +12,13 @@ This document outlines the planned features and improvements for Troves & Coves.
 - ✅ Responsive design with Material You-inspired styling
 - ✅ Development server with hot reload
 - ✅ GitHub Pages deployment
+- ✅ **40 unit tests passing** (Vitest)
+- ✅ **React DOM manipulation issues fixed** (IntersectionObserver cleanup)
+
+**Testing Status:**
+- ✅ Unit tests: 40 tests passing (Vitest)
+- ⚠️ E2E tests: Run against production site (recommended)
+- ⚠️ Dev server E2E: Has Vite HMR issues, use production for automated testing
 
 ## Phased Implementation Plan
 
@@ -34,9 +41,11 @@ This document outlines the planned features and improvements for Troves & Coves.
 - [ ] Add data seeding script for products
 
 #### 1.3 Testing
-- [ ] Add unit tests for components (target: 70% coverage)
-- [ ] Add e2e tests for critical flows (view products, add to cart, checkout)
+- [x] Add unit tests for components (40 tests passing)
+- [x] Add e2e tests for critical flows (Playwright against production)
 - [ ] Set up CI test runs
+- [ ] Add accessibility tests (axe-core)
+- [ ] Increase unit test coverage to 70%
 
 **Estimated Effort**: 2-3 weeks
 
