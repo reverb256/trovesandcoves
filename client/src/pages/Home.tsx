@@ -16,13 +16,7 @@ export default function Home() {
 
   return (
     <>
-      <SEOHead
-        title="Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces"
-        description="Discover handcrafted crystal jewelry with timeless elegance. Each piece elevates your style, blending 14k gold-plated sophistication with natural crystal beauty. Artisan-crafted jewelry from Winnipeg, Canada."
-        keywords="crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, artisan jewelry, canadian jewelry"
-        url="https://trovesandcoves.ca"
-        type="website"
-      />
+      <SEOHead path="/" />
       <WebsiteSchema />
       <OrganizationSchema />
       <LocalBusinessSchema />

@@ -52,12 +52,7 @@ export default function About() {
 
   return (
     <>
-      <SEOHead
-        title="About Troves & Coves | Handcrafted Crystal Jewelry | Winnipeg, Canada"
-        description="Learn about Troves & Coves' story. Every crystal necklace and bracelet is handcrafted in Winnipeg with 14k gold-filled wire and genuine gemstones."
-        url="https://trovesandcoves.ca/about"
-        type="website"
-      />
+      <SEOHead path="/about" />
       <BreadcrumbSchema
         items={[
           { name: 'Home', path: '/' },

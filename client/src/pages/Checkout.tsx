@@ -47,12 +47,7 @@ export default function Checkout() {
 
   return (
     <>
-      <SEOHead
-        title="Checkout | Complete Your Crystal Jewelry Purchase | Troves & Coves"
-        description="Complete your purchase on our secure Etsy store. Handcrafted crystal jewelry with 14k gold-plated elegance."
-        url="https://trovesandcoves.ca/checkout"
-        type="website"
-      />
+      <SEOHead path="/checkout" />
       <BreadcrumbSchema
         items={[
           { name: 'Home', path: '/' },

@@ -5,12 +5,7 @@ import SEOHead from '@/components/SEOHead';
 export default function PrivacyPolicy() {
   return (
     <>
-      <SEOHead
-        title="Privacy Policy | Troves & Coves Crystal Jewelry"
-        description="Your privacy matters to us. Learn how Troves & Coves protects your personal information with the same care we give to our crystal jewelry."
-        url="https://trovesandcoves.ca/privacy"
-        type="website"
-      />
+      <SEOHead path="/privacy-policy" />
       <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
       {/* Header */}
       <section className="relative overflow-hidden py-24" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>

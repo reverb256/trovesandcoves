@@ -62,12 +62,7 @@ export default function Contact() {
 
   return (
     <>
-      <SEOHead
-        title="Contact Us | Custom Crystal Jewelry Orders | Troves & Coves"
-        description="Get in touch with Troves & Coves. Custom crystal jewelry orders, questions about our handcrafted necklaces, or inquiries about healing crystals."
-        url="https://trovesandcoves.ca/contact"
-        type="website"
-      />
+      <SEOHead path="/contact" />
       <BreadcrumbSchema
         items={[
           { name: 'Home', path: '/' },

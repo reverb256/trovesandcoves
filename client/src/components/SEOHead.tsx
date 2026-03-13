@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
+import { getPageMetadata, type PageMetadata } from '@/lib/pageMetadata';
 
 interface SEOProps {
-  title?: string;
-  description?: string;
-  keywords?: string;
+  path: string;
+  productName?: string;
   image?: string;
   url?: string;
   type?: 'website' | 'product' | 'article';
@@ -18,9 +18,8 @@ interface SEOProps {
 }
 
 export default function SEOHead({
-  title = 'Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces',
-  description = 'Discover handcrafted crystal jewelry with timeless elegance. Each piece elevates your style, blending 14k gold-plated sophistication with natural crystal beauty. Artisan-crafted jewelry from Winnipeg, Canada.',
-  keywords = 'crystal jewelry, 14k gold plated, statement necklaces, crystal bracelets, handcrafted jewelry, Winnipeg, artisan jewelry, canadian jewelry',
+  path,
+  productName,
   image = 'https://trovesandcoves.ca/og-image.jpg',
   url = 'https://trovesandcoves.ca',
   type = 'website',
@@ -33,6 +32,11 @@ export default function SEOHead({
     longitude: -97.1384,
   },
 }: SEOProps) {
+  // Get page-specific metadata
+  const metadata: PageMetadata = getPageMetadata(path, productName);
+  const title = metadata.title;
+  const description = metadata.description;
+  const keywords = metadata.keywords;
   useEffect(() => {
     // Update document title
     document.title = title;
@@ -50,7 +54,7 @@ export default function SEOHead({
     // Create meta tags
     const metaTags = [
       { name: 'description', content: description },
-      { name: 'keywords', content: keywords },
+      ...(keywords ? [{ name: 'keywords', content: keywords }] : []),
       { name: 'author', content: 'Troves & Coves' },
       { name: 'robots', content: 'index, follow' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -307,9 +311,8 @@ export default function SEOHead({
     }
     hreflang.setAttribute('href', url);
   }, [
-    title,
-    description,
-    keywords,
+    path,
+    productName,
     image,
     url,
     type,

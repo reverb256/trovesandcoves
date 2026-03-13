@@ -94,27 +94,7 @@ export default function Products() {
 
   return (
       <>
-      <SEOHead
-        title={currentCategory
-          ? `${currentCategory.name} | Handcrafted Jewelry | Troves & Coves`
-          : searchQuery
-          ? `Search: "${searchQuery}" | Jewelry Collection | Troves & Coves`
-          : `Shop Jewelry | Handcrafted Necklaces & Bracelets | Troves & Coves`
-        }
-        description={currentCategory
-          ? `Browse our ${currentCategory.name} collection. ${currentCategory.description}`
-          : searchQuery
-          ? `Search results for "${searchQuery}" in our handcrafted jewelry collection.`
-          : "Explore our curated selection of handcrafted jewelry. Each piece blends 14k gold-plated elegance with natural beauty—crafted with intention."
-        }
-        url={currentCategory
-          ? `https://trovesandcoves.ca/products/${currentCategory.slug}`
-          : searchQuery
-          ? `https://trovesandcoves.ca/products?search=${encodeURIComponent(searchQuery)}`
-          : 'https://trovesandcoves.ca/products'
-        }
-        type="website"
-      />
+      <SEOHead path={window.location.pathname} />
       <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header Section */}
       <section className="relative py-24 border-b border-turquoise-light">

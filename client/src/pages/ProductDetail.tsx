@@ -92,11 +92,10 @@ export default function ProductDetail() {
   return (
     <>
       <SEOHead
-        title={`${product.name} | ${product.category?.name || 'Crystal Jewelry'} | Troves & Coves`}
-        description={`${product.description?.substring(0, 150)}... Handcrafted in Winnipeg, Canada. ${product.price} CAD.`}
-        url={`https://trovesandcoves.ca/product/${product.id}`}
-        type="product"
+        path={`/product/${product.id}`}
+        productName={product.name}
         image={product.imageUrl}
+        type="product"
       />
       <ProductSchema
         name={product.name}
