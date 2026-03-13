@@ -1,10 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Eye, Lock, Database, Globe, Mail } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 
 export default function PrivacyPolicy() {
   return (
     <>
+      <BreadcrumbSchema items={[
+        { name: 'Home', path: '/' },
+        { name: 'Privacy Policy', path: '/privacy-policy' }
+      ]} />
       <SEOHead path="/privacy-policy" />
       <div className="min-h-screen bg-gradient-to-br from-stone-warm via-pearl-cream to-moonstone">
       {/* Header */}
