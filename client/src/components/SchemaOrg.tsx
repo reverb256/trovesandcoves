@@ -41,7 +41,7 @@ export function ProductSchema({
       },
       offers: {
         '@type': 'Offer',
-        url: `https://trovesandcoves.ca/products/${id}`,
+        url: `https://trovesandcoves.ca/product/${id}`,
         priceCurrency: 'CAD',
         price: price.toString(),
         priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],

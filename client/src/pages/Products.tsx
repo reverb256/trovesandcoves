@@ -345,7 +345,7 @@ export default function Products() {
                 {filteredAndSortedProducts.map((product) => (
                   <a
                     key={product.id}
-                    href={`/products/${product.id}`}
+                    href={`/product/${product.id}`}
                     className="group block product-card-stagger"
                   >
                     <div className="rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>

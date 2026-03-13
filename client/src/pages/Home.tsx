@@ -76,7 +76,7 @@ export default function Home() {
               {featuredProducts?.map((product, index) => (
                 <Link
                   key={product.id}
-                  href={`/products/${product.id}`}
+                  href={`/product/${product.id}`}
                   className="group block animate-reveal"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >

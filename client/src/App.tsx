@@ -52,7 +52,7 @@ function Router() {
                 <Route path="/showcase" component={Showcase} />
                 <Route path="/products" component={Products} />
                 <Route path="/products/:category" component={Products} />
-                <Route path="/products/:id" component={ProductDetail} />
+                <Route path="/product/:id" component={ProductDetail} />
                 <Route path="/checkout" component={Checkout} />
                 <Route path="/order-confirmation" component={OrderConfirmation} />
                 <Route path="/contact" component={Contact} />

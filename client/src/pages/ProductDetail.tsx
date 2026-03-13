@@ -94,7 +94,7 @@ export default function ProductDetail() {
       <SEOHead
         title={`${product.name} | ${product.category?.name || 'Crystal Jewelry'} | Troves & Coves`}
         description={`${product.description?.substring(0, 150)}... Handcrafted in Winnipeg, Canada. ${product.price} CAD.`}
-        url={`https://trovesandcoves.ca/products/${product.id}`}
+        url={`https://trovesandcoves.ca/product/${product.id}`}
         type="product"
         image={product.imageUrl}
       />
@@ -112,7 +112,7 @@ export default function ProductDetail() {
           { name: 'Home', path: '/' },
           { name: 'Shop', path: '/products' },
           ...(product.category ? [{ name: product.category.name, path: `/products/${product.category.slug}` }] : []),
-          { name: product.name, path: `/products/${product.id}` }
+          { name: product.name, path: `/product/${product.id}` }
         ]}
       />
       <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
@@ -475,7 +475,7 @@ function RelatedProducts({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
-            <Link key={product.id} href={`/products/${product.id}`} className="group block">
+            <Link key={product.id} href={`/product/${product.id}`} className="group block">
               <div className="shadow-sm overflow-hidden" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                 <div className="aspect-square mb-4 overflow-hidden bg-[hsl(var(--bg-secondary))]">
                   <WebPImage
