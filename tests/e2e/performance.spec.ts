@@ -18,54 +18,48 @@ test.describe('Performance Tests', () => {
 
   test('Core Web Vitals are within thresholds', async ({ page }) => {
     await page.goto('/');
-    
+
     // Wait for page to be fully loaded
     await page.waitForLoadState('networkidle');
-    
-    // Measure Core Web Vitals
+
+    // Measure Core Web Vitals with proper timeout
     const vitals = await page.evaluate(() => {
-      return new Promise((resolve) => {
-        const observer = new PerformanceObserver((list) => {
-          const entries = list.getEntries();
+      return Promise.race([
+        new Promise((resolve) => {
+          // Get paint timing metrics that are already collected
           const vitalsData: Record<string, number> = {};
-          
-          entries.forEach((entry) => {
-            if (entry.entryType === 'paint') {
-              vitalsData[entry.name] = entry.startTime;
+
+          const paintEntries = performance.getEntriesByType('paint');
+          paintEntries.forEach((entry) => {
+            if (entry.name === 'first-contentful-paint') {
+              vitalsData['first-contentful-paint'] = entry.startTime;
             }
           });
-          
-          // Get LCP from PerformanceObserver
-          const lcpObserver = new PerformanceObserver((lcpList) => {
-            const lcpEntries = lcpList.getEntries();
-            if (lcpEntries.length > 0) {
-              const lastEntry = lcpEntries[lcpEntries.length - 1];
-              vitalsData.lcp = lastEntry.startTime;
-            }
-            resolve(vitalsData);
-          });
-          
-          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
-          
-          // Fallback timeout
-          setTimeout(() => resolve(vitalsData), 5000);
-        });
-        
-        observer.observe({ entryTypes: ['paint'] });
-      });
+
+          // Try to get LCP
+          const lcpEntries = performance.getEntriesByType('largest-contentful-paint');
+          if (lcpEntries.length > 0) {
+            const lastEntry = lcpEntries[lcpEntries.length - 1] as any;
+            vitalsData.lcp = lastEntry.startTime;
+          }
+
+          resolve(vitalsData);
+        }),
+        new Promise((resolve) => setTimeout(() => resolve({}), 3000))
+      ]);
     });
-    
+
     console.log('Core Web Vitals:', vitals);
-    
+
     // Check thresholds (if data is available)
     if (vitals && typeof vitals === 'object') {
       const vitalsObj = vitals as Record<string, number>;
-      
+
       // First Contentful Paint should be under 1.8s
       if (vitalsObj['first-contentful-paint']) {
         expect(vitalsObj['first-contentful-paint']).toBeLessThan(1800);
       }
-      
+
       // Largest Contentful Paint should be under 2.5s
       if (vitalsObj.lcp) {
         expect(vitalsObj.lcp).toBeLessThan(2500);

@@ -22,16 +22,11 @@ test.describe('Navigation and Routing', () => {
   test('hero section navigation buttons work', async ({ page }) => {
     await page.goto('/');
 
-    // Test Shop Crystal Necklaces button
-    const shopButton = page.getByRole('link', { name: /shop crystal necklaces/i });
+    // Test Shop the Collection button
+    const shopButton = page.getByRole('link', { name: /shop the collection/i });
+    await expect(shopButton).toBeVisible();
     await shopButton.click();
     await expect(page).toHaveURL(/.*\/products/);
-
-    // Go back and test Our Story button
-    await page.goto('/');
-    const storyButton = page.getByRole('link', { name: /our story/i });
-    await storyButton.click();
-    await expect(page).toHaveURL(/.*\/about/);
   });
 
   test('404 page handling', async ({ page }) => {

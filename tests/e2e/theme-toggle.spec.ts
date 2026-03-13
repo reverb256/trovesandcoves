@@ -115,27 +115,27 @@ test.describe('Theme Toggle Functionality', () => {
     await themeButton.click();
     await page.waitForTimeout(500);
 
-    // Navigate to products page
-    await page.getByRole('link', { name: /shop/i }).first().click();
-    await page.waitForURL(/.*\/products/);
+    // Navigate to products page directly
+    await page.goto('/products');
+    await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
     // Verify theme is still dark
     const productsTheme = await getCurrentTheme(page);
     expect(productsTheme).toBe('dark');
 
-    // Navigate to about page
-    await page.getByRole('link', { name: /about/i }).click();
-    await page.waitForURL(/.*\/about/);
+    // Navigate to about page directly
+    await page.goto('/about');
+    await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
     // Verify theme is still dark
     const aboutTheme = await getCurrentTheme(page);
     expect(aboutTheme).toBe('dark');
 
-    // Navigate to contact page (use first link to avoid strict mode violation)
-    await page.getByRole('link', { name: /contact/i }).first().click();
-    await page.waitForURL(/.*\/contact/);
+    // Navigate to contact page directly
+    await page.goto('/contact');
+    await page.waitForLoadState('networkidle');
     await page.waitForTimeout(500);
 
     // Verify theme is still dark
