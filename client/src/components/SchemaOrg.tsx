@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
 
+// Re-export BreadcrumbSchema from the dedicated component for backward compatibility
+export { BreadcrumbSchema, type BreadcrumbItem } from './BreadcrumbSchema';
+
 /**
  * Product Schema Component
  * Adds Product schema to product detail pages for rich results in Google Shopping
@@ -82,53 +85,6 @@ export function ProductSchema({
       script.remove();
     };
   }, [name, description, imageUrl, price, stockQuantity, category, id, brand, sku]);
-
-  return null;
-}
-
-/**
- * Breadcrumb Schema Component
- * Adds BreadcrumbList schema for breadcrumb navigation in search results
- */
-interface BreadcrumbItem {
-  name: string;
-  path: string;
-}
-
-interface BreadcrumbSchemaProps {
-  items: BreadcrumbItem[];
-}
-
-export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
-  useEffect(() => {
-    const breadcrumbSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: item.name,
-        item: `https://trovesandcoves.ca${item.path}`,
-      })),
-    };
-
-    // Remove existing breadcrumb schema
-    const existingSchema = document.querySelector('#breadcrumb-schema');
-    if (existingSchema) {
-      existingSchema.remove();
-    }
-
-    // Add new schema
-    const script = document.createElement('script');
-    script.id = 'breadcrumb-schema';
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(breadcrumbSchema);
-    document.head.appendChild(script);
-
-    return () => {
-      script.remove();
-    };
-  }, [items]);
 
   return null;
 }
