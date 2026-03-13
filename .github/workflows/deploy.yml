@@ -1,11 +1,10 @@
-name: Deploy to GitHub Pages & Cloudflare
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:  # Allow manual trigger from GitHub UI
+    branches: [ prod ]
+  workflow_dispatch:
 
-# Allow one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -16,28 +15,7 @@ permissions:
   id-token: write
 
 jobs:
-  # Check if Cloudflare files changed (free tier optimization)
-  detect-changes:
-    runs-on: ubuntu-latest
-    outputs:
-      cloudflare: ${{ steps.changes.outputs.cloudflare }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Fetch all history for HEAD~1 comparison
-      - name: Detect Cloudflare changes
-        id: changes
-        run: |
-          if git diff --name-only HEAD~1 HEAD | grep -q "^cloudflare/"; then
-            echo "cloudflare=true" >> $GITHUB_OUTPUT
-          else
-            echo "cloudflare=false" >> $GITHUB_OUTPUT
-          fi
-        shell: bash
-
-  # Build job for React frontend
-  build-frontend:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -52,103 +30,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build React app
+      - name: Build
         run: npm run build
         env:
           NODE_ENV: production
           VITE_GITHUB_PAGES_URL: https://trovesandcoves.ca
 
-      - name: Install Playwright browsers
-        run: npx playwright install chromium
-
-      - name: Generate Open Graph image
-        run: |
-          # Start preview server in background
-          npx vite preview --port 4173 &
-          PREVIEW_PID=$!
-
-          # Wait for server to be ready
-          for i in {1..30}; do
-            if curl -s http://localhost:4173 > /dev/null; then
-              break
-            fi
-            sleep 1
-          done
-
-          # Generate og:image from Hero component
-          npx tsx scripts/generate-og-image.ts --url=http://localhost:4173
-
-          # Copy generated image to dist
-          cp client/public/og-image.jpg dist/public/og-image.jpg
-
-          # Cleanup
-          kill $PREVIEW_PID 2>/dev/null || true
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload GitHub Pages artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist/public'
 
-  # Deploy to GitHub Pages
-  deploy-github-pages:
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build-frontend
+    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  # Deploy Etsy Sync Worker to Cloudflare
-  # Only runs when worker code changes or on manual trigger (saves free tier minutes)
-  deploy-etsy-sync-worker:
-    runs-on: ubuntu-latest
-    needs: detect-changes
-    # Only deploy if cloudflare files changed or manually triggered
-    if: |
-      github.event_name == 'workflow_dispatch' ||
-      needs.detect-changes.outputs.cloudflare == 'true'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Wrangler
-        run: npm install -g wrangler
-
-      - name: Deploy Etsy Sync Worker to Cloudflare
-        run: |
-          # Check if KV namespace exists, create if not
-          if ! wrangler kv:namespace list | grep -q "ETSY_PRODUCTS"; then
-            echo "Creating ETSY_PRODUCTS KV namespace..."
-            wrangler kv:namespace create "ETSY_PRODUCTS" --preview false
-          fi
-
-          # Deploy the Etsy sync worker
-          wrangler deploy --config cloudflare/wrangler-etsy-sync.toml
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
-      - name: Trigger initial sync (optional)
-        run: |
-          # Trigger manual sync to populate products immediately
-          # The scheduled cron will handle this automatically going forward
-          echo "Triggering immediate product sync..."
-          curl -X POST "https://troves-etsy-sync.${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.workers.dev/sync" || true
-        continue-on-error: true
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
