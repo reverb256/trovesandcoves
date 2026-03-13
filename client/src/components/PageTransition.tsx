@@ -10,7 +10,7 @@
  * before React unmounts DOM nodes to avoid "removeChild" errors.
  */
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -38,47 +38,37 @@ export function useSectionReveal(options: {
   rootMargin?: string;
   threshold?: number;
 } = {}) {
-  const { rootMargin = '0px 0px -100px 0px', threshold = 0.1 } = options;
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const cleanupRef = useRef<(() => void) | null>(null);
-
   useEffect(() => {
-    // Only run on client
     if (typeof window === 'undefined') return;
 
-    // Respect prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Immediately show all sections if reduced motion is preferred
     if (prefersReducedMotion) {
+      // Show all elements immediately for users who prefer reduced motion
       const elements = document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger');
       elements.forEach((el) => {
-        if (el.isConnected) {
-          el.classList.add('visible');
-        }
+        if (el.isConnected) el.classList.add('visible');
       });
       return;
     }
 
-    // Create the observer with proper error handling
+    const { rootMargin = '0px 0px -100px 0px', threshold = 0.1 } = options;
+
+    // Store observer ref to check in callbacks
+    const observerRef = { current: null as IntersectionObserver | null };
+
     const observer = new IntersectionObserver(
       (entries) => {
-        // Use requestAnimationFrame to avoid manipulating DOM during React's render phase
         requestAnimationFrame(() => {
           entries.forEach((entry) => {
-            // Double-check that the target is still connected to the DOM
-            // This prevents errors when React has already started unmounting
-            if (entry.target.isConnected && observerRef.current === observer) {
+            // Only proceed if this is still our active observer
+            if (observerRef.current !== observer) return;
+
+            const target = entry.target as HTMLElement;
+            if (target.isConnected) {
               if (entry.isIntersecting) {
-                try {
-                  entry.target.classList.add('visible');
-                  // Stop observing once visible (one-time animation)
-                  if (observerRef.current) {
-                    observerRef.current.unobserve(entry.target);
-                  }
-                } catch {
-                  // Element was removed, ignore error
-                }
+                target.classList.add('visible');
+                // Optional: stop observing once visible
+                // observer.unobserve(target);
               }
             }
           });
@@ -89,54 +79,26 @@ export function useSectionReveal(options: {
 
     observerRef.current = observer;
 
-    // Function to observe all sections
-    const observeSections = () => {
-      const elements = document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger');
-      elements.forEach((el) => {
-        if (el.isConnected) {
-          try {
-            observer.observe(el);
-          } catch {
-            // Element was removed or invalid, ignore
-          }
-        }
-      });
-    };
-
-    // Use requestAnimationFrame to ensure DOM is ready
-    const rafId = requestAnimationFrame(() => {
-      observeSections();
+    // Observe elements
+    const elements = document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger');
+    elements.forEach((el) => {
+      if (el.isConnected) {
+        observer.observe(el);
+      }
     });
 
-    // Store cleanup function
-    cleanupRef.current = () => {
-      // Cancel pending observation
-      cancelAnimationFrame(rafId);
-
-      // Disconnect observer synchronously
-      // This MUST happen before React removes DOM nodes
+    // Cleanup: disconnect observer synchronously
+    return () => {
       if (observerRef.current) {
-        try {
-          observerRef.current.disconnect();
-        } catch {
-          // Observer already disconnected or invalid
-        }
+        observerRef.current.disconnect();
         observerRef.current = null;
       }
     };
-
-    // Return cleanup function
-    return cleanupRef.current;
   }, [rootMargin, threshold]);
 
-  // Ensure cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (cleanupRef.current) {
-        cleanupRef.current();
-      }
-    };
-  }, []);
+  return () => {
+    // No-op - cleanup handled in useEffect
+  };
 }
 
 /**

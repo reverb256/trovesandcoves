@@ -28,22 +28,38 @@ export function LazyImage({
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const isMountedRef = useRef(true);
 
   // Skip intersection observer for priority images or eager loading
   useEffect(() => {
+    isMountedRef.current = true;
+
     if (priority || loading === 'eager') {
       setIsLoaded(true);
       return;
     }
 
     const img = imgRef.current;
-    if (!img) return;
+    if (!img || !isMountedRef.current) return;
 
+    // Create the observer
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Only process if component is still mounted
+        if (!isMountedRef.current) return;
+
         if (entry.isIntersecting) {
           setIsLoaded(true);
-          observer.disconnect();
+          // Disconnect after triggering load
+          if (observerRef.current) {
+            try {
+              observerRef.current.disconnect();
+            } catch {
+              // Ignore errors during disconnect
+            }
+            observerRef.current = null;
+          }
         }
       },
       {
@@ -52,8 +68,60 @@ export function LazyImage({
       }
     );
 
-    observer.observe(img);
-    return () => observer.disconnect();
+    observerRef.current = observer;
+
+    // Observe the image with error handling
+    try {
+      if (img.isConnected) {
+        observer.observe(img);
+      }
+    } catch {
+      // Element might not be ready yet, retry after a delay
+      requestAnimationFrame(() => {
+        if (isMountedRef.current && img.isConnected && observerRef.current) {
+          try {
+            observerRef.current.observe(img);
+          } catch {
+            // Final retry with timeout
+            const retryTimeoutId = setTimeout(() => {
+              if (isMountedRef.current && img.isConnected && observerRef.current) {
+                try {
+                  observerRef.current.observe(img);
+                } catch {
+                  // All retries failed, just show the image
+                  setIsLoaded(true);
+                }
+              }
+            }, 100);
+            
+            // Store timeout ID for cleanup (using a property on the observer)
+            if (observerRef.current) {
+              (observerRef.current as any)._retryTimeout = retryTimeoutId;
+            }
+          }
+        }
+      });
+    }
+
+    // Cleanup function
+    return () => {
+      isMountedRef.current = false;
+
+      // Clear any pending retry timeout
+      if (observerRef.current && (observerRef.current as any)._retryTimeout) {
+        clearTimeout((observerRef.current as any)._retryTimeout);
+      }
+
+      // Disconnect the observer
+      if (observerRef.current) {
+        try {
+          observerRef.current.disconnect();
+        } catch {
+          // Observer already disconnected or in invalid state
+        }
+        observerRef.current = null;
+      }
+    };
   }, [src, priority, loading]);
 
   if (error) {

@@ -1,4 +1,4 @@
-import { Switch, Route, Router as WouterRouter } from 'wouter';
+import { Switch, Route, Router as WouterRouter, useLocation } from 'wouter';
 import { queryClient } from './lib/queryClient';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/toaster';
@@ -46,7 +46,7 @@ function Router() {
         <Header />
         <main id="main-content">
           <PageTransition>
-            <SectionReveal>
+            <SectionRevealWithKey>
               <Switch>
                 <Route path="/" component={Home} />
                 <Route path="/showcase" component={Showcase} />
@@ -66,13 +66,27 @@ function Router() {
                 <Route path="/style-guide" component={StyleGuide} />
                 <Route component={NotFound} />
               </Switch>
-            </SectionReveal>
+            </SectionRevealWithKey>
           </PageTransition>
         </main>
         <Footer />
         <CartDrawer />
       </div>
     </WouterRouter>
+  );
+}
+
+/**
+ * Wrapper component that forces SectionReveal to remount on every route change.
+ * This ensures the IntersectionObserver is properly cleaned up and recreated,
+ * preventing race conditions during navigation.
+ */
+function SectionRevealWithKey({ children }: { children: React.ReactNode }) {
+  const [location] = useLocation();
+  return (
+    <SectionReveal key={location}>
+      {children}
+    </SectionReveal>
   );
 }
 
