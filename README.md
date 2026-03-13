@@ -115,4 +115,4 @@ The code is open source under the MIT License. If you're interested in how the s
 
 *Made with ❤️ in Winnipeg, Manitoba, Canada*
 
-© 2024 Troves & Coves. All rights reserved.
+© 2026 Troves & Coves. All rights reserved.
