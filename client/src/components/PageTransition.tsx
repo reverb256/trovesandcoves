@@ -129,9 +129,13 @@ export function useSectionReveal(options: {
       return () => observer.disconnect();
     }
 
-    observeSections();
+    // Capture the cleanup function from observeSections
+    const cleanupObserver = observeSections();
+
     return () => {
       clearTimeout(initialTimer);
+      // Properly disconnect the observer when component unmounts or route changes
+      cleanupObserver?.();
     };
   }, [rootMargin, threshold]);
 }
