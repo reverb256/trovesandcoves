@@ -23,7 +23,7 @@ async function generateOgImage({
   });
 
   const context = await browser.newContext({
-    viewport: { width, height },
+    viewport: { width: 1920, height: 1080 }, // Use larger viewport
     deviceScaleFactor: 2, // Retina quality
   });
 
@@ -33,15 +33,18 @@ async function generateOgImage({
   await page.goto(baseUrl, { waitUntil: 'networkidle' });
 
   // Wait for fonts to load - this is crucial for correct rendering
-  console.log('⏳ Waiting for fonts to load...');
+  console.log('⏳ Waiting for fonts and content...');
 
   // Wait for document.fonts.ready
   await page.evaluate(() => {
     return document.fonts.ready.then(() => {
-      // Additional small delay to ensure fonts are fully applied
+      // Additional delay to ensure fonts are fully applied
       return new Promise(resolve => setTimeout(resolve, 500));
     });
   });
+
+  // Wait for React to hydrate and Hero to be visible
+  await page.waitForSelector('section[aria-label="Welcome"]', { timeout: 10000 });
 
   // Wait for theme to be applied
   await page.waitForFunction(() => {
@@ -68,7 +71,15 @@ async function generateOgImage({
 
   console.log('📸 Capturing Hero section...');
 
-  // Screenshot the Hero section
+  // Get the bounding box of the Hero section
+  const box = await hero.boundingBox();
+  if (!box) {
+    throw new Error('Could not get Hero bounding box!');
+  }
+
+  console.log(`📐 Hero section size: ${Math.round(box.width)}x${Math.round(box.height)}`);
+
+  // Screenshot the Hero section (it will use the section's actual size)
   await hero.screenshot({
     path: outputPath,
     type: 'jpeg',
@@ -76,7 +87,7 @@ async function generateOgImage({
   });
 
   await browser.close();
-  console.log(`✅ Generated ${outputPath} (${width}x${height})`);
+  console.log(`✅ Generated ${outputPath}`);
 }
 
 // CLI entry point
