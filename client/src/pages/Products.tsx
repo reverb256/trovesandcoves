@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
+import { useMemo } from 'react';
 import type { ProductWithCategory, Category } from '@shared/types';
 import { Filter, Search, X } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import SEOHead from '@/components/SEOHead';
+import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
 
@@ -64,6 +66,30 @@ export default function Products() {
   // Get current category info
   const currentCategory = categories?.find((cat) => cat.slug === category);
 
+  // Generate breadcrumb items based on current category
+  const breadcrumbItems = useMemo(() => {
+    const items = [
+      { name: 'Home', path: '/' },
+      { name: 'Shop', path: '/products' },
+    ];
+
+    if (currentCategory) {
+      items.push({
+        name: currentCategory.name,
+        path: `/products/${currentCategory.slug}`,
+      });
+    }
+
+    if (searchQuery) {
+      items.push({
+        name: `Search: "${searchQuery}"`,
+        path: window.location.pathname,
+      });
+    }
+
+    return items;
+  }, [currentCategory, searchQuery]);
+
   // Update search when URL changes
   useEffect(() => {
     const urlParams = new URLSearchParams(location.split('?')[1] || '');
@@ -94,6 +120,7 @@ export default function Products() {
 
   return (
       <>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <SEOHead path={window.location.pathname} />
       <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header Section */}
