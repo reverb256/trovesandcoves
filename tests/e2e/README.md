@@ -52,3 +52,24 @@ In GitHub Actions, always use:
 ```
 
 Do NOT use debug tests in CI.
+
+## Known Limitations
+
+### NixOS Local Development
+
+On NixOS systems, Firefox and WebKit browsers may fail to launch due to missing system libraries (`libstdc++.so.6`, `libxcb-shm.so.0`, etc.).
+
+**To run tests locally on NixOS:**
+```bash
+# Run only Chromium tests (works on NixOS)
+npm run test:e2e -- --project=chromium
+
+# CI will run all browsers successfully
+```
+
+**For full browser testing locally on NixOS**, install the required libraries via nix:
+```bash
+nix-shell -p firefox webkitgtk
+```
+
+Or use the development environment which includes browser dependencies.
