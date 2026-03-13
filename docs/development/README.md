@@ -58,11 +58,22 @@ This is a **static showcase site** with the following architecture:
 ### What Exists Now
 
 ```
-src/
+client/src/
 ├── components/
 │   ├── Hero.tsx           # Landing page hero section
-│   ├── Dashboard.tsx      # Dashboard component cards
+│   ├── ProductCard.tsx    # Product card component
+│   ├── SEOHead.tsx        # SEO meta tag component
+│   ├── BreadcrumbSchema.tsx  # Schema.org structured data
 │   └── ui/                # shadcn/ui base components
+├── pages/
+│   ├── Home.tsx           # Homepage
+│   ├── Products.tsx       # Product listing
+│   ├── ProductDetail.tsx  # Single product view
+│   └── ...
+├── lib/
+│   ├── pageMetadata.ts    # SEO metadata config
+│   └── ...
+├── hooks/                 # Custom React hooks
 ├── main.tsx               # React entry point
 └── App.tsx                # Main app component
 
@@ -70,10 +81,10 @@ server/
 ├── index.ts               # Express server entry
 ├── routes.ts              # API routes
 ├── storage.ts             # In-memory storage with seeded data
-└── security/              # Security middleware (mostly stubs)
+└── security/              # Security middleware
 
 shared/
-├── schema.ts              # Drizzle schema (currently UNUSED)
+├── types.ts               # TypeScript type definitions
 ├── brand-config.ts        # Brand tokens
 └── locked-design-language.ts  # Design system
 ```
@@ -81,11 +92,10 @@ shared/
 ### What Does NOT Exist
 
 The following are planned but not implemented:
-- ❌ No database (PostgreSQL schema exists but is unused)
-- ❌ No payment processing (Stripe code is stub only)
+- ❌ No database (uses in-memory storage with seeded data)
+- ❌ No payment processing (redirects to Etsy for purchases)
 - ❌ No user authentication
-- ❌ No admin dashboard with real functionality
-- ❌ No AI features (removed in commit be3cb65)
+- ❌ No admin dashboard
 
 See [ROADMAP.md](../../ROADMAP.md) for planned features.
 
@@ -93,11 +103,18 @@ See [ROADMAP.md](../../ROADMAP.md) for planned features.
 
 ### Frontend Structure
 ```
-src/
+client/src/
 ├── components/          # React components
 │   ├── ui/             # shadcn/ui base components
 │   ├── Hero.tsx        # Landing hero section
-│   └── Dashboard.tsx   # Dashboard cards
+│   ├── ProductCard.tsx # Product cards
+│   └── SEOHead.tsx     # SEO meta tags
+├── pages/              # Page components
+│   ├── Home.tsx
+│   ├── Products.tsx
+│   └── ...
+├── lib/                # Utilities
+├── hooks/              # Custom React hooks
 ├── main.tsx            # Entry point
 └── App.tsx             # Main app
 ```
