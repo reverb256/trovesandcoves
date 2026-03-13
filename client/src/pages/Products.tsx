@@ -95,6 +95,7 @@ export default function Products() {
   return (
       <>
       <SEOHead
+        path={category ? `/products/${category}` : '/products'}
         title={currentCategory
           ? `${currentCategory.name} | Handcrafted Jewelry | Troves & Coves`
           : searchQuery

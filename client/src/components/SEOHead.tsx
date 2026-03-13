@@ -4,6 +4,8 @@ import { getPageMetadata, type PageMetadata } from '@/lib/pageMetadata';
 interface SEOProps {
   path: string;
   productName?: string;
+  title?: string; // Override default title
+  description?: string; // Override default description
   image?: string;
   url?: string;
   type?: 'website' | 'product' | 'article';
@@ -20,6 +22,8 @@ interface SEOProps {
 export default function SEOHead({
   path,
   productName,
+  title: titleOverride,
+  description: descriptionOverride,
   image = 'https://trovesandcoves.ca/og-image.jpg',
   url = 'https://trovesandcoves.ca',
   type = 'website',
@@ -34,8 +38,8 @@ export default function SEOHead({
 }: SEOProps) {
   // Get page-specific metadata
   const metadata: PageMetadata = getPageMetadata(path, productName);
-  const title = metadata.title;
-  const description = metadata.description;
+  const title = titleOverride ?? metadata.title;
+  const description = descriptionOverride ?? metadata.description;
   const keywords = metadata.keywords;
   useEffect(() => {
     // Update document title
@@ -313,6 +317,8 @@ export default function SEOHead({
   }, [
     path,
     productName,
+    titleOverride,
+    descriptionOverride,
     image,
     url,
     type,
