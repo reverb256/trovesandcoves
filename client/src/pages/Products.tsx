@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useLocation } from 'wouter';
-import { useMemo } from 'react';
 import type { ProductWithCategory, Category } from '@shared/types';
 import { Filter, Search, X } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import SEOHead from '@/components/SEOHead';
-import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
 
@@ -66,30 +64,6 @@ export default function Products() {
   // Get current category info
   const currentCategory = categories?.find((cat) => cat.slug === category);
 
-  // Generate breadcrumb items based on current category
-  const breadcrumbItems = useMemo(() => {
-    const items = [
-      { name: 'Home', path: '/' },
-      { name: 'Shop', path: '/products' },
-    ];
-
-    if (currentCategory) {
-      items.push({
-        name: currentCategory.name,
-        path: `/products/${currentCategory.slug}`,
-      });
-    }
-
-    if (searchQuery) {
-      items.push({
-        name: `Search: "${searchQuery}"`,
-        path: window.location.pathname,
-      });
-    }
-
-    return items;
-  }, [currentCategory, searchQuery]);
-
   // Update search when URL changes
   useEffect(() => {
     const urlParams = new URLSearchParams(location.split('?')[1] || '');
@@ -120,8 +94,27 @@ export default function Products() {
 
   return (
       <>
-      <BreadcrumbSchema items={breadcrumbItems} />
-      <SEOHead path={window.location.pathname} />
+      <SEOHead
+        title={currentCategory
+          ? `${currentCategory.name} | Handcrafted Jewelry | Troves & Coves`
+          : searchQuery
+          ? `Search: "${searchQuery}" | Jewelry Collection | Troves & Coves`
+          : `Shop Jewelry | Handcrafted Necklaces & Bracelets | Troves & Coves`
+        }
+        description={currentCategory
+          ? `Browse our ${currentCategory.name} collection. ${currentCategory.description}`
+          : searchQuery
+          ? `Search results for "${searchQuery}" in our handcrafted jewelry collection.`
+          : "Explore our curated selection of handcrafted jewelry. Each piece blends 14k gold-plated elegance with natural beauty—crafted with intention."
+        }
+        url={currentCategory
+          ? `https://trovesandcoves.ca/products/${currentCategory.slug}`
+          : searchQuery
+          ? `https://trovesandcoves.ca/products?search=${encodeURIComponent(searchQuery)}`
+          : 'https://trovesandcoves.ca/products'
+        }
+        type="website"
+      />
       <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
       {/* Header Section */}
       <section className="relative py-24 border-b border-turquoise-light">
@@ -140,21 +133,21 @@ export default function Products() {
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>{currentCategory.name}</span>
                   <span className="text-sm md:text-base font-normal" style={{ fontFamily: "\"Montserrat\", sans-serif", color: 'hsl(var(--text-secondary))' }}>
-                    | Handcrafted in Winnipeg
+                    | Handcrafted Jewelry
                   </span>
                 </>
               ) : searchQuery ? (
                 <>
-                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>Search Results for</span>
+                  <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>Searching for</span>
                   <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>"{searchQuery}"</span>
                 </>
               ) : (
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>
-                    Shop Crystal Jewelry
+                    Shop Jewelry
                   </span>
                   <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>
-                    &amp; Necklaces &amp; Bracelets
+                    &amp; Collections
                   </span>
                 </>
               )}
@@ -352,7 +345,7 @@ export default function Products() {
                 {filteredAndSortedProducts.map((product) => (
                   <a
                     key={product.id}
-                    href={`/product/${product.id}`}
+                    href={`/products/${product.id}`}
                     className="group block product-card-stagger"
                   >
                     <div className="rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
