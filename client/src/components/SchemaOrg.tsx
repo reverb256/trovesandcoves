@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 // Re-export BreadcrumbSchema from the dedicated component for backward compatibility
 export { BreadcrumbSchema, type BreadcrumbItem } from './BreadcrumbSchema';
@@ -30,6 +30,9 @@ export function ProductSchema({
   brand = 'Troves & Coves',
   sku = id,
 }: ProductSchemaProps) {
+  // Track elements created by this instance to avoid cleanup conflicts
+  const createdElementsRef = useRef<Set<Node>>(new Set());
+
   useEffect(() => {
     const productSchema = {
       '@context': 'https://schema.org',
@@ -80,13 +83,20 @@ export function ProductSchema({
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(productSchema);
     document.head.appendChild(script);
+    createdElementsRef.current.add(script);
 
     return () => {
-      // Use remove() which is safer than parentNode.removeChild()
-      // Handles the case where the node might already be removed
-      if (script.isConnected) {
-        script.remove();
-      }
+      // Clean up only elements created by this instance
+      createdElementsRef.current.forEach((element) => {
+        if (element.isConnected) {
+          try {
+            (element as Element).remove();
+          } catch {
+            // Element already removed or invalid
+          }
+        }
+      });
+      createdElementsRef.current.clear();
     };
   }, [name, description, imageUrl, price, stockQuantity, category, id, brand, sku]);
 
@@ -98,6 +108,9 @@ export function ProductSchema({
  * Adds WebSite schema with search action for site links searchbox
  */
 export function WebsiteSchema() {
+  // Track elements created by this instance to avoid cleanup conflicts
+  const createdElementsRef = useRef<Set<Node>>(new Set());
+
   useEffect(() => {
     const websiteSchema = {
       '@context': 'https://schema.org',
@@ -130,13 +143,20 @@ export function WebsiteSchema() {
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(websiteSchema);
     document.head.appendChild(script);
+    createdElementsRef.current.add(script);
 
     return () => {
-      // Use remove() which is safer than parentNode.removeChild()
-      // Handles the case where the node might already be removed
-      if (script.isConnected) {
-        script.remove();
-      }
+      // Clean up only elements created by this instance
+      createdElementsRef.current.forEach((element) => {
+        if (element.isConnected) {
+          try {
+            (element as Element).remove();
+          } catch {
+            // Element already removed or invalid
+          }
+        }
+      });
+      createdElementsRef.current.clear();
     };
   }, []);
 
@@ -148,6 +168,9 @@ export function WebsiteSchema() {
  * Adds Organization schema for brand knowledge panel
  */
 export function OrganizationSchema() {
+  // Track elements created by this instance to avoid cleanup conflicts
+  const createdElementsRef = useRef<Set<Node>>(new Set());
+
   useEffect(() => {
     const organizationSchema = {
       '@context': 'https://schema.org',
@@ -193,13 +216,20 @@ export function OrganizationSchema() {
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(organizationSchema);
     document.head.appendChild(script);
+    createdElementsRef.current.add(script);
 
     return () => {
-      // Use remove() which is safer than parentNode.removeChild()
-      // Handles the case where the node might already be removed
-      if (script.isConnected) {
-        script.remove();
-      }
+      // Clean up only elements created by this instance
+      createdElementsRef.current.forEach((element) => {
+        if (element.isConnected) {
+          try {
+            (element as Element).remove();
+          } catch {
+            // Element already removed or invalid
+          }
+        }
+      });
+      createdElementsRef.current.clear();
     };
   }, []);
 
@@ -211,6 +241,9 @@ export function OrganizationSchema() {
  * Adds LocalBusiness schema for local search visibility
  */
 export function LocalBusinessSchema() {
+  // Track elements created by this instance to avoid cleanup conflicts
+  const createdElementsRef = useRef<Set<Node>>(new Set());
+
   useEffect(() => {
     const localBusinessSchema = {
       '@context': 'https://schema.org',
@@ -280,13 +313,20 @@ export function LocalBusinessSchema() {
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(localBusinessSchema);
     document.head.appendChild(script);
+    createdElementsRef.current.add(script);
 
     return () => {
-      // Use remove() which is safer than parentNode.removeChild()
-      // Handles the case where the node might already be removed
-      if (script.isConnected) {
-        script.remove();
-      }
+      // Clean up only elements created by this instance
+      createdElementsRef.current.forEach((element) => {
+        if (element.isConnected) {
+          try {
+            (element as Element).remove();
+          } catch {
+            // Element already removed or invalid
+          }
+        }
+      });
+      createdElementsRef.current.clear();
     };
   }, []);
 
