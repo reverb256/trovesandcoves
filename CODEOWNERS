@@ -1,0 +1,18 @@
+# Code Owners
+
+# These owners will be the default owners for everything in the repo
+* @reverb256
+
+# These owners will be the default owners for specific directories
+
+# Design files
+/client/src/components/ @reverb256
+/client/src/lib/pageMetadata.ts @reverb256
+
+# Build and deployment
+.github/workflows/ @reverb256
+scripts/ @reverb256
+
+# Product data
+/shared/types.ts @reverb256
+server/storage.ts @reverb256
