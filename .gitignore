@@ -4,3 +4,12 @@ dist
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Playwright test artifacts
+playwright-report/
+test-results/
+.playwright-mcp/
+
+# Development build files
+client/dev-dist/
+stats.html
