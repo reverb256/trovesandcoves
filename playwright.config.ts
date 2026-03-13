@@ -3,15 +3,22 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * Playwright E2E Test Configuration
  *
+ * IMPORTANT: Default tests run AGAINST PRODUCTION (https://trovesandcoves.ca)
+ *
  * This config supports two test suites:
  * 1. **Production Tests** (default) - Run against https://trovesandcoves.ca
  * 2. **Debug Tests** - Run against local dev server at http://localhost:5000
  *
- * Run production tests: npm run test:e2e
- * Run debug tests (requires dev server): npm run test:e2e:debug
+ * COMMANDS:
+ * - npm run test:e2e           → Runs all production tests (default, all browsers)
+ * - npm run test:e2e:ui         → Same as above, with UI reporter
+ * - npm run test:e2e:debug-tests → Runs debug tests against localhost:5000
+ * - npm run test:e2e:debugger    → Opens Playwright inspector
+ *
+ * NOTE: Use production tests for CI/CD pipelines. Debug tests are for local development only.
  */
 export default defineConfig({
-  // Default test directory for production tests
+  // Default test directory for production tests (runs against https://trovesandcoves.ca)
   testDir: './tests/e2e',
 
   /* Run tests in files in parallel */
