@@ -157,7 +157,6 @@ The following documents are kept for reference but may be outdated:
 - [../IMPLEMENTATION_SUMMARY.md](../IMPLEMENTATION_SUMMARY.md)
 - [../REFACTOR_PLAN.md](../REFACTOR_PLAN.md)
 - [../WEB_IMPROVEMENTS.md](../WEB_IMPROVEMENTS.md)
-- [../copilot-tasks.md](../copilot-tasks.md)
 
 ---
 

@@ -1,90 +1,165 @@
-# Quick Setup: GitHub Pages + Cloudflare + Vite for Custom Domains
+# Quick Setup: GitHub Pages Deployment
 
-## Domains Supported
-- **reverb256.ca** (root and www)
-- **trovesandcoves.ca** (root and www)
-- **GitHub Pages project subpath:** `/trovesandcoves/`
+## Overview
 
----
-
-## 1. Vite Config
-
-- For Troves & Coves, set in `vite.config.ts`:
-  ```js
-  base: '/trovesandcoves/',
-  ```
+This guide helps you deploy the Troves & Coves site to GitHub Pages with a custom domain.
 
 ---
 
-## 2. Build
+## Prerequisites
 
-```sh
-npm run build:frontend
-```
-- Output: `dist/public/`
-
----
-
-## 3. CNAME File
-
-- In `dist/public/CNAME`:
-  - For main site: `reverb256.ca`
-  - For Troves & Coves: `trovesandcoves.ca`
+- GitHub account
+- Domain registered (optional, for custom domain)
+- Node.js 18+ installed locally
 
 ---
 
-## 4. 404.html for SPA Routing
+## Step 1: Fork and Clone
 
-```sh
-cp dist/public/index.html dist/public/404.html
+```bash
+# Fork the repository on GitHub
+# Clone your fork
+git clone https://github.com/YOUR_USERNAME/trovesandcoves.git
+cd trovesandcoves
+
+# Install dependencies
+npm install
 ```
 
 ---
 
-## 5. GitHub Pages Settings
+## Step 2: Local Testing
 
-- **Source:** `gh-pages` branch (or `/docs` folder on `main`)
-- **Custom domain:** Set to `reverb256.ca` or `trovesandcoves.ca` as appropriate
+```bash
+# Start development server
+npm run dev
 
----
-
-## 6. Cloudflare DNS
-
-- **CNAME** for `@` and `www` on both domains, pointing to `reverb256.github.io`
-- **SSL:** "Full" mode
+# Visit http://localhost:5173
+```
 
 ---
 
-## 7. Deploy
+## Step 3: Build
 
-- Push to main branch, workflow deploys `dist/public` to `gh-pages`
-- Confirm CNAME and 404.html are present in deployed files
+```bash
+# Production build
+npm run build
+
+# Output: dist/public/
+```
 
 ---
 
-## 8. Test
+## Step 4: Configure GitHub Pages
 
-- Visit:
-  - https://reverb256.ca
-  - https://www.reverb256.ca
-  - https://trovesandcoves.ca
-  - https://www.trovesandcoves.ca
-  - https://reverb256.ca/trovesandcoves
+1. Go to your repository → **Settings** → **Pages**
+2. Set **Source** to: **GitHub Actions**
+3. Click **Save**
+
+---
+
+## Step 5: Deploy
+
+```bash
+# Commit and push to main
+git add .
+git commit -m "Initial deployment"
+git push origin main
+```
+
+The GitHub Actions workflow will automatically:
+1. Build the site
+2. Deploy to GitHub Pages
+3. Available at: `https://YOUR_USERNAME.github.io/trovesandcoves`
+
+---
+
+## Step 6: Custom Domain (Optional)
+
+### A. Add CNAME File
+
+Create `CNAME` in repository root:
+```
+yourdomain.com
+```
+
+Or for subdomain:
+```
+www.yourdomain.com
+```
+
+### B. Configure DNS
+
+Add CNAME records at your domain provider:
+
+```
+Type: CNAME
+Name: @
+Target: YOUR_USERNAME.github.io
+```
+
+```
+Type: CNAME
+Name: www
+Target: YOUR_USERNAME.github.io
+```
+
+### C. Update GitHub Pages
+
+1. Go to repository → Settings → Pages
+2. Under **Custom domain**, enter your domain
+3. Wait for DNS check to pass
+4. Enable **Enforce HTTPS**
+
+---
+
+## Step 7: Verify
+
+Visit your site:
+- GitHub Pages: `https://YOUR_USERNAME.github.io/trovesandcoves`
+- Custom domain: `https://yourdomain.com`
+
+---
+
+## Environment Variables (Optional)
+
+Create `.env` for local development:
+
+```env
+# Google Analytics
+VITE_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+
+# API URLs (for development)
+VITE_API_URL=http://localhost:5000
+```
 
 ---
 
 ## Troubleshooting
 
-- If you see a 404, check DNS propagation, CNAME file, and GitHub Pages settings.
-- For SPA routing, ensure 404.html is present and is a copy of index.html.
+### "Page not found" after deployment
+- Wait 5-10 minutes for GitHub Pages to propagate
+- Check Actions tab for build failures
+- Ensure Pages source is set to "GitHub Actions"
+
+### Custom domain not working
+- Verify DNS CNAME records
+- Wait up to 24 hours for DNS propagation
+- Check that CNAME file exists in repository
+
+### Build failing
+- Run `npm run build` locally to debug
+- Check Node.js version (must be 18+)
+- Review error logs in Actions tab
 
 ---
 
-## Automation
+## Next Steps
 
-- Cloudflare API token and zone ID are set for DNS automation.
-- GitHub Actions workflow deploys on push.
+- [Custom Domain Setup](custom-domain-setup.md) - Detailed domain configuration
+- [HTTPS/SSL Setup](https-setup.md) - SSL certificate guide
+- [Main Deployment Guide](README.md) - Complete deployment documentation
 
 ---
 
-_Last updated: 2025-06-20_
+**Last Updated**: 2026-03-13

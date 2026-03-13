@@ -152,18 +152,12 @@ npm run lint            # Run ESLint
 npm run format          # Format with Prettier
 ```
 
-### Cloudflare Commands (Optional)
-```bash
-npm run cf:dev          # Test Cloudflare Worker locally
-npm run cf:tail         # View Worker logs
-npm run cf:kv:list      # List KV namespaces
-```
-
 ### Deployment Commands
 ```bash
-npm run deploy:all      # Deploy to Cloudflare + GitHub Pages
-npm run deploy:github-pages  # Deploy to GitHub Pages only
-npm run deploy:cloudflare    # Deploy to Cloudflare Workers only
+# GitHub Actions deploys automatically on push to main
+# To manually trigger:
+# 1. Go to repository → Actions → Deploy to GitHub Pages & Cloudflare
+# 2. Click "Run workflow" button
 ```
 
 ## 🔄 Development Workflow
@@ -226,11 +220,19 @@ The development server runs on `http://localhost:5000` with:
 - `DELETE /api/cart/:id` - Remove from cart
 - `POST /api/contact` - Submit contact form
 
-### Production API (Optional)
-If using Cloudflare Workers:
-- Serverless functions
-- KV storage
-- Edge computing
+### Production Note
+In production, the site is **static** with:
+- No API server (GitHub Pages hosting)
+- Data embedded in the build
+- Cart using localStorage
+- Purchase redirects to Etsy
+
+### Optional Cloudflare Worker
+A Cloudflare Worker exists for **Etsy product synchronization**:
+- Location: `cloudflare/etsy-sync-worker.ts`
+- Purpose: Sync products from Etsy API
+- Triggered: Cron job or manual
+- Not required for main site functionality
 
 ## 🎨 UI Development
 

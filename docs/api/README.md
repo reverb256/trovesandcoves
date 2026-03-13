@@ -1,23 +1,21 @@
 # API Documentation
 
-## 🌐 Overview
+## Overview
 
-The Troves & Coves API provides endpoints for managing products, cart operations, search functionality, and AI-powered features. The API is deployed on Cloudflare Workers for global performance and reliability.
+The Troves & Coves API provides endpoints for product browsing and cart operations. In production, the site is static with data embedded, but a development API is available for local development.
 
 ### Base URLs
 
-- **Production**: `https://troves-coves-api.your-subdomain.workers.dev`
-- **Development**: `http://localhost:3000`
+- **Development**: `http://localhost:5000`
+- **Production**: Static site (no API - data is embedded)
 
 ### Authentication
 
-Most endpoints are public and don't require authentication. For cart operations, include a session ID header:
+No authentication required. Cart operations use session-based storage with session IDs passed via headers.
 
-```http
-X-Session-ID: your-session-id
-```
+---
 
-## 📋 Endpoints
+## Endpoints
 
 ### Products
 
@@ -34,10 +32,11 @@ GET /api/products
     "name": "Wire Wrapped Crystal Pendant",
     "price": "45.00",
     "category": "Pendants",
-    "imageUrl": "https://example.com/image.jpg",
+    "imageUrl": "/product-images/wire-wrapped-pendant.jpg",
     "description": "Handcrafted wire-wrapped crystal pendant",
     "inStock": true,
-    "featured": true
+    "featured": true,
+    "etsyListingId": "1234567890"
   }
 ]
 ```
@@ -53,8 +52,7 @@ GET /api/products/featured
   {
     "id": 1,
     "name": "Wire Wrapped Crystal Pendant",
-    "featured": true,
-    ...
+    "featured": true
   }
 ]
 ```
@@ -74,11 +72,33 @@ GET /api/products/{id}
   "name": "Wire Wrapped Crystal Pendant",
   "price": "45.00",
   "category": "Pendants",
-  "imageUrl": "https://example.com/image.jpg",
-  "description": "Handcrafted wire-wrapped crystal pendant",
+  "imageUrl": "/product-images/wire-wrapped-pendant.jpg",
+  "description": "Handcrafted wire-wrapped crystal pendant with 14k gold-plated wire",
   "inStock": true,
-  "featured": true
+  "featured": true,
+  "materials": ["Amethyst", "14k Gold Plated Wire"],
+  "etsyListingId": "1234567890"
 }
+```
+
+#### Search Products
+```http
+GET /api/search?q={query}
+```
+
+**Parameters:**
+- `q` (string): Search query for product names and descriptions
+
+**Response:**
+```json
+[
+  {
+    "id": 1,
+    "name": "Amethyst Pendant",
+    "description": "...",
+    "category": "Pendants"
+  }
+]
 ```
 
 ### Cart Operations
@@ -129,88 +149,21 @@ X-Session-ID: your-session-id
 }
 ```
 
-### Search
-
-#### Search Products
+#### Update Cart Item
 ```http
-GET /api/search?q={query}
+PUT /api/cart/{productId}
 ```
 
-**Parameters:**
-- `q` (string): Search query
-
-**Response:**
-```json
-[
-  {
-    "id": 1,
-    "name": "Wire Wrapped Crystal Pendant",
-    "description": "Handcrafted wire-wrapped crystal pendant",
-    "category": "Pendants",
-    ...
-  }
-]
-```
-
-### AI Features
-
-#### Get Recommendations
+**Headers:**
 ```http
-POST /ai/recommendations
+Content-Type: application/json
+X-Session-ID: your-session-id
 ```
 
 **Body:**
 ```json
 {
-  "productId": 1,
-  "userId": "optional-user-id"
-}
-```
-
-**Response:**
-```json
-[
-  {
-    "productId": 2,
-    "reason": "Complementary healing properties for emotional balance"
-  },
-  {
-    "productId": 3,
-    "reason": "Aesthetic harmony with rose gold wire wrapping"
-  }
-]
-```
-
-#### Market Analysis
-```http
-GET /ai/market-analysis
-```
-
-**Response:**
-```json
-{
-  "popularCategories": ["Healing Crystals", "Wire Wrapped Jewellery"],
-  "seasonalTrends": "Spring collection showing increased demand",
-  "priceInsights": "Premium handcrafted pieces commanding higher prices",
-  "customerPreferences": "Canadian customers prefer authentic crystals"
-}
-```
-
-### Analytics
-
-#### Track Event
-```http
-POST /analytics/track
-```
-
-**Body:**
-```json
-{
-  "event": "product_view",
-  "data": {
-    "productId": 1,
-    "category": "Pendants"
-  }
+  "quantity": 3
 }
 ```
 
@@ -221,14 +174,49 @@ POST /analytics/track
 }
 ```
 
-## 🔧 Error Handling
+#### Remove from Cart
+```http
+DELETE /api/cart/{productId}
+```
+
+**Headers:**
+```http
+X-Session-ID: your-session-id
+```
+
+**Response:**
+```json
+{
+  "success": true
+}
+```
+
+#### Clear Cart
+```http
+DELETE /api/cart
+```
+
+**Headers:**
+```http
+X-Session-ID: your-session-id
+```
+
+**Response:**
+```json
+{
+  "success": true
+}
+```
+
+---
+
+## Error Handling
 
 ### Standard Error Response
 ```json
 {
   "error": "Error message",
-  "code": 400,
-  "timestamp": "2024-01-01T00:00:00.000Z"
+  "code": 400
 }
 ```
 
@@ -237,117 +225,58 @@ POST /analytics/track
 - `200` - Success
 - `400` - Bad Request
 - `404` - Not Found
-- `429` - Rate Limited (redirects to GitHub Pages)
 - `500` - Internal Server Error
-- `503` - Service Unavailable
 
-### Rate Limiting
+---
 
-The API has a daily limit of 90,000 requests. When exceeded:
+## Development Setup
 
-```json
-{
-  "error": "Daily request limit reached",
-  "message": "Redirecting to static site for continued browsing",
-  "redirect": "https://username.github.io/troves-coves"
-}
-```
+### Local Development Server
 
-## 🚀 Free Tier Optimizations
+The development server combines Express (API) with Vite (frontend):
 
-### Caching
-- **Products**: Cached for 1 hour
-- **Cart**: Session-based with 24-hour TTL
-- **Analytics**: Sampled at 10% to save storage
-
-### Request Optimization
-- Automatic rate limiting at 90% of free tier
-- Fallback to GitHub Pages when limits reached
-- Aggressive response caching
-
-### Storage Management
-- **Products**: Stored in `PRODUCTS_KV`
-- **Cart Sessions**: Stored in `CART_KV` with TTL
-- **Analytics**: Stored in `ANALYTICS_KV` with 30-day retention
-
-## 🔒 Security
-
-### CORS
-Cross-origin requests are allowed from:
-- `https://trovesandcoves.ca`
-- `https://*.github.io`
-- `localhost` (development)
-
-### Headers
-Standard security headers are applied:
-- `Access-Control-Allow-Origin`
-- `Access-Control-Allow-Methods`
-- `Access-Control-Allow-Headers`
-- `Cache-Control`
-
-### Data Protection
-- No sensitive data stored in KV
-- Session IDs are client-generated
-- Analytics data is anonymized
-
-## 📊 Monitoring
-
-### Request Tracking
-Daily request counts are automatically tracked and logged.
-
-### Error Logging
-All errors are logged with:
-- Timestamp
-- Error message
-- Request details
-- User agent
-- IP address (if available)
-
-### Performance Metrics
-- Response times
-- Cache hit rates
-- KV read/write operations
-- Request volume by endpoint
-
-## 🛠️ Development
-
-### Local Testing
 ```bash
-# Start local development server
 npm run dev
-
-# Test Cloudflare Worker locally
-npm run cf:dev
 ```
 
-### Environment Variables
-```env
-# API Configuration
-ANTHROPIC_API_KEY=your-key-here
-OPENAI_API_KEY=your-key-here
+This starts:
+- Frontend: `http://localhost:5173`
+- API: `http://localhost:5000`
 
-# Rate Limiting
-MAX_REQUESTS_PER_DAY=90000
-REQUEST_LIMIT_ENABLED=true
+### Data Storage
 
-# Caching
-CACHE_TTL=3600
-ENABLE_CACHING=true
-```
+In development, products are stored in-memory using the `MemStorage` class. Product data is seeded from `server/storage.ts`.
 
-### Testing Endpoints
-```bash
-# Test product endpoint
-curl https://your-worker.workers.dev/api/products
+### Session Management
 
-# Test with session
-curl -H "X-Session-ID: test-session" \
-     https://your-worker.workers.dev/api/cart
-```
+Cart data is stored server-side with session IDs. Sessions expire after 24 hours.
 
-## 📚 SDKs and Examples
+---
+
+## Production Notes
+
+### Static Site
+
+In production, the site is fully static with:
+- No API calls for product data (embedded in build)
+- Cart functionality using localStorage
+- Purchase redirects to Etsy storefront
+
+### Optional Cloudflare Worker
+
+A Cloudflare Worker can be deployed for:
+- Etsy product synchronization
+- Optional API endpoints
+- Edge caching
+
+See `cloudflare/` directory for worker configuration.
+
+---
+
+## SDK Examples
 
 ### JavaScript/TypeScript
+
 ```typescript
 // Fetch products
 const products = await fetch('/api/products').then(r => r.json());
@@ -364,6 +293,7 @@ await fetch('/api/cart', {
 ```
 
 ### React Hook Example
+
 ```typescript
 import { useQuery } from '@tanstack/react-query';
 
@@ -371,11 +301,42 @@ function useProducts() {
   return useQuery({
     queryKey: ['products'],
     queryFn: () => fetch('/api/products').then(r => r.json()),
-    staleTime: 1000 * 60 * 60, // 1 hour
   });
 }
 ```
 
 ---
 
-For more examples and integration guides, see the [Development Guide](../development/README.md).
+## Data Models
+
+### Product
+
+```typescript
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  category: string;
+  imageUrl: string;
+  description: string;
+  inStock: boolean;
+  featured: boolean;
+  materials?: string[];
+  etsyListingId?: string;
+}
+```
+
+### CartItem
+
+```typescript
+interface CartItem {
+  productId: number;
+  quantity: number;
+}
+```
+
+---
+
+For more information, see:
+- [Development Guide](../development/README.md)
+- [CLAUDE.md](../../CLAUDE.md)

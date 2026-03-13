@@ -1,236 +1,253 @@
-# GitHub Pages + Cloudflare Workers Deployment Guide
+# GitHub Pages Deployment Guide
 
-## 🎯 Architecture Overview
+## Overview
 
-This setup maximizes the free tiers of both GitHub Pages and Cloudflare Workers:
+This project uses **GitHub Pages** for static site hosting. The deployment is fully automated via GitHub Actions.
 
-- **GitHub Pages**: Hosts the React frontend (1GB storage, 100GB bandwidth/month)
-- **Cloudflare Workers**: Handles API requests and dynamic features (100k requests/day)
-- **Cloudflare KV**: Stores product data, cart sessions, and analytics (1GB total)
+- **Live Site**: https://trovesandcoves.ca
+- **GitHub Pages URL**: https://reverb256.github.io/trovesandcoves
+- **Platform**: GitHub Pages (static hosting)
+- **Custom Domain**: trovesandcoves.ca (via Cloudflare DNS)
 
-## 🚀 Quick Setup
+---
 
-### 1. GitHub Repository Setup
+## Quick Start
 
+### Initial Setup
+
+1. **Clone the repository**
 ```bash
-# Clone this repository
-git clone https://github.com/YOUR_USERNAME/troves-coves.git
-cd troves-coves
+git clone https://github.com/YOUR_USERNAME/trovesandcoves.git
+cd trovesandcoves
+```
 
-# Install dependencies
+2. **Install dependencies**
+```bash
 npm install
-
-# Test local build
-npm run build:frontend
 ```
 
-### 2. GitHub Pages Configuration
-
-1. Go to your repository settings → Pages
-2. Set source to "GitHub Actions"
-3. The workflow will automatically deploy on push to main
-
-### 3. Cloudflare Setup
-
-#### A. Get API Credentials
-1. Login to [Cloudflare Dashboard](https://dash.cloudflare.com)
-2. Go to "My Profile" → "API Tokens"
-3. Create token with permissions:
-   - Zone:Zone:Read
-   - Zone:Zone Settings:Edit  
-   - Account:Cloudflare Workers:Edit
-   - Account:Account Settings:Read
-
-#### B. Add GitHub Secrets
-Go to your repository → Settings → Secrets and variables → Actions:
-
-```
-CLOUDFLARE_API_TOKEN=your_token_here
-CLOUDFLARE_ACCOUNT_ID=your_account_id_here
-ANTHROPIC_API_KEY=your_anthropic_key (optional)
-OPENAI_API_KEY=your_openai_key (optional)
-```
-
-#### C. Deploy Worker
+3. **Build locally**
 ```bash
-# Install Wrangler CLI
-npm install -g wrangler
-
-# Login to Cloudflare
-wrangler login
-
-# Deploy worker
-npm run deploy:cloudflare
+npm run build
 ```
 
-### 4. Domain Configuration (Optional)
+### GitHub Pages Configuration
 
-#### For Custom Domain:
-1. Add your domain to Cloudflare
-2. Update `cloudflare.toml` routes section
-3. Add CNAME record: `api.yourdomain.com` → `your-worker.your-subdomain.workers.dev`
+1. Go to your repository → Settings → Pages
+2. Set **Source** to "GitHub Actions"
+3. Push to `main` branch to trigger automatic deployment
 
-## 📊 Free Tier Limits & Optimization
+---
 
-### GitHub Pages Limits
-- ✅ **Storage**: 1GB (plenty for static site)
-- ✅ **Bandwidth**: 100GB/month (excellent for traffic)
-- ✅ **Build time**: 10 minutes (our build takes ~2 minutes)
+## Build Process
 
-### Cloudflare Workers Limits
-- ✅ **CPU time**: 10ms per request (our functions use ~2-5ms)
-- ✅ **Requests**: 100,000/day (with automatic rate limiting at 90k)
-- ✅ **Memory**: 128MB (our worker uses ~10-20MB)
+The build process (`npm run build`):
 
-### Cloudflare KV Limits
-- ✅ **Storage**: 1GB total (optimized with TTL and data cleanup)
-- ✅ **Reads**: 100,000/day (cached aggressively)
-- ✅ **Writes**: 1,000/day (batch operations where possible)
+1. **Vite Build**: Compiles React app to `dist/public/`
+2. **Post-Build Copy**: Copies necessary assets (CNAME, 404.html)
+3. **Sitemap Generation**: Creates dynamic sitemap with all products
 
-## 🛠️ Available Commands
+### Build Output
+
+```
+dist/public/
+├── index.html          # Main app
+├── 404.html            # SPA routing fallback
+├── CNAME               # Custom domain (trovesandcoves.ca)
+├── sitemap.xml         # Dynamic sitemap
+├── assets/             # JS, CSS, images
+└── ...                 # Other static files
+```
+
+---
+
+## CI/CD Pipeline
+
+### GitHub Actions Workflow
+
+Location: `.github/workflows/deploy.yml`
+
+**Triggered by:**
+- Push to `main` branch
+- Manual workflow dispatch
+
+**Jobs:**
+1. **Build Frontend**: Runs `npm run build` with Node.js 20
+2. **Deploy GitHub Pages**: Deploys `dist/public` to GitHub Pages
+3. **Deploy Etsy Worker** (optional): Only when `cloudflare/` files change
+
+### Environment Variables
+
+The build uses these environment variables:
+
+```yaml
+NODE_ENV: production
+VITE_GITHUB_PAGES_URL: https://trovesandcoves.ca
+```
+
+---
+
+## Custom Domain Setup
+
+### DNS Configuration
+
+Configure these DNS records in Cloudflare:
+
+```
+Type: CNAME
+Name: @ (or trovesandcoves.ca)
+Target: reverb256.github.io
+Proxy: ✅ Proxied (orange cloud)
+```
+
+```
+Type: CNAME
+Name: www
+Target: reverb256.github.io
+Proxy: ✅ Proxied (orange cloud)
+```
+
+### GitHub Pages Settings
+
+1. Add `CNAME` file to repository root:
+```
+trovesandcoves.ca
+```
+
+2. In GitHub repository settings:
+   - Settings → Pages → Custom domain
+   - Enter: `trovesandcoves.ca`
+   - Enable "Enforce HTTPS"
+
+---
+
+## Available Commands
 
 ### Development
 ```bash
-npm run dev              # Start full-stack development server
-npm run cf:dev          # Test Cloudflare Worker locally
+npm run dev              # Start full-stack dev server
+npm run preview          # Preview production build
 ```
 
 ### Building
 ```bash
-npm run build                    # Build both frontend and worker
-npm run build:frontend          # Build React app only
-npm run build:github-pages      # Build optimized for GitHub Pages
+npm run build            # Build for production (with sitemap)
+npm run build:analyze    # Build with bundle analysis
 ```
 
-### Deployment
+### Testing
 ```bash
-npm run deploy:github-pages     # Deploy to GitHub Pages
-npm run deploy:cloudflare       # Deploy to Cloudflare Workers
-npm run deploy:all              # Deploy to both platforms
+npm run check            # TypeScript type checking
+npm run test             # Run unit tests
+npm run test:e2e         # Run E2E tests
+npm run lint             # Run linter
 ```
-
-### Monitoring
-```bash
-npm run cf:tail                 # View Cloudflare Worker logs
-npm run cf:kv:list             # List KV namespaces
-npm run analyze:bundle         # Analyze bundle size
-```
-
-## 🔧 Configuration Files
-
-### Key Files
-- `.github/workflows/deploy.yml` - Automated deployment
-- `cloudflare.toml` - Worker configuration  
-- `cloudflare-worker.js` - API and routing logic
-- `vite.config.ts` - Frontend build configuration
-
-### Environment Variables
-- `VITE_API_URL` - Points to your Cloudflare Worker
-- `MAX_REQUESTS_PER_DAY` - Rate limiting (default: 90,000)
-- `GITHUB_PAGES_URL` - Fallback URL when worker is rate limited
-
-## 📈 Performance Optimizations
-
-### Frontend (GitHub Pages)
-- ✅ Static asset caching
-- ✅ Image optimization  
-- ✅ Code splitting
-- ✅ Lazy loading components
-- ✅ Service worker for offline support
-
-### Backend (Cloudflare Workers)
-- ✅ Request rate limiting
-- ✅ Aggressive caching (1 hour default)
-- ✅ KV storage with TTL
-- ✅ Graceful fallback to GitHub Pages
-- ✅ Analytics sampling (10% in production)
-
-## 🔍 Monitoring & Analytics
-
-### Request Tracking
-The worker automatically tracks daily request counts and implements rate limiting at 90% of the free tier limit (90,000 requests/day).
-
-### KV Storage Management
-- Cart sessions: 24 hour TTL
-- Analytics data: 30 day TTL  
-- Product cache: 1 hour TTL
-- Request counters: 25 hour TTL
-
-### Error Handling
-- Automatic fallback to GitHub Pages when worker is unavailable
-- Graceful degradation when rate limits are reached
-- Comprehensive error logging
-
-## 🚨 Troubleshooting
-
-### Common Issues
-
-#### 1. GitHub Actions failing
-```bash
-# Check if secrets are set correctly
-gh secret list
-
-# Verify build locally
-npm run build:frontend
-```
-
-#### 2. Cloudflare Worker not deploying
-```bash
-# Check wrangler authentication
-wrangler whoami
-
-# Verify configuration
-wrangler dev --local
-```
-
-#### 3. Rate limiting triggered
-The worker will automatically redirect to GitHub Pages when the daily limit is reached. This ensures continuous service.
-
-#### 4. KV storage full
-Monitor storage usage:
-```bash
-wrangler kv:namespace list
-```
-
-Implement data cleanup in your worker if needed.
-
-## 🎯 Free Tier Maximization Tips
-
-1. **Enable caching**: All responses cached for 1 hour
-2. **Use CDN**: Cloudflare's global network reduces origin requests
-3. **Implement rate limiting**: Automatic protection against exceeding limits
-4. **Optimize images**: Use WebP format and responsive images
-5. **Lazy load content**: Reduce initial bundle size
-6. **Monitor usage**: Regular checks on Cloudflare dashboard
-
-## 📝 Deployment Checklist
-
-- [ ] Repository cloned and dependencies installed
-- [ ] GitHub Pages enabled with Actions source
-- [ ] Cloudflare API token created and added to GitHub secrets  
-- [ ] Cloudflare account ID added to GitHub secrets
-- [ ] Worker deployed successfully
-- [ ] KV namespaces created
-- [ ] Custom domain configured (optional)
-- [ ] SSL certificate active
-- [ ] Rate limiting tested
-- [ ] Fallback to GitHub Pages working
-
-## 🔗 Useful Links
-
-- [GitHub Pages Documentation](https://docs.github.com/en/pages)
-- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
-- [Wrangler CLI Reference](https://developers.cloudflare.com/workers/wrangler/)
-- [Cloudflare KV Documentation](https://developers.cloudflare.com/workers/runtime-apis/kv/)
-
-## 💡 Next Steps
-
-1. **Deploy**: Follow the setup steps above
-2. **Test**: Verify both GitHub Pages and Cloudflare Worker are working
-3. **Monitor**: Keep an eye on usage metrics in Cloudflare dashboard
-4. **Optimize**: Use the monitoring data to further optimize performance
-5. **Scale**: When ready to upgrade, consider Cloudflare Workers Paid plan for unlimited requests
 
 ---
 
-**Need help?** Check the troubleshooting section above or create an issue in this repository.
+## Cloudflare Worker (Optional)
+
+The project includes a Cloudflare Worker for **Etsy product synchronization**:
+
+- **Purpose**: Sync products from Etsy API to KV storage
+- **Triggered**: Cron job (scheduled) or manual
+- **Location**: `cloudflare/etsy-sync-worker.ts`
+
+### Deploy Worker
+
+```bash
+# Install Wrangler
+npm install -g wrangler
+
+# Login
+wrangler login
+
+# Deploy
+wrangler deploy --config cloudflare/wrangler-etsy-sync.toml
+```
+
+**Note**: The worker is optional. The main site works perfectly without it.
+
+---
+
+## Troubleshooting
+
+### GitHub Actions Failing
+
+```bash
+# Check secrets
+gh secret list
+
+# Verify build locally
+npm run build
+```
+
+Required secrets for Cloudflare Worker (optional):
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+
+### Site Not Updating
+
+1. **Check Actions tab**: Verify workflow completed successfully
+2. **Hard refresh**: Clear browser cache (Ctrl+F5)
+3. **Check DNS**: Ensure CNAME records are correct
+4. **Wait for propagation**: DNS changes can take up to 24 hours
+
+### 404 Errors
+
+- **Ensure CNAME file exists** in repository root
+- **Check GitHub Pages source** is set to "GitHub Actions"
+- **Verify custom domain** in repository settings
+
+---
+
+## Performance
+
+### Bundle Size
+
+Run bundle analysis:
+```bash
+npm run build:analyze
+```
+
+Opens `stats.html` with bundle visualization.
+
+### Optimization Features
+
+- **Code Splitting**: Vendor and animation chunks
+- **Tree Shaking**: Dead code elimination
+- **PWA Support**: Service worker for caching
+- **Image Optimization**: WebP format with responsive images
+
+---
+
+## Monitoring
+
+### GitHub Actions
+
+View deployment status:
+1. Repository → Actions tab
+2. Select "Deploy to GitHub Pages & Cloudflare" workflow
+3. View logs for each job
+
+### Site Analytics
+
+Configure Google Analytics 4:
+
+```env
+# .env.local
+VITE_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+---
+
+## Related Documentation
+
+- [Quick Setup Guide](quick-setup.md)
+- [Custom Domain Setup](custom-domain-setup.md)
+- [HTTPS/SSL Setup](https-setup.md)
+- [Troubleshooting](../guides/troubleshooting.md)
+
+---
+
+**Last Updated**: 2026-03-13

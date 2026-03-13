@@ -8,8 +8,15 @@ This document tracks known technical debt and issues in the codebase.
 **Status**: Fixed ✅
 - ✅ Updated README.md to reflect reality
 - ✅ Updated CLAUDE.md with accurate information
-- ✅ Updated docs/development/README.md with accurate architecture
-- ⚠️ docs/api/README.md and docs/deployment/README.md may still need updates
+- ✅ Updated docs/api/README.md with actual API documentation
+- ✅ Updated docs/deployment/README.md with GitHub Pages deployment guide
+- ✅ Updated docs/deployment/quick-setup.md
+- ✅ Updated docs/deployment/custom-domain-setup.md
+- ✅ Updated docs/deployment/https-setup.md
+- ✅ Updated docs/guides/README.md
+- ✅ Updated docs/guides/troubleshooting.md
+- ✅ Rewrote AGENTS.md with accurate project information
+- ✅ Removed outdated copilot-tasks.md
 
 ### 2. Dead Code After AI Removal
 **Status**: Fixed ✅
@@ -202,20 +209,15 @@ This document tracks known technical debt and issues in the codebase.
 
 ## Documentation Debt
 
-### 26. Outdated Development Guide
-**Location**: `docs/development/README.md`
-- Still references Express.js and PostgreSQL as if they're implemented
-- **Action**: Rewrite to reflect current architecture
-
-### 27. Missing API Documentation
-**Location**: `docs/api/README.md`
-- May document endpoints that don't exist
-- **Action**: Document actual endpoints or remove file
-
-### 28. Deployment Guide Issues
-**Location**: `docs/deployment/README.md`
-- May contain instructions for features that don't exist
-- **Action**: Update to reflect actual deployment process
+### 26. Outdated Documentation
+**Location**: Various `docs/` files
+**Status**: Fixed ✅ (2026-03-13)
+- ✅ All documentation files have been updated to reflect current architecture
+- ✅ API documentation now accurately describes the Express dev server
+- ✅ Deployment guides focus on GitHub Pages (actual deployment method)
+- ✅ Removed references to non-existent Cloudflare Workers API (Etsy sync worker is separate)
+- ✅ AGENTS.md rewritten with accurate project information
+- ✅ Troubleshooting guide updated for current setup
 
 ## Tracking Template
 

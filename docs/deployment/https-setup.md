@@ -1,204 +1,204 @@
-# HTTPS/TLS Setup Guide
+# HTTPS/SSL Setup Guide
 
-## 🔒 Automatic HTTPS Configuration
+## Overview
 
-This guide explains how to set up automatic HTTPS/TLS for your Troves & Coves deployment using GitHub Pages and Cloudflare.
+This guide explains HTTPS/SSL configuration for the Troves & Coves site. Both GitHub Pages and Cloudflare provide free SSL certificates.
 
-## 🌐 GitHub Pages HTTPS
+---
+
+## GitHub Pages HTTPS
+
+### Automatic SSL
 
 GitHub Pages automatically provides HTTPS certificates for all sites:
 
-### Default GitHub Pages URL
-- **URL**: `https://reverb256.github.io/trovesandcoves`
-- **SSL**: Automatic via GitHub's SSL certificates
-- **Force HTTPS**: Enabled by default
-
-### Custom Domain Setup
-If you want to use a custom domain with GitHub Pages:
-
-1. **Add CNAME file** (already included):
-   ```
-   trovesandcoves.ca
-   ```
-
-2. **Configure DNS** at your domain provider:
-   ```
-   Type: CNAME
-   Name: www
-   Value: reverb256.github.io
-   ```
-
-3. **Enable HTTPS** in GitHub repository settings:
-   - Go to Settings → Pages
-   - Check "Enforce HTTPS"
-
-## ☁️ Cloudflare HTTPS
-
-Cloudflare provides enterprise-grade SSL/TLS automatically:
-
-### Worker HTTPS
-- **URL**: `https://troves-coves-api.reverb256.workers.dev`
-- **SSL**: Automatic via Cloudflare's global SSL
-- **Certificate**: Cloudflare Universal SSL
-
-### Custom Domain with Cloudflare
-For production with custom domain:
-
-1. **Add Domain to Cloudflare**:
-   - Sign up at [Cloudflare](https://cloudflare.com)
-   - Add your domain (e.g., `trovesandcoves.ca`)
-   - Update nameservers as instructed
-
-2. **Configure SSL/TLS**:
-   ```
-   SSL/TLS → Overview → Full (strict)
-   ```
-
-3. **Setup Page Rules** for HTTPS redirect:
-   ```
-   Rule: *trovesandcoves.ca/*
-   Setting: Always Use HTTPS
-   ```
-
-4. **Configure Worker Routes**:
-   ```
-   api.trovesandcoves.ca/* → troves-coves-api.reverb256.workers.dev
-   ```
-
-## 🔧 Configuration Files
-
-### GitHub Pages HTTPS
-The site automatically uses HTTPS. No additional configuration needed.
-
-### Cloudflare Worker HTTPS Headers
-Already configured in `cloudflare-worker.js`:
-
-```javascript
-// CORS headers with security
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Session-ID',
-  'Access-Control-Max-Age': '86400',
-  'Cache-Control': 'public, max-age=3600',
-  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
-  'X-Content-Type-Options': 'nosniff',
-  'X-Frame-Options': 'DENY',
-  'X-XSS-Protection': '1; mode=block'
-};
+**Default URL:**
+```
+https://reverb256.github.io/trovesandcoves
 ```
 
-## 🚀 Deployment with HTTPS
+**Features:**
+- ✅ Automatic SSL certificate
+- ✅ Auto-renewal
+- ✅ Force HTTPS enabled by default
+- ✅ HSTS enabled
 
-### Environment Variables
-The deployment automatically configures HTTPS URLs:
+### Custom Domain HTTPS
 
-```env
-VITE_API_URL=https://troves-coves-api.reverb256.workers.dev
-VITE_GITHUB_PAGES_URL=https://reverb256.github.io/trovesandcoves
-VITE_ENABLE_HTTPS=true
+For custom domains (e.g., `trovesandcoves.ca`):
+
+1. **Add CNAME file** to repository:
+```
+trovesandcoves.ca
 ```
 
-### GitHub Actions
-The workflow automatically builds with HTTPS enabled:
-
-```yaml
-- name: Build React app
-  run: npm run build
-  env:
-    VITE_ENABLE_HTTPS: true
-    VITE_API_URL: https://troves-coves-api.reverb256.workers.dev
+2. **Configure DNS** at your provider:
+```
+Type: CNAME
+Name: @
+Target: reverb256.github.io
 ```
 
-## 🔍 Verification
+3. **Enable HTTPS in GitHub**:
+   - Go to repository → Settings → Pages
+   - Under "Custom domain", enter your domain
+   - Check "Enforce HTTPS" (may take 24 hours)
+
+---
+
+## Cloudflare HTTPS
+
+### Universal SSL
+
+If using Cloudflare for DNS, you get free SSL:
+
+1. **Add domain to Cloudflare**
+2. **Update nameservers** at your registrar
+3. **SSL is automatic** - no configuration needed
+
+### SSL/TLS Mode
+
+In Cloudflare dashboard → SSL/TLS → Overview:
+
+| Mode | Description | Recommendation |
+|------|-------------|----------------|
+| **Off** | No HTTPS | ❌ Don't use |
+| **Flexible** | HTTPS between user and Cloudflare only | ⚠️ Not recommended |
+| **Full** | HTTPS to origin, but doesn't validate cert | ⚠️ OK for testing |
+| **Full (Strict)** | HTTPS with valid certificate required | ✅ **Recommended** |
+
+Set to **Full (strict)** for production.
+
+### Edge Certificates
+
+Enable these settings in SSL/TLS → Edge Certificates:
+
+- ✅ **Universal SSL**: On
+- ✅ **Always Use HTTPS**: On
+- ✅ **Automatic HTTPS Rewrites**: On
+- ✅ **Minimum TLS Version**: 1.2
+- ✅ **Opportunistic Encryption**: On
+
+---
+
+## Security Headers
+
+### GitHub Pages Headers
+
+GitHub Pages automatically adds these headers:
+
+```
+Strict-Transport-Security: max-age=31536000
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+```
+
+### Cloudflare Security Headers
+
+Optionally add via Cloudflare Page Rules:
+
+```
+Rule: *trovesandcoves.ca/*
+
+Settings:
+- X-Frame-Options: DENY
+- X-Content-Type-Options: nosniff
+- X-XSS-Protection: 1; mode=block
+- Referrer-Policy: strict-origin-when-cross-origin
+```
+
+---
+
+## Verification
 
 ### Check HTTPS Status
 
-1. **GitHub Pages**:
-   ```bash
-   curl -I https://reverb256.github.io/trovesandcoves
-   # Should return: HTTP/2 200
-   ```
+**Using curl:**
+```bash
+curl -I https://trovesandcoves.ca
+# Should return: HTTP/2 200
+```
 
-2. **Cloudflare Worker**:
-   ```bash
-   curl -I https://troves-coves-api.reverb256.workers.dev/api/products
-   # Should return: HTTP/2 200
-   ```
+**Check SSL Certificate:**
+```bash
+openssl s_client -connect trovesandcoves.ca:443 -servername trovesandcoves.ca
+# Shows certificate details
+```
 
-3. **SSL Certificate**:
-   ```bash
-   openssl s_client -connect reverb256.github.io:443 -servername reverb256.github.io
-   ```
+**Check Certificate Expiration:**
+```bash
+echo | openssl s_client -connect trovesandcoves.ca:443 2>/dev/null | openssl x509 -noout -dates
+```
 
-### Browser Testing
-1. Visit `https://reverb256.github.io/trovesandcoves`
-2. Check for green lock icon in address bar
-3. Verify no mixed content warnings
-4. Test API calls work over HTTPS
+### Online Tools
 
-## 🛡️ Security Features
+- [SSL Labs](https://www.ssllabs.com/ssltest/) - Comprehensive SSL test
+- [Why No HTTPS?](https://whynohttps.com/) - Quick HTTPS check
+- [Security Headers](https://securityheaders.com/) - Header analysis
+
+---
+
+## Troubleshooting HTTPS
+
+### Mixed Content Warnings
+
+**Problem:** Page loads over HTTPS but some resources use HTTP
+
+**Solutions:**
+1. Use relative URLs for internal resources
+2. Ensure all external resources support HTTPS
+3. Add meta tag: `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">`
+
+### Certificate Errors
+
+**Problem:** Browser shows SSL certificate warning
+
+**Solutions:**
+- **GitHub Pages**: Wait 24 hours after DNS setup
+- **Cloudflare**: Check SSL/TLS mode is "Full (strict)"
+- **Custom Domain**: Verify DNS CNAME is correct
+- **Clear DNS cache**: `ipconfig /flushdns` (Windows) or `sudo dscacheutil -flushcache` (Mac)
+
+### HTTP Still Accessible
+
+**Problem:** Site accessible via HTTP (should redirect to HTTPS)
+
+**Solutions:**
+1. In GitHub Pages Settings, check "Enforce HTTPS"
+2. In Cloudflare, enable "Always Use HTTPS"
+3. Add page rule for HTTP→HTTPS redirect
+
+### Certificate Not Issued
+
+**Problem:** GitHub Pages shows "Certificate not issued"
+
+**Causes:**
+- DNS not propagated
+- Wrong DNS record type
+- CNAME file missing or incorrect
+
+**Solutions:**
+1. Verify DNS with `dig yourdomain.com`
+2. Check CNAME file exists in repo
+3. Use DNS Checker to verify propagation
+4. Wait up to 48 hours for full propagation
+
+---
+
+## HTTP to HTTPS Redirect
 
 ### Automatic Redirects
-- HTTP → HTTPS redirects enabled
-- www → non-www redirects (configurable)
-- Subdomain includes available
 
-### Security Headers
-Implemented in the Cloudflare Worker:
-- `Strict-Transport-Security`: Force HTTPS for 1 year
-- `X-Content-Type-Options`: Prevent MIME sniffing
-- `X-Frame-Options`: Prevent clickjacking
-- `X-XSS-Protection`: XSS protection
+**GitHub Pages:** Automatically redirects HTTP to HTTPS
 
-### Certificate Management
-- **GitHub Pages**: Automatic certificate renewal
-- **Cloudflare**: Universal SSL with automatic renewal
-- **Custom Domain**: Free SSL certificates via Cloudflare
+**Cloudflare:** Enable "Always Use HTTPS" in SSL/TLS settings
 
-## 🚨 Troubleshooting HTTPS Issues
+### Manual Redirect (Optional)
 
-### Common Problems
+Add to your React app or HTML:
 
-#### 1. Mixed Content Warnings
-**Problem**: Page loads over HTTPS but some resources over HTTP
-
-**Solution**:
 ```javascript
-// Ensure all URLs use HTTPS
-const apiUrl = process.env.VITE_API_URL || 'https://troves-coves-api.reverb256.workers.dev';
-```
-
-#### 2. Certificate Errors
-**Problem**: SSL certificate warnings in browser
-
-**Solutions**:
-- **GitHub Pages**: Wait 24 hours after setup
-- **Cloudflare**: Check SSL/TLS settings (use "Full (strict)")
-- **Custom Domain**: Verify DNS configuration
-
-#### 3. CORS Issues with HTTPS
-**Problem**: API calls fail when switching to HTTPS
-
-**Solution**: Update CORS headers in worker:
-```javascript
-'Access-Control-Allow-Origin': 'https://reverb256.github.io'
-```
-
-#### 4. Service Worker HTTPS Requirement
-**Problem**: Service worker not registering
-
-**Solution**: Service workers require HTTPS (already configured):
-```javascript
-if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
-  // Register service worker
-}
-```
-
-### Force HTTPS in React App
-
-Add to your main component:
-```javascript
+// In main.tsx
 useEffect(() => {
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
     location.replace(`https:${location.href.substring(location.protocol.length)}`);
@@ -206,34 +206,51 @@ useEffect(() => {
 }, []);
 ```
 
-## 📊 SSL Monitoring
+---
 
-### Automated Checks
-Set up monitoring for SSL certificate expiration:
+## Best Practices
 
-1. **Uptime Robot**: Monitor HTTPS endpoints
-2. **Cloudflare Analytics**: Track SSL/TLS errors
-3. **GitHub Status**: Monitor Pages availability
-
-### Manual Verification
-Regular checks:
-```bash
-# Check certificate expiration
-echo | openssl s_client -connect reverb256.github.io:443 2>/dev/null | 
-openssl x509 -noout -dates
-
-# Test HTTPS redirect
-curl -I http://reverb256.github.io/trovesandcoves
-# Should return 301 with Location: https://...
-```
-
-## 🔗 Resources
-
-- [GitHub Pages HTTPS Documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https)
-- [Cloudflare SSL/TLS Documentation](https://developers.cloudflare.com/ssl/)
-- [Mozilla SSL Configuration Generator](https://ssl-config.mozilla.org/)
-- [SSL Labs Testing Tool](https://www.ssllabs.com/ssltest/)
+1. ✅ **Always use HTTPS** in production
+2. ✅ **Enable HSTS** with long max-age
+3. ✅ **Use strong TLS** (1.2 minimum, 1.3 preferred)
+4. ✅ **Keep certificates updated** (automatic with GitHub/Cloudflare)
+5. ✅ **Test SSL configuration** regularly
+6. ✅ **Monitor certificate expiration**
 
 ---
 
-Your site now has enterprise-grade HTTPS/TLS security with automatic certificate management!
+## Monitoring
+
+### SSL Certificate Expiration
+
+Set up monitoring for:
+- Certificate expiration (30-day warning)
+- SSL/TLS configuration changes
+- Mixed content issues
+
+Tools:
+- [Uptime Robot](https://uptimerobot.com/) - Free monitoring
+- [StatusCake](https://www.statuscake.com/) - SSL monitoring
+- Cloudflare Analytics - SSL/TLS error tracking
+
+---
+
+## Summary
+
+| Platform | SSL Provider | Auto-Renewal | Configuration |
+|----------|-------------|--------------|--------------|
+| GitHub Pages | Let's Encrypt | ✅ Yes | Automatic |
+| Cloudflare | Cloudflare SSL | ✅ Yes | Automatic |
+| Custom (Direct) | Let's Encrypt/Certbot | ⚠️ Manual | Manual setup required |
+
+---
+
+## Related Documentation
+
+- [Custom Domain Setup](custom-domain-setup.md) - DNS and domain configuration
+- [Quick Setup Guide](quick-setup.md) - Initial deployment
+- [Main Deployment Guide](README.md) - Complete documentation
+
+---
+
+**Last Updated**: 2026-03-13

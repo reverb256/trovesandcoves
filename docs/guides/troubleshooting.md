@@ -1,284 +1,346 @@
 # Troubleshooting Guide
 
-## 🔧 Common Issues and Solutions
+## Common Issues and Solutions
 
-### Deployment Issues
+---
 
-#### GitHub Actions Failing
+## Deployment Issues
+
+### GitHub Actions Failing
 
 **Problem**: GitHub Actions workflow fails to deploy
 
-**Symptoms**:
+**Symptoms:**
 - Red X on commits in GitHub
 - Deployment workflow shows errors
 - Site not updating after push
 
-**Solutions**:
-1. **Check Secrets**: Ensure all required secrets are set
-   ```bash
-   # Required secrets in GitHub repository settings:
-   CLOUDFLARE_API_TOKEN
-   CLOUDFLARE_ACCOUNT_ID
-   ```
+**Solutions:**
 
-2. **Verify Build**: Test build locally
-   ```bash
-   npm run build:frontend
-   npm run build:cloudflare
-   ```
+1. **Check Build Locally:**
+```bash
+npm run build
+```
 
-3. **Check Logs**: Review Actions tab for specific error messages
+2. **Review Error Logs:**
+   - Go to repository → Actions tab
+   - Click on failed workflow run
+   - Expand failed steps to see errors
 
-4. **Node Version**: Ensure using Node.js 18+ in workflow
+3. **Check Node Version:**
+```bash
+node --version  # Should be 18+ or 20
+```
 
-#### Cloudflare Worker Deployment Fails
+4. **Clean Install:**
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
 
-**Problem**: Worker deployment fails or returns errors
-
-**Symptoms**:
-- API endpoints return 500 errors
-- Worker not found messages
-- KV namespace errors
-
-**Solutions**:
-1. **Verify Wrangler Setup**:
-   ```bash
-   wrangler whoami
-   wrangler auth list
-   ```
-
-2. **Check Configuration**:
-   ```bash
-   # Validate cloudflare.toml
-   wrangler validate
-   ```
-
-3. **Test Locally**:
-   ```bash
-   npm run cf:dev
-   ```
-
-4. **Check KV Namespaces**:
-   ```bash
-   wrangler kv:namespace list
-   ```
-
-#### GitHub Pages Not Loading
+### GitHub Pages Not Loading
 
 **Problem**: GitHub Pages site shows 404 or doesn't load
 
-**Symptoms**:
+**Symptoms:**
 - 404 error on GitHub Pages URL
 - Old version still showing
 - CSS/JS not loading
 
-**Solutions**:
-1. **Check Pages Settings**: Repository → Settings → Pages
-2. **Source**: Must be "GitHub Actions"
-3. **Custom Domain**: Verify DNS configuration
-4. **Force Refresh**: Clear browser cache (Ctrl+F5)
+**Solutions:**
 
-### Runtime Issues
+1. **Check Pages Settings:**
+   - Repository → Settings → Pages
+   - Source must be "GitHub Actions"
 
-#### API Rate Limiting
+2. **Check Branch:**
+   - Ensure you're pushing to the correct branch (`main`)
 
-**Problem**: API returns 429 errors or redirects to fallback
+3. **Wait for Deployment:**
+   - GitHub Pages can take 1-5 minutes to deploy
 
-**Symptoms**:
-- Cart not working
-- Search returning static results
-- "Daily limit reached" messages
+4. **Hard Refresh:**
+   - Clear browser cache (Ctrl+F5 or Cmd+Shift+R)
 
-**Solutions**:
-1. **Expected Behavior**: Free tier has 100k requests/day limit
-2. **Automatic Fallback**: Site gracefully falls back to GitHub Pages
-3. **Wait**: Limit resets at midnight UTC
-4. **Monitor Usage**: Check Cloudflare dashboard
+### Custom Domain Not Working
 
-#### Slow Loading Times
+**Problem**: Custom domain shows errors or doesn't load
 
-**Problem**: Site loads slowly or times out
+**Symptoms:**
+- DNS_PROBE_FINISHED_NXDOMAIN
+- "Server not found" error
+- SSL certificate error
 
-**Symptoms**:
-- Long loading times
-- Images not loading
-- API timeouts
+**Solutions:**
 
-**Solutions**:
-1. **Check CDN**: Cloudflare should cache static assets
-2. **Image Optimization**: Run `npm run optimize:images`
-3. **Bundle Analysis**: Run `npm run analyze:bundle`
-4. **Service Worker**: Ensure SW is installed for caching
+1. **Verify DNS Records:**
+```bash
+dig yourdomain.com
+dig www.yourdomain.com
+```
 
-#### Cart Not Persisting
+2. **Check CNAME File:**
+   - Ensure `CNAME` file exists in repository root
+   - Contains only the domain name
 
-**Problem**: Shopping cart loses items
+3. **Wait for Propagation:**
+   - DNS changes can take 24-48 hours
 
-**Symptoms**:
-- Cart empties on page refresh
-- Items not saving
-- Session errors
+4. **Check SSL Status:**
+   - GitHub Pages → Settings → Pages
+   - Wait for "Enforce HTTPS" to become available
 
-**Solutions**:
-1. **Session ID**: Check browser local storage for session ID
-2. **24-Hour TTL**: Sessions expire after 24 hours
-3. **Incognito Mode**: Private browsing may not persist sessions
-4. **Cookies Enabled**: Ensure cookies/local storage enabled
+---
 
-### Development Issues
+## Development Issues
 
-#### Local Development Server Won't Start
+### Local Development Server Won't Start
 
 **Problem**: `npm run dev` fails to start
 
-**Symptoms**:
+**Symptoms:**
 - Port already in use errors
 - Module not found errors
 - TypeScript compilation errors
 
-**Solutions**:
-1. **Port Conflict**:
-   ```bash
-   # Kill process on port 3000
-   lsof -ti:3000 | xargs kill -9
-   ```
+**Solutions:**
 
-2. **Clean Install**:
-   ```bash
-   rm -rf node_modules package-lock.json
-   npm install
-   ```
+1. **Port Conflict:**
+```bash
+# Find and kill process on port 5000
+lsof -ti:5000 | xargs kill -9
 
-3. **Check Node Version**:
-   ```bash
-   node --version  # Should be 18+
-   npm --version   # Should be 8+
-   ```
+# Or use a different port in server/index.ts
+```
 
-4. **Environment Variables**:
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your values
-   ```
+2. **Clean Install:**
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
 
-#### TypeScript Errors
+3. **Check Node Version:**
+```bash
+node --version  # Should be 18+ or 20
+npm --version
+```
+
+4. **Environment Variables:**
+```bash
+# Create .env file if missing
+cp .env.example .env
+```
+
+### TypeScript Errors
 
 **Problem**: TypeScript compilation fails
 
-**Symptoms**:
+**Symptoms:**
 - Red underlines in IDE
 - Build fails with type errors
 - `npm run check` shows errors
 
-**Solutions**:
-1. **Update Dependencies**:
-   ```bash
-   npm update
-   ```
+**Solutions:**
 
-2. **Clear TypeScript Cache**:
-   ```bash
-   # Delete TypeScript cache
-   rm -rf .tsbuildinfo
-   ```
+1. **Update Dependencies:**
+```bash
+npm update
+```
 
-3. **Restart Language Server**: In VS Code, Ctrl+Shift+P → "TypeScript: Restart TS Server"
+2. **Restart Language Server:**
+   - VS Code: Ctrl+Shift+P → "TypeScript: Restart TS Server"
 
-4. **Check Types**: Ensure all imported modules have types
+3. **Clear TypeScript Cache:**
+```bash
+rm -rf .tsbuildinfo
+```
 
-#### Database Connection Issues
+4. **Fix Type Errors:**
+   - Read error messages carefully
+   - Add proper type annotations
+   - Import missing types
 
-**Problem**: Local database connection fails
+---
 
-**Symptoms**:
-- Database connection errors
-- Drizzle schema errors
-- SQL query failures
+## Runtime Issues
 
-**Solutions**:
-1. **Check Connection String**: Verify DATABASE_URL in .env
-2. **Database Running**: Ensure PostgreSQL is running locally
-3. **Schema Sync**:
-   ```bash
-   npm run db:push
-   ```
+### Site Loads Slowly
 
-### Browser Issues
+**Problem**: Site has long loading times
 
-#### Site Not Loading in Specific Browser
+**Symptoms:**
+- Long initial load
+- Images not loading
+- Poor Lighthouse scores
+
+**Solutions:**
+
+1. **Bundle Analysis:**
+```bash
+npm run build:analyze
+# Opens stats.html with bundle visualization
+```
+
+2. **Image Optimization:**
+   - Use WebP format
+   - Compress images
+   - Use responsive images
+
+3. **Check Network:**
+   - Open browser DevTools → Network tab
+   - Look for large files
+   - Check slow requests
+
+4. **Service Worker:**
+   - Ensure service worker is registered
+   - Check cache is working
+
+### Cart Not Persisting
+
+**Problem**: Shopping cart loses items
+
+**Symptoms:**
+- Cart empties on page refresh
+- Items not saving
+- Session errors
+
+**Solutions:**
+
+1. **Check LocalStorage:**
+   - Open DevTools → Application → Local Storage
+   - Verify cart data exists
+   - Check for errors in Console
+
+2. **Browser Compatibility:**
+   - Ensure browser supports localStorage
+   - Check private/incognito mode settings
+
+3. **Clear Cache:**
+   - Clear browser cache and localStorage
+   - Reload the page
+
+---
+
+## Build Issues
+
+### Build Fails
+
+**Problem**: `npm run build` fails
+
+**Symptoms:**
+- Build stops with errors
+- Output files not created
+- Vite errors
+
+**Solutions:**
+
+1. **Check Error Messages:**
+   - Read the full error output
+   - Fix specific errors mentioned
+
+2. **Clean Build:**
+```bash
+rm -rf dist
+npm run build
+```
+
+3. **Check Disk Space:**
+```bash
+df -h
+# Ensure sufficient disk space
+```
+
+4. **Update Dependencies:**
+```bash
+npm update
+npm run build
+```
+
+### Sitemap Not Generated
+
+**Problem**: Sitemap is missing or outdated
+
+**Solutions:**
+
+1. **Regenerate Sitemap:**
+```bash
+npm run generate-sitemap
+```
+
+2. **Check Script:**
+   - Verify `scripts/generate-sitemap.ts` exists
+   - Check for errors in the script
+
+3. **Verify Build:**
+```bash
+npm run build
+# Sitemap is generated as part of build
+```
+
+---
+
+## Browser Issues
+
+### Site Not Loading in Specific Browser
 
 **Problem**: Site works in some browsers but not others
 
-**Symptoms**:
+**Symptoms:**
 - JavaScript errors
 - Styling issues
 - Features not working
 
-**Solutions**:
-1. **Clear Cache**: Hard refresh (Ctrl+Shift+R)
-2. **Disable Extensions**: Test in incognito/private mode
-3. **Browser Compatibility**: Check if browser supports modern JavaScript
-4. **Console Errors**: Check browser developer tools
+**Solutions:**
 
-#### Mobile Display Issues
+1. **Clear Cache:**
+   - Hard refresh (Ctrl+Shift+R or Cmd+Shift+R)
+   - Clear browser cache
+
+2. **Disable Extensions:**
+   - Test in incognito/private mode
+   - Disable ad blockers
+
+3. **Check Browser Support:**
+   - Ensure browser supports ES2020+
+   - Update browser to latest version
+
+4. **Check Console Errors:**
+   - Open DevTools → Console
+   - Fix any JavaScript errors
+
+### Mobile Display Issues
 
 **Problem**: Site doesn't display correctly on mobile
 
-**Symptoms**:
+**Symptoms:**
 - Layout broken on mobile
 - Touch interactions not working
 - Text too small/large
 
-**Solutions**:
-1. **Responsive Design**: Should auto-adapt to screen size
-2. **Viewport Meta Tag**: Check if present in HTML head
-3. **Touch Targets**: Ensure buttons are touch-friendly
-4. **Test Multiple Devices**: Use browser dev tools device simulation
+**Solutions:**
 
-### Performance Issues
+1. **Test Responsive Design:**
+   - Use browser DevTools device simulation
+   - Test on actual devices
 
-#### High Bundle Size
+2. **Viewport Meta Tag:**
+   - Ensure `<meta name="viewport">` is present
+   - Check in `index.html`
 
-**Problem**: JavaScript bundle is too large
+3. **Touch Targets:**
+   - Ensure buttons are 44px+ for touch
+   - Check padding and spacing
 
-**Symptoms**:
-- Slow initial load
-- Poor Lighthouse scores
-- Mobile performance issues
+---
 
-**Solutions**:
-1. **Bundle Analysis**:
-   ```bash
-   npm run analyze:bundle
-   ```
-
-2. **Code Splitting**: Implement lazy loading for routes
-3. **Tree Shaking**: Ensure unused code is eliminated
-4. **Image Optimization**: Compress and optimize images
-
-#### Memory Issues
-
-**Problem**: Site uses too much memory
-
-**Symptoms**:
-- Browser becomes slow
-- Tab crashes
-- Out of memory errors
-
-**Solutions**:
-1. **Check for Memory Leaks**: Use browser dev tools Memory tab
-2. **Optimize Images**: Use WebP format and proper sizing
-3. **Limit Concurrent Requests**: Implement request queuing
-4. **Clean Up Event Listeners**: Ensure proper cleanup in useEffect
-
-## 🆘 Getting Additional Help
+## Getting Additional Help
 
 ### Self-Diagnosis Steps
 
-1. **Check Browser Console**: Look for JavaScript errors
-2. **Network Tab**: Check for failed requests
-3. **Local vs Production**: Test locally first
-4. **Minimal Reproduction**: Create minimal example of issue
+1. **Check Browser Console** for JavaScript errors
+2. **Check Network Tab** for failed requests
+3. **Test Locally** before reporting issues
+4. **Create Minimal Reproduction** of the problem
 
 ### Reporting Issues
 
@@ -288,10 +350,10 @@ When creating an issue, include:
 ## Bug Report
 
 **Environment:**
-- Browser: [Chrome 91, Firefox 89, etc.]
-- OS: [Windows 10, macOS 11, Ubuntu 20.04]
-- Node.js: [18.16.0]
-- npm: [8.5.0]
+- Browser: [Chrome 120, Firefox 115, etc.]
+- OS: [Windows 11, macOS 14, Ubuntu 22.04]
+- Node.js: [20.10.0]
+- npm: [10.2.4]
 
 **Steps to Reproduce:**
 1. Go to...
@@ -308,7 +370,9 @@ What actually happens
 If applicable
 
 **Console Errors:**
-Any error messages from browser console
+```
+Paste any error messages from browser console
+```
 
 **Additional Context:**
 Any other relevant information
@@ -320,26 +384,41 @@ Any other relevant information
 # Check all systems
 npm run check                    # TypeScript
 npm run build                    # Build process
-npm run cf:dev                   # Worker locally
-wrangler whoami                  # Cloudflare auth
+npm run test                     # Run tests
 git status                       # Repository state
 
 # Clear everything and restart
-rm -rf node_modules .next .turbo dist
+rm -rf node_modules dist
 npm install
 npm run dev
 ```
 
-### Emergency Fallback
+### Emergency Recovery
 
 If nothing else works:
 
-1. **Use GitHub Pages Only**: Site will still work as static site
-2. **Disable Features**: Turn off AI/dynamic features in .env
-3. **Rollback**: Revert to last working commit
-4. **Fresh Clone**: Clone repository fresh in new directory
+1. **Revert Changes:**
+```bash
+git log --oneline -5
+git revert HEAD
+```
 
-### Contact Support
+2. **Fresh Clone:**
+```bash
+cd ..
+git clone https://github.com/reverb256/trovesandcoves.git trovesandcoves-new
+cd trovesandcoves-new
+npm install
+npm run dev
+```
+
+3. **Report Issue:**
+   - Create detailed GitHub issue
+   - Include all diagnostic information
+
+---
+
+## Contact Support
 
 - **GitHub Issues**: [Create New Issue](https://github.com/reverb256/trovesandcoves/issues/new)
 - **Email**: support@trovesandcoves.ca
@@ -348,3 +427,5 @@ If nothing else works:
 ---
 
 **Still having issues?** Create a detailed issue report and we'll help you resolve it!
+
+**Last Updated**: 2026-03-13
