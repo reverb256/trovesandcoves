@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { getPageMetadata, type PageMetadata } from '@/lib/pageMetadata';
 
 interface SEOProps {
@@ -41,19 +41,17 @@ export default function SEOHead({
   const title = titleOverride ?? metadata.title;
   const description = descriptionOverride ?? metadata.description;
   const keywords = metadata.keywords;
+
+  // Track the elements we create so we can clean them up properly
+  const createdElementsRef = useRef<Set<Node>>(new Set());
+
   useEffect(() => {
     // Update document title
     document.title = title;
 
-    // Remove existing meta tags
+    // Remove only the meta tags created by this specific SEOHead instance
     const existingMetas = document.querySelectorAll('meta[data-seo="true"]');
     existingMetas.forEach(meta => meta.remove());
-
-    // Remove existing structured data
-    const existingStructuredData = document.querySelectorAll(
-      'script[type="application/ld+json"]'
-    );
-    existingStructuredData.forEach(script => script.remove());
 
     // Create meta tags
     const metaTags = [
@@ -288,22 +286,26 @@ export default function SEOHead({
     // Use custom structured data or default
     const jsonLd = structuredData || defaultStructuredData;
 
-    // Add structured data
+    // Add structured data and track it
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(jsonLd);
+    script.setAttribute('data-seo-script', 'true');
     document.head.appendChild(script);
+    createdElementsRef.current.add(script);
 
-    // Add canonical link
+    // Add canonical link (or update existing)
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
       canonical.setAttribute('rel', 'canonical');
+      canonical.setAttribute('data-seo-link', 'true');
       document.head.appendChild(canonical);
+      createdElementsRef.current.add(canonical);
     }
     canonical.setAttribute('href', url);
 
-    // Add hreflang for Canadian English
+    // Add hreflang for Canadian English (or update existing)
     let hreflang = document.querySelector(
       'link[rel="alternate"][hreflang="en-CA"]'
     );
@@ -311,9 +313,25 @@ export default function SEOHead({
       hreflang = document.createElement('link');
       hreflang.setAttribute('rel', 'alternate');
       hreflang.setAttribute('hreflang', 'en-CA');
+      hreflang.setAttribute('data-seo-link', 'true');
       document.head.appendChild(hreflang);
+      createdElementsRef.current.add(hreflang);
     }
     hreflang.setAttribute('href', url);
+
+    // Cleanup function - remove only elements created by this instance
+    return () => {
+      createdElementsRef.current.forEach((element) => {
+        if (element.isConnected) {
+          try {
+            (element as Element).remove();
+          } catch {
+            // Element already removed or invalid
+          }
+        }
+      });
+      createdElementsRef.current.clear();
+    };
   }, [
     path,
     productName,
