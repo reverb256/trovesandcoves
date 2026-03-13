@@ -38,6 +38,9 @@ export function useSectionReveal(options: {
   rootMargin?: string;
   threshold?: number;
 } = {}) {
+  // Destructure options at the function level for dependency array
+  const { rootMargin = '0px 0px -100px 0px', threshold = 0.1 } = options;
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -50,8 +53,6 @@ export function useSectionReveal(options: {
       });
       return;
     }
-
-    const { rootMargin = '0px 0px -100px 0px', threshold = 0.1 } = options;
 
     // Store observer ref to check in callbacks
     const observerRef = { current: null as IntersectionObserver | null };
