@@ -1,7 +1,13 @@
 import { test, expect } from '@playwright/test';
 
+/**
+ * Debug tests for Hero section styling comparison.
+ * Requires: npm run dev (local server on port 5000)
+ * Run with: npm run test:e2e:debug
+ */
+
 test.describe('Hero Color Debug - Production vs Local', () => {
-  const productionUrl = 'https://reverb256.github.io/trovesandcoves/';
+  const productionUrl = 'https://trovesandcoves.ca';
   const localUrl = 'http://localhost:5000';
 
   test('get all SVGs and their gradients from Hero section', async ({ page }) => {

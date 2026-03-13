@@ -1,7 +1,13 @@
 import { test, expect } from '@playwright/test';
 
+/**
+ * Debug tests for comparing local vs production styling.
+ * Requires: npm run dev (local server on port 5000)
+ * Run with: npm run test:e2e:debug
+ */
+
 test.describe('Color Comparison - Local vs Production', () => {
-  const productionUrl = 'https://reverb256.github.io/trovesandcoves/';
+  const productionUrl = 'https://trovesandcoves.ca';
   const localUrl = 'http://localhost:5000';
 
   test('compare hero gem colors', async ({ page }) => {
