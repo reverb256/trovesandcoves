@@ -24,7 +24,7 @@ export default function SEOHead({
   productName,
   title: titleOverride,
   description: descriptionOverride,
-  image = 'https://trovesandcoves.ca/og-image.jpg',
+  image = 'https://trovesandcoves.ca/og-image.jpg?v=2',
   url = 'https://trovesandcoves.ca',
   type = 'website',
   structuredData,
