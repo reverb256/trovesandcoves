@@ -59,32 +59,49 @@ function setupPerformanceObserver() {
     return;
   }
 
+  // Check supported entryTypes before observing
+  const supportedEntryTypes = PerformanceObserver.supportedEntryTypes || [];
+
   try {
-    // Monitor Largest Contentful Paint
-    const lcpObserver = new PerformanceObserver((list) => {
-      const entries = list.getEntries();
-      const lastEntry = entries[entries.length - 1];
-      console.log('🖼️  LCP:', Math.round(lastEntry.startTime), 'ms');
-    });
-    lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+    // Monitor Largest Contentful Paint (widely supported)
+    if (supportedEntryTypes.includes('largest-contentful-paint')) {
+      const lcpObserver = new PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        console.log('🖼️  LCP:', Math.round(lastEntry.startTime), 'ms');
+      });
+      lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+    }
 
-    // Monitor layout shifts
-    const clsObserver = new PerformanceObserver((list) => {
-      let clsValue = 0;
-      for (const entry of list.getEntries()) {
-        clsValue += (entry as any).value;
+    // Monitor layout shifts (check support first)
+    if (supportedEntryTypes.includes('layout-shift')) {
+      try {
+        const clsObserver = new PerformanceObserver((list) => {
+          let clsValue = 0;
+          for (const entry of list.getEntries()) {
+            clsValue += (entry as any).value;
+          }
+          console.log('📊 CLS:', clsValue.toFixed(3));
+        });
+        clsObserver.observe({ entryTypes: ['layout-shift'] });
+      } catch {
+        // layout-shift not supported in this browser
       }
-      console.log('📊 CLS:', clsValue.toFixed(3));
-    });
-    clsObserver.observe({ entryTypes: ['layout-shift'] });
+    }
 
-    // Monitor long tasks
-    const longTaskObserver = new PerformanceObserver((list) => {
-      for (const entry of list.getEntries()) {
-        console.log('⚠️  Long Task:', Math.round(entry.duration), 'ms');
+    // Monitor long tasks (check support first)
+    if (supportedEntryTypes.includes('longtask')) {
+      try {
+        const longTaskObserver = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            console.log('⚠️  Long Task:', Math.round(entry.duration), 'ms');
+          }
+        });
+        longTaskObserver.observe({ entryTypes: ['longtask'] });
+      } catch {
+        // longtask not supported in this browser
       }
-    });
-    longTaskObserver.observe({ entryTypes: ['longtask'] });
+    }
 
   } catch (error) {
     console.warn('Performance monitoring error:', error);
