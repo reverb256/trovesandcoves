@@ -10,7 +10,6 @@ import {
 
 // Get API base URL from environment or use defaults
 const isDevelopment = import.meta.env.DEV || typeof window !== 'undefined' && window.location.hostname === 'localhost';
-const DEFAULT_DEV_API = '/api';
 
 // Check if we should use embedded data (GitHub Pages production)
 const shouldUseEmbeddedData = !isDevelopment && (
@@ -37,11 +36,8 @@ function getApiUrl(path: string): string {
     return path;
   }
 
-  // Only route /api/ paths in development
-  const isApiPath = path.startsWith('/api/');
-  if (!isApiPath) return path;
-
-  return DEFAULT_DEV_API + path;
+  // In development, path already includes /api/, so return it directly
+  return path;
 }
 
 async function throwIfResNotOk(res: Response) {

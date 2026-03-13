@@ -56,6 +56,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
 
   return (
     <Card
+      data-testid="product-card"
       className="group cursor-pointer overflow-hidden transition-shadow duration-500 ease-out hover:shadow-2xl"
       style={{
         backgroundColor: 'hsl(var(--bg-card))',

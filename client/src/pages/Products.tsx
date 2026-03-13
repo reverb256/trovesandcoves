@@ -10,7 +10,7 @@ import SectionDivider from '@/components/SectionDivider';
 
 export default function Products() {
   const params = useParams();
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const category = (params as Record<string, string>).category;
 
   // Parse search query from URL
@@ -74,20 +74,16 @@ export default function Products() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.history.pushState(
-        {},
-        '',
-        `/products?search=${encodeURIComponent(searchQuery.trim())}`
-      );
+      setLocation(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
     } else {
-      window.history.pushState({}, '', '/products');
+      setLocation('/products');
     }
   };
 
   const clearFilters = () => {
     setSearchQuery('');
     setSortBy('featured');
-    window.history.pushState({}, '', '/products');
+    setLocation('/products');
   };
 
   const hasActiveFilters = searchQuery.trim() !== '' || category;
@@ -208,7 +204,7 @@ export default function Products() {
                 </h4>
                 <div className="space-y-2">
                   <button
-                    onClick={() => (window.location.href = '/products')}
+                    onClick={() => setLocation('/products')}
                     className="w-full text-left px-4 py-2 rounded-lg transition-colors duration-300"
                     style={{
                       backgroundColor: !category ? 'hsl(var(--accent-vibrant))' : 'transparent',
@@ -221,7 +217,7 @@ export default function Products() {
                   {categories?.map((cat) => (
                     <button
                       key={cat.id}
-                      onClick={() => (window.location.href = `/products/${cat.slug}`)}
+                      onClick={() => setLocation(`/products/${cat.slug}`)}
                       className="w-full text-left px-4 py-2 rounded-lg transition-colors duration-300"
                       style={{
                         backgroundColor: category === cat.slug ? 'hsl(var(--accent-vibrant))' : 'transparent',
@@ -348,6 +344,7 @@ export default function Products() {
                     key={product.id}
                     href={`/products/${product.id}`}
                     className="group block product-card-stagger"
+                    data-testid="product-card"
                   >
                     <div className="rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                       {/* Product Image */}
