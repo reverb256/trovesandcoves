@@ -1,0 +1,38 @@
+# Security Headers for GitHub Pages
+# Applied to all files in the same directory
+
+/*
+  # Frame protection
+  X-Frame-Options: DENY
+
+  # MIME type sniffing protection
+  X-Content-Type-Options: nosniff
+
+  # Referrer policy for privacy
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Browser feature policies
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+  # XSS protection (legacy but still useful)
+  X-XSS-Protection: 1; mode=block
+
+# Cache static assets
+*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+*.webmanifest
+  Cache-Control: public, max-age=86400
+
+# HTML files - shorter cache
+*.html
+  Cache-Control: public, max-age=3600
