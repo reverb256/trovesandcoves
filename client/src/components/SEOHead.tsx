@@ -99,7 +99,7 @@ export default function SEOHead({
       // Additional SEO
       { name: 'theme-color', content: '#D4AF37' },
       { name: 'msapplication-TileColor', content: '#000000' },
-      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { name: 'mobile-web-app-capable', content: 'yes' },
       {
         name: 'apple-mobile-web-app-status-bar-style',
         content: 'black-translucent',
