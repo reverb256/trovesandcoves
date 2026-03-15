@@ -74,7 +74,7 @@ export default function About() {
 
           <h1 className="text-5xl md:text-7xl font-bold mb-8 flex flex-col items-center justify-center gap-2">
             <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase', letterSpacing: '0.08em' }}>About</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Troves & Coves</span>
+            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-text-large))' }}>Troves & Coves</span>
           </h1>
 
           <SectionDivider variant="gold" className="mb-8" />

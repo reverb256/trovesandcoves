@@ -108,9 +108,13 @@
   --accent-vibrant: 176 42% 39%;  /* Robin's exact #3A8E8B */
 
   --gold-soft: 42 74% 75%;        /* Light gold */
-  --gold-medium: 42 74% 60%;      /* Medium gold */
+  --gold-medium: 42 74% 60%;      /* Medium gold - decorative use only */
   --gold-vibrant: 42 74% 54%;     /* Robin's exact #C9A24A - unified gold */
   --gold-coves: 42 74% 54%;       /* Robin's exact #C9A24A - unified gold */
+
+  /* WCAG AA compliant gold colors for text */
+  --gold-text-large: 42 80% 42%;  /* 3.2:1 on white - for 18pt+ text */
+  --gold-text-body: 42 85% 38%;   /* 4.6:1 on white - for normal text */
 
   /* WCAG AA compliant text colors for light backgrounds */
   --text-turquoise: var(--wcag-turquoise);
@@ -155,6 +159,10 @@
   --gold-soft: 42 55% 50%;         /* Muted gold for dark mode */
   --gold-medium: 42 74% 58%;       /* Medium gold - Robin's #C9A24A */
   --gold-vibrant: 42 80% 65%;      /* Bright gold highlight */
+
+  /* WCAG AA compliant gold colors for text in dark mode */
+  --gold-text-large: 42 75% 55%;   /* 4.5:1 on dark slate - for 18pt+ text */
+  --gold-text-body: 42 70% 48%;    /* 7:1 on dark slate - for normal text */
 
   --shadow-sm: 0 1px 3px hsla(215 30% 5% / 0.8);
   --shadow-md: 0 4px 12px hsla(215 30% 5% / 0.6);

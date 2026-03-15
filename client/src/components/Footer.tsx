@@ -60,8 +60,8 @@ export default function Footer() {
           <div>
             <div className="flex items-baseline gap-2 mb-6">
               <span className="text-2xl" style={{ fontFamily: 'Libre Baskerville, serif', fontWeight: 700, color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Troves</span>
-              <span className="text-2xl" style={{ fontFamily: 'Alex Brush, cursive', color: 'hsl(var(--gold-medium))' }}>&</span>
-              <span className="text-2xl" style={{ fontFamily: 'Alex Brush, cursive', color: 'hsl(var(--gold-medium))' }}>Coves</span>
+              <span className="text-2xl" style={{ fontFamily: 'Alex Brush, cursive', color: 'hsl(var(--gold-text-large))' }}>&</span>
+              <span className="text-2xl" style={{ fontFamily: 'Alex Brush, cursive', color: 'hsl(var(--gold-text-large))' }}>Coves</span>
             </div>
             <p className="mb-6 leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-secondary))' }}>
               Handcrafted crystal jewelry featuring 14k gold-filled wire and genuine gemstones.

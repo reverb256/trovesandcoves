@@ -1,0 +1,50 @@
+# Cloudflare Pages Headers
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+  # Security headers for static assets
+  /images/*
+    Cache-Control: public, max-age=31536000, immutable
+
+  /_astro/*
+    Cache-Control: public, max-age=31536000, immutable
+
+  # Assets (JS, CSS from build) - Long term caching
+  /assets/*
+    Cache-Control: public, max-age=31536000, immutable
+
+  # JavaScript and CSS files
+  *.js
+    Cache-Control: public, max-age=31536000, immutable
+
+  *.css
+    Cache-Control: public, max-age=31536000, immutable
+
+  # Service Worker - Cache with validation
+  /registerSW.js
+    Cache-Control: public, max-age=86400
+
+  /sw.js
+    Cache-Control: public, max-age=86400
+
+  # Fonts cache
+  /fonts/*
+    Cache-Control: public, max-age=31536000, immutable
+
+# HTML files - shorter cache for revalidation
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Sitemap
+/sitemap*.xml
+  Cache-Control: public, max-age=86400
+
+# Robots.txt
+/robots.txt
+  Cache-Control: public, max-age=86400

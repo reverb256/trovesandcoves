@@ -1,8 +1,40 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Droplets, Shield, Sun, Moon, Heart, Sparkles } from 'lucide-react';
+import { Droplets, Shield, Sparkles, Moon, Sun, Heart } from 'lucide-react';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
+import SEOHead from '@/components/SEOHead';
+import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
+import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema, FAQSchema, ArticleSchema } from '@/components/SchemaOrg';
+
+const careQuestions = [
+  {
+    '@type': 'Question',
+    name: 'Can I shower with my gold-plated crystal jewelry?',
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: 'No, we recommend removing your gold-plated jewelry before showering or swimming. Water, soap, and chlorine can damage the gold plating over time. Pat dry completely if jewelry gets wet accidentally.',
+    },
+  },
+  {
+    '@type': 'Question',
+    name: 'How often should I clean my crystal necklace?',
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: 'Clean your crystal necklace gently after each wear with a soft, dry cloth to remove oils and moisture. For deeper cleaning, use a damp cloth with mild soap, then dry thoroughly. Avoid submerging in water.',
+    },
+  },
+  {
+    '@type': 'Question',
+    name: 'Do crystals need to be cleansed energetically?',
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: 'Crystals are believed to absorb energy from their environment. You can cleanse them by placing in moonlight overnight, passing through sage smoke, or setting an intention. This is optional and based on personal preference.',
+    },
+  },
+];
+
+const pageDate = '2024-03-15';
 
 export default function JewelleryCare() {
   const materials = [
@@ -73,200 +105,231 @@ export default function JewelleryCare() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: 'hsl(var(--bg-primary))' }}>
-      {/* Header */}
-      <section className="relative overflow-hidden py-24" style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
-        <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
-        <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--gold-medium)), transparent)' }} />
+    <>
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Jewelry Care', path: '/jewelry-care' },
+        ]}
+      />
+      <SEOHead
+        path="/jewelry-care"
+        title="Jewelry Care Guide | Crystal Jewelry Maintenance Tips"
+        description="Learn how to care for your handcrafted crystal jewelry. Expert tips for cleaning gold-plated wire, crystal maintenance, and preserving your jewelry's beauty."
+      />
+      <WebsiteSchema />
+      <OrganizationSchema />
+      <LocalBusinessSchema />
+      <FAQSchema questions={careQuestions} />
+      <ArticleSchema
+        title="Jewelry Care Guide: Crystal Jewelry Maintenance Tips"
+        description="Complete guide to caring for handcrafted crystal jewelry with gold-plated wire. Learn proper cleaning techniques, storage methods, and professional care options."
+        datePublished={pageDate}
+        dateModified={pageDate}
+        authorName="Troves & Coves"
+      />
 
-        <div className="relative chamber-container text-center">
-          <SectionPill variant="gold" className="mb-8">
-            Jewelry Care
-          </SectionPill>
+      <div className="min-h-screen" style={{ background: 'hsl(var(--bg-primary))' }}>
+        {/* Header */}
+        <section className="relative overflow-hidden py-24" style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
+          <div className="absolute top-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+          <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--gold-medium)), transparent)' }} />
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
-            <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Jewelry</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>&</span>
-            <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Care Guide</span>
-          </h1>
+          <div className="relative chamber-container text-center">
+            <SectionPill variant="gold" className="mb-8">
+              Jewelry Care
+            </SectionPill>
 
-          <SectionDivider variant="gradient" className="mb-6" />
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 flex items-center justify-center gap-3">
+              <span style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Jewelry</span>
+              <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>&</span>
+              <span style={{ fontFamily: '"Alex Brush", cursive', color: 'hsl(var(--gold-medium))' }}>Care Guide</span>
+            </h1>
 
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
-            Preserve the beauty of your crystal jewelry with proper care. Each
-            piece deserves regular maintenance to keep it looking its best.
-          </p>
-        </div>
-      </section>
+            <SectionDivider variant="gradient" className="mb-6" />
 
-      <div className="container mx-auto px-4 py-12">
-        {/* Metal Care */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
-            Metal Care Guidelines
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {materials.map(material => {
-              const Icon = material.icon;
-              return (
-                <Card
-                  key={material.name}
-                  className="shadow-lg border border-ornate-frame-gold/20"
-                >
-                  <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
-                    <CardTitle className="flex items-center space-x-3">
-                      <Icon className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                      <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>{material.name}</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <ul className="space-y-2">
-                        {material.care.map((instruction, index) => (
-                          <li
-                            key={index}
-                            className="text-sm flex items-start space-x-2" style={{ color: 'hsl(var(--text-secondary))' }}
-                          >
-                            <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>
-                              •
-                            </span>
-                            <span>{instruction}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="p-3 bg-skull-turquoise/10 rounded-lg border border-ornate-frame-gold/20">
-                        <p className="text-primary text-sm font-medium">
-                          {material.crystalCare}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Crystal Care */}
-        <Card className="mb-12 shadow-lg border border-ornate-frame-gold/20">
-          <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
-            <CardTitle className="flex items-center space-x-3">
-              <Sparkles className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-              <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
-                Crystal Care & Maintenance
-              </span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {crystalCare.map(item => (
-                <div
-                  key={item.crystal}
-                  className="border border-ornate-frame-gold/10 rounded-lg p-4 style={{ backgroundColor: 'rgba(250, 248, 243, 0.5)' }}"
-                >
-                  <h3 className="font-semibold mb-2" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
-                    {item.crystal}
-                  </h3>
-                  <p className="text-sm mb-3" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>{item.care}</p>
-                  <Badge
-                    variant="secondary"
-                    className="bg-troves-turquoise/20 text-primary text-xs"
-                  >
-                    {item.appearance}
-                  </Badge>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* General Care Tips */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <Card className="shadow-lg border border-ornate-frame-gold/20">
-            <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
-              <CardTitle className="flex items-center space-x-3">
-                <Shield className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>Daily Protection</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              <ul className="space-y-3 text-primary/80">
-                <li className="flex items-start space-x-2">
-                  <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>
-                    Remove jewelry before showering, swimming, or exercising
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>
-                    Apply perfumes and lotions before putting on jewelry
-                  </span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Store each piece separately to prevent scratching</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>
-                    Clean regularly with appropriate methods for materials
-                  </span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="shadow-lg border border-ornate-frame-gold/20">
-            <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
-              <CardTitle className="flex items-center space-x-3">
-                <Droplets className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
-                <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>Polishing & Care</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              <ul className="space-y-3 text-primary/80">
-                <li className="flex items-start space-x-2">
-                  <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Polish regularly with appropriate cleaning cloth</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Store in soft pouches to prevent scratching</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Professional cleaning available for deep restoration</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
-                  <span>Avoid exposure to harsh chemicals and perfumes</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Professional Services */}
-        <Card className="mt-12 shadow-lg border border-ornate-frame-gold/20 bg-white">
-          <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
-              Professional Care Services
-            </h3>
-            <p className="mb-6" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
-              We offer professional cleaning and repair services for all Troves
-              & Coves jewelry pieces. Our care ensures your pieces maintain
-              their beauty.
+            <p className="text-xl max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
+              Preserve the beauty of your crystal jewelry with proper care. Each
+              piece deserves regular maintenance to keep it looking its best.
             </p>
-            <Badge
-              variant="outline"
-              className="border-troves-turquoise text-primary"
-            >
-              Contact us for personalized care guidance
-            </Badge>
-          </CardContent>
-        </Card>
+
+            <p className="text-sm mt-4" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}>
+              Last updated: {new Date(pageDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+          </div>
+        </section>
+
+        <div className="container mx-auto px-4 py-12">
+          {/* Metal Care */}
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-8 text-center" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
+              Metal Care Guidelines
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {materials.map((material) => {
+                const Icon = material.icon;
+                return (
+                  <Card
+                    key={material.name}
+                    className="shadow-lg border border-ornate-frame-gold/20"
+                  >
+                    <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
+                      <CardTitle className="flex items-center space-x-3">
+                        <Icon className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
+                        <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>{material.name}</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                      <div className="space-y-4">
+                        <ul className="space-y-2">
+                          {material.care.map((instruction, index) => (
+                            <li
+                              key={index}
+                              className="text-sm flex items-start space-x-2"
+                              style={{ color: 'hsl(var(--text-secondary))' }}
+                            >
+                              <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>
+                                •
+                              </span>
+                              <span>{instruction}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="p-3 bg-skull-turquoise/10 rounded-lg border border-ornate-frame-gold/20">
+                          <p className="text-primary text-sm font-medium">
+                            {material.crystalCare}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Crystal Care */}
+          <Card className="mb-12 shadow-lg border border-ornate-frame-gold/20">
+            <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
+              <CardTitle className="flex items-center space-x-3">
+                <Sparkles className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
+                <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
+                  Crystal Care & Maintenance
+                </span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {crystalCare.map((item) => (
+                  <div
+                    key={item.crystal}
+                    className="border border-ornate-frame-gold/10 rounded-lg p-4"
+                    style={{ backgroundColor: 'rgba(250, 248, 243, 0.5)' }}
+                  >
+                    <h3 className="font-semibold mb-2" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
+                      {item.crystal}
+                    </h3>
+                    <p className="text-sm mb-3" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>{item.care}</p>
+                    <Badge
+                      variant="secondary"
+                      className="bg-troves-turquoise/20 text-primary text-xs"
+                    >
+                      {item.appearance}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* General Care Tips */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="shadow-lg border border-ornate-frame-gold/20">
+              <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
+                <CardTitle className="flex items-center space-x-3">
+                  <Shield className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
+                  <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>Daily Protection</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <ul className="space-y-3 text-primary/80">
+                  <li className="flex items-start space-x-2">
+                    <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                    <span>
+                      Remove jewelry before showering, swimming, or exercising
+                    </span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                    <span>
+                      Apply perfumes and lotions before putting on jewelry
+                    </span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                    <span>Store each piece separately to prevent scratching</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                    <span>
+                      Clean regularly with appropriate methods for materials
+                    </span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-lg border border-ornate-frame-gold/20">
+              <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
+                <CardTitle className="flex items-center space-x-3">
+                  <Droplets className="h-6 w-6" style={{ color: 'hsl(var(--gold-medium))' }} />
+                  <span className="font-bold text-xl" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>Polishing & Care</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <ul className="space-y-3 text-primary/80">
+                  <li className="flex items-start space-x-2">
+                    <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                    <span>Polish regularly with appropriate cleaning cloth</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                    <span>Store in soft pouches to prevent scratching</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                    <span>Professional cleaning available for deep restoration</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="mt-1" style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                    <span>Avoid exposure to harsh chemicals and perfumes</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Professional Services */}
+          <Card className="mt-12 shadow-lg border border-ornate-frame-gold/20 bg-white">
+            <CardContent className="p-8 text-center">
+              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--accent-vibrant))' }}>
+                Professional Care Services
+              </h3>
+              <p className="mb-6" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
+                We offer professional cleaning and repair services for all Troves
+                & Coves jewelry pieces. Our care ensures your pieces maintain
+                their beauty.
+              </p>
+              <Badge
+                variant="outline"
+                className="border-troves-turquoise text-primary"
+              >
+                Contact us for personalized care guidance
+              </Badge>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

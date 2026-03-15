@@ -18,6 +18,7 @@ import Contact from '@/pages/Contact';
 import About from '@/pages/About';
 import SizeGuide from '@/pages/SizeGuide';
 import JewelryCare from '@/pages/JewelryCare';
+import CrystalGuide from '@/pages/CrystalGuide';
 import Warranty from '@/pages/Warranty';
 import Returns from '@/pages/Returns';
 import Financing from '@/pages/Financing';
@@ -51,6 +52,7 @@ function Router() {
                 <Route path="/about" component={About} />
                 <Route path="/size-guide" component={SizeGuide} />
                 <Route path="/jewelry-care" component={JewelryCare} />
+                <Route path="/crystal-guide" component={CrystalGuide} />
                 <Route path="/warranty" component={Warranty} />
                 <Route path="/returns" component={Returns} />
                 <Route path="/financing" component={Financing} />

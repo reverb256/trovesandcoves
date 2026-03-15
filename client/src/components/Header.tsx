@@ -95,8 +95,8 @@ export default function Header() {
               <div className="flex flex-col">
                 <div className="flex items-end gap-2">
                   <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-lg">TROVES</span>
-                  <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}>&</span>
-                  <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }} className="text-2xl">Coves</span>
+                  <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-text-large))" }}>&</span>
+                  <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-text-large))" }} className="text-2xl">Coves</span>
                 </div>
                 <span className="text-xs tracking-widest uppercase"
                   style={{ color: "hsl(var(--text-secondary))", fontFamily: "'Montserrat', sans-serif" }}

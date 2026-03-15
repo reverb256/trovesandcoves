@@ -48,6 +48,7 @@ const staticPages: SitemapEntry[] = [
   { url: '/checkout', priority: 0.8, changefreq: 'monthly' },
   { url: '/size-guide', priority: 0.5, changefreq: 'monthly' },
   { url: '/jewelry-care', priority: 0.5, changefreq: 'yearly' },
+  { url: '/crystal-guide', priority: 0.7, changefreq: 'monthly' },
   { url: '/warranty', priority: 0.5, changefreq: 'yearly' },
   { url: '/returns', priority: 0.5, changefreq: 'yearly' },
   { url: '/financing', priority: 0.5, changefreq: 'yearly' },

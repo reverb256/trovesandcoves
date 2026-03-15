@@ -5,7 +5,7 @@ import Hero from '@/components/Hero';
 import SectionPill from '@/components/SectionPill';
 import CTAButton from '@/components/CTAButton';
 import IconCircle from '@/components/IconCircle';
-import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema } from '@/components/SchemaOrg';
+import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema, FAQSchema } from '@/components/SchemaOrg';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import type { ProductWithCategory } from '@shared/types';
 import { ArrowRight, Sparkles } from 'lucide-react';
@@ -22,6 +22,7 @@ export default function Home() {
       <WebsiteSchema />
       <OrganizationSchema />
       <LocalBusinessSchema />
+      <FAQSchema />
 
       {/* Hero Section */}
       <div className="page-section-hero">

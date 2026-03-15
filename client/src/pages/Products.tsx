@@ -136,14 +136,14 @@ export default function Products() {
               ) : searchQuery ? (
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))' }}>Searching for</span>
-                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>"{searchQuery}"</span>
+                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-text-large))' }}>"{searchQuery}"</span>
                 </>
               ) : (
                 <>
                   <span style={{ fontFamily: "\"Libre Baskerville\", serif", color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>
                     Shop Jewelry
                   </span>
-                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-medium))' }}>
+                  <span style={{ fontFamily: "\"Alex Brush\", cursive", color: 'hsl(var(--gold-text-large))' }}>
                     &amp; Collections
                   </span>
                 </>

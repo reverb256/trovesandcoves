@@ -30,6 +30,38 @@ Allow: /
 User-agent: pinterest
 Allow: /
 
+# ============================================
+# AI SEARCH OPTIMIZATION - Allow AI Crawlers
+# ============================================
+# These crawlers enable citation in AI-generated answers
+# Blocking them prevents your brand from being cited by AI systems
+
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google (AI Overviews, Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Common Crawl (blocks training, allows search citation)
+User-agent: CCBot
+Disallow: /
+
 # Crawl delay for respectful crawling
 Crawl-delay: 1
 
