@@ -1,201 +1,206 @@
-# CLAUDE.md
+# CLAUDE.md - Project-Specific Guidance
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with this repository.
 
-## What This Project Actually Is
+## Project Overview
 
-This is a **crystal jewelry showcase site** deployed on GitHub Pages. It has:
-- Static React frontend with ~25 custom components
-- shadcn/ui component library
-- In-memory product data storage (MemStorage in server/storage.ts)
-- Basic cart functionality using localStorage
-- Etsy integration for purchases
-- Material You-inspired design system
-- **Strict TypeScript enabled** - type safety is enforced
-- Error Boundary for graceful error handling
+**Troves & Coves** — A production e-commerce showcase for handcrafted crystal jewelry.
 
-## Recent Improvements (2026-03-13)
+- **Stack:** React + TypeScript + Vite + Tailwind CSS + shadcn/ui
+- **Hosting:** GitHub Pages
+- **Live Site:** https://trovesandcoves.ca
+- **Deployment:** Automatic on push to `prod` branch
 
-### Fixed React DOM Manipulation Errors
-- ✅ **IntersectionObserver cleanup** - Fixed race condition where `IntersectionObserver` callbacks tried to manipulate DOM nodes during React's unmount phase
-- ✅ **useSectionReveal hook rewritten** - Now uses `requestAnimationFrame` to avoid DOM manipulation during React render phase
-- ✅ **Synchronous observer disconnection** - Observers are disconnected before React removes DOM nodes, preventing `removeChild` errors
-- ✅ **vite.ts script path fix** - Fixed cache-busting replacement for main.tsx script tag
-
-### Testing Strategy
-- ✅ **Unit tests (Vitest)**: 40 tests passing - all component and utility tests
-- ✅ **E2E tests (Playwright)**: Run against production site (`https://trovesandcoves.ca`)
-  - Production tests: `npm run test:e2e` (tests/e2e/)
-  - Debug tests: `npm run test:e2e:debug` (tests/e2e-debug/)
-- ⚠️ **Dev server E2E**: Not recommended due to Vite HMR issues in middleware mode
-
-## Recent Improvements (2026-03-08)
-
-The following improvements were made to address code quality and performance:
-
-### TypeScript Enhancements
-- ✅ **Strict mode enabled** - `strict: true`, `noImplicitAny: true`, `strictNullChecks: true`
-- ✅ All `any` types replaced with proper types
-- ✅ Type-safe error handling using `unknown` instead of `any`
-
-### Performance Optimizations
-- ✅ **React.memo** added to ProductCard and MobileProductCard components
-- ✅ Atomic session management to prevent race conditions
-- ✅ Bundle analysis added to build process (run `npm run build:analyze`)
-
-### Code Quality
-- ✅ **Error Boundary** component wraps the entire app for graceful error handling
-- ✅ Environment variable for API URL (`VITE_CLOUDFLARE_API`)
-- ✅ Dead code removed (unused migration scripts, AI validation remnants)
-
-### What Was Removed
-- Database migration scripts (migrate.ts, seed.ts, migrate-database.sh)
-- One-time audit scripts (image-deduplication-audit.js)
-- Express-validator dependencies (unused after AI feature removal)
-- Replit-specific cartographer plugin (not needed for GitHub Pages)
-
-## Development Commands
+## Quick Commands
 
 ```bash
-# Start development server (Express with Vite frontend)
-npm run dev
+# Development
+npm run dev          # Start dev server (localhost:5173)
+npm run build        # Production build
+npm run preview      # Preview production build
 
-# Build for production
-npm run build
+# Quality
+npm run check        # TypeScript type checking
+npm run lint         # ESLint
+npm run test         # Vitest + Playwright
 
-# Build with bundle analysis
-npm run build:analyze
-
-# Type checking (strict mode enabled)
-npm run check
-
-# Testing
-npm run test               # Run Vitest unit tests (40 tests)
-npm run test:e2e           # Run Playwright E2E tests against production
-npm run test:e2e:debug     # Run Playwright debug tests against localhost
-
-# Linting and formatting
-npm run lint
-npm run format
+# Deployment
+git checkout prod && git cherry-pick <commit> && git push origin prod
 ```
 
-## Important: IntersectionObserver Usage
+## Branch Strategy
 
-When using `IntersectionObserver` in React components:
+```
+feat/*  →  main  →  prod  →  live
+(work)   (test)   (deploy) (site)
+```
 
-1. **Always disconnect in cleanup**: Use `useEffect` cleanup to call `observer.disconnect()`
-2. **Check isConnected before manipulation**: Verify elements are still in DOM before modifying
-3. **Use requestAnimationFrame**: Defer DOM mutations to avoid React's render phase
-4. **Guard against stale callbacks**: Store observer in ref and check it in callbacks
+- **`feat/*`** — Feature branches, can break
+- **`main`** — Integration branch, CI tests run here
+- **`prod`** — Protected production branch, deploys to GitHub Pages
+
+**CRITICAL:** The `prod` branch is **protected**:
+- No merge commits
+- No force-push
+- Use `git cherry-pick` to move commits from `main`
+
+## Code Style Patterns
+
+### Component Structure
 
 ```tsx
-useEffect(() => {
-  const observer = new IntersectionObserver((entries) => {
-    requestAnimationFrame(() => {
-      entries.forEach((entry) => {
-        if (entry.target.isConnected && observerRef.current === observer) {
-          // Safe to manipulate DOM
-        }
-      });
-    });
-  });
+// Imports: external libs → internal components → types → utils
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Product } from '@/lib/types';
+import { formatPrice } from '@/lib/utils';
 
-  observerRef.current = observer;
+// Interface definitions
+interface ProductCardProps {
+  product: Product;
+}
 
-  return () => {
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-      observerRef.current = null;
-    }
+// Component function
+export function ProductCard({ product }: ProductCardProps) {
+  // Hooks (state, effects, context)
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Event handlers
+  const handleClick = () => {
+    // ...
   };
-}, []);
+
+  // Render
+  return (
+    <div className="...">
+      {/* JSX */}
+    </div>
+  );
+}
 ```
 
-## Architecture
+### Theme Access
 
-### Directory Layout
+Use CSS variables via inline styles for theme colors:
 
-```
-client/src/                # React frontend (Vite root is ./client)
-├── components/           # React components
-│   ├── ui/              # shadcn/ui base components
-│   ├── ErrorBoundary.tsx # Error boundary component
-│   ├── ProductCard.tsx   # Memoized product card
-│   └── MobileOptimized.tsx # Mobile-optimized components
-├── hooks/               # Custom React hooks
-│   └── useCart.ts       # Type-safe cart hook
-├── lib/                 # Utility libraries
-│   ├── queryClient.ts   # API client with session management
-│   ├── session-utils.ts # Shared session utilities
-│   └── store.tsx        # Cart state management
-└── main.tsx             # React entry point (wrapped in ErrorBoundary)
-
-server/                   # Express.js backend (development only)
-├── index.ts             # Server entry point
-├── routes.ts            # API route definitions
-├── storage.ts           # In-memory storage with seeded data
-└── security/            # Security middleware
-
-shared/                   # Shared TypeScript code
-├── types.ts             # Type definitions (Product, Cart, etc.)
-├── brand-config.ts      # Brand/design tokens
-└── locked-design-language.ts  # Design system constants
+```tsx
+style={{ color: 'hsl(var(--text-primary))' }}
+style={{ backgroundColor: 'hsl(var(--bg-card))' }}
 ```
 
-### Key Patterns
+Available theme variables are in `client/src/lib/theme.tsx`.
 
-1. **Storage Abstraction**: `server/storage.ts` defines `IStorage` interface
-   - `MemStorage`: In-memory with seeded crystal jewelry data (DEFAULT)
-   - No database implementation
+### Routing
 
-2. **Path Aliases** (configured in `tsconfig.json` and `vite.config.ts`):
-   - `@/*` → `./client/src/*`
-   - `@shared/*` → `./shared/*`
-   - `@assets/*` → `./attached_assets/*`
+Uses **Wouter** (not React Router):
 
-3. **Development vs Production**:
-   - Development: Express server on port 5000 + Vite on port 5173
-   - Production: GitHub Pages for frontend
-   - API: Can route to Cloudflare Workers via `VITE_CLOUDFLARE_API`
+```tsx
+import { Link, Route } from 'wouter';
 
-## Environment Variables
+// Navigation
+<Link href="/products">Shop</Link>
 
-Available environment variables (see `.env.example`):
-- `VITE_API_URL` - Local development API URL (default: http://localhost:5000)
-- `VITE_CLOUDFLARE_API` - Production API URL for Cloudflare Workers
-- `VITE_BASE_PATH` - Base path for GitHub Pages (default: /trovesandcoves/)
-- `VITE_GITHUB_PAGES_URL` - GitHub Pages URL
+// Routes
+<Route path="/product/:id" component={ProductDetail} />
+```
 
-**Note:** Database and Stripe environment variables are NOT used. The app uses in-memory storage.
+### State Management
 
-## TypeScript Configuration
+- **Cart:** Zustand store at `client/src/lib/store.tsx`
+- **Theme:** React Context at `client/src/lib/theme.tsx`
 
-Strict mode is enabled with the following compiler options:
-- `strict: true` - All strict type checking options
-- `noImplicitAny: true` - Error on implicit any types
-- `strictNullChecks: true` - Strict null checking
-- `noUnusedLocals: true` - Error on unused local variables
-- `noUnusedParameters: true` - Error on unused parameters
+### Forms
 
-## Design System
+React Hook Form + Zod:
 
-Material You-inspired with cream color scheme:
-- `shared/locked-design-language.ts`: CSS classes and color constants
-- `shared/brand-config.ts`: Brand configuration
-- Tailwind classes: `bg-surface-50`, `text-on-surface-variant`, etc.
+```tsx
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
-## Deployment
+const schema = z.object({
+  email: z.string().email(),
+});
 
-- Push to `main` triggers GitHub Actions (`.github/workflows/deploy.yml`)
-- Builds React app and deploys to GitHub Pages
-- Vite base path: `/trovesandcoves/` for GitHub Pages
+const form = useForm({ resolver: zodResolver(schema) });
+```
 
-## Working on This Codebase
+## Common Pitfalls
 
-1. **TypeScript:** Always maintain strict type safety - no `any` types
-2. **Performance:** Use React.memo for components rendered in lists
-3. **Error Handling:** Wrap new features in try-catch with proper error types
-4. **Testing:** Add tests for new components (Vitest for unit, Playwright for e2e)
-5. **Database:** Don't add database code without discussing architecture first
+### ❌ Don't Do
 
-See ROADMAP.md for planned improvements and TECHNICAL_DEBT.md for known issues.
+```tsx
+// Don't use hardcoded colors
+<div style={{ color: '#333' }}>
+
+// Don't use class-based routing
+import { Link } from 'react-router-dom';
+
+// Don't mutate Zustand state directly
+useCart.setState({ items: [...] });
+
+// Don't forget alt text on images
+<img src="..." />
+```
+
+### ✅ Do
+
+```tsx
+// Use theme variables
+<div style={{ color: 'hsl(var(--text-primary))' }}>
+
+// Use Wouter for routing
+import { Link } from 'wouter';
+
+// Use store actions
+const addToCart = useCart(state => state.addToCart);
+
+// Always include alt text
+<img src="..." alt="Description of image" />
+```
+
+## File Locations
+
+| What | Where |
+|------|-------|
+| Products data | `client/src/lib/products.ts` |
+| Theme variables | `client/src/lib/theme.tsx` |
+| Cart store | `client/src/lib/store.tsx` |
+| Route definitions | `client/src/App.tsx` |
+| UI components | `client/src/components/ui/` |
+| Page components | `client/src/pages/` |
+
+## Before Deploying
+
+1. **Run checks:** `npm run check && npm run lint`
+2. **Test locally:** `npm run test`
+3. **Verify:** No console errors, all routes work
+4. **Cherry-pick to prod:** `git checkout prod && git cherry-pick <sha>`
+5. **Push:** `git push origin prod`
+
+## Deployment Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| Build fails | Check `scripts/` has required files |
+| Changes not visible | Run cache purge workflow |
+| Routes 404ing | Verify `404.html` in build output |
+
+## Testing Locally
+
+```bash
+# E2E tests with Playwright
+npx playwright test
+
+# Unit tests with Vitest
+npm run test
+
+# Type checking
+npm run check
+```
+
+## Related Documentation
+
+- `README.md` — Project overview, workflow, architecture decisions
+- `package.json` — Dependencies and scripts
+- `.github/workflows/` — CI/CD configuration
