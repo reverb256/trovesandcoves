@@ -4,11 +4,10 @@ import SEOHead from '@/components/SEOHead';
 import Hero from '@/components/Hero';
 import SectionPill from '@/components/SectionPill';
 import CTAButton from '@/components/CTAButton';
-import IconCircle from '@/components/IconCircle';
 import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema } from '@/components/SchemaOrg';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
 import type { ProductWithCategory } from '@shared/types';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Gem, Truck, Shield } from 'lucide-react';
 
 export default function Home() {
   const { data: featuredProducts, isLoading } = useQuery<ProductWithCategory[]>({
@@ -31,28 +30,31 @@ export default function Home() {
       {/* Featured Collections Section */}
       <section className="chamber-section content-layer page-section">
         <div className="chamber-container">
-          {/* Section Header */}
-          <div className="text-center mb-16">
+          {/* Section Header - More Spacious */}
+          <div className="text-center mb-20">
             {/* Badge */}
-            <SectionPill variant="turquoise" className="mb-6">
+            <SectionPill variant="turquoise" className="mb-8">
               Curated With Intention
             </SectionPill>
 
-            <h2 
-              className="text-4xl md:text-6xl font-bold mb-6"
+            <h2
+              className="text-5xl md:text-7xl font-bold mb-8"
               style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
             >
               The Collection
             </h2>
 
-            <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
+            <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
               Explore our curated selection of handcrafted crystal jewelry.
               Each piece blends elegance with natural crystal beauty—
               crafted with intention and designed to make a statement.
             </p>
+
+            {/* Premium Section Divider */}
+            <div className="premium-section-divider" style={{ marginTop: '3rem' }} />
           </div>
 
-          {/* Products Grid */}
+          {/* Products Grid - Enhanced Cards */}
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[...Array(6)].map((_, i) => (
@@ -68,17 +70,17 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {featuredProducts?.map((product, index) => (
                 <Link
                   key={product.id}
                   href={`/product/${product.id}`}
-                  className="group block animate-reveal"
+                  className="group block animate-reveal product-card-stagger"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
+                  <div className="product-card-enhanced rounded-lg shadow-sm hover:shadow-xl transition-all duration-500 h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
                     {/* Product Image */}
-                    <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-[hsla(var(--accent-vibrant),0.1)]">
+                    <div className="relative aspect-[1/1.15] mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-[hsla(var(--accent-vibrant),0.1)] rounded-lg">
                       <img
                         src={product.imageUrl || '/api/placeholder/300/300'}
                         alt={product.name}
@@ -91,7 +93,7 @@ export default function Home() {
 
                       {/* Category Badge */}
                       {product.category && (
-                        <div className="absolute top-2 right-2 px-2 py-0.5 text-[10px] tracking-wider uppercase bg-[hsla(var(--accent-vibrant),0.2)] border border-turquoise-soft text-turquoise-bright rounded-full backdrop-blur-sm">
+                        <div className="absolute top-3 right-3 px-3 py-1 text-[10px] tracking-wider uppercase bg-[hsla(var(--accent-vibrant),0.2)] border border-turquoise-soft text-turquoise-bright rounded-full backdrop-blur-sm">
                           {product.category.name}
                         </div>
                       )}
@@ -99,27 +101,46 @@ export default function Home() {
 
                     {/* Product Info */}
                     <div className="text-center">
+                      {/* Category */}
+                      {product.category && (
+                        <p className="text-xs tracking-wider uppercase mb-2"
+                           style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-muted))' }}>
+                          {product.category.name}
+                        </p>
+                      )}
+
                       <h3
-                        className="text-xl font-semibold mb-2 group-hover:opacity-90 transition-colors duration-300"
+                        className="text-xl font-semibold mb-3 group-hover:text-[hsl(var(--accent-vibrant))] transition-colors duration-300 leading-tight"
                         style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}
                       >
                         {product.name}
                       </h3>
 
-                      <p className="text-sm mb-4 line-clamp-2" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
-                        {product.description}
-                      </p>
+                      {/* Gemstones */}
+                      {product.gemstones && product.gemstones.length > 0 && (
+                        <p className="text-sm mb-4"
+                           style={{ fontFamily: "'Alex Brush', cursive", color: 'hsl(var(--gold-medium))', fontSize: '1.1rem' }}>
+                          {product.gemstones.join(" • ")}
+                        </p>
+                      )}
 
-                      <div className="flex items-center justify-between pt-4" style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}>
-                        <span 
-                          className="text-lg font-semibold"
+                      {/* Premium Divider */}
+                      <div className="w-12 h-px mx-auto mb-4" style={{
+                        background: 'linear-gradient(90deg, hsl(var(--skull-turquoise)), hsl(var(--frame-gold)))',
+                        opacity: 0.4
+                      }} />
+
+                      <div className="flex items-center justify-between pt-4">
+                        <span
+                          className="text-2xl font-semibold"
                           style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))' }}
                         >
                           ${product.price}
                         </span>
 
-                        <div className="flex items-center gap-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: 'hsl(var(--accent-vibrant))' }}>
-                          <span style={{ fontFamily: "'Montserrat', sans-serif" }}>View</span>
+                        <div className="flex items-center gap-2 text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-[-10px] group-hover:translate-x-0"
+                             style={{ color: 'hsl(var(--accent-vibrant))', fontFamily: "'Montserrat', sans-serif", fontWeight: 500 }}>
+                          <span>View</span>
                           <ArrowRight className="w-4 h-4" />
                         </div>
                       </div>
@@ -131,7 +152,7 @@ export default function Home() {
           )}
 
           {/* View All Button */}
-          <div className="text-center mt-16">
+          <div className="text-center mt-20">
             <CTAButton variant="secondary" href="/products" className="group">
               <span>View All Jewelry</span>
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -140,7 +161,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Message Section */}
+      {/* Benefits Section */}
       <section className="chamber-section content-layer page-section relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 pointer-events-none">
@@ -153,34 +174,89 @@ export default function Home() {
         </div>
 
         <div className="chamber-container relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="p-12 md:p-16 rounded-2xl"
-              style={{ 
-                backgroundColor: 'hsla(var(--bg-primary),0.5)',
-                border: '1px solid hsla(174,85%,45%,0.1)'
-              }}
-            >
-              {/* Decorative Icon */}
-              <div className="mb-8">
-                <IconCircle icon={Sparkles} variant="gold-soft" size="lg" className="border-2" style={{ borderColor: 'hsla(43,95%,55%,0.3)' }} />
-              </div>
-
-              <h2 
-                className="text-3xl md:text-5xl font-bold mb-6"
+          <div className="max-w-5xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-16">
+              <SectionPill variant="gold" className="mb-6">
+                The Experience
+              </SectionPill>
+              <h2
+                className="text-4xl md:text-5xl font-bold mb-6"
                 style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
               >
-                Handcrafted With Intention
+                Crafted With Intention
               </h2>
+              <div className="premium-section-divider" />
+            </div>
 
-              <p className="text-lg leading-relaxed mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
+            {/* Benefits Grid */}
+            <div className="benefits-section">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="benefit-item">
+                  <div className="benefit-icon">
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                  <h4 className="benefit-title">Intentional Design</h4>
+                  <p className="benefit-description">
+                    Each piece is crafted with purpose and positive energy to support your journey
+                  </p>
+                </div>
+                <div className="benefit-item">
+                  <div className="benefit-icon">
+                    <Gem className="w-6 h-6" />
+                  </div>
+                  <h4 className="benefit-title">Natural Crystals</h4>
+                  <p className="benefit-description">
+                    Genuine gemstones sourced ethically for their unique beauty and energy
+                  </p>
+                </div>
+                <div className="benefit-item">
+                  <div className="benefit-icon">
+                    <Shield className="w-6 h-6" />
+                  </div>
+                  <h4 className="benefit-title">Lifetime Care</h4>
+                  <p className="benefit-description">
+                    Warranty and repair service included with every piece
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Story Section */}
+            <div className="story-section">
+              <h3>Handcrafted in Winnipeg, Canada</h3>
+              <p>
                 Every crystal in our collection is chosen for its unique beauty and quality.
-                Each piece is handcrafted in Winnipeg with 14k gold-plated materials
-                and genuine crystals—designed to be timeless and made to stand out.
+                Each piece is handcrafted with 14k gold-plated materials and genuine crystals—
+                designed to be timeless and made to stand out.
               </p>
+              <p>
+                We believe in the power of intention. From the moment we select each stone
+                to the final polish, your jewelry is infused with positive energy and care.
+                Wear it as a reminder of your own inner strength and beauty.
+              </p>
+            </div>
 
-              <p className="text-base" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))', fontWeight: 500 }}>
-                ✨ Handcrafted with intention in Winnipeg, Canada ✨
-              </p>
+            {/* Trust Badges */}
+            <div className="trust-badges">
+              <div className="trust-badge">
+                <div className="trust-badge-icon">
+                  <Truck className="w-5 h-5" />
+                </div>
+                <span className="trust-badge-text">Free Shipping</span>
+              </div>
+              <div className="trust-badge">
+                <div className="trust-badge-icon">
+                  <Shield className="w-5 h-5" />
+                </div>
+                <span className="trust-badge-text">Lifetime Warranty</span>
+              </div>
+              <div className="trust-badge">
+                <div className="trust-badge-icon">
+                  <Gem className="w-5 h-5" />
+                </div>
+                <span className="trust-badge-text">Handcrafted</span>
+              </div>
             </div>
           </div>
         </div>

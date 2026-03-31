@@ -61,19 +61,20 @@ This is a **static showcase site** with the following architecture:
 client/src/
 ├── components/
 │   ├── Hero.tsx           # Landing page hero section
-│   ├── ProductCard.tsx    # Product card component
+│   ├── ProductCard.tsx    # Premium product card component
 │   ├── SEOHead.tsx        # SEO meta tag component
 │   ├── BreadcrumbSchema.tsx  # Schema.org structured data
 │   └── ui/                # shadcn/ui base components
 ├── pages/
-│   ├── Home.tsx           # Homepage
+│   ├── Home.tsx           # Enhanced homepage with benefits section
 │   ├── Products.tsx       # Product listing
-│   ├── ProductDetail.tsx  # Single product view
+│   ├── ProductDetail.tsx  # Premium product detail page
 │   └── ...
 ├── lib/
 │   ├── pageMetadata.ts    # SEO metadata config
 │   └── ...
 ├── hooks/                 # Custom React hooks
+├── index.css              # Premium CSS utilities
 ├── main.tsx               # React entry point
 └── App.tsx                # Main app component
 
@@ -236,18 +237,35 @@ A Cloudflare Worker exists for **Etsy product synchronization**:
 
 ## 🎨 UI Development
 
+### Premium Product Experience
+
+The site features a premium, Vellees-inspired product experience with:
+
+- **Large hero imagery** (1000x1000px) with zoom cursor
+- **Dark mode mystical glow** effect on product images
+- **Benefits/Intentions sections** with elegant icons
+- **Crystal Energy properties** (auto-generated from gemstones)
+- **Enhanced storytelling** sections
+- **Premium spacing** and whitespace
+- **Improved typography** hierarchy
+
+See `../premium-product-experience.md` for detailed documentation.
+
 ### Component Library
 - **Base Components**: shadcn/ui in `components/ui/`
 - **Custom Components**: Application-specific components
 - **Styling**: Tailwind CSS with custom design system
+- **Premium Utilities**: CSS classes in `index.css`
 
 ### Design System
 ```css
-/* Brand Colors - Cream Scheme */
---surface-50: #fafaf9;
---surface-100: #f5f5f4;
---primary-600: #059669;
---primary-800: #065f46;
+/* Brand Colors - Turquoise & Gold */
+--troves-turquoise: #3a8e8b;
+--coves-gold-unified: #c9a24a;
+
+/* Theme Variables */
+--accent-vibrant: hsl(176, 42%, 39%);
+--gold-medium: hsl(42, 74%, 60%);
 ```
 
 ### Tailwind Classes
@@ -333,6 +351,7 @@ PORT=3000 npm run dev
 - [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/)
 
 ### Internal Docs
+- [../premium-product-experience.md](../premium-product-experience.md) - Premium features guide
 - [ROADMAP.md](../../ROADMAP.md) - Planned features
 - [TECHNICAL_DEBT.md](../../TECHNICAL_DEBT.md) - Known issues
 - [CLAUDE.md](../../CLAUDE.md) - AI assistant guide

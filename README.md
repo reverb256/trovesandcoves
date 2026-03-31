@@ -75,6 +75,7 @@ Animations:         Framer Motion
 PWA:                VitePWA (service worker, manifest)
 Testing:            Vitest + Playwright
 Hosting:            GitHub Pages
+Design Inspiration: Vellees.com (premium jewelry experience)
 ```
 
 ### Project Structure
@@ -87,17 +88,24 @@ trovesandcoves/
 │   │   │   ├── ui/                # shadcn/ui primitives
 │   │   │   ├── Header.tsx         # Site navigation
 │   │   │   ├── Footer.tsx         # Site footer
-│   │   │   ├── ProductCard.tsx    # Product display
+│   │   │   ├── ProductCard.tsx    # Premium product display
 │   │   │   └── ...
 │   │   ├── pages/                 # Route components
+│   │   │   ├── ProductDetail.tsx  # Premium product page
+│   │   │   ├── Home.tsx           # Enhanced homepage
+│   │   │   └── ...
 │   │   ├── lib/                   # Utilities (API, store, theme)
 │   │   ├── hooks/                 # Custom React hooks
+│   │   ├── index.css              # Premium CSS utilities
 │   │   └── main.tsx               # App entry point
 │   ├── public/                    # Static assets
 │   └── index.html                 # HTML template
 ├── scripts/                       # Build/deployment scripts
 │   ├── postbuild-copy.cjs         # Creates CNAME, 404.html
 │   └── generate-sitemap.ts        # SEO sitemap generation
+├── docs/                          # Documentation
+│   ├── premium-product-experience.md  # Premium features guide
+│   └── ...
 ├── .github/workflows/             # CI/CD
 │   ├── deploy.yml                 # Deploy to GitHub Pages
 │   ├── main.yml                   # Test on main branch
@@ -186,10 +194,13 @@ Examples:
 - [ ] No broken links (test navigation)
 - [ ] Mobile responsive (test at 375px, 768px, 1024px)
 - [ ] Theme toggle works (light/dark)
+- [ ] Dark mode mystical glow effect visible
+- [ ] Premium product features functional
 - [ ] Cart functionality intact
 - [ ] No new console errors
 - [ ] Linting passes (`npm run lint`)
 - [ ] Type checking passes (`npm run check`)
+- [ ] All tests pass (`npm run test`)
 
 **Breaking the Production Site:**
 
@@ -223,10 +234,29 @@ Edit `client/src/components/SEOHead.tsx` for meta tags, `scripts/generate-sitema
 | Route returns 404 | Check `404.html` exists in build output (created by `postbuild-copy.cjs`) |
 | Theme not persisting | Check localStorage is enabled in browser |
 | Images not loading | Verify paths are in `client/public/` and referenced correctly |
+| Dark mode glow missing | Check CSS utilities loaded in `client/src/index.css` (premium product experience) |
+| Crystal properties not showing | Verify product has `gemstones` field with valid stone names |
+| Benefits section not visible | Check `benefits-section` CSS class is applied |
+
+### Premium Product Experience
+
+The site features a premium, Vellees-inspired product experience with:
+
+- **Large hero imagery** (1000x1000px) with zoom cursor
+- **Dark mode mystical glow** effect on product images
+- **Benefits/Intentions section** with elegant icons
+- **Crystal Energy properties** (auto-generated from gemstones)
+- **Enhanced storytelling** sections
+- **Premium spacing** and whitespace
+- **Improved typography** hierarchy
+
+See `docs/premium-product-experience.md` for detailed documentation.
 
 ### Documentation Files
 
 - `CLAUDE.md` — Project-specific guidance for AI agents
+- `CHANGELOG.md` — Version history and release notes
+- `docs/premium-product-experience.md` — Premium features guide
 - `.github/workflows/` — CI/CD configuration
 - `scripts/` — Build and deployment utilities
 

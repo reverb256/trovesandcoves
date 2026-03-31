@@ -22,11 +22,11 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (product.stockQuantity === 0) return;
-    
+
     addToCart(product.id, 1);
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
-    
+
     toast({
       title: "Added to Cart",
       description: product.name,
@@ -57,49 +57,54 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
   return (
     <Card
       data-testid="product-card"
-      className="group cursor-pointer overflow-hidden transition-shadow duration-500 ease-out hover:shadow-2xl"
+      className="product-card-enhanced group cursor-pointer overflow-hidden"
       style={{
         backgroundColor: 'hsl(var(--bg-card))',
         border: featured ? '2px solid hsl(var(--gold-medium))' : '1px solid hsl(var(--border-light))',
-        borderRadius: '8px',
+        borderRadius: '12px',
       }}
       onClick={() => setLocation(`/product/${product.id}`)}
     >
-      {/* Image Container - Luxury Framed */}
-      <div className="relative overflow-hidden" style={{ aspectRatio: '1 / 1.1' }}>
+      {/* Image Container - More Prominent */}
+      <div className="relative overflow-hidden" style={{ aspectRatio: '1 / 1.15' }}>
         <WebPImage
           src={product.imageUrl}
           alt={product.name}
-          width={400}
-          height={440}
+          width={600}
+          height={690}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
           decoding="async"
         />
 
-        {/* Subtle Wishlist Icon - Top Right */}
+        {/* Subtle Gradient Overlay on Hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[hsla(var(--bg-overlay),0.6)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        {/* Wishlist Icon - Top Right */}
         <button
           onClick={handleWishlist}
-          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full transition-transform duration-300 hover:scale-110"
+          className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
           style={{
-            backgroundColor: isWishlisted ? 'hsl(var(--gold-medium))' : 'hsl(var(--bg-card) / 0.9)',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+            backgroundColor: isWishlisted ? 'hsl(var(--gold-medium))' : 'hsla(var(--bg-card),0.9)',
+            boxShadow: '0 2px 12px hsla(0,0%,0%,0.15)',
           }}
           aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
         >
-          <Heart 
-            className="w-4 h-4 transition-colors duration-300" 
-            style={{ 
-              color: isWishlisted ? 'hsl(var(--bg-overlay))' : 'hsl(var(--text-primary))',
-              fill: isWishlisted ? 'hsl(var(--bg-overlay))' : 'none'
-            }} 
+          <Heart
+            className="w-5 h-5 transition-colors duration-300"
+            style={{
+              color: isWishlisted ? 'hsl(var(--bg-card))' : 'hsl(var(--text-primary))',
+              fill: isWishlisted ? 'hsl(var(--bg-card))' : 'none'
+            }}
           />
         </button>
 
         {/* Out of Stock Overlay - Elegant */}
         {isOutOfStock && (
-          <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm" style={{ backgroundColor: 'hsl(var(--bg-card) / 0.8)' }}>
-            <span 
+          <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm"
+            style={{ backgroundColor: 'hsla(var(--bg-card),0.85)' }}
+          >
+            <span
               className="text-sm tracking-widest uppercase"
               style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}
             >
@@ -109,25 +114,26 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
         )}
       </div>
 
-      {/* Content - Clean and Minimal */}
+      {/* Content - More Spacing */}
       <CardContent className="p-6">
         {/* Category - Subtle */}
         {product.category && (
-          <p 
-            className="text-xs tracking-wider uppercase mb-2"
-            style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}
+          <p
+            className="text-xs tracking-wider uppercase mb-3"
+            style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-muted))', letterSpacing: '0.15em' }}
           >
             {product.category.name}
           </p>
         )}
 
         {/* Product Name - Luxury Serif */}
-        <h3 
-          className="text-lg leading-snug mb-3 line-clamp-2 transition-colors duration-300"
-          style={{ 
-            fontFamily: "'Libre Baskerville', serif", 
+        <h3
+          className="text-xl leading-snug mb-4 line-clamp-2 transition-colors duration-300 group-hover:text-[hsl(var(--accent-vibrant))]"
+          style={{
+            fontFamily: "'Libre Baskerville', serif",
             color: 'hsl(var(--text-primary))',
-            fontWeight: 500
+            fontWeight: 500,
+            minHeight: '3rem'
           }}
         >
           {product.name}
@@ -135,26 +141,33 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
 
         {/* Gemstones - Elegant Script Display */}
         {product.gemstones && product.gemstones.length > 0 && (
-          <p 
-            className="text-sm mb-4"
-            style={{ 
-              fontFamily: "'Alex Brush', cursive", 
+          <p
+            className="text-sm mb-5"
+            style={{
+              fontFamily: "'Alex Brush', cursive",
               color: 'hsl(var(--gold-medium))',
-              fontSize: '1.1rem'
+              fontSize: '1.15rem',
+              lineHeight: '1.4'
             }}
           >
-            {product.gemstones.join(", ")}
+            {product.gemstones.join(" • ")}
           </p>
         )}
+
+        {/* Premium Section Divider */}
+        <div className="w-12 h-px mb-5" style={{
+          background: 'linear-gradient(90deg, hsl(var(--skull-turquoise)), hsl(var(--frame-gold)))',
+          opacity: 0.4
+        }} />
 
         {/* Price and Add - Bottom Row */}
         <div className="flex items-center justify-between gap-4">
           {/* Price - Gold Accent */}
-          <span 
-            className="text-xl font-semibold"
-            style={{ 
-              fontFamily: "'Libre Baskerville', serif", 
-              color: 'hsl(var(--gold-medium))' 
+          <span
+            className="text-2xl font-semibold"
+            style={{
+              fontFamily: "'Libre Baskerville', serif",
+              color: 'hsl(var(--gold-medium))'
             }}
           >
             {formatPrice(product.price)}
@@ -164,23 +177,25 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
           <button
             onClick={handleAddToCart}
             disabled={isOutOfStock}
-            className="px-5 py-2.5 text-sm tracking-wider uppercase transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-6 py-3 text-sm tracking-wider uppercase transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg"
             style={{
               fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 500,
+              fontWeight: 600,
               backgroundColor: isAdded ? 'hsl(var(--accent-vibrant))' : 'hsl(var(--text-primary))',
-              color: 'hsl(var(--bg-primary))',
+              color: 'hsl(var(--bg-card))',
               border: 'none',
-              borderRadius: '4px',
+              borderRadius: '6px',
             }}
             onMouseEnter={(e) => {
               if (!isAdded && !isOutOfStock) {
                 e.currentTarget.style.backgroundColor = 'hsl(var(--accent-vibrant))';
+                e.currentTarget.style.transform = 'translateY(-2px)';
               }
             }}
             onMouseLeave={(e) => {
               if (!isAdded && !isOutOfStock) {
                 e.currentTarget.style.backgroundColor = 'hsl(var(--text-primary))';
+                e.currentTarget.style.transform = 'translateY(0)';
               }
             }}
           >
