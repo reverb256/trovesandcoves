@@ -200,12 +200,8 @@ async function generateImageSitemap(products: Product[]): Promise<string> {
 
   products.forEach(product => {
     const url = product.slug ? `/products/${product.slug}` : `/products/${product.id}`;
-
-    // Note: You would need to add imageUrl to the Product type
-    // For now, we'll just add the URL without images
     entries.push(`  <url>
     <loc>${SITE_URL}${url}</loc>
-    <!-- Add image tags here when Product type includes imageUrl -->
   </url>`);
   });
 
