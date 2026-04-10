@@ -27,21 +27,31 @@ interface EtsyProduct {
 /**
  * Scrape detailed product information from an Etsy listing page
  */
-async function scrapeProductDetails(page: any, listingUrl: string): Promise<Partial<EtsyProduct>> {
+async function scrapeProductDetails(
+  page: any,
+  listingUrl: string
+): Promise<Partial<EtsyProduct>> {
   console.log(`  🔍 Scraping details for ${listingUrl}...`);
 
   try {
-    await page.goto(listingUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto(listingUrl, {
+      waitUntil: 'domcontentloaded',
+      timeout: 15000,
+    });
     await page.waitForTimeout(2000);
 
     const details = await page.evaluate(() => {
       // Extract description
-      const descEl = document.querySelector('[data-product-description] p, .wt-text-body-01.wt-break-word');
+      const descEl = document.querySelector(
+        '[data-product-description] p, .wt-text-body-01.wt-break-word'
+      );
       const description = descEl?.textContent?.trim() || '';
 
       // Extract materials
       const materials: string[] = [];
-      const materialTags = document.querySelectorAll('[data-material-tag], a[href*="/materials/"]');
+      const materialTags = document.querySelectorAll(
+        '[data-material-tag], a[href*="/materials/"]'
+      );
       materialTags.forEach(tag => {
         const material = tag.textContent?.trim();
         if (material && !materials.includes(material)) {
@@ -54,13 +64,21 @@ async function scrapeProductDetails(page: any, listingUrl: string): Promise<Part
       const images = document.querySelectorAll('img[src*="etsystatic.com"]');
       images.forEach(img => {
         const imgEl = img as HTMLImageElement;
-        let url = imgEl.getAttribute('data-src') ||
-                  imgEl.src ||
-                  imgEl.getAttribute('srcset')?.split(',').pop()?.trim().split(' ')[0];
+        let url =
+          imgEl.getAttribute('data-src') ||
+          imgEl.src ||
+          imgEl.getAttribute('srcset')?.split(',').pop()?.trim().split(' ')[0];
 
-        if (url && url.includes('etsystatic.com') && !url.includes('75x75') && !url.includes('100x100')) {
+        if (
+          url &&
+          url.includes('etsystatic.com') &&
+          !url.includes('75x75') &&
+          !url.includes('100x100')
+        ) {
           // Convert to full resolution
-          url = url.replace(/_\d+x\d+\./, '_fullxfull.').replace(/-\d+x\d+\./, '-fullxfull.');
+          url = url
+            .replace(/_\d+x\d+\./, '_fullxfull.')
+            .replace(/-\d+x\d+\./, '-fullxfull.');
           if (!imageUrls.includes(url)) {
             imageUrls.push(url);
           }
@@ -68,20 +86,27 @@ async function scrapeProductDetails(page: any, listingUrl: string): Promise<Part
       });
 
       // Extract stock/inventory
-      const stockEl = document.querySelector('[data-in-stock-quantity], .wt-text-title-small');
+      const stockEl = document.querySelector(
+        '[data-in-stock-quantity], .wt-text-title-small'
+      );
       const stockText = stockEl?.textContent || '';
       const stockMatch = stockText.match(/(\d+)\s*(in stock|available)/i);
       const stockQuantity = stockMatch ? parseInt(stockMatch[1]) : 1;
       const inStock = !stockText.toLowerCase().includes('out of stock');
 
       // Extract weight if available
-      const weightEl = document.querySelector('[data-weight], .wt-text-body-secondary:has-text("gram")');
+      const weightEl = document.querySelector(
+        '[data-weight], .wt-text-body-secondary:has-text("gram")'
+      );
       const weightText = weightEl?.textContent || '';
       const weightMatch = weightText.match(/(\d+(?:\.\d+)?)\s*grams?/i);
       const weight = weightMatch ? `${weightMatch[1]} grams` : undefined;
 
       // Try to determine category from title/description
-      const title = document.querySelector('h1, [data-product-title]')?.textContent?.toLowerCase() || '';
+      const title =
+        document
+          .querySelector('h1, [data-product-title]')
+          ?.textContent?.toLowerCase() || '';
       const descLower = description.toLowerCase();
 
       let category: string | undefined;
@@ -102,7 +127,7 @@ async function scrapeProductDetails(page: any, listingUrl: string): Promise<Part
         stockQuantity,
         inStock,
         weight,
-        category
+        category,
       };
     });
 
@@ -121,7 +146,7 @@ async function scrapeShopProducts(page: any): Promise<EtsyProduct[]> {
 
   await page.goto(ETSY_SHOP_URL, {
     waitUntil: 'domcontentloaded',
-    timeout: 30000
+    timeout: 30000,
   });
 
   console.log('⏳ Waiting for page content...');
@@ -140,9 +165,11 @@ async function scrapeShopProducts(page: any): Promise<EtsyProduct[]> {
   const products = await page.evaluate(() => {
     const results: any[] = [];
 
-    const listingLinks = Array.from(document.querySelectorAll('a[href*="/listing/"]'));
+    const listingLinks = Array.from(
+      document.querySelectorAll('a[href*="/listing/"]')
+    );
 
-    listingLinks.forEach((link) => {
+    listingLinks.forEach(link => {
       const anchor = link as HTMLAnchorElement;
       const href = anchor.href;
 
@@ -156,7 +183,9 @@ async function scrapeShopProducts(page: any): Promise<EtsyProduct[]> {
       if (results.some(p => p.listingUrl === href)) return;
 
       // Find image in this card
-      const card = anchor.closest('.wt-listing-card, [data-listing-id], [data-Listing-id]');
+      const card = anchor.closest(
+        '.wt-listing-card, [data-listing-id], [data-Listing-id]'
+      );
       const img = card?.querySelector('img') || anchor.querySelector('img');
 
       if (!img) return;
@@ -164,9 +193,10 @@ async function scrapeShopProducts(page: any): Promise<EtsyProduct[]> {
       const imgEl = img as HTMLImageElement;
 
       // Get image URL
-      let imgUrl = imgEl.getAttribute('data-src') ||
-                   imgEl.getAttribute('srcset')?.split(',').pop()?.trim().split(' ')[0] ||
-                   imgEl.src;
+      let imgUrl =
+        imgEl.getAttribute('data-src') ||
+        imgEl.getAttribute('srcset')?.split(',').pop()?.trim().split(' ')[0] ||
+        imgEl.src;
 
       if (!imgUrl || !imgUrl.includes('etsystatic.com')) return;
 
@@ -179,10 +209,11 @@ async function scrapeShopProducts(page: any): Promise<EtsyProduct[]> {
       if (imgUrl.includes('75x75') || imgUrl.includes('100x100')) return;
 
       // Get title
-      const title = imgEl.alt ||
-                    anchor.getAttribute('aria-label') ||
-                    card?.querySelector('[data-listing-title]')?.textContent ||
-                    `Product ${results.length + 1}`;
+      const title =
+        imgEl.alt ||
+        anchor.getAttribute('aria-label') ||
+        card?.querySelector('[data-listing-title]')?.textContent ||
+        `Product ${results.length + 1}`;
 
       // Get price
       const priceEl = card?.querySelector('[data-price], .wt-text-title-lg');
@@ -193,7 +224,8 @@ async function scrapeShopProducts(page: any): Promise<EtsyProduct[]> {
       const numericPrice = priceMatch ? priceMatch[1].replace(',', '') : '0.00';
 
       // Determine stock status
-      const outOfStock = card?.textContent?.toLowerCase().includes('out of stock') || false;
+      const outOfStock =
+        card?.textContent?.toLowerCase().includes('out of stock') || false;
 
       results.push({
         listingUrl: href,
@@ -206,7 +238,7 @@ async function scrapeShopProducts(page: any): Promise<EtsyProduct[]> {
         inStock: !outOfStock,
         description: '',
         materials: [],
-        gemstones: []
+        gemstones: [],
       });
     });
 
@@ -247,20 +279,23 @@ export async function syncEtsyProducts(storage: MemStorage): Promise<{
 
   try {
     // Launch browser
-    browser = await chromium.launch({
-      channel: 'chrome',
-      headless: false,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    }).catch(async () => {
-      return await chromium.launch({
-        executablePath: '/run/current-system/sw/bin/chromium',
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    browser = await chromium
+      .launch({
+        channel: 'chrome',
+        headless: false,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      })
+      .catch(async () => {
+        return await chromium.launch({
+          executablePath: '/run/current-system/sw/bin/chromium',
+          headless: true,
+          args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        });
       });
-    });
 
     const context = await browser.newContext({
-      userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+      userAgent:
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
       viewport: { width: 1920, height: 1080 },
     });
 
@@ -284,7 +319,9 @@ export async function syncEtsyProducts(storage: MemStorage): Promise<{
       productsWithDetails.push({
         ...product,
         ...details,
-        imageUrls: details.imageUrls?.length ? details.imageUrls : [product.imageUrl]
+        imageUrls: details.imageUrls?.length
+          ? details.imageUrls
+          : [product.imageUrl],
       });
 
       console.log('');
@@ -299,13 +336,14 @@ export async function syncEtsyProducts(storage: MemStorage): Promise<{
     // Update or add products
     for (const etsyProduct of productsWithDetails) {
       // Check if product exists by listing URL
-      const existingProduct = currentProducts.find(p =>
-        p.listingUrl === etsyProduct.listingUrl
+      const existingProduct = currentProducts.find(
+        p => p.listingUrl === etsyProduct.listingUrl
       );
 
       // Generate product ID and slug
       const slug = generateSlug(etsyProduct.title);
-      const productId = existingProduct?.id || Date.now() + Math.floor(Math.random() * 1000);
+      const productId =
+        existingProduct?.id || Date.now() + Math.floor(Math.random() * 1000);
 
       // Get or create category
       const categoryName = etsyProduct.category || 'Crystal Jewelry';
@@ -316,21 +354,31 @@ export async function syncEtsyProducts(storage: MemStorage): Promise<{
       const productData = {
         id: productId,
         name: etsyProduct.title,
-        description: etsyProduct.description || `Handcrafted ${etsyProduct.title.toLowerCase()}`,
+        description:
+          etsyProduct.description ||
+          `Handcrafted ${etsyProduct.title.toLowerCase()}`,
         price: etsyProduct.price,
         imageUrl: etsyProduct.imageUrl,
         imageUrls: etsyProduct.imageUrls,
-        category: categoryId ? { id: categoryId, name: categoryName, slug, description: '' } : null,
+        category: categoryId
+          ? { id: categoryId, name: categoryName, slug, description: '' }
+          : null,
         categoryId: categoryId,
         slug,
-        materials: etsyProduct.materials.length ? etsyProduct.materials : ['14k gold-plated', 'genuine crystals'],
+        materials: etsyProduct.materials.length
+          ? etsyProduct.materials
+          : ['14k gold-plated', 'genuine crystals'],
         gemstones: etsyProduct.gemstones,
         weight: etsyProduct.weight,
         stockQuantity: etsyProduct.stockQuantity,
         inStock: etsyProduct.inStock,
         featured: true,
         listingUrl: etsyProduct.listingUrl,
-        createdAt: existingProduct?.createdAt ? (typeof existingProduct.createdAt === 'string' ? new Date(existingProduct.createdAt) : existingProduct.createdAt) : new Date()
+        createdAt: existingProduct?.createdAt
+          ? typeof existingProduct.createdAt === 'string'
+            ? new Date(existingProduct.createdAt)
+            : existingProduct.createdAt
+          : new Date(),
       };
 
       if (existingProduct) {
@@ -347,8 +395,8 @@ export async function syncEtsyProducts(storage: MemStorage): Promise<{
     }
 
     // Remove products that are no longer in Etsy
-    const productsToRemove = currentProducts.filter(p =>
-      p.listingUrl && !etsyListingUrls.has(p.listingUrl)
+    const productsToRemove = currentProducts.filter(
+      p => p.listingUrl && !etsyListingUrls.has(p.listingUrl)
     );
 
     for (const product of productsToRemove) {
@@ -368,9 +416,8 @@ export async function syncEtsyProducts(storage: MemStorage): Promise<{
       added,
       updated,
       removed,
-      total: finalProducts.length
+      total: finalProducts.length,
     };
-
   } catch (error) {
     console.error('❌ Sync error:', error);
     throw error;

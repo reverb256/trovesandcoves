@@ -1,11 +1,11 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"name": "reverb256.github.io",
-			"path": "../reverb256.github.io"
-		}
-	]
+  "folders": [
+    {
+      "path": ".",
+    },
+    {
+      "name": "reverb256.github.io",
+      "path": "../reverb256.github.io",
+    },
+  ],
 }

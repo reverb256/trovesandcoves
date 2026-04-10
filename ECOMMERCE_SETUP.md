@@ -5,6 +5,7 @@ This guide will help you set up the complete e-commerce functionality for Troves
 ## Overview
 
 The e-commerce system consists of:
+
 - ✅ **Order Creation API** - POST /api/orders (Complete)
 - ✅ **Order Retrieval API** - GET /api/orders/:id (Complete)
 - ✅ **Order Status Update** - POST /api/orders/:id/status (Complete)
@@ -47,14 +48,19 @@ npm run db:push
 
 1. Install PostgreSQL locally
 2. Create a database:
+
 ```bash
 createdb trovesandcoves
 ```
+
 3. Update DATABASE_URL in .env:
+
 ```bash
 DATABASE_URL=postgresql://postgres:password@localhost:5432/trovesandcoves
 ```
+
 4. Run migrations:
+
 ```bash
 npm run db:push
 ```
@@ -90,6 +96,7 @@ VITE_STRIPE_PUBLIC_KEY=pk_test_your_stripe_publishable_key_here
 2. Add endpoint: `https://your-domain.com/api/webhooks/stripe`
 3. Select events: `payment_intent.succeeded`, `payment_intent.payment_failed`
 4. Copy the webhook secret and add to .env:
+
 ```bash
 STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 ```
@@ -121,15 +128,18 @@ NODE_ENV=production npm start
 ## Testing the E-Commerce Flow
 
 ### 1. Browse Products
+
 - Navigate to `http://localhost:5000/products`
 - Browse through different categories
 
 ### 2. Add to Cart
+
 - Click on any product
 - Click "Add to Cart"
 - Check cart in the drawer
 
 ### 3. Checkout Process
+
 1. Go to Cart
 2. Click "Proceed to Checkout"
 3. Fill in:
@@ -144,6 +154,7 @@ NODE_ENV=production npm start
 5. Click "Complete Order"
 
 ### 4. Order Confirmation
+
 - After successful payment, you'll be redirected to `/order-confirmation`
 - You'll see:
   - Order number
@@ -155,19 +166,23 @@ NODE_ENV=production npm start
 ## API Endpoints
 
 ### Orders
+
 - `POST /api/orders` - Create a new order
 - `GET /api/orders/:id` - Get order details
 - `POST /api/orders/:id/status` - Update order status
 
 ### Payment
+
 - `POST /api/create-payment-intent` - Create Stripe payment intent
 
 ### Products
+
 - `GET /api/products` - List all products (with optional category filter)
 - `GET /api/products/:id` - Get single product
 - `GET /api/products/featured` - Get featured products
 
 ### Cart
+
 - `GET /api/cart` - Get cart items
 - `POST /api/cart` - Add item to cart
 - `PUT /api/cart/:id` - Update cart item quantity
@@ -176,6 +191,7 @@ NODE_ENV=production npm start
 ## Database Schema
 
 ### Orders Table
+
 - `id` - Auto-increment ID
 - `sessionId` - Session identifier
 - `userId` - User ID (if logged in)
@@ -190,6 +206,7 @@ NODE_ENV=production npm start
 - `createdAt` - Order creation timestamp
 
 ### Order Items Table
+
 - `id` - Auto-increment ID
 - `orderId` - Reference to orders table
 - `productId` - Reference to products table
@@ -201,6 +218,7 @@ NODE_ENV=production npm start
 ### GitHub Pages + Cloudflare Workers (Recommended for Free Hosting)
 
 1. **Frontend to GitHub Pages:**
+
    ```bash
    npm run build:github-pages
    npm run deploy:github-pages
@@ -228,21 +246,25 @@ NODE_ENV=production npm start
 ## Troubleshooting
 
 ### Database Connection Issues
+
 - Ensure DATABASE_URL is correct
 - Check if PostgreSQL is running
 - Verify SSL settings in connection string
 
 ### Stripe Payment Errors
+
 - Ensure STRIPE_SECRET_KEY is correct
 - Check that API keys match the mode (test vs live)
 - Verify webhook configuration (if using webhooks)
 
 ### Order Not Creating
+
 - Check if cart has items
 - Verify all required fields are filled
 - Check server logs for error messages
 
 ### Build Errors
+
 - Clear node_modules and reinstall:
   ```bash
   rm -rf node_modules package-lock.json
@@ -252,6 +274,7 @@ NODE_ENV=production npm start
 ## Support
 
 For issues or questions:
+
 - Check the [GitHub Issues](https://github.com/reverb256/trovesandcoves/issues)
 - Contact support@trovesandcoves.ca
 

@@ -8,29 +8,36 @@ import {
   SLOW_DOWN_AFTER,
   SLOW_DOWN_DELAY_MS,
   SESSION_SECRET,
-  SESSION_MAX_AGE
+  SESSION_MAX_AGE,
 } from '../../shared/config';
 
 // OWASP A02: Cryptographic Failures - Secure headers
 export const securityHeaders = helmet({
-  contentSecurityPolicy: process.env.NODE_ENV === 'production' ? {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-      fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-      imgSrc: ["'self'", 'data:', 'https:', 'blob:'],
-      scriptSrc: ["'self'"],
-      connectSrc: ["'self'", 'https:'],
-      frameSrc: ["'none'"],
-      objectSrc: ["'none'"],
-      mediaSrc: ["'self'", 'data:', 'blob:'],
-      workerSrc: ["'self'"],
-      childSrc: ["'none'"],
-      formAction: ["'self'"],
-      frameAncestors: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  } : false, // Disable CSP in development for Vite HMR
+  contentSecurityPolicy:
+    process.env.NODE_ENV === 'production'
+      ? {
+          directives: {
+            defaultSrc: ["'self'"],
+            styleSrc: [
+              "'self'",
+              "'unsafe-inline'",
+              'https://fonts.googleapis.com',
+            ],
+            fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+            imgSrc: ["'self'", 'data:', 'https:', 'blob:'],
+            scriptSrc: ["'self'"],
+            connectSrc: ["'self'", 'https:'],
+            frameSrc: ["'none'"],
+            objectSrc: ["'none'"],
+            mediaSrc: ["'self'", 'data:', 'blob:'],
+            workerSrc: ["'self'"],
+            childSrc: ["'none'"],
+            formAction: ["'self'"],
+            frameAncestors: ["'none'"],
+            upgradeInsecureRequests: [],
+          },
+        }
+      : false, // Disable CSP in development for Vite HMR
   hsts: {
     maxAge: 31536000,
     includeSubDomains: true,
@@ -47,7 +54,7 @@ export const generalRateLimit = rateLimit({
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
-  skip: (req) => {
+  skip: req => {
     // Skip rate limiting for development and static assets
     if (process.env.NODE_ENV !== 'production') return true;
     // Skip for HMR requests
@@ -78,7 +85,11 @@ export const sessionConfig = {
 };
 
 // Security logger
-export const securityLogger = (_req: Request, res: Response, next: NextFunction) => {
+export const securityLogger = (
+  _req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const start = Date.now();
   (res as Response & { startTime?: number }).startTime = start;
 
@@ -87,9 +98,10 @@ export const securityLogger = (_req: Request, res: Response, next: NextFunction)
 
 // Input sanitization
 const sanitizeString = (str: string): string => {
-  return str.replace(/<script[^>]*>.*?<\/script>/gi, '')
-            .replace(/javascript:/gi, '')
-            .replace(/on\w+\s*=/gi, '');
+  return str
+    .replace(/<script[^>]*>.*?<\/script>/gi, '')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+\s*=/gi, '');
 };
 
 const sanitizeObject = (obj: unknown): unknown => {
@@ -107,7 +119,11 @@ const sanitizeObject = (obj: unknown): unknown => {
   return obj;
 };
 
-export const sanitizeInput = (req: Request, _res: Response, next: NextFunction) => {
+export const sanitizeInput = (
+  req: Request,
+  _res: Response,
+  next: NextFunction
+) => {
   // Basic sanitization - remove potentially dangerous characters
   if (req.body) {
     req.body = sanitizeObject(req.body);
@@ -136,7 +152,7 @@ export const validateInput = (fields: string[]) => {
         const sqlPatterns = [
           /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|UNION)\b)/i,
           /(--)|;|\/\*|\*\//,
-          /(\bOR\s+[\w\s]*=\s*[\w\s]*\b)/i
+          /(\bOR\s+[\w\s]*=\s*[\w\s]*\b)/i,
         ];
 
         for (const pattern of sqlPatterns) {

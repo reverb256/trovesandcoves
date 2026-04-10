@@ -3,12 +3,12 @@ name: Deploy to GitHub Pages
 # Triggered when prod branch is updated
 on:
   push:
-    branches: [ prod ]
+    branches: [prod]
   workflow_dispatch:
 
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: true
 
 permissions:

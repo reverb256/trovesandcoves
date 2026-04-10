@@ -85,7 +85,13 @@ export interface Order {
   shippingAddress?: string | null;
   billingAddress?: string | null;
   totalAmount: string;
-  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled' | string;
+  status:
+    | 'pending'
+    | 'processing'
+    | 'shipped'
+    | 'delivered'
+    | 'cancelled'
+    | string;
   currency: string;
   createdAt: Date;
   updatedAt: Date;
@@ -170,9 +176,15 @@ export type InsertCategory = Omit<Category, 'id'>;
 export type InsertCartItem = Omit<CartItem, 'id' | 'product' | 'createdAt'>;
 export type InsertOrder = Omit<Order, 'id' | 'createdAt' | 'updatedAt'>;
 export type InsertOrderItem = Omit<OrderItem, 'id' | 'product'>;
-export type InsertContactSubmission = Omit<ContactSubmission, 'id' | 'createdAt'>;
+export type InsertContactSubmission = Omit<
+  ContactSubmission,
+  'id' | 'createdAt'
+>;
 export type InsertUser = Omit<User, 'id' | 'createdAt' | 'updatedAt'>;
-export type InsertNewsletterSubscription = Omit<NewsletterSubscription, 'id' | 'discountCode' | 'subscribedAt' | 'isActive'>;
+export type InsertNewsletterSubscription = Omit<
+  NewsletterSubscription,
+  'id' | 'discountCode' | 'subscribedAt' | 'isActive'
+>;
 
 // ============================================================================
 // Extended Types (with relations) - more flexible
@@ -189,11 +201,11 @@ export type OrderWithItems = Order & { items?: OrderItem[] };
 import { z } from 'zod';
 
 export const insertContactSubmissionSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Invalid email address'),
   phone: z.string().optional(),
   subject: z.string().optional(),
-  message: z.string().min(1, "Message is required"),
+  message: z.string().min(1, 'Message is required'),
   preferredDate: z.string().optional(),
   isConsultation: z.boolean().optional().default(false),
 });
@@ -224,7 +236,11 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  updateUserStripeInfo(userId: number, customerId: string, subscriptionId?: string | null): Promise<User>;
+  updateUserStripeInfo(
+    userId: number,
+    customerId: string,
+    subscriptionId?: string | null
+  ): Promise<User>;
 
   // Category operations
   getCategories(): Promise<Category[]>;
@@ -255,11 +271,17 @@ export interface IStorage {
   updateOrderStatus(id: number, status: string): Promise<Order>;
 
   // Contact operations
-  createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
+  createContactSubmission(
+    submission: InsertContactSubmission
+  ): Promise<ContactSubmission>;
   getContactSubmissions(): Promise<ContactSubmission[]>;
 
   // Newsletter operations
-  createNewsletterSubscription(subscription: InsertNewsletterSubscription): Promise<NewsletterSubscription>;
-  getNewsletterSubscriptionByEmail(email: string): Promise<NewsletterSubscription | undefined>;
+  createNewsletterSubscription(
+    subscription: InsertNewsletterSubscription
+  ): Promise<NewsletterSubscription>;
+  getNewsletterSubscriptionByEmail(
+    email: string
+  ): Promise<NewsletterSubscription | undefined>;
   getNewsletterSubscriptions(): Promise<NewsletterSubscription[]>;
 }

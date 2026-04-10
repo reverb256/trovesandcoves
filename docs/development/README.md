@@ -12,12 +12,14 @@
 ### Environment Setup
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/reverb256/trovesandcoves.git
    cd trovesandcoves
    ```
 
 2. **Install dependencies**:
+
    ```bash
    npm install
    ```
@@ -28,6 +30,7 @@
    ```
 
 The site will be available at:
+
 - Frontend: `http://localhost:5173`
 - API: `http://localhost:5000`
 
@@ -38,6 +41,7 @@ The site will be available at:
 This is a **static showcase site** with the following architecture:
 
 **Frontend**:
+
 - **Location**: `src/` (Vite root is `./client`)
 - **Framework**: React 18 with TypeScript
 - **Styling**: Tailwind CSS with Material You-inspired design
@@ -45,12 +49,14 @@ This is a **static showcase site** with the following architecture:
 - **Routing**: None currently (single-page app)
 
 **Backend (Development)**:
+
 - **Location**: `server/`
 - **Runtime**: Node.js with Express
 - **Storage**: In-memory (MemStorage class)
 - **Session**: express-session for cart management
 
 **Backend (Production - Optional)**:
+
 - **Runtime**: Cloudflare Workers (if configured)
 - **Storage**: Cloudflare KV (if configured)
 - **Note**: Currently uses GitHub Pages for static hosting only
@@ -93,6 +99,7 @@ shared/
 ### What Does NOT Exist
 
 The following are planned but not implemented:
+
 - ❌ No database (uses in-memory storage with seeded data)
 - ❌ No payment processing (redirects to Etsy for purchases)
 - ❌ No user authentication
@@ -103,6 +110,7 @@ See [ROADMAP.md](../../ROADMAP.md) for planned features.
 ## 📂 File Structure
 
 ### Frontend Structure
+
 ```
 client/src/
 ├── components/          # React components
@@ -121,6 +129,7 @@ client/src/
 ```
 
 ### Backend Structure
+
 ```
 server/
 ├── index.ts            # Express server with Vite HMR
@@ -133,6 +142,7 @@ server/
 ## 🔧 Development Commands
 
 ### Core Commands
+
 ```bash
 npm run dev              # Start dev server (frontend + backend on port 5000)
 npm run build           # Build for production
@@ -141,6 +151,7 @@ npm run check           # TypeScript type checking
 ```
 
 ### Testing Commands
+
 ```bash
 npm run test            # Run Vitest unit tests
 npm run test:e2e        # Run Playwright e2e tests
@@ -148,12 +159,14 @@ npm run test:all        # Run all tests
 ```
 
 ### Code Quality Commands
+
 ```bash
 npm run lint            # Run ESLint
 npm run format          # Format with Prettier
 ```
 
 ### Deployment Commands
+
 ```bash
 # GitHub Actions deploys automatically on push to main
 # To manually trigger:
@@ -164,6 +177,7 @@ npm run format          # Format with Prettier
 ## 🔄 Development Workflow
 
 ### 1. Feature Development
+
 ```bash
 # Create feature branch
 git checkout -b feature/new-feature
@@ -180,6 +194,7 @@ git push origin feature/new-feature
 ```
 
 ### 2. Before Committing
+
 ```bash
 # Type check
 npm run check
@@ -195,6 +210,7 @@ npm run test
 ```
 
 ### 3. Testing Production Build
+
 ```bash
 # Build
 npm run build
@@ -206,13 +222,16 @@ npm run preview
 ## 🌐 API Development
 
 ### Local API Server
+
 The development server runs on `http://localhost:5000` with:
+
 - Express.js backend
 - In-memory product storage
 - Session-based cart
 - Basic API routes
 
 ### Current API Endpoints
+
 - `GET /api/products` - List all products
 - `GET /api/products/:id` - Get single product
 - `GET /api/categories` - List categories
@@ -222,14 +241,18 @@ The development server runs on `http://localhost:5000` with:
 - `POST /api/contact` - Submit contact form
 
 ### Production Note
+
 In production, the site is **static** with:
+
 - No API server (GitHub Pages hosting)
 - Data embedded in the build
 - Cart using localStorage
 - Purchase redirects to Etsy
 
 ### Optional Cloudflare Worker
+
 A Cloudflare Worker exists for **Etsy product synchronization**:
+
 - Location: `cloudflare/etsy-sync-worker.ts`
 - Purpose: Sync products from Etsy API
 - Triggered: Cron job or manual
@@ -252,12 +275,14 @@ The site features a premium, Vellees-inspired product experience with:
 See `../premium-product-experience.md` for detailed documentation.
 
 ### Component Library
+
 - **Base Components**: shadcn/ui in `components/ui/`
 - **Custom Components**: Application-specific components
 - **Styling**: Tailwind CSS with custom design system
 - **Premium Utilities**: CSS classes in `index.css`
 
 ### Design System
+
 ```css
 /* Brand Colors - Turquoise & Gold */
 --troves-turquoise: #3a8e8b;
@@ -269,18 +294,22 @@ See `../premium-product-experience.md` for detailed documentation.
 ```
 
 ### Tailwind Classes
+
 - Backgrounds: `bg-surface-50`, `bg-surface-100`, etc.
 - Text: `text-on-surface`, `text-on-surface-variant`, etc.
 - Primary: `text-primary-600`, `bg-primary-600`, etc.
 
 ### Responsive Design
+
 - Mobile-first approach
 - Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
 
 ## 🔧 Configuration
 
 ### Path Aliases
+
 Configured in both `tsconfig.json` and `vite.config.ts`:
+
 ```typescript
 "@/*": "./client/src/*"
 "@shared/*": "./shared/*"
@@ -288,12 +317,14 @@ Configured in both `tsconfig.json` and `vite.config.ts`:
 ```
 
 ### Build Configuration
+
 - **Vite**: Frontend build tool
 - **TypeScript**: Type checking
 - **Tailwind**: CSS processing
 - **ESBuild**: Backend bundling (if needed)
 
 ### Vite Configuration
+
 - Root: `./client`
 - OutDir: `./dist/public`
 - Base path: `/trovesandcoves/` (for GitHub Pages)
@@ -301,11 +332,13 @@ Configured in both `tsconfig.json` and `vite.config.ts`:
 ## 🐛 Debugging
 
 ### Frontend Debugging
+
 - **React DevTools**: Browser extension
 - **Console**: Standard browser console
 - **Source Maps**: Enabled in development
 
 ### Backend Debugging
+
 - **VS Code Debugger**: Attach to Node.js process
 - **Console Logs**: Server logs in terminal
 - **Network Tab**: Inspect API requests
@@ -313,6 +346,7 @@ Configured in both `tsconfig.json` and `vite.config.ts`:
 ### Common Issues
 
 #### Build Failures
+
 ```bash
 # Clear cache and reinstall
 rm -rf node_modules package-lock.json
@@ -320,6 +354,7 @@ npm install
 ```
 
 #### TypeScript Errors
+
 ```bash
 # Check types
 npm run check
@@ -328,6 +363,7 @@ npm run check
 ```
 
 #### Port Already in Use
+
 ```bash
 # Kill process on port 5000
 npx kill-port 5000
@@ -339,6 +375,7 @@ PORT=3000 npm run dev
 ## 📚 Resources
 
 ### Documentation
+
 - [React Documentation](https://react.dev/)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
@@ -346,11 +383,13 @@ PORT=3000 npm run dev
 - [shadcn/ui](https://ui.shadcn.com/)
 
 ### Tools
+
 - [VS Code](https://code.visualstudio.com/)
 - [React DevTools](https://chrome.google.com/webstore/detail/react-developer-tools)
 - [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/)
 
 ### Internal Docs
+
 - [../premium-product-experience.md](../premium-product-experience.md) - Premium features guide
 - [ROADMAP.md](../../ROADMAP.md) - Planned features
 - [TECHNICAL_DEBT.md](../../TECHNICAL_DEBT.md) - Known issues

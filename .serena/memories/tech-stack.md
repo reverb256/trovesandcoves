@@ -3,12 +3,14 @@
 ## Frontend
 
 ### Core
+
 - **React 18.3.1** - UI library
 - **TypeScript 5.6.3** - Type safety (strict mode enabled)
 - **Vite 5.4.14** - Build tool and dev server
 - **Wouter 3.3.5** - Lightweight routing
 
 ### UI Components & Styling
+
 - **shadcn/ui** - Component library (Radix UI primitives)
 - **Tailwind CSS 3.4.17** - Utility-first styling
 - **Framer Motion 11.18.2** - Animations
@@ -17,6 +19,7 @@
 - **Material You** design system inspiration
 
 ### State & Data
+
 - **@tanstack/react-query 5.60.5** - Server state management
 - **react-hook-form 7.55.0** - Form handling
 - **@hookform/resolvers 3.10.0** - Form validation
@@ -25,10 +28,12 @@
 ## Backend (Development Only)
 
 ### Core
+
 - **Express 4.21.2** - Web server
 - **TypeScript** - Type safety
 
 ### Security
+
 - **helmet 8.1.0** - Security headers
 - **express-rate-limit 7.5.0** - Rate limiting
 - **express-slow-down 2.1.0** - Slow down protection
@@ -39,33 +44,39 @@
 - **passport 0.7.0** - Authentication (stub)
 
 ### Session
+
 - **express-session 1.18.1** - Session management
 - **memorystore 1.6.7** - Memory-based session store
 - **connect-pg-simple 10.0.0** - PostgreSQL session store (unused)
 
 ### Database (Unused)
+
 - **drizzle-orm 0.39.1** - ORM
 - **@neondatabase/serverless 0.10.4** - Neon PostgreSQL client
 - **drizzle-zod 0.7.0** - Zod integration
 - Schema defined in shared/schema.ts but NOT connected
 
 ### Payments (Stub)
+
 - **stripe 18.2.1** - Only runs when STRIPE_SECRET_KEY is set
 - **@stripe/stripe-js 7.3.1** - Frontend Stripe SDK
 - **@stripe/react-stripe-js 3.7.0** - React Stripe components
 
 ### Logging
+
 - **winston 3.17.0** - Logging library
 
 ## Deployment
 
 ### Cloudflare Workers
+
 - **wrangler 4.19.1** - Cloudflare Workers CLI
 - **ws 8.18.0** - WebSocket
 
 ## Testing
 
 ### Unit Testing
+
 - **Vitest 3.2.4** - Unit test framework
 - **@testing-library/react 16.3.0** - React testing utilities
 - **@testing-library/user-event 14.6.1** - User interaction simulation
@@ -73,6 +84,7 @@
 - **@vitest/coverage-v8 3.2.4** - Code coverage
 
 ### E2E Testing
+
 - **Playwright 1.53.1** - E2E testing
 - **axe-playwright 2.1.0** - Accessibility testing
 

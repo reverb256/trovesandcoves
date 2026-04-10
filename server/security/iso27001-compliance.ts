@@ -9,19 +9,27 @@ export class SecureDevelopmentManager {
   /**
    * Validates incoming requests for suspicious patterns
    */
-  static validateSecureHeaders = (_req: Request, _res: Response, next: NextFunction) => {
+  static validateSecureHeaders = (
+    _req: Request,
+    _res: Response,
+    next: NextFunction
+  ) => {
     next();
   };
 
   /**
    * Performs basic input validation to prevent XSS and SQL injection
    */
-  static performInputValidation = (req: Request, res: Response, next: NextFunction) => {
+  static performInputValidation = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     const suspiciousPatterns = [
       /<script[^>]*>/i,
       /javascript:/i,
       /on\w+\s*=/i,
-      /(\b(SELECT|INSERT|UPDATE|DELETE|DROP)\b)/i
+      /(\b(SELECT|INSERT|UPDATE|DELETE|DROP)\b)/i,
     ];
 
     const checkObject = (obj: unknown): boolean => {

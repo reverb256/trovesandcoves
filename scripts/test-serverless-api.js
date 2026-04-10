@@ -2,7 +2,7 @@ const API_BASE_URL = 'http://localhost:3000';
 
 async function testEndpoint(endpoint, method = 'GET', body = null) {
   const sessionId = `test_${Date.now()}`;
-  
+
   const options = {
     method,
     headers: {
@@ -19,11 +19,11 @@ async function testEndpoint(endpoint, method = 'GET', body = null) {
     console.log(`Testing ${method} ${endpoint}...`);
     const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
     const data = await response.json();
-    
+
     console.log(`✅ Status: ${response.status}`);
     console.log(`📄 Response:`, JSON.stringify(data, null, 2));
     console.log('---');
-    
+
     return { success: response.ok, data };
   } catch (error) {
     console.log(`❌ Error: ${error.message}`);
@@ -43,7 +43,7 @@ async function runTests() {
 
   const cartResult = await testEndpoint('/api/cart', 'POST', {
     productId: 1,
-    quantity: 2
+    quantity: 2,
   });
 
   if (cartResult.success) {
@@ -57,12 +57,12 @@ async function runTests() {
     name: 'Test User',
     email: 'test@example.com',
     subject: 'Test Message',
-    message: 'This is a test message from the API test script.'
+    message: 'This is a test message from the API test script.',
   });
 
   await testEndpoint('/api/payments/create-intent', 'POST', {
-    amount: 50.00,
-    currency: 'cad'
+    amount: 50.0,
+    currency: 'cad',
   });
 
   console.log('🏁 Serverless API Tests Complete!');

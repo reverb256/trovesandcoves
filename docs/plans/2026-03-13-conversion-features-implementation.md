@@ -13,6 +13,7 @@
 ## Task 1: Create wishlist storage utilities
 
 **Files:**
+
 - Create: `client/src/lib/wishlist.ts`
 
 **Step 1: Write the wishlist storage utility**
@@ -121,6 +122,7 @@ Expected: No errors (new file with no dependencies yet)
 ## Task 2: Create WishlistButton component
 
 **Files:**
+
 - Create: `client/src/components/products/WishlistButton.tsx`
 
 **Step 1: Write the WishlistButton component**
@@ -189,9 +191,7 @@ export function WishlistButton({
         size={showLabel ? 18 : 20}
       />
       {showLabel && (
-        <span className="text-sm">
-          {isWishlisted ? 'Saved' : 'Save'}
-        </span>
+        <span className="text-sm">{isWishlisted ? 'Saved' : 'Save'}</span>
       )}
     </button>
   );
@@ -222,6 +222,7 @@ git commit -m "feat: add wishlist functionality
 ## Task 3: Add WishlistButton to ProductCard
 
 **Files:**
+
 - Modify: `client/src/components/ProductCard.tsx`
 
 **Step 1: Read current ProductCard structure**
@@ -233,6 +234,7 @@ Note the current component structure and where add to cart button is
 **Step 2: Add WishlistButton import and usage**
 
 Add import at top:
+
 ```tsx
 import { WishlistButton } from './products/WishlistButton';
 ```
@@ -265,11 +267,13 @@ git commit -m "feat: add wishlist button to product cards"
 ## Task 4: Add WishlistButton to ProductDetail page
 
 **Files:**
+
 - Modify: `client/src/pages/ProductDetail.tsx`
 
 **Step 1: Add WishlistButton to product detail**
 
 Add import:
+
 ```tsx
 import { WishlistButton } from '@/components/products/WishlistButton';
 ```
@@ -305,6 +309,7 @@ git commit -m "feat: add wishlist button to product detail page"
 ## Task 5: Add wishlist icon to header with count
 
 **Files:**
+
 - Modify: `client/src/components/Header.tsx` (or similar header component)
 
 **Step 1: Find header component**
@@ -316,6 +321,7 @@ Read the file to understand current structure
 **Step 2: Add wishlist state and button**
 
 Add state in header component:
+
 ```tsx
 const [wishlistCount, setWishlistCount] = useState(0);
 
@@ -336,6 +342,7 @@ useEffect(() => {
 ```
 
 Add wishlist icon button (near cart icon):
+
 ```tsx
 <Link to="/wishlist" className="relative p-2 hover:bg-surface-100 rounded-full">
   <Heart
@@ -368,6 +375,7 @@ git commit -m "feat: add wishlist icon to header with item count"
 ## Task 6: Create StockBadge component
 
 **Files:**
+
 - Create: `client/src/components/products/StockBadge.tsx`
 
 **Step 1: Write the StockBadge component**
@@ -445,11 +453,13 @@ git commit -m "feat: add StockBadge component
 ## Task 7: Add StockBadge to ProductCard
 
 **Files:**
+
 - Modify: `client/src/components/ProductCard.tsx`
 
 **Step 1: Add StockBadge to product card**
 
 Add import:
+
 ```tsx
 import { StockBadge } from './products/StockBadge';
 ```
@@ -483,11 +493,13 @@ git commit -m "feat: add stock badge to product cards"
 ## Task 8: Add StockBadge to ProductDetail page
 
 **Files:**
+
 - Modify: `client/src/pages/ProductDetail.tsx`
 
 **Step 1: Add StockBadge to product detail**
 
 Add import:
+
 ```tsx
 import { StockBadge } from '@/components/products/StockBadge';
 ```
@@ -518,6 +530,7 @@ git commit -m "feat: add stock badge to product detail page"
 ## Task 9: Create QuickViewModal component
 
 **Files:**
+
 - Create: `client/src/components/products/QuickViewModal.tsx`
 
 **Step 1: Write the QuickViewModal component**
@@ -526,11 +539,7 @@ git commit -m "feat: add stock badge to product detail page"
 // client/src/components/products/QuickViewModal.tsx
 import { useState } from 'react';
 import { X, Plus, Minus } from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@shared/types';
 import { useCart } from '@/hooks/useCart';
@@ -573,7 +582,7 @@ export function QuickViewModal({
   };
 
   return (
-    <Dialog open={open} onOpenChange={(open) => !open && onClose()}>
+    <Dialog open={open} onOpenChange={open => !open && onClose()}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
@@ -583,7 +592,9 @@ export function QuickViewModal({
           <X size={20} />
         </button>
 
-        <DialogTitle className="sr-only">Quick View - {product.name}</DialogTitle>
+        <DialogTitle className="sr-only">
+          Quick View - {product.name}
+        </DialogTitle>
 
         <div className="grid md:grid-cols-2 gap-6">
           {/* Product Image */}
@@ -696,7 +707,7 @@ export function QuickViewModal({
               {/* Full Details Link */}
               <a
                 href={`/product/${product.id}`}
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   onClose();
                   window.location.href = `/product/${product.id}`;
@@ -739,24 +750,28 @@ git commit -m "feat: add QuickViewModal component
 ## Task 10: Add quick view to ProductCard
 
 **Files:**
+
 - Modify: `client/src/components/ProductCard.tsx`
 
 **Step 1: Add quick view button and state**
 
 Add state:
+
 ```tsx
 const [showQuickView, setShowQuickView] = useState(false);
 ```
 
 Add QuickViewModal import:
+
 ```tsx
 import { QuickViewModal } from './products/QuickViewModal';
 ```
 
 Add quick view button (in card actions):
+
 ```tsx
 <button
-  onClick={(e) => {
+  onClick={e => {
     e.preventDefault();
     e.stopPropagation();
     setShowQuickView(true);
@@ -768,6 +783,7 @@ Add quick view button (in card actions):
 ```
 
 Add modal at end of component:
+
 ```tsx
 <QuickViewModal
   product={product}
@@ -794,6 +810,7 @@ git commit -m "feat: add quick view button to product cards"
 ## Task 11: Create dedicated Wishlist page
 
 **Files:**
+
 - Create: `client/src/pages/Wishlist.tsx`
 - Modify: `client/src/App.tsx`
 
@@ -877,8 +894,13 @@ export function Wishlist() {
           </div>
         ) : products.length === 0 ? (
           <div className="text-center py-12">
-            <ShoppingBag className="mx-auto mb-4 text-on-surface-variant" size={48} />
-            <h2 className="text-xl font-semibold mb-2">Your wishlist is empty</h2>
+            <ShoppingBag
+              className="mx-auto mb-4 text-on-surface-variant"
+              size={48}
+            />
+            <h2 className="text-xl font-semibold mb-2">
+              Your wishlist is empty
+            </h2>
             <p className="text-on-surface-variant mb-6">
               Save your favorite pieces by clicking the heart icon
             </p>
@@ -915,11 +937,13 @@ export function Wishlist() {
 **Step 2: Add route to App.tsx**
 
 Add import:
+
 ```tsx
 import { Wishlist } from '@/pages/Wishlist';
 ```
 
 Add route:
+
 ```tsx
 <Route path="/wishlist" component={Wishlist} />
 ```
@@ -929,6 +953,7 @@ Add route:
 Update `client/src/lib/pageMetadata.ts` (created in Phase 1):
 
 Add to pageMetadata object:
+
 ```tsx
 '/wishlist': {
   title: 'My Wishlist | Saved Crystal Jewelry | Troves & Coves',
@@ -961,6 +986,7 @@ git commit -m "feat: add dedicated wishlist page
 ## Task 12: Add to page metadata for new pages
 
 **Files:**
+
 - Modify: `client/src/lib/pageMetadata.ts`
 
 **Step 1: Ensure wishlist page metadata is included**
@@ -976,6 +1002,7 @@ If metadata was missing, commit the addition.
 ## Task 13: Test and verify all conversion features
 
 **Files:**
+
 - Test: Manual verification
 
 **Step 1: Test wishlist functionality**
@@ -983,6 +1010,7 @@ If metadata was missing, commit the addition.
 Run: `npm run dev`
 
 Test:
+
 1. Click heart icon on a product card
 2. Verify it fills with red color
 3. Check header icon shows count of 1
@@ -994,6 +1022,7 @@ Test:
 **Step 2: Test stock badges**
 
 Test:
+
 1. Find a product with low stock (1-3) - verify "Only X left!" badge with pulse animation
 2. Find a product with medium stock (4-10) - verify "In Stock" badge
 3. Find a product with high stock (>10) - verify no badge shown
@@ -1002,6 +1031,7 @@ Test:
 **Step 3: Test quick view modal**
 
 Test:
+
 1. Click "Quick View" button on product card
 2. Verify modal opens with product details
 3. Verify quantity selector works
@@ -1034,6 +1064,7 @@ Expected: Build succeeds
 ## Task 14: Create completion report
 
 **Files:**
+
 - Create: `docs/plans/2026-03-13-conversion-completion-report.md`
 
 **Step 1: Write completion report**
@@ -1047,6 +1078,7 @@ Expected: Build succeeds
 ## Completed Tasks
 
 ### 1. Wishlist Functionality
+
 - [x] Created LocalStorage-based wishlist utilities
 - [x] Built WishlistButton component with heart icon
 - [x] Added wishlist to ProductCard
@@ -1055,12 +1087,14 @@ Expected: Build succeeds
 - [x] Created dedicated Wishlist page
 
 ### 2. Stock Badges
+
 - [x] Created StockBadge component with urgency indicators
 - [x] Added to ProductCard
 - [x] Added to ProductDetail page
 - [x] Implements FOMO psychology (hides high stock)
 
 ### 3. Quick View Modal
+
 - [x] Created QuickViewModal component
 - [x] Added quick view button to ProductCard
 - [x] Modal shows all key product info
@@ -1069,16 +1103,19 @@ Expected: Build succeeds
 ## Results
 
 ### Before
+
 - No wishlist functionality
 - No stock visibility
 - Users must navigate away to view product details
 
 ### After
+
 - Full wishlist with cross-tab sync
 - Urgency-driven stock badges
 - Quick preview without losing browse context
 
 ## Expected Impact
+
 - 10-15% increase in add-to-cart rate from wishlisted items
 - Reduced bounce rate from quick view feature
 - Increased urgency from stock badges on low-stock items
@@ -1113,6 +1150,7 @@ Before marking this complete, verify:
 **Total Estimated Time:** 4-5 hours
 
 **Dependencies:**
+
 - Phase 1 (SEO Foundation) - for page metadata pattern
 
 **Next Phase:** Phase 4 - Direct Checkout (requires this wishlist for potential "save for later" in cart)

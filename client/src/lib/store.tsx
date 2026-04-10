@@ -1,7 +1,13 @@
-import { createContext, useContext, useReducer, useEffect, ReactNode } from "react";
-import { useQuery } from "@tanstack/react-query";
-import type { CartItemWithProduct } from "@shared/types";
-import { STALE_TIME_IMMEDIATE } from "@/constants";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  ReactNode,
+} from 'react';
+import { useQuery } from '@tanstack/react-query';
+import type { CartItemWithProduct } from '@shared/types';
+import { STALE_TIME_IMMEDIATE } from '@/constants';
 
 interface CartState {
   isOpen: boolean;
@@ -9,7 +15,7 @@ interface CartState {
   isLoading: boolean;
 }
 
-type CartAction = 
+type CartAction =
   | { type: 'TOGGLE_CART' }
   | { type: 'OPEN_CART' }
   | { type: 'CLOSE_CART' }
@@ -53,7 +59,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   // Fetch cart items
-  const { data: cartItems = [], isLoading, refetch } = useQuery<CartItemWithProduct[]>({
+  const {
+    data: cartItems = [],
+    isLoading,
+    refetch,
+  } = useQuery<CartItemWithProduct[]>({
     queryKey: ['/api/cart'],
     staleTime: STALE_TIME_IMMEDIATE, // Always fresh
   });
@@ -72,9 +82,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [isLoading, state.isLoading]);
 
   // Calculate totals
-  const itemCount = state.items.reduce((total, item) => total + item.quantity, 0);
+  const itemCount = state.items.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
   const totalAmount = state.items.reduce(
-    (total, item) => total + (parseFloat(item.product.price) * item.quantity),
+    (total, item) => total + parseFloat(item.product.price) * item.quantity,
     0
   );
 
@@ -87,9 +100,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <CartContext.Provider value={contextValue}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 }
 

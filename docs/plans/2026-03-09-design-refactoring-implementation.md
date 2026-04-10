@@ -15,6 +15,7 @@
 ### Task 1: Create WCAG Compliant Color Utilities
 
 **Files:**
+
 - Create: `client/src/lib/color-utils.ts`
 - Modify: `client/src/index.css` (add WCAG utility classes)
 
@@ -94,10 +95,10 @@ export const BRAND_COLORS = {
  * Meets 4.5:1 contrast minimum on linen (#faf8f3) background
  */
 export const WCAG_COLORS = {
-  turquoise: 'hsl(174 70% 30%)',   // 5.8:1 contrast on linen
-  gold1: 'hsl(43 78% 35%)',        // 4.7:1 contrast on linen
-  gold2: 'hsl(38 80% 35%)',        // 4.6:1 contrast on linen
-  gold: 'hsl(38 80% 35%)',         // Alias
+  turquoise: 'hsl(174 70% 30%)', // 5.8:1 contrast on linen
+  gold1: 'hsl(43 78% 35%)', // 4.7:1 contrast on linen
+  gold2: 'hsl(38 80% 35%)', // 4.6:1 contrast on linen
+  gold: 'hsl(38 80% 35%)', // Alias
 } as const;
 
 /**
@@ -176,6 +177,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 2: Create Theme-Aware Typography Components
 
 **Files:**
+
 - Create: `client/src/components/ui/typography.tsx`
 - Test: `client/src/components/ui/__tests__/typography.test.tsx`
 
@@ -394,6 +396,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 3: Create Standardized Card Component
 
 **Files:**
+
 - Modify: `client/src/components/ui/card.tsx` (enhance existing)
 - Test: `client/src/components/ui/__tests__/card.test.tsx`
 
@@ -535,6 +538,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 4: Migrate Products Page Sidebar
 
 **Files:**
+
 - Modify: `client/src/pages/Products.tsx`
 - Modify: `client/src/components/ui/card.tsx` (if needed)
 
@@ -637,6 +641,7 @@ Find the sidebar section in `client/src/pages/Products.tsx` and replace hardcode
 Run: `npm run dev`
 Visit: `http://localhost:5173/products`
 Check:
+
 - [ ] Sidebar filters have proper contrast in light mode
 - [ ] Sidebar filters have proper contrast in dark mode
 - [ ] Category buttons use theme colors
@@ -663,6 +668,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 5: Migrate About Page
 
 **Files:**
+
 - Modify: `client/src/pages/About.tsx`
 - Use: `MysticalCard`, `MysticalHeading`, `MysticalBodyText`
 
@@ -777,6 +783,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 Run: `npm run dev`
 Visit: `http://localhost:5173/about`
 Check:
+
 - [ ] All headings use Libre Baskerville
 - [ ] All script text uses Alex Brush
 - [ ] Value cards have mystical gradient
@@ -803,6 +810,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 6: Migrate Contact Page
 
 **Files:**
+
 - Modify: `client/src/pages/Contact.tsx`
 
 **Step 1: Update form fields with theme colors**
@@ -900,6 +908,7 @@ style={{
 Run: `npm run dev`
 Visit: `http://localhost:5173/contact`
 Check:
+
 - [ ] Form fields have proper contrast in both themes
 - [ ] All labels use theme colors
 - [ ] Service cards use MysticalCard
@@ -928,6 +937,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 7: Migrate Home Page (Non-Hero Sections)
 
 **Files:**
+
 - Modify: `client/src/pages/Home.tsx`
 
 **Step 1: Update featured collection badge**
@@ -983,6 +993,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 Run: `npm run dev`
 Visit: `http://localhost:5173/`
 Check:
+
 - [ ] Featured collection uses theme colors
 - [ ] Mystical message section has proper contrast
 - [ ] All cards use MysticalCard component
@@ -1007,6 +1018,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 8: Migrate Remaining Pages
 
 **Files:**
+
 - Modify: `client/src/pages/Checkout.tsx` (if exists)
 - Modify: `client/src/pages/Returns.tsx`
 - Modify: `client/src/pages/Warranty.tsx`
@@ -1079,12 +1091,14 @@ For each page file, find the header section and replace with `PageHeader` compon
 **Step 3: Replace all Card usages with MysticalCard**
 
 Search and replace in each page:
+
 - `<Card` → `<MysticalCard` (with appropriate variant)
 - Add `theme="gradient"` prop where needed
 
 **Step 4: Replace hardcoded colors with theme variables**
 
 Search for patterns like:
+
 - `#4abfbf` → `hsl(var(--accent-vibrant))`
 - `#deb55b` → `hsl(var(--gold-medium))`
 - `#e1af2f` → `hsl(var(--gold-coves))`
@@ -1120,6 +1134,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 9: Automated Contrast Testing
 
 **Files:**
+
 - Create: `tests/contrast-test.spec.ts`
 - Install: `npm install --save-dev @contrast-ratio/test`
 
@@ -1236,6 +1251,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 10: Cross-Browser Testing
 
 **Files:**
+
 - Create: `tests/e2e/cross-browser.spec.ts`
 
 **Step 1: Create cross-browser test suite**
@@ -1255,7 +1271,10 @@ test.describe('Cross-Browser Theme Consistency', () => {
         await expect(hero).toBeVisible();
 
         // Verify gradient background
-        const heroBg = await hero.locator('div').first().getCssValue('background');
+        const heroBg = await hero
+          .locator('div')
+          .first()
+          .getCssValue('background');
         expect(heroBg).toContain('gradient');
       });
 
@@ -1310,6 +1329,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 11: Performance Validation
 
 **Files:**
+
 - Modify: `client/vite.config.ts` (if needed)
 - Run: `npm run build:analyze`
 
@@ -1317,6 +1337,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 
 Run: `npm run build:analyze`
 Check:
+
 - [ ] No duplicate theme definitions
 - [ ] CSS variables are tree-shakeable
 - [ ] Components are code-split appropriately
@@ -1326,11 +1347,13 @@ Check:
 Run: `npm run dev`
 Open DevTools → Performance tab
 Record interactions:
+
 - Theme toggle
 - Card hover effects
 - Page transitions
 
 Verify:
+
 - [ ] No layout thrashing
 - [ ] Animations run at 60fps
 - [ ] Reduced motion respected
@@ -1338,6 +1361,7 @@ Verify:
 **Step 3: Check theme switch performance**
 
 Test:
+
 1. Load page in light mode
 2. Toggle to dark mode
 3. Toggle back to light mode
@@ -1367,6 +1391,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 ### Task 12: Update Design Documentation
 
 **Files:**
+
 - Modify: `CLAUDE.md`
 - Create: `client/DESIGN_SYSTEM.md`
 - Update: `docs/plans/2026-03-09-design-refactoring-plan.md` (status)
@@ -1375,7 +1400,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
 
 Create `client/DESIGN_SYSTEM.md`:
 
-```markdown
+````markdown
 # Troves & Coves Design System
 
 ## Color Usage Guidelines
@@ -1383,31 +1408,37 @@ Create `client/DESIGN_SYSTEM.md`:
 ### WCAG AA Compliance
 
 **Small Text (< 18px):**
+
 - Use `WCAG_COLORS` from `@/lib/color-utils`
 - OR use theme variables: `hsl(var(--text-primary))`, `hsl(var(--accent-vibrant))`
 
 **Large Text (18px+):**
+
 - Can use brand colors: `#4abfbf`, `#deb55b`, `#e1af2f`
 - OR use theme variables for consistency
 
 ### Component Usage
 
 **Typography:**
+
 - Headings: `<MysticalHeading>`
 - Body text: `<MysticalBodyText>`
 - Script text: `<MysticalScriptText>`
 
 **Cards:**
+
 - Standard: `<MysticalCard>`
 - With border: `<MysticalCard variant="accent">`
 - Glass effect: `<MysticalCard variant="glass">`
 
 **Sections:**
+
 - Page headers: `<PageHeader>`
 
 ## Theme Variables
 
 Always use CSS variables for colors:
+
 - `--bg-primary`, `--bg-secondary`, `--bg-card`
 - `--text-primary`, `--text-secondary`, `--text-muted`
 - `--accent-vibrant`, `--gold-medium`, `--gold-coves`
@@ -1416,11 +1447,14 @@ Always use CSS variables for colors:
 ## Examples
 
 ### Heading with proper color
+
 ```tsx
 <MysticalHeading size="lg">Crystal Collection</MysticalHeading>
 ```
+````
 
 ### Card with accent border
+
 ```tsx
 <MysticalCard variant="accent">
   <CardContent>Content</CardContent>
@@ -1428,16 +1462,20 @@ Always use CSS variables for colors:
 ```
 
 ### Theme-aware button
+
 ```tsx
-<button style={{
-  backgroundColor: 'hsl(var(--accent-vibrant))',
-  color: '#fff',
-  border: '1px solid hsl(var(--accent-vibrant))'
-}}>
+<button
+  style={{
+    backgroundColor: 'hsl(var(--accent-vibrant))',
+    color: '#fff',
+    border: '1px solid hsl(var(--accent-vibrant))',
+  }}
+>
   Click Me
 </button>
 ```
-```
+
+````
 
 **Step 2: Update CLAUDE.md**
 
@@ -1467,7 +1505,7 @@ The site uses a theme-aware design system with WCAG AA compliance:
 - All small text uses WCAG AA compliant variants
 - Brand colors (#4abfbf, #deb55b, #e1af2f) for 18px+ only
 - Contrast ratios validated with automated tests
-```
+````
 
 **Step 3: Update implementation plan status**
 
@@ -1525,6 +1563,7 @@ Expected: All tests pass
 For each page (/, /products, /about, /contact, etc.):
 
 Light Mode:
+
 - [ ] All text meets WCAG AA (4.5:1 minimum)
 - [ ] Brand colors only on 18px+ text
 - [ ] Cards have mystical gradient borders
@@ -1532,6 +1571,7 @@ Light Mode:
 - [ ] No visual regressions
 
 Dark Mode:
+
 - [ ] All text meets WCAG AA (4.5:1 minimum)
 - [ ] Turquoise accents visible against slate
 - [ ] Cards maintain proper contrast
@@ -1539,6 +1579,7 @@ Dark Mode:
 - [ ] Theme toggle works
 
 Responsive:
+
 - [ ] Mobile (375px)
 - [ ] Tablet (768px)
 - [ ] Desktop (1024px+)

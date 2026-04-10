@@ -24,7 +24,11 @@ export interface FilterState {
   maxPrice: number;
 }
 
-export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = '' }: SearchBarProps) {
+export function SearchBar({
+  onResultsChange,
+  onFiltersChange,
+  initialSearch = '',
+}: SearchBarProps) {
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [isExpanded, setIsExpanded] = useState(false);
   const [filters, setFilters] = useState<FilterState>({
@@ -71,17 +75,26 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
   const performSearch = async (currentFilters: FilterState) => {
     const params = new URLSearchParams();
     if (currentFilters.search) params.append('search', currentFilters.search);
-    if (currentFilters.material) params.append('material', currentFilters.material);
-    if (currentFilters.gemstone) params.append('gemstone', currentFilters.gemstone);
-    if (currentFilters.minPrice > 0) params.append('minPrice', currentFilters.minPrice.toString());
-    if (currentFilters.maxPrice < 10000) params.append('maxPrice', currentFilters.maxPrice.toString());
+    if (currentFilters.material)
+      params.append('material', currentFilters.material);
+    if (currentFilters.gemstone)
+      params.append('gemstone', currentFilters.gemstone);
+    if (currentFilters.minPrice > 0)
+      params.append('minPrice', currentFilters.minPrice.toString());
+    if (currentFilters.maxPrice < 10000)
+      params.append('maxPrice', currentFilters.maxPrice.toString());
 
-    const response = await fetch(`${apiUtils.getApiUrl()}/api/products?${params.toString()}`);
+    const response = await fetch(
+      `${apiUtils.getApiUrl()}/api/products?${params.toString()}`
+    );
     const results = await response.json();
     onResultsChange?.(results);
   };
 
-  const handleFilterChange = async (key: keyof FilterState, value: string | number) => {
+  const handleFilterChange = async (
+    key: keyof FilterState,
+    value: string | number
+  ) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
     onFiltersChange?.(newFilters);
@@ -102,8 +115,12 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
     await performSearch(clearedFilters);
   };
 
-  const hasActiveFilters = filters.search || filters.material || filters.gemstone ||
-    filters.minPrice > 0 || filters.maxPrice < 10000;
+  const hasActiveFilters =
+    filters.search ||
+    filters.material ||
+    filters.gemstone ||
+    filters.minPrice > 0 ||
+    filters.maxPrice < 10000;
 
   return (
     <div className="space-y-4">
@@ -116,7 +133,7 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
             name="search"
             autoComplete="on"
             value={searchQuery}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={e => handleSearch(e.target.value)}
             placeholder="Search crystals, jewelry, gemstones…"
             className="pl-10 pr-10"
           />
@@ -148,19 +165,28 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
           {filters.search && (
             <Badge variant="secondary" className="gap-1">
               Search: "{filters.search}"
-              <X className="h-3 w-3 cursor-pointer" onClick={() => handleFilterChange('search', '')} />
+              <X
+                className="h-3 w-3 cursor-pointer"
+                onClick={() => handleFilterChange('search', '')}
+              />
             </Badge>
           )}
           {filters.material && (
             <Badge variant="secondary" className="gap-1">
               Material: {filters.material}
-              <X className="h-3 w-3 cursor-pointer" onClick={() => handleFilterChange('material', '')} />
+              <X
+                className="h-3 w-3 cursor-pointer"
+                onClick={() => handleFilterChange('material', '')}
+              />
             </Badge>
           )}
           {filters.gemstone && (
             <Badge variant="secondary" className="gap-1">
               Gemstone: {filters.gemstone}
-              <X className="h-3 w-3 cursor-pointer" onClick={() => handleFilterChange('gemstone', '')} />
+              <X
+                className="h-3 w-3 cursor-pointer"
+                onClick={() => handleFilterChange('gemstone', '')}
+              />
             </Badge>
           )}
           {(filters.minPrice > 0 || filters.maxPrice < 10000) && (
@@ -196,7 +222,9 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
               {materials?.slice(0, 10).map((material: string) => (
                 <Button
                   key={material}
-                  variant={filters.material === material ? 'default' : 'outline'}
+                  variant={
+                    filters.material === material ? 'default' : 'outline'
+                  }
                   size="sm"
                   onClick={() => handleFilterChange('material', material)}
                 >
@@ -220,7 +248,9 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
               {gemstones?.slice(0, 10).map((gemstone: string) => (
                 <Button
                   key={gemstone}
-                  variant={filters.gemstone === gemstone ? 'default' : 'outline'}
+                  variant={
+                    filters.gemstone === gemstone ? 'default' : 'outline'
+                  }
                   size="sm"
                   onClick={() => handleFilterChange('gemstone', gemstone)}
                 >
@@ -232,7 +262,9 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
 
           {/* Price Range */}
           <div className="space-y-2">
-            <Label>Price Range: ${filters.minPrice} - ${filters.maxPrice}</Label>
+            <Label>
+              Price Range: ${filters.minPrice} - ${filters.maxPrice}
+            </Label>
             <div className="space-y-4">
               <div className="px-2">
                 <Slider
@@ -240,7 +272,9 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
                   value={[filters.minPrice]}
                   max={10000}
                   step={100}
-                  onValueChange={([value]) => handleFilterChange('minPrice', value)}
+                  onValueChange={([value]) =>
+                    handleFilterChange('minPrice', value)
+                  }
                   className="w-full"
                 />
               </div>
@@ -250,7 +284,9 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
                   value={[filters.maxPrice]}
                   max={10000}
                   step={100}
-                  onValueChange={([value]) => handleFilterChange('maxPrice', value)}
+                  onValueChange={([value]) =>
+                    handleFilterChange('maxPrice', value)
+                  }
                   className="w-full"
                 />
               </div>

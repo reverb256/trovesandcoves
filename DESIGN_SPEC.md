@@ -11,6 +11,7 @@
 ### Troves & Coves Is
 
 **Luxury Artisan Jewelry**
+
 - Intentional crystal pieces
 - Curated boutique brand
 - Handmade but elevated
@@ -33,23 +34,25 @@
 
 ### Primary Luxury Palette
 
-| Color Name | Hex | Usage |
-|------------|-----|-------|
-| Background | `#FFFFFF` | Main site background (pure white, not cream) |
-| Primary Text | `#1F1F1F` | Main text (soft black/charcoal) |
-| Secondary Text | `#5F5F5F` | Muted grey for supporting text |
-| Accent Turquoise | `#3A8E8B` | Signature turquoise (luxury version) |
-| Gold Accent | `#C9A24A` | Refined gold for highlights only |
+| Color Name       | Hex       | Usage                                        |
+| ---------------- | --------- | -------------------------------------------- |
+| Background       | `#FFFFFF` | Main site background (pure white, not cream) |
+| Primary Text     | `#1F1F1F` | Main text (soft black/charcoal)              |
+| Secondary Text   | `#5F5F5F` | Muted grey for supporting text               |
+| Accent Turquoise | `#3A8E8B` | Signature turquoise (luxury version)         |
+| Gold Accent      | `#C9A24A` | Refined gold for highlights only             |
 
 ### Usage Principles
 
 **Gold Should Be Used Sparingly**
+
 - Too much gold looks cheap
 - Use for refined luxury details, borders, subtle highlights
 - Premium emphasis only - not loud
 - Less gold = more luxury feel
 
 **Overall Direction**
+
 - Luxury, clean, airy, feminine, intentional, high-end
 - Avoid looking too bright, childish, or overly mystical
 - Let the pieces speak for themselves
@@ -57,17 +60,18 @@
 ### Theme Variables (CSS)
 
 ```css
-:root, :root[data-theme='light'] {
+:root,
+:root[data-theme='light'] {
   /* Robin's luxury palette */
-  --accent-vibrant: 176 42% 39%;    /* #3A8E8B - luxury turquoise */
-  --gold-medium: 42 74% 54%;        /* #C9A24A - refined gold */
-  --bg-primary: 0 0% 100%;          /* #FFFFFF - pure white */
-  --text-primary: 0 0% 12%;         /* #1F1F1F - soft black */
-  --text-secondary: 0 0% 37%;       /* #5F5F5F - muted grey */
+  --accent-vibrant: 176 42% 39%; /* #3A8E8B - luxury turquoise */
+  --gold-medium: 42 74% 54%; /* #C9A24A - refined gold */
+  --bg-primary: 0 0% 100%; /* #FFFFFF - pure white */
+  --text-primary: 0 0% 12%; /* #1F1F1F - soft black */
+  --text-secondary: 0 0% 37%; /* #5F5F5F - muted grey */
 }
 
 :root[data-theme='dark'] {
-  --accent-vibrant: 176 42% 49%;    /* Slightly brighter for dark mode */
+  --accent-vibrant: 176 42% 49%; /* Slightly brighter for dark mode */
   --gold-medium: 42 74% 54%;
   --bg-primary: 215 20% 12%;
   --text-primary: 215 15% 95%;
@@ -81,20 +85,22 @@
 
 ### Font Families (Keep Current Trio)
 
-| Purpose | Font | Weight | Style |
-|---------|------|--------|-------|
-| Headlines | **Libre Baskerville** | 700 (Bold) | Elegant, editorial |
-| Accent/Script | **Alex Brush** | Regular | Decorative, cursive |
-| Body/UI | **Montserrat** | 400-600 | Clean, readable |
+| Purpose       | Font                  | Weight     | Style               |
+| ------------- | --------------------- | ---------- | ------------------- |
+| Headlines     | **Libre Baskerville** | 700 (Bold) | Elegant, editorial  |
+| Accent/Script | **Alex Brush**        | Regular    | Decorative, cursive |
+| Body/UI       | **Montserrat**        | 400-600    | Clean, readable     |
 
 ### Typography Principles
 
 **Headlines Should Feel:**
+
 - Elegant and editorial
 - Luxurious without being ornate
 - Strong and confident
 
 **Body Text Should Be:**
+
 - Clean and readable
 - Professional and understated
 - Let the jewelry shine
@@ -154,6 +160,7 @@ Made in Canada
 ```
 
 **That's it.**
+
 - Minimal text
 - Large image
 - Elegant spacing
@@ -166,9 +173,9 @@ Made in Canada
 
 **Keep Descriptions Short and Refined:**
 ✅ "Lapis Lazuli Necklace
-   14k Gold Filled
+14k Gold Filled
 
-   A deep blue stone traditionally associated with wisdom and inner clarity."
+A deep blue stone traditionally associated with wisdom and inner clarity."
 
 ### Tagline
 
@@ -203,6 +210,7 @@ This wording pushes the brand into new-age crystal shop identity.
 ### Replace With Minimal Luxury Names
 
 **Recommended:**
+
 - Signature Pieces
 - One of a Kind
 - Crystal Editions
@@ -211,6 +219,7 @@ This wording pushes the brand into new-age crystal shop identity.
 - Limited Pieces
 
 **Or Keep It Simpler:**
+
 - Necklaces
 - Bracelets
 
@@ -238,6 +247,7 @@ Later expansion options:
 **Label:** "Care:" (not "Care Instructions")
 
 **Copy:**
+
 ```
 • Avoid water, perfumes, and lotions.
 • Wipe with a dry jewelry cloth
@@ -263,6 +273,7 @@ Made in Canada
 ### 2. Featured Pieces
 
 **Display 3 to 6 products only**
+
 - Focus on your strongest pieces
 - Let photography shine
 
@@ -342,12 +353,14 @@ One of a Kind
 ### Current Implementation (Static Serverless)
 
 **Frontend:** GitHub Pages
+
 - Pure static React build (Vite)
 - No server-side rendering required
 - Client-side routing via Wouter
 - GitHub Actions for deployment
 
 **Backend:** Serverless API (Vercel/Cloudflare Workers)
+
 - Product catalog API
 - Shopping cart management
 - Order processing
@@ -355,11 +368,13 @@ One of a Kind
 - Contact form handling
 
 **Database:** In-memory storage (MemStorage)
+
 - Seeded product data
 - Session-based cart management
 - No external database dependency
 
 **Deployment:**
+
 - Frontend: `https://trovesandcoves.ca` (GitHub Pages)
 - API: Cloudflare Workers (optional for serverless functions)
 - Repository: `github.com/reverb256/trovesandcoves`
@@ -382,12 +397,14 @@ Large:    > 1280px  (xl:)
 **Theme Toggle:** Implemented via ThemeProvider context
 
 **Implementation:**
+
 - `useTheme()` hook available in all components
 - LocalStorage persistence: `trovesandcoves-theme`
 - Data attribute on `documentElement`: `data-theme="light|dark"`
 - CSS variables switch between themes automatically
 
 **Dark Mode Colors:**
+
 - Deep slate backgrounds with turquoise aura
 - Brighter turquoise accents for visibility
 - Muted gold tones for elegance
@@ -539,6 +556,7 @@ npm run dev
 ## Compliance Checklist
 
 ### Brand Identity
+
 - [ ] Background is pure white (#FFFFFF) not cream
 - [ ] All turquoise accents use #3A8E8B (luxury version)
 - [ ] All gold elements use #C9A24A (unified refined gold)
@@ -547,6 +565,7 @@ npm run dev
 - [ ] Montserrat used for body/UI text
 
 ### Copy Standards
+
 - [ ] Hero tagline: "Handcrafted Crystal Jewelry"
 - [ ] Care instructions: "Care:" + exact copy
 - [ ] Hero section is minimal (3-4 lines max)
@@ -555,6 +574,7 @@ npm run dev
 - [ ] Product descriptions are refined, not overly spiritual
 
 ### Technical Standards
+
 - [ ] All pages have unique title tags
 - [ ] All pages have meta descriptions
 - [ ] Product pages have schema markup

@@ -13,6 +13,7 @@
 ## Task 1: Set up testing infrastructure
 
 **Files:**
+
 - Create: `vitest.config.ts`
 - Modify: `package.json`
 - Create: `client/src/test/setup.ts`
@@ -143,6 +144,7 @@ git commit -m "test: set up Vitest testing infrastructure
 ## Task 2: Create wishlist unit tests
 
 **Files:**
+
 - Create: `client/src/lib/__tests__/wishlist.test.ts`
 
 **Step 1: Write wishlist tests**
@@ -180,7 +182,10 @@ describe('Wishlist', () => {
 
     it('should return items from storage', () => {
       const items = [1, 2, 3];
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ items, updatedAt: new Date().toISOString() }));
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ items, updatedAt: new Date().toISOString() })
+      );
 
       const result = getWishlistItems();
       expect(result).toEqual(items);
@@ -324,6 +329,7 @@ git commit -m "test: add wishlist unit tests
 ## Task 3: Create tax calculation unit tests
 
 **Files:**
+
 - Create: `server/lib/__tests__/tax.test.ts`
 
 **Step 1: Write tax calculation tests**
@@ -331,7 +337,12 @@ git commit -m "test: add wishlist unit tests
 ```typescript
 // server/lib/__tests__/tax.test.ts
 import { describe, it, expect } from 'vitest';
-import { calculateTax, getTaxRate, getProvinces, isValidPostalCode } from '../tax';
+import {
+  calculateTax,
+  getTaxRate,
+  getProvinces,
+  isValidPostalCode,
+} from '../tax';
 
 describe('Tax Calculation', () => {
   describe('calculateTax', () => {
@@ -492,6 +503,7 @@ git commit -m "test: add tax calculation unit tests
 ## Task 4: Create shipping calculation unit tests
 
 **Files:**
+
 - Create: `server/lib/__tests__/shipping.test.ts`
 
 **Step 1: Write shipping tests**
@@ -499,7 +511,11 @@ git commit -m "test: add tax calculation unit tests
 ```typescript
 // server/lib/__tests__/shipping.test.ts
 import { describe, it, expect } from 'vitest';
-import { calculateShipping, getShippingInfo, getAllShippingZones } from '../shipping';
+import {
+  calculateShipping,
+  getShippingInfo,
+  getAllShippingZones,
+} from '../shipping';
 
 describe('Shipping Calculation', () => {
   describe('calculateShipping', () => {
@@ -610,6 +626,7 @@ git commit -m "test: add shipping calculation unit tests
 ## Task 5: Create cart hook unit tests
 
 **Files:**
+
 - Create: `client/src/hooks/__tests__/useCart.test.ts`
 
 **Step 1: Write cart hook tests**
@@ -795,6 +812,7 @@ git commit -m "test: add cart hook unit tests
 ## Task 6: Set up Playwright E2E testing
 
 **Files:**
+
 - Create: `playwright.config.ts`
 - Create: `tests/e2e/checkout.spec.ts`
 - Modify: `package.json`
@@ -933,7 +951,9 @@ test.describe('Checkout Flow', () => {
     await page.click('button:has-text("E-Transfer")');
 
     // Verify E-Transfer option selected
-    await expect(page.locator('button:has-text("E-Transfer").border-primary')).toBeVisible();
+    await expect(
+      page.locator('button:has-text("E-Transfer").border-primary')
+    ).toBeVisible();
   });
 });
 
@@ -966,14 +986,18 @@ test.describe('Wishlist', () => {
 
     // Add to wishlist
     await page.locator('[data-testid="product-card"]').first().hover();
-    const wishlistButton = page.locator('[data-testid="wishlist-button"]').first();
+    const wishlistButton = page
+      .locator('[data-testid="wishlist-button"]')
+      .first();
     await wishlistButton.click();
 
     // Verify filled heart
     await expect(wishlistButton.locator('.fill-current')).toBeVisible();
 
     // Check wishlist count in header
-    await expect(page.locator('[data-testid="wishlist-count"]')).toHaveText('1');
+    await expect(page.locator('[data-testid="wishlist-count"]')).toHaveText(
+      '1'
+    );
 
     // Remove from wishlist
     await wishlistButton.click();
@@ -1027,6 +1051,7 @@ git commit -m "test: add Playwright E2E tests
 ## Task 7: Run accessibility audit
 
 **Files:**
+
 - Create: `tests/a11y/a11y-audit.spec.ts`
 
 **Step 1: Install axe-core Playwright**
@@ -1041,25 +1066,33 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Accessibility', () => {
-  test('home page should not have accessibility violations', async ({ page }) => {
+  test('home page should not have accessibility violations', async ({
+    page,
+  }) => {
     await page.goto('/');
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  test('products page should not have accessibility violations', async ({ page }) => {
+  test('products page should not have accessibility violations', async ({
+    page,
+  }) => {
     await page.goto('/products');
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  test('product detail page should not have accessibility violations', async ({ page }) => {
+  test('product detail page should not have accessibility violations', async ({
+    page,
+  }) => {
     await page.goto('/product/1');
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  test('checkout page should not have accessibility violations', async ({ page }) => {
+  test('checkout page should not have accessibility violations', async ({
+    page,
+  }) => {
     await page.goto('/checkout');
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
@@ -1092,14 +1125,19 @@ test.describe('Accessibility', () => {
     }
   });
 
-  test('all interactive elements should be keyboard accessible', async ({ page }) => {
+  test('all interactive elements should be keyboard accessible', async ({
+    page,
+  }) => {
     await page.goto('/products');
 
     const buttons = await page.locator('button, a, input').all();
-    for (const button of buttons.slice(0, 10)) { // Test first 10
+    for (const button of buttons.slice(0, 10)) {
+      // Test first 10
       try {
         await button.focus();
-        const isFocused = await button.evaluate(el => document.activeElement === el);
+        const isFocused = await button.evaluate(
+          el => document.activeElement === el
+        );
         expect(isFocused).toBe(true);
       } catch {
         // Some elements might not be focusable - skip
@@ -1116,7 +1154,8 @@ test.describe('Accessibility', () => {
         // Check if has explicit label or aria-label
         return (
           el.getAttribute('aria-label') ||
-          el.getAttribute('id') && document.querySelector(`label[for="${el.id}"]`)
+          (el.getAttribute('id') &&
+            document.querySelector(`label[for="${el.id}"]`))
         );
       });
       expect(hasLabel).toBeTruthy();
@@ -1154,6 +1193,7 @@ git commit -m "test: add accessibility audit tests
 ## Task 8: Set up Lighthouse CI for performance
 
 **Files:**
+
 - Create: `lighthouserc.json`
 
 **Step 1: Install Lighthouse CI**
@@ -1219,6 +1259,7 @@ git commit -m "test: add Lighthouse CI configuration
 ## Task 9: Run full test suite and generate coverage
 
 **Files:**
+
 - Test: All tests
 
 **Step 1: Run unit tests with coverage**
@@ -1232,6 +1273,7 @@ Expected: Coverage report generated
 Open `coverage/index.html` in browser
 
 Target coverage:
+
 - Wishlist: 100%
 - Tax calculation: 100%
 - Shipping calculation: 100%
@@ -1267,23 +1309,27 @@ git commit -m "test: add coverage reports"
 ## Task 10: Create testing documentation
 
 **Files:**
+
 - Create: `docs/testing.md`
 
 **Step 1: Write testing documentation**
 
-```markdown
+````markdown
 # Testing Guide
 
 ## Running Tests
 
 ### Unit Tests
+
 ```bash
 npm run test           # Watch mode
 npm run test:run       # Run once
 npm run test:coverage  # With coverage report
 ```
+````
 
 ### E2E Tests
+
 ```bash
 npm run test:e2e       # Run all E2E tests
 npm run test:e2e:ui    # Run with UI
@@ -1291,6 +1337,7 @@ npm run test:e2e:debug # Debug mode
 ```
 
 ### Performance Tests
+
 ```bash
 npm run lhci:collect   # Run Lighthouse audits
 ```
@@ -1298,6 +1345,7 @@ npm run lhci:collect   # Run Lighthouse audits
 ## Test Structure
 
 ### Unit Tests (`client/src/__tests__`, `server/lib/__tests__`)
+
 - Wishlist utilities
 - Tax calculation
 - Shipping calculation
@@ -1305,12 +1353,14 @@ npm run lhci:collect   # Run Lighthouse audits
 - Form validation
 
 ### E2E Tests (`tests/e2e/`)
+
 - Checkout flow
 - Product navigation
 - Wishlist functionality
 - Cart operations
 
 ### Accessibility Tests (`tests/a11y/`)
+
 - Page accessibility scans
 - Heading structure
 - Image alt text
@@ -1319,13 +1369,13 @@ npm run lhci:collect   # Run Lighthouse audits
 
 ## Coverage Goals
 
-| Module | Target | Current |
-|--------|--------|---------|
-| Wishlist | 100% | - |
-| Tax | 100% | - |
-| Shipping | 100% | - |
-| Cart Hook | 80% | - |
-| Overall | 70% | - |
+| Module    | Target | Current |
+| --------- | ------ | ------- |
+| Wishlist  | 100%   | -       |
+| Tax       | 100%   | -       |
+| Shipping  | 100%   | -       |
+| Cart Hook | 80%    | -       |
+| Overall   | 70%    | -       |
 
 ## Writing New Tests
 
@@ -1336,23 +1386,26 @@ npm run lhci:collect   # Run Lighthouse audits
 ## CI/CD Integration
 
 Tests run automatically on:
+
 - Pull request creation
 - Push to main branch
 - Before deployment
-```
+
+````
 
 **Step 2: Commit documentation**
 
 ```bash
 git add docs/testing.md
 git commit -m "docs: add testing guide"
-```
+````
 
 ---
 
 ## Task 11: Create final completion report
 
 **Files:**
+
 - Create: `docs/plans/2026-03-13-final-completion-report.md`
 
 **Step 1: Write final completion report**
@@ -1370,36 +1423,43 @@ All 7 phases of the comprehensive improvement plan have been documented with det
 ## Completed Phases
 
 ### Phase 1: SEO Foundation
+
 - [x] Implementation plan created
 - **Files:** `docs/plans/2026-03-13-seo-foundation-implementation.md`
 - **Key Deliverables:** Page metadata, breadcrumb schema, H1 optimization
 
 ### Phase 2: Content & Education
+
 - [x] Implementation plan created
 - **Files:** `docs/plans/2026-03-13-content-education-implementation.md`
 - **Key Deliverables:** FAQ page, crystal meanings, materials guide
 
 ### Phase 3: Conversion Features
+
 - [x] Implementation plan created
 - **Files:** `docs/plans/2026-03-13-conversion-features-implementation.md`
 - **Key Deliverables:** Wishlist, stock badges, quick view modal
 
 ### Phase 4: Direct Checkout
+
 - [x] Implementation plan created
 - **Files:** `docs/plans/2026-03-13-direct-checkout-implementation.md`
 - **Key Deliverables:** Stripe, PayPal, E-Transfer, tax/shipping
 
 ### Phase 5: Analytics & Monitoring
+
 - [x] Implementation plan created
 - **Files:** `docs/plans/2026-03-13-analytics-implementation.md`
 - **Key Deliverables:** GA4, Sentry, Web Vitals
 
 ### Phase 6: Social Proof & Trust
+
 - [x] Implementation plan created
 - **Files:** `docs/plans/2026-03-13-social-proof-implementation.md`
 - **Key Deliverables:** Reviews, customer gallery, trust badges
 
 ### Phase 7: Testing & Quality
+
 - [x] Implementation plan created
 - **Files:** `docs/plans/2026-03-13-testing-quality-implementation.md`
 - **Key Deliverables:** Unit tests, E2E tests, accessibility audit
@@ -1407,6 +1467,7 @@ All 7 phases of the comprehensive improvement plan have been documented with det
 ## Implementation Plans Summary
 
 Each implementation plan includes:
+
 - ✅ Complete task breakdown with exact file paths
 - ✅ Full code snippets (no "add code here" placeholders)
 - ✅ Testing and verification steps
@@ -1415,16 +1476,16 @@ Each implementation plan includes:
 
 ## Estimated Total Effort
 
-| Phase | Estimated Time |
-|-------|----------------|
-| SEO Foundation | 3-4 hours |
-| Content & Education | 4-5 hours |
-| Conversion Features | 4-5 hours |
-| Direct Checkout | 8-10 hours |
-| Analytics & Monitoring | 3-4 hours |
-| Social Proof & Trust | 4-5 hours |
-| Testing & Quality | 6-8 hours |
-| **Total** | **32-41 hours** |
+| Phase                  | Estimated Time  |
+| ---------------------- | --------------- |
+| SEO Foundation         | 3-4 hours       |
+| Content & Education    | 4-5 hours       |
+| Conversion Features    | 4-5 hours       |
+| Direct Checkout        | 8-10 hours      |
+| Analytics & Monitoring | 3-4 hours       |
+| Social Proof & Trust   | 4-5 hours       |
+| Testing & Quality      | 6-8 hours       |
+| **Total**              | **32-41 hours** |
 
 ## Next Steps
 
@@ -1441,6 +1502,7 @@ Each implementation plan includes:
 ## Files Created
 
 ### Implementation Plans
+
 - `docs/plans/2026-03-13-seo-foundation-implementation.md`
 - `docs/plans/2026-03-13-content-education-implementation.md`
 - `docs/plans/2026-03-13-conversion-features-implementation.md`
@@ -1450,9 +1512,11 @@ Each implementation plan includes:
 - `docs/plans/2026-03-13-testing-quality-implementation.md`
 
 ### Design Documents
+
 - `docs/plans/2026-03-13-comprehensive-improvements-design.md`
 
 ### Completion Reports
+
 - `docs/plans/2026-03-13-seo-completion-report.md` (Phase 1)
 - `docs/plans/2026-03-13-content-completion-report.md` (Phase 2)
 - `docs/plans/2026-03-13-conversion-completion-report.md` (Phase 3)
@@ -1463,6 +1527,7 @@ Each implementation plan includes:
 ## Success Criteria
 
 Each phase is complete when:
+
 - [ ] All tasks in the plan are done
 - [ ] Testing checklist passes
 - [ ] TypeScript check passes
@@ -1473,6 +1538,7 @@ Each phase is complete when:
 ## Risk Mitigation
 
 ### External Dependencies
+
 - GA4 setup required (analytics)
 - Sentry account required (error tracking)
 - Stripe account required (payments)
@@ -1480,6 +1546,7 @@ Each phase is complete when:
 - PostgreSQL database required (orders)
 
 ### Rollback Plan
+
 Each phase commits independently, allowing selective rollback if issues arise.
 ```
 

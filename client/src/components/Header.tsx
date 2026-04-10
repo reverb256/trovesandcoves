@@ -3,12 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { useCartContext } from '@/lib/store';
 import { SCROLL_THRESHOLD } from '@/constants';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import {
-  ShoppingCart,
-  Menu,
-  X,
-  Sparkles,
-} from 'lucide-react';
+import { ShoppingCart, Menu, X, Sparkles } from 'lucide-react';
 
 export default function Header() {
   const [location] = useLocation();
@@ -43,7 +38,10 @@ export default function Header() {
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg transition-all"
-        style={{ backgroundColor: 'hsl(var(--skull-turquoise))', color: 'white' }}
+        style={{
+          backgroundColor: 'hsl(var(--skull-turquoise))',
+          color: 'white',
+        }}
       >
         Skip to main content
       </a>
@@ -51,34 +49,64 @@ export default function Header() {
       {/* Navigation */}
       <header
         className={`fixed top-0 w-full z-50 transition-colors duration-500 ${
-          isScrolled
-            ? 'backdrop-blur-sm border-b'
-            : 'bg-transparent'
+          isScrolled ? 'backdrop-blur-sm border-b' : 'bg-transparent'
         } py-4`}
         style={{
-          backgroundColor: isScrolled ? 'hsl(var(--bg-card) / 0.97)' : undefined,
-          borderColor: isScrolled ? 'hsla(176, 42%, 39%, 0.2)' : undefined
+          backgroundColor: isScrolled
+            ? 'hsl(var(--bg-card) / 0.97)'
+            : undefined,
+          borderColor: isScrolled ? 'hsla(176, 42%, 39%, 0.2)' : undefined,
         }}
       >
         {/* Top border accent */}
-        <div className="absolute top-0 left-0 w-full h-px"
-          style={{ background: 'linear-gradient(90deg, transparent, hsla(176, 42%, 39%, 0.5), transparent)' }}
+        <div
+          className="absolute top-0 left-0 w-full h-px"
+          style={{
+            background:
+              'linear-gradient(90deg, transparent, hsla(176, 42%, 39%, 0.5), transparent)',
+          }}
         ></div>
 
         <div className="chamber-container">
-          <nav className="flex items-center justify-between" aria-label="Main navigation">
+          <nav
+            className="flex items-center justify-between"
+            aria-label="Main navigation"
+          >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-4 group">
               <div className="relative">
                 {/* Gem icon with glow */}
-                <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ backgroundColor: 'hsla(var(--skull-turquoise),0.3)', filter: 'blur(20px)' }}
+                <div
+                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    backgroundColor: 'hsla(var(--skull-turquoise),0.3)',
+                    filter: 'blur(20px)',
+                  }}
                 ></div>
-                <svg width="36" height="36" viewBox="0 0 24 24" className="overflow-visible" fill="none">
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 24 24"
+                  className="overflow-visible"
+                  fill="none"
+                >
                   <defs>
-                    <radialGradient id="headerGemGradient" cx="20%" cy="20%" r="70%">
-                      <stop offset="0%" stopColor="hsl(var(--gold-medium))" stopOpacity="0.8" />
-                      <stop offset="100%" stopColor="hsl(var(--gold-medium))" stopOpacity="0.3" />
+                    <radialGradient
+                      id="headerGemGradient"
+                      cx="20%"
+                      cy="20%"
+                      r="70%"
+                    >
+                      <stop
+                        offset="0%"
+                        stopColor="hsl(var(--gold-medium))"
+                        stopOpacity="0.8"
+                      />
+                      <stop
+                        offset="100%"
+                        stopColor="hsl(var(--gold-medium))"
+                        stopOpacity="0.3"
+                      />
                     </radialGradient>
                   </defs>
                   <path
@@ -94,12 +122,42 @@ export default function Header() {
 
               <div className="flex flex-col">
                 <div className="flex items-end gap-2">
-                  <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-lg">TROVES</span>
-                  <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}>&</span>
-                  <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }} className="text-2xl">Coves</span>
+                  <span
+                    style={{
+                      fontFamily: "'Libre Baskerville', serif",
+                      fontWeight: 700,
+                      color: 'hsl(var(--accent-vibrant))',
+                      textTransform: 'uppercase',
+                    }}
+                    className="text-lg"
+                  >
+                    TROVES
+                  </span>
+                  <span
+                    className="text-2xl"
+                    style={{
+                      fontFamily: "'Alex Brush', cursive",
+                      color: 'hsl(var(--gold-medium))',
+                    }}
+                  >
+                    &
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'Alex Brush', cursive",
+                      color: 'hsl(var(--gold-medium))',
+                    }}
+                    className="text-2xl"
+                  >
+                    Coves
+                  </span>
                 </div>
-                <span className="text-xs tracking-widest uppercase"
-                  style={{ color: "hsl(var(--text-secondary))", fontFamily: "'Montserrat', sans-serif" }}
+                <span
+                  className="text-xs tracking-widest uppercase"
+                  style={{
+                    color: 'hsl(var(--text-secondary))',
+                    fontFamily: "'Montserrat', sans-serif",
+                  }}
                 >
                   Handcrafted Crystal Jewelry • Winnipeg
                 </span>
@@ -108,7 +166,7 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-              {navigation.map((item) => (
+              {navigation.map(item => (
                 <Link
                   key={item.path}
                   href={item.path}
@@ -118,7 +176,7 @@ export default function Header() {
                   style={{
                     color: isActivePath(item.path)
                       ? 'hsl(var(--accent-vibrant))'
-                      : 'hsl(var(--text-primary))'
+                      : 'hsl(var(--text-primary))',
                   }}
                 >
                   {item.name}
@@ -142,13 +200,16 @@ export default function Header() {
                     transition: 'border-color 0.3s ease',
                   }}
                 >
-                  <ShoppingCart className="w-5 h-5" style={{ color: 'hsl(var(--skull-turquoise))' }} />
+                  <ShoppingCart
+                    className="w-5 h-5"
+                    style={{ color: 'hsl(var(--skull-turquoise))' }}
+                  />
                   {itemCount > 0 && (
                     <span
                       className="cart-badge absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold rounded-full"
                       style={{
                         backgroundColor: 'hsl(var(--skull-turquoise))',
-                        color: 'hsl(var(--bg-overlay))'
+                        color: 'hsl(var(--bg-overlay))',
                       }}
                     >
                       {itemCount}
@@ -183,8 +244,12 @@ export default function Header() {
         </div>
 
         {/* Bottom border accent */}
-        <div className="absolute bottom-0 left-0 w-full h-px"
-          style={{ background: 'linear-gradient(90deg, transparent, hsla(43,78%,53%,0.4), transparent)' }}
+        <div
+          className="absolute bottom-0 left-0 w-full h-px"
+          style={{
+            background:
+              'linear-gradient(90deg, transparent, hsla(43,78%,53%,0.4), transparent)',
+          }}
         ></div>
       </header>
 
@@ -197,7 +262,10 @@ export default function Header() {
         onClick={() => setIsMobileMenuOpen(false)}
         aria-hidden={!isMobileMenuOpen}
       >
-        <div className="mobile-menu-container" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="mobile-menu-container"
+          onClick={e => e.stopPropagation()}
+        >
           {/* Mobile Logo */}
           <div className="mobile-menu-logo text-center">
             <div className="flex items-baseline justify-center gap-3 mb-2">
@@ -206,24 +274,36 @@ export default function Header() {
                 style={{
                   fontFamily: "'Libre Baskerville', serif",
                   fontWeight: 700,
-                  color: "hsl(var(--accent-vibrant))",
-                  textTransform: "uppercase"
+                  color: 'hsl(var(--accent-vibrant))',
+                  textTransform: 'uppercase',
                 }}
-              >TROVES</span>
+              >
+                TROVES
+              </span>
               <span
                 className="text-4xl sm:text-5xl"
-                style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}
-              >&</span>
+                style={{
+                  fontFamily: "'Alex Brush', cursive",
+                  color: 'hsl(var(--gold-medium))',
+                }}
+              >
+                &
+              </span>
               <span
                 className="text-4xl sm:text-5xl"
-                style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}
-              >Coves</span>
+                style={{
+                  fontFamily: "'Alex Brush', cursive",
+                  color: 'hsl(var(--gold-medium))',
+                }}
+              >
+                Coves
+              </span>
             </div>
             <p
               className="text-xs sm:text-sm tracking-widest uppercase"
               style={{
-                color: "hsl(var(--text-secondary))",
-                fontFamily: "'Montserrat', sans-serif"
+                color: 'hsl(var(--text-secondary))',
+                fontFamily: "'Montserrat', sans-serif",
               }}
             >
               Handcrafted Crystal Jewelry
@@ -232,7 +312,7 @@ export default function Header() {
 
           {/* Mobile Navigation */}
           <nav className="mobile-menu-nav">
-            {navigation.map((item) => (
+            {navigation.map(item => (
               <Link
                 key={item.path}
                 href={item.path}
@@ -243,7 +323,7 @@ export default function Header() {
                 style={{
                   color: isActivePath(item.path)
                     ? 'hsl(var(--accent-vibrant))'
-                    : 'hsl(var(--text-primary))'
+                    : 'hsl(var(--text-primary))',
                 }}
               >
                 {item.name}

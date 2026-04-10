@@ -25,6 +25,7 @@ import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import Showcase from '@/pages/Showcase';
 import StyleGuide from '@/pages/StyleGuide';
 import NotFound from '@/pages/not-found';
+import LabPage from '@/lab/LabPage';
 import Analytics from '@/components/Analytics';
 import PerformanceMonitor from '@/components/PerformanceMonitor';
 
@@ -46,7 +47,10 @@ function Router() {
                 <Route path="/products/:category" component={Products} />
                 <Route path="/product/:id" component={ProductDetail} />
                 <Route path="/checkout" component={Checkout} />
-                <Route path="/order-confirmation" component={OrderConfirmation} />
+                <Route
+                  path="/order-confirmation"
+                  component={OrderConfirmation}
+                />
                 <Route path="/contact" component={Contact} />
                 <Route path="/about" component={About} />
                 <Route path="/size-guide" component={SizeGuide} />
@@ -56,6 +60,7 @@ function Router() {
                 <Route path="/financing" component={Financing} />
                 <Route path="/privacy-policy" component={PrivacyPolicy} />
                 <Route path="/style-guide" component={StyleGuide} />
+                <Route path="/lab" component={LabPage} />
                 <Route component={NotFound} />
               </Switch>
             </SectionRevealWithKey>
@@ -75,11 +80,7 @@ function Router() {
  */
 function SectionRevealWithKey({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
-  return (
-    <SectionReveal key={location}>
-      {children}
-    </SectionReveal>
-  );
+  return <SectionReveal key={location}>{children}</SectionReveal>;
 }
 
 function App() {

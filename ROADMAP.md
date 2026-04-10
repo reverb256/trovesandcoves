@@ -5,6 +5,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 ## Current State
 
 **What Works Today:**
+
 - ✅ Static product showcase with beautiful UI
 - ✅ Product catalog with categories
 - ✅ Basic cart functionality (localStorage)
@@ -16,6 +17,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 - ✅ **React DOM manipulation issues fixed** (IntersectionObserver cleanup)
 
 **Testing Status:**
+
 - ✅ Unit tests: 40 tests passing (Vitest)
 - ⚠️ E2E tests: Run against production site (recommended)
 - ⚠️ Dev server E2E: Has Vite HMR issues, use production for automated testing
@@ -27,6 +29,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 **Goal**: Make the current features production-ready and reliable.
 
 #### 1.1 Fix Basic E-commerce Functionity
+
 - [ ] Implement persistent cart (server-side storage, not localStorage)
 - [ ] Add product search functionality
 - [ ] Improve product filtering by material, gemstone, price
@@ -34,6 +37,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 - [ ] Implement proper 404 pages
 
 #### 1.2 Data Layer
+
 - [ ] **Decision point**: Choose between PostgreSQL vs. continue with KV-only
 - [ ] If PostgreSQL: Implement `db-storage.ts` with real database connection
 - [ ] If KV: Improve KV storage implementation with proper TTL management
@@ -41,6 +45,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 - [ ] Add data seeding script for products
 
 #### 1.3 Testing
+
 - [x] Add unit tests for components (40 tests passing)
 - [x] Add e2e tests for critical flows (Playwright against production)
 - [ ] Set up CI test runs
@@ -56,6 +61,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 **Goal**: Enable actual transactions through the site.
 
 #### 2.1 Stripe Integration
+
 - [ ] Implement Stripe Checkout flow
 - [ ] Add Stripe webhooks for payment confirmation
 - [ ] Create order management system
@@ -64,6 +70,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 - [ ] Add admin interface for order management
 
 #### 2.2 User Accounts
+
 - [ ] Implement user registration/login
 - [ ] Add password reset flow
 - [ ] Create user profile pages
@@ -79,6 +86,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 **Goal**: Improve conversion and user experience.
 
 #### 3.1 Product Features
+
 - [ ] Product reviews and ratings
 - [ ] Related products recommendations
 - [ ] Recently viewed items
@@ -87,6 +95,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 - [ ] Image gallery with zoom
 
 #### 3.2 Checkout Improvements
+
 - [ ] Guest checkout option
 - [ ] Multiple shipping addresses
 - [ ] Shipping cost calculation
@@ -103,6 +112,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 **Goal**: Enable business operations through the site.
 
 #### 4.1 Admin Dashboard
+
 - [ ] Product management (CRUD operations)
 - [ ] Inventory tracking
 - [ ] Order management interface
@@ -111,6 +121,7 @@ This document outlines the planned features and improvements for Troves & Coves.
 - [ ] Sales reports
 
 #### 4.2 Content Management
+
 - [ ] CMS for static pages (About, FAQ, etc.)
 - [ ] Blog functionality
 - [ ] Banner/promotion management
@@ -124,12 +135,14 @@ This document outlines the planned features and improvements for Troves & Coves.
 **Goal**: Differentiation and enhanced value.
 
 #### 5.1 Community Features
+
 - [ ] User profiles with public wishlists
 - [ ] Photo gallery/reviews
 - [ ] Q&A forum
 - [ ] Social sharing integration
 
 #### 5.2 International
+
 - [ ] Multi-currency support
 - [ ] International shipping
 - [ ] Language translations
@@ -145,8 +158,10 @@ See [TECHNICAL_DEBT.md](TECHNICAL_DEBT.md) for detailed technical debt items tha
 ## Decision Points
 
 ### Database Architecture
+
 **Status**: Not decided
 **Options**:
+
 1. PostgreSQL (via Neon/Supabase) - Full relational, but higher cost
 2. Cloudflare KV + Durable Objects - Serverless, cheaper, but more complex
 3. Continue with in-memory - Simple, but data loss on redeploy
@@ -154,8 +169,10 @@ See [TECHNICAL_DEBT.md](TECHNICAL_DEBT.md) for detailed technical debt items tha
 **Recommendation**: Decide before Phase 2 (Payment & Orders)
 
 ### Authentication
+
 **Status**: Not decided
 **Options**:
+
 1. Auth0/Clerk - Faster implementation, monthly cost
 2. Custom implementation - More control, more maintenance
 3. NextAuth - Free, but requires Next.js (migration needed)
@@ -165,25 +182,27 @@ See [TECHNICAL_DEBT.md](TECHNICAL_DEBT.md) for detailed technical debt items tha
 ## Dependencies
 
 Some phases depend on others:
+
 - Phase 2 requires Phase 1 database decision
 - Phase 4 requires Phase 2 (users) and Phase 3 (orders)
 - Phase 5 is independent and can be done anytime
 
 ## Timeline
 
-| Phase | Duration | Dependencies |
-|-------|----------|--------------|
-| Phase 1 | 2-3 weeks | None |
-| Phase 2 | 3-4 weeks | Phase 1 |
-| Phase 3 | 3-4 weeks | Phase 1 |
-| Phase 4 | 4-5 weeks | Phase 2, 3 |
-| Phase 5 | 6-8 weeks | Phase 2, 3 |
+| Phase   | Duration  | Dependencies |
+| ------- | --------- | ------------ |
+| Phase 1 | 2-3 weeks | None         |
+| Phase 2 | 3-4 weeks | Phase 1      |
+| Phase 3 | 3-4 weeks | Phase 1      |
+| Phase 4 | 4-5 weeks | Phase 2, 3   |
+| Phase 5 | 6-8 weeks | Phase 2, 3   |
 
 **Minimum Viable E-commerce**: Phase 1 + Phase 2 (~5-7 weeks)
 
 ## Contributing
 
 If you want to work on any of these items:
+
 1. Open an issue to discuss the approach
 2. Reference this roadmap in your PR
 3. Update this roadmap as items are completed

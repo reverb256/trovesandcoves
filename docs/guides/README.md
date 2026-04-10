@@ -55,6 +55,7 @@ This section contains guides for end users, administrators, and technical suppor
 ### Product Information
 
 Each product page includes:
+
 - High-quality images
 - Detailed description
 - Materials used
@@ -74,6 +75,7 @@ Each product page includes:
 ### Product Data
 
 Products are managed through:
+
 - **Development**: `server/storage.ts` - In-memory storage with seeded data
 - **Etsy Import**: `etsy-products.json` - Product data from Etsy
 
@@ -137,12 +139,14 @@ npm run dev
 ```
 
 Site available at:
+
 - Frontend: http://localhost:5173
 - API: http://localhost:5000
 
 ### Environment Variables
 
 Create `.env` file:
+
 ```env
 # Google Analytics (optional)
 VITE_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
@@ -155,16 +159,16 @@ VITE_API_URL=http://localhost:5000
 
 ## Development Commands
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run check` | TypeScript type checking |
-| `npm run test` | Run unit tests |
-| `npm run test:e2e` | Run E2E tests |
-| `npm run lint` | Run linter |
-| `npm run format` | Format code |
+| Command            | Description              |
+| ------------------ | ------------------------ |
+| `npm run dev`      | Start development server |
+| `npm run build`    | Build for production     |
+| `npm run preview`  | Preview production build |
+| `npm run check`    | TypeScript type checking |
+| `npm run test`     | Run unit tests           |
+| `npm run test:e2e` | Run E2E tests            |
+| `npm run lint`     | Run linter               |
+| `npm run format`   | Format code              |
 
 ---
 
@@ -181,13 +185,13 @@ VITE_API_URL=http://localhost:5000
 
 ### Key Files
 
-| File | Purpose |
-|------|---------|
-| `client/src/main.tsx` | React entry point |
-| `server/storage.ts` | Product data storage |
-| `shared/types.ts` | TypeScript type definitions |
-| `vite.config.ts` | Build configuration |
-| `.github/workflows/deploy.yml` | CI/CD pipeline |
+| File                           | Purpose                     |
+| ------------------------------ | --------------------------- |
+| `client/src/main.tsx`          | React entry point           |
+| `server/storage.ts`            | Product data storage        |
+| `shared/types.ts`              | TypeScript type definitions |
+| `vite.config.ts`               | Build configuration         |
+| `.github/workflows/deploy.yml` | CI/CD pipeline              |
 
 ---
 
@@ -196,6 +200,7 @@ VITE_API_URL=http://localhost:5000
 ### Getting Help
 
 For technical issues:
+
 1. Check the [Troubleshooting Guide](troubleshooting.md)
 2. Search existing [GitHub Issues](https://github.com/reverb256/trovesandcoves/issues)
 3. Create a new issue with details
@@ -203,6 +208,7 @@ For technical issues:
 ### Reporting Issues
 
 When reporting issues, include:
+
 - Browser type and version
 - Operating system
 - Steps to reproduce
@@ -212,6 +218,7 @@ When reporting issues, include:
 ### Feature Requests
 
 Feature requests are welcome! Please:
+
 1. Check [ROADMAP.md](../../ROADMAP.md) for planned features
 2. Search existing requests
 3. Create a detailed issue describing the feature

@@ -51,9 +51,7 @@ describe('SearchBar', () => {
   });
 
   const wrapper = ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 
   it('should render search input', () => {
@@ -72,27 +70,42 @@ describe('SearchBar', () => {
 
   it('should call onFiltersChange when search input changes', async () => {
     const user = userEvent.setup();
-    render(<SearchBar onResultsChange={onResultsChangeMock} onFiltersChange={onFiltersChangeMock} />, { wrapper });
+    render(
+      <SearchBar
+        onResultsChange={onResultsChangeMock}
+        onFiltersChange={onFiltersChangeMock}
+      />,
+      { wrapper }
+    );
 
     const searchInput = screen.getByPlaceholderText(/search crystals/i);
     await user.type(searchInput, 'am');
 
-    await waitFor(() => {
-      expect(onFiltersChangeMock).toHaveBeenCalled();
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(onFiltersChangeMock).toHaveBeenCalled();
+      },
+      { timeout: 1000 }
+    );
   });
 
   it('should use initial search value from props', () => {
-    render(<SearchBar onResultsChange={onResultsChangeMock} initialSearch="necklace" />, { wrapper });
+    render(
+      <SearchBar
+        onResultsChange={onResultsChangeMock}
+        initialSearch="necklace"
+      />,
+      { wrapper }
+    );
 
-    const searchInput = screen.getByPlaceholderText(/search crystals/i) as HTMLInputElement;
+    const searchInput = screen.getByPlaceholderText(
+      /search crystals/i
+    ) as HTMLInputElement;
     expect(searchInput.value).toBe('necklace');
   });
 
   it('should fetch and display results on search', async () => {
-    const mockResults = [
-      { id: 1, name: 'Amethyst Necklace', price: '89.00' },
-    ];
+    const mockResults = [{ id: 1, name: 'Amethyst Necklace', price: '89.00' }];
 
     (global.fetch as any).mockImplementation((url: string) => {
       if (url.includes('/api/products') && url.includes('search')) {
@@ -113,61 +126,102 @@ describe('SearchBar', () => {
     const searchInput = screen.getByPlaceholderText(/search crystals/i);
     await user.type(searchInput, 'am');
 
-    await waitFor(() => {
-      expect(onResultsChangeMock).toHaveBeenCalledWith(mockResults);
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(onResultsChangeMock).toHaveBeenCalledWith(mockResults);
+      },
+      { timeout: 1000 }
+    );
   });
 
   it('should display active filters badge when filters are applied', async () => {
     const user = userEvent.setup();
-    render(<SearchBar onResultsChange={onResultsChangeMock} onFiltersChange={onFiltersChangeMock} />, { wrapper });
+    render(
+      <SearchBar
+        onResultsChange={onResultsChangeMock}
+        onFiltersChange={onFiltersChangeMock}
+      />,
+      { wrapper }
+    );
 
     const searchInput = screen.getByPlaceholderText(/search crystals/i);
     await user.type(searchInput, 'test');
 
-    await waitFor(() => {
-      expect(screen.getByText(/Active filters/i)).toBeInTheDocument();
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(screen.getByText(/Active filters/i)).toBeInTheDocument();
+      },
+      { timeout: 1000 }
+    );
   });
 
   it('should render clear all button when filters are active', async () => {
     const user = userEvent.setup();
-    render(<SearchBar onResultsChange={onResultsChangeMock} onFiltersChange={onFiltersChangeMock} />, { wrapper });
+    render(
+      <SearchBar
+        onResultsChange={onResultsChangeMock}
+        onFiltersChange={onFiltersChangeMock}
+      />,
+      { wrapper }
+    );
 
     const searchInput = screen.getByPlaceholderText(/search crystals/i);
     await user.type(searchInput, 'test');
 
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: /clear all/i })).toBeInTheDocument();
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(
+          screen.getByRole('button', { name: /clear all/i })
+        ).toBeInTheDocument();
+      },
+      { timeout: 1000 }
+    );
   });
 
   it('should call onResultsChange when clear all is clicked', async () => {
     const user = userEvent.setup();
-    render(<SearchBar onResultsChange={onResultsChangeMock} onFiltersChange={onFiltersChangeMock} />, { wrapper });
+    render(
+      <SearchBar
+        onResultsChange={onResultsChangeMock}
+        onFiltersChange={onFiltersChangeMock}
+      />,
+      { wrapper }
+    );
 
     const searchInput = screen.getByPlaceholderText(/search crystals/i);
     await user.type(searchInput, 'test');
 
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: /clear all/i })).toBeInTheDocument();
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(
+          screen.getByRole('button', { name: /clear all/i })
+        ).toBeInTheDocument();
+      },
+      { timeout: 1000 }
+    );
 
     const clearButton = screen.getByRole('button', { name: /clear all/i });
     await user.click(clearButton);
 
-    await waitFor(() => {
-      expect(onResultsChangeMock).toHaveBeenCalled();
-      expect(onFiltersChangeMock).toHaveBeenCalled();
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(onResultsChangeMock).toHaveBeenCalled();
+        expect(onFiltersChangeMock).toHaveBeenCalled();
+      },
+      { timeout: 1000 }
+    );
   });
 
   it('should fetch materials and gemstones on mount', async () => {
     render(<SearchBar onResultsChange={onResultsChangeMock} />, { wrapper });
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/api/materials'));
-      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/api/gemstones'));
+      expect(global.fetch).toHaveBeenCalledWith(
+        expect.stringContaining('/api/materials')
+      );
+      expect(global.fetch).toHaveBeenCalledWith(
+        expect.stringContaining('/api/gemstones')
+      );
     });
   });
 });

@@ -41,7 +41,13 @@
     "price": "108.00",
     "imageUrl": "https://i.etsystatic.com/43062874/r/il/f77f5a/6072484742/il_fullxfull.6072484742_erbu.jpg",
     "category": "Necklaces",
-    "materials": ["Lapis Lazuli", "Smoky Quartz", "Jade", "Lava Stone", "Leather"],
+    "materials": [
+      "Lapis Lazuli",
+      "Smoky Quartz",
+      "Jade",
+      "Lava Stone",
+      "Leather"
+    ],
     "gemstones": ["Lapis Lazuli", "Smoky Quartz", "Jade", "Lava Stone"],
     "inStock": true,
     "stockQuantity": 1,

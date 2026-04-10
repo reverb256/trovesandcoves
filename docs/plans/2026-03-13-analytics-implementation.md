@@ -13,6 +13,7 @@
 ## Task 1: Create Analytics component with GA4
 
 **Files:**
+
 - Create: `client/src/components/Analytics.tsx`
 - Modify: `client/src/main.tsx`
 
@@ -89,7 +90,12 @@ export const track = {
   /**
    * Track when a user views a product
    */
-  viewItem: (product: { id: number; name: string; price: string; category?: string }) => {
+  viewItem: (product: {
+    id: number;
+    name: string;
+    price: string;
+    category?: string;
+  }) => {
     if (!window.gtag) return;
 
     window.gtag('event', 'view_item', {
@@ -110,7 +116,10 @@ export const track = {
   /**
    * Track when items are added to cart
    */
-  addToCart: (product: { id: number; name: string; price: string; category?: string }, quantity: number = 1) => {
+  addToCart: (
+    product: { id: number; name: string; price: string; category?: string },
+    quantity: number = 1
+  ) => {
     if (!window.gtag) return;
 
     window.gtag('event', 'add_to_cart', {
@@ -131,7 +140,10 @@ export const track = {
   /**
    * Track when items are removed from cart
    */
-  removeFromCart: (product: { id: number; name: string; price: string }, quantity: number = 1) => {
+  removeFromCart: (
+    product: { id: number; name: string; price: string },
+    quantity: number = 1
+  ) => {
     if (!window.gtag) return;
 
     window.gtag('event', 'remove_from_cart', {
@@ -151,15 +163,23 @@ export const track = {
   /**
    * Track when checkout begins
    */
-  beginCheckout: (cart: Array<{ product: { id: number; name: string; price: string }; quantity: number }>) => {
+  beginCheckout: (
+    cart: Array<{
+      product: { id: number; name: string; price: string };
+      quantity: number;
+    }>
+  ) => {
     if (!window.gtag) return;
 
-    const total = cart.reduce((sum, item) => sum + parseFloat(item.product.price) * item.quantity, 0);
+    const total = cart.reduce(
+      (sum, item) => sum + parseFloat(item.product.price) * item.quantity,
+      0
+    );
 
     window.gtag('event', 'begin_checkout', {
       currency: 'CAD',
       value: total,
-      items: cart.map((item) => ({
+      items: cart.map(item => ({
         item_id: item.product.id.toString(),
         item_name: item.product.name,
         price: item.product.price,
@@ -176,7 +196,12 @@ export const track = {
     total: number;
     tax: number;
     shipping: number;
-    items: Array<{ productId: number; productName: string; price: number; quantity: number }>;
+    items: Array<{
+      productId: number;
+      productName: string;
+      price: number;
+      quantity: number;
+    }>;
   }) => {
     if (!window.gtag) return;
 
@@ -187,7 +212,7 @@ export const track = {
       currency: 'CAD',
       tax: order.tax,
       shipping: order.shipping,
-      items: order.items.map((item) => ({
+      items: order.items.map(item => ({
         item_id: item.productId.toString(),
         item_name: item.productName,
         price: item.price,
@@ -199,7 +224,12 @@ export const track = {
   /**
    * Track wishlist additions
    */
-  addToWishlist: (product: { id: number; name: string; price: string; category?: string }) => {
+  addToWishlist: (product: {
+    id: number;
+    name: string;
+    price: string;
+    category?: string;
+  }) => {
     if (!window.gtag) return;
 
     window.gtag('event', 'add_to_wishlist', {
@@ -265,7 +295,7 @@ export function usePageViewTiming() {
 import { Analytics } from '@/components/Analytics';
 
 // Add inside App component or render alongside
-<Analytics />
+<Analytics />;
 ```
 
 **Step 3: Run TypeScript check**
@@ -293,16 +323,19 @@ git commit -m "feat: add GA4 analytics component
 ## Task 2: Integrate tracking into ProductDetail page
 
 **Files:**
+
 - Modify: `client/src/pages/ProductDetail.tsx`
 
 **Step 1: Add viewItem tracking**
 
 Add to component imports:
+
 ```tsx
 import { track } from '@/components/Analytics';
 ```
 
 Add useEffect when product loads:
+
 ```tsx
 useEffect(() => {
   if (product) {
@@ -334,6 +367,7 @@ git commit -m "feat: track product views in GA4"
 ## Task 3: Integrate tracking into cart operations
 
 **Files:**
+
 - Modify: `client/src/hooks/useCart.ts`
 
 **Step 1: Add event tracking to cart operations**
@@ -377,6 +411,7 @@ git commit -m "feat: track cart operations in GA4
 ## Task 4: Integrate tracking into checkout
 
 **Files:**
+
 - Modify: `client/src/pages/Checkout.tsx`
 
 **Step 1: Add beginCheckout tracking**
@@ -439,6 +474,7 @@ git commit -m "feat: track checkout events in GA4
 ## Task 5: Integrate tracking into wishlist
 
 **Files:**
+
 - Modify: `client/src/components/products/WishlistButton.tsx`
 
 **Step 1: Add wishlist tracking**
@@ -475,6 +511,7 @@ git commit -m "feat: track wishlist additions in GA4"
 ## Task 6: Integrate tracking into search
 
 **Files:**
+
 - Modify: `client/src/pages/Products.tsx`
 
 **Step 1: Add search tracking**
@@ -509,6 +546,7 @@ git commit -m "feat: track site search in GA4"
 ## Task 7: Set up Sentry for error tracking
 
 **Files:**
+
 - Create: `client/src/sentry.ts`
 - Modify: `client/src/main.tsx`
 - Modify: `client/src/components/ErrorBoundary.tsx`
@@ -578,7 +616,7 @@ export function logError(error: Error, context?: Record<string, any>) {
     return;
   }
 
-  Sentry.withScope((scope) => {
+  Sentry.withScope(scope => {
     if (context) {
       Object.entries(context).forEach(([key, value]) => {
         scope.setExtra(key, value);
@@ -591,7 +629,10 @@ export function logError(error: Error, context?: Record<string, any>) {
 /**
  * Log a message to Sentry
  */
-export function logMessage(message: string, level: 'info' | 'warning' = 'info') {
+export function logMessage(
+  message: string,
+  level: 'info' | 'warning' = 'info'
+) {
   if (!SENTRY_DSN) {
     console.log(`[${level}]`, message);
     return;
@@ -620,16 +661,20 @@ import * as Sentry from '@sentry/react';
 export const ErrorBoundary = Sentry.ErrorBoundary;
 
 // Or wrap custom boundary with Sentry
-export function CustomErrorBoundary({ children }: { children: React.ReactNode }) {
+export function CustomErrorBoundary({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <Sentry.ErrorBoundary
       fallback={({ error, resetError }) => (
         <div role="alert" className="error-boundary">
           <h2>Something went wrong</h2>
-          <p>We're sorry for the inconvenience. Please try refreshing the page.</p>
-          {process.env.NODE_ENV === 'development' && (
-            <pre>{error.message}</pre>
-          )}
+          <p>
+            We're sorry for the inconvenience. Please try refreshing the page.
+          </p>
+          {process.env.NODE_ENV === 'development' && <pre>{error.message}</pre>}
           <button onClick={resetError}>Try again</button>
         </div>
       )}
@@ -653,6 +698,7 @@ initSentry();
 **Step 5: Add Sentry context helpers**
 
 Create `client/src/lib/sentry-context.ts`:
+
 ```typescript
 // client/src/lib/sentry-context.ts
 import { setUserContext, logError } from '@/sentry';
@@ -670,11 +716,14 @@ export function setCheckoutUser(email: string) {
 /**
  * Log checkout errors with context
  */
-export function logCheckoutError(error: Error, context: {
-  step: 'shipping' | 'payment' | 'confirm';
-  cartTotal?: number;
-  itemCount?: number;
-}) {
+export function logCheckoutError(
+  error: Error,
+  context: {
+    step: 'shipping' | 'payment' | 'confirm';
+    cartTotal?: number;
+    itemCount?: number;
+  }
+) {
   logError(error, context);
 }
 ```
@@ -704,6 +753,7 @@ git commit -m "feat: add Sentry error tracking
 ## Task 8: Add Core Web Vitals monitoring
 
 **Files:**
+
 - Create: `client/src/components/WebVitals.tsx`
 - Modify: `client/src/main.tsx`
 
@@ -723,7 +773,15 @@ export function WebVitals() {
 
     // Dynamically import web-vitals to reduce initial bundle size
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      const sendToAnalytics = ({ name, value, id }: { name: string; value: number; id: string }) => {
+      const sendToAnalytics = ({
+        name,
+        value,
+        id,
+      }: {
+        name: string;
+        value: number;
+        id: string;
+      }) => {
         if (window.gtag) {
           window.gtag('event', name, {
             event_category: 'Web Vitals',
@@ -757,7 +815,7 @@ Run: `npm install web-vitals`
 import { WebVitals } from '@/components/WebVitals';
 
 // Add alongside Analytics
-<WebVitals />
+<WebVitals />;
 ```
 
 **Step 4: Run TypeScript check**
@@ -783,11 +841,12 @@ git commit -m "feat: add Core Web Vitals monitoring
 ## Task 9: Create analytics documentation
 
 **Files:**
+
 - Create: `docs/analytics-setup.md`
 
 **Step 1: Write analytics documentation**
 
-```markdown
+````markdown
 # Analytics Setup
 
 ## Overview
@@ -804,16 +863,16 @@ This project uses Google Analytics 4 for user analytics and Sentry for error tra
 
 ### Events Tracked
 
-| Event Name | Description | Parameters |
-|-----------|-------------|------------|
-| `page_view` | Page navigation | page_path, page_location, page_title |
-| `view_item` | Product detail view | item_id, item_name, price |
-| `add_to_cart` | Item added to cart | item_id, item_name, price, quantity |
-| `remove_from_cart` | Item removed from cart | item_id, item_name, price, quantity |
-| `begin_checkout` | Checkout started | items array, value |
-| `purchase` | Order completed | transaction_id, value, tax, shipping |
-| `add_to_wishlist` | Item added to wishlist | item_id, item_name, price |
-| `search` | Site search performed | search_term |
+| Event Name         | Description            | Parameters                           |
+| ------------------ | ---------------------- | ------------------------------------ |
+| `page_view`        | Page navigation        | page_path, page_location, page_title |
+| `view_item`        | Product detail view    | item_id, item_name, price            |
+| `add_to_cart`      | Item added to cart     | item_id, item_name, price, quantity  |
+| `remove_from_cart` | Item removed from cart | item_id, item_name, price, quantity  |
+| `begin_checkout`   | Checkout started       | items array, value                   |
+| `purchase`         | Order completed        | transaction_id, value, tax, shipping |
+| `add_to_wishlist`  | Item added to wishlist | item_id, item_name, price            |
+| `search`           | Site search performed  | search_term                          |
 
 ### Privacy Settings
 
@@ -840,6 +899,7 @@ This project uses Google Analytics 4 for user analytics and Sentry for error tra
 ### Error Filtering
 
 The following errors are filtered out:
+
 - ChunkLoadError (harmless, fixed by refresh)
 - NetworkError (likely user connectivity issues)
 
@@ -847,13 +907,13 @@ The following errors are filtered out:
 
 The following metrics are tracked:
 
-| Metric | Good | Needs Improvement | Poor |
-|--------|------|-------------------|------|
-| LCP | < 2.5s | < 4s | > 4s |
-| FID | < 100ms | < 300ms | > 300ms |
-| CLS | < 0.1 | < 0.25 | > 0.25 |
-| FCP | < 1.8s | < 3s | > 3s |
-| TTFB | < 800ms | < 1800ms | > 1800s |
+| Metric | Good    | Needs Improvement | Poor    |
+| ------ | ------- | ----------------- | ------- |
+| LCP    | < 2.5s  | < 4s              | > 4s    |
+| FID    | < 100ms | < 300ms           | > 300ms |
+| CLS    | < 0.1   | < 0.25            | > 0.25  |
+| FCP    | < 1.8s  | < 3s              | > 3s    |
+| TTFB   | < 800ms | < 1800ms          | > 1800s |
 
 ## Environment Variables
 
@@ -864,6 +924,7 @@ VITE_GA4_ID=G-XXXXXXXXXX
 # Error Tracking
 VITE_SENTRY_DSN=https://...@sentry.io/...
 ```
+````
 
 ## Viewing Analytics
 
@@ -876,20 +937,22 @@ VITE_SENTRY_DSN=https://...@sentry.io/...
    - Issues tab for error list
    - Performance tab for slow transactions
    - Replay tab for session recordings
-```
+
+````
 
 **Step 2: Commit documentation**
 
 ```bash
 git add docs/analytics-setup.md
 git commit -m "docs: add analytics setup documentation"
-```
+````
 
 ---
 
 ## Task 10: Update environment variables
 
 **Files:**
+
 - Modify: `.env.example`
 
 **Step 1: Add analytics environment variables**
@@ -920,6 +983,7 @@ git commit -m "docs: add analytics environment variables to example"
 ## Task 11: Test analytics and error tracking
 
 **Files:**
+
 - Test: Manual verification
 
 **Step 1: Verify GA4 initialization**
@@ -927,12 +991,14 @@ git commit -m "docs: add analytics environment variables to example"
 Run: `npm run dev`
 
 Check browser console:
+
 - Should see "GA4 initialized" if VITE_GA4_ID is set
 - Should see "GA4 not configured" if not set
 
 **Step 2: Verify event tracking**
 
 Test each event:
+
 1. Navigate to product page - check console for page_view event
 2. Add item to cart - check for add_to_cart event
 3. Go to checkout - check for begin_checkout event
@@ -943,6 +1009,7 @@ Use GA4 Real-time view to confirm events are received.
 **Step 3: Verify error tracking**
 
 Add intentional error to test:
+
 ```tsx
 throw new Error('Test error for Sentry');
 ```
@@ -954,6 +1021,7 @@ Remove test error after verification.
 **Step 4: Verify Web Vitals**
 
 Open DevTools → Performance → Record
+
 - Navigate through site
 - Stop recording
 - Check LCP, FCP, CLS values
@@ -975,6 +1043,7 @@ Expected: Build succeeds
 ## Task 12: Create completion report
 
 **Files:**
+
 - Create: `docs/plans/2026-03-13-analytics-completion-report.md`
 
 **Step 1: Write completion report**
@@ -988,6 +1057,7 @@ Expected: Build succeeds
 ## Completed Tasks
 
 ### 1. Google Analytics 4
+
 - [x] GA4 initialization with privacy settings
 - [x] Page view tracking on route changes
 - [x] E-commerce event tracking (view, add to cart, checkout, purchase)
@@ -995,6 +1065,7 @@ Expected: Build succeeds
 - [x] Search event tracking
 
 ### 2. Sentry Error Tracking
+
 - [x] Sentry SDK integration
 - [x] Error boundary integration
 - [x] Error filtering for harmless errors
@@ -1002,11 +1073,13 @@ Expected: Build succeeds
 - [x] Checkout error logging
 
 ### 3. Core Web Vitals
+
 - [x] Web Vitals monitoring
 - [x] CLS, FID, FCP, LCP, TTFB tracking
 - [x] Metrics reported to GA4
 
 ### 4. Documentation
+
 - [x] Analytics setup guide
 - [x] Event tracking reference
 - [x] Environment variable documentation
@@ -1014,17 +1087,20 @@ Expected: Build succeeds
 ## Results
 
 ### Before
+
 - No analytics tracking
 - No error monitoring
 - No performance metrics
 
 ### After
+
 - Full GA4 integration with e-commerce events
 - Sentry error tracking with replay
 - Core Web Vitals monitoring
 - Privacy-friendly settings (IP anonymization)
 
 ## Expected Impact
+
 - Visibility into user behavior and conversion funnel
 - Proactive error detection before users report
 - Performance baseline for optimization
@@ -1060,6 +1136,7 @@ Before marking this complete, verify:
 **Total Estimated Time:** 3-4 hours
 
 **Dependencies:**
+
 - Requires GA4 property setup (external)
 - Requires Sentry project setup (external)
 - Phase 3 (Conversion Features) - for wishlist tracking

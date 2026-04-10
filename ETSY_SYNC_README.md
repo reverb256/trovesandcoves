@@ -50,10 +50,10 @@ Automatically keeps your Troves & Coves website products synchronized with your 
 
 Add these secrets in your GitHub repository settings (`Settings > Secrets and variables > Actions`):
 
-| Secret | Value | How to Get |
-|--------|-------|-------------|
-| `CLOUDFLARE_API_TOKEN` | Your API token | https://dash.cloudflare.com/profile/api-tokens (Scopes: Account > Worker Scripts > Edit) |
-| `CLOUDFLARE_ACCOUNT_ID` | Your account ID | Cloudflare Dashboard sidebar |
+| Secret                  | Value           | How to Get                                                                               |
+| ----------------------- | --------------- | ---------------------------------------------------------------------------------------- |
+| `CLOUDFLARE_API_TOKEN`  | Your API token  | https://dash.cloudflare.com/profile/api-tokens (Scopes: Account > Worker Scripts > Edit) |
+| `CLOUDFLARE_ACCOUNT_ID` | Your account ID | Cloudflare Dashboard sidebar                                                             |
 
 ### Automated Deployment (GitHub Actions)
 
@@ -96,17 +96,17 @@ curl https://troves-etsy-sync.YOUR_SUBDOMAIN.workers.dev/products
 
 ### Etsy Sync Worker
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/sync` | POST | Manually trigger product sync |
-| `/status` | GET | Get sync status and metadata |
-| `/products` | GET | Get all synced products |
+| Endpoint    | Method | Description                   |
+| ----------- | ------ | ----------------------------- |
+| `/sync`     | POST   | Manually trigger product sync |
+| `/status`   | GET    | Get sync status and metadata  |
+| `/products` | GET    | Get all synced products       |
 
 ### Main Worker (Updated)
 
-| Endpoint | Description | Source |
-|----------|-------------|--------|
-| `/api/products` | Get all products | ETSY_PRODUCTS KV → PRODUCTS_KV → defaults |
+| Endpoint                 | Description           | Source                                    |
+| ------------------------ | --------------------- | ----------------------------------------- |
+| `/api/products`          | Get all products      | ETSY_PRODUCTS KV → PRODUCTS_KV → defaults |
 | `/api/products/featured` | Get featured products | ETSY_PRODUCTS KV → PRODUCTS_KV → defaults |
 
 ## Product Data Schema
@@ -135,6 +135,7 @@ curl https://troves-etsy-sync.YOUR_SUBDOMAIN.workers.dev/products
 ## Sync Schedule
 
 The worker runs automatically:
+
 - **Every 6 hours**: `0 */6 * * *` (12am, 6am, 12pm, 6pm UTC)
 - **Manual sync**: POST to `/sync` endpoint anytime
 
@@ -224,16 +225,19 @@ curl -X POST http://localhost:8787/sync
 **100% FREE TIER** - No charges whatsoever.
 
 ### Cloudflare Free Tier Included
+
 - **Workers**: 100,000 requests/day (you'll use ~100/day max)
 - **KV Storage**: 1GB storage (you'll use ~1MB)
 - **KV Reads**: 1GB/day (you'll use ~10MB)
 - **Cron Triggers**: Included free
 
 ### GitHub Actions Free Tier Included
+
 - **2,000 minutes/month** (you'll use ~5 minutes per deployment)
 - **500MB storage** for artifacts
 
 ### Estimated Monthly Usage
+
 - **Worker requests**: ~3,000 (well under 100,000 limit)
 - **KV storage**: ~1MB (well under 1GB limit)
 - **Sync operations**: ~120 (4 per day × 30 days)

@@ -53,11 +53,7 @@ export function ProductCardSkeleton() {
       className="rounded-lg shadow-sm overflow-hidden"
       style={{ backgroundColor: 'hsl(var(--bg-card))' }}
     >
-      <Skeleton
-        variant="rectangular"
-        height={200}
-        className="w-full"
-      />
+      <Skeleton variant="rectangular" height={200} className="w-full" />
       <div className="p-4 space-y-3">
         <Skeleton variant="text" width="60%" />
         <Skeleton variant="text" width="40%" />
@@ -130,11 +126,19 @@ export function LoadingSpinner({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
 // Full Page Loading Skeleton
 export function PageSkeleton() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+    <div
+      className="min-h-screen"
+      style={{ backgroundColor: 'hsl(var(--bg-primary))' }}
+    >
       <HeroSkeleton />
       <div className="chamber-container px-4 py-12 space-y-8">
         <div className="text-center space-y-4">
-          <Skeleton variant="text" width="30%" className="mx-auto" height={32} />
+          <Skeleton
+            variant="text"
+            width="30%"
+            className="mx-auto"
+            height={32}
+          />
           <Skeleton variant="text" width="50%" className="mx-auto" />
         </div>
         <ProductListSkeleton count={6} />

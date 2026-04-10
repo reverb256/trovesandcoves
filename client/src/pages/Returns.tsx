@@ -65,14 +65,21 @@ export default function Returns() {
     <ContentPageWrapper>
       <ContentPageHeader
         badgeLabel="Our Promise"
-        title={<span style={{ color: 'hsl(var(--text-primary))' }}>Returns & Exchanges</span>}
+        title={
+          <span style={{ color: 'hsl(var(--text-primary))' }}>
+            Returns & Exchanges
+          </span>
+        }
         description="Your satisfaction with our jewelry is paramount. We offer generous return and exchange policies to ensure you're completely happy with your purchase."
       />
 
       <ContentPageBody>
         {/* Return Policy */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-8 text-center" style={{ color: 'hsl(var(--text-primary))' }}>
+          <h2
+            className="text-3xl font-bold mb-8 text-center"
+            style={{ color: 'hsl(var(--text-primary))' }}
+          >
             Return Policy
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -85,7 +92,9 @@ export default function Returns() {
                     <div className="flex items-center gap-3">
                       <Icon className="h-6 w-6" />
                       <div>
-                        <div className="font-bold text-lg">{policy.category}</div>
+                        <div className="font-bold text-lg">
+                          {policy.category}
+                        </div>
                         <Badge variant="turquoise" className="text-xs">
                           {policy.duration}
                         </Badge>
@@ -100,7 +109,9 @@ export default function Returns() {
                         className="text-sm flex items-start space-x-2"
                         style={{ color: 'hsl(var(--text-secondary))' }}
                       >
-                        <span style={{ color: 'hsl(var(--accent-vibrant))' }}>•</span>
+                        <span style={{ color: 'hsl(var(--accent-vibrant))' }}>
+                          •
+                        </span>
                         <span>{condition}</span>
                       </li>
                     ))}
@@ -178,7 +189,10 @@ export default function Returns() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <ul className="space-y-3" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <ul
+                className="space-y-3"
+                style={{ color: 'hsl(var(--text-secondary))' }}
+              >
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
                   <span>Refunds processed to original payment method</span>
@@ -206,11 +220,20 @@ export default function Returns() {
 
         <Card variant="elevated" theme="gradient">
           <CardContent className="p-8 text-center">
-            <Heart className="h-12 w-12 mx-auto mb-4" style={{ color: 'hsl(var(--accent-vibrant))' }} />
-            <h3 className="text-2xl font-bold mb-4" style={{ color: 'hsl(var(--text-primary))' }}>
+            <Heart
+              className="h-12 w-12 mx-auto mb-4"
+              style={{ color: 'hsl(var(--accent-vibrant))' }}
+            />
+            <h3
+              className="text-2xl font-bold mb-4"
+              style={{ color: 'hsl(var(--text-primary))' }}
+            >
               Our Commitment
             </h3>
-            <p className="mb-6 max-w-2xl mx-auto" style={{ color: 'hsl(var(--text-secondary))' }}>
+            <p
+              className="mb-6 max-w-2xl mx-auto"
+              style={{ color: 'hsl(var(--text-secondary))' }}
+            >
               We want you to feel completely happy with your purchase. If your
               jewelry doesn't meet your expectations, we'll work together to
               find the perfect solution.

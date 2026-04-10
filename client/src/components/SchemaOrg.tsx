@@ -47,10 +47,13 @@ export function ProductSchema({
         url: `https://trovesandcoves.ca/product/${id}`,
         priceCurrency: 'CAD',
         price: price.toString(),
-        priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-        availability: stockQuantity > 0
-          ? 'https://schema.org/InStock'
-          : 'https://schema.org/OutOfStock',
+        priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+          .toISOString()
+          .split('T')[0],
+        availability:
+          stockQuantity > 0
+            ? 'https://schema.org/InStock'
+            : 'https://schema.org/OutOfStock',
         itemCondition: 'https://schema.org/NewCondition',
         seller: {
           '@type': 'Organization',
@@ -88,7 +91,17 @@ export function ProductSchema({
         script.remove();
       }
     };
-  }, [name, description, imageUrl, price, stockQuantity, category, id, brand, sku]);
+  }, [
+    name,
+    description,
+    imageUrl,
+    price,
+    stockQuantity,
+    category,
+    id,
+    brand,
+    sku,
+  ]);
 
   return null;
 }
@@ -104,12 +117,14 @@ export function WebsiteSchema() {
       '@type': 'WebSite',
       url: 'https://trovesandcoves.ca',
       name: 'Troves & Coves',
-      description: 'Handcrafted crystal jewelry with timeless elegance. Each piece elevates your style, blending 14k gold-plated sophistication with natural crystal beauty.',
+      description:
+        'Handcrafted crystal jewelry with timeless elegance. Each piece elevates your style, blending 14k gold-plated sophistication with natural crystal beauty.',
       potentialAction: {
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: 'https://trovesandcoves.ca/products?search={search_term_string}',
+          urlTemplate:
+            'https://trovesandcoves.ca/products?search={search_term_string}',
         },
         'query-input': 'required name=search_term_string',
       },
@@ -161,7 +176,8 @@ export function OrganizationSchema() {
         width: 512,
         height: 512,
       },
-      description: 'Handcrafted crystal jewelry in Winnipeg, Manitoba. Statement necklaces and bracelets artisan-crafted with 14k gold-plated elegance and natural crystal beauty.',
+      description:
+        'Handcrafted crystal jewelry in Winnipeg, Manitoba. Statement necklaces and bracelets artisan-crafted with 14k gold-plated elegance and natural crystal beauty.',
       sameAs: [
         'https://www.facebook.com/trovesandcoves',
         'https://www.instagram.com/trovesandcoves',
@@ -217,7 +233,8 @@ export function LocalBusinessSchema() {
       '@type': 'LocalBusiness',
       '@id': 'https://trovesandcoves.ca/#business',
       name: 'Troves & Coves',
-      description: 'Handcrafted crystal jewelry in Winnipeg, Manitoba. Statement necklaces and bracelets artisan-crafted with 14k gold-plated elegance and natural crystal beauty.',
+      description:
+        'Handcrafted crystal jewelry in Winnipeg, Manitoba. Statement necklaces and bracelets artisan-crafted with 14k gold-plated elegance and natural crystal beauty.',
       url: 'https://trovesandcoves.ca',
       telephone: '+1-204-xxx-xxxx',
       address: {

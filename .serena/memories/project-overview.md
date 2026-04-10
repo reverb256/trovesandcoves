@@ -5,6 +5,7 @@
 A **crystal jewelry showcase site** - NOT a full e-commerce platform (yet).
 
 ### Current Features (What Works)
+
 - Static React frontend with ~25 custom components
 - shadcn/ui component library for base UI
 - In-memory product data storage (MemStorage in server/storage.ts)
@@ -16,6 +17,7 @@ A **crystal jewelry showcase site** - NOT a full e-commerce platform (yet).
 - GitHub Pages deployment
 
 ### What Does NOT Exist (Yet)
+
 - ❌ No database (PostgreSQL schema exists but is UNUSED)
 - ❌ No payment processing (Stripe integration is stub code only)
 - ❌ No user authentication
@@ -25,11 +27,13 @@ A **crystal jewelry showcase site** - NOT a full e-commerce platform (yet).
 ## Architecture
 
 ### Development Mode
+
 - **Frontend**: Vite dev server on port 5173
 - **Backend**: Express.js on port 5000 (with in-memory storage)
 - Hot Module Replacement for both
 
 ### Production Mode
+
 - **Frontend**: GitHub Pages (static build)
 - **API**: Cloudflare Workers (optional, serverless)
 - Vite base path: `/trovesandcoves/` for GitHub Pages
@@ -43,7 +47,7 @@ A **crystal jewelry showcase site** - NOT a full e-commerce platform (yet).
 2. **Routing**: Uses Wouter (lightweight React router)
    - Base path: `/trovesandcoves` for GitHub Pages compatibility
 
-3. **State Management**: 
+3. **State Management**:
    - React Context (CartProvider in lib/store.ts)
    - React Query (@tanstack/react-query) for server state
    - localStorage for cart persistence

@@ -68,7 +68,11 @@ export default function SEOHead({
       { property: 'og:image:width', content: '1280' },
       { property: 'og:image:height', content: '720' },
       { property: 'og:image:type', content: 'image/jpeg' },
-      { property: 'og:image:alt', content: 'Troves & Coves Crystal Jewelry - Hero section with beautiful crystal jewelry display' },
+      {
+        property: 'og:image:alt',
+        content:
+          'Troves & Coves Crystal Jewelry - Hero section with beautiful crystal jewelry display',
+      },
       { property: 'og:url', content: url },
       { property: 'og:type', content: type },
       { property: 'og:site_name', content: 'Troves & Coves' },
@@ -321,7 +325,7 @@ export default function SEOHead({
 
     // Cleanup function - remove only elements created by this instance
     return () => {
-      createdElementsRef.current.forEach((element) => {
+      createdElementsRef.current.forEach(element => {
         if (element.isConnected) {
           try {
             (element as Element).remove();

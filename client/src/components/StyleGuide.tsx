@@ -4,8 +4,8 @@
  * Date: 2026-03-08
  */
 
-import { useState } from "react";
-import "./StyleGuide.css";
+import { useState } from 'react';
+import './StyleGuide.css';
 
 export function StyleGuide() {
   const [copied, setCopied] = useState<string | null>(null);
@@ -18,78 +18,110 @@ export function StyleGuide() {
 
   const colors = [
     {
-      name: "Troves Turquoise (Luxury 2026)",
-      hex: "#3A8E8B",
-      rgb: "rgb(58, 142, 139)",
-      usage: "Primary brand color, 'TROVES' text, links, CTAs"
+      name: 'Troves Turquoise (Luxury 2026)',
+      hex: '#3A8E8B',
+      rgb: 'rgb(58, 142, 139)',
+      usage: "Primary brand color, 'TROVES' text, links, CTAs",
     },
     {
-      name: "Coves Gold (Unified)",
-      hex: "#C9A24A",
-      rgb: "rgb(201, 162, 74)",
-      usage: "'Coves' text, ampersand (&), accents, decorative elements"
+      name: 'Coves Gold (Unified)',
+      hex: '#C9A24A',
+      rgb: 'rgb(201, 162, 74)',
+      usage: "'Coves' text, ampersand (&), accents, decorative elements",
     },
     {
-      name: "Pure White Background",
-      hex: "#FFFFFF",
-      rgb: "rgb(255, 255, 255)",
-      usage: "Primary background - clean white aesthetic"
+      name: 'Pure White Background',
+      hex: '#FFFFFF',
+      rgb: 'rgb(255, 255, 255)',
+      usage: 'Primary background - clean white aesthetic',
     },
     {
-      name: "Dark Text",
-      hex: "#2c2c2c",
-      rgb: "rgb(44, 44, 44)",
-      usage: "Body text, headings, primary content"
-    }
+      name: 'Dark Text',
+      hex: '#2c2c2c',
+      rgb: 'rgb(44, 44, 44)',
+      usage: 'Body text, headings, primary content',
+    },
   ];
 
   const fonts = [
     {
-      name: "Libre Baskerville",
-      category: "Serif",
-      usage: "\"TROVES\" text, headings, subheadings",
+      name: 'Libre Baskerville',
+      category: 'Serif',
+      usage: '"TROVES" text, headings, subheadings',
       weights: [400, 700],
-      style: "font-family: 'Libre Baskerville', serif;"
+      style: "font-family: 'Libre Baskerville', serif;",
     },
     {
-      name: "Alex Brush",
-      category: "Script",
-      usage: "\"Coves\" text, decorative elements, quotes",
+      name: 'Alex Brush',
+      category: 'Script',
+      usage: '"Coves" text, decorative elements, quotes',
       weights: [400],
-      style: "font-family: 'Alex Brush', cursive;"
+      style: "font-family: 'Alex Brush', cursive;",
     },
     {
-      name: "Montserrat",
-      category: "Sans-serif",
-      usage: "Body text, navigation, UI elements",
+      name: 'Montserrat',
+      category: 'Sans-serif',
+      usage: 'Body text, navigation, UI elements',
       weights: [300, 400, 500, 600, 700],
-      style: "font-family: 'Montserrat', sans-serif;"
-    }
+      style: "font-family: 'Montserrat', sans-serif;",
+    },
   ];
 
   return (
-    <div className="style-guide-page" style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}>
+    <div
+      className="style-guide-page"
+      style={{ backgroundColor: '#FFFFFF', minHeight: '100vh' }}
+    >
       <div className="style-guide-container">
         {/* Header */}
         <header className="sg-header">
           <div className="sg-logo">
-            <span style={{ fontFamily: "Libre Baskerville, serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-4xl">TROVES</span>
-            <span style={{ color: "hsl(var(--gold-medium))", fontFamily: "Alex Brush", fontSize: "2rem" }}>&</span>
-            <span style={{ fontFamily: "Alex Brush, cursive", color: "hsl(var(--gold-medium))", fontSize: "2.5rem" }}>Coves</span>
+            <span
+              style={{
+                fontFamily: 'Libre Baskerville, serif',
+                fontWeight: 700,
+                color: 'hsl(var(--accent-vibrant))',
+                textTransform: 'uppercase',
+              }}
+              className="text-4xl"
+            >
+              TROVES
+            </span>
+            <span
+              style={{
+                color: 'hsl(var(--gold-medium))',
+                fontFamily: 'Alex Brush',
+                fontSize: '2rem',
+              }}
+            >
+              &
+            </span>
+            <span
+              style={{
+                fontFamily: 'Alex Brush, cursive',
+                color: 'hsl(var(--gold-medium))',
+                fontSize: '2.5rem',
+              }}
+            >
+              Coves
+            </span>
           </div>
           <h1 className="sg-title">Brand Style Guide</h1>
-          <p className="sg-subtitle">Handcrafted Crystal Jewelry • Winnipeg, Manitoba</p>
+          <p className="sg-subtitle">
+            Handcrafted Crystal Jewelry • Winnipeg, Manitoba
+          </p>
         </header>
 
         {/* Colors Section */}
         <section className="sg-section">
           <h2 className="sg-section-title">Colors</h2>
           <p className="sg-section-desc">
-            Client-specified colors (Robin Kroeker). These are locked and should not be modified.
+            Client-specified colors (Robin Kroeker). These are locked and should
+            not be modified.
           </p>
 
           <div className="color-grid">
-            {colors.map((color) => (
+            {colors.map(color => (
               <div key={color.hex} className="color-card">
                 <div
                   className="color-swatch"
@@ -105,7 +137,7 @@ export function StyleGuide() {
                         className="copy-btn"
                         onClick={() => copyToClipboard(color.hex, color.hex)}
                       >
-                        {copied === color.hex ? "✓" : "📋"}
+                        {copied === color.hex ? '✓' : '📋'}
                       </button>
                     </div>
                     <div className="color-value">
@@ -126,29 +158,75 @@ export function StyleGuide() {
 
           <div className="combo-grid">
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "#FFFFFF", border: "2px solid hsl(var(--accent-vibrant))" }}>
-                <span style={{ color: "hsl(var(--accent-vibrant))", fontFamily: "Libre Baskerville, serif" }}>Primary</span>
+              <div
+                className="combo-preview"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '2px solid hsl(var(--accent-vibrant))',
+                }}
+              >
+                <span
+                  style={{
+                    color: 'hsl(var(--accent-vibrant))',
+                    fontFamily: 'Libre Baskerville, serif',
+                  }}
+                >
+                  Primary
+                </span>
               </div>
               <p>Turquoise on White</p>
             </div>
 
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "#FFFFFF", border: "2px solid hsl(var(--gold-medium))" }}>
-                <span style={{ color: "hsl(var(--gold-medium))", fontFamily: "Alex Brush, cursive" }}>Accent</span>
+              <div
+                className="combo-preview"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '2px solid hsl(var(--gold-medium))',
+                }}
+              >
+                <span
+                  style={{
+                    color: 'hsl(var(--gold-medium))',
+                    fontFamily: 'Alex Brush, cursive',
+                  }}
+                >
+                  Accent
+                </span>
               </div>
               <p>Gold on White</p>
             </div>
 
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "hsl(var(--accent-vibrant))" }}>
-                <span style={{ color: "#FFFFFF", fontFamily: "Libre Baskerville, serif" }}>Inverse</span>
+              <div
+                className="combo-preview"
+                style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}
+              >
+                <span
+                  style={{
+                    color: '#FFFFFF',
+                    fontFamily: 'Libre Baskerville, serif',
+                  }}
+                >
+                  Inverse
+                </span>
               </div>
               <p>White on Turquoise</p>
             </div>
 
             <div className="combo-card">
-              <div className="combo-preview" style={{ backgroundColor: "#2c2c2c" }}>
-                <span style={{ color: "hsl(var(--accent-vibrant))", fontFamily: "Libre Baskerville, serif" }}>Dark Mode</span>
+              <div
+                className="combo-preview"
+                style={{ backgroundColor: '#2c2c2c' }}
+              >
+                <span
+                  style={{
+                    color: 'hsl(var(--accent-vibrant))',
+                    fontFamily: 'Libre Baskerville, serif',
+                  }}
+                >
+                  Dark Mode
+                </span>
               </div>
               <p>Turquoise on Dark</p>
             </div>
@@ -163,17 +241,19 @@ export function StyleGuide() {
           </p>
 
           <div className="font-grid">
-            {fonts.map((font) => (
+            {fonts.map(font => (
               <div key={font.name} className="font-card">
-                <div className="font-preview" style={{ fontFamily: font.style }}>
+                <div
+                  className="font-preview"
+                  style={{ fontFamily: font.style }}
+                >
                   <span className="font-name-display">{font.name}</span>
                   <p className="font-sample">
-                    {font.name === "Alex Brush"
-                      ? "Handcrafted Crystal Jewelry"
-                      : font.name === "Libre Baskerville"
-                      ? "The quick brown fox jumps over the lazy dog."
-                      : "Body text appears in Montserrat for optimal readability."
-                    }
+                    {font.name === 'Alex Brush'
+                      ? 'Handcrafted Crystal Jewelry'
+                      : font.name === 'Libre Baskerville'
+                        ? 'The quick brown fox jumps over the lazy dog.'
+                        : 'Body text appears in Montserrat for optimal readability.'}
                   </p>
                 </div>
                 <div className="font-info">
@@ -183,7 +263,9 @@ export function StyleGuide() {
                   <div className="font-weights">
                     <span className="font-label">Weights:</span>
                     {font.weights.map(w => (
-                      <span key={w} className="weight-badge">{w}</span>
+                      <span key={w} className="weight-badge">
+                        {w}
+                      </span>
                     ))}
                   </div>
                   <code className="font-code">{font.style}</code>
@@ -200,20 +282,53 @@ export function StyleGuide() {
           <div className="logo-showcase">
             <div className="logo-display">
               <div className="logo-main">
-                <span style={{ fontFamily: "Libre Baskerville, serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase", fontSize: "3rem" }}>TROVES</span>
-                <span style={{ color: "hsl(var(--gold-medium))", fontFamily: "Alex Brush", fontSize: "2.5rem", margin: "0 0.5rem" }}>&</span>
-                <span style={{ fontFamily: "Alex Brush, cursive", color: "hsl(var(--gold-medium))", fontSize: "3rem" }}>Coves</span>
+                <span
+                  style={{
+                    fontFamily: 'Libre Baskerville, serif',
+                    fontWeight: 700,
+                    color: 'hsl(var(--accent-vibrant))',
+                    textTransform: 'uppercase',
+                    fontSize: '3rem',
+                  }}
+                >
+                  TROVES
+                </span>
+                <span
+                  style={{
+                    color: 'hsl(var(--gold-medium))',
+                    fontFamily: 'Alex Brush',
+                    fontSize: '2.5rem',
+                    margin: '0 0.5rem',
+                  }}
+                >
+                  &
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'Alex Brush, cursive',
+                    color: 'hsl(var(--gold-medium))',
+                    fontSize: '3rem',
+                  }}
+                >
+                  Coves
+                </span>
               </div>
-              <p className="logo-tagline">Handcrafted Crystal Jewelry • Winnipeg</p>
+              <p className="logo-tagline">
+                Handcrafted Crystal Jewelry • Winnipeg
+              </p>
             </div>
 
             <div className="logo-rules">
               <h3>Logo Rules (Luxury Palette 2026)</h3>
               <ul>
-                <li>Always display as "TROVES & Coves" - never reverse order</li>
+                <li>
+                  Always display as "TROVES & Coves" - never reverse order
+                </li>
                 <li>"TROVES" must be Libre Baskerville, uppercase, #3A8E8B</li>
                 <li>"Coves" must be Alex Brush, #C9A24A (unified gold)</li>
-                <li>Ampersand (&) must be Alex Brush, #C9A24A (unified gold)</li>
+                <li>
+                  Ampersand (&) must be Alex Brush, #C9A24A (unified gold)
+                </li>
                 <li>Maintain clear space around logo equal to height of "&"</li>
               </ul>
             </div>
@@ -227,25 +342,64 @@ export function StyleGuide() {
           <div className="type-scale">
             <div className="type-level">
               <span className="type-label">Display (48px)</span>
-              <span style={{ fontFamily: "Libre Baskerville, serif", fontSize: "3rem", color: "hsl(var(--accent-vibrant))" }}>Handcrafted Jewelry</span>
+              <span
+                style={{
+                  fontFamily: 'Libre Baskerville, serif',
+                  fontSize: '3rem',
+                  color: 'hsl(var(--accent-vibrant))',
+                }}
+              >
+                Handcrafted Jewelry
+              </span>
             </div>
             <div className="type-level">
               <span className="type-label">Heading (32px)</span>
-              <span style={{ fontFamily: "Libre Baskerville, serif", fontSize: "2rem", color: "#2c2c2c" }}>Natural Beauty Collection</span>
+              <span
+                style={{
+                  fontFamily: 'Libre Baskerville, serif',
+                  fontSize: '2rem',
+                  color: '#2c2c2c',
+                }}
+              >
+                Natural Beauty Collection
+              </span>
             </div>
             <div className="type-level">
               <span className="type-label">Subheading (24px)</span>
-              <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "1.5rem", fontWeight: 600, color: "#2c2c2c" }}>Artisan Crafted Excellence</span>
+              <span
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  fontSize: '1.5rem',
+                  fontWeight: 600,
+                  color: '#2c2c2c',
+                }}
+              >
+                Artisan Crafted Excellence
+              </span>
             </div>
             <div className="type-level">
               <span className="type-label">Body (16px)</span>
-              <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "1rem", color: "#2c2c2c" }}>
-                Each piece is carefully selected for its unique beauty and quality craftsmanship.
+              <span
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  fontSize: '1rem',
+                  color: '#2c2c2c',
+                }}
+              >
+                Each piece is carefully selected for its unique beauty and
+                quality craftsmanship.
               </span>
             </div>
             <div className="type-level">
               <span className="type-label">Caption (14px)</span>
-              <span style={{ fontFamily: "Montserrat, sans-serif", fontSize: "0.875rem", color: "#2c2c2c", opacity: 0.7 }}>
+              <span
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  fontSize: '0.875rem',
+                  color: '#2c2c2c',
+                  opacity: 0.7,
+                }}
+              >
                 Made in Winnipeg, Manitoba
               </span>
             </div>
@@ -258,27 +412,27 @@ export function StyleGuide() {
 
           <div className="spacing-showcase">
             <div className="spacing-item">
-              <div className="spacing-bar" style={{ width: "8px" }}></div>
+              <div className="spacing-bar" style={{ width: '8px' }}></div>
               <span>XS: 8px</span>
             </div>
             <div className="spacing-item">
-              <div className="spacing-bar" style={{ width: "16px" }}></div>
+              <div className="spacing-bar" style={{ width: '16px' }}></div>
               <span>SM: 16px</span>
             </div>
             <div className="spacing-item">
-              <div className="spacing-bar" style={{ width: "24px" }}></div>
+              <div className="spacing-bar" style={{ width: '24px' }}></div>
               <span>MD: 24px</span>
             </div>
             <div className="spacing-item">
-              <div className="spacing-bar" style={{ width: "32px" }}></div>
+              <div className="spacing-bar" style={{ width: '32px' }}></div>
               <span>LG: 32px</span>
             </div>
             <div className="spacing-item">
-              <div className="spacing-bar" style={{ width: "48px" }}></div>
+              <div className="spacing-bar" style={{ width: '48px' }}></div>
               <span>XL: 48px</span>
             </div>
             <div className="spacing-item">
-              <div className="spacing-bar" style={{ width: "64px" }}></div>
+              <div className="spacing-bar" style={{ width: '64px' }}></div>
               <span>2XL: 64px</span>
             </div>
           </div>
@@ -304,11 +458,28 @@ export function StyleGuide() {
               <h3>Cards</h3>
               <div className="card-showcase">
                 <div className="preview-card">
-                  <div className="preview-card-img" style={{ backgroundColor: "hsl(var(--accent-vibrant))" }}></div>
+                  <div
+                    className="preview-card-img"
+                    style={{ backgroundColor: 'hsl(var(--accent-vibrant))' }}
+                  ></div>
                   <div className="preview-card-body">
-                    <h4 style={{ fontFamily: "Libre Baskerville, serif" }}>Crystal Name</h4>
-                    <p style={{ fontFamily: "Montserrat, sans-serif", fontSize: "0.875rem" }}>Short description</p>
-                    <span className="preview-price" style={{ color: "hsl(var(--gold-medium))" }}>$89.00</span>
+                    <h4 style={{ fontFamily: 'Libre Baskerville, serif' }}>
+                      Crystal Name
+                    </h4>
+                    <p
+                      style={{
+                        fontFamily: 'Montserrat, sans-serif',
+                        fontSize: '0.875rem',
+                      }}
+                    >
+                      Short description
+                    </p>
+                    <span
+                      className="preview-price"
+                      style={{ color: 'hsl(var(--gold-medium))' }}
+                    >
+                      $89.00
+                    </span>
                   </div>
                 </div>
               </div>
@@ -321,9 +492,16 @@ export function StyleGuide() {
           <h2 className="sg-section-title">Brand Voice</h2>
 
           <div className="voice-content">
-            <p><strong>Tone:</strong> Elegant, refined, authentic, personal</p>
-            <p><strong>Personality:</strong> Sophisticated, nurturing, artistic, connected to natural beauty</p>
-            <p><strong>Key Themes:</strong></p>
+            <p>
+              <strong>Tone:</strong> Elegant, refined, authentic, personal
+            </p>
+            <p>
+              <strong>Personality:</strong> Sophisticated, nurturing, artistic,
+              connected to natural beauty
+            </p>
+            <p>
+              <strong>Key Themes:</strong>
+            </p>
             <ul>
               <li>Natural crystal beauty and artisan craftsmanship</li>
               <li>Handcrafted quality and attention to detail</li>
@@ -331,16 +509,20 @@ export function StyleGuide() {
               <li>Style elegance and transformation</li>
               <li>Nature's beauty and earth's gifts</li>
             </ul>
-            <p><strong>Sample Language:</strong></p>
-            <blockquote style={{
-              borderLeft: "4px solid hsl(var(--accent-vibrant))",
-              paddingLeft: "1rem",
-              fontStyle: "italic",
-              fontFamily: "Montserrat, sans-serif"
-            }}>
-              "Each piece is infused with positive energy and crafted with intention.
-              Wear these crystals as a reminder of your inner strength and the healing
-              power of nature's gifts."
+            <p>
+              <strong>Sample Language:</strong>
+            </p>
+            <blockquote
+              style={{
+                borderLeft: '4px solid hsl(var(--accent-vibrant))',
+                paddingLeft: '1rem',
+                fontStyle: 'italic',
+                fontFamily: 'Montserrat, sans-serif',
+              }}
+            >
+              "Each piece is infused with positive energy and crafted with
+              intention. Wear these crystals as a reminder of your inner
+              strength and the healing power of nature's gifts."
             </blockquote>
           </div>
         </section>
@@ -348,8 +530,9 @@ export function StyleGuide() {
         {/* Footer */}
         <footer className="sg-footer">
           <p>Style Guide for Troves & Coves • Created 2026-03-08</p>
-          <p style={{ fontSize: "0.875rem", opacity: 0.7 }}>
-            Specifications by Robin Kroeker • Handcrafted Crystal Jewelry • Winnipeg, Manitoba
+          <p style={{ fontSize: '0.875rem', opacity: 0.7 }}>
+            Specifications by Robin Kroeker • Handcrafted Crystal Jewelry •
+            Winnipeg, Manitoba
           </p>
         </footer>
       </div>

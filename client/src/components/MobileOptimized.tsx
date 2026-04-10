@@ -27,7 +27,10 @@ interface MobileProductCardProps {
   onAddToCart: (productId: number) => void;
 }
 
-export function MobileProductCard({ product, onAddToCart }: MobileProductCardProps) {
+export function MobileProductCard({
+  product,
+  onAddToCart,
+}: MobileProductCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
 
@@ -58,13 +61,15 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
 
         {/* Wishlist - Subtle */}
         <button
-          onClick={(e) => {
+          onClick={e => {
             e.stopPropagation();
             setIsLiked(!isLiked);
           }}
           className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
           style={{
-            backgroundColor: isLiked ? 'hsl(var(--gold-medium))' : 'hsl(var(--bg-card) / 0.9)',
+            backgroundColor: isLiked
+              ? 'hsl(var(--gold-medium))'
+              : 'hsl(var(--bg-card) / 0.9)',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           }}
           aria-label={isLiked ? 'Remove from wishlist' : 'Add to wishlist'}
@@ -72,8 +77,10 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
           <Heart
             className="w-4 h-4 transition-colors duration-300"
             style={{
-              color: isLiked ? 'hsl(var(--bg-overlay))' : 'hsl(var(--text-primary))',
-              fill: isLiked ? 'hsl(var(--bg-overlay))' : 'none'
+              color: isLiked
+                ? 'hsl(var(--bg-overlay))'
+                : 'hsl(var(--text-primary))',
+              fill: isLiked ? 'hsl(var(--bg-overlay))' : 'none',
             }}
           />
         </button>
@@ -86,7 +93,7 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
           style={{
             fontFamily: "'Libre Baskerville', serif",
             color: '#1f1f1f',
-            fontWeight: 500
+            fontWeight: 500,
           }}
         >
           {product.name}
@@ -98,7 +105,7 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
             className="text-lg font-semibold"
             style={{
               fontFamily: "'Libre Baskerville', serif",
-              color: '#C9A24A'
+              color: '#C9A24A',
             }}
           >
             ${product.price}
@@ -111,7 +118,9 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 500,
-              backgroundColor: isAdded ? 'hsl(var(--accent-vibrant))' : 'hsl(var(--text-primary))',
+              backgroundColor: isAdded
+                ? 'hsl(var(--accent-vibrant))'
+                : 'hsl(var(--text-primary))',
               color: 'hsl(var(--bg-primary))',
               border: 'none',
               borderRadius: '4px',
@@ -139,9 +148,12 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
 }
 
 // Memoize to prevent unnecessary re-renders
-export const MobileProductCardMemo = memo(MobileProductCard, (prevProps, nextProps) => {
-  return prevProps.product.id === nextProps.product.id;
-});
+export const MobileProductCardMemo = memo(
+  MobileProductCard,
+  (prevProps, nextProps) => {
+    return prevProps.product.id === nextProps.product.id;
+  }
+);
 
 // Mobile navigation with performance optimizations
 interface MobileNavigationProps {
@@ -150,7 +162,11 @@ interface MobileNavigationProps {
   onClose: () => void;
 }
 
-export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigationProps) {
+export function MobileNavigation({
+  isOpen,
+  onToggle,
+  onClose,
+}: MobileNavigationProps) {
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -186,16 +202,24 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
             onClick={onClose}
           />
 
-          <div className={`
+          <div
+            className={`
             fixed top-0 left-0 h-full w-80 bg-white z-50 transform transition-transform duration-300 lg:hidden
             ${isOpen ? 'translate-x-0' : '-translate-x-full'}
             shadow-2xl will-change-transform
-          `}>
+          `}
+          >
             <div className="p-4 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Gem className="h-7 w-7" style={{ color: 'hsl(var(--gold-medium))' }} />
-                  <span className="text-lg font-bold" style={{ color: 'hsl(var(--text-primary))' }}>
+                  <Gem
+                    className="h-7 w-7"
+                    style={{ color: 'hsl(var(--gold-medium))' }}
+                  />
+                  <span
+                    className="text-lg font-bold"
+                    style={{ color: 'hsl(var(--text-primary))' }}
+                  >
                     Troves & Coves
                   </span>
                 </div>
@@ -214,8 +238,8 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
               {[
                 { href: '/', label: 'Home' },
                 { href: '/products', label: 'Shop' },
-                { href: '/contact', label: 'Contact' }
-              ].map((item) => (
+                { href: '/contact', label: 'Contact' },
+              ].map(item => (
                 <a
                   key={item.href}
                   href={item.href}

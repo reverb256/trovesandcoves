@@ -7,6 +7,7 @@
 A comprehensive automated testing suite for theme toggle functionality that runs in CI/CD.
 
 **Files Created:**
+
 - `tests/e2e/theme-toggle.spec.ts` - 14 comprehensive E2E tests
 - `.github/workflows/theme-tests.yml` - Automated CI/CD workflow
 
@@ -22,6 +23,7 @@ A comprehensive automated testing suite for theme toggle functionality that runs
 ✅ Visual regression screenshots
 
 **CI/CD Workflow Features:**
+
 - Runs on every push/PR to main
 - Tests against production site (https://trovesandcoves.ca)
 - Multi-browser testing (Chromium, Firefox, WebKit)
@@ -31,6 +33,7 @@ A comprehensive automated testing suite for theme toggle functionality that runs
 - Manual trigger with environment selection (production/staging)
 
 **Command to run locally:**
+
 ```bash
 npm run test:e2e -- tests/e2e/theme-toggle.spec.ts
 ```
@@ -44,10 +47,12 @@ npm run test:e2e -- tests/e2e/theme-toggle.spec.ts
 A build-time sitemap generator that automatically includes all products and categories.
 
 **Files Created:**
+
 - `scripts/generate-sitemap.ts` - Dynamic sitemap generator
 - Updated: `package.json` - Added `generate-sitemap` script, integrated into build
 
 **Generated Sitemaps:**
+
 1. **sitemap.xml** - Main sitemap with:
    - 11 static pages (home, products, about, contact, checkout, etc.)
    - 3 category pages (Crystal Necklaces, Gemstone Necklaces, Leather Cord Pendants)
@@ -57,6 +62,7 @@ A build-time sitemap generator that automatically includes all products and cate
 2. **sitemap-images.xml** - Image sitemap for Google Images
 
 **Features:**
+
 - ✅ Automatically updated on every build
 - ✅ Includes all products from storage
 - ✅ Proper priority rankings (home: 1.0, products: 0.9, etc.)
@@ -65,6 +71,7 @@ A build-time sitemap generator that automatically includes all products and cate
 - ✅ Build-time generation (no server needed)
 
 **Usage:**
+
 ```bash
 # Generate sitemap manually
 npm run generate-sitemap
@@ -80,9 +87,11 @@ npm run build
 ### Schema.org Structured Data
 
 **Files Created:**
+
 - `client/src/components/SchemaOrg.tsx` - Comprehensive structured data components
 
 **Schema Types Implemented:**
+
 1. **Website Schema** - Site search functionality
 2. **Organization Schema** - Business info, social links, contact
 3. **LocalBusiness Schema** - Winnipeg location, hours, phone
@@ -92,6 +101,7 @@ npm run build
 7. **ProductRating Schema** - Review aggregation
 
 **Usage Examples:**
+
 ```tsx
 // Home page
 <WebsiteSchema />
@@ -118,9 +128,11 @@ npm run build
 ### Web App Manifest
 
 **Files Created:**
+
 - `client/public/manifest.json` - PWA manifest
 
 **Features:**
+
 - Installable as PWA on mobile
 - Custom icons (192x192, 512x512)
 - App shortcuts (Shop, About, Contact)
@@ -131,9 +143,11 @@ npm run build
 ### Robots.txt Updates
 
 **Files Updated:**
+
 - `client/public/robots.txt` - Enhanced crawler rules
 
 **Improvements:**
+
 - References both sitemap.xml and sitemap-images.xml
 - Allows social media crawlers (Facebook, Twitter, LinkedIn, Pinterest)
 - Optimized crawl delay (1 second)
@@ -146,12 +160,14 @@ npm run build
 ### For Theme Testing
 
 Theme tests automatically run in CI/CD on:
+
 - Every push to `main` branch
 - Every pull request to `main`
 - Weekly schedule (Mondays at 2 AM UTC)
 - Manual trigger via GitHub Actions UI
 
 **To run manually:**
+
 ```bash
 npm run test:e2e -- tests/e2e/theme-toggle.spec.ts
 ```
@@ -159,11 +175,13 @@ npm run test:e2e -- tests/e2e/theme-toggle.spec.ts
 ### For Sitemap Generation
 
 Sitemap automatically generates during:
+
 - `npm run build` - Production builds
 - `npm run generate-sitemap` - Manual generation
 
 **To verify:**
 Check `dist/public/sitemap.xml` after build for:
+
 - All static pages (11)
 - All categories (3)
 - All products (19)
@@ -174,6 +192,7 @@ Check `dist/public/sitemap.xml` after build for:
 Add schema components to relevant pages:
 
 1. **Add to App.tsx or main layout:**
+
 ```tsx
 <WebsiteSchema />
 <OrganizationSchema />
@@ -181,11 +200,13 @@ Add schema components to relevant pages:
 ```
 
 2. **Add to ProductDetail.tsx:**
+
 ```tsx
 <ProductSchema {...productData} />
 ```
 
 3. **Add breadcrumb schema to any page:**
+
 ```tsx
 <BreadcrumbSchema items={breadcrumbItems} />
 ```
@@ -279,6 +300,7 @@ Add schema components to relevant pages:
 ## 🛠️ Technical Details
 
 **Stack:**
+
 - Playwright for E2E testing
 - TypeScript for type safety
 - GitHub Actions for CI/CD
@@ -286,6 +308,7 @@ Add schema components to relevant pages:
 - Node.js for sitemap generation
 
 **Performance Impact:**
+
 - Build time increased by ~2 seconds (sitemap generation)
 - Test suite runs in ~6 seconds (14 tests)
 - No runtime performance impact (all build-time)

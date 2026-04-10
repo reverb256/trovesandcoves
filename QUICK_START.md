@@ -15,17 +15,19 @@ This guide will help you get the e-commerce system live and ready to accept paym
 5. Click "Copy" on the connection string
 
 **Set environment variable:**
+
 ```bash
 # In your project root, create or update .env.local
 echo "DATABASE_URL=postgresql://user:password@ep-xxx.region.aws.neon.tech/neondb?sslmode=require" >> .env.local
 ```
 
 **Push database schema:**
+
 ```bash
 npm run db:push
 ```
 
-✅ *Database is now ready!* (2 minutes elapsed)
+✅ _Database is now ready!_ (2 minutes elapsed)
 
 ---
 
@@ -41,6 +43,7 @@ npm run db:push
    - **Secret key** (starts with `sk_test_`) → Copy this
 
 **Add keys to .env.local:**
+
 ```bash
 # Append to your .env.local file
 echo "" >> .env.local
@@ -51,13 +54,14 @@ echo "VITE_STRIPE_PUBLIC_KEY=pk_test_your_key_here" >> .env.local
 
 ⚠️ **Important:** Replace `sk_test_your_key_here` and `pk_test_your_key_here` with your actual keys!
 
-✅ *Stripe is now configured!* (5 minutes elapsed)
+✅ _Stripe is now configured!_ (5 minutes elapsed)
 
 ---
 
 ### Step 3: Test the Flow (3 minutes) ⏱️
 
 **Start the development server:**
+
 ```bash
 npm run dev
 ```
@@ -103,7 +107,7 @@ The server will start at `http://localhost:5000`
    - You'll be redirected to `/order-confirmation?order_id=1`
    - You should see order details, items, and confirmation message
 
-✅ *Test successful! The e-commerce system works!* (10 minutes elapsed)
+✅ _Test successful! The e-commerce system works!_ (10 minutes elapsed)
 
 ---
 
@@ -118,6 +122,7 @@ The server will start at `http://localhost:5000`
    - `sk_live_...` (Secret key)
 
 4. Update your .env.local:
+
 ```bash
 # Replace test keys with live keys
 STRIPE_SECRET_KEY=sk_live_your_live_key_here
@@ -127,6 +132,7 @@ VITE_STRIPE_PUBLIC_KEY=pk_live_your_live_key_here
 **Deploy to Production:**
 
 **Option A: GitHub Pages + Cloudflare Workers (Free)**
+
 ```bash
 # Deploy frontend
 npm run build:github-pages
@@ -137,6 +143,7 @@ npm run deploy:cloudflare
 ```
 
 **Option B: Traditional Server**
+
 ```bash
 # Build production bundle
 npm run build
@@ -145,7 +152,7 @@ npm run build
 NODE_ENV=production npm start
 ```
 
-✅ *You're live! Ready to accept real payments!* (15 minutes elapsed)
+✅ _You're live! Ready to accept real payments!_ (15 minutes elapsed)
 
 ---
 
@@ -154,6 +161,7 @@ NODE_ENV=production npm start
 **Status:** ✅ **LIVE AND READY FOR REVENUE**
 
 You now have:
+
 - ✅ Working e-commerce system
 - ✅ PostgreSQL database
 - ✅ Stripe payment processing
@@ -164,14 +172,18 @@ You now have:
 ## 💰 ACCEPTING REAL PAYMENTS
 
 ### Test Mode (Recommended First)
+
 Keep using test keys (`sk_test_` and `pk_test_`) to:
+
 - Test different payment scenarios
 - Verify order creation
 - Test email notifications (when configured)
 - Practice checkout flow
 
 ### Live Mode (For Real Money)
+
 Switch to live keys (`sk_live_` and `pk_live_`) when:
+
 - ✅ Test mode is fully working
 - ✅ All features tested
 - ✅ Ready to accept real payments
@@ -180,12 +192,14 @@ Switch to live keys (`sk_live_` and `pk_live_`) when:
 ## 📊 EXPECTED RESULTS
 
 **After going live:**
+
 - First payment: Immediate (someone makes a purchase)
 - Email notifications: Instant (when configured)
 - Order management: Real-time in database
 - Revenue tracking: Track via Stripe dashboard
 
 **Revenue estimate:**
+
 - 10 orders/month @ $75 average = **$750/month**
 - 25 orders/month @ $100 average = **$2,500/month**
 - 50 orders/month @ $150 average = **$7,500/month**
@@ -193,18 +207,21 @@ Switch to live keys (`sk_live_` and `pk_live_`) when:
 ## 🔧 MAINTENANCE
 
 ### Daily Tasks
+
 - Check Stripe dashboard for successful payments
 - Verify new orders in database
 - Process and ship orders
 - Respond to customer emails
 
 ### Weekly Tasks
+
 - Review order analytics
 - Update inventory as needed
 - Check for failed payments
 - Monitor site performance
 
 ### Monthly Tasks
+
 - Review revenue reports
 - Update product pricing
 - Analyze customer feedback
@@ -213,16 +230,19 @@ Switch to live keys (`sk_live_` and `pk_live_`) when:
 ## 📞 NEED HELP?
 
 **Documentation:**
+
 - Full setup guide: `ECOMMERCE_SETUP.md`
 - API documentation: `docs/api/README.md`
 - Implementation summary: `IMPLEMENTATION_SUMMARY.md`
 
 **Quick references:**
+
 - Stripe Dashboard: https://dashboard.stripe.com
 - Neon Dashboard: https://console.neon.tech
 - Project repository: /data/@projects/trovesandcoves
 
 **Common issues:**
+
 - Database not connecting → Check DATABASE_URL is correct
 - Stripe not working → Verify API keys match mode (test vs live)
 - Orders not creating → Check cart has items before checkout

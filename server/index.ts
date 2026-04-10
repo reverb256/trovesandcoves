@@ -1,19 +1,22 @@
-import express, { type Request, Response, NextFunction } from "express";
-import session from "express-session";
-import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import express, { type Request, Response, NextFunction } from 'express';
+import session from 'express-session';
+import { registerRoutes } from './routes';
+import { setupVite, serveStatic, log } from './vite';
 import {
   securityHeaders,
   generalRateLimit,
   slowDownMiddleware,
   sessionConfig,
   securityLogger,
-  sanitizeInput
-} from "./security/owasp-compliance";
+  sanitizeInput,
+} from './security/owasp-compliance';
+import { SecureDevelopmentManager } from './security/iso27001-compliance';
 import {
-  SecureDevelopmentManager
-} from "./security/iso27001-compliance";
-import { MEMORY_LIMIT_MB, MEMORY_CHECK_INTERVAL_MS, SERVER_PORT, SERVER_HOST } from "../shared/config";
+  MEMORY_LIMIT_MB,
+  MEMORY_CHECK_INTERVAL_MS,
+  SERVER_PORT,
+  SERVER_HOST,
+} from '../shared/config';
 
 // Memory monitoring and optimization
 const monitorMemory = () => {
@@ -63,16 +66,16 @@ app.use((req, res, next) => {
     return originalResJson.apply(res, [bodyJson, ...args]);
   };
 
-  res.on("finish", () => {
+  res.on('finish', () => {
     const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
+    if (path.startsWith('/api')) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
       if (capturedJsonResponse) {
         logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
       }
 
       if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
+        logLine = logLine.slice(0, 79) + '…';
       }
 
       log(logLine);
@@ -86,12 +89,16 @@ app.use((req, res, next) => {
   const server = await registerRoutes(app);
 
   app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
-    const status = (err && typeof err === 'object' && ('status' in err || 'statusCode' in err))
-      ? (err as { status?: number; statusCode?: number }).status ?? (err as { status?: number; statusCode?: number }).statusCode ?? 500
-      : 500;
-    const message = (err && typeof err === 'object' && 'message' in err)
-      ? (err as { message?: string }).message ?? "Internal Server Error"
-      : "Internal Server Error";
+    const status =
+      err && typeof err === 'object' && ('status' in err || 'statusCode' in err)
+        ? ((err as { status?: number; statusCode?: number }).status ??
+          (err as { status?: number; statusCode?: number }).statusCode ??
+          500)
+        : 500;
+    const message =
+      err && typeof err === 'object' && 'message' in err
+        ? ((err as { message?: string }).message ?? 'Internal Server Error')
+        : 'Internal Server Error';
 
     res.status(status).json({ message });
     if (err instanceof Error) {
@@ -102,7 +109,7 @@ app.use((req, res, next) => {
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
+  if (app.get('env') === 'development') {
     await setupVite(app, server);
   } else {
     serveStatic(app);
@@ -112,11 +119,14 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = SERVER_PORT;
-  server.listen({
-    port,
-    host: SERVER_HOST,
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  server.listen(
+    {
+      port,
+      host: SERVER_HOST,
+      reusePort: true,
+    },
+    () => {
+      log(`serving on port ${port}`);
+    }
+  );
 })();

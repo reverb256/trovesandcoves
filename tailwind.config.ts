@@ -1,60 +1,64 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 export default {
-  darkMode: ["class"],
-  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}", "./index.html"],
+  darkMode: ['class'],
+  content: [
+    './client/index.html',
+    './client/src/**/*.{js,jsx,ts,tsx}',
+    './index.html',
+  ],
   theme: {
     extend: {
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
         },
         popover: {
-          DEFAULT: "var(--popover)",
-          foreground: "var(--popover-foreground)",
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
         },
         primary: {
-          DEFAULT: "var(--primary)",
-          foreground: "var(--primary-foreground)",
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)',
         },
         secondary: {
-          DEFAULT: "var(--secondary)",
-          foreground: "var(--secondary-foreground)",
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)',
         },
         muted: {
-          DEFAULT: "var(--muted)",
-          foreground: "var(--muted-foreground)",
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
         },
         accent: {
-          DEFAULT: "var(--accent)",
-          foreground: "var(--accent-foreground)",
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)',
         },
         destructive: {
-          DEFAULT: "var(--destructive)",
-          foreground: "var(--destructive-foreground)",
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)',
         },
-        border: "var(--border)",
-        input: "var(--input)",
-        ring: "var(--ring)",
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
         // Troves & Coves high-contrast brand colors
-        "troves-turquoise": "hsl(var(--troves-turquoise))",
-        "coves-blue": "hsl(var(--coves-cursive-blue))",
-        "wood-grain": "hsl(var(--wood-grain))",
-        "skull-turquoise": "hsl(var(--skull-turquoise))",
-        "ornate-gold": "hsl(var(--ornate-frame-gold))",
-        "obsidian-black": "hsl(var(--obsidian-black))",
-        "leather-black": "hsl(var(--leather-black))",
-        "readable": "hsl(25 30% 8%)",
-        "readable-muted": "hsl(25 25% 20%)",
-        "max-contrast": "hsl(0 0% 0%)",
+        'troves-turquoise': 'hsl(var(--troves-turquoise))',
+        'coves-blue': 'hsl(var(--coves-cursive-blue))',
+        'wood-grain': 'hsl(var(--wood-grain))',
+        'skull-turquoise': 'hsl(var(--skull-turquoise))',
+        'ornate-gold': 'hsl(var(--ornate-frame-gold))',
+        'obsidian-black': 'hsl(var(--obsidian-black))',
+        'leather-black': 'hsl(var(--leather-black))',
+        readable: 'hsl(25 30% 8%)',
+        'readable-muted': 'hsl(25 25% 20%)',
+        'max-contrast': 'hsl(0 0% 0%)',
         // Enhanced jewelry colors
         gold: {
           50: '#fffbe6',
@@ -105,51 +109,51 @@ export default {
           900: '#1d4044',
         },
         chart: {
-          "1": "var(--chart-1)",
-          "2": "var(--chart-2)",
-          "3": "var(--chart-3)",
-          "4": "var(--chart-4)",
-          "5": "var(--chart-5)",
+          '1': 'var(--chart-1)',
+          '2': 'var(--chart-2)',
+          '3': 'var(--chart-3)',
+          '4': 'var(--chart-4)',
+          '5': 'var(--chart-5)',
         },
         sidebar: {
-          DEFAULT: "var(--sidebar-background)",
-          foreground: "var(--sidebar-foreground)",
-          primary: "var(--sidebar-primary)",
-          "primary-foreground": "var(--sidebar-primary-foreground)",
-          accent: "var(--sidebar-accent)",
-          "accent-foreground": "var(--sidebar-accent-foreground)",
-          border: "var(--sidebar-border)",
-          ring: "var(--sidebar-ring)",
+          DEFAULT: 'var(--sidebar-background)',
+          foreground: 'var(--sidebar-foreground)',
+          primary: 'var(--sidebar-primary)',
+          'primary-foreground': 'var(--sidebar-primary-foreground)',
+          accent: 'var(--sidebar-accent)',
+          'accent-foreground': 'var(--sidebar-accent-foreground)',
+          border: 'var(--sidebar-border)',
+          ring: 'var(--sidebar-ring)',
         },
       },
       fontFamily: {
-        'cursive': ['Dancing Script', 'cursive'],
-        'display': ['Playfair Display', 'serif'],
-        'sans': ['Source Sans Pro', 'sans-serif'],
+        cursive: ['Dancing Script', 'cursive'],
+        display: ['Playfair Display', 'serif'],
+        sans: ['Source Sans Pro', 'sans-serif'],
       },
       keyframes: {
-        "accordion-down": {
+        'accordion-down': {
           from: {
-            height: "0",
+            height: '0',
           },
           to: {
-            height: "var(--radix-accordion-content-height)",
+            height: 'var(--radix-accordion-content-height)',
           },
         },
-        "accordion-up": {
+        'accordion-up': {
           from: {
-            height: "var(--radix-accordion-content-height)",
+            height: 'var(--radix-accordion-content-height)',
           },
           to: {
-            height: "0",
+            height: '0',
           },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 } satisfies Config;

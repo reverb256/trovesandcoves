@@ -79,6 +79,7 @@ npm run dev
 ## Current Products
 
 Your shop currently has 10 listings:
+
 - Handmade Turquoise Necklace ($88)
 - Handwrapped Citrine Pearl Set ($260)
 - Raw Citrine Necklace ($166)
@@ -88,10 +89,10 @@ Your shop currently has 10 listings:
 ## Category Mapping
 
 | Etsy Category | Site Category |
-|---------------|--------------|
-| Necklaces | necklaces |
-| Bracelets | bracelets |
-| Earrings | earrings |
-| Rings | rings |
+| ------------- | ------------- |
+| Necklaces     | necklaces     |
+| Bracelets     | bracelets     |
+| Earrings      | earrings      |
+| Rings         | rings         |
 
 Add more in the `CATEGORY_MAP` in `import-etsy-products.ts` if needed.

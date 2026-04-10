@@ -60,25 +60,43 @@ export default function Financing() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: 'hsl(var(--bg-primary))' }}>
+    <div
+      className="min-h-screen"
+      style={{ background: 'hsl(var(--bg-primary))' }}
+    >
       {/* Header */}
-      <section className="relative overflow-hidden py-24" style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
-        <div className="absolute top-0 left-0 w-full h-1"
-             style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+      <section
+        className="relative overflow-hidden py-24"
+        style={{
+          background:
+            'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)',
+        }}
+      >
+        <div
+          className="absolute top-0 left-0 w-full h-1"
+          style={{
+            background:
+              'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)',
+          }}
+        />
         <div className="relative chamber-container text-center">
           <SectionPill variant="gold" className="mb-8">
             Flexible Payment
           </SectionPill>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-6"
-              style={{ color: 'hsl(var(--text-primary))' }}>
+          <h1
+            className="text-5xl md:text-6xl font-bold mb-6"
+            style={{ color: 'hsl(var(--text-primary))' }}
+          >
             Financing Options
           </h1>
 
           <SectionDivider variant="gradient" className="mb-6" />
 
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed"
-             style={{ color: 'hsl(var(--text-secondary))' }}>
+          <p
+            className="text-xl max-w-3xl mx-auto leading-relaxed"
+            style={{ color: 'hsl(var(--text-secondary))' }}
+          >
             Make your crystal jewelry more accessible with flexible payment
             options. Invest in beautiful pieces without compromising your
             budget.
@@ -89,19 +107,12 @@ export default function Financing() {
       <div className="container mx-auto px-4 py-12">
         {/* Payment Options */}
         <div className="mb-12">
-          <SectionHeader
-            title="Payment Plans Available"
-            variant="turquoise"
-          />
+          <SectionHeader title="Payment Plans Available" variant="turquoise" />
           <div className="grid md:grid-cols-3 gap-8">
             {paymentOptions.map(option => {
               const Icon = option.icon;
               return (
-                <Card
-                  key={option.name}
-                  variant="elevated"
-                  theme="gradient"
-                >
+                <Card key={option.name} variant="elevated" theme="gradient">
                   <CardHeader variant="gradient">
                     <CardTitle className="flex items-center space-x-3 text-troves-turquoise">
                       <Icon className="h-6 w-6 text-ornate-frame-gold" />
@@ -117,7 +128,12 @@ export default function Financing() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6">
-                    <p className="mb-4" style={{ color: 'hsl(var(--text-secondary))' }}>{option.description}</p>
+                    <p
+                      className="mb-4"
+                      style={{ color: 'hsl(var(--text-secondary))' }}
+                    >
+                      {option.description}
+                    </p>
                     <ul className="space-y-2">
                       {option.benefits.map((benefit, index) => (
                         <li
@@ -207,25 +223,56 @@ export default function Financing() {
             </CardHeader>
             <CardContent className="p-6">
               <div className="bg-skull-turquoise/10 rounded-lg p-4 border border-ornate-frame-gold/20">
-                <h4 className="font-semibold mb-3" style={{ color: 'hsl(var(--text-primary))' }}>
+                <h4
+                  className="font-semibold mb-3"
+                  style={{ color: 'hsl(var(--text-primary))' }}
+                >
                   $200 Crystal Necklace
                 </h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span style={{ color: 'hsl(var(--text-secondary))' }}>Today:</span>
-                    <span className="font-medium" style={{ color: 'hsl(var(--text-primary))' }}>$50.00</span>
+                    <span style={{ color: 'hsl(var(--text-secondary))' }}>
+                      Today:
+                    </span>
+                    <span
+                      className="font-medium"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
+                      $50.00
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: 'hsl(var(--text-secondary))' }}>Week 2:</span>
-                    <span className="font-medium" style={{ color: 'hsl(var(--text-primary))' }}>$50.00</span>
+                    <span style={{ color: 'hsl(var(--text-secondary))' }}>
+                      Week 2:
+                    </span>
+                    <span
+                      className="font-medium"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
+                      $50.00
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: 'hsl(var(--text-secondary))' }}>Week 4:</span>
-                    <span className="font-medium" style={{ color: 'hsl(var(--text-primary))' }}>$50.00</span>
+                    <span style={{ color: 'hsl(var(--text-secondary))' }}>
+                      Week 4:
+                    </span>
+                    <span
+                      className="font-medium"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
+                      $50.00
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span style={{ color: 'hsl(var(--text-secondary))' }}>Week 6:</span>
-                    <span className="font-medium" style={{ color: 'hsl(var(--text-primary))' }}>$50.00</span>
+                    <span style={{ color: 'hsl(var(--text-secondary))' }}>
+                      Week 6:
+                    </span>
+                    <span
+                      className="font-medium"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
+                      $50.00
+                    </span>
                   </div>
                   <div className="border-t border-ornate-frame-gold/20 pt-2 mt-2">
                     <div className="flex justify-between font-semibold">
@@ -246,10 +293,16 @@ export default function Financing() {
         <Card variant="elevated" theme="gradient">
           <CardContent className="p-8 text-center">
             <CreditCard className="h-12 w-12 text-troves-turquoise mx-auto mb-4" />
-            <h3 className="text-2xl font-bold mb-4" style={{ color: 'hsl(var(--text-primary))' }}>
+            <h3
+              className="text-2xl font-bold mb-4"
+              style={{ color: 'hsl(var(--text-primary))' }}
+            >
               Start Your Crystal Journey Today
             </h3>
-            <p className="mb-6 max-w-2xl mx-auto" style={{ color: 'hsl(var(--text-secondary))' }}>
+            <p
+              className="mb-6 max-w-2xl mx-auto"
+              style={{ color: 'hsl(var(--text-secondary))' }}
+            >
               Don't let budget constraints delay your jewelry journey. Our
               flexible payment plans make it easy to invest in authentic crystal
               jewelry that will support your collection for years to come.

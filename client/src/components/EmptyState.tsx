@@ -67,14 +67,20 @@ export default function EmptyState({
       )}
       <h3
         className="text-xl md:text-2xl font-semibold mb-3"
-        style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
+        style={{
+          fontFamily: '"Libre Baskerville", serif',
+          color: 'hsl(var(--text-primary))',
+        }}
       >
         {title}
       </h3>
       {description && (
         <p
           className="text-base mb-6 max-w-md mx-auto"
-          style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
+          style={{
+            fontFamily: '"Montserrat", sans-serif',
+            color: 'hsl(var(--text-secondary))',
+          }}
         >
           {description}
         </p>

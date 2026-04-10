@@ -55,7 +55,6 @@ export function Analytics({ measurementId }: AnalyticsProps) {
 function initAnalytics() {
   // Placeholder for Google Analytics 4 or other privacy-friendly analytics
   // When you add GA4, uncomment and configure:
-
   /*
   if (measurementId) {
     // Load GA4
@@ -107,7 +106,10 @@ function trackPageView(pathname: string) {
 /**
  * Track custom events
  */
-export function trackEvent(eventName: string, parameters?: Record<string, any>) {
+export function trackEvent(
+  eventName: string,
+  parameters?: Record<string, any>
+) {
   if (import.meta.env.DEV || navigator.doNotTrack === '1') {
     return;
   }
@@ -127,16 +129,19 @@ export function trackEvent(eventName: string, parameters?: Record<string, any>) 
 /**
  * Track ecommerce events
  */
-export function trackEcommerceEvent(eventName: 'add_to_cart' | 'begin_checkout' | 'purchase', parameters?: {
-  items?: Array<{
-    item_id: string;
-    item_name: string;
-    price: number;
-    quantity: number;
-  }>;
-  value?: number;
-  currency?: string;
-}) {
+export function trackEcommerceEvent(
+  eventName: 'add_to_cart' | 'begin_checkout' | 'purchase',
+  parameters?: {
+    items?: Array<{
+      item_id: string;
+      item_name: string;
+      price: number;
+      quantity: number;
+    }>;
+    value?: number;
+    currency?: string;
+  }
+) {
   if (import.meta.env.DEV || navigator.doNotTrack === '1') {
     return;
   }

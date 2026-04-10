@@ -13,11 +13,13 @@ This guide explains HTTPS/SSL configuration for the Troves & Coves site. Both Gi
 GitHub Pages automatically provides HTTPS certificates for all sites:
 
 **Default URL:**
+
 ```
 https://reverb256.github.io/trovesandcoves
 ```
 
 **Features:**
+
 - ✅ Automatic SSL certificate
 - ✅ Auto-renewal
 - ✅ Force HTTPS enabled by default
@@ -28,11 +30,13 @@ https://reverb256.github.io/trovesandcoves
 For custom domains (e.g., `trovesandcoves.ca`):
 
 1. **Add CNAME file** to repository:
+
 ```
 trovesandcoves.ca
 ```
 
 2. **Configure DNS** at your provider:
+
 ```
 Type: CNAME
 Name: @
@@ -60,12 +64,12 @@ If using Cloudflare for DNS, you get free SSL:
 
 In Cloudflare dashboard → SSL/TLS → Overview:
 
-| Mode | Description | Recommendation |
-|------|-------------|----------------|
-| **Off** | No HTTPS | ❌ Don't use |
-| **Flexible** | HTTPS between user and Cloudflare only | ⚠️ Not recommended |
-| **Full** | HTTPS to origin, but doesn't validate cert | ⚠️ OK for testing |
-| **Full (Strict)** | HTTPS with valid certificate required | ✅ **Recommended** |
+| Mode              | Description                                | Recommendation     |
+| ----------------- | ------------------------------------------ | ------------------ |
+| **Off**           | No HTTPS                                   | ❌ Don't use       |
+| **Flexible**      | HTTPS between user and Cloudflare only     | ⚠️ Not recommended |
+| **Full**          | HTTPS to origin, but doesn't validate cert | ⚠️ OK for testing  |
+| **Full (Strict)** | HTTPS with valid certificate required      | ✅ **Recommended** |
 
 Set to **Full (strict)** for production.
 
@@ -114,18 +118,21 @@ Settings:
 ### Check HTTPS Status
 
 **Using curl:**
+
 ```bash
 curl -I https://trovesandcoves.ca
 # Should return: HTTP/2 200
 ```
 
 **Check SSL Certificate:**
+
 ```bash
 openssl s_client -connect trovesandcoves.ca:443 -servername trovesandcoves.ca
 # Shows certificate details
 ```
 
 **Check Certificate Expiration:**
+
 ```bash
 echo | openssl s_client -connect trovesandcoves.ca:443 2>/dev/null | openssl x509 -noout -dates
 ```
@@ -145,6 +152,7 @@ echo | openssl s_client -connect trovesandcoves.ca:443 2>/dev/null | openssl x50
 **Problem:** Page loads over HTTPS but some resources use HTTP
 
 **Solutions:**
+
 1. Use relative URLs for internal resources
 2. Ensure all external resources support HTTPS
 3. Add meta tag: `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">`
@@ -154,6 +162,7 @@ echo | openssl s_client -connect trovesandcoves.ca:443 2>/dev/null | openssl x50
 **Problem:** Browser shows SSL certificate warning
 
 **Solutions:**
+
 - **GitHub Pages**: Wait 24 hours after DNS setup
 - **Cloudflare**: Check SSL/TLS mode is "Full (strict)"
 - **Custom Domain**: Verify DNS CNAME is correct
@@ -164,6 +173,7 @@ echo | openssl s_client -connect trovesandcoves.ca:443 2>/dev/null | openssl x50
 **Problem:** Site accessible via HTTP (should redirect to HTTPS)
 
 **Solutions:**
+
 1. In GitHub Pages Settings, check "Enforce HTTPS"
 2. In Cloudflare, enable "Always Use HTTPS"
 3. Add page rule for HTTP→HTTPS redirect
@@ -173,11 +183,13 @@ echo | openssl s_client -connect trovesandcoves.ca:443 2>/dev/null | openssl x50
 **Problem:** GitHub Pages shows "Certificate not issued"
 
 **Causes:**
+
 - DNS not propagated
 - Wrong DNS record type
 - CNAME file missing or incorrect
 
 **Solutions:**
+
 1. Verify DNS with `dig yourdomain.com`
 2. Check CNAME file exists in repo
 3. Use DNS Checker to verify propagation
@@ -201,7 +213,9 @@ Add to your React app or HTML:
 // In main.tsx
 useEffect(() => {
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
-    location.replace(`https:${location.href.substring(location.protocol.length)}`);
+    location.replace(
+      `https:${location.href.substring(location.protocol.length)}`
+    );
   }
 }, []);
 ```
@@ -224,11 +238,13 @@ useEffect(() => {
 ### SSL Certificate Expiration
 
 Set up monitoring for:
+
 - Certificate expiration (30-day warning)
 - SSL/TLS configuration changes
 - Mixed content issues
 
 Tools:
+
 - [Uptime Robot](https://uptimerobot.com/) - Free monitoring
 - [StatusCake](https://www.statuscake.com/) - SSL monitoring
 - Cloudflare Analytics - SSL/TLS error tracking
@@ -237,11 +253,11 @@ Tools:
 
 ## Summary
 
-| Platform | SSL Provider | Auto-Renewal | Configuration |
-|----------|-------------|--------------|--------------|
-| GitHub Pages | Let's Encrypt | ✅ Yes | Automatic |
-| Cloudflare | Cloudflare SSL | ✅ Yes | Automatic |
-| Custom (Direct) | Let's Encrypt/Certbot | ⚠️ Manual | Manual setup required |
+| Platform        | SSL Provider          | Auto-Renewal | Configuration         |
+| --------------- | --------------------- | ------------ | --------------------- |
+| GitHub Pages    | Let's Encrypt         | ✅ Yes       | Automatic             |
+| Cloudflare      | Cloudflare SSL        | ✅ Yes       | Automatic             |
+| Custom (Direct) | Let's Encrypt/Certbot | ⚠️ Manual    | Manual setup required |
 
 ---
 

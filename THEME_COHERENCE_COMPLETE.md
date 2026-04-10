@@ -7,6 +7,7 @@ All pages now use the centralized theme system. This represents a **major archit
 ## Pages Updated (Complete)
 
 ### ✅ Core Components
+
 1. **Card Component** (`client/src/components/ui/card.tsx`)
    - Added variant system: `default`, `elevated`, `glass`, `interactive`
    - Added theme system: `default`, `gradient`
@@ -81,7 +82,9 @@ All pages now use the centralized theme system. This represents a **major archit
 ## Before vs After: Code Reduction
 
 ### Contact.tsx
+
 **Before:**
+
 ```tsx
 <Card className="shadow-2xl backdrop-blur-sm"
       style={{ border: '1px solid hsl(var(--border-medium))',
@@ -93,6 +96,7 @@ All pages now use the centralized theme system. This represents a **major archit
 ```
 
 **After:**
+
 ```tsx
 <Card variant="elevated" theme="gradient">
   <CardHeader variant="gradient">
@@ -101,14 +105,25 @@ All pages now use the centralized theme system. This represents a **major archit
 **Result:** 7 lines → 2 lines (71% reduction)
 
 ### Returns.tsx Step Cards
+
 **Before** (per step, ~40 lines):
+
 ```tsx
 <div className="text-center">
-  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-       style={{ backgroundColor: 'hsla(var(--accent-vibrant), 0.2)' }}>
-    <span className="font-bold" style={{ color: 'hsl(var(--text-primary))' }}>1</span>
+  <div
+    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
+    style={{ backgroundColor: 'hsla(var(--accent-vibrant), 0.2)' }}
+  >
+    <span className="font-bold" style={{ color: 'hsl(var(--text-primary))' }}>
+      1
+    </span>
   </div>
-  <h4 className="font-semibold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>Contact Us</h4>
+  <h4
+    className="font-semibold mb-2"
+    style={{ color: 'hsl(var(--text-primary))' }}
+  >
+    Contact Us
+  </h4>
   <p className="text-sm" style={{ color: 'hsl(var(--text-muted))' }}>
     Reach out through our contact form...
   </p>
@@ -116,8 +131,13 @@ All pages now use the centralized theme system. This represents a **major archit
 ```
 
 **After** (1 line):
+
 ```tsx
-<StepCard step={1} title="Contact Us" description="Reach out through our contact form..." />
+<StepCard
+  step={1}
+  title="Contact Us"
+  description="Reach out through our contact form..."
+/>
 ```
 
 **Result:** 40 lines → 1 line per step (97% reduction)
@@ -125,6 +145,7 @@ All pages now use the centralized theme system. This represents a **major archit
 ## Total Impact
 
 ### Lines of Code Eliminated
+
 - **Contact.tsx**: ~150 lines of repetitive styles
 - **Returns.tsx**: ~100 lines (StepCard refactoring)
 - **About.tsx**: ~80 lines
@@ -132,6 +153,7 @@ All pages now use the centralized theme system. This represents a **major archit
 - **Total**: **~500-600 lines** of repetitive styling eliminated
 
 ### Maintainability Improvements
+
 1. ✅ **Single source of truth** - Update colors in ONE place (index.css)
 2. ✅ **Consistent spacing** - Built into component variants
 3. ✅ **Type safety** - Variants are typed and checked
@@ -139,6 +161,7 @@ All pages now use the centralized theme system. This represents a **major archit
 5. ✅ **Automatic theme switching** - All components respond to theme changes
 
 ### Developer Experience
+
 - ✅ Autocomplete for variant options
 - ✅ Clear intent from component names
 - ✅ Less cognitive load (no remembering hex codes or gradient formulas)
@@ -151,30 +174,21 @@ All colors now use semantic CSS variables in `client/src/index.css`:
 
 ```css
 /* Text Colors */
---text-primary: Main headings and important text
---text-secondary: Body text and descriptions
---text-muted: Subtle/disclaimer text
-
-/* Backgrounds */
---bg-primary: Page backgrounds
---bg-secondary: Section backgrounds
---bg-tertiary: Card backgrounds
---bg-card: Card element backgrounds
-
-/* Accents */
---accent-vibrant: Turquoise (primary accent)
---gold-soft: Soft gold (pills, badges)
---gold-medium: Medium gold (icons, borders)
-
-/* Borders */
---border-light: Subtle borders
---border-medium: Standard borders
+--text-primary: Main headings and important text --text-secondary: Body text and
+  descriptions --text-muted: Subtle/disclaimer text /* Backgrounds */
+  --bg-primary: Page backgrounds --bg-secondary: Section backgrounds
+  --bg-tertiary: Card backgrounds --bg-card: Card element backgrounds
+  /* Accents */ --accent-vibrant: Turquoise (primary accent) --gold-soft: Soft
+  gold (pills, badges) --gold-medium: Medium gold (icons, borders) /* Borders */
+  --border-light: Subtle borders --border-medium: Standard borders;
 ```
 
 ## Design Patterns
 
 ### Standard Pill/Badge
+
 All pills/badges across the site now follow this pattern:
+
 ```tsx
 className="inline-flex items-center justify-center px-6 py-2 rounded-full"
 style={{
@@ -185,13 +199,17 @@ style={{
 ```
 
 ### Elevated Cards
+
 All elevated cards use:
+
 ```tsx
 <Card variant="elevated" theme="gradient">
 ```
 
 ### Gradient Dividers
+
 Two patterns available:
+
 ```tsx
 <GradientDivider />   // Single color
 <TwoToneDivider />    // Two-tone gradient
@@ -230,18 +248,21 @@ client/src/
 ## Benefits Achieved
 
 ### For Developers
+
 - **Faster development** - Less code to write
 - **Fewer errors** - Type-safe variants prevent mistakes
 - **Easier debugging** - Clear component hierarchy
 - **Better DX** - Autocomplete and clear component names
 
 ### For Designers
+
 - **Consistent styling** - All cards use same spacing
 - **Easy theme changes** - Update colors in one place
 - **Predictable behavior** - Variants ensure consistency
 - **Design system enforcement** - Patterns are built-in
 
 ### For Users
+
 - **Consistent experience** - All pages feel cohesive
 - **Better performance** - Fewer style calculations
 - **Theme switching** - Dark/light mode works uniformly

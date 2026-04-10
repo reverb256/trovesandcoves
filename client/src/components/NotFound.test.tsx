@@ -41,7 +41,9 @@ describe('NotFound', () => {
 
     expect(screen.getByText('⚠️')).toBeInTheDocument();
     expect(screen.getByText('API Error')).toBeInTheDocument();
-    expect(screen.getByText(/Something went wrong while fetching data/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Something went wrong while fetching data/)
+    ).toBeInTheDocument();
   });
 
   it('should render crystal emoji', () => {
@@ -60,21 +62,27 @@ describe('NotFound', () => {
   it('should render browse products button for non-API errors', () => {
     render(<NotFound type="product" />);
 
-    const browseButton = screen.getByRole('button', { name: /browse products/i });
+    const browseButton = screen.getByRole('button', {
+      name: /browse products/i,
+    });
     expect(browseButton).toBeInTheDocument();
   });
 
   it('should not render browse products button for API errors', () => {
     render(<NotFound type="api" />);
 
-    const browseButton = screen.queryByRole('button', { name: /browse products/i });
+    const browseButton = screen.queryByRole('button', {
+      name: /browse products/i,
+    });
     expect(browseButton).not.toBeInTheDocument();
   });
 
   it('should render helpful links section', () => {
     render(<NotFound />);
 
-    expect(screen.getByText(/Looking for something specific\?/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Looking for something specific\?/i)
+    ).toBeInTheDocument();
     expect(screen.getByText('All Products')).toBeInTheDocument();
     expect(screen.getByText('Necklaces')).toBeInTheDocument();
     expect(screen.getByText('Bracelets')).toBeInTheDocument();
@@ -83,27 +91,39 @@ describe('NotFound', () => {
   it('should display appropriate message for page not found', () => {
     render(<NotFound type="page" />);
 
-    expect(screen.getByText(/We couldn't find the page you're looking for/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/We couldn't find the page you're looking for/)
+    ).toBeInTheDocument();
   });
 
   it('should display appropriate message for product not found', () => {
     render(<NotFound type="product" resource="Crystal Ring" />);
 
-    expect(screen.getByText(/We couldn't find the product "Crystal Ring"/)).toBeInTheDocument();
-    expect(screen.getByText(/It may have been removed or the URL is incorrect/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/We couldn't find the product "Crystal Ring"/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/It may have been removed or the URL is incorrect/)
+    ).toBeInTheDocument();
   });
 
   it('should display appropriate message for category not found', () => {
     render(<NotFound type="category" resource="Earrings" />);
 
-    expect(screen.getByText(/We couldn't find the category "Earrings"/)).toBeInTheDocument();
-    expect(screen.getByText(/Try browsing our collections/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/We couldn't find the category "Earrings"/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Try browsing our collections/)
+    ).toBeInTheDocument();
   });
 
   it('should display appropriate message for API error', () => {
     render(<NotFound type="api" />);
 
-    expect(screen.getByText(/Something went wrong while fetching data/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Something went wrong while fetching data/)
+    ).toBeInTheDocument();
     expect(screen.getByText(/Please try again later/)).toBeInTheDocument();
   });
 
@@ -126,6 +146,9 @@ describe('NotFound', () => {
     expect(allProductsLink).toHaveAttribute('href', '/products');
 
     const necklacesLink = screen.getByText('Necklaces').closest('a');
-    expect(necklacesLink).toHaveAttribute('href', '/products?category=necklaces');
+    expect(necklacesLink).toHaveAttribute(
+      'href',
+      '/products?category=necklaces'
+    );
   });
 });

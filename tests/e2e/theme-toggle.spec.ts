@@ -26,9 +26,8 @@ async function verifyThemeColors(page: any, expectedTheme: 'light' | 'dark') {
   expect(currentTheme).toBe(expectedTheme);
 
   // Verify theme button text matches current theme
-  const expectedButtonText = expectedTheme === 'dark'
-    ? /switch to light mode/i
-    : /switch to dark mode/i;
+  const expectedButtonText =
+    expectedTheme === 'dark' ? /switch to light mode/i : /switch to dark mode/i;
 
   const themeButton = page.getByRole('button', { name: expectedButtonText });
   await expect(themeButton).toBeVisible();
@@ -48,7 +47,9 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto(PRODUCTION_URL);
 
     // Check for theme toggle button
-    const themeButton = page.getByRole('button', { name: /switch to (light|dark) mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to (light|dark) mode/i,
+    });
     await expect(themeButton).toBeVisible();
 
     // Verify it has an accessible label
@@ -64,7 +65,9 @@ test.describe('Theme Toggle Functionality', () => {
     expect(initialTheme).toBe('light');
 
     // Click theme toggle button
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
 
     // Wait for theme change
@@ -75,7 +78,9 @@ test.describe('Theme Toggle Functionality', () => {
     expect(newTheme).toBe('dark');
 
     // Verify button text updated
-    const updatedButton = page.getByRole('button', { name: /switch to light mode/i });
+    const updatedButton = page.getByRole('button', {
+      name: /switch to light mode/i,
+    });
     await expect(updatedButton).toBeVisible();
 
     // Verify dark mode colors are applied
@@ -86,12 +91,16 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto(PRODUCTION_URL);
 
     // First switch to dark mode
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
     // Now switch back to light mode
-    const darkModeButton = page.getByRole('button', { name: /switch to light mode/i });
+    const darkModeButton = page.getByRole('button', {
+      name: /switch to light mode/i,
+    });
     await darkModeButton.click();
     await page.waitForTimeout(500);
 
@@ -100,7 +109,9 @@ test.describe('Theme Toggle Functionality', () => {
     expect(finalTheme).toBe('light');
 
     // Verify button text updated back
-    const lightModeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const lightModeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await expect(lightModeButton).toBeVisible();
 
     // Verify light mode colors are applied
@@ -111,7 +122,9 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto(PRODUCTION_URL);
 
     // Switch to dark mode on home page
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
@@ -154,7 +167,9 @@ test.describe('Theme Toggle Functionality', () => {
     for (const { url } of pages) {
       await page.goto(`${PRODUCTION_URL}${url}`);
 
-      const themeButton = page.getByRole('button', { name: /switch to (light|dark) mode/i });
+      const themeButton = page.getByRole('button', {
+        name: /switch to (light|dark) mode/i,
+      });
       await expect(themeButton).toBeVisible({ timeout: 5000 });
 
       // Verify button is clickable
@@ -171,7 +186,9 @@ test.describe('Theme Toggle Functionality', () => {
     expect(initialTheme).toBe('light');
 
     // Toggle to dark mode
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
@@ -188,7 +205,9 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto(`${PRODUCTION_URL}/about`);
 
     // Toggle to dark mode
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
@@ -197,7 +216,9 @@ test.describe('Theme Toggle Functionality', () => {
     expect(theme).toBe('dark');
 
     // Verify content is visible
-    const heading = page.getByRole('heading', { name: /about troves & coves/i });
+    const heading = page.getByRole('heading', {
+      name: /about troves & coves/i,
+    });
     await expect(heading).toBeVisible();
   });
 
@@ -205,7 +226,9 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto(`${PRODUCTION_URL}/contact`);
 
     // Toggle to dark mode
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
@@ -222,7 +245,9 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto(PRODUCTION_URL);
 
     // Switch to dark mode
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
@@ -245,7 +270,9 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto(PRODUCTION_URL);
 
     // Switch to dark mode
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
@@ -273,7 +300,9 @@ test.describe('Theme Toggle Functionality', () => {
     await expect(productCards.first()).toBeVisible();
 
     // Switch to dark mode
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
@@ -283,7 +312,7 @@ test.describe('Theme Toggle Functionality', () => {
 
     // Verify product images are visible
     const productImage = page.locator('img[alt*="Lapis"]').first();
-    if (await productImage.count() > 0) {
+    if ((await productImage.count()) > 0) {
       await expect(productImage).toBeVisible();
     }
   });
@@ -293,11 +322,15 @@ test.describe('Theme Accessibility', () => {
   test('theme toggle button has proper aria label', async ({ page }) => {
     await page.goto(PRODUCTION_URL);
 
-    const themeButton = page.getByRole('button', { name: /switch to (light|dark) mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to (light|dark) mode/i,
+    });
     await expect(themeButton).toHaveAttribute('aria-label');
   });
 
-  test('theme transition works with reduced motion preference', async ({ page }) => {
+  test('theme transition works with reduced motion preference', async ({
+    page,
+  }) => {
     // Set prefers-reduced-motion
     await page.addInitScript(() => {
       // @ts-ignore
@@ -316,7 +349,9 @@ test.describe('Theme Accessibility', () => {
     await page.goto(PRODUCTION_URL);
 
     // Theme toggle should still work with reduced motion
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 
@@ -336,7 +371,9 @@ test.describe('Theme Visual Regression', () => {
     });
 
     // Switch to dark mode
-    const themeButton = page.getByRole('button', { name: /switch to dark mode/i });
+    const themeButton = page.getByRole('button', {
+      name: /switch to dark mode/i,
+    });
     await themeButton.click();
     await page.waitForTimeout(500);
 

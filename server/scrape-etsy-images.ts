@@ -24,24 +24,24 @@ async function scrapeEtsyImages() {
   console.log('🔍 Starting Etsy shop scrape...\n');
 
   // Use system Chromium
-  const browser = await chromium.launch({
-    channel: 'chrome',  // Try chrome channel first
-    headless: false,   // Try non-headless to bypass bot detection
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-    ]
-  }).catch(async () => {
-    // Fallback to system chromium path
-    return await chromium.launch({
-      executablePath: '/run/current-system/sw/bin/chromium',
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+  const browser = await chromium
+    .launch({
+      channel: 'chrome', // Try chrome channel first
+      headless: false, // Try non-headless to bypass bot detection
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    })
+    .catch(async () => {
+      // Fallback to system chromium path
+      return await chromium.launch({
+        executablePath: '/run/current-system/sw/bin/chromium',
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
     });
-  });
 
   const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    userAgent:
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
     viewport: { width: 1920, height: 1080 },
   });
 
@@ -51,7 +51,7 @@ async function scrapeEtsyImages() {
     console.log(`📖 Navigating to ${ETSY_SHOP_URL}...`);
     await page.goto(ETSY_SHOP_URL, {
       waitUntil: 'domcontentloaded',
-      timeout: 30000
+      timeout: 30000,
     });
 
     // Wait for content to load
@@ -77,9 +77,11 @@ async function scrapeEtsyImages() {
       const results: ProductImage[] = [];
 
       // Method 1: Find all listing cards by looking for links containing /listing/
-      const listingLinks = Array.from(document.querySelectorAll('a[href*="/listing/"]'));
+      const listingLinks = Array.from(
+        document.querySelectorAll('a[href*="/listing/"]')
+      );
 
-      listingLinks.forEach((link) => {
+      listingLinks.forEach(link => {
         const anchor = link as HTMLAnchorElement;
         const href = anchor.href;
 
@@ -87,18 +89,27 @@ async function scrapeEtsyImages() {
         if (results.some(p => p.listingUrl === href)) return;
 
         // Find image in this card
-        const img = anchor.querySelector('img') ||
-                    anchor.parentElement?.querySelector('img') ||
-                    anchor.closest('.wt-listing-card, [data-Listing-id]')?.querySelector('img');
+        const img =
+          anchor.querySelector('img') ||
+          anchor.parentElement?.querySelector('img') ||
+          anchor
+            .closest('.wt-listing-card, [data-Listing-id]')
+            ?.querySelector('img');
 
         if (!img) return;
 
         const imgEl = img as HTMLImageElement;
 
         // Get image URL - try multiple attributes
-        let imgUrl = imgEl.getAttribute('data-src') ||
-                     imgEl.getAttribute('srcset')?.split(',').pop()?.trim().split(' ')[0] ||
-                     imgEl.src;
+        let imgUrl =
+          imgEl.getAttribute('data-src') ||
+          imgEl
+            .getAttribute('srcset')
+            ?.split(',')
+            .pop()
+            ?.trim()
+            .split(' ')[0] ||
+          imgEl.src;
 
         if (!imgUrl || !imgUrl.includes('etsystatic.com')) return;
 
@@ -111,20 +122,23 @@ async function scrapeEtsyImages() {
         if (imgUrl.includes('75x75') || imgUrl.includes('100x100')) return;
 
         // Get title from alt text or nearby element
-        const title = imgEl.alt ||
-                      anchor.getAttribute('aria-label') ||
-                      anchor.querySelector('[data-listing-title]')?.textContent ||
-                      `Product ${results.length + 1}`;
+        const title =
+          imgEl.alt ||
+          anchor.getAttribute('aria-label') ||
+          anchor.querySelector('[data-listing-title]')?.textContent ||
+          `Product ${results.length + 1}`;
 
         // Get price if available
-        const priceEl = anchor.closest('.wt-listing-card, [data-Listing-id]')?.querySelector('[data-price]');
+        const priceEl = anchor
+          .closest('.wt-listing-card, [data-Listing-id]')
+          ?.querySelector('[data-price]');
         const price = priceEl?.textContent?.trim() || undefined;
 
         results.push({
           title: title.trim(),
           imageUrl: imgUrl,
           listingUrl: href,
-          price
+          price,
         });
       });
 
@@ -147,7 +161,6 @@ async function scrapeEtsyImages() {
     console.log(`💾 Saved to ${OUTPUT_FILE}`);
 
     return products;
-
   } catch (error) {
     console.error('❌ Error:', error);
     throw error;

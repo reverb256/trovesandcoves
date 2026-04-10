@@ -20,22 +20,27 @@ export default {
       console.log(`✅ Sync complete: ${result.productCount} products`);
 
       // Store sync metadata
-      await env.ETSY_PRODUCTS.put('sync:meta', JSON.stringify({
-        lastSync: new Date().toISOString(),
-        productCount: result.productCount,
-        status: 'success'
-      }));
-
+      await env.ETSY_PRODUCTS.put(
+        'sync:meta',
+        JSON.stringify({
+          lastSync: new Date().toISOString(),
+          productCount: result.productCount,
+          status: 'success',
+        })
+      );
     } catch (error) {
       console.error('❌ Sync failed:', error);
 
       // Store failure metadata
-      await env.ETSY_PRODUCTS.put('sync:meta', JSON.stringify({
-        lastSync: new Date().toISOString(),
-        productCount: 0,
-        status: 'error',
-        error: error.message
-      }));
+      await env.ETSY_PRODUCTS.put(
+        'sync:meta',
+        JSON.stringify({
+          lastSync: new Date().toISOString(),
+          productCount: 0,
+          status: 'error',
+          error: error.message,
+        })
+      );
     }
   },
 
@@ -60,48 +65,59 @@ export default {
         const result = await syncEtsyProducts(env);
         return new Response(JSON.stringify(result), {
           headers: corsHeaders,
-          status: 200
+          status: 200,
         });
       } catch (error) {
-        return new Response(JSON.stringify({
-          success: false,
-          error: error.message
-        }), {
-          headers: corsHeaders,
-          status: 500
-        });
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: error.message,
+          }),
+          {
+            headers: corsHeaders,
+            status: 500,
+          }
+        );
       }
     }
 
     // Get sync status
     if (url.pathname === '/status' && request.method === 'GET') {
       const meta = await env.ETSY_PRODUCTS.get('sync:meta', { type: 'json' });
-      const products = await env.ETSY_PRODUCTS.get('products', { type: 'json' }) || [];
+      const products =
+        (await env.ETSY_PRODUCTS.get('products', { type: 'json' })) || [];
 
-      return new Response(JSON.stringify({
-        meta,
-        productCount: products.length
-      }), {
-        headers: corsHeaders
-      });
+      return new Response(
+        JSON.stringify({
+          meta,
+          productCount: products.length,
+        }),
+        {
+          headers: corsHeaders,
+        }
+      );
     }
 
     // Get products
     if (url.pathname === '/products' && request.method === 'GET') {
-      const products = await env.ETSY_PRODUCTS.get('products', { type: 'json' }) || [];
+      const products =
+        (await env.ETSY_PRODUCTS.get('products', { type: 'json' })) || [];
       return new Response(JSON.stringify(products), {
-        headers: corsHeaders
+        headers: corsHeaders,
       });
     }
 
-    return new Response(JSON.stringify({
-      error: 'Endpoint not found',
-      endpoints: ['/sync (POST)', '/status (GET)', '/products (GET)']
-    }), {
-      headers: corsHeaders,
-      status: 404
-    });
-  }
+    return new Response(
+      JSON.stringify({
+        error: 'Endpoint not found',
+        endpoints: ['/sync (POST)', '/status (GET)', '/products (GET)'],
+      }),
+      {
+        headers: corsHeaders,
+        status: 404,
+      }
+    );
+  },
 };
 
 /**
@@ -112,7 +128,10 @@ function cleanDescriptionForLuxury(description) {
 
   let cleaned = description
     // Remove mystical/spiritual phrases
-    .replace(/sacred|divine|celestial|ethereal|channeling|manifestation|alchemy/gi, '')
+    .replace(
+      /sacred|divine|celestial|ethereal|channeling|manifestation|alchemy/gi,
+      ''
+    )
     .replace(/talisman|spiritual.*awakening|consciousness/gi, '')
     .replace(/throat.*chakra|heart.*chakra|third.*eye/gi, '')
     .replace(/psychic|intuition|meditation|mindfulness/gi, '')
@@ -121,8 +140,14 @@ function cleanDescriptionForLuxury(description) {
     .replace(/abundance|prosperity|good.*fortune/gi, '')
     .replace(/tranquility|serenity|calming.*energy/gi, '')
     .replace(/emotional.*balance|inner.*wisdom/gi, '')
-    .replace(/lovingly.*wire.*wrapped|wire.*wrapped.*with.*golden.*intention/gi, 'Hand-wrapped with 14k gold-filled wire')
-    .replace(/sacred.*transformation|divine.*stationary.*pendant.*power/gi, 'Unique stationary pendant')
+    .replace(
+      /lovingly.*wire.*wrapped|wire.*wrapped.*with.*golden.*intention/gi,
+      'Hand-wrapped with 14k gold-filled wire'
+    )
+    .replace(
+      /sacred.*transformation|divine.*stationary.*pendant.*power/gi,
+      'Unique stationary pendant'
+    )
     .replace(/Ancient.*wisdom|celestial.*guidance/gi, '')
     // Fix extra whitespace and punctuation
     .replace(/\s+/g, ' ')
@@ -140,15 +165,17 @@ function cleanDescriptionForLuxury(description) {
  * Sync products from Etsy to KV storage
  */
 async function syncEtsyProducts(env) {
-  const shopUrl = env.ETSY_SHOP_URL || 'https://www.etsy.com/ca/shop/TrovesandCoves';
+  const shopUrl =
+    env.ETSY_SHOP_URL || 'https://www.etsy.com/ca/shop/TrovesandCoves';
 
   console.log(`📖 Fetching Etsy shop: ${shopUrl}`);
 
   // Fetch the Etsy shop page
   const response = await fetch(shopUrl, {
     headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'Accept-Language': 'en-CA,en;q=0.9',
     },
   });
@@ -174,17 +201,19 @@ async function syncEtsyProducts(env) {
     }
   });
 
-  console.log(`✨ Cleaned ${products.length} product descriptions for luxury positioning`);
+  console.log(
+    `✨ Cleaned ${products.length} product descriptions for luxury positioning`
+  );
 
   // Store products in KV
   await env.ETSY_PRODUCTS.put('products', JSON.stringify(products), {
-    expirationTtl: 86400 * 7 // 7 days cache
+    expirationTtl: 86400 * 7, // 7 days cache
   });
 
   return {
     success: true,
     productCount: products.length,
-    syncedAt: new Date().toISOString()
+    syncedAt: new Date().toISOString(),
   };
 }
 
@@ -198,7 +227,9 @@ function parseEtsyProductsFromHtml(html) {
   // Extract product data using multiple patterns
 
   // Pattern 1: Find all listing URLs in the data
-  const dataMatches = html.matchAll(/"listingUrl":"(https:\\\/\\\/www\.etsy\.com\/ca\/listing\/\d+[^"]*)"/g);
+  const dataMatches = html.matchAll(
+    /"listingUrl":"(https:\\\/\\\/www\.etsy\.com\/ca\/listing\/\d+[^"]*)"/g
+  );
 
   for (const match of dataMatches) {
     if (products.length >= 15) break;
@@ -211,10 +242,13 @@ function parseEtsyProductsFromHtml(html) {
 
     // Extract listing ID
     const listingIdMatch = listingUrl.match(/\/listing\/(\d+)/);
-    const listingId = listingIdMatch ? listingIdMatch[1] : Date.now().toString();
+    const listingId = listingIdMatch
+      ? listingIdMatch[1]
+      : Date.now().toString();
 
     // Find product title near this URL
-    const title = extractTitleNearUrl(html, listingUrl) || `Product ${products.length + 1}`;
+    const title =
+      extractTitleNearUrl(html, listingUrl) || `Product ${products.length + 1}`;
 
     // Extract image URL for this listing
     const imageUrl = extractImageUrlForListing(html, listingId);
@@ -242,7 +276,7 @@ function parseEtsyProductsFromHtml(html) {
       sku: `ETSY-${listingId}`,
       isFeatured: products.length < 3,
       etsyUrl: listingUrl,
-      lastSyncedAt: new Date().toISOString()
+      lastSyncedAt: new Date().toISOString(),
     });
   }
 
@@ -254,12 +288,18 @@ function parseEtsyProductsFromHtml(html) {
  */
 function extractTitleNearUrl(html, listingUrl) {
   // Look for title in structured data
-  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
   // Try multiple patterns for title
   const patterns = [
-    new RegExp(`"title":"([^"]*?)"[\\s\\S]{0,300}"listingUrl":"${escapeRegex(listingUrl).replace(/\//g, '\\\\/')}`, 'i'),
-    new RegExp(`"name":"([^"]*?)"[\\s\\S]{0,500}"url":"${escapeRegex(listingUrl).replace(/\//g, '\\\\/')}`, 'i'),
+    new RegExp(
+      `"title":"([^"]*?)"[\\s\\S]{0,300}"listingUrl":"${escapeRegex(listingUrl).replace(/\//g, '\\\\/')}`,
+      'i'
+    ),
+    new RegExp(
+      `"name":"([^"]*?)"[\\s\\S]{0,500}"url":"${escapeRegex(listingUrl).replace(/\//g, '\\\\/')}`,
+      'i'
+    ),
   ];
 
   for (const pattern of patterns) {
@@ -283,19 +323,25 @@ function extractImageUrlForListing(html, listingId) {
   ];
 
   // Find all etsystatic images
-  const allImages = html.match(/https:\/\/i\.etsystatic\.com\/[^"'\s]+fullxfull[^"'\s]*\.jpg/gi) || [];
+  const allImages =
+    html.match(
+      /https:\/\/i\.etsystatic\.com\/[^"'\s]+fullxfull[^"'\s]*\.jpg/gi
+    ) || [];
 
   // Filter for product images (not tiny ones)
-  const productImages = allImages.filter(url =>
-    !url.includes('75x75') &&
-    !url.includes('100x100') &&
-    !url.includes('avatar')
+  const productImages = allImages.filter(
+    url =>
+      !url.includes('75x75') &&
+      !url.includes('100x100') &&
+      !url.includes('avatar')
   );
 
   if (productImages.length > 0) {
     // Return unique images
     const uniqueImages = [...new Set(productImages)];
-    return uniqueImages[products.length % uniqueImages.length] || uniqueImages[0];
+    return (
+      uniqueImages[products.length % uniqueImages.length] || uniqueImages[0]
+    );
   }
 
   return 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400';
@@ -325,16 +371,32 @@ function extractPriceForListing(html, listingId) {
  */
 function extractMaterials(title) {
   const materialKeywords = [
-    'Turquoise', 'Lapis Lazuli', 'Citrine', 'Rose Quartz', 'Pyrite',
-    'Amethyst', 'Jade', 'Smoky Quartz', 'Hematite', 'Pearl',
-    'Wire', 'Leather', 'Gold Plated', 'Gold Filled', 'Enamel', 'Chain'
+    'Turquoise',
+    'Lapis Lazuli',
+    'Citrine',
+    'Rose Quartz',
+    'Pyrite',
+    'Amethyst',
+    'Jade',
+    'Smoky Quartz',
+    'Hematite',
+    'Pearl',
+    'Wire',
+    'Leather',
+    'Gold Plated',
+    'Gold Filled',
+    'Enamel',
+    'Chain',
   ];
 
   const found = [];
   const upperTitle = title.toUpperCase();
 
   for (const material of materialKeywords) {
-    if (upperTitle.includes(material.toUpperCase()) && !found.includes(material)) {
+    if (
+      upperTitle.includes(material.toUpperCase()) &&
+      !found.includes(material)
+    ) {
       found.push(material);
     }
   }
@@ -347,15 +409,27 @@ function extractMaterials(title) {
  */
 function extractGemstones(title) {
   const gemstoneKeywords = [
-    'Turquoise', 'Lapis Lazuli', 'Citrine', 'Rose Quartz', 'Pyrite',
-    'Amethyst', 'Jade', 'Smoky Quartz', 'Hematite', 'Onyx', 'Lava Stone'
+    'Turquoise',
+    'Lapis Lazuli',
+    'Citrine',
+    'Rose Quartz',
+    'Pyrite',
+    'Amethyst',
+    'Jade',
+    'Smoky Quartz',
+    'Hematite',
+    'Onyx',
+    'Lava Stone',
   ];
 
   const found = [];
   const upperTitle = title.toUpperCase();
 
   for (const gemstone of gemstoneKeywords) {
-    if (upperTitle.includes(gemstone.toUpperCase()) && !found.includes(gemstone)) {
+    if (
+      upperTitle.includes(gemstone.toUpperCase()) &&
+      !found.includes(gemstone)
+    ) {
       found.push(gemstone);
     }
   }

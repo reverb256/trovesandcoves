@@ -13,6 +13,7 @@
 ## Task 1: Set up PostgreSQL database schema
 
 **Files:**
+
 - Create: `server/database/migrations/001_create_orders.sql`
 - Create: `server/database/schema.ts`
 
@@ -212,6 +213,7 @@ git commit -m "feat: add database schema for orders
 ## Task 2: Create tax calculation library
 
 **Files:**
+
 - Create: `server/lib/tax.ts`
 
 **Step 1: Write the tax calculation library**
@@ -221,32 +223,32 @@ git commit -m "feat: add database schema for orders
 import type { TaxBreakdown } from '../database/schema';
 
 export interface TaxRate {
-  gst: number;      // Goods and Services Tax (federal)
-  pst: number;      // Provincial Sales Tax
-  hst: number;      // Harmonized Sales Tax (combines gst+pst)
+  gst: number; // Goods and Services Tax (federal)
+  pst: number; // Provincial Sales Tax
+  hst: number; // Harmonized Sales Tax (combines gst+pst)
   name: string;
 }
 
 // Canadian tax rates (as of 2026)
 const TAX_RATES: Record<string, TaxRate> = {
   // HST provinces (harmonized tax)
-  'ON': { gst: 0, pst: 0, hst: 0.13, name: 'Ontario' },
-  'NB': { gst: 0, pst: 0, hst: 0.15, name: 'New Brunswick' },
-  'NS': { gst: 0, pst: 0, hst: 0.15, name: 'Nova Scotia' },
-  'PE': { gst: 0, pst: 0, hst: 0.15, name: 'Prince Edward Island' },
-  'NL': { gst: 0, pst: 0, hst: 0.15, name: 'Newfoundland and Labrador' },
+  ON: { gst: 0, pst: 0, hst: 0.13, name: 'Ontario' },
+  NB: { gst: 0, pst: 0, hst: 0.15, name: 'New Brunswick' },
+  NS: { gst: 0, pst: 0, hst: 0.15, name: 'Nova Scotia' },
+  PE: { gst: 0, pst: 0, hst: 0.15, name: 'Prince Edward Island' },
+  NL: { gst: 0, pst: 0, hst: 0.15, name: 'Newfoundland and Labrador' },
 
   // GST + PST provinces
-  'AB': { gst: 0.05, pst: 0, hst: 0, name: 'Alberta' },
-  'BC': { gst: 0.05, pst: 0.07, hst: 0, name: 'British Columbia' },
-  'MB': { gst: 0.05, pst: 0.07, hst: 0, name: 'Manitoba' },
-  'QC': { gst: 0.05, pst: 0.09975, hst: 0, name: 'Quebec' }, // QST is 9.975%
-  'SK': { gst: 0.05, pst: 0.06, hst: 0, name: 'Saskatchewan' },
+  AB: { gst: 0.05, pst: 0, hst: 0, name: 'Alberta' },
+  BC: { gst: 0.05, pst: 0.07, hst: 0, name: 'British Columbia' },
+  MB: { gst: 0.05, pst: 0.07, hst: 0, name: 'Manitoba' },
+  QC: { gst: 0.05, pst: 0.09975, hst: 0, name: 'Quebec' }, // QST is 9.975%
+  SK: { gst: 0.05, pst: 0.06, hst: 0, name: 'Saskatchewan' },
 
   // Territories (GST only)
-  'NT': { gst: 0.05, pst: 0, hst: 0, name: 'Northwest Territories' },
-  'NU': { gst: 0.05, pst: 0, hst: 0, name: 'Nunavut' },
-  'YT': { gst: 0.05, pst: 0, hst: 0, name: 'Yukon' },
+  NT: { gst: 0.05, pst: 0, hst: 0, name: 'Northwest Territories' },
+  NU: { gst: 0.05, pst: 0, hst: 0, name: 'Nunavut' },
+  YT: { gst: 0.05, pst: 0, hst: 0, name: 'Yukon' },
 };
 
 /**
@@ -330,6 +332,7 @@ git commit -m "feat: add Canadian tax calculation
 ## Task 3: Create shipping rate library
 
 **Files:**
+
 - Create: `server/lib/shipping.ts`
 
 **Step 1: Write the shipping calculation library**
@@ -355,7 +358,20 @@ const SHIPPING_RATES: ShippingRate[] = [
   },
   {
     zone: 'Canada',
-    provinces: ['AB', 'BC', 'SK', 'ON', 'QC', 'NB', 'NS', 'PE', 'NL', 'NT', 'NU', 'YT'],
+    provinces: [
+      'AB',
+      'BC',
+      'SK',
+      'ON',
+      'QC',
+      'NB',
+      'NS',
+      'PE',
+      'NL',
+      'NT',
+      'NU',
+      'YT',
+    ],
     rate: 15,
     freeThreshold: 150,
     estimatedDays: '3-5 business days',
@@ -395,9 +411,10 @@ export function calculateShipping(
 
   // Default to international if no match
   if (!zone) {
-    zone = country === 'US'
-      ? SHIPPING_RATES.find(r => r.zone === 'United States')
-      : SHIPPING_RATES.find(r => r.zone === 'International');
+    zone =
+      country === 'US'
+        ? SHIPPING_RATES.find(r => r.zone === 'United States')
+        : SHIPPING_RATES.find(r => r.zone === 'International');
   }
 
   // Final fallback
@@ -424,7 +441,10 @@ export function calculateShipping(
 /**
  * Get shipping info for display (without calculating)
  */
-export function getShippingInfo(province?: string, country: string = 'CA'): {
+export function getShippingInfo(
+  province?: string,
+  country: string = 'CA'
+): {
   rate: number;
   freeThreshold: number;
   zone: string;
@@ -439,17 +459,20 @@ export function getShippingInfo(province?: string, country: string = 'CA'): {
   }
 
   if (!zone) {
-    zone = country === 'US'
-      ? SHIPPING_RATES.find(r => r.zone === 'United States')
-      : SHIPPING_RATES.find(r => r.zone === 'International');
+    zone =
+      country === 'US'
+        ? SHIPPING_RATES.find(r => r.zone === 'United States')
+        : SHIPPING_RATES.find(r => r.zone === 'International');
   }
 
-  return zone ? {
-    rate: zone.rate,
-    freeThreshold: zone.freeThreshold || 0,
-    zone: zone.zone,
-    estimatedDays: zone.estimatedDays,
-  } : null;
+  return zone
+    ? {
+        rate: zone.rate,
+        freeThreshold: zone.freeThreshold || 0,
+        zone: zone.zone,
+        estimatedDays: zone.estimatedDays,
+      }
+    : null;
 }
 
 /**
@@ -484,6 +507,7 @@ git commit -m "feat: add shipping rate calculation
 ## Task 4: Create database connection and query functions
 
 **Files:**
+
 - Create: `server/database/connection.ts`
 - Create: `server/database/queries.ts`
 
@@ -499,9 +523,10 @@ export function getPool(): Pool {
   if (!pool) {
     const config: PoolConfig = {
       connectionString: process.env.DATABASE_URL,
-      ssl: process.env.NODE_ENV === 'production'
-        ? { rejectUnauthorized: false }
-        : false,
+      ssl:
+        process.env.NODE_ENV === 'production'
+          ? { rejectUnauthorized: false }
+          : false,
     };
     pool = new Pool(config);
   }
@@ -647,10 +672,9 @@ export async function getOrdersByEmail(email: string): Promise<Order[]> {
  * Get order items for an order
  */
 export async function getOrderItems(orderId: string): Promise<OrderItem[]> {
-  const result = await query(
-    'SELECT * FROM order_items WHERE order_id = $1',
-    [orderId]
-  );
+  const result = await query('SELECT * FROM order_items WHERE order_id = $1', [
+    orderId,
+  ]);
   return result.rows;
 }
 
@@ -716,6 +740,7 @@ git commit -m "feat: add database connection and order queries
 ## Task 5: Create shared types for checkout
 
 **Files:**
+
 - Modify: `shared/types.ts`
 
 **Step 1: Add checkout types to shared/types.ts**
@@ -780,6 +805,7 @@ git commit -m "feat: add checkout types to shared types"
 ## Task 6: Create checkout API routes
 
 **Files:**
+
 - Create: `server/routes/checkout.ts`
 - Modify: `server/routes.ts`
 
@@ -831,11 +857,7 @@ router.post('/calculate-shipping', (req, res) => {
       return res.status(400).json({ error: 'Invalid subtotal' });
     }
 
-    const shipping = calculateShipping(
-      subtotal,
-      province,
-      country || 'CA'
-    );
+    const shipping = calculateShipping(subtotal, province, country || 'CA');
 
     res.json(shipping);
   } catch (error) {
@@ -863,7 +885,12 @@ router.post('/create-order', async (req, res) => {
     } = req.body;
 
     // Validation
-    if (!customerEmail || !items?.length || !paymentMethod || !shippingAddress) {
+    if (
+      !customerEmail ||
+      !items?.length ||
+      !paymentMethod ||
+      !shippingAddress
+    ) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -970,6 +997,7 @@ git commit -m "feat: add checkout API routes
 ## Task 7: Create Stripe payment integration
 
 **Files:**
+
 - Create: `server/lib/stripe.ts`
 - Create: `server/routes/stripe.ts`
 
@@ -1069,12 +1097,7 @@ const router = Router();
  */
 router.post('/create-payment-intent', async (req, res) => {
   try {
-    const {
-      amount,
-      currency = 'cad',
-      customerEmail,
-      orderId,
-    } = req.body;
+    const { amount, currency = 'cad', customerEmail, orderId } = req.body;
 
     if (typeof amount !== 'number' || amount <= 0) {
       return res.status(400).json({ error: 'Invalid amount' });
@@ -1190,6 +1213,7 @@ git commit -m "feat: add Stripe payment integration
 ## Task 8: Create PayPal payment integration
 
 **Files:**
+
 - Create: `server/lib/paypal.ts`
 - Create: `server/routes/paypal.ts`
 
@@ -1340,7 +1364,16 @@ router.post('/capture-order', async (req, res) => {
 
     if (capturedOrder.status === 'COMPLETED') {
       // Create the order in our database
-      const { customerEmail, customerName, items, subtotal, tax, shipping, total, shippingAddress } = checkoutData;
+      const {
+        customerEmail,
+        customerName,
+        items,
+        subtotal,
+        tax,
+        shipping,
+        total,
+        shippingAddress,
+      } = checkoutData;
 
       const order = await createOrder({
         customerEmail,
@@ -1409,6 +1442,7 @@ git commit -m "feat: add PayPal payment integration
 ## Task 9: Create client-side checkout pages
 
 **Files:**
+
 - Create: `client/src/pages/Checkout.tsx`
 - Create: `client/src/components/checkout/ShippingForm.tsx`
 - Create: `client/src/components/checkout/PaymentMethodSelector.tsx`
@@ -1446,7 +1480,9 @@ const shippingSchema = z.object({
   street: z.string().min(5, 'Street address is required'),
   city: z.string().min(2, 'City is required'),
   province: z.string().length(2, 'Province is required'),
-  postalCode: z.string().regex(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/, 'Invalid postal code'),
+  postalCode: z
+    .string()
+    .regex(/^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/, 'Invalid postal code'),
   country: z.string().default('CA'),
 });
 
@@ -1553,14 +1589,16 @@ export function ShippingForm({
             disabled={isLoading}
           >
             <option value="">Select province</option>
-            {PROVINCES.map((province) => (
+            {PROVINCES.map(province => (
               <option key={province.code} value={province.code}>
                 {province.name}
               </option>
             ))}
           </select>
           {errors.province && (
-            <p className="text-red-500 text-sm mt-1">{errors.province.message}</p>
+            <p className="text-red-500 text-sm mt-1">
+              {errors.province.message}
+            </p>
           )}
         </div>
       </div>
@@ -1578,7 +1616,9 @@ export function ShippingForm({
           disabled={isLoading}
         />
         {errors.postalCode && (
-          <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
+          <p className="text-red-500 text-sm mt-1">
+            {errors.postalCode.message}
+          </p>
         )}
       </div>
 
@@ -1645,7 +1685,7 @@ export function PaymentMethodSelector({
   return (
     <div className="space-y-3">
       <h3 className="text-lg font-semibold">Payment Method</h3>
-      {methods.map((method) => (
+      {methods.map(method => (
         <button
           key={method.id}
           onClick={() => onSelect(method.id)}
@@ -1725,7 +1765,7 @@ export function OrderSummary({
 
       {/* Items */}
       <div className="space-y-3 mb-4">
-        {items.map((item) => (
+        {items.map(item => (
           <div key={item.product.id} className="flex gap-3">
             <img
               src={item.product.image}
@@ -1756,19 +1796,25 @@ export function OrderSummary({
           <>
             {tax.gst > 0 && (
               <div className="flex justify-between text-sm">
-                <span className="text-on-surface-variant">GST ({tax.provinceName})</span>
+                <span className="text-on-surface-variant">
+                  GST ({tax.provinceName})
+                </span>
                 <span>{formatPrice(tax.gst)}</span>
               </div>
             )}
             {tax.pst > 0 && (
               <div className="flex justify-between text-sm">
-                <span className="text-on-surface-variant">PST ({tax.provinceName})</span>
+                <span className="text-on-surface-variant">
+                  PST ({tax.provinceName})
+                </span>
                 <span>{formatPrice(tax.pst)}</span>
               </div>
             )}
             {tax.hst > 0 && (
               <div className="flex justify-between text-sm">
-                <span className="text-on-surface-variant">HST ({tax.provinceName})</span>
+                <span className="text-on-surface-variant">
+                  HST ({tax.provinceName})
+                </span>
                 <span>{formatPrice(tax.hst)}</span>
               </div>
             )}
@@ -1793,12 +1839,14 @@ export function OrderSummary({
       </div>
 
       {/* Free shipping notice */}
-      {shipping && shipping.freeThreshold && subtotal < shipping.freeThreshold && (
-        <p className="text-sm text-green-600 mt-3">
-          Add {formatPrice(shipping.freeThreshold - subtotal)} more for free
-          shipping!
-        </p>
-      )}
+      {shipping &&
+        shipping.freeThreshold &&
+        subtotal < shipping.freeThreshold && (
+          <p className="text-sm text-green-600 mt-3">
+            Add {formatPrice(shipping.freeThreshold - subtotal)} more for free
+            shipping!
+          </p>
+        )}
     </div>
   );
 }
@@ -1813,8 +1861,14 @@ import { useLocation } from 'wouter';
 import { ArrowLeft, CreditCard } from 'lucide-react';
 import { SEOHead } from '@/components/SEOHead';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import { ShippingForm, type ShippingFormData } from '@/components/checkout/ShippingForm';
-import { PaymentMethodSelector, type PaymentMethod } from '@/components/checkout/PaymentMethodSelector';
+import {
+  ShippingForm,
+  type ShippingFormData,
+} from '@/components/checkout/ShippingForm';
+import {
+  PaymentMethodSelector,
+  type PaymentMethod,
+} from '@/components/checkout/PaymentMethodSelector';
 import { OrderSummary } from '@/components/checkout/OrderSummary';
 import { useCart } from '@/hooks/useCart';
 import { formatPrice } from '@/lib/format-price';
@@ -1832,14 +1886,18 @@ export function Checkout() {
   const [, navigate] = useLocation();
   const { items, clearCart } = useCart();
   const [step, setStep] = useState<CheckoutStep>('shipping');
-  const [shippingData, setShippingData] = useState<ShippingFormData | null>(null);
-  const [selectedPayment, setSelectedPayment] = useState<PaymentMethod>('stripe');
+  const [shippingData, setShippingData] = useState<ShippingFormData | null>(
+    null
+  );
+  const [selectedPayment, setSelectedPayment] =
+    useState<PaymentMethod>('stripe');
   const [tax, setTax] = useState<TaxBreakdown | null>(null);
   const [shipping, setShipping] = useState<ShippingInfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const subtotal = useMemo(
-    () => items.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
+    () =>
+      items.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
     [items]
   );
 
@@ -1873,7 +1931,11 @@ export function Checkout() {
       const shippingResponse = await fetch('/api/checkout/calculate-shipping', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subtotal, province: data.province, country: data.country }),
+        body: JSON.stringify({
+          subtotal,
+          province: data.province,
+          country: data.country,
+        }),
       });
       const shippingData = await shippingResponse.json();
       setShipping(shippingData);
@@ -1899,7 +1961,7 @@ export function Checkout() {
           body: JSON.stringify({
             customerEmail: shippingData!.email,
             customerName: shippingData!.name,
-            items: items.map((item) => ({
+            items: items.map(item => ({
               productId: item.product.id,
               productName: item.product.name,
               price: item.product.price,
@@ -1941,7 +2003,7 @@ export function Checkout() {
             JSON.stringify({
               customerEmail: shippingData!.email,
               customerName: shippingData!.name,
-              items: items.map((item) => ({
+              items: items.map(item => ({
                 productId: item.product.id,
                 productName: item.product.name,
                 price: item.product.price,
@@ -1956,7 +2018,9 @@ export function Checkout() {
           );
 
           // Redirect to Stripe payment (in real implementation, use Stripe Elements)
-          alert('Stripe payment integration would happen here. Use E-Transfer for testing.');
+          alert(
+            'Stripe payment integration would happen here. Use E-Transfer for testing.'
+          );
         }
       } else if (selectedPayment === 'paypal') {
         // Create PayPal order
@@ -1979,7 +2043,7 @@ export function Checkout() {
             JSON.stringify({
               customerEmail: shippingData!.email,
               customerName: shippingData!.name,
-              items: items.map((item) => ({
+              items: items.map(item => ({
                 productId: item.product.id,
                 productName: item.product.name,
                 price: item.product.price,
@@ -1994,7 +2058,9 @@ export function Checkout() {
           );
 
           // Redirect to PayPal
-          alert(`PayPal order created: ${data.orderId}. Redirect to PayPal in production.`);
+          alert(
+            `PayPal order created: ${data.orderId}. Redirect to PayPal in production.`
+          );
         }
       }
     } catch (error) {
@@ -2036,12 +2102,16 @@ export function Checkout() {
             <div className="flex items-center gap-4 mb-8">
               <div
                 className={`flex items-center gap-2 ${
-                  step === 'shipping' ? 'text-primary' : 'text-on-surface-variant'
+                  step === 'shipping'
+                    ? 'text-primary'
+                    : 'text-on-surface-variant'
                 }`}
               >
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
-                    step === 'shipping' ? 'border-primary bg-primary text-primary-on' : 'border-gray-300'
+                    step === 'shipping'
+                      ? 'border-primary bg-primary text-primary-on'
+                      : 'border-gray-300'
                   }`}
                 >
                   1
@@ -2051,12 +2121,16 @@ export function Checkout() {
               <div className="flex-1 h-0.5 bg-gray-200" />
               <div
                 className={`flex items-center gap-2 ${
-                  step === 'payment' ? 'text-primary' : 'text-on-surface-variant'
+                  step === 'payment'
+                    ? 'text-primary'
+                    : 'text-on-surface-variant'
                 }`}
               >
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
-                    step === 'payment' ? 'border-primary bg-primary text-primary-on' : 'border-gray-300'
+                    step === 'payment'
+                      ? 'border-primary bg-primary text-primary-on'
+                      : 'border-gray-300'
                   }`}
                 >
                   2
@@ -2067,8 +2141,13 @@ export function Checkout() {
 
             {step === 'shipping' && (
               <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
-                <ShippingForm onSubmit={handleShippingSubmit} isLoading={isLoading} />
+                <h2 className="text-xl font-semibold mb-4">
+                  Shipping Information
+                </h2>
+                <ShippingForm
+                  onSubmit={handleShippingSubmit}
+                  isLoading={isLoading}
+                />
               </div>
             )}
 
@@ -2137,7 +2216,7 @@ export function formatPrice(amount: number): string {
 ```tsx
 import { Checkout } from '@/pages/Checkout';
 
-<Route path="/checkout" component={Checkout} />
+<Route path="/checkout" component={Checkout} />;
 ```
 
 **Step 7: Install required dependencies**
@@ -2169,6 +2248,7 @@ git commit -m "feat: add checkout page
 ## Task 10: Create checkout confirmation page
 
 **Files:**
+
 - Create: `client/src/pages/CheckoutConfirmation.tsx`
 - Modify: `client/src/App.tsx`
 
@@ -2227,7 +2307,10 @@ export function CheckoutConfirmation() {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
         <h1 className="text-2xl font-bold mb-4">Order Not Found</h1>
-        <p className="mb-8">We couldn't find your order. Please contact us if you believe this is an error.</p>
+        <p className="mb-8">
+          We couldn't find your order. Please contact us if you believe this is
+          an error.
+        </p>
         <Button onClick={() => (window.location.href = '/contact')}>
           Contact Support
         </Button>
@@ -2328,7 +2411,10 @@ export function CheckoutConfirmation() {
 
           {/* Action buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" onClick={() => (window.location.href = '/products')}>
+            <Button
+              size="lg"
+              onClick={() => (window.location.href = '/products')}
+            >
               Continue Shopping
             </Button>
             <Button
@@ -2358,7 +2444,7 @@ export function CheckoutConfirmation() {
 ```tsx
 import { CheckoutConfirmation } from '@/pages/CheckoutConfirmation';
 
-<Route path="/checkout/confirmation/:id" component={CheckoutConfirmation} />
+<Route path="/checkout/confirmation/:id" component={CheckoutConfirmation} />;
 ```
 
 **Step 3: Run TypeScript check**
@@ -2385,6 +2471,7 @@ git commit -m "feat: add checkout confirmation page
 ## Task 11: Update environment variables
 
 **Files:**
+
 - Modify: `.env.example`
 
 **Step 1: Add checkout environment variables**
@@ -2429,6 +2516,7 @@ git commit -m "docs: add checkout environment variables
 ## Task 12: Test checkout flow
 
 **Files:**
+
 - Test: Manual verification
 
 **Step 1: Test E-Transfer checkout flow**
@@ -2436,6 +2524,7 @@ git commit -m "docs: add checkout environment variables
 Run: `npm run dev`
 
 Test:
+
 1. Add items to cart
 2. Go to checkout
 3. Fill out shipping form
@@ -2447,6 +2536,7 @@ Test:
 **Step 2: Test tax calculation**
 
 Visit different province selections and verify:
+
 - Manitoba: 5% GST + 7% PST = 12%
 - Ontario: 13% HST
 - Alberta: 5% GST only
@@ -2455,6 +2545,7 @@ Visit different province selections and verify:
 **Step 3: Test shipping calculation**
 
 Verify:
+
 - Manitoba: Free over $100, otherwise $0
 - Other Canada: Free over $150, otherwise $15
 - Free shipping notice appears when close to threshold
@@ -2476,6 +2567,7 @@ Expected: Build succeeds
 ## Task 13: Create completion report
 
 **Files:**
+
 - Create: `docs/plans/2026-03-13-checkout-completion-report.md`
 
 **Step 1: Write completion report**
@@ -2489,18 +2581,21 @@ Expected: Build succeeds
 ## Completed Tasks
 
 ### 1. Database Setup
+
 - [x] PostgreSQL schema for orders, customers, order items
 - [x] Database connection pooling
 - [x] Order creation queries with transactions
 - [x] Order lookup queries
 
 ### 2. Tax & Shipping
+
 - [x] Canadian tax calculation (GST, PST, HST)
 - [x] Shipping zones (Canada, US, International)
 - [x] Free shipping thresholds
 - [x] API endpoints for calculations
 
 ### 3. Payment Integrations
+
 - [x] Stripe payment intents
 - [x] Stripe webhook handler
 - [x] PayPal order creation
@@ -2508,6 +2603,7 @@ Expected: Build succeeds
 - [x] E-Transfer (manual) flow
 
 ### 4. Checkout Flow
+
 - [x] Multi-step checkout (shipping → payment)
 - [x] Form validation with Zod
 - [x] Payment method selection
@@ -2517,17 +2613,20 @@ Expected: Build succeeds
 ## Results
 
 ### Before
+
 - All purchases went through Etsy
 - No direct checkout capability
 - No customer data capture
 
 ### After
+
 - Full checkout with 3 payment methods
 - Canadian tax calculation by province
 - Zone-based shipping with free thresholds
 - Order tracking in database
 
 ## Expected Impact
+
 - Capture Canadian sales directly (15% target rate)
 - Reduced Etsy fees (5% + payment processing)
 - Customer email acquisition for marketing
@@ -2563,6 +2662,7 @@ Before marking this complete, verify:
 **Total Estimated Time:** 8-10 hours
 
 **Dependencies:**
+
 - None (can be done independently after Phase 1)
 - Requires PostgreSQL database setup (Neon recommended)
 

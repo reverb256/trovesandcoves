@@ -1,38 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Troves & Coves - Handcrafted Crystal Jewelry</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;700&family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
-        background: radial-gradient(ellipse at 60% 40%, #fffbe6 60%, #ffe066 100%);
+        background: radial-gradient(
+          ellipse at 60% 40%,
+          #fffbe6 60%,
+          #ffe066 100%
+        );
       }
       .glass {
-        background: rgba(255,255,255,0.7);
+        background: rgba(255, 255, 255, 0.7);
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
         backdrop-filter: blur(8px);
         border-radius: 1.5rem;
-        border: 1.5px solid rgba(255,255,255,0.25);
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
       }
       .animated-gradient {
-        background: linear-gradient(270deg, #ffd700, #38bec9, #319795, #fffbe6, #ffe066, #54d1db, #ffd700);
+        background: linear-gradient(
+          270deg,
+          #ffd700,
+          #38bec9,
+          #319795,
+          #fffbe6,
+          #ffe066,
+          #54d1db,
+          #ffd700
+        );
         background-size: 1400% 1400%;
         animation: gradientMove 18s ease infinite;
       }
       @keyframes gradientMove {
-        0% {background-position:0% 50%}
-        50% {background-position:100% 50%}
-        100% {background-position:0% 50%}
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
     </style>
   </head>
   <body class="min-h-screen font-sans text-gray-900">
     <div class="fixed inset-0 -z-10 animated-gradient opacity-70"></div>
     <div id="root"></div>
-    <footer class="bg-gold-200/80 border-t-2 border-silver-200 mt-24 py-8 text-center glass">
-      <span class="text-silver-700 text-lg">&copy; 2025 Troves & Coves. All rights reserved.</span>
+    <footer
+      class="bg-gold-200/80 border-t-2 border-silver-200 mt-24 py-8 text-center glass"
+    >
+      <span class="text-silver-700 text-lg"
+        >&copy; 2025 Troves & Coves. All rights reserved.</span
+      >
     </footer>
     <div id="root"></div>
     <script>
@@ -42,7 +68,12 @@
         const el = document.querySelector('.animate-fade-in-up');
         if (el) {
           el.classList.remove('opacity-0');
-          el.classList.add('transition-all', 'duration-1000', 'opacity-100', '-translate-y-4');
+          el.classList.add(
+            'transition-all',
+            'duration-1000',
+            'opacity-100',
+            '-translate-y-4'
+          );
         }
       }, 200);
     </script>

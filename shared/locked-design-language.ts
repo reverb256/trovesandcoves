@@ -1,7 +1,7 @@
 /**
  * LOCKED DESIGN LANGUAGE - TROVES & COVES
  * Authentic Implementation Based on Wooden Sign & Turquoise Skull Artwork
- * 
+ *
  * This configuration is LOCKED and enforced across all AI systems, components, and styling.
  * Any deviations from these specifications are strictly forbidden.
  */
@@ -14,29 +14,29 @@ export const LOCKED_DESIGN_LANGUAGE = {
   brandIdentity: {
     name: {
       troves: {
-        text: "Troves",
-        style: "clean turquoise print",
-        typography: "Libre Baskerville, serif",
-        color: "#3A8E8B", // Robin's luxury turquoise
-        weight: "bold",
-        transform: "none"
+        text: 'Troves',
+        style: 'clean turquoise print',
+        typography: 'Libre Baskerville, serif',
+        color: '#3A8E8B', // Robin's luxury turquoise
+        weight: 'bold',
+        transform: 'none',
       },
       coves: {
-        text: "Coves",
-        fontStyle: "elegant cursive gold",
-        typography: "Alex Brush, cursive",
-        color: "#C9A24A", // Robin's luxury gold (unified)
-        weight: "400",
-        transform: "none"
+        text: 'Coves',
+        fontStyle: 'elegant cursive gold',
+        typography: 'Alex Brush, cursive',
+        color: '#C9A24A', // Robin's luxury gold (unified)
+        weight: '400',
+        transform: 'none',
       },
       separator: {
-        symbol: "&",
-        color: "#C9A24A", // Robin's luxury gold (unified)
-        weight: "300"
-      }
+        symbol: '&',
+        color: '#C9A24A', // Robin's luxury gold (unified)
+        weight: '300',
+      },
     },
-    tagline: "Handcrafted Crystal Jewelry • Winnipeg",
-    voice: "refined, intentional, elevated luxury"
+    tagline: 'Handcrafted Crystal Jewelry • Winnipeg',
+    voice: 'refined, intentional, elevated luxury',
   },
 
   /**
@@ -46,21 +46,21 @@ export const LOCKED_DESIGN_LANGUAGE = {
   colorPalette: {
     // ROBIN'S LUXURY PALETTE 2026 - Client's exact specifications
     primary: {
-      trovesTurquoise: "#3A8E8B", // Robin's luxury turquoise
-      covesGoldUnified: "#C9A24A", // Robin's luxury gold (unified - was soft/deep)
-      linenBackground: "#FFFFFF",  // Pure white background (was #faf8f3 linen)
-      textPrimary: "#1f1f1f",      // Soft black / charcoal - main text
-      textSecondary: "#5f5f5f"     // Muted grey - secondary text
+      trovesTurquoise: '#3A8E8B', // Robin's luxury turquoise
+      covesGoldUnified: '#C9A24A', // Robin's luxury gold (unified - was soft/deep)
+      linenBackground: '#FFFFFF', // Pure white background (was #faf8f3 linen)
+      textPrimary: '#1f1f1f', // Soft black / charcoal - main text
+      textSecondary: '#5f5f5f', // Muted grey - secondary text
     },
 
     // HSL equivalents (for reference only - use hex values above)
     hslReference: {
-      trovesTurquoise: "hsl(176, 42%, 39%)",    // #3A8E8B
-      covesGoldUnified: "hsl(42, 74%, 54%)",    // #C9A24A
-      linenBackground: "hsl(0, 0%, 100%)",      // #FFFFFF
-      textPrimary: "hsl(0, 0%, 12%)",           // #1f1f1f
-      textSecondary: "hsl(0, 0%, 37%)"          // #5f5f5f
-    }
+      trovesTurquoise: 'hsl(176, 42%, 39%)', // #3A8E8B
+      covesGoldUnified: 'hsl(42, 74%, 54%)', // #C9A24A
+      linenBackground: 'hsl(0, 0%, 100%)', // #FFFFFF
+      textPrimary: 'hsl(0, 0%, 12%)', // #1f1f1f
+      textSecondary: 'hsl(0, 0%, 37%)', // #5f5f5f
+    },
   },
 
   /**
@@ -69,26 +69,26 @@ export const LOCKED_DESIGN_LANGUAGE = {
    */
   designElements: {
     backgrounds: {
-      woodenSign: "wooden-sign-bg",
-      skullArtwork: "skull-artwork-influence",
-      wooden: "wooden-texture"
+      woodenSign: 'wooden-sign-bg',
+      skullArtwork: 'skull-artwork-influence',
+      wooden: 'wooden-texture',
     },
-    
+
     effects: {
-      skullTurquoiseGlow: "skull-turquoise-glow",
-      ornateGoldGlow: "ornate-gold-glow",
-      ornateFrame: "ornate-decorative-frame"
+      skullTurquoiseGlow: 'skull-turquoise-glow',
+      ornateGoldGlow: 'ornate-gold-glow',
+      ornateFrame: 'ornate-decorative-frame',
     },
-    
+
     cards: {
-      authentic: "authentic-mystical-card",
-      hover: "skull-turquoise-glow + translateY(-4px) scale(1.02)"
+      authentic: 'authentic-mystical-card',
+      hover: 'skull-turquoise-glow + translateY(-4px) scale(1.02)',
     },
-    
+
     typography: {
-      trovesClass: "troves-text-style",
-      covesClass: "coves-text-style"
-    }
+      trovesClass: 'troves-text-style',
+      covesClass: 'coves-text-style',
+    },
   },
 
   /**
@@ -98,21 +98,23 @@ export const LOCKED_DESIGN_LANGUAGE = {
   componentSpecs: {
     header: {
       logo: {
-        structure: '<span class="troves-text-style">Troves</span><span class="text-ornate-frame-gold mx-2">&</span><span class="coves-text-style">Coves</span>',
-        container: "flex items-center space-x-2 group"
-      }
+        structure:
+          '<span class="troves-text-style">Troves</span><span class="text-ornate-frame-gold mx-2">&</span><span class="coves-text-style">Coves</span>',
+        container: 'flex items-center space-x-2 group',
+      },
     },
-    
+
     hero: {
-      background: "wooden-sign-bg",
-      heading: "authentic brand heading structure with troves-text-style and coves-text-style"
+      background: 'wooden-sign-bg',
+      heading:
+        'authentic brand heading structure with troves-text-style and coves-text-style',
     },
-    
+
     productCards: {
-      base: "authentic-mystical-card",
-      hover: "skull-turquoise-glow + transform effects",
-      border: "ornate-decorative-frame"
-    }
+      base: 'authentic-mystical-card',
+      hover: 'skull-turquoise-glow + transform effects',
+      border: 'ornate-decorative-frame',
+    },
   },
 
   /**
@@ -122,23 +124,23 @@ export const LOCKED_DESIGN_LANGUAGE = {
   prohibited: {
     colorChanges: [
       "Never change 'Troves' from turquoise to any other color",
-      "Never change 'Coves' from cursive blue to gold or any other color", 
-      "Never suggest alternative color schemes",
-      "Never use generic blue/gold combinations"
+      "Never change 'Coves' from cursive blue to gold or any other color",
+      'Never suggest alternative color schemes',
+      'Never use generic blue/gold combinations',
     ],
-    
+
     typographyChanges: [
       "Never change 'Troves' from clean sans-serif styling",
       "Never change 'Coves' from cursive script styling",
-      "Never suggest different font families"
+      'Never suggest different font families',
     ],
-    
+
     designChanges: [
-      "Never remove skull artwork influence",
-      "Never eliminate ornate decorative elements",
-      "Never suggest minimalist alternatives",
-      "Never change the mystical aesthetic"
-    ]
+      'Never remove skull artwork influence',
+      'Never eliminate ornate decorative elements',
+      'Never suggest minimalist alternatives',
+      'Never change the mystical aesthetic',
+    ],
   },
 
   /**
@@ -148,32 +150,33 @@ export const LOCKED_DESIGN_LANGUAGE = {
   implementation: {
     cssClasses: {
       required: [
-        "troves-text-style",
-        "coves-text-style", 
-        "wooden-sign-bg",
-        "skull-artwork-influence",
-        "ornate-decorative-frame",
-        "authentic-mystical-card",
-        "skull-turquoise-glow",
-        "ornate-gold-glow"
-      ]
+        'troves-text-style',
+        'coves-text-style',
+        'wooden-sign-bg',
+        'skull-artwork-influence',
+        'ornate-decorative-frame',
+        'authentic-mystical-card',
+        'skull-turquoise-glow',
+        'ornate-gold-glow',
+      ],
     },
-    
+
     colorVariables: {
       required: [
-        "--troves-turquoise: #3A8E8B",    // Robin's luxury turquoise
-        "--coves-gold-unified: #C9A24A",   // Robin's luxury gold (unified)
-        "--linen-background: #FFFFFF",     // Pure white background
-        "--text-primary: #1f1f1f",         // Soft black/charcoal
-        "--text-secondary: #5f5f5f"        // Muted grey
-      ]
+        '--troves-turquoise: #3A8E8B', // Robin's luxury turquoise
+        '--coves-gold-unified: #C9A24A', // Robin's luxury gold (unified)
+        '--linen-background: #FFFFFF', // Pure white background
+        '--text-primary: #1f1f1f', // Soft black/charcoal
+        '--text-secondary: #5f5f5f', // Muted grey
+      ],
     },
-    
+
     aiSystemRequirements: {
-      brandContext: "Must include authentic wooden sign and skull artwork references",
-      colorCompliance: "Must validate against locked color palette",
-      designEnforcement: "Must maintain mystical skull aesthetic"
-    }
+      brandContext:
+        'Must include authentic wooden sign and skull artwork references',
+      colorCompliance: 'Must validate against locked color palette',
+      designEnforcement: 'Must maintain mystical skull aesthetic',
+    },
   },
 
   /**
@@ -184,20 +187,28 @@ export const LOCKED_DESIGN_LANGUAGE = {
     brandName: {
       trouesPattern: /class="troves-text-style"/,
       covesPattern: /class="coves-text-style"/,
-      separatorPattern: /text-ornate-frame-gold.*&/
+      separatorPattern: /text-ornate-frame-gold.*&/,
     },
 
     colourUsage: {
-      prohibitedCombinations: ["blue-and-gold-generic", "troves-gold", "coves-yellow"],
-      requiredCombinations: ["troves-turquoise", "coves-gold-unified"],
-      allowedHexValues: ["#3A8E8B", "#C9A24A", "#FFFFFF", "#1f1f1f", "#5f5f5f"]
+      prohibitedCombinations: [
+        'blue-and-gold-generic',
+        'troves-gold',
+        'coves-yellow',
+      ],
+      requiredCombinations: ['troves-turquoise', 'coves-gold-unified'],
+      allowedHexValues: ['#3A8E8B', '#C9A24A', '#FFFFFF', '#1f1f1f', '#5f5f5f'],
     },
 
     designElements: {
-      requiredClasses: ["wooden-sign-bg", "skull-artwork-influence", "ornate-decorative-frame"],
-      prohibitedClasses: ["minimalist", "clean", "simple", "modern-flat"]
-    }
-  }
+      requiredClasses: [
+        'wooden-sign-bg',
+        'skull-artwork-influence',
+        'ornate-decorative-frame',
+      ],
+      prohibitedClasses: ['minimalist', 'clean', 'simple', 'modern-flat'],
+    },
+  },
 } as const;
 
 /**
@@ -205,21 +216,21 @@ export const LOCKED_DESIGN_LANGUAGE = {
  */
 export function validateBrandCompliance(content: string): string[] {
   const violations: string[] = [];
-  
+
   // Check for proper brand name styling
-  if (content.includes("Troves") && !content.includes("troves-text-style")) {
+  if (content.includes('Troves') && !content.includes('troves-text-style')) {
     violations.push("'Troves' must use troves-text-style class");
   }
-  
-  if (content.includes("Coves") && !content.includes("coves-text-style")) {
+
+  if (content.includes('Coves') && !content.includes('coves-text-style')) {
     violations.push("'Coves' must use coves-text-style class");
   }
-  
+
   // Check for prohibited color combinations
-  if (content.includes("text-gold") && content.includes("Coves")) {
+  if (content.includes('text-gold') && content.includes('Coves')) {
     violations.push("'Coves' must be cursive blue, not gold");
   }
-  
+
   return violations;
 }
 

@@ -16,17 +16,20 @@ This project uses **GitHub Pages** for static site hosting. The deployment is fu
 ### Initial Setup
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/trovesandcoves.git
 cd trovesandcoves
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Build locally**
+
 ```bash
 npm run build
 ```
@@ -68,10 +71,12 @@ dist/public/
 Location: `.github/workflows/deploy.yml`
 
 **Triggered by:**
+
 - Push to `main` branch
 - Manual workflow dispatch
 
 **Jobs:**
+
 1. **Build Frontend**: Runs `npm run build` with Node.js 20
 2. **Deploy GitHub Pages**: Deploys `dist/public` to GitHub Pages
 3. **Deploy Etsy Worker** (optional): Only when `cloudflare/` files change
@@ -110,6 +115,7 @@ Proxy: ✅ Proxied (orange cloud)
 ### GitHub Pages Settings
 
 1. Add `CNAME` file to repository root:
+
 ```
 trovesandcoves.ca
 ```
@@ -124,18 +130,21 @@ trovesandcoves.ca
 ## Available Commands
 
 ### Development
+
 ```bash
 npm run dev              # Start full-stack dev server
 npm run preview          # Preview production build
 ```
 
 ### Building
+
 ```bash
 npm run build            # Build for production (with sitemap)
 npm run build:analyze    # Build with bundle analysis
 ```
 
 ### Testing
+
 ```bash
 npm run check            # TypeScript type checking
 npm run test             # Run unit tests
@@ -183,6 +192,7 @@ npm run build
 ```
 
 Required secrets for Cloudflare Worker (optional):
+
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
 
@@ -206,6 +216,7 @@ Required secrets for Cloudflare Worker (optional):
 ### Bundle Size
 
 Run bundle analysis:
+
 ```bash
 npm run build:analyze
 ```
@@ -226,6 +237,7 @@ Opens `stats.html` with bundle visualization.
 ### GitHub Actions
 
 View deployment status:
+
 1. Repository → Actions tab
 2. Select "Deploy to GitHub Pages & Cloudflare" workflow
 3. View logs for each job

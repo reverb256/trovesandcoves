@@ -15,12 +15,13 @@ export default function SectionDivider({
   variant = 'gradient',
   className = '',
 }: SectionDividerProps) {
-  const baseStyles = "mx-auto rounded-full";
+  const baseStyles = 'mx-auto rounded-full';
 
   const variantStyles: Record<string, string> = {
-    gradient: "w-24 h-1 bg-gradient-to-r from-transparent via-[hsl(var(--accent-vibrant))] to-transparent",
-    gold: "w-16 h-0.5",
-    turquoise: "w-16 h-0.5",
+    gradient:
+      'w-24 h-1 bg-gradient-to-r from-transparent via-[hsl(var(--accent-vibrant))] to-transparent',
+    gold: 'w-16 h-0.5',
+    turquoise: 'w-16 h-0.5',
   };
 
   const colorStyles: Record<string, React.CSSProperties> = {

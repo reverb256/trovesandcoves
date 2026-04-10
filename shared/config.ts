@@ -6,12 +6,14 @@
  */
 
 // API URLs
-export const API_URL = process.env.VITE_API_URL ||
+export const API_URL =
+  process.env.VITE_API_URL ||
   (process.env.NODE_ENV === 'production'
     ? 'https://troves-coves-api.vercel.app'
     : 'http://localhost:5000');
 
-export const FRONTEND_URL = process.env.VITE_GITHUB_PAGES_URL ||
+export const FRONTEND_URL =
+  process.env.VITE_GITHUB_PAGES_URL ||
   (process.env.NODE_ENV === 'production'
     ? 'https://reverb256.github.io/troves-coves'
     : 'http://localhost:5173');
@@ -23,7 +25,9 @@ export const SERVER_PORT = parseInt(process.env.PORT || '5000', 10);
 export const SERVER_HOST = process.env.HOST || '0.0.0.0';
 
 // Session configuration
-export const SESSION_SECRET = process.env.SESSION_SECRET || 'troves-coves-session-secret-change-in-production';
+export const SESSION_SECRET =
+  process.env.SESSION_SECRET ||
+  'troves-coves-session-secret-change-in-production';
 export const SESSION_MAX_AGE = 24 * 60 * 60 * 1000; // 24 hours
 
 // Rate limiting configuration

@@ -40,6 +40,7 @@ feat/*  →  main  →  prod  →  live
 - **`prod`** — Protected production branch, deploys to GitHub Pages
 
 **CRITICAL:** The `prod` branch is **protected**:
+
 - No merge commits
 - No force-push
 - Use `git cherry-pick` to move commits from `main`
@@ -71,11 +72,7 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   // Render
-  return (
-    <div className="...">
-      {/* JSX */}
-    </div>
-  );
+  return <div className="...">{/* JSX */}</div>;
 }
 ```
 
@@ -161,14 +158,14 @@ const addToCart = useCart(state => state.addToCart);
 
 ## File Locations
 
-| What | Where |
-|------|-------|
-| Products data | `client/src/lib/products.ts` |
-| Theme variables | `client/src/lib/theme.tsx` |
-| Cart store | `client/src/lib/store.tsx` |
-| Route definitions | `client/src/App.tsx` |
-| UI components | `client/src/components/ui/` |
-| Page components | `client/src/pages/` |
+| What              | Where                        |
+| ----------------- | ---------------------------- |
+| Products data     | `client/src/lib/products.ts` |
+| Theme variables   | `client/src/lib/theme.tsx`   |
+| Cart store        | `client/src/lib/store.tsx`   |
+| Route definitions | `client/src/App.tsx`         |
+| UI components     | `client/src/components/ui/`  |
+| Page components   | `client/src/pages/`          |
 
 ## Before Deploying
 
@@ -180,11 +177,11 @@ const addToCart = useCart(state => state.addToCart);
 
 ## Deployment Troubleshooting
 
-| Problem | Solution |
-|---------|----------|
-| Build fails | Check `scripts/` has required files |
-| Changes not visible | Run cache purge workflow |
-| Routes 404ing | Verify `404.html` in build output |
+| Problem             | Solution                            |
+| ------------------- | ----------------------------------- |
+| Build fails         | Check `scripts/` has required files |
+| Changes not visible | Run cache purge workflow            |
+| Routes 404ing       | Verify `404.html` in build output   |
 
 ## Testing Locally
 

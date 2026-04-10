@@ -8,7 +8,9 @@ describe('Hero Component', () => {
     expect(screen.getByText('TROVES')).toBeInTheDocument();
     expect(screen.getByText('Coves')).toBeInTheDocument();
     // Use getAllByText since there are multiple elements with similar text
-    expect(screen.getAllByText(/Handcrafted Crystal Jewelry/).length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByText(/Handcrafted Crystal Jewelry/).length
+    ).toBeGreaterThan(0);
   });
 
   it('has proper accessibility attributes', () => {
@@ -33,7 +35,9 @@ describe('Hero Component', () => {
 
   it('renders CTA button', () => {
     render(<Hero />);
-    const ctaButton = screen.getByRole('link', { name: /Shop the Collection/i });
+    const ctaButton = screen.getByRole('link', {
+      name: /Shop the Collection/i,
+    });
     expect(ctaButton).toBeInTheDocument();
     expect(ctaButton).toHaveAttribute('href', '/products');
   });

@@ -23,28 +23,31 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ## Brand Design Specifications (Locked)
 
 ### Colors
+
 ```css
 /* CLIENT'S EXACT COLORS - Decorative Use Only (18px+ text) */
---troves-turquoise: #4abfbf;    /* TROVES brand color */
---coves-gold-1: #deb55b;         /* Gold shade 1 */
---coves-gold-2: #e1af2f;         /* Gold shade 2 */
---linen-background: #faf8f3;     /* Background */
+--troves-turquoise: #4abfbf; /* TROVES brand color */
+--coves-gold-1: #deb55b; /* Gold shade 1 */
+--coves-gold-2: #e1af2f; /* Gold shade 2 */
+--linen-background: #faf8f3; /* Background */
 
 /* WCAG AA COMPLIANT VARIANTS - Small Text Use */
---wcag-turquoise: 174 70% 30%;   /* 5.8:1 contrast on linen */
---wcag-gold-1: 43 78% 35%;       /* 4.7:1 contrast on linen */
---wcag-gold-2: 38 80% 35%;       /* 4.6:1 contrast on linen */
+--wcag-turquoise: 174 70% 30%; /* 5.8:1 contrast on linen */
+--wcag-gold-1: 43 78% 35%; /* 4.7:1 contrast on linen */
+--wcag-gold-2: 38 80% 35%; /* 4.6:1 contrast on linen */
 ```
 
 ### Typography
+
 ```css
 /* CLIENT'S FONTS */
---font-troves: 'Libre Baskerville', serif;  /* TROVES and headings */
---font-coves: 'Alex Brush', cursive;        /* Coves and script text */
---font-body: 'Montserrat', sans-serif;      /* Body text and UI */
+--font-troves: 'Libre Baskerville', serif; /* TROVES and headings */
+--font-coves: 'Alex Brush', cursive; /* Coves and script text */
+--font-body: 'Montserrat', sans-serif; /* Body text and UI */
 ```
 
 ### Design Elements
+
 - **Mystical gradient backgrounds** - Radial gradients with turquoise/gold glows
 - **Glass morphism** - Backdrop blur with subtle borders
 - **Crystal cards** - Hexagonal clip-path with gradient borders
@@ -56,50 +59,62 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ## Refactoring Approach
 
 ### Approach 1: Complete Component Overhaul (RECOMMENDED)
+
 **Benefits:**
+
 - Ensures consistency across all pages
 - Single source of truth for design patterns
 - Easier maintenance and theme updates
 - Full WCAG AA compliance guaranteed
 
 **Trade-offs:**
+
 - Higher initial time investment
 - Requires thorough testing
 - May break existing patterns
 
 **Implementation:**
+
 1. Create new theme-aware component library
 2. Replace all page-level styling with components
 3. Implement strict color usage rules in components
 
 ### Approach 2: Incremental Migration
+
 **Benefits:**
+
 - Lower risk per change
 - Can validate as you go
 - Easier to rollback if needed
 
 **Trade-offs:**
+
 - Longer overall timeline
 - Temporary inconsistencies during migration
 - Higher coordination overhead
 
 **Implementation:**
+
 1. Migrate one page at a time
 2. Build shared components as needed
 3. Gradual deprecation of old patterns
 
 ### Approach 3: CSS Variable Migration Only
+
 **Benefits:**
+
 - Fastest implementation
 - Minimal component changes
 - Preserves existing page structure
 
 **Trade-offs:**
+
 - May not catch all color issues
 - Less consistent component behavior
 - Theme switching may have edge cases
 
 **Implementation:**
+
 1. Replace all hardcoded colors with CSS variables
 2. Update light/dark mode variable definitions
 3. Test contrast ratios at each breakpoint
@@ -111,6 +126,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ### 1. Color Usage Rules
 
 #### BRAND COLORS (Decorative/Large Text Only)
+
 ```tsx
 // ✅ CORRECT - Large text (18px+)
 <h1 style={{ color: '#4abfbf' }}>TROVES</h1>
@@ -128,6 +144,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ```
 
 #### CSS VARIABLES (All Text Sizes)
+
 ```tsx
 // ✅ CORRECT - Theme-aware variables
 <p style={{ color: 'hsl(var(--text-primary))' }}>Body text</p>
@@ -141,22 +158,23 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ### 2. Card & Border Standards
 
 #### STANDARD CARD
+
 ```tsx
 // Base card with mystical gradient
 <Card variant="elevated" theme="gradient">
-  <CardContent>
-    {/* Content */}
-  </CardContent>
+  <CardContent>{/* Content */}</CardContent>
 </Card>
 ```
 
 #### CARD WITH GOLD BORDER
+
 ```tsx
 <div
   className="crystal-card p-6"
   style={{
     border: '1px solid hsla(43, 78%, 53%, 0.3)',
-    background: 'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)'
+    background:
+      'linear-gradient(135deg, hsl(var(--bg-card)) 0%, hsl(var(--bg-secondary)) 100%)',
   }}
 >
   {/* Content */}
@@ -164,11 +182,12 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ```
 
 #### GLASS CARD (Both Themes)
+
 ```tsx
 <div
   className="glass-mystical p-6"
   style={{
-    border: '1px solid hsla(174, 85%, 45%, 0.15)'
+    border: '1px solid hsla(174, 85%, 45%, 0.15)',
   }}
 >
   {/* Content */}
@@ -178,6 +197,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ### 3. Typography Standards
 
 #### HEADINGS
+
 ```tsx
 // Primary heading - Libre Baskerville + Turquoise
 <h1
@@ -203,13 +223,14 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ```
 
 #### BODY TEXT
+
 ```tsx
 // Standard body text - Montserrat + Theme variable
 <p
   style={{
     fontFamily: "'Montserrat', sans-serif",
     color: 'hsl(var(--text-primary))',
-    lineHeight: 1.7
+    lineHeight: 1.7,
   }}
 >
   Handcrafted crystal jewelry
@@ -217,6 +238,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ```
 
 #### SCRIPT TEXT (Coves)
+
 ```tsx
 // Script text - Alex Brush + Gold
 <span
@@ -243,6 +265,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ### 4. Background Standards
 
 #### SECTION BACKGROUNDS
+
 ```tsx
 // Gradient section header
 <section
@@ -269,6 +292,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ```
 
 #### CARD BACKGROUNDS
+
 ```tsx
 // Standard card background
 <div
@@ -296,28 +320,33 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ## Page-by-Page Analysis
 
 ### Home Page ✅ ALIGNED
+
 - **Status:** Hero section properly implements brand design
 - **Issues:** Some product cards may need contrast review
 
 ### Products Page ⚠️ NEEDS REVIEW
+
 - **Issues:**
   - Sidebar filters use hardcoded colors
   - Category buttons may have contrast issues
   - Card borders inconsistent with hero
 
 ### About Page ⚠️ NEEDS REFACTOR
+
 - **Issues:**
   - Value cards use hardcoded color strings
   - Story cards need border standardization
   - Some headings use non-brand fonts
 
 ### Contact Page ⚠️ NEEDS REFACTOR
+
 - **Issues:**
   - Form fields need theme-aware backgrounds
   - Service cards require border updates
   - Labels may need contrast adjustments
 
 ### Other Pages (Checkout, Returns, etc.) ⚠️ NEED REVIEW
+
 - **Status:** Not analyzed yet, likely need similar updates
 
 ---
@@ -327,17 +356,20 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ### Contrast Ratios (Minimum 4.5:1 for normal text)
 
 #### Light Mode
+
 - [ ] All body text: `hsl(var(--text-primary))` on `hsl(var(--bg-primary))`
 - [ ] Small turquoise text: `hsl(174 70% 30%)` minimum
 - [ ] Small gold text: `hsl(38 80% 35%)` minimum
 - [ ] Links on light backgrounds: WCAG compliant variants
 
 #### Dark Mode
+
 - [ ] All body text: `hsl(var(--text-primary))` on `hsl(var(--bg-primary))`
 - [ ] Accent text: Use `--accent-vibrant` (brighter in dark mode)
 - [ ] Borders: `hsl(var(--border-medium))` for sufficient contrast
 
 ### Interactive Elements
+
 - [ ] All buttons have visible focus states
 - [ ] Form inputs have clear borders and labels
 - [ ] Links are distinguishable from surrounding text
@@ -348,6 +380,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ## Implementation Plan
 
 ### Phase 1: Foundation (Recommended: Approach 1)
+
 1. **Create theme-aware component library**
    - `MysticalCard` - Standardized card component
    - `MysticalSection` - Section header with gradients
@@ -366,6 +399,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
    - Animation timings
 
 ### Phase 2: Page Migration
+
 1. **Products page**
    - Replace sidebar filters with themed components
    - Update product cards to standard
@@ -386,6 +420,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
    - Consistent application of standards
 
 ### Phase 3: Quality Assurance
+
 1. **Contrast testing**
    - Automated contrast ratio checks
    - Manual testing in both themes
@@ -406,6 +441,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ## Success Criteria
 
 ### Design Alignment
+
 - ✅ All pages use consistent card/border styling
 - ✅ All headings use Libre Baskerville font family
 - ✅ All body text uses Montserrat font family
@@ -413,6 +449,7 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 - ✅ Brand colors used according to specifications
 
 ### WCAG Compliance
+
 - ✅ All text meets 4.5:1 contrast minimum (normal text)
 - ✅ All large text meets 3:1 contrast minimum (18px+)
 - ✅ All interactive elements have visible focus states
@@ -420,12 +457,14 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 - ✅ No contrast violations in dark mode
 
 ### Theme Consistency
+
 - ✅ Light mode uses client's linen background (#faf8f3)
 - ✅ Dark mode uses slate with turquoise accents
 - ✅ All components respond correctly to theme toggle
 - ✅ No hardcoded colors that ignore theme
 
 ### Code Quality
+
 - ✅ No inline color values (except brand colors for large text)
 - ✅ All colors use CSS variables
 - ✅ Consistent component usage across pages
@@ -436,16 +475,19 @@ Comprehensive refactoring of all pages to align with the hero section's mystical
 ## Risk Assessment
 
 ### High Risk
+
 - **Breaking existing user flows** - Mitigation: Thorough testing of each page
 - **Theme switching failures** - Mitigation: Comprehensive theme testing
 - **Performance regression** - Mitigation: Performance monitoring
 
 ### Medium Risk
+
 - **Browser compatibility** - Mitigation: Cross-browser testing
 - **Mobile responsiveness** - Mitigation: Device testing
 - **Animation performance** - Mitigation: Reduced motion support
 
 ### Low Risk
+
 - **Design inconsistency** - Mitigation: Component library enforcement
 - **Color drift** - Mitigation: CSS variable locks
 - **Font loading** - Mitigation: Font display strategies

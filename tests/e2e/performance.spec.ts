@@ -3,14 +3,14 @@ import { test, expect } from '@playwright/test';
 test.describe('Performance Tests', () => {
   test('page loads within acceptable time', async ({ page }) => {
     const startTime = Date.now();
-    
+
     await page.goto('/');
-    
+
     // Wait for the hero section to be visible (indicates page is loaded)
     await page.getByRole('banner').waitFor();
-    
+
     const loadTime = Date.now() - startTime;
-    
+
     // Page should load within 3 seconds
     expect(loadTime).toBeLessThan(3000);
     console.log(`Page load time: ${loadTime}ms`);
@@ -25,19 +25,21 @@ test.describe('Performance Tests', () => {
     // Measure Core Web Vitals with proper timeout
     const vitals = await page.evaluate(() => {
       return Promise.race([
-        new Promise((resolve) => {
+        new Promise(resolve => {
           // Get paint timing metrics that are already collected
           const vitalsData: Record<string, number> = {};
 
           const paintEntries = performance.getEntriesByType('paint');
-          paintEntries.forEach((entry) => {
+          paintEntries.forEach(entry => {
             if (entry.name === 'first-contentful-paint') {
               vitalsData['first-contentful-paint'] = entry.startTime;
             }
           });
 
           // Try to get LCP
-          const lcpEntries = performance.getEntriesByType('largest-contentful-paint');
+          const lcpEntries = performance.getEntriesByType(
+            'largest-contentful-paint'
+          );
           if (lcpEntries.length > 0) {
             const lastEntry = lcpEntries[lcpEntries.length - 1] as any;
             vitalsData.lcp = lastEntry.startTime;
@@ -45,7 +47,7 @@ test.describe('Performance Tests', () => {
 
           resolve(vitalsData);
         }),
-        new Promise((resolve) => setTimeout(() => resolve({}), 3000))
+        new Promise(resolve => setTimeout(() => resolve({}), 3000)),
       ]);
     });
 
@@ -69,18 +71,18 @@ test.describe('Performance Tests', () => {
 
   test('images load efficiently', async ({ page }) => {
     await page.goto('/');
-    
+
     // Check for lazy loading attributes
     const images = page.locator('img');
     const imageCount = await images.count();
-    
+
     if (imageCount > 0) {
       // Check if images have appropriate loading attributes
       for (let i = 0; i < Math.min(imageCount, 5); i++) {
         const img = images.nth(i);
         const loading = await img.getAttribute('loading');
         const src = await img.getAttribute('src');
-        
+
         // Images should either have loading="lazy" or be above the fold
         if (src && !src.startsWith('data:')) {
           console.log(`Image ${i}: loading=${loading}, src=${src}`);
@@ -93,8 +95,8 @@ test.describe('Performance Tests', () => {
     // Track network requests
     const jsFiles: string[] = [];
     const cssFiles: string[] = [];
-    
-    page.on('response', (response) => {
+
+    page.on('response', response => {
       const url = response.url();
       if (url.includes('.js') && response.status() === 200) {
         jsFiles.push(url);
@@ -103,13 +105,13 @@ test.describe('Performance Tests', () => {
         cssFiles.push(url);
       }
     });
-    
+
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    
+
     console.log(`JavaScript files loaded: ${jsFiles.length}`);
     console.log(`CSS files loaded: ${cssFiles.length}`);
-    
+
     // Should not load excessive number of files
     expect(jsFiles.length).toBeLessThan(10);
     expect(cssFiles.length).toBeLessThan(5);
@@ -117,22 +119,26 @@ test.describe('Performance Tests', () => {
 
   test('Framer Motion animations perform well', async ({ page }) => {
     await page.goto('/');
-    
+
     // Measure animation performance
     const animationPerformance = await page.evaluate(() => {
       const startTime = performance.now();
-      
+
       // Trigger any hover animations
       const heroTitle = document.querySelector('h1');
       if (heroTitle) {
-        heroTitle.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
-        heroTitle.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+        heroTitle.dispatchEvent(
+          new MouseEvent('mouseenter', { bubbles: true })
+        );
+        heroTitle.dispatchEvent(
+          new MouseEvent('mouseleave', { bubbles: true })
+        );
       }
-      
+
       const endTime = performance.now();
       return endTime - startTime;
     });
-    
+
     // Animation interactions should be responsive (under 16ms for 60fps)
     expect(animationPerformance).toBeLessThan(100);
     console.log(`Animation performance: ${animationPerformance}ms`);
@@ -140,17 +146,17 @@ test.describe('Performance Tests', () => {
 
   test('PWA service worker is working', async ({ page }) => {
     await page.goto('/');
-    
+
     // Check if service worker is registered
     const serviceWorkerRegistered = await page.evaluate(() => {
       return 'serviceWorker' in navigator;
     });
-    
+
     expect(serviceWorkerRegistered).toBe(true);
-    
+
     // Wait a bit for service worker to potentially register
     await page.waitForTimeout(2000);
-    
+
     const swRegistration = await page.evaluate(async () => {
       if ('serviceWorker' in navigator) {
         const registration = await navigator.serviceWorker.getRegistration();
@@ -158,7 +164,7 @@ test.describe('Performance Tests', () => {
       }
       return false;
     });
-    
+
     console.log(`Service Worker registered: ${swRegistration}`);
   });
 
@@ -166,21 +172,24 @@ test.describe('Performance Tests', () => {
     const viewports = [
       { width: 375, height: 667, name: 'Mobile' },
       { width: 768, height: 1024, name: 'Tablet' },
-      { width: 1920, height: 1080, name: 'Desktop' }
+      { width: 1920, height: 1080, name: 'Desktop' },
     ];
-    
+
     for (const viewport of viewports) {
-      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await page.setViewportSize({
+        width: viewport.width,
+        height: viewport.height,
+      });
       await page.goto('/');
-      
+
       // Check that hero section is visible in all viewports
       const hero = page.getByRole('banner');
       await expect(hero).toBeVisible();
-      
+
       // Check that main navigation is accessible
       const header = page.locator('header');
       await expect(header).toBeVisible();
-      
+
       console.log(`${viewport.name} (${viewport.width}x${viewport.height}): ✓`);
     }
   });

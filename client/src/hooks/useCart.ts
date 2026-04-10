@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
-import { useCartContext } from "@/lib/store";
-import { useToast } from "@/hooks/use-toast";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { apiRequest } from '@/lib/queryClient';
+import { useCartContext } from '@/lib/store';
+import { useToast } from '@/hooks/use-toast';
 
 export function useCart() {
   const { state, dispatch, itemCount, totalAmount, refetch } = useCartContext();
@@ -10,8 +10,14 @@ export function useCart() {
 
   // Add to cart mutation
   const addToCartMutation = useMutation({
-    mutationFn: async ({ productId, quantity }: { productId: number; quantity: number }) => {
-      const response = await apiRequest("POST", "/api/cart", {
+    mutationFn: async ({
+      productId,
+      quantity,
+    }: {
+      productId: number;
+      quantity: number;
+    }) => {
+      const response = await apiRequest('POST', '/api/cart', {
         productId,
         quantity,
       });
@@ -21,19 +27,26 @@ export function useCart() {
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
     },
     onError: (error: unknown) => {
-      const message = error instanceof Error ? error.message : "Failed to add item to cart";
+      const message =
+        error instanceof Error ? error.message : 'Failed to add item to cart';
       toast({
-        title: "Error",
+        title: 'Error',
         description: message,
-        variant: "destructive",
+        variant: 'destructive',
       });
     },
   });
 
   // Update quantity mutation
   const updateQuantityMutation = useMutation({
-    mutationFn: async ({ itemId, quantity }: { itemId: number; quantity: number }) => {
-      const response = await apiRequest("PUT", `/api/cart/${itemId}`, {
+    mutationFn: async ({
+      itemId,
+      quantity,
+    }: {
+      itemId: number;
+      quantity: number;
+    }) => {
+      const response = await apiRequest('PUT', `/api/cart/${itemId}`, {
         quantity,
       });
       return response.json();
@@ -42,11 +55,14 @@ export function useCart() {
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
     },
     onError: (error: unknown) => {
-      const message = error instanceof Error ? error.message : "Failed to update item quantity";
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Failed to update item quantity';
       toast({
-        title: "Error",
+        title: 'Error',
         description: message,
-        variant: "destructive",
+        variant: 'destructive',
       });
     },
   });
@@ -54,18 +70,21 @@ export function useCart() {
   // Remove from cart mutation
   const removeFromCartMutation = useMutation({
     mutationFn: async (itemId: number) => {
-      const response = await apiRequest("DELETE", `/api/cart/${itemId}`);
+      const response = await apiRequest('DELETE', `/api/cart/${itemId}`);
       return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
     },
     onError: (error: unknown) => {
-      const message = error instanceof Error ? error.message : "Failed to remove item from cart";
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Failed to remove item from cart';
       toast({
-        title: "Error",
+        title: 'Error',
         description: message,
-        variant: "destructive",
+        variant: 'destructive',
       });
     },
   });
@@ -73,18 +92,19 @@ export function useCart() {
   // Clear cart mutation
   const clearCartMutation = useMutation({
     mutationFn: async () => {
-      const response = await apiRequest("DELETE", "/api/cart");
+      const response = await apiRequest('DELETE', '/api/cart');
       return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/cart'] });
     },
     onError: (error: unknown) => {
-      const message = error instanceof Error ? error.message : "Failed to clear cart";
+      const message =
+        error instanceof Error ? error.message : 'Failed to clear cart';
       toast({
-        title: "Error",
+        title: 'Error',
         description: message,
-        variant: "destructive",
+        variant: 'destructive',
       });
     },
   });

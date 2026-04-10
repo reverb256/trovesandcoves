@@ -14,7 +14,9 @@ test.describe('Products Page Visual Verification', () => {
     // Verify no console errors
     const logs: string[] = [];
     page.on('console', msg => logs.push(msg.text()));
-    expect(logs.filter(log => log.includes('error') || log.includes('Error'))).toHaveLength(0);
+    expect(
+      logs.filter(log => log.includes('error') || log.includes('Error'))
+    ).toHaveLength(0);
   });
 
   test('should render correctly in dark mode', async ({ page }) => {
@@ -35,7 +37,9 @@ test.describe('Products Page Visual Verification', () => {
     // Verify no console errors
     const logs: string[] = [];
     page.on('console', msg => logs.push(msg.text()));
-    expect(logs.filter(log => log.includes('error') || log.includes('Error'))).toHaveLength(0);
+    expect(
+      logs.filter(log => log.includes('error') || log.includes('Error'))
+    ).toHaveLength(0);
   });
 
   test('should have proper color contrast in light mode', async ({ page }) => {
@@ -58,7 +62,9 @@ test.describe('Products Page Visual Verification', () => {
           const hasCssVar = inlineStyle.includes('var(');
 
           if (matches && !hasCssVar) {
-            violations.push(`${el.tagName}#${el.id}.${el.className} has hardcoded hex in inline style: ${matches.join(', ')}`);
+            violations.push(
+              `${el.tagName}#${el.id}.${el.className} has hardcoded hex in inline style: ${matches.join(', ')}`
+            );
           }
         }
       });

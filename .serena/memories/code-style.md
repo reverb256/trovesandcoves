@@ -3,12 +3,14 @@
 ## TypeScript Configuration
 
 ### Strict Mode
+
 - `strict: true` - All strict type checking enabled
 - `noEmit: true` - No output files (Vite handles compilation)
 - `moduleResolution: "bundler"` - Modern module resolution
 - `jsx: "preserve"` - JSX handled by Vite
 
 ### Path Aliases
+
 - `@/*` → `./client/src/*`
 - `@shared/*` → `./shared/*`
 - `@assets/*` → `./attached_assets/*`
@@ -16,6 +18,7 @@
 ## Code Style Rules
 
 ### Prettier Configuration (.prettierrc)
+
 ```json
 {
   "semi": true,
@@ -31,6 +34,7 @@
 ```
 
 ### ESLint Rules
+
 - `react/prop-types: off` - PropTypes not needed with TypeScript
 - `@typescript-eslint/no-unused-vars: warn` - Warn on unused vars
 - `@typescript-eslint/no-explicit-any: warn` - Warn on `any` types
@@ -40,6 +44,7 @@
 ## Naming Conventions
 
 ### Files
+
 - **Components**: PascalCase (e.g., `ProductCard.tsx`, `Header.tsx`)
 - **Utilities**: kebab-case (e.g., `api-client.ts`, `use-cart.ts`)
 - **UI Components**: kebab-case in `components/ui/` (shadcn convention)
@@ -47,6 +52,7 @@
 - **Hooks**: camelCase with `use` prefix (e.g., `useCart.ts`, `use-mobile.tsx`)
 
 ### Code
+
 - **Components**: PascalCase (e.g., `function ProductCard()`)
 - **Functions/Variables**: camelCase (e.g., `getProducts()`, `cartItems`)
 - **Types/Interfaces**: PascalCase (e.g., `interface Product`, `type CartItem`)
@@ -56,21 +62,23 @@
 ## Component Patterns
 
 ### Functional Components with Hooks
+
 ```typescript
 // Preferred
 function ProductCard({ product }: { product: Product }) {
   // hooks
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // handlers
   const handleClick = () => { ... };
-  
+
   // render
   return <div>...</div>;
 }
 ```
 
 ### Props Destructuring
+
 ```typescript
 // Preferred
 function Header({ title, subtitle }: HeaderProps) {
@@ -107,6 +115,7 @@ import { ProductCard } from '@/components/ProductCard';
 ## Shared Code Pattern
 
 Shared code lives in `shared/` directory:
+
 - `shared/schema.ts` - Drizzle ORM schema + Zod validation (currently unused)
 - `shared/config.ts` - Centralized configuration
 - `shared/brand-config.ts` - Brand/design tokens
@@ -115,6 +124,7 @@ Shared code lives in `shared/` directory:
 ## API Pattern
 
 All API calls go through `client/src/apiClient.ts`:
+
 - Centralized API functions
 - Timeout support with AbortController
 - Retry logic with exponential backoff
@@ -123,6 +133,7 @@ All API calls go through `client/src/apiClient.ts`:
 ## Design System
 
 ### Material You Colors (from locked-design-language.ts)
+
 - `surface-50`, `surface-100`, `surface-200`... - Background surfaces
 - `on-surface`, `on-surface-variant` - Text on surfaces
 - `primary`, `primary-container` - Brand colors
@@ -131,13 +142,15 @@ All API calls go through `client/src/apiClient.ts`:
 - `error`, `on-error` - Error states
 
 ### Component Variants
+
 Use `class-variance-authority` (cva) for component variants:
+
 ```typescript
-const buttonVariants = cva("base-classes", {
+const buttonVariants = cva('base-classes', {
   variants: {
     variant: {
-      default: "default-classes",
-      destructive: "destructive-classes",
+      default: 'default-classes',
+      destructive: 'destructive-classes',
     },
   },
 });
@@ -153,11 +166,13 @@ const buttonVariants = cva("base-classes", {
 ## Testing Patterns
 
 ### Unit Tests (Vitest)
+
 - `*.test.ts` or `*.test.tsx` suffix
 - Use `@testing-library/react` for components
 - Mock API calls with vi.mock()
 
 ### E2E Tests (Playwright)
+
 - Files in `tests/e2e/` directory
 - Page Object Model pattern for complex pages
 - Use `data-testid` attributes for selectors
@@ -172,6 +187,7 @@ const buttonVariants = cva("base-classes", {
 ## Git Commit Messages
 
 Follow conventional commits:
+
 - `feat:` - New feature
 - `fix:` - Bug fix
 - `refactor:` - Code refactoring

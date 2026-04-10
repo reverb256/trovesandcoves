@@ -14,7 +14,9 @@ test.describe('Hero Section', () => {
     await expect(page.locator('h1')).toContainText(/Coves/i);
 
     // Check for tagline - use first() to avoid strict mode violations
-    await expect(page.locator('text=Handcrafted Crystal Jewelry').first()).toBeVisible();
+    await expect(
+      page.locator('text=Handcrafted Crystal Jewelry').first()
+    ).toBeVisible();
     await expect(page.locator('text=Made in Canada').first()).toBeVisible();
   });
 

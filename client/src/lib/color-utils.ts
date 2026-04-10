@@ -10,8 +10,8 @@ type BrandColor = 'turquoise' | 'gold';
  * Use ONLY for large text (18px+) or decorative elements
  */
 export const BRAND_COLORS = {
-  turquoise: '#3A8E8B',  // Robin's luxury turquoise
-  gold: '#C9A24A',        // Robin's luxury gold (unified)
+  turquoise: '#3A8E8B', // Robin's luxury turquoise
+  gold: '#C9A24A', // Robin's luxury gold (unified)
 } as const;
 
 /**
@@ -19,8 +19,8 @@ export const BRAND_COLORS = {
  * Meets 4.5:1 contrast minimum on pure white (#FFFFFF) background
  */
 export const WCAG_COLORS = {
-  turquoise: 'hsl(176 42% 30%)',   // 5.8:1 contrast on white
-  gold: 'hsl(42 74% 35%)',          // 4.6:1 contrast on white
+  turquoise: 'hsl(176 42% 30%)', // 5.8:1 contrast on white
+  gold: 'hsl(42 74% 35%)', // 4.6:1 contrast on white
 } as const;
 
 /**

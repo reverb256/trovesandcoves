@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "type": "TODO",
+      "message": "philipwalton): TypeScript errors without this typecast for",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 770,
+      "column": 17
+    },
+    {
+      "type": "TODO",
+      "message": "Remove this log message in v4.",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 1145,
+      "column": 13
+    },
+    {
+      "type": "TODO",
+      "message": "philipwalton): EdgeHTML doesn't support arrays as a keyPath, so we",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 1586,
+      "column": 11
+    },
+    {
+      "type": "TODO",
+      "message": "philipwalton): once we don't have to support EdgeHTML, we can",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 1593,
+      "column": 11
+    },
+    {
+      "type": "TODO",
+      "message": "philipwalton): once we can use a multi-key index, we",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 1671,
+      "column": 13
+    },
+    {
+      "type": "TODO",
+      "message": "philipwalton): we should be able to delete the",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 1677,
+      "column": 17
+    },
+    {
+      "type": "TODO",
+      "message": "philipwalton): once the Safari bug in the following issue is fixed,",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 1692,
+      "column": 11
+    },
+    {
+      "type": "TODO",
+      "message": "philipwalton): the `__WB_REVISION__` param is a precaching",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 2746,
+      "column": 11
+    },
+    {
+      "type": "TODO",
+      "message": "philipwalton): not sure why `any` is needed. It seems like",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 2836,
+      "column": 13
+    },
+    {
+      "type": "TODO",
+      "message": "philipwalton): not sure why `any` is needed. It seems like",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 2858,
+      "column": 17
+    },
+    {
+      "type": "TODO",
+      "message": "`state` should never be undefined...",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 3724,
+      "column": 13
+    },
+    {
+      "type": "TODO",
+      "message": "`state` should never be undefined...",
+      "file": "client/dev-dist/workbox-76f300b6.js",
+      "line": 3736,
+      "column": 17
+    }
+  ]
+}

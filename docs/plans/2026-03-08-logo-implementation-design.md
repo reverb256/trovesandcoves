@@ -21,27 +21,30 @@ Create a comparison page demonstrating three methods for implementing the Troves
 ## Implementation Methods
 
 ### Method A: Image Asset
+
 - Use client's logo directly as `<img>` element
 - Fastest implementation, exact visual match
 - Limited scalability, harder to animate
 
 ### Method B: SVG Recreation
+
 - Hand-coded SVG matching logo 1:1
 - Perfectly scalable, animatable
 - Higher upfront development cost
 
 ### Method C: CSS Typography
+
 - Web fonts approximating the style
 - Most flexible, text-based
 - May not achieve exact match
 
 ## Font Selection
 
-| Element | Current | Target |
-|---------|---------|--------|
-| Troves | Source Sans Pro | Cinzel Decor / Abril Fatface |
-| Coves | Dancing Script | Great Vibes / Allura |
-| Separator | Standard & | Diamond/crystal SVG element |
+| Element   | Current         | Target                       |
+| --------- | --------------- | ---------------------------- |
+| Troves    | Source Sans Pro | Cinzel Decor / Abril Fatface |
+| Coves     | Dancing Script  | Great Vibes / Allura         |
+| Separator | Standard &      | Diamond/crystal SVG element  |
 
 ## Component Structure
 

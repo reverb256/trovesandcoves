@@ -1,0 +1,11 @@
+# Cloudflare Pages Redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Default language redirect (if needed in future)
+# / /fr 302 Language=french
+
+# Legacy product routes (if migrating from old structure)
+# /product/* /products/:splat 301
+
+# Trailing slash normalization
+/* /:splat 302

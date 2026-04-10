@@ -26,8 +26,11 @@ function isStatic(path) {
 async function handleAPI(env, path) {
   const key = `api:${path}`;
   const cached = await env.CACHE.get(key);
-  if (cached) return new Response(cached, { headers: { 'Content-Type': 'application/json' } });
-  
+  if (cached)
+    return new Response(cached, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+
   let data;
   if (path.includes('recommend')) {
     data = { items: ['Chakra Stone', 'Protection Amulet', 'Healing Set'] };
@@ -36,10 +39,12 @@ async function handleAPI(env, path) {
   } else {
     data = { status: 'optimized', version: 'mystical' };
   }
-  
+
   const result = JSON.stringify(data);
   await env.CACHE.put(key, result, { expirationTtl: CACHE_TTL.api });
-  return new Response(result, { headers: { 'Content-Type': 'application/json' } });
+  return new Response(result, {
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
 
 // Main worker
@@ -47,12 +52,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-    
+
     // CORS for all requests
     const corsHeaders = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
+      'Access-Control-Allow-Headers': 'Content-Type',
     };
 
     if (request.method === 'OPTIONS') {
@@ -61,7 +66,10 @@ export default {
 
     // Rate limiting
     if (!checkRate(ip)) {
-      return new Response('Rate limited', { status: 429, headers: corsHeaders });
+      return new Response('Rate limited', {
+        status: 429,
+        headers: corsHeaders,
+      });
     }
 
     try {
@@ -74,7 +82,10 @@ export default {
           const headers = new Headers(response.headers);
           headers.set('Cache-Control', `public, max-age=${CACHE_TTL.static}`);
           Object.entries(corsHeaders).forEach(([k, v]) => headers.set(k, v));
-          return new Response(response.body, { status: response.status, headers });
+          return new Response(response.body, {
+            status: response.status,
+            headers,
+          });
         }
       }
 
@@ -87,15 +98,20 @@ export default {
       }
 
       // Add CORS to all responses
-      Object.entries(corsHeaders).forEach(([k, v]) => response.headers.set(k, v));
-      
+      Object.entries(corsHeaders).forEach(([k, v]) =>
+        response.headers.set(k, v)
+      );
+
       // Security headers
       response.headers.set('X-Content-Type-Options', 'nosniff');
       response.headers.set('X-Frame-Options', 'DENY');
 
       return response;
     } catch {
-      return new Response('Service unavailable', { status: 503, headers: corsHeaders });
+      return new Response('Service unavailable', {
+        status: 503,
+        headers: corsHeaders,
+      });
     }
-  }
+  },
 };

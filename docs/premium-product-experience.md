@@ -61,7 +61,9 @@ Three elegant cards highlighting key product benefits:
         <Sparkles className="w-6 h-6" />
       </div>
       <h4 className="benefit-title">Intention</h4>
-      <p className="benefit-description">Crafted with purpose and positive energy</p>
+      <p className="benefit-description">
+        Crafted with purpose and positive energy
+      </p>
     </div>
     {/* ... more benefits */}
   </div>
@@ -69,6 +71,7 @@ Three elegant cards highlighting key product benefits:
 ```
 
 **Available Icons:**
+
 - `Sparkles` - Intention/Purpose
 - `Gem` - Natural/Crystals
 - `Shield` - Warranty/Protection
@@ -91,8 +94,16 @@ const getCrystalProperties = (gemstones: string[] | null | undefined) => {
     const lowerStone = stone.toLowerCase();
     if (lowerStone.includes('moonstone')) {
       properties.push(
-        { title: 'Intuition', description: 'Moonstone enhances inner wisdom and emotional balance', icon: '🌙' },
-        { title: 'New Beginnings', description: 'A stone of fresh starts and positive transformation', icon: '✨' }
+        {
+          title: 'Intuition',
+          description: 'Moonstone enhances inner wisdom and emotional balance',
+          icon: '🌙',
+        },
+        {
+          title: 'New Beginnings',
+          description: 'A stone of fresh starts and positive transformation',
+          icon: '✨',
+        }
       );
     }
     // ... more stones
@@ -103,6 +114,7 @@ const getCrystalProperties = (gemstones: string[] | null | undefined) => {
 ```
 
 **Supported Stones:**
+
 - **Moonstone** → Intuition, New Beginnings
 - **Amethyst** → Calm & Clarity, Protection
 - **Quartz** → Amplification, Clarity
@@ -118,13 +130,15 @@ Elegant bordered sections for brand storytelling:
 <div className="story-section">
   <h3>Handcrafted in Winnipeg</h3>
   <p>
-    Each piece is carefully crafted with 14k gold-plated materials and genuine crystals.
-    We source our stones ethically and create every piece with intention...
+    Each piece is carefully crafted with 14k gold-plated materials and genuine
+    crystals. We source our stones ethically and create every piece with
+    intention...
   </p>
 </div>
 ```
 
 **CSS Styling:**
+
 ```css
 .story-section {
   padding: 3rem 2rem;
@@ -142,6 +156,7 @@ Elegant bordered sections for brand storytelling:
 Two premium button styles for primary and secondary actions:
 
 **Primary Button (Add to Cart):**
+
 ```tsx
 <button className="btn-premium-primary w-full">
   <ShoppingBag className="w-5 h-5" />
@@ -150,6 +165,7 @@ Two premium button styles for primary and secondary actions:
 ```
 
 **Secondary Button (View All):**
+
 ```tsx
 <button className="btn-premium-secondary">
   <span>View All Products</span>
@@ -161,6 +177,7 @@ Two premium button styles for primary and secondary actions:
 **Location:** `client/src/components/ProductCard.tsx`
 
 Premium product cards with:
+
 - Taller aspect ratio (1:1.15)
 - Subtle gradient overlay on hover
 - Wishlist functionality
@@ -222,57 +239,57 @@ Clean icon-based trust signals:
 
 ### Product Display Classes
 
-| Class | Purpose | Usage |
-|------|---------|-------|
-| `.product-hero-image` | Main product image container | ProductDetail page |
-| `.product-zoom-trigger` | Zoom cursor on hover | ProductDetail images |
-| `.gallery-thumbnails` | Image gallery grid | ProductDetail page |
-| `.gallery-thumbnail` | Individual thumbnail | ProductDetail page |
-| `.gallery-thumbnail.active` | Active thumbnail state | ProductDetail page |
+| Class                       | Purpose                      | Usage                |
+| --------------------------- | ---------------------------- | -------------------- |
+| `.product-hero-image`       | Main product image container | ProductDetail page   |
+| `.product-zoom-trigger`     | Zoom cursor on hover         | ProductDetail images |
+| `.gallery-thumbnails`       | Image gallery grid           | ProductDetail page   |
+| `.gallery-thumbnail`        | Individual thumbnail         | ProductDetail page   |
+| `.gallery-thumbnail.active` | Active thumbnail state       | ProductDetail page   |
 
 ### Content Section Classes
 
-| Class | Purpose | Usage |
-|------|---------|-------|
-| `.benefits-section` | Benefits/Intentions container | ProductDetail, Home |
-| `.benefit-item` | Individual benefit card | Benefits sections |
-| `.benefit-icon` | Benefit icon container | Benefit items |
-| `.benefit-title` | Benefit heading | Benefit items |
-| `.benefit-description` | Benefit text | Benefit items |
-| `.story-section` | Storytelling container | ProductDetail, Home |
-| `.crystal-properties` | Crystal energy grid | ProductDetail page |
-| `.crystal-property` | Individual property card | Crystal properties |
+| Class                  | Purpose                       | Usage               |
+| ---------------------- | ----------------------------- | ------------------- |
+| `.benefits-section`    | Benefits/Intentions container | ProductDetail, Home |
+| `.benefit-item`        | Individual benefit card       | Benefits sections   |
+| `.benefit-icon`        | Benefit icon container        | Benefit items       |
+| `.benefit-title`       | Benefit heading               | Benefit items       |
+| `.benefit-description` | Benefit text                  | Benefit items       |
+| `.story-section`       | Storytelling container        | ProductDetail, Home |
+| `.crystal-properties`  | Crystal energy grid           | ProductDetail page  |
+| `.crystal-property`    | Individual property card      | Crystal properties  |
 
 ### Typography Classes
 
-| Class | Purpose | Usage |
-|------|---------|-------|
-| `.gemstone-display` | Script font for gemstones | ProductCard, ProductDetail |
-| `.premium-section-divider` | Gold/turquoise divider | Section breaks |
+| Class                      | Purpose                   | Usage                      |
+| -------------------------- | ------------------------- | -------------------------- |
+| `.gemstone-display`        | Script font for gemstones | ProductCard, ProductDetail |
+| `.premium-section-divider` | Gold/turquoise divider    | Section breaks             |
 
 ### Button Classes
 
-| Class | Purpose | Usage |
-|------|---------|-------|
-| `.btn-premium-primary` | Primary CTA with gradient | Add to Cart |
+| Class                    | Purpose                   | Usage          |
+| ------------------------ | ------------------------- | -------------- |
+| `.btn-premium-primary`   | Primary CTA with gradient | Add to Cart    |
 | `.btn-premium-secondary` | Secondary outlined button | View All, etc. |
 
 ### Spacing Classes
 
-| Class | Purpose | Usage |
-|------|---------|-------|
+| Class                 | Purpose               | Usage          |
+| --------------------- | --------------------- | -------------- |
 | `.spacing-premium-lg` | 4rem vertical padding | Major sections |
-| `.spacing-premium-xl` | 6rem vertical padding | Hero sections |
+| `.spacing-premium-xl` | 6rem vertical padding | Hero sections  |
 
 ### Interactive Classes
 
-| Class | Purpose | Usage |
-|------|---------|-------|
-| `.product-card-enhanced` | Premium card hover effect | ProductCard component |
-| `.trust-badges` | Trust badge container | ProductDetail, Home |
-| `.trust-badge` | Individual trust badge | Trust badges container |
-| `.trust-badge-icon` | Trust badge icon | Trust badges |
-| `.trust-badge-text` | Trust badge text | Trust badges |
+| Class                    | Purpose                   | Usage                  |
+| ------------------------ | ------------------------- | ---------------------- |
+| `.product-card-enhanced` | Premium card hover effect | ProductCard component  |
+| `.trust-badges`          | Trust badge container     | ProductDetail, Home    |
+| `.trust-badge`           | Individual trust badge    | Trust badges container |
+| `.trust-badge-icon`      | Trust badge icon          | Trust badges           |
+| `.trust-badge-text`      | Trust badge text          | Trust badges           |
 
 ## Dark Mode Features
 
@@ -281,6 +298,7 @@ Clean icon-based trust signals:
 Dark mode enhances the mystical "cove" atmosphere with:
 
 1. **Product Image Glow:**
+
    ```css
    [data-theme='dark'] .product-hero-image {
      box-shadow:
@@ -290,6 +308,7 @@ Dark mode enhances the mystical "cove" atmosphere with:
    ```
 
 2. **Benefit Icons:**
+
    ```css
    [data-theme='dark'] .benefit-icon {
      background: hsla(var(--skull-turquoise-glow), 0.15);
@@ -312,8 +331,16 @@ To add crystal properties for new gemstones, edit the `getCrystalProperties` fun
 ```tsx
 if (lowerStone.includes('your-stone')) {
   properties.push(
-    { title: 'Property Name', description: 'Description of the property', icon: '🔮' },
-    { title: 'Another Property', description: 'Another description', icon: '✨' }
+    {
+      title: 'Property Name',
+      description: 'Description of the property',
+      icon: '🔮',
+    },
+    {
+      title: 'Another Property',
+      description: 'Another description',
+      icon: '✨',
+    }
   );
 }
 ```
@@ -331,6 +358,7 @@ Replace icons in the benefits section:
 ```
 
 Available icons from `lucide-react`:
+
 - `Sparkles`, `Gem`, `Shield`, `Truck`, `Heart`, `Star`, `Moon`, `Zap`, etc.
 
 ### Adjusting Spacing
@@ -339,7 +367,7 @@ Modify premium spacing values in `client/src/index.css`:
 
 ```css
 .spacing-premium-lg {
-  padding-top: 4rem;  /* Adjust as needed */
+  padding-top: 4rem; /* Adjust as needed */
   padding-bottom: 4rem;
 }
 ```
@@ -451,6 +479,7 @@ Respects `prefers-reduced-motion`:
 **Issue:** Product images don't glow in dark mode
 
 **Solution:**
+
 1. Check `data-theme="dark"` attribute on `<html>`
 2. Verify CSS utilities loaded in `index.css`
 3. Check browser DevTools for CSS conflicts
@@ -460,6 +489,7 @@ Respects `prefers-reduced-motion`:
 **Issue:** Crystal Energy section doesn't appear
 
 **Solution:**
+
 1. Verify product has `gemstones` field
 2. Check stone name matches supported stones
 3. Ensure `getCrystalProperties` function returns results
@@ -469,6 +499,7 @@ Respects `prefers-reduced-motion`:
 **Issue:** Benefits cards don't align properly
 
 **Solution:**
+
 1. Check `.benefits-section` container class
 2. Verify grid columns: `grid-cols-2 md:grid-cols-3`
 3. Test on different viewport sizes

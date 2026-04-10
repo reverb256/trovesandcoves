@@ -37,7 +37,7 @@ function fallbackMetrics() {
   // Basic Performance API monitoring
   if ('PerformanceObserver' in window) {
     try {
-      const observer = new PerformanceObserver((list) => {
+      const observer = new PerformanceObserver(list => {
         for (const entry of list.getEntries()) {
           if (entry.entryType === 'navigation') {
             const navEntry = entry as PerformanceNavigationTiming;
@@ -61,7 +61,7 @@ function setupPerformanceObserver() {
 
   try {
     // Monitor Largest Contentful Paint
-    const lcpObserver = new PerformanceObserver((list) => {
+    const lcpObserver = new PerformanceObserver(list => {
       const entries = list.getEntries();
       const lastEntry = entries[entries.length - 1];
       console.log('🖼️  LCP:', Math.round(lastEntry.startTime), 'ms');
@@ -69,7 +69,7 @@ function setupPerformanceObserver() {
     lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
 
     // Monitor layout shifts
-    const clsObserver = new PerformanceObserver((list) => {
+    const clsObserver = new PerformanceObserver(list => {
       let clsValue = 0;
       for (const entry of list.getEntries()) {
         clsValue += (entry as any).value;
@@ -79,13 +79,12 @@ function setupPerformanceObserver() {
     clsObserver.observe({ entryTypes: ['layout-shift'] });
 
     // Monitor long tasks
-    const longTaskObserver = new PerformanceObserver((list) => {
+    const longTaskObserver = new PerformanceObserver(list => {
       for (const entry of list.getEntries()) {
         console.log('⚠️  Long Task:', Math.round(entry.duration), 'ms');
       }
     });
     longTaskObserver.observe({ entryTypes: ['longtask'] });
-
   } catch (error) {
     console.warn('Performance monitoring error:', error);
   }
@@ -99,7 +98,9 @@ export function logPerformanceMetrics() {
     return;
   }
 
-  const perfData = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+  const perfData = performance.getEntriesByType(
+    'navigation'
+  )[0] as PerformanceNavigationTiming;
 
   const metrics = {
     // Network metrics
@@ -109,7 +110,9 @@ export function logPerformanceMetrics() {
     download: Math.round(perfData.responseEnd - perfData.responseStart),
 
     // Rendering metrics
-    domLoad: Math.round(perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart),
+    domLoad: Math.round(
+      perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart
+    ),
     windowLoad: Math.round(perfData.loadEventEnd - perfData.loadEventStart),
 
     // Total load time

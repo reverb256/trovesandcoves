@@ -18,7 +18,7 @@ const CONFIG = {
   quality: 85,
   maxWidth: 1200,
   formats: ['webp', 'jpg'],
-  extensions: ['.jpg', '.jpeg', '.png', '.gif']
+  extensions: ['.jpg', '.jpeg', '.png', '.gif'],
 };
 
 async function ensureDirectory(dir) {
@@ -36,14 +36,14 @@ async function isImageFile(filePath) {
 
 async function getImageFiles(dir) {
   const files = [];
-  
+
   try {
     const entries = await readdir(dir);
-    
+
     for (const entry of entries) {
       const fullPath = join(dir, entry);
       const stats = await stat(fullPath);
-      
+
       if (stats.isDirectory()) {
         const subFiles = await getImageFiles(fullPath);
         files.push(...subFiles);
@@ -54,55 +54,64 @@ async function getImageFiles(dir) {
   } catch (error) {
     console.warn(`Warning: Could not read directory ${dir}:`, error.message);
   }
-  
+
   return files;
 }
 
 async function optimizeImage(inputPath, outputDir) {
   const filename = basename(inputPath, extname(inputPath));
-  const relativePath = inputPath.replace(CONFIG.inputDir, '').replace(/^\//, '');
-  const outputSubdir = join(outputDir, relativePath.replace(basename(relativePath), ''));
-  
+  const relativePath = inputPath
+    .replace(CONFIG.inputDir, '')
+    .replace(/^\//, '');
+  const outputSubdir = join(
+    outputDir,
+    relativePath.replace(basename(relativePath), '')
+  );
+
   await ensureDirectory(outputSubdir);
-  
+
   const outputs = [];
-  
+
   for (const format of CONFIG.formats) {
     const outputPath = join(outputSubdir, `${filename}.${format}`);
-    
+
     try {
       let command;
-      
+
       if (format === 'webp') {
         command = `cwebp -q ${CONFIG.quality} -resize ${CONFIG.maxWidth} 0 "${inputPath}" -o "${outputPath}"`;
       } else {
         command = `convert "${inputPath}" -quality ${CONFIG.quality} -resize ${CONFIG.maxWidth}x "${outputPath}"`;
       }
-      
+
       await execAsync(command);
       outputs.push(outputPath);
       console.log(`✓ Optimized: ${relativePath} → ${format}`);
-      
     } catch (error) {
-      console.warn(`⚠ Failed to optimize ${inputPath} to ${format}:`, error.message);
+      console.warn(
+        `⚠ Failed to optimize ${inputPath} to ${format}:`,
+        error.message
+      );
     }
   }
-  
+
   return outputs;
 }
 
 async function checkDependencies() {
   const dependencies = [
     { command: 'cwebp', package: 'webp' },
-    { command: 'convert', package: 'imagemagick' }
+    { command: 'convert', package: 'imagemagick' },
   ];
-  
+
   for (const { command, package: pkg } of dependencies) {
     try {
       await execAsync(`which ${command}`);
     } catch (error) {
       console.error(`❌ Missing dependency: ${command}`);
-      console.log(`Install with: brew install ${pkg} (macOS) or apt-get install ${pkg} (Ubuntu)`);
+      console.log(
+        `Install with: brew install ${pkg} (macOS) or apt-get install ${pkg} (Ubuntu)`
+      );
       process.exit(1);
     }
   }
@@ -112,33 +121,33 @@ async function generateSrcSet(imagePath) {
   const filename = basename(imagePath, extname(imagePath));
   const sizes = [320, 640, 960, 1200];
   const srcset = [];
-  
+
   for (const size of sizes) {
     srcset.push(`/images/optimized/${filename}-${size}w.webp ${size}w`);
   }
-  
+
   return srcset.join(', ');
 }
 
 async function main() {
   console.log('🖼️  Starting image optimization...\n');
-  
+
   // Check dependencies
   await checkDependencies();
-  
+
   // Ensure output directory exists
   await ensureDirectory(CONFIG.outputDir);
-  
+
   // Get all image files
   const imageFiles = await getImageFiles(CONFIG.inputDir);
-  
+
   if (imageFiles.length === 0) {
     console.log('No images found to optimize.');
     return;
   }
-  
+
   console.log(`Found ${imageFiles.length} images to optimize:\n`);
-  
+
   // Optimize each image
   let successCount = 0;
   for (const imagePath of imageFiles) {
@@ -149,9 +158,11 @@ async function main() {
       console.error(`❌ Failed to optimize ${imagePath}:`, error.message);
     }
   }
-  
-  console.log(`\n✅ Optimization complete! ${successCount}/${imageFiles.length} images optimized.`);
-  
+
+  console.log(
+    `\n✅ Optimization complete! ${successCount}/${imageFiles.length} images optimized.`
+  );
+
   // Generate sample usage
   console.log('\n📝 Sample usage in React:');
   console.log(`
@@ -188,12 +199,16 @@ Examples:
 }
 
 // Parse command line arguments
-const qualityIndex = process.argv.findIndex(arg => arg === '--quality' || arg === '-q');
+const qualityIndex = process.argv.findIndex(
+  arg => arg === '--quality' || arg === '-q'
+);
 if (qualityIndex !== -1 && process.argv[qualityIndex + 1]) {
   CONFIG.quality = parseInt(process.argv[qualityIndex + 1]);
 }
 
-const widthIndex = process.argv.findIndex(arg => arg === '--width' || arg === '-w');
+const widthIndex = process.argv.findIndex(
+  arg => arg === '--width' || arg === '-w'
+);
 if (widthIndex !== -1 && process.argv[widthIndex + 1]) {
   CONFIG.maxWidth = parseInt(process.argv[widthIndex + 1]);
 }

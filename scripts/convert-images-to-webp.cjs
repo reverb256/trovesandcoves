@@ -13,7 +13,11 @@ const QUALITY = 85; // WebP quality (0-100), 85 is a good balance
 
 async function convertToWebP(filePath) {
   const ext = path.extname(filePath);
-  if (ext.toLowerCase() !== '.png' && ext.toLowerCase() !== '.jpg' && ext.toLowerCase() !== '.jpeg') {
+  if (
+    ext.toLowerCase() !== '.png' &&
+    ext.toLowerCase() !== '.jpg' &&
+    ext.toLowerCase() !== '.jpeg'
+  ) {
     return { skipped: true, file: filePath };
   }
 
@@ -42,7 +46,7 @@ async function convertToWebP(filePath) {
       file: filePath,
       originalSize: (originalSize / 1024).toFixed(0) + ' KB',
       webpSize: (webpSize / 1024).toFixed(0) + ' KB',
-      savings: savings + '%'
+      savings: savings + '%',
     };
   } catch (error) {
     return { error: true, file: filePath, message: error.message };
@@ -52,7 +56,8 @@ async function convertToWebP(filePath) {
 async function main() {
   console.log('🖼️  Converting product images to WebP...\n');
 
-  const files = fs.readdirSync(JEWELRY_DIR)
+  const files = fs
+    .readdirSync(JEWELRY_DIR)
     .filter(f => /\.(png|jpg|jpeg)$/i.test(f))
     .map(f => path.join(JEWELRY_DIR, f));
 
@@ -66,7 +71,9 @@ async function main() {
   console.log(`✅ Converted: ${converted.length}`);
   converted.forEach(r => {
     console.log(`   ${path.basename(r.file)}`);
-    console.log(`   ${r.originalSize} → ${r.webpSize} (${r.savings} savings)\n`);
+    console.log(
+      `   ${r.originalSize} → ${r.webpSize} (${r.savings} savings)\n`
+    );
   });
 
   if (exists.length > 0) {
@@ -80,14 +87,21 @@ async function main() {
     });
   }
 
-  const totalOriginalSize = files.reduce((sum, f) => sum + fs.statSync(f).size, 0);
+  const totalOriginalSize = files.reduce(
+    (sum, f) => sum + fs.statSync(f).size,
+    0
+  );
   const webpFiles = files.map(f => f.replace(/\.(png|jpg|jpeg)$/i, '.webp'));
   const totalWebpSize = webpFiles.reduce((sum, f) => {
     return sum + (fs.existsSync(f) ? fs.statSync(f).size : 0);
   }, 0);
 
-  console.log(`\n📊 Total size: ${(totalOriginalSize / 1024 / 1024).toFixed(2)} MB → ${(totalWebpSize / 1024 / 1024).toFixed(2)} MB`);
-  console.log(`   Savings: ${((1 - totalWebpSize / totalOriginalSize) * 100).toFixed(1)}%`);
+  console.log(
+    `\n📊 Total size: ${(totalOriginalSize / 1024 / 1024).toFixed(2)} MB → ${(totalWebpSize / 1024 / 1024).toFixed(2)} MB`
+  );
+  console.log(
+    `   Savings: ${((1 - totalWebpSize / totalOriginalSize) * 100).toFixed(1)}%`
+  );
 }
 
 main().catch(console.error);

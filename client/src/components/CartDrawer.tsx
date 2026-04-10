@@ -1,22 +1,27 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import EmptyState from "@/components/EmptyState";
-import { useCart } from "@/hooks/useCart";
-import { useLocation } from "wouter";
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import EmptyState from '@/components/EmptyState';
+import { useCart } from '@/hooks/useCart';
+import { useLocation } from 'wouter';
+import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 export default function CartDrawer() {
-  const { 
-    isOpen, 
-    toggleCart, 
-    items, 
-    updateQuantity, 
-    removeFromCart, 
-    totalAmount, 
-    itemCount 
+  const {
+    isOpen,
+    toggleCart,
+    items,
+    updateQuantity,
+    removeFromCart,
+    totalAmount,
+    itemCount,
   } = useCart();
   const [, setLocation] = useLocation();
   const { toast } = useToast();
@@ -34,13 +39,13 @@ export default function CartDrawer() {
   const handleCheckout = () => {
     if (items.length === 0) {
       toast({
-        title: "Cart is empty",
-        description: "Please add some items to your cart before checking out.",
-        variant: "destructive",
+        title: 'Cart is empty',
+        description: 'Please add some items to your cart before checking out.',
+        variant: 'destructive',
       });
       return;
     }
-    
+
     toggleCart();
     setLocation('/checkout');
   };
@@ -48,20 +53,42 @@ export default function CartDrawer() {
   const handleRemoveItem = (itemId: number, productName: string) => {
     removeFromCart(itemId);
     toast({
-      title: "Item removed",
+      title: 'Item removed',
       description: `${productName} has been removed from your cart.`,
     });
   };
 
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
-      <SheetContent className="w-full sm:max-w-md" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
-        <SheetHeader className="pb-6 border-b" style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}>
-          <SheetTitle className="flex items-center gap-2" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>
-            <ShoppingBag className="h-5 w-5" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+      <SheetContent
+        className="w-full sm:max-w-md"
+        style={{ backgroundColor: 'hsl(var(--bg-primary))' }}
+      >
+        <SheetHeader
+          className="pb-6 border-b"
+          style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}
+        >
+          <SheetTitle
+            className="flex items-center gap-2"
+            style={{
+              fontFamily: "'Libre Baskerville', serif",
+              color: 'hsl(var(--text-primary))',
+            }}
+          >
+            <ShoppingBag
+              className="h-5 w-5"
+              style={{ color: 'hsl(var(--accent-vibrant))' }}
+            />
             <span>Shopping Cart</span>
             {itemCount > 0 && (
-              <Badge variant="secondary" className="ml-2" style={{ backgroundColor: 'hsl(var(--gold-medium))', color: 'hsl(var(--bg-primary))' }}>
+              <Badge
+                variant="secondary"
+                className="ml-2"
+                style={{
+                  backgroundColor: 'hsl(var(--gold-medium))',
+                  color: 'hsl(var(--bg-primary))',
+                }}
+              >
                 {itemCount} {itemCount === 1 ? 'item' : 'items'}
               </Badge>
             )}
@@ -75,7 +102,7 @@ export default function CartDrawer() {
             description="Discover our beautiful jewelry collections"
             variant="cart"
             action={{
-              label: "Browse Products",
+              label: 'Browse Products',
               onClick: () => {
                 toggleCart();
                 setLocation('/products');
@@ -87,8 +114,15 @@ export default function CartDrawer() {
           <>
             {/* Cart Items */}
             <div className="flex-1 overflow-y-auto space-y-4 mb-6">
-              {items.map((item) => (
-                <div key={item.id} className="flex items-center gap-4 p-4 border rounded-lg" style={{ borderColor: 'hsla(174,85%,45%,0.15)', backgroundColor: 'hsla(var(--bg-secondary),0.3)' }}>
+              {items.map(item => (
+                <div
+                  key={item.id}
+                  className="flex items-center gap-4 p-4 border rounded-lg"
+                  style={{
+                    borderColor: 'hsla(174,85%,45%,0.15)',
+                    backgroundColor: 'hsla(var(--bg-secondary),0.3)',
+                  }}
+                >
                   <img
                     src={item.product.imageUrl}
                     alt={item.product.name}
@@ -98,22 +132,40 @@ export default function CartDrawer() {
                     loading="lazy"
                     decoding="async"
                   />
-                  
+
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-sm line-clamp-2" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-primary))' }}>
+                    <h3
+                      className="font-medium text-sm line-clamp-2"
+                      style={{
+                        fontFamily: "'Montserrat', sans-serif",
+                        color: 'hsl(var(--text-primary))',
+                      }}
+                    >
                       {item.product.name}
                     </h3>
-                    <p className="text-sm" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))', fontWeight: 600 }}>
+                    <p
+                      className="text-sm"
+                      style={{
+                        fontFamily: "'Libre Baskerville', serif",
+                        color: 'hsl(var(--gold-medium))',
+                        fontWeight: 600,
+                      }}
+                    >
                       {formatPrice(item.product.price)}
                     </p>
-                    
+
                     {/* Quantity Controls */}
                     <div className="flex items-center space-x-2 mt-2">
                       <Button
                         aria-label="Decrease quantity"
                         size="sm"
                         variant="outline"
-                        onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                        onClick={() =>
+                          updateQuantity(
+                            item.id,
+                            Math.max(1, item.quantity - 1)
+                          )
+                        }
                         className="h-8 w-8 p-0"
                       >
                         <Minus className="h-3 w-3" />
@@ -127,49 +179,84 @@ export default function CartDrawer() {
                         aria-label="Increase quantity"
                         size="sm"
                         variant="outline"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity + 1)
+                        }
                         className="h-8 w-8 p-0"
                       >
                         <Plus className="h-3 w-3" />
                       </Button>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-col items-end gap-2">
                     <Button
                       aria-label={`Remove ${item.product.name} from cart`}
                       size="sm"
                       variant="ghost"
-                      onClick={() => handleRemoveItem(item.id, item.product.name)}
+                      onClick={() =>
+                        handleRemoveItem(item.id, item.product.name)
+                      }
                       className="h-8 w-8 p-0 hover:opacity-70"
                       style={{ color: 'hsl(var(--text-muted))' }}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
-                    
-                    <span className="text-sm font-semibold" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))' }}>
-                      {formatPrice((parseFloat(item.product.price) * item.quantity).toString())}
+
+                    <span
+                      className="text-sm font-semibold"
+                      style={{
+                        fontFamily: "'Libre Baskerville', serif",
+                        color: 'hsl(var(--gold-medium))',
+                      }}
+                    >
+                      {formatPrice(
+                        (
+                          parseFloat(item.product.price) * item.quantity
+                        ).toString()
+                      )}
                     </span>
                   </div>
                 </div>
               ))}
             </div>
 
-            <Separator className="my-4" style={{ backgroundColor: 'hsla(174,85%,45%,0.15)' }} />
-            
+            <Separator
+              className="my-4"
+              style={{ backgroundColor: 'hsla(174,85%,45%,0.15)' }}
+            />
+
             {/* Cart Summary */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-lg font-semibold" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}>Total:</span>
-                <span className="text-xl font-bold" style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))' }}>
+                <span
+                  className="text-lg font-semibold"
+                  style={{
+                    fontFamily: "'Libre Baskerville', serif",
+                    color: 'hsl(var(--text-primary))',
+                  }}
+                >
+                  Total:
+                </span>
+                <span
+                  className="text-xl font-bold"
+                  style={{
+                    fontFamily: "'Libre Baskerville', serif",
+                    color: 'hsl(var(--gold-medium))',
+                  }}
+                >
                   {formatPrice(totalAmount.toString())}
                 </span>
               </div>
-              
+
               <Button
                 onClick={handleCheckout}
                 className="w-full py-3 font-semibold hover:opacity-90 transition-colors duration-200"
-                style={{ backgroundColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--bg-primary))', fontFamily: "'Montserrat', sans-serif" }}
+                style={{
+                  backgroundColor: 'hsl(var(--accent-vibrant))',
+                  color: 'hsl(var(--bg-primary))',
+                  fontFamily: "'Montserrat', sans-serif",
+                }}
               >
                 Secure Checkout
               </Button>
@@ -184,7 +271,7 @@ export default function CartDrawer() {
                 style={{
                   borderColor: 'hsla(174,85%,45%,0.3)',
                   color: 'hsl(var(--accent-vibrant))',
-                  fontFamily: "'Montserrat', sans-serif"
+                  fontFamily: "'Montserrat', sans-serif",
                 }}
               >
                 Continue Shopping

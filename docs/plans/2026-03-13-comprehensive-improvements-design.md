@@ -12,12 +12,14 @@
 This document outlines a comprehensive improvement plan for the Troves & Coves crystal jewelry website. The plan addresses SEO, conversion, content, and technical infrastructure, with a focus on adding direct checkout capabilities (Stripe, PayPal, E-Transfer) while maintaining Etsy integration.
 
 **Business Goals:**
+
 1. Increase organic traffic through SEO improvements
 2. Capture Canadian sales directly with multiple payment options
 3. Reduce customer support burden through better content
 4. Build trust and credibility through social proof
 
 **Technical Approach:**
+
 - Phase-based implementation (7 phases over ~8-10 weeks)
 - Maintain existing Material You design system
 - Build checkout infrastructure that supports both direct and Etsy-driven sales
@@ -28,6 +30,7 @@ This document outlines a comprehensive improvement plan for the Troves & Coves c
 ## Architecture Overview
 
 ### Current State
+
 - Static React + Vite frontend
 - Wouter routing with base path for GitHub Pages
 - In-memory product storage with seeded data
@@ -36,6 +39,7 @@ This document outlines a comprehensive improvement plan for the Troves & Coves c
 - shadcn/ui component library with Material You styling
 
 ### Target State
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                      User Layer                             │
@@ -76,15 +80,18 @@ This document outlines a comprehensive improvement plan for the Troves & Coves c
 ### Critical Issues to Fix
 
 #### 1.1 Duplicate Title Tags
+
 **Problem:** All pages currently share the same title tag.
 
 **Solution:**
+
 ```tsx
 // client/src/components/SEOHead.tsx - enhance
 const getPageTitle = (path: string, productName?: string) => {
   const titles: Record<string, string> = {
     '/': 'Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces',
-    '/products': 'Shop Crystal Jewelry | Handcrafted Necklaces & Bracelets | Troves & Coves',
+    '/products':
+      'Shop Crystal Jewelry | Handcrafted Necklaces & Bracelets | Troves & Coves',
     '/about': 'About Troves & Coves | Handcrafted in Winnipeg, Canada',
     '/contact': 'Contact Us | Custom Crystal Jewelry Orders | Troves & Coves',
     '/checkout': 'Checkout | Secure Payment | Troves & Coves',
@@ -99,12 +106,15 @@ const getPageTitle = (path: string, productName?: string) => {
 ```
 
 #### 1.2 Page-Specific Meta Descriptions
+
 **Solution:**
+
 ```tsx
 const getMetaDescription = (path: string) => {
   const descriptions: Record<string, string> = {
     '/': 'Discover handcrafted crystal jewelry with timeless elegance. Shop unique crystal necklaces & bracelets crafted in Winnipeg, Canada.',
-    '/products': 'Browse our collection of handcrafted crystal jewelry. Wire-wrapped pendants, gemstone necklaces, and leather cord pendants.',
+    '/products':
+      'Browse our collection of handcrafted crystal jewelry. Wire-wrapped pendants, gemstone necklaces, and leather cord pendants.',
     // ... etc
   };
   return descriptions[path] || descriptions['/'];
@@ -112,6 +122,7 @@ const getMetaDescription = (path: string) => {
 ```
 
 #### 1.3 Breadcrumb Schema
+
 **Component:** `client/src/components/BreadcrumbSchema.tsx`
 
 ```tsx
@@ -162,6 +173,7 @@ client/src/pages/crystals/
 ```
 
 ### FAQ Schema Implementation
+
 ```tsx
 // FAQPage schema for rich results
 const faqSchema = {
@@ -203,11 +215,13 @@ export const wishlist = {
 ```
 
 **Component:** `client/src/components/products/WishlistButton.tsx`
+
 - Heart icon that toggles filled/outline
 - Shows count in header similar to cart
 - Quick access dropdown
 
 ### 3.2 Stock Badges
+
 ```tsx
 // Already have data, just display it
 <StockBadge quantity={product.stockQuantity} />
@@ -219,6 +233,7 @@ export const wishlist = {
 ```
 
 ### 3.3 Product Quick View Modal
+
 ```tsx
 // client/src/components/products/QuickViewModal.tsx
 interface QuickViewModalProps {
@@ -304,7 +319,7 @@ interface CreateOrderRequest {
 interface CreateOrderResponse {
   orderId: string;
   paymentClientSecret?: string; // For Stripe
-  paypalOrderId?: string;       // For PayPal
+  paypalOrderId?: string; // For PayPal
   etransferDetails?: ETransferDetails; // For E-Transfer
 }
 ```
@@ -314,9 +329,9 @@ interface CreateOrderResponse {
 ```typescript
 // server/lib/tax.ts
 const TAX_RATES = {
-  'MB': { gst: 0.05, pst: 0.07, name: 'Manitoba' },
-  'ON': { gst: 0.05, hst: 0.13, name: 'Ontario' },
-  'BC': { gst: 0.05, pst: 0.07, name: 'British Columbia' },
+  MB: { gst: 0.05, pst: 0.07, name: 'Manitoba' },
+  ON: { gst: 0.05, hst: 0.13, name: 'Ontario' },
+  BC: { gst: 0.05, pst: 0.07, name: 'British Columbia' },
   // ... all provinces
 };
 
@@ -376,7 +391,9 @@ export function Analytics() {
 
     // Initialize
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function() { window.dataLayer.push(arguments); };
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
     gtag('js', new Date());
     gtag('config', GA4_MEASUREMENT_ID, {
       anonymize_ip: true,
@@ -414,7 +431,10 @@ export const track = {
   },
 
   beginCheckout: (cart: CartItem[]) => {
-    const total = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+    const total = cart.reduce(
+      (sum, item) => sum + item.product.price * item.quantity,
+      0
+    );
     gtag('event', 'begin_checkout', {
       currency: 'CAD',
       value: total,
@@ -493,16 +513,28 @@ interface CustomerPhoto {
 ```typescript
 // client/src/lib/__tests__/wishlist.test.ts
 describe('Wishlist', () => {
-  test('adds product to wishlist', () => { /* ... */ });
-  test('removes product from wishlist', () => { /* ... */ });
-  test('persists across sessions', () => { /* ... */ });
+  test('adds product to wishlist', () => {
+    /* ... */
+  });
+  test('removes product from wishlist', () => {
+    /* ... */
+  });
+  test('persists across sessions', () => {
+    /* ... */
+  });
 });
 
 // client/src/lib/__tests__/tax.test.ts
 describe('Tax Calculation', () => {
-  test('calculates Manitoba GST + PST correctly', () => { /* ... */ });
-  test('handles provinces with HST', () => { /* ... */ });
-  test('handles international customers (no tax)', () => { /* ... */ });
+  test('calculates Manitoba GST + PST correctly', () => {
+    /* ... */
+  });
+  test('handles provinces with HST', () => {
+    /* ... */
+  });
+  test('handles international customers (no tax)', () => {
+    /* ... */
+  });
 });
 ```
 
@@ -617,16 +649,19 @@ SITE_URL=https://trovesandcoves.ca
 ## Success Metrics
 
 ### SEO Targets (3 months)
+
 - Organic traffic: +30-50%
 - Keyword rankings: Top 20 for "crystal jewelry Winnipeg"
 - Indexation: All product pages indexed
 
 ### Conversion Targets (3 months post-checkout)
+
 - Direct checkout rate: 15% of Canadian orders
 - Wishlist conversion: 10% of wishlisted items purchased
 - Cart abandonment: <70% (industry avg ~75%)
 
 ### Performance Targets
+
 - LCP: <2s (currently 1.36s)
 - CLS: <0.05 (currently 0.001)
 - INP: <200ms (currently unknown)
@@ -636,6 +671,7 @@ SITE_URL=https://trovesandcoves.ca
 ## Implementation Checklist
 
 ### Phase 1: SEO Foundation
+
 - [ ] Fix duplicate title tags
 - [ ] Add page-specific meta descriptions
 - [ ] Implement breadcrumb schema
@@ -643,12 +679,14 @@ SITE_URL=https://trovesandcoves.ca
 - [ ] Optimize H1 tags
 
 ### Phase 2: Content
+
 - [ ] Create FAQ page
 - [ ] Create crystal meanings guide
 - [ ] Create materials guide
 - [ ] Enhance about page
 
 ### Phase 3: Conversion
+
 - [ ] Implement wishlist
 - [ ] Add stock badges
 - [ ] Create quick view modal
@@ -656,6 +694,7 @@ SITE_URL=https://trovesandcoves.ca
 - [ ] Embed Instagram feed
 
 ### Phase 4: Checkout
+
 - [ ] Set up PostgreSQL (Neon)
 - [ ] Create checkout pages (shipping, payment, review)
 - [ ] Integrate Stripe
@@ -666,18 +705,21 @@ SITE_URL=https://trovesandcoves.ca
 - [ ] Create order management
 
 ### Phase 5: Analytics
+
 - [ ] Activate GA4
 - [ ] Implement e-commerce events
 - [ ] Add error tracking (Sentry)
 - [ ] Monitor Core Web Vitals
 
 ### Phase 6: Social Proof
+
 - [ ] Sync Etsy reviews
 - [ ] Create customer photo gallery
 - [ ] Add press/badges section
 - [ ] Add live chat widget
 
 ### Phase 7: Testing
+
 - [ ] Write unit tests (70% coverage target)
 - [ ] Write E2E tests for checkout flow
 - [ ] Run accessibility audit

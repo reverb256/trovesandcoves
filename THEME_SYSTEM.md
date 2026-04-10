@@ -64,18 +64,18 @@ client/src/components/
 
 #### Variants
 
-| Variant | Description | Use Case |
-|---------|-------------|----------|
-| `default` | Standard shadow-sm | General content cards |
-| `elevated` | shadow-2xl | Featured content, important sections |
-| `glass` | shadow-lg | Overlay cards, glassmorphism |
-| `interactive` | shadow-2xl + hover scale | Cards that respond to hover |
+| Variant       | Description              | Use Case                             |
+| ------------- | ------------------------ | ------------------------------------ |
+| `default`     | Standard shadow-sm       | General content cards                |
+| `elevated`    | shadow-2xl               | Featured content, important sections |
+| `glass`       | shadow-lg                | Overlay cards, glassmorphism         |
+| `interactive` | shadow-2xl + hover scale | Cards that respond to hover          |
 
 #### Theme Options
 
-| Theme | Description | Effect |
-|-------|-------------|---------|
-| `default` | Uses `bg-card` | Standard card background |
+| Theme      | Description              | Effect                                  |
+| ---------- | ------------------------ | --------------------------------------- |
+| `default`  | Uses `bg-card`           | Standard card background                |
 | `gradient` | Uses gradient background | Elevated look with theme-aware gradient |
 
 #### Usage Examples
@@ -104,13 +104,13 @@ client/src/components/
 
 #### Variants
 
-| Variant | Colors | Use Case |
-|---------|--------|----------|
-| `default` | Gold background | Primary badges, pills |
-| `secondary` | Gray background | Secondary info |
-| `gold` | Gold with hover | Gold-themed elements |
+| Variant     | Colors           | Use Case                |
+| ----------- | ---------------- | ----------------------- |
+| `default`   | Gold background  | Primary badges, pills   |
+| `secondary` | Gray background  | Secondary info          |
+| `gold`      | Gold with hover  | Gold-themed elements    |
 | `turquoise` | Turquoise accent | Featured items, accents |
-| `outline` | Border only | Category labels |
+| `outline`   | Border only      | Category labels         |
 
 #### Usage
 
@@ -143,12 +143,9 @@ client/src/components/
 import { ThemeCard } from '@/components/ui/themed-components';
 import { Heart } from 'lucide-react';
 
-<ThemeCard
-  title="Authentic Crystals"
-  icon={<Heart className="h-6 w-6" />}
->
+<ThemeCard title="Authentic Crystals" icon={<Heart className="h-6 w-6" />}>
   <p>Card content here...</p>
-</ThemeCard>
+</ThemeCard>;
 ```
 
 #### StepCard
@@ -162,10 +159,11 @@ import { StepCard } from '@/components/ui/themed-components';
   step={1}
   title="Contact Us"
   description="Reach out through our contact form..."
-/>
+/>;
 ```
 
 **Result**:
+
 ```
 [1] Contact Us
 Reach out through our contact form...
@@ -183,7 +181,7 @@ import { InfoCircleCard } from '@/components/ui/themed-components';
   title="Authentic Crystals"
   description="Every piece features genuine, ethically sourced crystals"
   size="lg" // sm | md | lg
-/>
+/>;
 ```
 
 #### Gradient Dividers
@@ -204,33 +202,30 @@ All colors defined in `client/src/index.css`
 ### Text Colors
 
 ```css
---text-primary: Main headings and important text
---text-secondary: Body text and descriptions
---text-muted: Subtle/disclaimer text
+--text-primary: Main headings and important text --text-secondary: Body text and
+  descriptions --text-muted: Subtle/disclaimer text;
 ```
 
 ### Background Colors
 
 ```css
 --bg-primary: Page backgrounds (light mode: hsl(0 0% 99%))
---bg-secondary: Section backgrounds
---bg-tertiary: Card backgrounds
---bg-card: Card element backgrounds
+  --bg-secondary: Section backgrounds --bg-tertiary: Card backgrounds
+  --bg-card: Card element backgrounds;
 ```
 
 ### Accent Colors
 
 ```css
 --accent-vibrant: Turquoise (primary accent) - hsl(174 85% 32%)
---gold-soft: Soft gold (pills, badges) - hsl(43 95% 55%)
---gold-medium: Medium gold (icons, borders) - hsl(43 95% 65%)
+  --gold-soft: Soft gold (pills, badges) - hsl(43 95% 55%) --gold-medium: Medium
+  gold (icons, borders) - hsl(43 95% 65%);
 ```
 
 ### Border Colors
 
 ```css
---border-light: Subtle borders
---border-medium: Standard borders
+--border-light: Subtle borders --border-medium: Standard borders;
 ```
 
 ### Typography
@@ -247,31 +242,57 @@ All colors defined in `client/src/index.css`
 ### Standard Page Header
 
 ```tsx
-<section className="relative overflow-hidden py-20"
-          style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
-  <div className="absolute top-0 left-0 w-full h-1"
-       style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+<section
+  className="relative overflow-hidden py-20"
+  style={{
+    background:
+      'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)',
+  }}
+>
+  <div
+    className="absolute top-0 left-0 w-full h-1"
+    style={{
+      background:
+        'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)',
+    }}
+  />
   <div className="relative container mx-auto px-4 text-center">
-
     {/* Optional Badge */}
-    <div className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full"
-         style={{ backgroundColor: 'hsl(var(--gold-soft))', color: 'hsl(var(--text-primary))', boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)' }}>
-      <span className="text-sm font-medium tracking-widest uppercase">Badge Text</span>
+    <div
+      className="inline-flex items-center justify-center px-6 py-2 mb-8 rounded-full"
+      style={{
+        backgroundColor: 'hsl(var(--gold-soft))',
+        color: 'hsl(var(--text-primary))',
+        boxShadow: '0 2px 8px hsla(var(--gold-medium), 0.3)',
+      }}
+    >
+      <span className="text-sm font-medium tracking-widest uppercase">
+        Badge Text
+      </span>
     </div>
 
     {/* Title */}
-    <h1 className="text-5xl md:text-6xl font-bold mb-6"
-        style={{ color: 'hsl(var(--text-primary))' }}>
+    <h1
+      className="text-5xl md:text-6xl font-bold mb-6"
+      style={{ color: 'hsl(var(--text-primary))' }}
+    >
       Page Title
     </h1>
 
     {/* Divider */}
-    <div className="w-24 h-1 mx-auto mb-6 rounded-full"
-         style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+    <div
+      className="w-24 h-1 mx-auto mb-6 rounded-full"
+      style={{
+        background:
+          'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)',
+      }}
+    />
 
     {/* Optional Description */}
-    <p className="text-xl max-w-3xl mx-auto leading-relaxed"
-       style={{ color: 'hsl(var(--text-secondary))' }}>
+    <p
+      className="text-xl max-w-3xl mx-auto leading-relaxed"
+      style={{ color: 'hsl(var(--text-secondary))' }}
+    >
       Page description...
     </p>
   </div>
@@ -288,9 +309,7 @@ All colors defined in `client/src/index.css`
       Card Title
     </CardTitle>
   </CardHeader>
-  <CardContent>
-    Card content...
-  </CardContent>
+  <CardContent>Card content...</CardContent>
 </Card>
 ```
 
@@ -298,9 +317,7 @@ All colors defined in `client/src/index.css`
 
 ```tsx
 <Card variant="interactive" theme="gradient">
-  <CardContent>
-    This card scales on hover!
-  </CardContent>
+  <CardContent>This card scales on hover!</CardContent>
 </Card>
 ```
 
@@ -313,6 +330,7 @@ All colors defined in `client/src/index.css`
 #### Card Styling
 
 **Before:**
+
 ```tsx
 <Card className="shadow-2xl backdrop-blur-sm"
       style={{
@@ -322,6 +340,7 @@ All colors defined in `client/src/index.css`
 ```
 
 **After:**
+
 ```tsx
 <Card variant="elevated" theme="gradient">
 ```
@@ -329,6 +348,7 @@ All colors defined in `client/src/index.css`
 #### CardHeader Styling
 
 **Before:**
+
 ```tsx
 <CardHeader className="border-b"
               style={{
@@ -338,6 +358,7 @@ All colors defined in `client/src/index.css`
 ```
 
 **After:**
+
 ```tsx
 <CardHeader variant="gradient">
 ```
@@ -345,12 +366,14 @@ All colors defined in `client/src/index.css`
 #### Text Colors
 
 **Before:**
+
 ```tsx
 <h2 style={{ color: 'hsl(var(--text-primary))' }}>Title</h2>
 <p style={{ color: 'hsl(var(--text-secondary))' }}>Description</p>
 ```
 
 **After:**
+
 ```tsx
 <h2 className="text-3xl font-bold mb-6" style={{ color: 'hsl(var(--text-primary))' }}>Title</h2>
 <p className="text-lg" style={{ color: 'hsl(var(--text-secondary))' }}>Description</p>
@@ -364,12 +387,12 @@ All colors defined in `client/src/index.css`
 
 ### Colors & Meaning
 
-| Color | CSS Variable | Usage | Meaning |
-|-------|--------------|-------|---------|
+| Color          | CSS Variable       | Usage                                   | Meaning                               |
+| -------------- | ------------------ | --------------------------------------- | ------------------------------------- |
 | Teal/Turquoise | `--accent-vibrant` | Primary buttons, active elements, icons | Energy, spirituality, primary actions |
-| Gold Soft | `--gold-soft` | Pills, badges | Warmth, elegance |
-| Gold Medium | `--gold-medium` | Icons, borders | Richness, detail |
-| Bright Blue | `hsl(215 95% 55%)` | "Coves" text | Contrast, distinction |
+| Gold Soft      | `--gold-soft`      | Pills, badges                           | Warmth, elegance                      |
+| Gold Medium    | `--gold-medium`    | Icons, borders                          | Richness, detail                      |
+| Bright Blue    | `hsl(215 95% 55%)` | "Coves" text                            | Contrast, distinction                 |
 
 ### Spacing Standards
 
@@ -393,11 +416,13 @@ All colors defined in `client/src/index.css`
 ### 1. Use Variants Over Inline Styles
 
 **❌ Avoid:**
+
 ```tsx
 <div style={{ backgroundColor: 'hsl(var(--gold-soft))', ... }}>
 ```
 
 **✅ Prefer:**
+
 ```tsx
 <Card variant="elevated" theme="gradient">
 <Badge variant="gold">
@@ -406,6 +431,7 @@ All colors defined in `client/src/index.css`
 ### 2. Leverage Built-in Components
 
 **❌ Avoid:**
+
 ```tsx
 <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
   <span className="font-bold">1</span>
@@ -415,6 +441,7 @@ All colors defined in `client/src/index.css`
 ```
 
 **✅ Prefer:**
+
 ```tsx
 <StepCard step={1} title="Title" description="Description" />
 ```
@@ -422,6 +449,7 @@ All colors defined in `client/src/index.css`
 ### 3. Consistent Badge Styling
 
 All pills/badges across the site use this pattern:
+
 ```tsx
 <div className="inline-flex items-center justify-center px-6 py-2 rounded-full"
      style={{
@@ -443,6 +471,7 @@ All pills/badges across the site use this pattern:
 ### 5. Theme Switching
 
 All components automatically respond to theme changes. The CSS variables handle light/dark mode automatically:
+
 - `body[data-theme='dark']` triggers dark mode
 - All CSS variables have light/dark values defined
 - Components automatically adapt without additional code
@@ -456,6 +485,7 @@ All components automatically respond to theme changes. The CSS variables handle 
 **Issue**: Component still using old colors
 
 **Fix**: Ensure you're using the variant prop:
+
 ```tsx
 // ❌ Wrong - old way
 <Card className="shadow-2xl backdrop-blur-sm">
@@ -469,6 +499,7 @@ All components automatically respond to theme changes. The CSS variables handle 
 **Issue**: Changed CSS variable but site not reflecting change
 
 **Fix**:
+
 1. Clear browser cache
 2. Check for inline styles overriding CSS variables
 3. Ensure CSS variable is defined in both `:root` and `[data-theme='dark']`
@@ -478,6 +509,7 @@ All components automatically respond to theme changes. The CSS variables handle 
 **Issue**: Type errors on variant props
 
 **Fix**: Ensure you're importing from the correct path:
+
 ```tsx
 import { Card } from '@/components/ui/card'; // ✅ Correct
 import { Card } from '@/components/ui/card'; // ✅ Correct
@@ -541,6 +573,7 @@ client/src/
 ## Summary
 
 The theme system provides:
+
 - ✅ **Single source of truth** for all colors (CSS variables)
 - ✅ **Type-safe variants** with autocomplete
 - ✅ **Reusable components** for common patterns

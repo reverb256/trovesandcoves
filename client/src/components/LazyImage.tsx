@@ -84,7 +84,11 @@ export function LazyImage({
           } catch {
             // Final retry with timeout
             const retryTimeoutId = setTimeout(() => {
-              if (isMountedRef.current && img.isConnected && observerRef.current) {
+              if (
+                isMountedRef.current &&
+                img.isConnected &&
+                observerRef.current
+              ) {
                 try {
                   observerRef.current.observe(img);
                 } catch {
@@ -93,7 +97,7 @@ export function LazyImage({
                 }
               }
             }, 100);
-            
+
             // Store timeout ID for cleanup (using a property on the observer)
             if (observerRef.current) {
               (observerRef.current as any)._retryTimeout = retryTimeoutId;

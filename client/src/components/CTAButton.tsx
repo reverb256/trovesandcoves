@@ -44,7 +44,8 @@ export default function CTAButton({
   rel,
   onClick,
 }: CTAButtonProps) {
-  const baseStyles = "inline-flex items-center justify-center gap-3 rounded-full font-medium tracking-wide transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed no-underline";
+  const baseStyles =
+    'inline-flex items-center justify-center gap-3 rounded-full font-medium tracking-wide transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed no-underline';
 
   const sizeStyles: Record<string, string> = {
     sm: 'px-6 py-2.5 text-sm',
@@ -77,9 +78,15 @@ export default function CTAButton({
 
   const hoverStyles: Record<string, React.CSSProperties> = {
     primary: { opacity: 0.9, transform: 'scale(1.02)' },
-    secondary: { backgroundColor: 'hsla(var(--accent-vibrant), 0.1)', transform: 'scale(1.02)' },
+    secondary: {
+      backgroundColor: 'hsla(var(--accent-vibrant), 0.1)',
+      transform: 'scale(1.02)',
+    },
     gold: { opacity: 0.9, transform: 'scale(1.02)' },
-    outline: { borderColor: 'hsl(var(--accent-vibrant))', color: 'hsl(var(--accent-vibrant))' },
+    outline: {
+      borderColor: 'hsl(var(--accent-vibrant))',
+      color: 'hsl(var(--accent-vibrant))',
+    },
   };
 
   const commonProps = {
@@ -106,12 +113,7 @@ export default function CTAButton({
 
   if (href) {
     return (
-      <a
-        href={href}
-        target={target}
-        rel={rel}
-        {...commonProps}
-      >
+      <a href={href} target={target} rel={rel} {...commonProps}>
         {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : children}
       </a>
     );

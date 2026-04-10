@@ -8,7 +8,7 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const { pathname } = url;
-    
+
     // Free tier request tracking
     // --- FREE TIER ENFORCEMENT ---
     const maxRequests = parseInt(env.MAX_REQUESTS_PER_DAY || '90000');
@@ -25,16 +25,17 @@ export default {
     const corsHeaders = {
       'Access-Control-Allow-Origin': '*', // Allow GitHub Pages origins
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Session-ID',
+      'Access-Control-Allow-Headers':
+        'Content-Type, Authorization, X-Session-ID',
       'Access-Control-Max-Age': '86400',
       'Cache-Control': 'public, max-age=3600', // 1 hour cache
     };
 
     // Handle CORS preflight with cache
     if (request.method === 'OPTIONS') {
-      return new Response(null, { 
+      return new Response(null, {
         headers: corsHeaders,
-        cf: { cacheTtl: 86400 } // Cache preflight for 24 hours
+        cf: { cacheTtl: 86400 }, // Cache preflight for 24 hours
       });
     }
 
@@ -56,34 +57,40 @@ export default {
 
       // Fallback to GitHub Pages for static content
       return await handleStaticFallback(request, env);
-
     } catch (error) {
       console.error('Worker error:', error);
-      return new Response(JSON.stringify({ 
-        error: 'Service temporarily unavailable',
-        fallback: env.GITHUB_PAGES_URL || 'https://trovesandcoves.github.io/troves-coves'
-      }), {
-        status: 503,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
+      return new Response(
+        JSON.stringify({
+          error: 'Service temporarily unavailable',
+          fallback:
+            env.GITHUB_PAGES_URL ||
+            'https://trovesandcoves.github.io/troves-coves',
+        }),
+        {
+          status: 503,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      );
     }
-  }
+  },
 };
 
 // Free tier request limit tracking
 async function checkRequestLimit(env) {
   if (env.REQUEST_LIMIT_ENABLED !== 'true') return 0;
-  
+
   const today = new Date().toISOString().split('T')[0];
   const key = `requests:${today}`;
-  
+
   try {
     const current = await env.TROVES_CACHE.get(key);
     const count = current ? parseInt(current) : 0;
-    
+
     // Increment counter with 25-hour TTL (covers timezone differences)
-    await env.TROVES_CACHE.put(key, (count + 1).toString(), { expirationTtl: 90000 });
-    
+    await env.TROVES_CACHE.put(key, (count + 1).toString(), {
+      expirationTtl: 90000,
+    });
+
     return count;
   } catch (error) {
     console.error('Request tracking error:', error);
@@ -93,52 +100,56 @@ async function checkRequestLimit(env) {
 
 // Rate limited response - redirect to GitHub Pages
 async function handleRateLimited(request, env) {
-  const githubPagesUrl = env.GITHUB_PAGES_URL || 'https://trovesandcoves.github.io/troves-coves';
-  
-  return new Response(JSON.stringify({
-    error: 'Daily request limit reached',
-    message: 'Redirecting to static site for continued browsing',
-    redirect: githubPagesUrl + request.url.pathname
-  }), {
-    status: 429,
-    headers: {
-      'Content-Type': 'application/json',
-      'Retry-After': '86400', // Retry tomorrow
-      'X-Fallback-URL': githubPagesUrl
+  const githubPagesUrl =
+    env.GITHUB_PAGES_URL || 'https://trovesandcoves.github.io/troves-coves';
+
+  return new Response(
+    JSON.stringify({
+      error: 'Daily request limit reached',
+      message: 'Redirecting to static site for continued browsing',
+      redirect: githubPagesUrl + request.url.pathname,
+    }),
+    {
+      status: 429,
+      headers: {
+        'Content-Type': 'application/json',
+        'Retry-After': '86400', // Retry tomorrow
+        'X-Fallback-URL': githubPagesUrl,
+      },
     }
-  });
+  );
 }
 
 async function handleApiRequest(request, env, pathname, corsHeaders) {
   const method = request.method;
-  
+
   // Product API endpoints
   if (pathname === '/api/products') {
     return await handleProducts(request, env, corsHeaders);
   }
-  
+
   if (pathname === '/api/products/featured') {
     return await handleFeaturedProducts(request, env, corsHeaders);
   }
-  
+
   if (pathname.startsWith('/api/products/')) {
     const productId = pathname.split('/')[3];
     return await handleSingleProduct(request, env, productId, corsHeaders);
   }
-  
+
   // Cart API endpoints
   if (pathname === '/api/cart') {
     return await handleCart(request, env, corsHeaders);
   }
-  
+
   // Search API
   if (pathname === '/api/search') {
     return await handleSearch(request, env, corsHeaders);
   }
-  
+
   return new Response(JSON.stringify({ error: 'API endpoint not found' }), {
     status: 404,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });
 }
 
@@ -147,7 +158,9 @@ async function handleProducts(request, env, corsHeaders) {
   let products = null;
 
   if (env.ETSY_PRODUCTS) {
-    const etsyProducts = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
+    const etsyProducts = await env.ETSY_PRODUCTS.get('products', {
+      type: 'json',
+    });
     if (etsyProducts && etsyProducts.length > 0) {
       console.log(`Using ${etsyProducts.length} synced Etsy products`);
       products = etsyProducts;
@@ -156,276 +169,313 @@ async function handleProducts(request, env, corsHeaders) {
 
   // Fallback to PRODUCTS_KV or default products
   if (!products) {
-    products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [
-    {
-      id: 1,
-      name: "Wire Wrapped Crystal Pendant",
-      price: "45.00",
-      category: "Pendants",
-      imageUrl: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400",
-      description: "Handcrafted wire-wrapped crystal pendant with healing properties",
-      inStock: true,
-      featured: true
-    },
-    {
-      id: 2,
-      name: "Amethyst Healing Bracelet",
-      price: "32.00",
-      category: "Bracelets", 
-      imageUrl: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400",
-      description: "Beautiful amethyst bracelet for spiritual healing and protection",
-      inStock: true,
-      featured: true
-    },
-    {
-      id: 3,
-      name: "Rose Quartz Heart Necklace",
-      price: "58.00",
-      category: "Necklaces",
-      imageUrl: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400",
-      description: "Elegant rose quartz heart pendant for love and compassion",
-      inStock: true,
-      featured: false
-    }
-  ];
-  
-  return new Response(JSON.stringify(products), {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
-
-async function handleFeaturedProducts(request, env, corsHeaders) {
-  // Try Etsy sync first
-  let products = null;
-
-  if (env.ETSY_PRODUCTS) {
-    products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
-  }
-
-  // Fallback to PRODUCTS_KV
-  if (!products) {
-    products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
-  }
-
-  const featured = products.filter(p => p.isFeatured || p.featured);
-  
-  return new Response(JSON.stringify(featured), {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
-
-async function handleSingleProduct(request, env, productId, corsHeaders) {
-  // Try Etsy sync first
-  let products = null;
-
-  if (env.ETSY_PRODUCTS) {
-    products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
-  }
-
-  // Fallback to PRODUCTS_KV
-  if (!products) {
-    products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
-  }
-  const product = products.find(p => p.id === parseInt(productId));
-  
-  if (!product) {
-    return new Response(JSON.stringify({ error: 'Product not found' }), {
-      status: 404,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-    });
-  }
-  
-  return new Response(JSON.stringify(product), {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
-
-async function handleCart(request, env, corsHeaders) {
-  const method = request.method;
-  const sessionId = request.headers.get('x-session-id') || 'anonymous';
-  
-  if (method === 'GET') {
-    const cart = await env.CART_KV.get(`cart:${sessionId}`, { type: 'json' }) || [];
-    return new Response(JSON.stringify(cart), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-    });
-  }
-  
-  if (method === 'POST') {
-    const { productId, quantity } = await request.json();
-    const currentCart = await env.CART_KV.get(`cart:${sessionId}`, { type: 'json' }) || [];
-    
-    const existingItem = currentCart.find(item => item.productId === productId);
-    if (existingItem) {
-      existingItem.quantity += quantity;
-    } else {
-      currentCart.push({ productId, quantity });
-    }
-    
-    await env.CART_KV.put(`cart:${sessionId}`, JSON.stringify(currentCart), { expirationTtl: 86400 });
-    
-    return new Response(JSON.stringify({ success: true }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-    });
-  }
-  
-  return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-    status: 405,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
-
-async function handleSearch(request, env, corsHeaders) {
-  const url = new URL(request.url);
-  const query = url.searchParams.get('q');
-
-  if (!query) {
-    return new Response(JSON.stringify([]), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-    });
-  }
-
-  // Try Etsy sync first
-  let products = null;
-
-  if (env.ETSY_PRODUCTS) {
-    products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
-  }
-
-  // Fallback to PRODUCTS_KV
-  if (!products) {
-    products = await env.PRODUCTS_KV.get('products', { type: 'json' }) || [];
-  }
-  const results = products.filter(product => 
-    product.name.toLowerCase().includes(query.toLowerCase()) ||
-    product.description.toLowerCase().includes(query.toLowerCase()) ||
-    product.category.toLowerCase().includes(query.toLowerCase())
-  );
-  
-  return new Response(JSON.stringify(results), {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
-
-async function handleAIRequest(request, env, pathname, corsHeaders) {
-  if (pathname === '/ai/recommendations') {
-    return await handleAIRecommendations(request, env, corsHeaders);
-  }
-  
-  if (pathname === '/ai/market-analysis') {
-    return await handleMarketAnalysis(request, env, corsHeaders);
-  }
-  
-  return new Response(JSON.stringify({ error: 'AI endpoint not found' }), {
-    status: 404,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
-
-async function handleAIRecommendations(request, env, corsHeaders) {
-  // AI-powered product recommendations
-  const { productId, userId } = await request.json();
-
-  // Use Anthropic API for intelligent recommendations
-  if (env.ANTHROPIC_API_KEY) {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
+    products = (await env.PRODUCTS_KV.get('products', { type: 'json' })) || [
+      {
+        id: 1,
+        name: 'Wire Wrapped Crystal Pendant',
+        price: '45.00',
+        category: 'Pendants',
+        imageUrl:
+          'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400',
+        description:
+          'Handcrafted wire-wrapped crystal pendant with healing properties',
+        inStock: true,
+        featured: true,
       },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{
-          role: 'user',
-          content: `As a Canadian crystal jewellery expert, recommend 3 complementary products for someone viewing product ${productId}. Focus on design aesthetics, materials harmony, and luxury brand positioning. Return JSON array with product IDs and reasons.`
-        }]
-      })
-    });
+      {
+        id: 2,
+        name: 'Amethyst Healing Bracelet',
+        price: '32.00',
+        category: 'Bracelets',
+        imageUrl:
+          'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400',
+        description:
+          'Beautiful amethyst bracelet for spiritual healing and protection',
+        inStock: true,
+        featured: true,
+      },
+      {
+        id: 3,
+        name: 'Rose Quartz Heart Necklace',
+        price: '58.00',
+        category: 'Necklaces',
+        imageUrl:
+          'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400',
+        description:
+          'Elegant rose quartz heart pendant for love and compassion',
+        inStock: true,
+        featured: false,
+      },
+    ];
 
-    if (response.ok) {
-      const aiResponse = await response.json();
-      return new Response(aiResponse.content[0].text, {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    return new Response(JSON.stringify(products), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+
+  async function handleFeaturedProducts(request, env, corsHeaders) {
+    // Try Etsy sync first
+    let products = null;
+
+    if (env.ETSY_PRODUCTS) {
+      products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
+    }
+
+    // Fallback to PRODUCTS_KV
+    if (!products) {
+      products =
+        (await env.PRODUCTS_KV.get('products', { type: 'json' })) || [];
+    }
+
+    const featured = products.filter(p => p.isFeatured || p.featured);
+
+    return new Response(JSON.stringify(featured), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+
+  async function handleSingleProduct(request, env, productId, corsHeaders) {
+    // Try Etsy sync first
+    let products = null;
+
+    if (env.ETSY_PRODUCTS) {
+      products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
+    }
+
+    // Fallback to PRODUCTS_KV
+    if (!products) {
+      products =
+        (await env.PRODUCTS_KV.get('products', { type: 'json' })) || [];
+    }
+    const product = products.find(p => p.id === parseInt(productId));
+
+    if (!product) {
+      return new Response(JSON.stringify({ error: 'Product not found' }), {
+        status: 404,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
-  }
-  
-  // Fallback recommendations based on product categories and design aesthetics
-  const recommendations = [
-    { productId: 2, reason: "Complementary gold tones and elegant styling" },
-    { productId: 3, reason: "Beautiful color harmony with rose gold wire wrapping" }
-  ];
-  
-  return new Response(JSON.stringify(recommendations), {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
 
-async function handleMarketAnalysis(request, env, corsHeaders) {
-  // Real-time market analysis using AI and authentic Canadian market data
-  const trends = {
-    popularCategories: ["Crystal Necklaces", "Gemstone Necklaces", "Wire Wrapped Jewellery"],
-    seasonalTrends: "Spring collection showing increased demand for rose quartz and green aventurine",
-    priceInsights: "Premium handcrafted pieces commanding 15-20% higher prices in Canadian market",
-    customerPreferences: "Canadian customers prefer authentic, ethically-sourced crystals with verified origins"
-  };
-  
-  return new Response(JSON.stringify(trends), {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
-
-async function handleAnalytics(request, env, pathname, corsHeaders) {
-  if (pathname === '/analytics/track') {
-    const { event, data } = await request.json();
-    
-    // Store analytics data in KV with proper data integrity
-    const timestamp = new Date().toISOString();
-    const analyticsKey = `analytics:${timestamp}:${crypto.randomUUID()}`;
-    
-    await env.ANALYTICS_KV.put(analyticsKey, JSON.stringify({
-      event,
-      data,
-      timestamp,
-      userAgent: request.headers.get('user-agent'),
-      ip: request.headers.get('cf-connecting-ip'),
-      country: request.cf?.country || 'Unknown'
-    }), { expirationTtl: 2592000 }); // 30 days
-    
-    return new Response(JSON.stringify({ success: true }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    return new Response(JSON.stringify(product), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   }
-  
-  return new Response(JSON.stringify({ error: 'Analytics endpoint not found' }), {
-    status: 404,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-  });
-}
 
-async function handleStaticFallback(request, env) {
-  // Fallback to GitHub Pages for static content
-  const githubPagesUrl = env.GITHUB_PAGES_URL || 'https://reverb256.github.io/trovesandcoves';
-  const fallbackUrl = githubPagesUrl + request.url.pathname;
-  
-  try {
-    const response = await fetch(fallbackUrl, {
-      method: request.method,
-      headers: request.headers,
-      body: request.body
+  async function handleCart(request, env, corsHeaders) {
+    const method = request.method;
+    const sessionId = request.headers.get('x-session-id') || 'anonymous';
+
+    if (method === 'GET') {
+      const cart =
+        (await env.CART_KV.get(`cart:${sessionId}`, { type: 'json' })) || [];
+      return new Response(JSON.stringify(cart), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (method === 'POST') {
+      const { productId, quantity } = await request.json();
+      const currentCart =
+        (await env.CART_KV.get(`cart:${sessionId}`, { type: 'json' })) || [];
+
+      const existingItem = currentCart.find(
+        item => item.productId === productId
+      );
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        currentCart.push({ productId, quantity });
+      }
+
+      await env.CART_KV.put(`cart:${sessionId}`, JSON.stringify(currentCart), {
+        expirationTtl: 86400,
+      });
+
+      return new Response(JSON.stringify({ success: true }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
-    
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: response.headers
+  }
+
+  async function handleSearch(request, env, corsHeaders) {
+    const url = new URL(request.url);
+    const query = url.searchParams.get('q');
+
+    if (!query) {
+      return new Response(JSON.stringify([]), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Try Etsy sync first
+    let products = null;
+
+    if (env.ETSY_PRODUCTS) {
+      products = await env.ETSY_PRODUCTS.get('products', { type: 'json' });
+    }
+
+    // Fallback to PRODUCTS_KV
+    if (!products) {
+      products =
+        (await env.PRODUCTS_KV.get('products', { type: 'json' })) || [];
+    }
+    const results = products.filter(
+      product =>
+        product.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.description.toLowerCase().includes(query.toLowerCase()) ||
+        product.category.toLowerCase().includes(query.toLowerCase())
+    );
+
+    return new Response(JSON.stringify(results), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
-  } catch (error) {
-    // Return authentic brand-consistent maintenance page
-    return new Response(`
+  }
+
+  async function handleAIRequest(request, env, pathname, corsHeaders) {
+    if (pathname === '/ai/recommendations') {
+      return await handleAIRecommendations(request, env, corsHeaders);
+    }
+
+    if (pathname === '/ai/market-analysis') {
+      return await handleMarketAnalysis(request, env, corsHeaders);
+    }
+
+    return new Response(JSON.stringify({ error: 'AI endpoint not found' }), {
+      status: 404,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+
+  async function handleAIRecommendations(request, env, corsHeaders) {
+    // AI-powered product recommendations
+    const { productId, userId } = await request.json();
+
+    // Use Anthropic API for intelligent recommendations
+    if (env.ANTHROPIC_API_KEY) {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': env.ANTHROPIC_API_KEY,
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          messages: [
+            {
+              role: 'user',
+              content: `As a Canadian crystal jewellery expert, recommend 3 complementary products for someone viewing product ${productId}. Focus on design aesthetics, materials harmony, and luxury brand positioning. Return JSON array with product IDs and reasons.`,
+            },
+          ],
+        }),
+      });
+
+      if (response.ok) {
+        const aiResponse = await response.json();
+        return new Response(aiResponse.content[0].text, {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+    }
+
+    // Fallback recommendations based on product categories and design aesthetics
+    const recommendations = [
+      { productId: 2, reason: 'Complementary gold tones and elegant styling' },
+      {
+        productId: 3,
+        reason: 'Beautiful color harmony with rose gold wire wrapping',
+      },
+    ];
+
+    return new Response(JSON.stringify(recommendations), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+
+  async function handleMarketAnalysis(request, env, corsHeaders) {
+    // Real-time market analysis using AI and authentic Canadian market data
+    const trends = {
+      popularCategories: [
+        'Crystal Necklaces',
+        'Gemstone Necklaces',
+        'Wire Wrapped Jewellery',
+      ],
+      seasonalTrends:
+        'Spring collection showing increased demand for rose quartz and green aventurine',
+      priceInsights:
+        'Premium handcrafted pieces commanding 15-20% higher prices in Canadian market',
+      customerPreferences:
+        'Canadian customers prefer authentic, ethically-sourced crystals with verified origins',
+    };
+
+    return new Response(JSON.stringify(trends), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+
+  async function handleAnalytics(request, env, pathname, corsHeaders) {
+    if (pathname === '/analytics/track') {
+      const { event, data } = await request.json();
+
+      // Store analytics data in KV with proper data integrity
+      const timestamp = new Date().toISOString();
+      const analyticsKey = `analytics:${timestamp}:${crypto.randomUUID()}`;
+
+      await env.ANALYTICS_KV.put(
+        analyticsKey,
+        JSON.stringify({
+          event,
+          data,
+          timestamp,
+          userAgent: request.headers.get('user-agent'),
+          ip: request.headers.get('cf-connecting-ip'),
+          country: request.cf?.country || 'Unknown',
+        }),
+        { expirationTtl: 2592000 }
+      ); // 30 days
+
+      return new Response(JSON.stringify({ success: true }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    return new Response(
+      JSON.stringify({ error: 'Analytics endpoint not found' }),
+      {
+        status: 404,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      }
+    );
+  }
+
+  async function handleStaticFallback(request, env) {
+    // Fallback to GitHub Pages for static content
+    const githubPagesUrl =
+      env.GITHUB_PAGES_URL || 'https://reverb256.github.io/trovesandcoves';
+    const fallbackUrl = githubPagesUrl + request.url.pathname;
+
+    try {
+      const response = await fetch(fallbackUrl, {
+        method: request.method,
+        headers: request.headers,
+        body: request.body,
+      });
+
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: response.headers,
+      });
+    } catch (error) {
+      // Return authentic brand-consistent maintenance page
+      return new Response(
+        `
       <!DOCTYPE html>
       <html lang="en">
         <head>
@@ -483,10 +533,12 @@ async function handleStaticFallback(request, env) {
           </div>
         </body>
       </html>
-    `, {
-      status: 503,
-      headers: { 'Content-Type': 'text/html; charset=utf-8' }
-    });
+    `,
+        {
+          status: 503,
+          headers: { 'Content-Type': 'text/html; charset=utf-8' },
+        }
+      );
+    }
   }
-}
 }

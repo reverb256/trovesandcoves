@@ -898,99 +898,49 @@
         "width=device-width, initial-scale=1.0, maximum-scale=1",
         "width=device-width, initial-scale=1.0"
       ],
-      "theme-color": [
-        "#2dd4bf",
-        "#D4AF37"
-      ],
+      "theme-color": ["#2dd4bf", "#D4AF37"],
       "keywords": [
         "crystal jewelry Winnipeg, healing crystals Manitoba, spiritual talismans, wire wrapped pendants, metaphysical jewelry, sacred gemstones",
         "crystal jewelry, gemstone healing, wire-wrapped pendants, crystal wisdom, artisan jewelry, Winnipeg, spiritual jewelry, healing crystals"
       ],
-      "og:image": [
-        "/favicon.svg",
-        "https://trovesandcoves.ca/og-image.jpg"
-      ],
+      "og:image": ["/favicon.svg", "https://trovesandcoves.ca/og-image.jpg"],
       "description": [
         "Where authentic gemstone energies merge with artisan craftsmanship. Discover handcrafted crystal jewelry, wire-wrapped pendants, and healing talismans. Each piece channels crystal wisdom to amplify your inner light."
       ],
-      "author": [
-        "Troves & Coves"
-      ],
-      "robots": [
-        "index, follow"
-      ],
+      "author": ["Troves & Coves"],
+      "robots": ["index, follow"],
       "og:title": [
         "Troves & Coves - Mystical Crystal Jewelry | Authentic Gemstone Healing Talismans"
       ],
       "og:description": [
         "Where authentic gemstone energies merge with artisan craftsmanship. Discover handcrafted crystal jewelry, wire-wrapped pendants, and healing talismans. Each piece channels crystal wisdom to amplify your inner light."
       ],
-      "og:image:width": [
-        "1200"
-      ],
-      "og:image:height": [
-        "630"
-      ],
-      "og:image:alt": [
-        "Troves & Coves Crystal Jewelry"
-      ],
-      "og:url": [
-        "https://trovesandcoves.ca"
-      ],
-      "og:type": [
-        "website"
-      ],
-      "og:site_name": [
-        "Troves & Coves"
-      ],
-      "og:locale": [
-        "en_CA"
-      ],
-      "og:brand": [
-        "Troves & Coves"
-      ],
-      "twitter:card": [
-        "summary_large_image"
-      ],
+      "og:image:width": ["1200"],
+      "og:image:height": ["630"],
+      "og:image:alt": ["Troves & Coves Crystal Jewelry"],
+      "og:url": ["https://trovesandcoves.ca"],
+      "og:type": ["website"],
+      "og:site_name": ["Troves & Coves"],
+      "og:locale": ["en_CA"],
+      "og:brand": ["Troves & Coves"],
+      "twitter:card": ["summary_large_image"],
       "twitter:title": [
         "Troves & Coves - Mystical Crystal Jewelry | Authentic Gemstone Healing Talismans"
       ],
       "twitter:description": [
         "Where authentic gemstone energies merge with artisan craftsmanship. Discover handcrafted crystal jewelry, wire-wrapped pendants, and healing talismans. Each piece channels crystal wisdom to amplify your inner light."
       ],
-      "twitter:image": [
-        "/og-image.jpg"
-      ],
-      "geo.region": [
-        "CA-MB"
-      ],
-      "geo.placename": [
-        "Winnipeg"
-      ],
-      "geo.position": [
-        "49.8951;-97.1384"
-      ],
-      "ICBM": [
-        "49.8951, -97.1384"
-      ],
-      "business:contact_data:locality": [
-        "Winnipeg"
-      ],
-      "business:contact_data:region": [
-        "Manitoba"
-      ],
-      "business:contact_data:country_name": [
-        "Canada"
-      ],
-      "msapplication-TileColor": [
-        "#000000"
-      ],
-      "apple-mobile-web-app-capable": [
-        "yes"
-      ],
-      "apple-mobile-web-app-status-bar-style": [
-        "black-translucent"
-      ]
+      "twitter:image": ["/og-image.jpg"],
+      "geo.region": ["CA-MB"],
+      "geo.placename": ["Winnipeg"],
+      "geo.position": ["49.8951;-97.1384"],
+      "ICBM": ["49.8951, -97.1384"],
+      "business:contact_data:locality": ["Winnipeg"],
+      "business:contact_data:region": ["Manitoba"],
+      "business:contact_data:country_name": ["Canada"],
+      "msapplication-TileColor": ["#000000"],
+      "apple-mobile-web-app-capable": ["yes"],
+      "apple-mobile-web-app-status-bar-style": ["black-translucent"]
     },
     "descriptions": [
       "Where authentic gemstone energies merge with artisan craftsmanship. Discover handcrafted crystal jewelry, wire-wrapped pendants, and healing talismans. Each piece channels crystal wisdom to amplify your inner light."

@@ -40,13 +40,14 @@ This is a **production e-commerce showcase** for Troves & Coves, a Winnipeg-base
 
 ### Branch Strategy
 
-| Branch | Purpose | Protection | Deployment |
-|--------|---------|------------|------------|
-| `feat/*` | Feature development | None | No |
-| `main` | Integration branch | None | No |
-| `prod` | Production source | **Protected** | **Yes** (GitHub Pages) |
+| Branch   | Purpose             | Protection    | Deployment             |
+| -------- | ------------------- | ------------- | ---------------------- |
+| `feat/*` | Feature development | None          | No                     |
+| `main`   | Integration branch  | None          | No                     |
+| `prod`   | Production source   | **Protected** | **Yes** (GitHub Pages) |
 
 **Workflow Rules:**
+
 1. Create feature branches from `main`: `git checkout -b feat/thing main`
 2. Develop and test locally
 3. Push to `main` when ready: `git checkout main && git merge feat/thing`
@@ -54,6 +55,7 @@ This is a **production e-commerce showcase** for Troves & Coves, a Winnipeg-base
 5. **For production:** Cherry-pick commits to `prod` (protected branch)
 
 **Why cherry-pick?** The `prod` branch is protected with:
+
 - ❌ No merge commits
 - ❌ No force-push
 - ✅ Only fast-forward or cherry-pick
@@ -143,27 +145,29 @@ npm run preview
 ### Deployment
 
 **Automatic:**
+
 1. Push to `prod` branch → triggers GitHub Actions
 2. Build runs: `npm run build`
 3. Output uploaded to GitHub Pages
 4. Live at https://trovesandcoves.ca
 
 **Manual cache purge:**
+
 ```bash
 gh workflow run purge-cache.yml
 ```
 
 ### Key Architectural Decisions
 
-| Decision | Rationale |
-|----------|-----------|
-| **Static React over SSR** | Simple hosting (GitHub Pages), fast edge caching, no server costs |
-| **Wouter over React Router** | Smaller bundle, hooks-based API, sufficient for simple routing |
-| **Zustand over Redux** | Minimal boilerplate, great for simple cart state |
-| **shadcn/ui** | Copy-paste components, full control over styling, no npm bloat |
+| Decision                      | Rationale                                                            |
+| ----------------------------- | -------------------------------------------------------------------- |
+| **Static React over SSR**     | Simple hosting (GitHub Pages), fast edge caching, no server costs    |
+| **Wouter over React Router**  | Smaller bundle, hooks-based API, sufficient for simple routing       |
+| **Zustand over Redux**        | Minimal boilerplate, great for simple cart state                     |
+| **shadcn/ui**                 | Copy-paste components, full control over styling, no npm bloat       |
 | **CSS Variables for theming** | Runtime theme switching without rebuild, system preference detection |
-| **Client-side cart only** | Checkout through Etsy — no payment processing, no backend needed |
-| **VitePWA** | Simple PWA setup, automatic service worker generation |
+| **Client-side cart only**     | Checkout through Etsy — no payment processing, no backend needed     |
+| **VitePWA**                   | Simple PWA setup, automatic service worker generation                |
 
 ### Accountability Structure
 
@@ -205,6 +209,7 @@ Examples:
 **Breaking the Production Site:**
 
 If you break production:
+
 1. **Immediately** revert the offending commit
 2. **Document** what went wrong
 3. **Fix** on a feature branch
@@ -222,21 +227,22 @@ Modify `client/src/lib/theme.tsx` for theme variables, or component-specific CSS
 Edit `client/src/components/SEOHead.tsx` for meta tags, `scripts/generate-sitemap.ts` for sitemap.
 
 **Add a new page:**
+
 1. Create component in `client/src/pages/`
 2. Add route in `client/src/App.tsx`
 
 ### Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Build fails on prod | Check `scripts/` directory — required: `postbuild-copy.cjs`, `generate-sitemap.ts` |
-| Changes not visible | Purge cache: `gh workflow run purge-cache.yml` |
-| Route returns 404 | Check `404.html` exists in build output (created by `postbuild-copy.cjs`) |
-| Theme not persisting | Check localStorage is enabled in browser |
-| Images not loading | Verify paths are in `client/public/` and referenced correctly |
-| Dark mode glow missing | Check CSS utilities loaded in `client/src/index.css` (premium product experience) |
-| Crystal properties not showing | Verify product has `gemstones` field with valid stone names |
-| Benefits section not visible | Check `benefits-section` CSS class is applied |
+| Issue                          | Solution                                                                           |
+| ------------------------------ | ---------------------------------------------------------------------------------- |
+| Build fails on prod            | Check `scripts/` directory — required: `postbuild-copy.cjs`, `generate-sitemap.ts` |
+| Changes not visible            | Purge cache: `gh workflow run purge-cache.yml`                                     |
+| Route returns 404              | Check `404.html` exists in build output (created by `postbuild-copy.cjs`)          |
+| Theme not persisting           | Check localStorage is enabled in browser                                           |
+| Images not loading             | Verify paths are in `client/public/` and referenced correctly                      |
+| Dark mode glow missing         | Check CSS utilities loaded in `client/src/index.css` (premium product experience)  |
+| Crystal properties not showing | Verify product has `gemstones` field with valid stone names                        |
+| Benefits section not visible   | Check `benefits-section` CSS class is applied                                      |
 
 ### Premium Product Experience
 
@@ -267,6 +273,7 @@ See `docs/premium-product-experience.md` for detailed documentation.
 ### About Troves & Coves
 
 Every piece is:
+
 - **Handmade** with attention to detail
 - **Crafted in Canada** (Winnipeg, Manitoba)
 - **Made with authentic crystals** — ethically sourced

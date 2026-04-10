@@ -1,4 +1,9 @@
-import { API_URL, FRONTEND_URL, API_TIMEOUT_MS, API_RETRY_ATTEMPTS } from '@shared/config';
+import {
+  API_URL,
+  FRONTEND_URL,
+  API_TIMEOUT_MS,
+  API_RETRY_ATTEMPTS,
+} from '@shared/config';
 
 const API_BASE_URL = API_URL;
 
@@ -82,9 +87,10 @@ export async function apiFetch(
 
         try {
           const errorData = await response.json();
-          errorMessage = (errorData as { error?: string; message?: string }).error ||
-                        (errorData as { error?: string; message?: string }).message ||
-                        errorMessage;
+          errorMessage =
+            (errorData as { error?: string; message?: string }).error ||
+            (errorData as { error?: string; message?: string }).message ||
+            errorMessage;
 
           // Set error code based on status
           if (response.status === 401) errorCode = 'UNAUTHORIZED';
@@ -100,7 +106,6 @@ export async function apiFetch(
 
       const data = await response.json();
       return data;
-
     } catch (error) {
       lastError = error;
 
@@ -114,7 +119,11 @@ export async function apiFetch(
         throw error;
       }
 
-      if (attempt < retries && error instanceof Error && error.name !== 'AbortError') {
+      if (
+        attempt < retries &&
+        error instanceof Error &&
+        error.name !== 'AbortError'
+      ) {
         const delay = Math.min(1000 * Math.pow(2, attempt), 5000);
         await new Promise(resolve => setTimeout(resolve, delay));
       }
@@ -124,7 +133,11 @@ export async function apiFetch(
   // Handle timeout or other errors
   if (lastError instanceof Error) {
     if (lastError.name === 'AbortError') {
-      throw new ApiError('Request timeout. Please check your connection and try again.', undefined, 'TIMEOUT');
+      throw new ApiError(
+        'Request timeout. Please check your connection and try again.',
+        undefined,
+        'TIMEOUT'
+      );
     }
     throw new ApiError(lastError.message, undefined, 'NETWORK_ERROR');
   }
@@ -133,7 +146,8 @@ export async function apiFetch(
 }
 
 export const productsApi = {
-  getAll: (category?: string) => apiFetch(category ? `/api/products?category=${category}` : '/api/products'),
+  getAll: (category?: string) =>
+    apiFetch(category ? `/api/products?category=${category}` : '/api/products'),
   getFeatured: () => apiFetch('/api/products/featured'),
   getById: (id: number) => apiFetch(`/api/products?id=${id}`),
 };

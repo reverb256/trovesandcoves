@@ -21,11 +21,13 @@ trovesandcoves.ca
 ```
 
 Or use the subdomain:
+
 ```
 www.trovesandcoves.ca
 ```
 
 Commit and push this file:
+
 ```bash
 git add CNAME
 git commit -m "Add custom domain CNAME"
@@ -46,6 +48,7 @@ git push origin main
 2. **Add DNS Records**
 
    **Root Domain (@):**
+
    ```
    Type: CNAME
    Name: @
@@ -55,6 +58,7 @@ git push origin main
    ```
 
    **WWW Subdomain:**
+
    ```
    Type: CNAME
    Name: www
@@ -98,6 +102,7 @@ Add the same CNAME records at your provider (without proxy).
 ### Force HTTPS
 
 Create a page rule in Cloudflare:
+
 ```
 Rule: *trovesandcoves.ca/*
 Setting: Always Use HTTPS
@@ -106,6 +111,7 @@ Setting: Always Use HTTPS
 ### WWW Redirect
 
 Redirect www to non-www:
+
 ```
 Rule: www.trovesandcoves.ca/*
 Setting: Forwarding URL (301)
@@ -187,20 +193,21 @@ Both should return `200` or `301` redirect.
 
 ## Cloudflare vs. Direct DNS
 
-| Feature | Cloudflare | Direct DNS |
-|---------|-----------|------------|
-| CDN | ✅ Yes | ❌ No |
-| SSL | ✅ Free | ✅ GitHub provides |
-| DDoS Protection | ✅ Yes | ❌ No |
-| Caching | ✅ Yes | ❌ No |
-| Page Rules | ✅ Yes | ❌ No |
-| Setup | More complex | Simpler |
+| Feature         | Cloudflare   | Direct DNS         |
+| --------------- | ------------ | ------------------ |
+| CDN             | ✅ Yes       | ❌ No              |
+| SSL             | ✅ Free      | ✅ GitHub provides |
+| DDoS Protection | ✅ Yes       | ❌ No              |
+| Caching         | ✅ Yes       | ❌ No              |
+| Page Rules      | ✅ Yes       | ❌ No              |
+| Setup           | More complex | Simpler            |
 
 ---
 
 ## Final URLs
 
 After configuration:
+
 - **Main Site**: https://trovesandcoves.ca
 - **GitHub Pages**: https://reverb256.github.io/trovesandcoves (redirects to custom domain)
 - **API (dev)**: http://localhost:5000 (local only)

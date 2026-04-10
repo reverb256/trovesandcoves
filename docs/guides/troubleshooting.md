@@ -11,6 +11,7 @@
 **Problem**: GitHub Actions workflow fails to deploy
 
 **Symptoms:**
+
 - Red X on commits in GitHub
 - Deployment workflow shows errors
 - Site not updating after push
@@ -18,6 +19,7 @@
 **Solutions:**
 
 1. **Check Build Locally:**
+
 ```bash
 npm run build
 ```
@@ -28,11 +30,13 @@ npm run build
    - Expand failed steps to see errors
 
 3. **Check Node Version:**
+
 ```bash
 node --version  # Should be 18+ or 20
 ```
 
 4. **Clean Install:**
+
 ```bash
 rm -rf node_modules package-lock.json
 npm install
@@ -43,6 +47,7 @@ npm install
 **Problem**: GitHub Pages site shows 404 or doesn't load
 
 **Symptoms:**
+
 - 404 error on GitHub Pages URL
 - Old version still showing
 - CSS/JS not loading
@@ -67,6 +72,7 @@ npm install
 **Problem**: Custom domain shows errors or doesn't load
 
 **Symptoms:**
+
 - DNS_PROBE_FINISHED_NXDOMAIN
 - "Server not found" error
 - SSL certificate error
@@ -74,6 +80,7 @@ npm install
 **Solutions:**
 
 1. **Verify DNS Records:**
+
 ```bash
 dig yourdomain.com
 dig www.yourdomain.com
@@ -99,6 +106,7 @@ dig www.yourdomain.com
 **Problem**: `npm run dev` fails to start
 
 **Symptoms:**
+
 - Port already in use errors
 - Module not found errors
 - TypeScript compilation errors
@@ -106,6 +114,7 @@ dig www.yourdomain.com
 **Solutions:**
 
 1. **Port Conflict:**
+
 ```bash
 # Find and kill process on port 5000
 lsof -ti:5000 | xargs kill -9
@@ -114,18 +123,21 @@ lsof -ti:5000 | xargs kill -9
 ```
 
 2. **Clean Install:**
+
 ```bash
 rm -rf node_modules package-lock.json
 npm install
 ```
 
 3. **Check Node Version:**
+
 ```bash
 node --version  # Should be 18+ or 20
 npm --version
 ```
 
 4. **Environment Variables:**
+
 ```bash
 # Create .env file if missing
 cp .env.example .env
@@ -136,6 +148,7 @@ cp .env.example .env
 **Problem**: TypeScript compilation fails
 
 **Symptoms:**
+
 - Red underlines in IDE
 - Build fails with type errors
 - `npm run check` shows errors
@@ -143,6 +156,7 @@ cp .env.example .env
 **Solutions:**
 
 1. **Update Dependencies:**
+
 ```bash
 npm update
 ```
@@ -151,6 +165,7 @@ npm update
    - VS Code: Ctrl+Shift+P → "TypeScript: Restart TS Server"
 
 3. **Clear TypeScript Cache:**
+
 ```bash
 rm -rf .tsbuildinfo
 ```
@@ -169,6 +184,7 @@ rm -rf .tsbuildinfo
 **Problem**: Site has long loading times
 
 **Symptoms:**
+
 - Long initial load
 - Images not loading
 - Poor Lighthouse scores
@@ -176,6 +192,7 @@ rm -rf .tsbuildinfo
 **Solutions:**
 
 1. **Bundle Analysis:**
+
 ```bash
 npm run build:analyze
 # Opens stats.html with bundle visualization
@@ -200,6 +217,7 @@ npm run build:analyze
 **Problem**: Shopping cart loses items
 
 **Symptoms:**
+
 - Cart empties on page refresh
 - Items not saving
 - Session errors
@@ -228,6 +246,7 @@ npm run build:analyze
 **Problem**: `npm run build` fails
 
 **Symptoms:**
+
 - Build stops with errors
 - Output files not created
 - Vite errors
@@ -239,18 +258,21 @@ npm run build:analyze
    - Fix specific errors mentioned
 
 2. **Clean Build:**
+
 ```bash
 rm -rf dist
 npm run build
 ```
 
 3. **Check Disk Space:**
+
 ```bash
 df -h
 # Ensure sufficient disk space
 ```
 
 4. **Update Dependencies:**
+
 ```bash
 npm update
 npm run build
@@ -263,6 +285,7 @@ npm run build
 **Solutions:**
 
 1. **Regenerate Sitemap:**
+
 ```bash
 npm run generate-sitemap
 ```
@@ -272,6 +295,7 @@ npm run generate-sitemap
    - Check for errors in the script
 
 3. **Verify Build:**
+
 ```bash
 npm run build
 # Sitemap is generated as part of build
@@ -286,6 +310,7 @@ npm run build
 **Problem**: Site works in some browsers but not others
 
 **Symptoms:**
+
 - JavaScript errors
 - Styling issues
 - Features not working
@@ -313,6 +338,7 @@ npm run build
 **Problem**: Site doesn't display correctly on mobile
 
 **Symptoms:**
+
 - Layout broken on mobile
 - Touch interactions not working
 - Text too small/large
@@ -350,12 +376,14 @@ When creating an issue, include:
 ## Bug Report
 
 **Environment:**
+
 - Browser: [Chrome 120, Firefox 115, etc.]
 - OS: [Windows 11, macOS 14, Ubuntu 22.04]
 - Node.js: [20.10.0]
 - npm: [10.2.4]
 
 **Steps to Reproduce:**
+
 1. Go to...
 2. Click on...
 3. See error...
@@ -371,7 +399,9 @@ If applicable
 
 **Console Errors:**
 ```
+
 Paste any error messages from browser console
+
 ```
 
 **Additional Context:**
@@ -398,12 +428,14 @@ npm run dev
 If nothing else works:
 
 1. **Revert Changes:**
+
 ```bash
 git log --oneline -5
 git revert HEAD
 ```
 
 2. **Fresh Clone:**
+
 ```bash
 cd ..
 git clone https://github.com/reverb256/trovesandcoves.git trovesandcoves-new

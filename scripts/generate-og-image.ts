@@ -17,7 +17,12 @@ async function generateOgImage({
   height = OG_HEIGHT,
   outputPath = 'client/public/og-image.jpg',
   baseUrl = 'http://localhost:5173',
-}: { width?: number; height?: number; outputPath?: string; baseUrl?: string } = {}) {
+}: {
+  width?: number;
+  height?: number;
+  outputPath?: string;
+  baseUrl?: string;
+} = {}) {
   const browser = await chromium.launch({
     headless: true,
   });
@@ -44,13 +49,20 @@ async function generateOgImage({
   });
 
   // Wait for React to hydrate and Hero to be visible
-  await page.waitForSelector('section[aria-label="Welcome"]', { timeout: 10000 });
+  await page.waitForSelector('section[aria-label="Welcome"]', {
+    timeout: 10000,
+  });
 
   // Wait for theme to be applied
-  await page.waitForFunction(() => {
-    const html = document.documentElement;
-    return html.classList.contains('light') || html.classList.contains('dark');
-  }, { timeout: 5000 });
+  await page.waitForFunction(
+    () => {
+      const html = document.documentElement;
+      return (
+        html.classList.contains('light') || html.classList.contains('dark')
+      );
+    },
+    { timeout: 5000 }
+  );
 
   // Force light theme for consistent og:image
   await page.evaluate(() => {
@@ -77,7 +89,9 @@ async function generateOgImage({
     throw new Error('Could not get Hero bounding box!');
   }
 
-  console.log(`📐 Hero section size: ${Math.round(box.width)}x${Math.round(box.height)}`);
+  console.log(
+    `📐 Hero section size: ${Math.round(box.width)}x${Math.round(box.height)}`
+  );
 
   // Screenshot the Hero section (it will use the section's actual size)
   await hero.screenshot({

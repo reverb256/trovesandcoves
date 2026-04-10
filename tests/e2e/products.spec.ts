@@ -8,7 +8,9 @@ test.describe('Product Search and Filtering', () => {
   test('products page loads and displays products', async ({ page }) => {
     await expect(page.locator('h1')).toContainText(/Shop Jewelry|Collection/i);
     // Wait for products to load
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
   });
 
   test('search functionality works', async ({ page }) => {
@@ -56,7 +58,9 @@ test.describe('Product Search and Filtering', () => {
     await expect(sortSelect).toBeVisible();
   });
 
-  test('clear all filters button appears when filter is active', async ({ page }) => {
+  test('clear all filters button appears when filter is active', async ({
+    page,
+  }) => {
     // Enter a search query to create an active filter
     const searchInput = page.getByPlaceholder(/search crystals/i);
     await searchInput.fill('test');
@@ -67,7 +71,9 @@ test.describe('Product Search and Filtering', () => {
     await page.waitForTimeout(500);
 
     // Look for clear all button
-    const clearButton = page.getByRole('button', { name: /clear all filters/i });
+    const clearButton = page.getByRole('button', {
+      name: /clear all filters/i,
+    });
     await expect(clearButton).toBeVisible({ timeout: 5000 });
   });
 
@@ -82,7 +88,9 @@ test.describe('Product Search and Filtering', () => {
     await page.waitForTimeout(500);
 
     // Look for clear all button
-    const clearButton = page.getByRole('button', { name: /clear all filters/i });
+    const clearButton = page.getByRole('button', {
+      name: /clear all filters/i,
+    });
     await expect(clearButton).toBeVisible({ timeout: 5000 });
     await clearButton.click();
 
@@ -93,7 +101,9 @@ test.describe('Product Search and Filtering', () => {
 
   test('product cards are clickable', async ({ page }) => {
     // Wait for products to load
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
 
     // Click on first product
     const firstProduct = page.locator('[data-testid="product-card"]').first();
@@ -115,7 +125,9 @@ test.describe('Product Search and Filtering', () => {
   });
 
   test('results count is displayed', async ({ page }) => {
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
 
     // Look for results count (e.g., "9 Pieces") - use first() to avoid strict mode
     const resultsText = page.getByText(/Pieces/i).first();
@@ -127,7 +139,9 @@ test.describe('Product Detail Page', () => {
   test('product detail page loads correctly', async ({ page }) => {
     // Go to products page first
     await page.goto('/products');
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
 
     // Click on first product
     const firstProduct = page.locator('[data-testid="product-card"]').first();
@@ -139,7 +153,9 @@ test.describe('Product Detail Page', () => {
 
   test('purchase option is available', async ({ page }) => {
     await page.goto('/products');
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
 
     const firstProduct = page.locator('[data-testid="product-card"]').first();
     await firstProduct.click();
@@ -148,8 +164,8 @@ test.describe('Product Detail Page', () => {
     const addToCartButton = page.getByRole('button', { name: /add to cart/i });
     const etsyLink = page.getByRole('link', { name: /etsy|purchase|buy/i });
 
-    const hasAddToCart = await addToCartButton.count() > 0;
-    const hasEtsyLink = await etsyLink.count() > 0;
+    const hasAddToCart = (await addToCartButton.count()) > 0;
+    const hasEtsyLink = (await etsyLink.count()) > 0;
 
     // Should have at least one purchase option
     expect(hasAddToCart || hasEtsyLink).toBe(true);
@@ -157,7 +173,9 @@ test.describe('Product Detail Page', () => {
 
   test('product information is displayed', async ({ page }) => {
     await page.goto('/products');
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
 
     const firstProduct = page.locator('[data-testid="product-card"]').first();
     await firstProduct.click();
@@ -184,7 +202,7 @@ test.describe('404 Pages', () => {
 
     // Should have go home button or redirect
     const homeButton = page.getByRole('link', { name: /home|troves/i }).first();
-    if (await homeButton.count() > 0) {
+    if ((await homeButton.count()) > 0) {
       await expect(homeButton).toBeVisible();
     }
   });
@@ -193,8 +211,10 @@ test.describe('404 Pages', () => {
     await page.goto('/non-existent-page');
 
     // Should have browse products button
-    const browseButton = page.getByRole('link', { name: /products|collection/i }).first();
-    if (await browseButton.count() > 0) {
+    const browseButton = page
+      .getByRole('link', { name: /products|collection/i })
+      .first();
+    if ((await browseButton.count()) > 0) {
       await expect(browseButton).toBeVisible();
     }
   });

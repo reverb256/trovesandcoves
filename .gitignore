@@ -1,5 +1,12 @@
 node_modules
 dist
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# Direnv
+.direnv
 .DS_Store
 server/public
 vite.config.ts.*

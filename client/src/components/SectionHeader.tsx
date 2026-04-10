@@ -41,15 +41,23 @@ export default function SectionHeader({
     <div className={`mb-12 ${centered ? 'text-center' : ''} ${className}`}>
       <h2
         className="text-3xl md:text-4xl font-bold mb-6"
-        style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
+        style={{
+          fontFamily: '"Libre Baskerville", serif',
+          color: 'hsl(var(--text-primary))',
+        }}
       >
         {title}
       </h2>
-      {showDivider && <SectionDivider variant={dividerVariant} className="mb-8" />}
+      {showDivider && (
+        <SectionDivider variant={dividerVariant} className="mb-8" />
+      )}
       {description && (
         <p
           className="text-base md:text-lg max-w-3xl mx-auto"
-          style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
+          style={{
+            fontFamily: '"Montserrat", sans-serif',
+            color: 'hsl(var(--text-secondary))',
+          }}
         >
           {description}
         </p>

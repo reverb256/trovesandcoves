@@ -124,43 +124,53 @@ trovesandcoves/
 ## Key Files by Function
 
 ### Entry Points
+
 - `client/src/main.tsx` - React app entry
 - `server/index.ts` - Express server entry
 - `client/src/App.tsx` - Main routing and providers
 
 ### State Management
+
 - `client/src/lib/store.ts` - Cart state (Context)
 - `client/src/lib/queryClient.ts` - React Query setup
 - `server/storage.ts` - Product data storage
 
 ### API Layer
+
 - `client/src/apiClient.ts` - Frontend API client
 - `server/routes.ts` - Backend API routes
 - `shared/config.ts` - API configuration
 
 ### Design System
+
 - `shared/locked-design-language.ts` - Color tokens, CSS classes
 - `shared/brand-config.ts` - Brand configuration
 - `client/src/components/ui/` - shadcn/ui components
 
 ### Routing
+
 - `client/src/App.tsx` - Wouter routing setup
 - All routes use base path `/trovesandcoves` for GitHub Pages
 
 ## Important Patterns
 
 ### Storage Abstraction
+
 The `IStorage` interface in `server/storage.ts` defines the contract:
+
 - `MemStorage` - In-memory implementation (currently used)
 - `db-storage.ts` - Database implementation (exists but unused)
 
 ### Component Organization
+
 - `components/ui/` - Generic, reusable components (shadcn/ui)
 - `components/` - App-specific components
 - `pages/` - Route-level components
 
 ### Shared Code
+
 The `shared/` directory contains code used by both frontend and backend:
+
 - TypeScript types and interfaces
 - Configuration
 - Design tokens

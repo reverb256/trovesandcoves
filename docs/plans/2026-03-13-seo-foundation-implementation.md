@@ -13,6 +13,7 @@
 ## Task 1: Read and understand current SEOHead component
 
 **Files:**
+
 - Read: `client/src/components/SEOHead.tsx`
 - Read: `client/src/components/SchemaOrg.tsx` (for reference)
 
@@ -27,6 +28,7 @@ Expected: See current component with basic title/meta structure
 ## Task 2: Create page metadata configuration
 
 **Files:**
+
 - Create: `client/src/lib/pageMetadata.ts`
 
 **Step 1: Write the page metadata constants file**
@@ -43,64 +45,82 @@ export interface PageMetadata {
 
 export const pageMetadata: Record<string, PageMetadata> = {
   '/': {
-    title: 'Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces',
-    description: 'Discover handcrafted crystal jewelry with timeless elegance. Shop unique crystal necklaces & bracelets crafted in Winnipeg, Canada.',
-    keywords: 'crystal jewelry, handcrafted jewelry, Winnipeg, 14k gold-plated, wire wrapped',
+    title:
+      'Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces',
+    description:
+      'Discover handcrafted crystal jewelry with timeless elegance. Shop unique crystal necklaces & bracelets crafted in Winnipeg, Canada.',
+    keywords:
+      'crystal jewelry, handcrafted jewelry, Winnipeg, 14k gold-plated, wire wrapped',
   },
   '/products': {
-    title: 'Shop Crystal Jewelry | Handcrafted Necklaces & Bracelets | Troves & Coves',
-    description: 'Browse our collection of handcrafted crystal jewelry. Wire-wrapped pendants, gemstone necklaces, and leather cord pendants.',
-    keywords: 'crystal necklaces, gemstone jewelry, leather cord pendants, handmade',
+    title:
+      'Shop Crystal Jewelry | Handcrafted Necklaces & Bracelets | Troves & Coves',
+    description:
+      'Browse our collection of handcrafted crystal jewelry. Wire-wrapped pendants, gemstone necklaces, and leather cord pendants.',
+    keywords:
+      'crystal necklaces, gemstone jewelry, leather cord pendants, handmade',
   },
   '/about': {
     title: 'About Troves & Coves | Handcrafted in Winnipeg, Canada',
-    description: 'Learn about Troves & Coves - handcrafted crystal jewelry made with love in Winnipeg, Manitoba. Each piece tells a story.',
+    description:
+      'Learn about Troves & Coves - handcrafted crystal jewelry made with love in Winnipeg, Manitoba. Each piece tells a story.',
     keywords: 'about, artisan jewelry, Winnipeg, Manitoba, handmade',
   },
   '/contact': {
     title: 'Contact Us | Custom Crystal Jewelry Orders | Troves & Coves',
-    description: 'Get in touch for custom crystal jewelry orders or questions. We love hearing from you.',
+    description:
+      'Get in touch for custom crystal jewelry orders or questions. We love hearing from you.',
     keywords: 'contact, custom jewelry, orders, support',
   },
   '/checkout': {
     title: 'Checkout | Secure Payment | Troves & Coves',
-    description: 'Complete your crystal jewelry purchase. Secure checkout with multiple payment options.',
+    description:
+      'Complete your crystal jewelry purchase. Secure checkout with multiple payment options.',
     keywords: 'checkout, payment, secure',
   },
   '/size-guide': {
     title: 'Size Guide | Find Your Perfect Fit | Troves & Coves',
-    description: 'Find your perfect fit with our comprehensive jewelry size guide. Necklace lengths, bracelet sizes, and more.',
+    description:
+      'Find your perfect fit with our comprehensive jewelry size guide. Necklace lengths, bracelet sizes, and more.',
     keywords: 'size guide, jewelry sizing, necklace length',
   },
   '/jewelry-care': {
     title: 'Jewelry Care Guide | Keep Your Crystals Beautiful | Troves & Coves',
-    description: 'Learn how to care for your handcrafted crystal jewelry. Cleaning tips, storage advice, and maintenance guidelines.',
+    description:
+      'Learn how to care for your handcrafted crystal jewelry. Cleaning tips, storage advice, and maintenance guidelines.',
     keywords: 'jewelry care, crystal cleaning, jewelry maintenance',
   },
   '/warranty': {
     title: 'Lifetime Warranty | Quality Guarantee | Troves & Coves',
-    description: 'Every piece of Troves & Coves jewelry comes with a lifetime warranty. Learn about our quality guarantee.',
+    description:
+      'Every piece of Troves & Coves jewelry comes with a lifetime warranty. Learn about our quality guarantee.',
     keywords: 'warranty, guarantee, quality',
   },
   '/returns': {
     title: 'Returns & Exchanges | Hassle-Free Policy | Troves & Coves',
-    description: 'Our hassle-free return and exchange policy. We want you to love your crystal jewelry.',
+    description:
+      'Our hassle-free return and exchange policy. We want you to love your crystal jewelry.',
     keywords: 'returns, exchanges, policy, refund',
   },
   '/financing': {
     title: 'Flexible Payment Options | Shop Now Pay Later | Troves & Coves',
-    description: 'Flexible payment options for your crystal jewelry. Shop now and pay later with Sezzle or PayPal.',
+    description:
+      'Flexible payment options for your crystal jewelry. Shop now and pay later with Sezzle or PayPal.',
     keywords: 'financing, payment plans, shop now pay later',
   },
   '/privacy-policy': {
     title: 'Privacy Policy | How We Protect Your Data | Troves & Coves',
-    description: 'Your privacy matters. Learn how we protect your data and never sell your information.',
+    description:
+      'Your privacy matters. Learn how we protect your data and never sell your information.',
     keywords: 'privacy policy, data protection, GDPR',
   },
 };
 
 // Helper function to get metadata for a path
-export function getPageMetadata(path: string, productName?: string): PageMetadata {
+export function getPageMetadata(
+  path: string,
+  productName?: string
+): PageMetadata {
   // Handle product detail pages
   if (productName && path.startsWith('/product/')) {
     return {
@@ -126,6 +146,7 @@ Expected: No errors (new file, no imports yet)
 ## Task 3: Update SEOHead component to use page metadata
 
 **Files:**
+
 - Modify: `client/src/components/SEOHead.tsx`
 
 **Step 1: Read current SEOHead to understand structure**
@@ -176,6 +197,7 @@ git commit -m "feat: add page-specific titles and meta descriptions
 ## Task 4: Create BreadcrumbSchema component
 
 **Files:**
+
 - Create: `client/src/components/BreadcrumbSchema.tsx`
 
 **Step 1: Write BreadcrumbSchema component**
@@ -237,6 +259,7 @@ git commit -m "feat: add BreadcrumbSchema component for SEO
 ## Task 5: Add BreadcrumbSchema to ProductDetail page
 
 **Files:**
+
 - Modify: `client/src/pages/ProductDetail.tsx`
 
 **Step 1: Find breadcrumb items in ProductDetail**
@@ -289,6 +312,7 @@ git commit -m "feat: add breadcrumb schema to product pages
 ## Task 6: Add BreadcrumbSchema to Products page (categories)
 
 **Files:**
+
 - Modify: `client/src/pages/Products.tsx`
 
 **Step 1: Import BreadcrumbSchema**
@@ -356,6 +380,7 @@ git commit -m "feat: add breadcrumb schema to products page
 ## Task 7: Update H1 tags with keywords
 
 **Files:**
+
 - Modify: `client/src/pages/Home.tsx`
 - Modify: `client/src/pages/Products.tsx`
 
@@ -366,7 +391,10 @@ Find the H1 in Home.tsx (around line 50-70)
 Update to include keywords:
 
 ```tsx
-<h1 className="text-4xl md:text-6xl font-bold" style={{ fontFamily: '"Libre Baskerville", serif' }}>
+<h1
+  className="text-4xl md:text-6xl font-bold"
+  style={{ fontFamily: '"Libre Baskerville", serif' }}
+>
   Handcrafted Crystal Jewelry & 14k Gold-Plated Necklaces | Troves & Coves
 </h1>
 ```
@@ -382,7 +410,9 @@ Update based on context:
   {currentCategory ? (
     <>
       <span>{currentCategory.name}</span>
-      <span className="text-sm md:text-base font-normal">| Handcrafted in Winnipeg</span>
+      <span className="text-sm md:text-base font-normal">
+        | Handcrafted in Winnipeg
+      </span>
     </>
   ) : searchQuery ? (
     <>
@@ -421,6 +451,7 @@ git commit -m "seo: optimize H1 tags with target keywords
 ## Task 8: Add BreadcrumbSchema to remaining pages
 
 **Files:**
+
 - Modify: `client/src/pages/About.tsx`
 - Modify: `client/src/pages/Contact.tsx`
 - Modify: `client/src/pages/Checkout.tsx`
@@ -482,6 +513,7 @@ git commit -m "feat: add breadcrumb schema to static pages
 ## Task 9: Update .env.example with GA4 configuration
 
 **Files:**
+
 - Modify: `.env.example`
 
 **Step 1: Add GA4 configuration to .env.example**
@@ -506,6 +538,7 @@ git commit -m "docs: add GA4 analytics to environment config"
 ## Task 10: Verify SEO improvements in development
 
 **Files:**
+
 - Test: Manual verification
 
 **Step 1: Start development server**
@@ -515,6 +548,7 @@ Run: `npm run dev`
 **Step 2: Verify title tags change per page**
 
 Visit each URL and check `<title>` tag:
+
 - http://localhost:5173/
 - http://localhost:5173/products
 - http://localhost:5173/about
@@ -533,7 +567,9 @@ Expected: Each page has unique description
 For each page, check DevTools → Console → Type:
 
 ```javascript
-JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent)
+JSON.parse(
+  document.querySelector('script[type="application/ld+json"]').textContent
+);
 ```
 
 Expected: BreadcrumbList schema present
@@ -549,6 +585,7 @@ Check breadcrumb schema includes: Home → Shop → Product Name
 ## Task 11: Run test suite to ensure no regressions
 
 **Files:**
+
 - Test: All tests
 
 **Step 1: Run unit tests**
@@ -574,6 +611,7 @@ Expected: No errors (or only warnings)
 ## Task 12: Build production bundle to verify
 
 **Files:**
+
 - Test: Production build
 
 **Step 1: Run production build**
@@ -593,6 +631,7 @@ Expected: XML sitemap generated successfully
 ## Task 13: Update sitemap generator for new pages
 
 **Files:**
+
 - Modify: `scripts/generate-sitemap.ts`
 
 **Step 1: Read current sitemap generator**
@@ -604,6 +643,7 @@ Note the structure and existing static pages
 **Step 2: Add any missing pages to staticPages array**
 
 Ensure these pages are included:
+
 - /financing
 - /jewelry-care
 - /warranty
@@ -629,6 +669,7 @@ git commit -m "fix: ensure all policy pages are in sitemap"
 ## Task 14: Final verification and documentation
 
 **Files:**
+
 - Create: `docs/plans/2026-03-13-seo-completion-report.md`
 
 **Step 1: Create completion report**
@@ -642,37 +683,44 @@ git commit -m "fix: ensure all policy pages are in sitemap"
 ## Completed Tasks
 
 ### 1. Page-Specific Title Tags
+
 - [x] Created pageMetadata configuration
 - [x] Updated SEOHead component
 - [x] All pages now have unique, keyword-rich titles
 
 ### 2. Meta Descriptions
+
 - [x] Added unique descriptions for all main pages
 - [x] Descriptions include relevant keywords and CTAs
 
 ### 3. Breadcrumb Schema
+
 - [x] Created BreadcrumbSchema component
 - [x] Added to ProductDetail page
 - [x] Added to Products page (dynamic)
 - [x] Added to About, Contact, Checkout pages
 
 ### 4. H1 Optimization
+
 - [x] Home page H1 includes "crystal jewelry" keywords
 - [x] Products page H1 includes location context
 
 ## Results
 
 ### Before
+
 - All pages shared same title tag
 - No breadcrumb schema
 - Generic H1 tags
 
 ### After
+
 - Unique titles for 11+ pages
 - BreadcrumbList schema on all main pages
 - Keyword-optimized H1 tags
 
 ## Expected Impact
+
 - +30-50% organic traffic increase within 3 months
 - Better search result appearance with rich snippets
 - Improved keyword rankings for target terms

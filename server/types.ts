@@ -85,7 +85,5 @@ export interface ExpressApp {
     path: string,
     handler: (req: RequestWithSession, res: Response) => void | Promise<void>
   ): void;
-  use(
-    ...args: unknown[]
-  ): void;
+  use(...args: unknown[]): void;
 }

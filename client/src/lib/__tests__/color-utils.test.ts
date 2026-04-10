@@ -1,6 +1,6 @@
 import { getWCAGCompliantColor, isBrandColorLargeEnough } from '../color-utils';
 
-describe('WCAG Color Utilities - Robin\'s Luxury Palette 2026', () => {
+describe("WCAG Color Utilities - Robin's Luxury Palette 2026", () => {
   describe('getWCAGCompliantColor', () => {
     it('should return WCAG compliant turquoise for small text', () => {
       const result = getWCAGCompliantColor('turquoise', 14);

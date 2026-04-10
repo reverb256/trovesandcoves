@@ -68,6 +68,7 @@ interface SubscribeResponse {
 **Placement**: Bottom of Footer component, above the designer credit
 
 **Layout**:
+
 ```
 ┌─────────────────────────────────────────────┐
 │  ✨ Subscribe to Receive Crystal Wisdom     │
@@ -80,17 +81,20 @@ interface SubscribeResponse {
 ```
 
 **Success State**:
+
 - Replaces form with mystical success message
 - Displays unique discount code prominently: "Your code: CRYSTAL-ABC123"
 - Copy-to-clipboard button
 - Animated sparkle effect
 
 **Error States**:
+
 - Invalid email: "Please enter a valid email address"
 - Already subscribed: "This email is already on our crystal journey ✨"
 - Server error: "Mystical interference occurred. Please try again."
 
 **Styling**:
+
 - Matches existing Material You cream color scheme
 - Uses `--accent-vibrant` for subscribe button
 - Input fields with `--border-light` borders
@@ -99,11 +103,13 @@ interface SubscribeResponse {
 ## Discount Code System
 
 ### Code Format
+
 - Pattern: `CRYSTAL-XXXXX` (5 random alphanumeric characters)
 - Example: `CRYSTAL-A7F3B`, `CRYSTAL-Q2X9Z`
 - Uniqueness: Server checks for collisions before assigning
 
 ### Code Benefits
+
 - 10% discount on purchase
 - Single-use per subscriber (enforced in future checkout logic)
 - Stored in localStorage for easy retrieval
@@ -112,19 +118,23 @@ interface SubscribeResponse {
 ## Error Handling
 
 ### Client-Side Validation
+
 - Email format validation (regex pattern)
 - First name required (min 1 character)
 - First name max length (50 characters)
 - Disable submit button until valid input
 
 ### Server-Side Validation
+
 - Duplicate email detection
 - Email format validation
 - Sanitization of first name input
 - Rate limiting (optional, using existing security middleware)
 
 ### Error Messages
+
 All error messages maintain the mystical brand voice:
+
 - Technical errors become "mystical interference"
 - Success states include sparkle emojis and crystal references
 - Tone matches existing product descriptions
@@ -132,11 +142,13 @@ All error messages maintain the mystical brand voice:
 ## Testing Strategy
 
 ### Unit Tests (Vitest)
+
 - `NewsletterAPI.test.ts`: Subscribe endpoint with valid/invalid data
 - `DiscountCodeGenerator.test.ts`: Unique code generation and collision detection
 - `Footer.test.ts`: Form validation and success/error states
 
 ### E2E Tests (Playwright)
+
 - User subscribes with valid email + name
 - Error displays for invalid email format
 - Success message shows with unique discount code
@@ -144,6 +156,7 @@ All error messages maintain the mystical brand voice:
 - Discount code persists in localStorage
 
 ### Manual Testing Checklist
+
 - [ ] Form appears in footer on mobile and desktop
 - [ ] Subscribe button disabled until valid input
 - [ ] Success animation plays smoothly
@@ -155,22 +168,26 @@ All error messages maintain the mystical brand voice:
 ## Implementation Considerations
 
 ### Type Safety
+
 - Strict TypeScript compliance (no `any` types)
 - All types defined in `shared/types.ts`
 - Proper error typing with `unknown` instead of `any`
 
 ### Performance
+
 - React.memo for Footer component (already implemented)
 - Debounce validation on input fields
 - Optimistic UI updates for better perceived performance
 
 ### Accessibility
+
 - Proper ARIA labels on form inputs
 - Keyboard navigation support
 - Screen reader announcements for success/error states
 - Sufficient color contrast for error messages
 
 ### Future Enhancements (Out of Scope for MVP)
+
 - Email service integration (Mailchimp, SendGrid, etc.)
 - Double opt-in confirmation
 - Unsubscribe functionality

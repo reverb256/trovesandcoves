@@ -67,7 +67,10 @@ export default function ProductDetail() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen content-layer flex items-center justify-center" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+      <div
+        className="min-h-screen content-layer flex items-center justify-center"
+        style={{ backgroundColor: 'hsl(var(--bg-primary))' }}
+      >
         <div className="p-16">
           <div className="w-12 h-12 border-2 border-[hsl(var(--accent-vibrant))]/20 border-t-[hsl(var(--accent-vibrant))] rounded-full animate-spin"></div>
         </div>
@@ -77,13 +80,25 @@ export default function ProductDetail() {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen content-layer flex items-center justify-center" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+      <div
+        className="min-h-screen content-layer flex items-center justify-center"
+        style={{ backgroundColor: 'hsl(var(--bg-primary))' }}
+      >
         <div className="p-16 text-center max-w-md">
           <Gem className="w-16 h-16 text-[hsl(var(--accent-vibrant))]/50 mx-auto mb-6" />
-          <h2 className="text-2xl font-semibold mb-4" style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}>
+          <h2
+            className="text-2xl font-semibold mb-4"
+            style={{
+              fontFamily: '"Libre Baskerville", serif',
+              color: 'hsl(var(--text-primary))',
+            }}
+          >
             Product Not Found
           </h2>
-          <p className="text-[hsl(var(--text-secondary))] mb-8" style={{ fontFamily: '"Montserrat", sans-serif' }}>
+          <p
+            className="text-[hsl(var(--text-secondary))] mb-8"
+            style={{ fontFamily: '"Montserrat", sans-serif' }}
+          >
             The product you are looking for does not exist.
           </p>
           <button
@@ -98,38 +113,76 @@ export default function ProductDetail() {
     );
   }
 
-  const images = product.imageUrls && product.imageUrls.length > 0 ? product.imageUrls : [product.imageUrl];
+  const images =
+    product.imageUrls && product.imageUrls.length > 0
+      ? product.imageUrls
+      : [product.imageUrl];
 
   // Generate crystal properties based on gemstones
   const getCrystalProperties = (gemstones: string[] | null | undefined) => {
     if (!gemstones || gemstones.length === 0) return [];
 
-    const properties: { title: string; description: string; icon: string }[] = [];
+    const properties: { title: string; description: string; icon: string }[] =
+      [];
 
     gemstones.forEach(stone => {
       const lowerStone = stone.toLowerCase();
       if (lowerStone.includes('moonstone')) {
         properties.push(
-          { title: 'Intuition', description: 'Moonstone enhances inner wisdom and emotional balance', icon: '🌙' },
-          { title: 'New Beginnings', description: 'A stone of fresh starts and positive transformation', icon: '✨' }
+          {
+            title: 'Intuition',
+            description:
+              'Moonstone enhances inner wisdom and emotional balance',
+            icon: '🌙',
+          },
+          {
+            title: 'New Beginnings',
+            description: 'A stone of fresh starts and positive transformation',
+            icon: '✨',
+          }
         );
       }
       if (lowerStone.includes('amethyst')) {
         properties.push(
-          { title: 'Calm & Clarity', description: 'Amethyst brings peace of mind and spiritual awareness', icon: '💜' },
-          { title: 'Protection', description: 'A protective stone that transmutes negative energy', icon: '🛡️' }
+          {
+            title: 'Calm & Clarity',
+            description:
+              'Amethyst brings peace of mind and spiritual awareness',
+            icon: '💜',
+          },
+          {
+            title: 'Protection',
+            description: 'A protective stone that transmutes negative energy',
+            icon: '🛡️',
+          }
         );
       }
       if (lowerStone.includes('quartz')) {
         properties.push(
-          { title: 'Amplification', description: 'Clear quartz amplifies energy and intention', icon: '💎' },
-          { title: 'Clarity', description: 'Brings mental clarity and focus to your thoughts', icon: '🔮' }
+          {
+            title: 'Amplification',
+            description: 'Clear quartz amplifies energy and intention',
+            icon: '💎',
+          },
+          {
+            title: 'Clarity',
+            description: 'Brings mental clarity and focus to your thoughts',
+            icon: '🔮',
+          }
         );
       }
       if (lowerStone.includes('labradorite')) {
         properties.push(
-          { title: 'Magic', description: 'Labradorite awakens mystical abilities and intuition', icon: '🌟' },
-          { title: 'Transformation', description: 'Supports personal growth and positive change', icon: '🦋' }
+          {
+            title: 'Magic',
+            description: 'Labradorite awakens mystical abilities and intuition',
+            icon: '🌟',
+          },
+          {
+            title: 'Transformation',
+            description: 'Supports personal growth and positive change',
+            icon: '🦋',
+          }
         );
       }
     });
@@ -160,12 +213,22 @@ export default function ProductDetail() {
         items={[
           { name: 'Home', path: '/' },
           { name: 'Shop', path: '/products' },
-          ...(product.category ? [{ name: product.category.name, path: `/products/${product.category.slug}` }] : []),
-          { name: product.name, path: `/product/${product.id}` }
+          ...(product.category
+            ? [
+                {
+                  name: product.category.name,
+                  path: `/products/${product.category.slug}`,
+                },
+              ]
+            : []),
+          { name: product.name, path: `/product/${product.id}` },
         ]}
       />
 
-      <div className="min-h-screen content-layer" style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+      <div
+        className="min-h-screen content-layer"
+        style={{ backgroundColor: 'hsl(var(--bg-primary))' }}
+      >
         {/* Breadcrumb Navigation - Minimal */}
         <div className="border-b border-[hsl(var(--border-light))]">
           <div className="chamber-container">
@@ -173,7 +236,10 @@ export default function ProductDetail() {
               <button
                 onClick={() => setLocation('/products')}
                 className="flex items-center gap-2 hover:opacity-70 transition-opacity whitespace-nowrap"
-                style={{ color: 'hsl(var(--accent-vibrant))', fontFamily: '"Montserrat", sans-serif' }}
+                style={{
+                  color: 'hsl(var(--accent-vibrant))',
+                  fontFamily: '"Montserrat", sans-serif',
+                }}
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Shop</span>
@@ -184,7 +250,10 @@ export default function ProductDetail() {
                   <Link
                     href={`/products/${product.category.slug}`}
                     className="hover:text-[hsl(var(--accent-vibrant))] transition-colors whitespace-nowrap"
-                    style={{ color: 'hsl(var(--text-secondary))', fontFamily: '"Montserrat", sans-serif' }}
+                    style={{
+                      color: 'hsl(var(--text-secondary))',
+                      fontFamily: '"Montserrat", sans-serif',
+                    }}
                   >
                     {product.category.name}
                   </Link>
@@ -198,7 +267,6 @@ export default function ProductDetail() {
         <div className="spacing-premium-xl">
           <div className="chamber-container">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-
               {/* Left: Large Hero Image Gallery */}
               <div className="space-y-4">
                 {/* Main Image - Dominant and Immersive */}
@@ -211,26 +279,33 @@ export default function ProductDetail() {
                     className="w-full h-full"
                   />
                   {/* Stock Badge - Elegant */}
-                  {product.stockQuantity !== undefined && product.stockQuantity !== null && (
-                    product.stockQuantity <= 5 && product.stockQuantity > 0 && (
-                      <div className="absolute top-6 left-6 px-4 py-2 text-xs tracking-wider uppercase bg-[hsla(var(--bg-card),0.95)] backdrop-blur-md rounded-sm"
+                  {product.stockQuantity !== undefined &&
+                    product.stockQuantity !== null &&
+                    product.stockQuantity <= 5 &&
+                    product.stockQuantity > 0 && (
+                      <div
+                        className="absolute top-6 left-6 px-4 py-2 text-xs tracking-wider uppercase bg-[hsla(var(--bg-card),0.95)] backdrop-blur-md rounded-sm"
                         style={{
                           fontFamily: '"Montserrat", sans-serif',
                           color: 'hsl(var(--gold-medium))',
                           border: '1px solid hsl(var(--gold-medium))',
-                          boxShadow: '0 2px 12px hsla(0,0%,0%,0.1)'
+                          boxShadow: '0 2px 12px hsla(0,0%,0%,0.1)',
                         }}
                       >
                         Only {product.stockQuantity} left
                       </div>
-                    )
-                  )}
+                    )}
                   {product.stockQuantity === 0 && (
-                    <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm"
+                    <div
+                      className="absolute inset-0 flex items-center justify-center backdrop-blur-sm"
                       style={{ backgroundColor: 'hsla(var(--bg-card),0.85)' }}
                     >
-                      <span className="text-sm tracking-widest uppercase"
-                        style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
+                      <span
+                        className="text-sm tracking-widest uppercase"
+                        style={{
+                          fontFamily: '"Montserrat", sans-serif',
+                          color: 'hsl(var(--text-secondary))',
+                        }}
                       >
                         Sold Out
                       </span>
@@ -270,7 +345,11 @@ export default function ProductDetail() {
                   <div>
                     <span
                       className="text-xs tracking-widest uppercase"
-                      style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))', letterSpacing: '0.2em' }}
+                      style={{
+                        fontFamily: '"Montserrat", sans-serif',
+                        color: 'hsl(var(--text-muted))',
+                        letterSpacing: '0.2em',
+                      }}
                     >
                       {product.category.name}
                     </span>
@@ -280,7 +359,10 @@ export default function ProductDetail() {
                 {/* Product Name - Large and Elegant */}
                 <h1
                   className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-                  style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
+                  style={{
+                    fontFamily: '"Libre Baskerville", serif',
+                    color: 'hsl(var(--text-primary))',
+                  }}
                 >
                   {product.name}
                 </h1>
@@ -295,7 +377,10 @@ export default function ProductDetail() {
                 {/* Price - Gold Accent */}
                 <div
                   className="text-3xl md:text-4xl lg:text-5xl font-semibold"
-                  style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--gold-medium))' }}
+                  style={{
+                    fontFamily: '"Libre Baskerville", serif',
+                    color: 'hsl(var(--gold-medium))',
+                  }}
                 >
                   {formatPrice(product.price)}
                 </div>
@@ -307,7 +392,10 @@ export default function ProductDetail() {
                 {product.description && (
                   <p
                     className="text-lg leading-relaxed"
-                    style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
+                    style={{
+                      fontFamily: '"Montserrat", sans-serif',
+                      color: 'hsl(var(--text-secondary))',
+                    }}
                   >
                     {product.description}
                   </p>
@@ -321,21 +409,27 @@ export default function ProductDetail() {
                         <Sparkles className="w-6 h-6" />
                       </div>
                       <h4 className="benefit-title">Intention</h4>
-                      <p className="benefit-description">Crafted with purpose and positive energy</p>
+                      <p className="benefit-description">
+                        Crafted with purpose and positive energy
+                      </p>
                     </div>
                     <div className="benefit-item">
                       <div className="benefit-icon">
                         <Gem className="w-6 h-6" />
                       </div>
                       <h4 className="benefit-title">Natural</h4>
-                      <p className="benefit-description">Genuine crystals and gemstones</p>
+                      <p className="benefit-description">
+                        Genuine crystals and gemstones
+                      </p>
                     </div>
                     <div className="benefit-item">
                       <div className="benefit-icon">
                         <Shield className="w-6 h-6" />
                       </div>
                       <h4 className="benefit-title">Lifetime Care</h4>
-                      <p className="benefit-description">Warranty & repair service included</p>
+                      <p className="benefit-description">
+                        Warranty & repair service included
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -344,14 +438,27 @@ export default function ProductDetail() {
                 <div className="story-section">
                   <h3>Handcrafted in Winnipeg</h3>
                   <p>
-                    Each piece is carefully crafted with 14k gold-plated materials and genuine crystals.
-                    We source our stones ethically and create every piece with intention, ensuring your jewelry
-                    carries positive energy from our hands to yours.
+                    Each piece is carefully crafted with 14k gold-plated
+                    materials and genuine crystals. We source our stones
+                    ethically and create every piece with intention, ensuring
+                    your jewelry carries positive energy from our hands to
+                    yours.
                   </p>
                   {product.materials && product.materials.length > 0 && (
                     <>
-                      <h4 style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 600, color: 'hsl(var(--text-primary))', marginTop: '1rem' }}>Materials</h4>
-                      <p style={{ marginTop: '0.5rem' }}>{product.materials.join(', ')}</p>
+                      <h4
+                        style={{
+                          fontFamily: '"Montserrat", sans-serif',
+                          fontWeight: 600,
+                          color: 'hsl(var(--text-primary))',
+                          marginTop: '1rem',
+                        }}
+                      >
+                        Materials
+                      </h4>
+                      <p style={{ marginTop: '0.5rem' }}>
+                        {product.materials.join(', ')}
+                      </p>
                     </>
                   )}
                 </div>
@@ -359,21 +466,29 @@ export default function ProductDetail() {
                 {/* Crystal Properties (if applicable) */}
                 {crystalProperties.length > 0 && (
                   <div>
-                    <h3 style={{
-                      fontFamily: '"Libre Baskerville", serif',
-                      fontSize: '1.5rem',
-                      color: 'hsl(var(--text-primary))',
-                      textAlign: 'center',
-                      marginBottom: '2rem'
-                    }}>
+                    <h3
+                      style={{
+                        fontFamily: '"Libre Baskerville", serif',
+                        fontSize: '1.5rem',
+                        color: 'hsl(var(--text-primary))',
+                        textAlign: 'center',
+                        marginBottom: '2rem',
+                      }}
+                    >
                       Crystal Energy
                     </h3>
                     <div className="crystal-properties">
                       {crystalProperties.map((prop, idx) => (
                         <div key={idx} className="crystal-property">
-                          <span className="crystal-property-icon">{prop.icon}</span>
-                          <h4 className="crystal-property-title">{prop.title}</h4>
-                          <p className="crystal-property-description">{prop.description}</p>
+                          <span className="crystal-property-icon">
+                            {prop.icon}
+                          </span>
+                          <h4 className="crystal-property-title">
+                            {prop.title}
+                          </h4>
+                          <p className="crystal-property-description">
+                            {prop.description}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -385,7 +500,11 @@ export default function ProductDetail() {
                   <div className="flex items-center gap-6">
                     <span
                       className="text-xs tracking-widest uppercase"
-                      style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))', letterSpacing: '0.15em' }}
+                      style={{
+                        fontFamily: '"Montserrat", sans-serif',
+                        color: 'hsl(var(--text-secondary))',
+                        letterSpacing: '0.15em',
+                      }}
                     >
                       Quantity
                     </span>
@@ -400,13 +519,20 @@ export default function ProductDetail() {
                       </button>
                       <span
                         className="px-6 py-3 min-w-[4rem] text-center font-medium"
-                        style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}
+                        style={{
+                          fontFamily: '"Montserrat", sans-serif',
+                          color: 'hsl(var(--text-primary))',
+                        }}
                       >
                         {quantity}
                       </span>
                       <button
                         aria-label="Increase quantity"
-                        onClick={() => setQuantity(Math.min(product.stockQuantity ?? 99, quantity + 1))}
+                        onClick={() =>
+                          setQuantity(
+                            Math.min(product.stockQuantity ?? 99, quantity + 1)
+                          )
+                        }
                         disabled={quantity >= (product.stockQuantity ?? 99)}
                         className="p-3 hover:bg-[hsl(var(--bg-secondary))] transition-colors duration-150 disabled:opacity-30 disabled:cursor-not-allowed"
                         style={{ color: 'hsl(var(--text-primary))' }}
@@ -417,11 +543,19 @@ export default function ProductDetail() {
                   </div>
 
                   {/* Stock Status */}
-                  {product.stockQuantity !== undefined && product.stockQuantity !== null && product.stockQuantity > 0 && (
-                    <p className="text-sm" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--accent-vibrant))' }}>
-                      In stock ({product.stockQuantity} available)
-                    </p>
-                  )}
+                  {product.stockQuantity !== undefined &&
+                    product.stockQuantity !== null &&
+                    product.stockQuantity > 0 && (
+                      <p
+                        className="text-sm"
+                        style={{
+                          fontFamily: '"Montserrat", sans-serif',
+                          color: 'hsl(var(--accent-vibrant))',
+                        }}
+                      >
+                        In stock ({product.stockQuantity} available)
+                      </p>
+                    )}
                 </div>
 
                 {/* Action Buttons - Premium Style */}
@@ -434,7 +568,11 @@ export default function ProductDetail() {
                     style={{ opacity: product.stockQuantity === 0 ? 0.5 : 1 }}
                   >
                     <ShoppingBag className="w-5 h-5" />
-                    <span>{product.stockQuantity === 0 ? 'Out of Stock' : 'Add to Cart'}</span>
+                    <span>
+                      {product.stockQuantity === 0
+                        ? 'Out of Stock'
+                        : 'Add to Cart'}
+                    </span>
                   </button>
 
                   {/* Etsy Purchase - Secondary CTA */}
@@ -444,8 +582,13 @@ export default function ProductDetail() {
                     rel="noopener noreferrer"
                     className="block w-full btn-premium-secondary text-center"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12c0-6.627-5.373-12-12-12zm0 22C5.383 22 1 17.617 1 12S5.383 2 12 2s11 4.383 11 10-5.383 10-10 10zm0-16c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"/>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12c0-6.627-5.373-12-12-12zm0 22C5.383 22 1 17.617 1 12S5.383 2 12 2s11 4.383 11 10-5.383 10-10 10zm0-16c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 10c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z" />
                     </svg>
                     <span>Purchase on Etsy</span>
                   </a>
@@ -454,10 +597,22 @@ export default function ProductDetail() {
                   <button
                     onClick={handleWishlist}
                     className="w-full flex items-center justify-center gap-2 px-8 py-3 border border-[hsl(var(--border-light))] hover:border-[hsl(var(--gold-medium))] transition-colors duration-200 rounded-sm"
-                    style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
+                    style={{
+                      fontFamily: '"Montserrat", sans-serif',
+                      color: 'hsl(var(--text-secondary))',
+                    }}
                   >
-                    <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} style={{ color: isWishlisted ? 'hsl(var(--gold-medium))' : 'inherit' }} />
-                    <span>{isWishlisted ? 'Saved to Wishlist' : 'Add to Wishlist'}</span>
+                    <Heart
+                      className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`}
+                      style={{
+                        color: isWishlisted
+                          ? 'hsl(var(--gold-medium))'
+                          : 'inherit',
+                      }}
+                    />
+                    <span>
+                      {isWishlisted ? 'Saved to Wishlist' : 'Add to Wishlist'}
+                    </span>
                   </button>
                 </div>
 
@@ -511,7 +666,7 @@ function RelatedProducts({
   });
 
   const filteredProducts = relatedProducts
-    ?.filter((p) => p.id !== currentProductId)
+    ?.filter(p => p.id !== currentProductId)
     .slice(0, 3);
 
   if (isLoading || !filteredProducts || filteredProducts.length === 0) {
@@ -524,7 +679,10 @@ function RelatedProducts({
         <div className="text-center mb-12">
           <h2
             className="text-3xl md:text-4xl font-semibold mb-4"
-            style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
+            style={{
+              fontFamily: '"Libre Baskerville", serif',
+              color: 'hsl(var(--text-primary))',
+            }}
           >
             You May Also Like
           </h2>
@@ -532,9 +690,16 @@ function RelatedProducts({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product) => (
-            <Link key={product.id} href={`/product/${product.id}`} className="group block">
-              <div className="product-card-enhanced shadow-sm overflow-hidden" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
+          {filteredProducts.map(product => (
+            <Link
+              key={product.id}
+              href={`/product/${product.id}`}
+              className="group block"
+            >
+              <div
+                className="product-card-enhanced shadow-sm overflow-hidden"
+                style={{ backgroundColor: 'hsl(var(--bg-card))' }}
+              >
                 <div className="aspect-square mb-4 overflow-hidden bg-[hsl(var(--bg-secondary))]">
                   <WebPImage
                     src={product.imageUrl || '/api/placeholder/300/300'}
@@ -549,21 +714,30 @@ function RelatedProducts({
                 <div className="p-6">
                   <h3
                     className="text-lg font-semibold mb-2 group-hover:text-[hsl(var(--accent-vibrant))] transition-colors duration-200"
-                    style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
+                    style={{
+                      fontFamily: '"Libre Baskerville", serif',
+                      color: 'hsl(var(--text-primary))',
+                    }}
                   >
                     {product.name}
                   </h3>
                   <div className="flex items-center justify-between pt-4 border-t border-[hsl(var(--border-light))]">
                     <span
                       className="text-lg font-semibold"
-                      style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--gold-medium))' }}
+                      style={{
+                        fontFamily: '"Libre Baskerville", serif',
+                        color: 'hsl(var(--gold-medium))',
+                      }}
                     >
                       ${product.price}
                     </span>
                     {product.category && (
                       <span
                         className="text-xs px-3 py-1 bg-[hsl(var(--bg-secondary))] rounded-sm"
-                        style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-muted))' }}
+                        style={{
+                          fontFamily: '"Montserrat", sans-serif',
+                          color: 'hsl(var(--text-muted))',
+                        }}
                       >
                         {product.category.name}
                       </span>
@@ -577,9 +751,7 @@ function RelatedProducts({
 
         <div className="text-center mt-12">
           <Link href="/products">
-            <button className="btn-premium-secondary">
-              View All Products
-            </button>
+            <button className="btn-premium-secondary">View All Products</button>
           </Link>
         </div>
       </div>

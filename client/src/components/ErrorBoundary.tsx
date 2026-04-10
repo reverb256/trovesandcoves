@@ -21,7 +21,10 @@ interface ErrorBoundaryState {
  * logs those errors, and displays a fallback UI instead of the
  * component tree that crashed.
  */
-export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
@@ -86,7 +89,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-center text-muted-foreground">
-                We apologize for the inconvenience. An unexpected error has occurred.
+                We apologize for the inconvenience. An unexpected error has
+                occurred.
               </p>
 
               {import.meta.env.DEV && this.state.error && (

@@ -4,6 +4,6 @@
  * Client: Robin Kroeker
  */
 
-import StyleGuide from "../components/StyleGuide";
+import StyleGuide from '../components/StyleGuide';
 
 export default StyleGuide;

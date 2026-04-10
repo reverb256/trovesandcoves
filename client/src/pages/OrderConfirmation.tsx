@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { useLocation } from "wouter";
-import { CheckCircle, Package, ShoppingBag, Mail } from "lucide-react";
-import IconCircle from "@/components/IconCircle";
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { useLocation } from 'wouter';
+import { CheckCircle, Package, ShoppingBag, Mail } from 'lucide-react';
+import IconCircle from '@/components/IconCircle';
 
 type Order = {
   id: number;
@@ -33,10 +33,10 @@ export default function OrderConfirmation() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const orderId = params.get("order_id");
+    const orderId = params.get('order_id');
 
     if (!orderId) {
-      setLocation("/products");
+      setLocation('/products');
       return;
     }
 
@@ -47,13 +47,13 @@ export default function OrderConfirmation() {
     try {
       const response = await fetch(`/api/orders/${orderId}`);
       if (!response.ok) {
-        throw new Error("Failed to fetch order");
+        throw new Error('Failed to fetch order');
       }
       const orderData = await response.json();
       setOrder(orderData);
     } catch (error) {
-      console.error("Error fetching order:", error);
-      setLocation("/products");
+      console.error('Error fetching order:', error);
+      setLocation('/products');
     } finally {
       setLoading(false);
     }
@@ -97,12 +97,18 @@ export default function OrderConfirmation() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <IconCircle icon={CheckCircle} variant="success" size="lg" className="mb-6" />
+            <IconCircle
+              icon={CheckCircle}
+              variant="success"
+              size="lg"
+              className="mb-6"
+            />
             <h1 className="text-4xl font-serif font-bold text-primary mb-4">
               Order Confirmed!
             </h1>
             <p className="text-xl text-gray-600">
-              Thank you for your purchase. Your order #{order.id} has been received.
+              Thank you for your purchase. Your order #{order.id} has been
+              received.
             </p>
           </div>
 
@@ -117,16 +123,25 @@ export default function OrderConfirmation() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-gray-600">Order Number</p>
-                  <p className="text-lg font-semibold text-primary">#{order.id}</p>
+                  <p className="text-lg font-semibold text-primary">
+                    #{order.id}
+                  </p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Order Date</p>
-                  <p className="text-lg font-semibold text-primary">{formatDate(order.createdAt)}</p>
+                  <p className="text-lg font-semibold text-primary">
+                    {formatDate(order.createdAt)}
+                  </p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Status</p>
-                  <Badge variant={order.status === "pending" ? "secondary" : "default"}>
-                    {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                  <Badge
+                    variant={
+                      order.status === 'pending' ? 'secondary' : 'default'
+                    }
+                  >
+                    {order.status.charAt(0).toUpperCase() +
+                      order.status.slice(1)}
                   </Badge>
                 </div>
                 <div>
@@ -139,7 +154,9 @@ export default function OrderConfirmation() {
 
               <div>
                 <p className="text-sm text-gray-600 mb-2">Shipping Address</p>
-                <p className="text-sm whitespace-pre-line">{order.shippingAddress}</p>
+                <p className="text-sm whitespace-pre-line">
+                  {order.shippingAddress}
+                </p>
               </div>
 
               <div>
@@ -161,20 +178,29 @@ export default function OrderConfirmation() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {order.items.map((item) => (
-                  <div key={item.id} className="flex items-center space-x-4 pb-4 border-b last:border-0">
+                {order.items.map(item => (
+                  <div
+                    key={item.id}
+                    className="flex items-center space-x-4 pb-4 border-b last:border-0"
+                  >
                     <img
                       src={item.product.imageUrl}
                       alt={item.product.name}
                       className="w-20 h-20 object-cover rounded"
                     />
                     <div className="flex-1">
-                      <h3 className="font-semibold text-primary">{item.product.name}</h3>
-                      <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
+                      <h3 className="font-semibold text-primary">
+                        {item.product.name}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Quantity: {item.quantity}
+                      </p>
                     </div>
                     <div className="text-right">
                       <p className="font-semibold text-elegant-gold">
-                        {formatPrice((parseFloat(item.price) * item.quantity).toString())}
+                        {formatPrice(
+                          (parseFloat(item.price) * item.quantity).toString()
+                        )}
                       </p>
                       <p className="text-sm text-gray-600">
                         {formatPrice(item.price)} each
@@ -189,7 +215,9 @@ export default function OrderConfirmation() {
           <Card className="mb-8">
             <CardContent className="pt-6">
               <div className="text-center space-y-4">
-                <h3 className="text-lg font-semibold text-primary">What's Next?</h3>
+                <h3 className="text-lg font-semibold text-primary">
+                  What's Next?
+                </h3>
                 <div className="space-y-2 text-sm text-gray-600">
                   <p>✓ Order confirmation sent to {order.customerEmail}</p>
                   <p>✓ Processing your items (1-2 business days)</p>
@@ -201,14 +229,19 @@ export default function OrderConfirmation() {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
-              onClick={() => setLocation("/products")}
+              onClick={() => setLocation('/products')}
               className="flex-1 style={{ backgroundColor: 'hsl(var(--bg-elevated))' }} text-white hover:bg-rich-blue"
             >
               Continue Shopping
             </Button>
             <Button
               variant="outline"
-              onClick={() => window.open('https://www.etsy.com/shop/TrovesAndCoves', '_blank')}
+              onClick={() =>
+                window.open(
+                  'https://www.etsy.com/shop/TrovesAndCoves',
+                  '_blank'
+                )
+              }
               className="flex-1"
             >
               Visit Our Etsy Store

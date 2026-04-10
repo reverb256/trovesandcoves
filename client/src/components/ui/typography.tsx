@@ -15,8 +15,8 @@ export interface BrandHeadingProps {
 
 const sizeMap = {
   xl: { fontSize: '2.5rem', pxSize: 40 }, // > 18px, brand color OK
-  lg: { fontSize: '2rem', pxSize: 32 },    // > 18px, brand color OK
-  md: { fontSize: '1.5rem', pxSize: 24 },   // > 18px, brand color OK
+  lg: { fontSize: '2rem', pxSize: 32 }, // > 18px, brand color OK
+  md: { fontSize: '1.5rem', pxSize: 24 }, // > 18px, brand color OK
   sm: { fontSize: '1.125rem', pxSize: 18 }, // >= 18px, brand color OK
 };
 
@@ -24,17 +24,16 @@ export function BrandHeading({
   children,
   level = 2,
   size = 'lg',
-  className
+  className,
 }: BrandHeadingProps) {
   const sizeConfig = sizeMap[size];
   const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
   const canUseBrandColor = sizeConfig.pxSize >= 18;
-  const color = canUseBrandColor ? BRAND_COLORS.turquoise : WCAG_COLORS.turquoise;
+  const color = canUseBrandColor
+    ? BRAND_COLORS.turquoise
+    : WCAG_COLORS.turquoise;
 
-  const classes = cn(
-    'font-bold',
-    className
-  );
+  const classes = cn('font-bold', className);
 
   return (
     <HeadingTag
@@ -69,7 +68,7 @@ const bodySizeMap = {
 export function BrandBodyText({
   children,
   size = 'md',
-  className
+  className,
 }: BrandBodyTextProps) {
   const classes = cn('leading-relaxed', className);
 
@@ -98,16 +97,16 @@ export interface BrandScriptTextProps {
 }
 
 const scriptSizeMap = {
-  xl: { fontSize: '3rem', pxSize: 48 },    // > 18px, brand color OK
-  lg: { fontSize: '2rem', pxSize: 32 },    // > 18px, brand color OK
-  md: { fontSize: '1.5rem', pxSize: 24 },  // > 18px, brand color OK
-  sm: { fontSize: '1rem', pxSize: 16 },    // < 18px, use WCAG variant
+  xl: { fontSize: '3rem', pxSize: 48 }, // > 18px, brand color OK
+  lg: { fontSize: '2rem', pxSize: 32 }, // > 18px, brand color OK
+  md: { fontSize: '1.5rem', pxSize: 24 }, // > 18px, brand color OK
+  sm: { fontSize: '1rem', pxSize: 16 }, // < 18px, use WCAG variant
 };
 
 export function BrandScriptText({
   children,
   size = 'lg',
-  className
+  className,
 }: BrandScriptTextProps) {
   const sizeConfig = scriptSizeMap[size];
   const canUseBrandColor = sizeConfig.pxSize >= 18;

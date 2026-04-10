@@ -37,10 +37,7 @@ async function generateIcons() {
     }
 
     try {
-      await sharp(SVG_SOURCE)
-        .resize(size, size)
-        .png()
-        .toFile(outputPath);
+      await sharp(SVG_SOURCE).resize(size, size).png().toFile(outputPath);
       console.log(`✅ Generated ${name} (${size}x${size})`);
     } catch (error) {
       console.error(`❌ Failed to generate ${name}:`, error.message);

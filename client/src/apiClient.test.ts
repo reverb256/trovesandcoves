@@ -11,7 +11,7 @@ describe('API Client', () => {
 
   it('should make a successful API call', async () => {
     const mockResponse = { success: true, data: 'test' };
-    
+
     (global.fetch as any).mockResolvedValueOnce({
       ok: true,
       json: async () => mockResponse,
@@ -23,7 +23,7 @@ describe('API Client', () => {
 
   it('should retry on failure', async () => {
     const mockResponse = { success: true, data: 'test' };
-    
+
     // First call fails, second succeeds
     (global.fetch as any)
       .mockRejectedValueOnce(new Error('Network error'))

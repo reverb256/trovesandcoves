@@ -39,8 +39,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const products = await storage.getProducts();
       const allMaterials = new Set<string>();
-      products.forEach((product) => {
-        product.materials?.forEach((material: string) => allMaterials.add(material));
+      products.forEach(product => {
+        product.materials?.forEach((material: string) =>
+          allMaterials.add(material)
+        );
       });
       res.json(Array.from(allMaterials).sort());
     } catch (error: unknown) {
@@ -54,8 +56,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const products = await storage.getProducts();
       const allGemstones = new Set<string>();
-      products.forEach((product) => {
-        product.gemstones?.forEach((gemstone: string) => allGemstones.add(gemstone));
+      products.forEach(product => {
+        product.gemstones?.forEach((gemstone: string) =>
+          allGemstones.add(gemstone)
+        );
       });
       res.json(Array.from(allGemstones).sort());
     } catch (error: unknown) {
@@ -67,7 +71,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Products
   app.get('/api/products', async (req, res) => {
     try {
-      const { category, search, material, gemstone, minPrice, maxPrice } = req.query;
+      const { category, search, material, gemstone, minPrice, maxPrice } =
+        req.query;
       let products = await storage.getProducts();
 
       // Filter by category
@@ -76,7 +81,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           category as string
         );
         if (categoryRecord) {
-          products = products.filter((p) => p.categoryId === categoryRecord.id);
+          products = products.filter(p => p.categoryId === categoryRecord.id);
         }
       }
 
@@ -88,16 +93,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Filter by material
       if (material && typeof material === 'string') {
         const materialLower = material.toLowerCase();
-        products = products.filter((p) =>
-          p.materials?.some((m) => m.toLowerCase().includes(materialLower)) ?? false
+        products = products.filter(
+          p =>
+            p.materials?.some(m => m.toLowerCase().includes(materialLower)) ??
+            false
         );
       }
 
       // Filter by gemstone
       if (gemstone && typeof gemstone === 'string') {
         const gemstoneLower = gemstone.toLowerCase();
-        products = products.filter((p) =>
-          p.gemstones?.some((g) => g.toLowerCase().includes(gemstoneLower)) ?? false
+        products = products.filter(
+          p =>
+            p.gemstones?.some(g => g.toLowerCase().includes(gemstoneLower)) ??
+            false
         );
       }
 
@@ -105,7 +114,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (minPrice || maxPrice) {
         const min = minPrice ? parseFloat(minPrice as string) : 0;
         const max = maxPrice ? parseFloat(maxPrice as string) : Infinity;
-        products = products.filter((p) => {
+        products = products.filter(p => {
           const price = parseFloat(p.price);
           return price >= min && price <= max;
         });
@@ -164,7 +173,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'Invalid cart item data' });
       }
 
-      const cartItem = await storage.addToCart({ sessionId, productId, quantity });
+      const cartItem = await storage.addToCart({
+        sessionId,
+        productId,
+        quantity,
+      });
       res.status(201).json(cartItem);
     } catch (error: unknown) {
       console.error('Error adding to cart:', error);
@@ -242,9 +255,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'Cart is empty' });
       }
 
-      const totalAmount = cartItems.reduce((sum: number, item: { product: { price: string }; quantity: number }) => {
-        return sum + parseFloat(item.product.price) * item.quantity;
-      }, 0);
+      const totalAmount = cartItems.reduce(
+        (
+          sum: number,
+          item: { product: { price: string }; quantity: number }
+        ) => {
+          return sum + parseFloat(item.product.price) * item.quantity;
+        },
+        0
+      );
 
       const order = await storage.createOrder({
         ...req.body,
@@ -300,7 +319,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.status(404).json({
       message: 'API endpoint not found',
       path: req.path,
-      method: req.method
+      method: req.method,
     });
   });
 

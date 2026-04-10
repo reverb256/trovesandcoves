@@ -51,27 +51,38 @@ export default function FeatureGrid({
                 borderColor: 'hsla(var(--gold-medium), 0.15)',
               }}
             >
-                <div className="p-6 text-center">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
-                    style={{ backgroundColor: 'hsla(var(--accent-vibrant), 0.15)' }}
-                  >
-                    <Icon className="w-6 h-6" style={{ color: 'hsl(var(--accent-vibrant))' }} />
-                  </div>
-                  <h3
-                    className="text-lg font-bold mb-3"
-                    style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
-                  >
-                    {feature.title}
-                  </h3>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
-                  >
-                    {feature.description}
-                  </p>
+              <div className="p-6 text-center">
+                <div
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{
+                    backgroundColor: 'hsla(var(--accent-vibrant), 0.15)',
+                  }}
+                >
+                  <Icon
+                    className="w-6 h-6"
+                    style={{ color: 'hsl(var(--accent-vibrant))' }}
+                  />
                 </div>
-              </Card>
+                <h3
+                  className="text-lg font-bold mb-3"
+                  style={{
+                    fontFamily: '"Libre Baskerville", serif',
+                    color: 'hsl(var(--text-primary))',
+                  }}
+                >
+                  {feature.title}
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{
+                    fontFamily: '"Montserrat", sans-serif',
+                    color: 'hsl(var(--text-secondary))',
+                  }}
+                >
+                  {feature.description}
+                </p>
+              </div>
+            </Card>
           );
         })}
       </div>
@@ -80,7 +91,9 @@ export default function FeatureGrid({
 
   if (variant === 'minimal') {
     return (
-      <div className={`grid gap-8 max-w-5xl mx-auto ${gridCols[columns]} ${className}`}>
+      <div
+        className={`grid gap-8 max-w-5xl mx-auto ${gridCols[columns]} ${className}`}
+      >
         {features.map((feature, index) => {
           const Icon = feature.icon;
           return (
@@ -89,17 +102,26 @@ export default function FeatureGrid({
                 className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
                 style={{ backgroundColor: 'hsla(43, 78%, 60%, 0.15)' }}
               >
-                <Icon className="w-6 h-6" style={{ color: 'hsl(var(--gold-medium))' }} />
+                <Icon
+                  className="w-6 h-6"
+                  style={{ color: 'hsl(var(--gold-medium))' }}
+                />
               </div>
               <h3
                 className="text-lg font-bold mb-3"
-                style={{ fontFamily: '"Libre Baskerville", serif', color: 'hsl(var(--text-primary))' }}
+                style={{
+                  fontFamily: '"Libre Baskerville", serif',
+                  color: 'hsl(var(--text-primary))',
+                }}
               >
                 {feature.title}
               </h3>
               <p
                 className="text-sm leading-relaxed"
-                style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
+                style={{
+                  fontFamily: '"Montserrat", sans-serif',
+                  color: 'hsl(var(--text-secondary))',
+                }}
               >
                 {feature.description}
               </p>
@@ -121,17 +143,26 @@ export default function FeatureGrid({
               className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
               style={{ backgroundColor: 'hsla(var(--accent-vibrant), 0.15)' }}
             >
-              <Icon className="w-5 h-5" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+              <Icon
+                className="w-5 h-5"
+                style={{ color: 'hsl(var(--accent-vibrant))' }}
+              />
             </div>
             <h3
               className="text-base font-semibold mb-2"
-              style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-primary))' }}
+              style={{
+                fontFamily: '"Montserrat", sans-serif',
+                color: 'hsl(var(--text-primary))',
+              }}
             >
               {feature.title}
             </h3>
             <p
               className="text-sm"
-              style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}
+              style={{
+                fontFamily: '"Montserrat", sans-serif',
+                color: 'hsl(var(--text-secondary))',
+              }}
             >
               {feature.description}
             </p>

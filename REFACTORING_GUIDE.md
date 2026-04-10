@@ -26,12 +26,14 @@ import { Card } from '@/components/ui/card';
 ```
 
 **Available variants:**
+
 - `default` - Standard card with shadow-sm
 - `elevated` - Large shadow-2xl
 - `glass` - Medium shadow-lg
 - `interactive` - Elevated with hover scale effect
 
 **Available themes:**
+
 - `default` - Uses standard bg-card
 - `gradient` - Applies theme-aware gradient background
 
@@ -66,7 +68,7 @@ import { ThemeSectionHeader } from '@/components/ui/themed-components';
   badge="Our Promise"
   title="Returns & Exchanges"
   description="Your satisfaction is paramount..."
-/>
+/>;
 ```
 
 ### ThemeCard
@@ -77,12 +79,9 @@ For elevated cards with icon + title:
 import { ThemeCard } from '@/components/ui/themed-components';
 import { Heart } from 'lucide-react';
 
-<ThemeCard
-  title="Authentic Crystals"
-  icon={<Heart className="h-6 w-6" />}
->
+<ThemeCard title="Authentic Crystals" icon={<Heart className="h-6 w-6" />}>
   <p>Card content here...</p>
-</ThemeCard>
+</ThemeCard>;
 ```
 
 ### StepCard
@@ -96,7 +95,7 @@ import { StepCard } from '@/components/ui/themed-components';
   step={1}
   title="Contact Us"
   description="Reach out through our contact form..."
-/>
+/>;
 ```
 
 ### InfoCircleCard
@@ -111,7 +110,7 @@ import { InfoCircleCard } from '@/components/ui/themed-components';
   title="Authentic Crystals"
   description="Every piece features genuine, ethically sourced crystals"
   size="lg" // sm | md | lg
-/>
+/>;
 ```
 
 ### Gradient Dividers
@@ -126,10 +125,9 @@ import { GradientDivider, TwoToneDivider } from '@/components/ui/themed-componen
 ## Migration Examples
 
 ### Before (Repeated Styles)
+
 ```tsx
-<Card
-  className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm"
->
+<Card className="shadow-2xl border border-ornate-frame-gold/20 bg-gradient-to-br from-pearl-cream to-crystal-accents backdrop-blur-sm">
   <CardHeader className="bg-gradient-to-r from-troves-turquoise/10 to-skull-turquoise/10 border-b border-ornate-frame-gold/20">
     <CardTitle className="text-troves-turquoise flex items-center space-x-3">
       <Icon className="text-ornate-frame-gold" />
@@ -137,12 +135,14 @@ import { GradientDivider, TwoToneDivider } from '@/components/ui/themed-componen
     </CardTitle>
   </CardHeader>
   <CardContent>
-    Content with repeated style={{ color: 'hsl(var(--text-secondary))' }} everywhere
+    Content with repeated style={{ color: 'hsl(var(--text-secondary))' }}{' '}
+    everywhere
   </CardContent>
 </Card>
 ```
 
 ### After (Centralized)
+
 ```tsx
 <Card variant="elevated" theme="gradient">
   <CardHeader variant="gradient">
@@ -151,9 +151,7 @@ import { GradientDivider, TwoToneDivider } from '@/components/ui/themed-componen
       Title
     </CardTitle>
   </CardHeader>
-  <CardContent>
-    Content with automatic theming
-  </CardContent>
+  <CardContent>Content with automatic theming</CardContent>
 </Card>
 ```
 
@@ -168,6 +166,7 @@ import { GradientDivider, TwoToneDivider } from '@/components/ui/themed-componen
 ## Next Steps
 
 Refactor remaining pages to use these components:
+
 - ✅ Returns.tsx (started)
 - ⏳ Contact.tsx
 - ⏳ About.tsx
@@ -177,6 +176,7 @@ Refactor remaining pages to use these components:
 - ⏳ Financing.tsx
 
 Each page should follow the pattern:
+
 1. Replace `shadow-2xl backdrop-blur-sm` with `variant="elevated"`
 2. Replace gradient styles with `theme="gradient"`
 3. Replace `CardHeader` gradient styles with `variant="gradient"`

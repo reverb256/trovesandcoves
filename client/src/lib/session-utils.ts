@@ -21,4 +21,6 @@ export function getOrCreateSessionId(): string {
 /**
  * Check if we're in development mode
  */
-export const isDevelopment = import.meta.env.DEV || (typeof window !== 'undefined' && window.location.hostname === 'localhost');
+export const isDevelopment =
+  import.meta.env.DEV ||
+  (typeof window !== 'undefined' && window.location.hostname === 'localhost');

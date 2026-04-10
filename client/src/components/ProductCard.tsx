@@ -1,11 +1,12 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Heart } from "lucide-react";
-import { useLocation } from "wouter";
-import { useCart } from "@/hooks/useCart";
-import { useToast } from "@/hooks/use-toast";
-import { memo, useState } from "react";
-import type { ProductWithCategory } from "@shared/types";
-import { WebPImage } from "@/components/WebPImage";
+import { Card, CardContent } from '@/components/ui/card';
+import { Heart } from 'lucide-react';
+import { useLocation } from 'wouter';
+import { useCart } from '@/hooks/useCart';
+import { useToast } from '@/hooks/use-toast';
+import { memo, useState } from 'react';
+import type { ProductWithCategory } from '@shared/types';
+import { WebPImage } from '@/components/WebPImage';
+import { useTextHeight } from '@/lib/pretext';
 
 interface ProductCardProps {
   product: ProductWithCategory;
@@ -19,6 +20,18 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
   const [isAdded, setIsAdded] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
+  // Pre-compute product name height for zero-CLS rendering.
+  // Card content is ~280px wide in the 3-col grid; font is 20px Libre Baskerville.
+  const nameFont = "500 20px 'Libre Baskerville', serif";
+  const nameLineHeight = 28; // leading-snug ~1.4 at 20px
+  const nameMaxWidth = 280;
+  const nameHeight = useTextHeight(
+    product.name,
+    nameFont,
+    nameMaxWidth,
+    nameLineHeight
+  );
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (product.stockQuantity === 0) return;
@@ -28,7 +41,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
     setTimeout(() => setIsAdded(false), 2000);
 
     toast({
-      title: "Added to Cart",
+      title: 'Added to Cart',
       description: product.name,
     });
   };
@@ -37,7 +50,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
     e.stopPropagation();
     setIsWishlisted(!isWishlisted);
     toast({
-      title: isWishlisted ? "Removed from Wishlist" : "Added to Wishlist",
+      title: isWishlisted ? 'Removed from Wishlist' : 'Added to Wishlist',
       description: product.name,
     });
   };
@@ -60,13 +73,18 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
       className="product-card-enhanced group cursor-pointer overflow-hidden"
       style={{
         backgroundColor: 'hsl(var(--bg-card))',
-        border: featured ? '2px solid hsl(var(--gold-medium))' : '1px solid hsl(var(--border-light))',
+        border: featured
+          ? '2px solid hsl(var(--gold-medium))'
+          : '1px solid hsl(var(--border-light))',
         borderRadius: '12px',
       }}
       onClick={() => setLocation(`/product/${product.id}`)}
     >
       {/* Image Container - More Prominent */}
-      <div className="relative overflow-hidden" style={{ aspectRatio: '1 / 1.15' }}>
+      <div
+        className="relative overflow-hidden"
+        style={{ aspectRatio: '1 / 1.15' }}
+      >
         <WebPImage
           src={product.imageUrl}
           alt={product.name}
@@ -85,7 +103,9 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
           onClick={handleWishlist}
           className="absolute top-4 right-4 w-11 h-11 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
           style={{
-            backgroundColor: isWishlisted ? 'hsl(var(--gold-medium))' : 'hsla(var(--bg-card),0.9)',
+            backgroundColor: isWishlisted
+              ? 'hsl(var(--gold-medium))'
+              : 'hsla(var(--bg-card),0.9)',
             boxShadow: '0 2px 12px hsla(0,0%,0%,0.15)',
           }}
           aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
@@ -93,20 +113,26 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
           <Heart
             className="w-5 h-5 transition-colors duration-300"
             style={{
-              color: isWishlisted ? 'hsl(var(--bg-card))' : 'hsl(var(--text-primary))',
-              fill: isWishlisted ? 'hsl(var(--bg-card))' : 'none'
+              color: isWishlisted
+                ? 'hsl(var(--bg-card))'
+                : 'hsl(var(--text-primary))',
+              fill: isWishlisted ? 'hsl(var(--bg-card))' : 'none',
             }}
           />
         </button>
 
         {/* Out of Stock Overlay - Elegant */}
         {isOutOfStock && (
-          <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm"
+          <div
+            className="absolute inset-0 flex items-center justify-center backdrop-blur-sm"
             style={{ backgroundColor: 'hsla(var(--bg-card),0.85)' }}
           >
             <span
               className="text-sm tracking-widest uppercase"
-              style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                color: 'hsl(var(--text-secondary))',
+              }}
             >
               Sold Out
             </span>
@@ -120,20 +146,24 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
         {product.category && (
           <p
             className="text-xs tracking-wider uppercase mb-3"
-            style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-muted))', letterSpacing: '0.15em' }}
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              color: 'hsl(var(--text-muted))',
+              letterSpacing: '0.15em',
+            }}
           >
             {product.category.name}
           </p>
         )}
 
-        {/* Product Name - Luxury Serif */}
+        {/* Product Name - Luxury Serif — Pretext pre-computed height for zero CLS */}
         <h3
           className="text-xl leading-snug mb-4 line-clamp-2 transition-colors duration-300 group-hover:text-[hsl(var(--accent-vibrant))]"
           style={{
             fontFamily: "'Libre Baskerville', serif",
             color: 'hsl(var(--text-primary))',
             fontWeight: 500,
-            minHeight: '3rem'
+            minHeight: nameHeight.height ? `${nameHeight.height}px` : '3rem',
           }}
         >
           {product.name}
@@ -147,18 +177,22 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
               fontFamily: "'Alex Brush', cursive",
               color: 'hsl(var(--gold-medium))',
               fontSize: '1.15rem',
-              lineHeight: '1.4'
+              lineHeight: '1.4',
             }}
           >
-            {product.gemstones.join(" • ")}
+            {product.gemstones.join(' • ')}
           </p>
         )}
 
         {/* Premium Section Divider */}
-        <div className="w-12 h-px mb-5" style={{
-          background: 'linear-gradient(90deg, hsl(var(--skull-turquoise)), hsl(var(--frame-gold)))',
-          opacity: 0.4
-        }} />
+        <div
+          className="w-12 h-px mb-5"
+          style={{
+            background:
+              'linear-gradient(90deg, hsl(var(--skull-turquoise)), hsl(var(--frame-gold)))',
+            opacity: 0.4,
+          }}
+        />
 
         {/* Price and Add - Bottom Row */}
         <div className="flex items-center justify-between gap-4">
@@ -167,7 +201,7 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
             className="text-2xl font-semibold"
             style={{
               fontFamily: "'Libre Baskerville', serif",
-              color: 'hsl(var(--gold-medium))'
+              color: 'hsl(var(--gold-medium))',
             }}
           >
             {formatPrice(product.price)}
@@ -181,20 +215,24 @@ function ProductCardComponent({ product, featured = false }: ProductCardProps) {
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 600,
-              backgroundColor: isAdded ? 'hsl(var(--accent-vibrant))' : 'hsl(var(--text-primary))',
+              backgroundColor: isAdded
+                ? 'hsl(var(--accent-vibrant))'
+                : 'hsl(var(--text-primary))',
               color: 'hsl(var(--bg-card))',
               border: 'none',
               borderRadius: '6px',
             }}
-            onMouseEnter={(e) => {
+            onMouseEnter={e => {
               if (!isAdded && !isOutOfStock) {
-                e.currentTarget.style.backgroundColor = 'hsl(var(--accent-vibrant))';
+                e.currentTarget.style.backgroundColor =
+                  'hsl(var(--accent-vibrant))';
                 e.currentTarget.style.transform = 'translateY(-2px)';
               }
             }}
-            onMouseLeave={(e) => {
+            onMouseLeave={e => {
               if (!isAdded && !isOutOfStock) {
-                e.currentTarget.style.backgroundColor = 'hsl(var(--text-primary))';
+                e.currentTarget.style.backgroundColor =
+                  'hsl(var(--text-primary))';
                 e.currentTarget.style.transform = 'translateY(0)';
               }
             }}

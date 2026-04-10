@@ -20,11 +20,13 @@ No authentication required. Cart operations use session-based storage with sessi
 ### Products
 
 #### Get All Products
+
 ```http
 GET /api/products
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -42,11 +44,13 @@ GET /api/products
 ```
 
 #### Get Featured Products
+
 ```http
 GET /api/products/featured
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -58,14 +62,17 @@ GET /api/products/featured
 ```
 
 #### Get Single Product
+
 ```http
 GET /api/products/{id}
 ```
 
 **Parameters:**
+
 - `id` (integer): Product ID
 
 **Response:**
+
 ```json
 {
   "id": 1,
@@ -82,14 +89,17 @@ GET /api/products/{id}
 ```
 
 #### Search Products
+
 ```http
 GET /api/search?q={query}
 ```
 
 **Parameters:**
+
 - `q` (string): Search query for product names and descriptions
 
 **Response:**
+
 ```json
 [
   {
@@ -104,16 +114,19 @@ GET /api/search?q={query}
 ### Cart Operations
 
 #### Get Cart
+
 ```http
 GET /api/cart
 ```
 
 **Headers:**
+
 ```http
 X-Session-ID: your-session-id
 ```
 
 **Response:**
+
 ```json
 [
   {
@@ -124,17 +137,20 @@ X-Session-ID: your-session-id
 ```
 
 #### Add to Cart
+
 ```http
 POST /api/cart
 ```
 
 **Headers:**
+
 ```http
 Content-Type: application/json
 X-Session-ID: your-session-id
 ```
 
 **Body:**
+
 ```json
 {
   "productId": 1,
@@ -143,6 +159,7 @@ X-Session-ID: your-session-id
 ```
 
 **Response:**
+
 ```json
 {
   "success": true
@@ -150,17 +167,20 @@ X-Session-ID: your-session-id
 ```
 
 #### Update Cart Item
+
 ```http
 PUT /api/cart/{productId}
 ```
 
 **Headers:**
+
 ```http
 Content-Type: application/json
 X-Session-ID: your-session-id
 ```
 
 **Body:**
+
 ```json
 {
   "quantity": 3
@@ -168,6 +188,7 @@ X-Session-ID: your-session-id
 ```
 
 **Response:**
+
 ```json
 {
   "success": true
@@ -175,16 +196,19 @@ X-Session-ID: your-session-id
 ```
 
 #### Remove from Cart
+
 ```http
 DELETE /api/cart/{productId}
 ```
 
 **Headers:**
+
 ```http
 X-Session-ID: your-session-id
 ```
 
 **Response:**
+
 ```json
 {
   "success": true
@@ -192,16 +216,19 @@ X-Session-ID: your-session-id
 ```
 
 #### Clear Cart
+
 ```http
 DELETE /api/cart
 ```
 
 **Headers:**
+
 ```http
 X-Session-ID: your-session-id
 ```
 
 **Response:**
+
 ```json
 {
   "success": true
@@ -213,6 +240,7 @@ X-Session-ID: your-session-id
 ## Error Handling
 
 ### Standard Error Response
+
 ```json
 {
   "error": "Error message",
@@ -240,6 +268,7 @@ npm run dev
 ```
 
 This starts:
+
 - Frontend: `http://localhost:5173`
 - API: `http://localhost:5000`
 
@@ -258,6 +287,7 @@ Cart data is stored server-side with session IDs. Sessions expire after 24 hours
 ### Static Site
 
 In production, the site is fully static with:
+
 - No API calls for product data (embedded in build)
 - Cart functionality using localStorage
 - Purchase redirects to Etsy storefront
@@ -265,6 +295,7 @@ In production, the site is fully static with:
 ### Optional Cloudflare Worker
 
 A Cloudflare Worker can be deployed for:
+
 - Etsy product synchronization
 - Optional API endpoints
 - Edge caching
@@ -286,9 +317,9 @@ await fetch('/api/cart', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'X-Session-ID': sessionId
+    'X-Session-ID': sessionId,
   },
-  body: JSON.stringify({ productId: 1, quantity: 1 })
+  body: JSON.stringify({ productId: 1, quantity: 1 }),
 });
 ```
 
@@ -338,5 +369,6 @@ interface CartItem {
 ---
 
 For more information, see:
+
 - [Development Guide](../development/README.md)
 - [CLAUDE.md](../../CLAUDE.md)

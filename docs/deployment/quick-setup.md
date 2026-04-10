@@ -68,6 +68,7 @@ git push origin main
 ```
 
 The GitHub Actions workflow will automatically:
+
 1. Build the site
 2. Deploy to GitHub Pages
 3. Available at: `https://YOUR_USERNAME.github.io/trovesandcoves`
@@ -79,11 +80,13 @@ The GitHub Actions workflow will automatically:
 ### A. Add CNAME File
 
 Create `CNAME` in repository root:
+
 ```
 yourdomain.com
 ```
 
 Or for subdomain:
+
 ```
 www.yourdomain.com
 ```
@@ -116,6 +119,7 @@ Target: YOUR_USERNAME.github.io
 ## Step 7: Verify
 
 Visit your site:
+
 - GitHub Pages: `https://YOUR_USERNAME.github.io/trovesandcoves`
 - Custom domain: `https://yourdomain.com`
 
@@ -138,16 +142,19 @@ VITE_API_URL=http://localhost:5000
 ## Troubleshooting
 
 ### "Page not found" after deployment
+
 - Wait 5-10 minutes for GitHub Pages to propagate
 - Check Actions tab for build failures
 - Ensure Pages source is set to "GitHub Actions"
 
 ### Custom domain not working
+
 - Verify DNS CNAME records
 - Wait up to 24 hours for DNS propagation
 - Check that CNAME file exists in repository
 
 ### Build failing
+
 - Run `npm run build` locally to debug
 - Check Node.js version (must be 18+)
 - Review error logs in Actions tab

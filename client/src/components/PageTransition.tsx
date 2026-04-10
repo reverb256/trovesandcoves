@@ -34,21 +34,27 @@ export function PageTransition({ children }: PageTransitionProps) {
  * USAGE: Add 'page-section', 'page-section-hero', or 'product-card-stagger'
  * classes to elements you want to animate.
  */
-export function useSectionReveal(options: {
-  rootMargin?: string;
-  threshold?: number;
-} = {}) {
+export function useSectionReveal(
+  options: {
+    rootMargin?: string;
+    threshold?: number;
+  } = {}
+) {
   // Destructure options at the function level for dependency array
   const { rootMargin = '0px 0px -100px 0px', threshold = 0.1 } = options;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
     if (prefersReducedMotion) {
       // Show all elements immediately for users who prefer reduced motion
-      const elements = document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger');
-      elements.forEach((el) => {
+      const elements = document.querySelectorAll(
+        '.page-section, .page-section-hero, .product-card-stagger'
+      );
+      elements.forEach(el => {
         if (el.isConnected) el.classList.add('visible');
       });
       return;
@@ -58,9 +64,9 @@ export function useSectionReveal(options: {
     const observerRef = { current: null as IntersectionObserver | null };
 
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         requestAnimationFrame(() => {
-          entries.forEach((entry) => {
+          entries.forEach(entry => {
             // Only proceed if this is still our active observer
             if (observerRef.current !== observer) return;
 
@@ -81,8 +87,10 @@ export function useSectionReveal(options: {
     observerRef.current = observer;
 
     // Observe elements
-    const elements = document.querySelectorAll('.page-section, .page-section-hero, .product-card-stagger');
-    elements.forEach((el) => {
+    const elements = document.querySelectorAll(
+      '.page-section, .page-section-hero, .product-card-stagger'
+    );
+    elements.forEach(el => {
       if (el.isConnected) {
         observer.observe(el);
       }

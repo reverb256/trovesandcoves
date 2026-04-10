@@ -9,11 +9,15 @@
 ## Test Organization
 
 ### Production Tests (this directory)
+
 These tests validate the live production site. They run against:
+
 - `https://trovesandcoves.ca` (all browsers)
 
 ### Debug Tests (`../e2e-debug/`)
+
 These tests run against the local development server:
+
 - `http://localhost:5000` (Chrome only)
 - Run with: `npm run test:e2e:debug`
 
@@ -47,6 +51,7 @@ npm run test:all
 ## CI/CD Usage
 
 In GitHub Actions, always use:
+
 ```yaml
 - run: npm run test:e2e
 ```
@@ -60,6 +65,7 @@ Do NOT use debug tests in CI.
 On NixOS systems, Firefox and WebKit browsers may fail to launch due to missing system libraries (`libstdc++.so.6`, `libxcb-shm.so.0`, etc.).
 
 **To run tests locally on NixOS:**
+
 ```bash
 # Run only Chromium tests (works on NixOS)
 npm run test:e2e -- --project=chromium
@@ -68,6 +74,7 @@ npm run test:e2e -- --project=chromium
 ```
 
 **For full browser testing locally on NixOS**, install the required libraries via nix:
+
 ```bash
 nix-shell -p firefox webkitgtk
 ```

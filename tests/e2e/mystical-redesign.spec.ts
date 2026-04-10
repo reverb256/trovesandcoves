@@ -14,7 +14,9 @@ test.describe('Brand Redesign', () => {
     console.log('Hero title:', titleText?.substring(0, 50));
 
     // Check for brand elements - use first() to avoid strict mode violations
-    await expect(page.locator('text=Handcrafted Crystal Jewelry').first()).toBeVisible();
+    await expect(
+      page.locator('text=Handcrafted Crystal Jewelry').first()
+    ).toBeVisible();
     await expect(page.locator('text=Made in Canada').first()).toBeVisible();
   });
 
@@ -49,19 +51,21 @@ test.describe('Brand Redesign', () => {
 
     // Check for either add to cart button OR Etsy purchase link
     const addToCart = page.locator('button:has-text("Add to Cart")');
-    const etsyLink = page.getByRole('link', { name: /etsy/i }).or(
-      page.locator('a[href*="etsy.com"]')
-    );
+    const etsyLink = page
+      .getByRole('link', { name: /etsy/i })
+      .or(page.locator('a[href*="etsy.com"]'));
 
-    const hasAddToCart = await addToCart.count() > 0;
-    const hasEtsyLink = await etsyLink.count() > 0;
+    const hasAddToCart = (await addToCart.count()) > 0;
+    const hasEtsyLink = (await etsyLink.count()) > 0;
 
     // Should have at least one purchase option
     expect(hasAddToCart || hasEtsyLink).toBe(true);
 
     // Quantity buttons should exist if product page loaded
-    const qtyButtons = page.locator('button:has-text("+"), button:has-text("-")');
-    const hasQtyButtons = await qtyButtons.count() > 0;
+    const qtyButtons = page.locator(
+      'button:has-text("+"), button:has-text("-")'
+    );
+    const hasQtyButtons = (await qtyButtons.count()) > 0;
     if (!hasQtyButtons) {
       console.log('Quantity buttons not found - production layout may differ');
     }
@@ -74,14 +78,20 @@ test.describe('Brand Redesign', () => {
 
     // Look for footer content
     await expect(page.locator('text=Winnipeg').first()).toBeVisible();
-    await expect(page.locator('text=Handcrafted crystal jewelry').first()).toBeVisible();
+    await expect(
+      page.locator('text=Handcrafted crystal jewelry').first()
+    ).toBeVisible();
   });
 
   test('navigation cart button is present', async ({ page }) => {
     await page.waitForLoadState('networkidle');
 
     // Look for cart button in navigation
-    const cartButton = page.locator('button[aria-label*="cart"], button[aria-label*="Cart"], svg.lucide-shopping-cart').first();
+    const cartButton = page
+      .locator(
+        'button[aria-label*="cart"], button[aria-label*="Cart"], svg.lucide-shopping-cart'
+      )
+      .first();
     await expect(cartButton).toBeVisible();
   });
 

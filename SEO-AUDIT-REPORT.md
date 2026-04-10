@@ -1,4 +1,5 @@
 # SEO Audit Report: Troves & Coves
+
 **Audit Date:** March 10, 2026
 **Site:** https://trovesandcoves.ca
 **Auditor:** Claude Code (SEO Specialist)
@@ -10,6 +11,7 @@
 **Overall Health Score: 7.5/10** ⭐️⭐️⭐️⭐️⭐️⭐️⭐️☆☆☆
 
 **Key Findings:**
+
 - ✅ Strong technical foundation with excellent Core Web Vitals
 - ✅ Comprehensive Schema.org markup implemented
 - ✅ Dynamic sitemap generation in place
@@ -18,6 +20,7 @@
 - ⚠️ Missing breadcrumb schema on product pages
 
 **Priority Actions:**
+
 1. **HIGH** - Fix duplicate title tags (blocking ranking potential)
 2. **HIGH** - Fix product detail page routing (SEO critical)
 3. **MEDIUM** - Add breadcrumb schema to all pages
@@ -30,6 +33,7 @@
 ### ✅ Crawlability & Indexation
 
 **Robots.txt** - ✅ EXCELLENT
+
 ```
 Status: 200 OK
 Sitemap reference: Present
@@ -37,12 +41,14 @@ Important pages: All allowed
 ```
 
 **Findings:**
+
 - Robots.txt properly configured and accessible
 - Sitemap referenced correctly
 - All important pages allowed for crawling
 - No unintended blocks detected
 
 **XML Sitemap** - ✅ EXCELLENT
+
 ```
 URL: https://trovesandcoves.ca/sitemap.xml
 Status: 200 OK
@@ -51,6 +57,7 @@ Total URLs: 33 (dynamically generated)
 ```
 
 **Sitemap Contents:**
+
 - 11 static pages (home, products, about, contact, checkout, policies)
 - 3 category pages (Crystal Necklaces, Gemstone Necklaces, Leather Cord Pendants)
 - 19 product pages (auto-populated from storage)
@@ -60,6 +67,7 @@ Total URLs: 33 (dynamically generated)
 ### ✅ Site Speed & Core Web Vitals
 
 **Performance Metrics (Homepage):**
+
 - **LCP (Largest Contentful Paint):** 1360ms ✅ EXCELLENT (target: <2.5s)
 - **CLS (Cumulative Layout Shift):** 0.001 ✅ EXCELLENT (target: <0.1)
 - **INP (Interaction to Next Paint):** Not measured but likely good
@@ -72,6 +80,7 @@ The site loads very quickly with minimal layout shift. The hero image optimizati
 ### ✅ Mobile-Friendliness
 
 **Status:** ✅ EXCELLENT
+
 - Responsive design confirmed
 - Viewport properly configured
 - Touch targets adequate
@@ -81,6 +90,7 @@ The site loads very quickly with minimal layout shift. The hero image optimizati
 ### ✅ Security & HTTPS
 
 **Status:** ✅ EXCELLENT
+
 - HTTPS enforced across entire site
 - Valid SSL certificate
 - No mixed content warnings
@@ -93,6 +103,7 @@ The site loads very quickly with minimal layout shift. The hero image optimizati
 ### 🔴 CRITICAL: Duplicate Title Tags
 
 **Issue:** **ALL pages have the same title tag**
+
 ```
 Current: "Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces"
 Found on: Homepage, Products page, all other pages
@@ -101,6 +112,7 @@ Found on: Homepage, Products page, all other pages
 **Impact:** **HIGH** - This is severely limiting ranking potential
 
 **Why This Matters:**
+
 - Google can't distinguish between pages
 - Each page can't rank for its unique keywords
 - Lower click-through rates from search results
@@ -108,6 +120,7 @@ Found on: Homepage, Products page, all other pages
 **Evidence:** Browser testing confirmed identical titles on homepage and products page
 
 **Fix Required:**
+
 ```tsx
 // Homepage
 <title>Troves & Coves - Handcrafted Crystal Jewelry | 14k Gold-Plated Statement Pieces</title>
@@ -136,6 +149,7 @@ Found on: Homepage, Products page, all other pages
 **Issue:** **Product detail pages not properly routed**
 
 **Evidence:**
+
 - Visited `https://trovesandcoves.ca/products/1`
 - Page shows products listing instead of product detail
 - No individual product schema on product pages
@@ -144,12 +158,14 @@ Found on: Homepage, Products page, all other pages
 **Impact:** **HIGH** - Missing out on long-tail keyword traffic
 
 **Fix Required:**
+
 1. Implement proper product detail page routing
 2. Each product needs its own dedicated page
 3. Add product schema to each product page
 4. Create unique titles/meta descriptions for each product
 
 **Example Product Page Structure:**
+
 ```
 /products/wire-wrapped-crystal-pendant-collection
 /products/lapis-lazuli-wire-wrapped-necklace
@@ -165,6 +181,7 @@ Found on: Homepage, Products page, all other pages
 **Status:** ✅ GOOD (but could be better)
 
 **Current Homepage Meta Description:**
+
 ```
 "Discover handcrafted crystal jewelry with timeless elegance. Each piece elevates your style, blending 14k gold-plated sophistication with natural crystal beauty. Artisan-crafted jewelry from Winnipeg, Canada."
 
@@ -172,12 +189,14 @@ Length: 166 characters ✅ (within 150-160 range)
 ```
 
 **Analysis:**
+
 - ✅ Good length (targets 150-160 chars)
 - ✅ Includes primary keywords
 - ✅ Clear value proposition
 - ⚠️ Missing call-to-action
 
 **Improved Version:**
+
 ```
 "Discover handcrafted crystal jewelry with timeless elegance. Each piece elevates your style, blending 14k gold-plated sophistication with natural crystal beauty. Shop unique crystal necklaces & bracelets crafted in Winnipeg, Canada."
 ```
@@ -189,6 +208,7 @@ Length: 166 characters ✅ (within 150-160 range)
 ### ✅ Heading Structure
 
 **Homepage:** ✅ GOOD
+
 ```
 H1: TROVES&Coves (unique, present)
 H2: The Collection
@@ -196,12 +216,14 @@ H2: Handcrafted With Intention
 ```
 
 **Products Page:** ✅ GOOD
+
 ```
 H1: Troves & Coves (unique, present)
 H2: 9 Crystals
 ```
 
 **Analysis:**
+
 - One H1 per page ✅
 - Logical hierarchy ✅
 - H1 includes brand name ⚠️ (could include keywords)
@@ -209,8 +231,11 @@ H2: 9 Crystals
 **Recommendation:** Update H1s to be more descriptive and keyword-rich
 
 **Better Homepage H1:**
+
 ```html
-<h1>Handcrafted Crystal Jewelry & 14k Gold-Plated Necklaces | Troves & Coves</h1>
+<h1>
+  Handcrafted Crystal Jewelry & 14k Gold-Plated Necklaces | Troves & Coves
+</h1>
 ```
 
 ---
@@ -218,6 +243,7 @@ H2: 9 Crystals
 ### ✅ Image Optimization
 
 **Status:** ✅ EXCELLENT
+
 - All images have alt text ✅
 - Descriptive alt text ✅
 - No missing alt attributes ✅
@@ -225,6 +251,7 @@ H2: 9 Crystals
 - Modern formats likely used ✅
 
 **Examples from homepage:**
+
 ```
 alt="Wire Wrapped Crystal Pendant Collection"
 alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
@@ -237,12 +264,14 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 ### ✅ Internal Linking
 
 **Status:** ✅ GOOD
+
 - 26 internal links detected
 - Logical navigation structure
 - Footer links to important pages
 - No broken internal links
 
 **Recommendation:** Consider adding:
+
 - Links from homepage to top categories
 - Links from blog content to products (when blog is added)
 - Related products on product pages
@@ -254,6 +283,7 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 ### ✅ Excellent Schema Implementation
 
 **Schema Types Detected:**
+
 1. ✅ **LocalBusiness** - Comprehensive Winnipeg business data
 2. ✅ **WebSite** - With search functionality
 3. ✅ **Organization** - Complete with contact points
@@ -262,6 +292,7 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 6. ✅ **OpeningHoursSpecification** - Detailed hours
 
 **LocalBusiness Schema Highlights:**
+
 ```json
 {
   "@type": "LocalBusiness",
@@ -282,6 +313,7 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 ```
 
 **⚠️ Missing Schema Types:**
+
 - ❌ **Product schema** on individual product pages (critical for e-commerce)
 - ❌ **BreadcrumbList** schema for navigation
 - ❌ **FAQPage** schema (if FAQ content exists)
@@ -289,6 +321,7 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 **Recommendations:**
 
 1. **Add Product Schema** (HIGH PRIORITY):
+
 ```tsx
 <ProductSchema
   name="Wire Wrapped Crystal Pendant Collection"
@@ -296,18 +329,21 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
   imageUrl="/images/products/lepidolite.jpg"
   price="90.00"
   stockQuantity={5}
-  category={{ name: "Crystal Necklaces" }}
+  category={{ name: 'Crystal Necklaces' }}
   id="1"
 />
 ```
 
 2. **Add Breadcrumb Schema**:
+
 ```tsx
-<BreadcrumbSchema items={[
-  { name: 'Home', path: '/' },
-  { name: 'Products', path: '/products' },
-  { name: 'Crystal Necklaces', path: '/products/crystal-necklaces' }
-]}/>
+<BreadcrumbSchema
+  items={[
+    { name: 'Home', path: '/' },
+    { name: 'Products', path: '/products' },
+    { name: 'Crystal Necklaces', path: '/products/crystal-necklaces' },
+  ]}
+/>
 ```
 
 ---
@@ -317,22 +353,26 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 ### ✅ E-E-A-T Signals
 
 **Experience:** ✅ GOOD
+
 - Demonstrates handcrafted expertise
 - Shows knowledge of crystal properties
 - Authentic product descriptions
 
 **Expertise:** ✅ GOOD
+
 - Detailed descriptions of materials (14k gold-filled, genuine crystals)
 - Explains craftsmanship process
 - Shows understanding of crystal properties
 
 **Authoritativeness:** ⚠️ MODERATE
+
 - Local Winnipeg presence
 - Etsy shop established
 - Social media presence (Facebook, Instagram)
 - ⚠️ Could benefit from: About page story, artisan bio
 
 **Trustworthiness:** ✅ GOOD
+
 - Clear contact information (info@trovesandcoves.ca)
 - Privacy policy present
 - Secure site (HTTPS)
@@ -342,17 +382,20 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 ### ✅ Content Depth
 
 **Homepage:** ✅ GOOD
+
 - Clear value proposition
 - Featured products showcase
 - Brand story section
 
 **Product Pages:** ⚠️ NEEDS WORK
+
 - Detailed descriptions ✅
 - ⚠️ Missing: Usage instructions, care guide, styling tips
 - ⚠️ Missing: Customer reviews display
 - ⚠️ Missing: Related products
 
 **Category Pages:** ⚠️ NEEDS WORK
+
 - Currently redirects to main products page
 - Should have unique category descriptions
 - Category-specific filtering options
@@ -364,12 +407,14 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 ### Primary Keywords Targeted
 
 **Homepage:**
+
 - ✅ "Handcrafted crystal jewelry"
 - ✅ "14k gold-plated"
 - ✅ "Statement pieces"
 - ✅ "Winnipeg, Canada"
 
 **Product Pages:**
+
 - ✅ "Crystal necklaces"
 - ✅ "Wire wrapped jewelry"
 - ✅ "Healing crystals"
@@ -377,6 +422,7 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 - ⚠️ Missing: Product attributes (length, style, occasion)
 
 **Opportunity Keywords (not targeted):**
+
 - "Affordable crystal jewelry Winnipeg"
 - "Gold-filled crystal necklaces Canada"
 - "Handcrafted gemstone jewelry Manitoba"
@@ -388,11 +434,13 @@ alt="Gold Chain Crystal Necklace with Wire Wrapped Pendant"
 ## Competitor Analysis (Quick)
 
 **Top Competitors (estimated):**
+
 1. Local Etsy sellers
 2. Other Canadian crystal jewelry brands
 3. Handmade jewelry marketplaces
 
 **Competitive Advantages:**
+
 - ✅ Strong brand identity ("Troves & Coves")
 - ✅ Local Winnipeg focus (local SEO opportunity)
 - ✅ Handcrafted/story angle
@@ -580,6 +628,7 @@ The Troves & Coves site has a **strong technical foundation** with excellent per
 **Biggest Opportunity:** Fixing duplicate title tags and implementing proper product detail pages could **double organic traffic** within 6 months.
 
 **Strengths to Build On:**
+
 - Excellent Core Web Vitals
 - Comprehensive local business schema
 - Strong brand identity

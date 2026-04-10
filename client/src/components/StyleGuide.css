@@ -19,7 +19,7 @@
 .sg-header {
   text-align: center;
   padding: 4rem 0;
-  border-bottom: 2px solid #C9A24A;
+  border-bottom: 2px solid #c9a24a;
   margin-bottom: 3rem;
 }
 
@@ -35,7 +35,7 @@
   font-family: 'Libre Baskerville', serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #3A8E8B;
+  color: #3a8e8b;
   margin-bottom: 0.5rem;
 }
 
@@ -61,7 +61,7 @@
   font-family: 'Libre Baskerville', serif;
   font-size: 1.75rem;
   font-weight: 700;
-  color: #3A8E8B;
+  color: #3a8e8b;
   margin-bottom: 0.5rem;
 }
 
@@ -83,7 +83,9 @@
   border: 1px solid rgba(74, 191, 191, 0.2);
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .color-card:hover {
@@ -135,8 +137,8 @@
 .color-code {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.875rem;
-  color: #3A8E8B;
-  background: #FFFFFF;
+  color: #3a8e8b;
+  background: #ffffff;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   flex: 1;
@@ -153,7 +155,7 @@
 }
 
 .copy-btn:hover {
-  background: #FFFFFF;
+  background: #ffffff;
 }
 
 .color-usage {
@@ -206,7 +208,7 @@
 
 .font-preview {
   padding: 2rem;
-  background: #FFFFFF;
+  background: #ffffff;
   text-align: center;
   min-height: 150px;
   display: flex;
@@ -242,7 +244,7 @@
 .font-category {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
-  color: #C9A24A;
+  color: #c9a24a;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -273,7 +275,7 @@
 .weight-badge {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
-  background: #3A8E8B;
+  background: #3a8e8b;
   color: white;
   padding: 0.125rem 0.5rem;
   border-radius: 12px;
@@ -283,7 +285,7 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
   color: #2c2c2c;
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 0.5rem;
   border-radius: 4px;
   display: block;
@@ -300,7 +302,7 @@
 .logo-display {
   text-align: center;
   padding: 3rem;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 12px;
 }
 
@@ -324,7 +326,7 @@
 .logo-rules h3 {
   font-family: 'Libre Baskerville', serif;
   font-size: 1.25rem;
-  color: #3A8E8B;
+  color: #3a8e8b;
   margin-bottom: 1rem;
 }
 
@@ -343,10 +345,10 @@
 }
 
 .logo-rules li::before {
-  content: "◆";
+  content: '◆';
   position: absolute;
   left: 0;
-  color: #C9A24A;
+  color: #c9a24a;
 }
 
 /* Type Scale */
@@ -361,7 +363,7 @@
   align-items: baseline;
   gap: 2rem;
   padding: 1rem;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 8px;
 }
 
@@ -387,14 +389,14 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
 }
 
 .spacing-bar {
   height: 24px;
-  background: linear-gradient(90deg, #3A8E8B, #C9A24A);
+  background: linear-gradient(90deg, #3a8e8b, #c9a24a);
   border-radius: 4px;
 }
 
@@ -427,7 +429,7 @@
 }
 
 .btn-primary {
-  background: #3A8E8B;
+  background: #3a8e8b;
   color: white;
   border: none;
 }
@@ -437,7 +439,7 @@
 }
 
 .btn-secondary {
-  background: #C9A24A;
+  background: #c9a24a;
   color: white;
   border: none;
 }
@@ -448,12 +450,12 @@
 
 .btn-outline {
   background: transparent;
-  color: #3A8E8B;
-  border: 2px solid #3A8E8B;
+  color: #3a8e8b;
+  border: 2px solid #3a8e8b;
 }
 
 .btn-outline:hover {
-  background: #3A8E8B;
+  background: #3a8e8b;
   color: white;
 }
 
@@ -520,10 +522,10 @@
 }
 
 .voice-content li::before {
-  content: "✦";
+  content: '✦';
   position: absolute;
   left: 0;
-  color: #C9A24A;
+  color: #c9a24a;
 }
 
 .voice-content blockquote {
@@ -534,7 +536,7 @@
 .sg-footer {
   text-align: center;
   padding: 3rem 0;
-  border-top: 2px solid #C9A24A;
+  border-top: 2px solid #c9a24a;
   font-family: 'Montserrat', sans-serif;
   color: #2c2c2c;
 }
@@ -544,17 +546,17 @@
   .style-guide-container {
     padding: 1rem;
   }
-  
+
   .logo-showcase {
     grid-template-columns: 1fr;
   }
-  
+
   .type-level {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  
+
   .color-grid,
   .combo-grid,
   .font-grid {

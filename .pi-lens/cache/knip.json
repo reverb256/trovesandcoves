@@ -1,0 +1,2394 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "cloudflare-worker.js",
+      "file": "cloudflare-worker.js"
+    },
+    {
+      "type": "file",
+      "name": ".astro/content-assets.mjs",
+      "file": ".astro/content-assets.mjs"
+    },
+    {
+      "type": "file",
+      "name": ".astro/content-modules.mjs",
+      "file": ".astro/content-modules.mjs"
+    },
+    {
+      "type": "file",
+      "name": ".astro/content.d.ts",
+      "file": ".astro/content.d.ts"
+    },
+    {
+      "type": "file",
+      "name": ".astro/types.d.ts",
+      "file": ".astro/types.d.ts"
+    },
+    {
+      "type": "file",
+      "name": "assets/AdminDashboard-buwgl-7a.js",
+      "file": "assets/AdminDashboard-buwgl-7a.js"
+    },
+    {
+      "type": "file",
+      "name": "assets/index-Bk8AOrqM.css",
+      "file": "assets/index-Bk8AOrqM.css"
+    },
+    {
+      "type": "file",
+      "name": "assets/index-CI4He6_Y.css",
+      "file": "assets/index-CI4He6_Y.css"
+    },
+    {
+      "type": "file",
+      "name": "assets/index-CfhOHkd9.js",
+      "file": "assets/index-CfhOHkd9.js"
+    },
+    {
+      "type": "file",
+      "name": "assets/index-CggPwXqB.js",
+      "file": "assets/index-CggPwXqB.js"
+    },
+    {
+      "type": "file",
+      "name": "cloudflare/etsy-sync-worker.js",
+      "file": "cloudflare/etsy-sync-worker.js"
+    },
+    {
+      "type": "file",
+      "name": "scripts/build-github-pages.js",
+      "file": "scripts/build-github-pages.js"
+    },
+    {
+      "type": "file",
+      "name": "scripts/convert-images-to-webp.cjs",
+      "file": "scripts/convert-images-to-webp.cjs"
+    },
+    {
+      "type": "file",
+      "name": "scripts/generate-icons.cjs",
+      "file": "scripts/generate-icons.cjs"
+    },
+    {
+      "type": "file",
+      "name": "scripts/test-serverless-api.js",
+      "file": "scripts/test-serverless-api.js"
+    },
+    {
+      "type": "file",
+      "name": "server/authentic-products.ts",
+      "file": "server/authentic-products.ts"
+    },
+    {
+      "type": "file",
+      "name": "server/cloudflare-worker.js",
+      "file": "server/cloudflare-worker.js"
+    },
+    {
+      "type": "file",
+      "name": "server/import-etsy-products.ts",
+      "file": "server/import-etsy-products.ts"
+    },
+    {
+      "type": "file",
+      "name": "server/scrape-etsy-images.ts",
+      "file": "server/scrape-etsy-images.ts"
+    },
+    {
+      "type": "file",
+      "name": "server/sync-etsy-products.ts",
+      "file": "server/sync-etsy-products.ts"
+    },
+    {
+      "type": "file",
+      "name": "shared/brand-config.ts",
+      "file": "shared/brand-config.ts"
+    },
+    {
+      "type": "file",
+      "name": "shared/locked-design-language.ts",
+      "file": "shared/locked-design-language.ts"
+    },
+    {
+      "type": "file",
+      "name": "shared/troves-coves-theme.ts",
+      "file": "shared/troves-coves-theme.ts"
+    },
+    {
+      "type": "file",
+      "name": "assets/assets/AdminDashboard-buwgl-7a.js",
+      "file": "assets/assets/AdminDashboard-buwgl-7a.js"
+    },
+    {
+      "type": "file",
+      "name": "assets/assets/index-Bk8AOrqM.css",
+      "file": "assets/assets/index-Bk8AOrqM.css"
+    },
+    {
+      "type": "file",
+      "name": "assets/assets/index-CggPwXqB.js",
+      "file": "assets/assets/index-CggPwXqB.js"
+    },
+    {
+      "type": "file",
+      "name": "client/public/sw.js",
+      "file": "client/public/sw.js"
+    },
+    {
+      "type": "file",
+      "name": "scripts/optimization/generate-icons.js",
+      "file": "scripts/optimization/generate-icons.js"
+    },
+    {
+      "type": "file",
+      "name": "scripts/optimization/optimize-images.js",
+      "file": "scripts/optimization/optimize-images.js"
+    },
+    {
+      "type": "file",
+      "name": "server/security/validation.ts",
+      "file": "server/security/validation.ts"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/FeatureGrid.tsx",
+      "file": "client/src/components/FeatureGrid.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/FeaturesBar.tsx",
+      "file": "client/src/components/FeaturesBar.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/LazyImage.tsx",
+      "file": "client/src/components/LazyImage.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/MobileOptimized.tsx",
+      "file": "client/src/components/MobileOptimized.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ProductCard.tsx",
+      "file": "client/src/components/ProductCard.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/Skeleton.tsx",
+      "file": "client/src/components/Skeleton.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/SkullIcon.tsx",
+      "file": "client/src/components/SkullIcon.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/hooks/use-mobile.tsx",
+      "file": "client/src/hooks/use-mobile.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/lib/logger.ts",
+      "file": "client/src/lib/logger.ts"
+    },
+    {
+      "type": "file",
+      "name": "client/src/lib/session-utils.ts",
+      "file": "client/src/lib/session-utils.ts"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/alert.tsx",
+      "file": "client/src/components/ui/alert.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/calendar.tsx",
+      "file": "client/src/components/ui/calendar.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/popover.tsx",
+      "file": "client/src/components/ui/popover.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/select.tsx",
+      "file": "client/src/components/ui/select.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/typography.tsx",
+      "file": "client/src/components/ui/typography.tsx"
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-alert-dialog",
+      "file": "package.json",
+      "line": 32
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-navigation-menu",
+      "file": "package.json",
+      "line": 36
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-popover",
+      "file": "package.json",
+      "line": 37
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-progress",
+      "file": "package.json",
+      "line": 38
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-radio-group",
+      "file": "package.json",
+      "line": 39
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-scroll-area",
+      "file": "package.json",
+      "line": 40
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-select",
+      "file": "package.json",
+      "line": 41
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-switch",
+      "file": "package.json",
+      "line": 45
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-tabs",
+      "file": "package.json",
+      "line": 46
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-toggle",
+      "file": "package.json",
+      "line": 48
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-toggle-group",
+      "file": "package.json",
+      "line": 49
+    },
+    {
+      "type": "dependency",
+      "name": "cors",
+      "file": "package.json",
+      "line": 54
+    },
+    {
+      "type": "dependency",
+      "name": "date-fns",
+      "file": "package.json",
+      "line": 55
+    },
+    {
+      "type": "dependency",
+      "name": "framer-motion",
+      "file": "package.json",
+      "line": 60
+    },
+    {
+      "type": "dependency",
+      "name": "memorystore",
+      "file": "package.json",
+      "line": 63
+    },
+    {
+      "type": "dependency",
+      "name": "next-themes",
+      "file": "package.json",
+      "line": 64
+    },
+    {
+      "type": "dependency",
+      "name": "react-day-picker",
+      "file": "package.json",
+      "line": 66
+    },
+    {
+      "type": "dependency",
+      "name": "react-icons",
+      "file": "package.json",
+      "line": 69
+    },
+    {
+      "type": "dependency",
+      "name": "tw-animate-css",
+      "file": "package.json",
+      "line": 72
+    },
+    {
+      "type": "dependency",
+      "name": "winston",
+      "file": "package.json",
+      "line": 74
+    },
+    {
+      "type": "dependency",
+      "name": "zod-validation-error",
+      "file": "package.json",
+      "line": 77
+    },
+    {
+      "type": "devDependency",
+      "name": "@replit/vite-plugin-runtime-error-modal",
+      "file": "package.json",
+      "line": 82
+    },
+    {
+      "type": "devDependency",
+      "name": "@tailwindcss/vite",
+      "file": "package.json",
+      "line": 84
+    },
+    {
+      "type": "devDependency",
+      "name": "axe-playwright",
+      "file": "package.json",
+      "line": 98
+    },
+    {
+      "type": "devDependency",
+      "name": "esbuild",
+      "file": "package.json",
+      "line": 99
+    },
+    {
+      "type": "devDependency",
+      "name": "sharp",
+      "file": "package.json",
+      "line": 107
+    },
+    {
+      "type": "unlisted",
+      "name": "@typescript-eslint/eslint-config-recommended",
+      "file": ".eslintrc.json"
+    },
+    {
+      "type": "unlisted",
+      "name": "nanoid",
+      "file": "server/vite.ts",
+      "line": 7
+    },
+    {
+      "type": "unlisted",
+      "name": "playwright",
+      "file": "scripts/generate-og-image.ts",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "validateInput",
+      "file": "server/security/owasp-compliance.ts",
+      "line": 128
+    },
+    {
+      "type": "export",
+      "name": "BASE_PATH",
+      "file": "shared/config.ts",
+      "line": 19
+    },
+    {
+      "type": "export",
+      "name": "API_RETRY_DELAY_MS",
+      "file": "shared/config.ts",
+      "line": 42
+    },
+    {
+      "type": "export",
+      "name": "FEATURES",
+      "file": "shared/config.ts",
+      "line": 45
+    },
+    {
+      "type": "export",
+      "name": "CURRENCY",
+      "file": "shared/config.ts",
+      "line": 51
+    },
+    {
+      "type": "export",
+      "name": "UPLOAD_LIMITS",
+      "file": "shared/config.ts",
+      "line": 58
+    },
+    {
+      "type": "export",
+      "name": "PAGINATION",
+      "file": "shared/config.ts",
+      "line": 65
+    },
+    {
+      "type": "export",
+      "name": "CACHE",
+      "file": "shared/config.ts",
+      "line": 71
+    },
+    {
+      "type": "export",
+      "name": "isProduction",
+      "file": "shared/config.ts",
+      "line": 77
+    },
+    {
+      "type": "export",
+      "name": "isDevelopment",
+      "file": "shared/config.ts",
+      "line": 78
+    },
+    {
+      "type": "export",
+      "name": "isTest",
+      "file": "shared/config.ts",
+      "line": 79
+    },
+    {
+      "type": "export",
+      "name": "validateConfig",
+      "file": "shared/config.ts",
+      "line": 82
+    },
+    {
+      "type": "export",
+      "name": "config",
+      "file": "shared/config.ts",
+      "line": 96
+    },
+    {
+      "type": "export",
+      "name": "withErrorBoundary",
+      "file": "client/src/components/ErrorBoundary.tsx",
+      "line": 147
+    },
+    {
+      "type": "export",
+      "name": "ApiError",
+      "file": "client/src/apiClient.ts",
+      "line": 6
+    },
+    {
+      "type": "export",
+      "name": "productsApi",
+      "file": "client/src/apiClient.ts",
+      "line": 135
+    },
+    {
+      "type": "export",
+      "name": "default",
+      "file": "client/src/apiClient.ts",
+      "line": 152
+    },
+    {
+      "type": "export",
+      "name": "BRAND_COLORS",
+      "file": "client/src/lib/color-utils.ts",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "WCAG_COLORS",
+      "file": "client/src/lib/color-utils.ts",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "getThemeColor",
+      "file": "client/src/lib/color-utils.ts",
+      "line": 54
+    },
+    {
+      "type": "export",
+      "name": "meetsWCAG_AA",
+      "file": "client/src/lib/color-utils.ts",
+      "line": 65
+    },
+    {
+      "type": "export",
+      "name": "etsyProductLinks",
+      "file": "server/etsy-links.ts",
+      "line": 2
+    },
+    {
+      "type": "export",
+      "name": "isError",
+      "file": "server/types.ts",
+      "line": 8
+    },
+    {
+      "type": "export",
+      "name": "hasMessage",
+      "file": "server/types.ts",
+      "line": 15
+    },
+    {
+      "type": "export",
+      "name": "SessionWithCart",
+      "file": "server/types.ts",
+      "line": 43
+    },
+    {
+      "type": "export",
+      "name": "RequestWithSession",
+      "file": "server/types.ts",
+      "line": 52
+    },
+    {
+      "type": "export",
+      "name": "Response",
+      "file": "server/types.ts",
+      "line": 59
+    },
+    {
+      "type": "export",
+      "name": "ExpressApp",
+      "file": "server/types.ts",
+      "line": 67
+    },
+    {
+      "type": "export",
+      "name": "isApiError",
+      "file": "shared/types.ts",
+      "line": 15
+    },
+    {
+      "type": "export",
+      "name": "users",
+      "file": "shared/types.ts",
+      "line": 155
+    },
+    {
+      "type": "export",
+      "name": "categories",
+      "file": "shared/types.ts",
+      "line": 156
+    },
+    {
+      "type": "export",
+      "name": "products",
+      "file": "shared/types.ts",
+      "line": 157
+    },
+    {
+      "type": "export",
+      "name": "cartItems",
+      "file": "shared/types.ts",
+      "line": 158
+    },
+    {
+      "type": "export",
+      "name": "orders",
+      "file": "shared/types.ts",
+      "line": 159
+    },
+    {
+      "type": "export",
+      "name": "orderItems",
+      "file": "shared/types.ts",
+      "line": 160
+    },
+    {
+      "type": "export",
+      "name": "contactSubmissions",
+      "file": "shared/types.ts",
+      "line": 161
+    },
+    {
+      "type": "export",
+      "name": "newsletterSubscriptions",
+      "file": "shared/types.ts",
+      "line": 162
+    },
+    {
+      "type": "export",
+      "name": "insertCartItemSchema",
+      "file": "shared/types.ts",
+      "line": 201
+    },
+    {
+      "type": "export",
+      "name": "insertOrderSchema",
+      "file": "shared/types.ts",
+      "line": 207
+    },
+    {
+      "type": "export",
+      "name": "ApiError",
+      "file": "shared/types.ts",
+      "line": 8
+    },
+    {
+      "type": "export",
+      "name": "Result",
+      "file": "shared/types.ts",
+      "line": 24
+    },
+    {
+      "type": "export",
+      "name": "SubscribeRequest",
+      "file": "shared/types.ts",
+      "line": 129
+    },
+    {
+      "type": "export",
+      "name": "SubscribeResponse",
+      "file": "shared/types.ts",
+      "line": 134
+    },
+    {
+      "type": "export",
+      "name": "categoryDescriptions",
+      "file": "server/mock-data.ts",
+      "line": 75
+    },
+    {
+      "type": "export",
+      "name": "getQueryFn",
+      "file": "client/src/lib/queryClient.ts",
+      "line": 96
+    },
+    {
+      "type": "export",
+      "name": "Tooltip",
+      "file": "client/src/components/ui/tooltip.tsx",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "TooltipTrigger",
+      "file": "client/src/components/ui/tooltip.tsx",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "TooltipContent",
+      "file": "client/src/components/ui/tooltip.tsx",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "PageTransition",
+      "file": "client/src/components/PageTransition.tsx",
+      "line": 23
+    },
+    {
+      "type": "export",
+      "name": "useSectionReveal",
+      "file": "client/src/components/PageTransition.tsx",
+      "line": 37
+    },
+    {
+      "type": "export",
+      "name": "Analytics",
+      "file": "client/src/components/Analytics.tsx",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "trackEvent",
+      "file": "client/src/components/Analytics.tsx",
+      "line": 110
+    },
+    {
+      "type": "export",
+      "name": "trackEcommerceEvent",
+      "file": "client/src/components/Analytics.tsx",
+      "line": 130
+    },
+    {
+      "type": "export",
+      "name": "analytics",
+      "file": "client/src/components/Analytics.tsx",
+      "line": 157
+    },
+    {
+      "type": "export",
+      "name": "PerformanceMonitor",
+      "file": "client/src/components/PerformanceMonitor.tsx",
+      "line": 14
+    },
+    {
+      "type": "export",
+      "name": "logPerformanceMetrics",
+      "file": "client/src/components/PerformanceMonitor.tsx",
+      "line": 97
+    },
+    {
+      "type": "export",
+      "name": "debounce",
+      "file": "client/src/components/PerformanceMonitor.tsx",
+      "line": 126
+    },
+    {
+      "type": "export",
+      "name": "throttle",
+      "file": "client/src/components/PerformanceMonitor.tsx",
+      "line": 148
+    },
+    {
+      "type": "export",
+      "name": "BrandCard",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 69
+    },
+    {
+      "type": "export",
+      "name": "CardFooter",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 181
+    },
+    {
+      "type": "export",
+      "name": "CardDescription",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 181
+    },
+    {
+      "type": "export",
+      "name": "CardProps",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 28
+    },
+    {
+      "type": "export",
+      "name": "BrandCardProps",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 64
+    },
+    {
+      "type": "export",
+      "name": "CardHeaderProps",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 111
+    },
+    {
+      "type": "export",
+      "name": "buttonVariants",
+      "file": "client/src/components/ui/button.tsx",
+      "line": 56
+    },
+    {
+      "type": "export",
+      "name": "ButtonProps",
+      "file": "client/src/components/ui/button.tsx",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "badgeVariants",
+      "file": "client/src/components/ui/badge.tsx",
+      "line": 34
+    },
+    {
+      "type": "export",
+      "name": "BadgeProps",
+      "file": "client/src/components/ui/badge.tsx",
+      "line": 24
+    },
+    {
+      "type": "export",
+      "name": "CollapsibleTrigger",
+      "file": "client/src/components/ui/collapsible.tsx",
+      "line": 9
+    },
+    {
+      "type": "export",
+      "name": "EMBEDDED_PRODUCTS",
+      "file": "shared/embedded-data.ts",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "reducer",
+      "file": "client/src/hooks/use-toast.ts",
+      "line": 74
+    },
+    {
+      "type": "export",
+      "name": "toast",
+      "file": "client/src/hooks/use-toast.ts",
+      "line": 191
+    },
+    {
+      "type": "export",
+      "name": "ToastAction",
+      "file": "client/src/components/ui/toast.tsx",
+      "line": 126
+    },
+    {
+      "type": "export",
+      "name": "API_TIMEOUT_MS",
+      "file": "client/src/constants.ts",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "API_RETRY_DELAY_MS",
+      "file": "client/src/constants.ts",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "API_MAX_RETRIES",
+      "file": "client/src/constants.ts",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "STALE_TIME_SHORT",
+      "file": "client/src/constants.ts",
+      "line": 16
+    },
+    {
+      "type": "export",
+      "name": "STALE_TIME_MEDIUM",
+      "file": "client/src/constants.ts",
+      "line": 17
+    },
+    {
+      "type": "export",
+      "name": "STALE_TIME_LONG",
+      "file": "client/src/constants.ts",
+      "line": 18
+    },
+    {
+      "type": "export",
+      "name": "CART_STORAGE_KEY",
+      "file": "client/src/constants.ts",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "CART_SESSION_BACKUP_KEY",
+      "file": "client/src/constants.ts",
+      "line": 22
+    },
+    {
+      "type": "export",
+      "name": "ANIMATION_DURATION_FAST",
+      "file": "client/src/constants.ts",
+      "line": 25
+    },
+    {
+      "type": "export",
+      "name": "ANIMATION_DURATION_NORMAL",
+      "file": "client/src/constants.ts",
+      "line": 26
+    },
+    {
+      "type": "export",
+      "name": "ANIMATION_DURATION_SLOW",
+      "file": "client/src/constants.ts",
+      "line": 27
+    },
+    {
+      "type": "export",
+      "name": "BREAKPOINT_SM",
+      "file": "client/src/constants.ts",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "BREAKPOINT_MD",
+      "file": "client/src/constants.ts",
+      "line": 31
+    },
+    {
+      "type": "export",
+      "name": "BREAKPOINT_LG",
+      "file": "client/src/constants.ts",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "BREAKPOINT_XL",
+      "file": "client/src/constants.ts",
+      "line": 33
+    },
+    {
+      "type": "export",
+      "name": "MAX_QUANTITY_PER_ITEM",
+      "file": "client/src/constants.ts",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "MIN_QUANTITY_PER_ITEM",
+      "file": "client/src/constants.ts",
+      "line": 37
+    },
+    {
+      "type": "export",
+      "name": "PRODUCTS_PER_PAGE",
+      "file": "client/src/constants.ts",
+      "line": 40
+    },
+    {
+      "type": "export",
+      "name": "SEARCH_DEBOUNCE_MS",
+      "file": "client/src/constants.ts",
+      "line": 43
+    },
+    {
+      "type": "export",
+      "name": "SheetPortal",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 131
+    },
+    {
+      "type": "export",
+      "name": "SheetOverlay",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 132
+    },
+    {
+      "type": "export",
+      "name": "SheetTrigger",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 133
+    },
+    {
+      "type": "export",
+      "name": "SheetClose",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 134
+    },
+    {
+      "type": "export",
+      "name": "SheetFooter",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 137
+    },
+    {
+      "type": "export",
+      "name": "SheetDescription",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 139
+    },
+    {
+      "type": "export",
+      "name": "useFormField",
+      "file": "client/src/components/ui/form.tsx",
+      "line": 170
+    },
+    {
+      "type": "export",
+      "name": "FormDescription",
+      "file": "client/src/components/ui/form.tsx",
+      "line": 175
+    },
+    {
+      "type": "export",
+      "name": "ThemeSectionHeader",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 17
+    },
+    {
+      "type": "export",
+      "name": "InfoCircleCard",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 84
+    },
+    {
+      "type": "export",
+      "name": "GradientDivider",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 130
+    },
+    {
+      "type": "export",
+      "name": "TwoToneDivider",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 139
+    },
+    {
+      "type": "export",
+      "name": "ThemeSectionHeaderProps",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "ThemeCardProps",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 50
+    },
+    {
+      "type": "export",
+      "name": "InfoCircleCardProps",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 77
+    },
+    {
+      "type": "export",
+      "name": "StepCardProps",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 107
+    },
+    {
+      "type": "export",
+      "name": "SectionHeader",
+      "file": "client/src/components/ContentPage.tsx",
+      "line": 88
+    },
+    {
+      "type": "export",
+      "name": "InfoCard",
+      "file": "client/src/components/ContentPage.tsx",
+      "line": 113
+    },
+    {
+      "type": "export",
+      "name": "StyleGuide",
+      "file": "client/src/components/StyleGuide.tsx",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "RefractedLight",
+      "file": "client/src/lab/components/refracted-light/RefractedLight.tsx",
+      "line": 64
+    },
+    {
+      "type": "export",
+      "name": "pageMetadata",
+      "file": "client/src/lib/pageMetadata.ts",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "measureTextHeight",
+      "file": "client/src/lib/pretext.ts",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "measureTextLines",
+      "file": "client/src/lib/pretext.ts",
+      "line": 48
+    },
+    {
+      "type": "export",
+      "name": "countLines",
+      "file": "client/src/lib/pretext.ts",
+      "line": 66
+    },
+    {
+      "type": "export",
+      "name": "getPrepareProfile",
+      "file": "client/src/lib/pretext.ts",
+      "line": 85
+    },
+    {
+      "type": "export",
+      "name": "getNextLine",
+      "file": "client/src/lib/pretext.ts",
+      "line": 99
+    },
+    {
+      "type": "export",
+      "name": "pretextClearCache",
+      "file": "client/src/lib/pretext.ts",
+      "line": 114
+    },
+    {
+      "type": "export",
+      "name": "useTextHeight",
+      "file": "client/src/lib/pretext.ts",
+      "line": 128
+    },
+    {
+      "type": "export",
+      "name": "useColumnLayout",
+      "file": "client/src/lib/pretext.ts",
+      "line": 191
+    },
+    {
+      "type": "export",
+      "name": "useWalkLineRanges",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 183
+    },
+    {
+      "type": "export",
+      "name": "useLayoutNextLine",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 223
+    },
+    {
+      "type": "export",
+      "name": "PretextMeasurement",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 23
+    },
+    {
+      "type": "export",
+      "name": "UsePretextOptions",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "PretextLine",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 82
+    },
+    {
+      "type": "export",
+      "name": "LineRange",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 172
+    },
+    {
+      "type": "export",
+      "name": "clearCache",
+      "file": "client/src/lab/utils/pretextCache.ts",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "IStorage",
+      "file": "server/storage.ts",
+      "line": 16
+    },
+    {
+      "type": "export",
+      "name": "FilterState",
+      "file": "client/src/components/SearchBar.tsx",
+      "line": 19
+    },
+    {
+      "type": "export",
+      "name": "BreadcrumbItem",
+      "file": "client/src/components/SchemaOrg.tsx",
+      "line": 4
+    },
+    {
+      "type": "export",
+      "name": "BreadcrumbItem",
+      "file": "client/src/components/BreadcrumbSchema.tsx",
+      "line": 4
+    }
+  ],
+  "unusedExports": [
+    {
+      "type": "export",
+      "name": "validateInput",
+      "file": "server/security/owasp-compliance.ts",
+      "line": 128
+    },
+    {
+      "type": "export",
+      "name": "BASE_PATH",
+      "file": "shared/config.ts",
+      "line": 19
+    },
+    {
+      "type": "export",
+      "name": "API_RETRY_DELAY_MS",
+      "file": "shared/config.ts",
+      "line": 42
+    },
+    {
+      "type": "export",
+      "name": "FEATURES",
+      "file": "shared/config.ts",
+      "line": 45
+    },
+    {
+      "type": "export",
+      "name": "CURRENCY",
+      "file": "shared/config.ts",
+      "line": 51
+    },
+    {
+      "type": "export",
+      "name": "UPLOAD_LIMITS",
+      "file": "shared/config.ts",
+      "line": 58
+    },
+    {
+      "type": "export",
+      "name": "PAGINATION",
+      "file": "shared/config.ts",
+      "line": 65
+    },
+    {
+      "type": "export",
+      "name": "CACHE",
+      "file": "shared/config.ts",
+      "line": 71
+    },
+    {
+      "type": "export",
+      "name": "isProduction",
+      "file": "shared/config.ts",
+      "line": 77
+    },
+    {
+      "type": "export",
+      "name": "isDevelopment",
+      "file": "shared/config.ts",
+      "line": 78
+    },
+    {
+      "type": "export",
+      "name": "isTest",
+      "file": "shared/config.ts",
+      "line": 79
+    },
+    {
+      "type": "export",
+      "name": "validateConfig",
+      "file": "shared/config.ts",
+      "line": 82
+    },
+    {
+      "type": "export",
+      "name": "config",
+      "file": "shared/config.ts",
+      "line": 96
+    },
+    {
+      "type": "export",
+      "name": "withErrorBoundary",
+      "file": "client/src/components/ErrorBoundary.tsx",
+      "line": 147
+    },
+    {
+      "type": "export",
+      "name": "ApiError",
+      "file": "client/src/apiClient.ts",
+      "line": 6
+    },
+    {
+      "type": "export",
+      "name": "productsApi",
+      "file": "client/src/apiClient.ts",
+      "line": 135
+    },
+    {
+      "type": "export",
+      "name": "default",
+      "file": "client/src/apiClient.ts",
+      "line": 152
+    },
+    {
+      "type": "export",
+      "name": "BRAND_COLORS",
+      "file": "client/src/lib/color-utils.ts",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "WCAG_COLORS",
+      "file": "client/src/lib/color-utils.ts",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "getThemeColor",
+      "file": "client/src/lib/color-utils.ts",
+      "line": 54
+    },
+    {
+      "type": "export",
+      "name": "meetsWCAG_AA",
+      "file": "client/src/lib/color-utils.ts",
+      "line": 65
+    },
+    {
+      "type": "export",
+      "name": "etsyProductLinks",
+      "file": "server/etsy-links.ts",
+      "line": 2
+    },
+    {
+      "type": "export",
+      "name": "isError",
+      "file": "server/types.ts",
+      "line": 8
+    },
+    {
+      "type": "export",
+      "name": "hasMessage",
+      "file": "server/types.ts",
+      "line": 15
+    },
+    {
+      "type": "export",
+      "name": "SessionWithCart",
+      "file": "server/types.ts",
+      "line": 43
+    },
+    {
+      "type": "export",
+      "name": "RequestWithSession",
+      "file": "server/types.ts",
+      "line": 52
+    },
+    {
+      "type": "export",
+      "name": "Response",
+      "file": "server/types.ts",
+      "line": 59
+    },
+    {
+      "type": "export",
+      "name": "ExpressApp",
+      "file": "server/types.ts",
+      "line": 67
+    },
+    {
+      "type": "export",
+      "name": "isApiError",
+      "file": "shared/types.ts",
+      "line": 15
+    },
+    {
+      "type": "export",
+      "name": "users",
+      "file": "shared/types.ts",
+      "line": 155
+    },
+    {
+      "type": "export",
+      "name": "categories",
+      "file": "shared/types.ts",
+      "line": 156
+    },
+    {
+      "type": "export",
+      "name": "products",
+      "file": "shared/types.ts",
+      "line": 157
+    },
+    {
+      "type": "export",
+      "name": "cartItems",
+      "file": "shared/types.ts",
+      "line": 158
+    },
+    {
+      "type": "export",
+      "name": "orders",
+      "file": "shared/types.ts",
+      "line": 159
+    },
+    {
+      "type": "export",
+      "name": "orderItems",
+      "file": "shared/types.ts",
+      "line": 160
+    },
+    {
+      "type": "export",
+      "name": "contactSubmissions",
+      "file": "shared/types.ts",
+      "line": 161
+    },
+    {
+      "type": "export",
+      "name": "newsletterSubscriptions",
+      "file": "shared/types.ts",
+      "line": 162
+    },
+    {
+      "type": "export",
+      "name": "insertCartItemSchema",
+      "file": "shared/types.ts",
+      "line": 201
+    },
+    {
+      "type": "export",
+      "name": "insertOrderSchema",
+      "file": "shared/types.ts",
+      "line": 207
+    },
+    {
+      "type": "export",
+      "name": "ApiError",
+      "file": "shared/types.ts",
+      "line": 8
+    },
+    {
+      "type": "export",
+      "name": "Result",
+      "file": "shared/types.ts",
+      "line": 24
+    },
+    {
+      "type": "export",
+      "name": "SubscribeRequest",
+      "file": "shared/types.ts",
+      "line": 129
+    },
+    {
+      "type": "export",
+      "name": "SubscribeResponse",
+      "file": "shared/types.ts",
+      "line": 134
+    },
+    {
+      "type": "export",
+      "name": "categoryDescriptions",
+      "file": "server/mock-data.ts",
+      "line": 75
+    },
+    {
+      "type": "export",
+      "name": "getQueryFn",
+      "file": "client/src/lib/queryClient.ts",
+      "line": 96
+    },
+    {
+      "type": "export",
+      "name": "Tooltip",
+      "file": "client/src/components/ui/tooltip.tsx",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "TooltipTrigger",
+      "file": "client/src/components/ui/tooltip.tsx",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "TooltipContent",
+      "file": "client/src/components/ui/tooltip.tsx",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "PageTransition",
+      "file": "client/src/components/PageTransition.tsx",
+      "line": 23
+    },
+    {
+      "type": "export",
+      "name": "useSectionReveal",
+      "file": "client/src/components/PageTransition.tsx",
+      "line": 37
+    },
+    {
+      "type": "export",
+      "name": "Analytics",
+      "file": "client/src/components/Analytics.tsx",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "trackEvent",
+      "file": "client/src/components/Analytics.tsx",
+      "line": 110
+    },
+    {
+      "type": "export",
+      "name": "trackEcommerceEvent",
+      "file": "client/src/components/Analytics.tsx",
+      "line": 130
+    },
+    {
+      "type": "export",
+      "name": "analytics",
+      "file": "client/src/components/Analytics.tsx",
+      "line": 157
+    },
+    {
+      "type": "export",
+      "name": "PerformanceMonitor",
+      "file": "client/src/components/PerformanceMonitor.tsx",
+      "line": 14
+    },
+    {
+      "type": "export",
+      "name": "logPerformanceMetrics",
+      "file": "client/src/components/PerformanceMonitor.tsx",
+      "line": 97
+    },
+    {
+      "type": "export",
+      "name": "debounce",
+      "file": "client/src/components/PerformanceMonitor.tsx",
+      "line": 126
+    },
+    {
+      "type": "export",
+      "name": "throttle",
+      "file": "client/src/components/PerformanceMonitor.tsx",
+      "line": 148
+    },
+    {
+      "type": "export",
+      "name": "BrandCard",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 69
+    },
+    {
+      "type": "export",
+      "name": "CardFooter",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 181
+    },
+    {
+      "type": "export",
+      "name": "CardDescription",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 181
+    },
+    {
+      "type": "export",
+      "name": "CardProps",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 28
+    },
+    {
+      "type": "export",
+      "name": "BrandCardProps",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 64
+    },
+    {
+      "type": "export",
+      "name": "CardHeaderProps",
+      "file": "client/src/components/ui/card.tsx",
+      "line": 111
+    },
+    {
+      "type": "export",
+      "name": "buttonVariants",
+      "file": "client/src/components/ui/button.tsx",
+      "line": 56
+    },
+    {
+      "type": "export",
+      "name": "ButtonProps",
+      "file": "client/src/components/ui/button.tsx",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "badgeVariants",
+      "file": "client/src/components/ui/badge.tsx",
+      "line": 34
+    },
+    {
+      "type": "export",
+      "name": "BadgeProps",
+      "file": "client/src/components/ui/badge.tsx",
+      "line": 24
+    },
+    {
+      "type": "export",
+      "name": "CollapsibleTrigger",
+      "file": "client/src/components/ui/collapsible.tsx",
+      "line": 9
+    },
+    {
+      "type": "export",
+      "name": "EMBEDDED_PRODUCTS",
+      "file": "shared/embedded-data.ts",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "reducer",
+      "file": "client/src/hooks/use-toast.ts",
+      "line": 74
+    },
+    {
+      "type": "export",
+      "name": "toast",
+      "file": "client/src/hooks/use-toast.ts",
+      "line": 191
+    },
+    {
+      "type": "export",
+      "name": "ToastAction",
+      "file": "client/src/components/ui/toast.tsx",
+      "line": 126
+    },
+    {
+      "type": "export",
+      "name": "API_TIMEOUT_MS",
+      "file": "client/src/constants.ts",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "API_RETRY_DELAY_MS",
+      "file": "client/src/constants.ts",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "API_MAX_RETRIES",
+      "file": "client/src/constants.ts",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "STALE_TIME_SHORT",
+      "file": "client/src/constants.ts",
+      "line": 16
+    },
+    {
+      "type": "export",
+      "name": "STALE_TIME_MEDIUM",
+      "file": "client/src/constants.ts",
+      "line": 17
+    },
+    {
+      "type": "export",
+      "name": "STALE_TIME_LONG",
+      "file": "client/src/constants.ts",
+      "line": 18
+    },
+    {
+      "type": "export",
+      "name": "CART_STORAGE_KEY",
+      "file": "client/src/constants.ts",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "CART_SESSION_BACKUP_KEY",
+      "file": "client/src/constants.ts",
+      "line": 22
+    },
+    {
+      "type": "export",
+      "name": "ANIMATION_DURATION_FAST",
+      "file": "client/src/constants.ts",
+      "line": 25
+    },
+    {
+      "type": "export",
+      "name": "ANIMATION_DURATION_NORMAL",
+      "file": "client/src/constants.ts",
+      "line": 26
+    },
+    {
+      "type": "export",
+      "name": "ANIMATION_DURATION_SLOW",
+      "file": "client/src/constants.ts",
+      "line": 27
+    },
+    {
+      "type": "export",
+      "name": "BREAKPOINT_SM",
+      "file": "client/src/constants.ts",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "BREAKPOINT_MD",
+      "file": "client/src/constants.ts",
+      "line": 31
+    },
+    {
+      "type": "export",
+      "name": "BREAKPOINT_LG",
+      "file": "client/src/constants.ts",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "BREAKPOINT_XL",
+      "file": "client/src/constants.ts",
+      "line": 33
+    },
+    {
+      "type": "export",
+      "name": "MAX_QUANTITY_PER_ITEM",
+      "file": "client/src/constants.ts",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "MIN_QUANTITY_PER_ITEM",
+      "file": "client/src/constants.ts",
+      "line": 37
+    },
+    {
+      "type": "export",
+      "name": "PRODUCTS_PER_PAGE",
+      "file": "client/src/constants.ts",
+      "line": 40
+    },
+    {
+      "type": "export",
+      "name": "SEARCH_DEBOUNCE_MS",
+      "file": "client/src/constants.ts",
+      "line": 43
+    },
+    {
+      "type": "export",
+      "name": "SheetPortal",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 131
+    },
+    {
+      "type": "export",
+      "name": "SheetOverlay",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 132
+    },
+    {
+      "type": "export",
+      "name": "SheetTrigger",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 133
+    },
+    {
+      "type": "export",
+      "name": "SheetClose",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 134
+    },
+    {
+      "type": "export",
+      "name": "SheetFooter",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 137
+    },
+    {
+      "type": "export",
+      "name": "SheetDescription",
+      "file": "client/src/components/ui/sheet.tsx",
+      "line": 139
+    },
+    {
+      "type": "export",
+      "name": "useFormField",
+      "file": "client/src/components/ui/form.tsx",
+      "line": 170
+    },
+    {
+      "type": "export",
+      "name": "FormDescription",
+      "file": "client/src/components/ui/form.tsx",
+      "line": 175
+    },
+    {
+      "type": "export",
+      "name": "ThemeSectionHeader",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 17
+    },
+    {
+      "type": "export",
+      "name": "InfoCircleCard",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 84
+    },
+    {
+      "type": "export",
+      "name": "GradientDivider",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 130
+    },
+    {
+      "type": "export",
+      "name": "TwoToneDivider",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 139
+    },
+    {
+      "type": "export",
+      "name": "ThemeSectionHeaderProps",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "ThemeCardProps",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 50
+    },
+    {
+      "type": "export",
+      "name": "InfoCircleCardProps",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 77
+    },
+    {
+      "type": "export",
+      "name": "StepCardProps",
+      "file": "client/src/components/ui/themed-components.tsx",
+      "line": 107
+    },
+    {
+      "type": "export",
+      "name": "SectionHeader",
+      "file": "client/src/components/ContentPage.tsx",
+      "line": 88
+    },
+    {
+      "type": "export",
+      "name": "InfoCard",
+      "file": "client/src/components/ContentPage.tsx",
+      "line": 113
+    },
+    {
+      "type": "export",
+      "name": "StyleGuide",
+      "file": "client/src/components/StyleGuide.tsx",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "RefractedLight",
+      "file": "client/src/lab/components/refracted-light/RefractedLight.tsx",
+      "line": 64
+    },
+    {
+      "type": "export",
+      "name": "pageMetadata",
+      "file": "client/src/lib/pageMetadata.ts",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "measureTextHeight",
+      "file": "client/src/lib/pretext.ts",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "measureTextLines",
+      "file": "client/src/lib/pretext.ts",
+      "line": 48
+    },
+    {
+      "type": "export",
+      "name": "countLines",
+      "file": "client/src/lib/pretext.ts",
+      "line": 66
+    },
+    {
+      "type": "export",
+      "name": "getPrepareProfile",
+      "file": "client/src/lib/pretext.ts",
+      "line": 85
+    },
+    {
+      "type": "export",
+      "name": "getNextLine",
+      "file": "client/src/lib/pretext.ts",
+      "line": 99
+    },
+    {
+      "type": "export",
+      "name": "pretextClearCache",
+      "file": "client/src/lib/pretext.ts",
+      "line": 114
+    },
+    {
+      "type": "export",
+      "name": "useTextHeight",
+      "file": "client/src/lib/pretext.ts",
+      "line": 128
+    },
+    {
+      "type": "export",
+      "name": "useColumnLayout",
+      "file": "client/src/lib/pretext.ts",
+      "line": 191
+    },
+    {
+      "type": "export",
+      "name": "useWalkLineRanges",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 183
+    },
+    {
+      "type": "export",
+      "name": "useLayoutNextLine",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 223
+    },
+    {
+      "type": "export",
+      "name": "PretextMeasurement",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 23
+    },
+    {
+      "type": "export",
+      "name": "UsePretextOptions",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "PretextLine",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 82
+    },
+    {
+      "type": "export",
+      "name": "LineRange",
+      "file": "client/src/lab/hooks/usePretext.ts",
+      "line": 172
+    },
+    {
+      "type": "export",
+      "name": "clearCache",
+      "file": "client/src/lab/utils/pretextCache.ts",
+      "line": 30
+    },
+    {
+      "type": "export",
+      "name": "IStorage",
+      "file": "server/storage.ts",
+      "line": 16
+    },
+    {
+      "type": "export",
+      "name": "FilterState",
+      "file": "client/src/components/SearchBar.tsx",
+      "line": 19
+    },
+    {
+      "type": "export",
+      "name": "BreadcrumbItem",
+      "file": "client/src/components/SchemaOrg.tsx",
+      "line": 4
+    },
+    {
+      "type": "export",
+      "name": "BreadcrumbItem",
+      "file": "client/src/components/BreadcrumbSchema.tsx",
+      "line": 4
+    }
+  ],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "cloudflare-worker.js",
+      "file": "cloudflare-worker.js"
+    },
+    {
+      "type": "file",
+      "name": ".astro/content-assets.mjs",
+      "file": ".astro/content-assets.mjs"
+    },
+    {
+      "type": "file",
+      "name": ".astro/content-modules.mjs",
+      "file": ".astro/content-modules.mjs"
+    },
+    {
+      "type": "file",
+      "name": ".astro/content.d.ts",
+      "file": ".astro/content.d.ts"
+    },
+    {
+      "type": "file",
+      "name": ".astro/types.d.ts",
+      "file": ".astro/types.d.ts"
+    },
+    {
+      "type": "file",
+      "name": "assets/AdminDashboard-buwgl-7a.js",
+      "file": "assets/AdminDashboard-buwgl-7a.js"
+    },
+    {
+      "type": "file",
+      "name": "assets/index-Bk8AOrqM.css",
+      "file": "assets/index-Bk8AOrqM.css"
+    },
+    {
+      "type": "file",
+      "name": "assets/index-CI4He6_Y.css",
+      "file": "assets/index-CI4He6_Y.css"
+    },
+    {
+      "type": "file",
+      "name": "assets/index-CfhOHkd9.js",
+      "file": "assets/index-CfhOHkd9.js"
+    },
+    {
+      "type": "file",
+      "name": "assets/index-CggPwXqB.js",
+      "file": "assets/index-CggPwXqB.js"
+    },
+    {
+      "type": "file",
+      "name": "cloudflare/etsy-sync-worker.js",
+      "file": "cloudflare/etsy-sync-worker.js"
+    },
+    {
+      "type": "file",
+      "name": "scripts/build-github-pages.js",
+      "file": "scripts/build-github-pages.js"
+    },
+    {
+      "type": "file",
+      "name": "scripts/convert-images-to-webp.cjs",
+      "file": "scripts/convert-images-to-webp.cjs"
+    },
+    {
+      "type": "file",
+      "name": "scripts/generate-icons.cjs",
+      "file": "scripts/generate-icons.cjs"
+    },
+    {
+      "type": "file",
+      "name": "scripts/test-serverless-api.js",
+      "file": "scripts/test-serverless-api.js"
+    },
+    {
+      "type": "file",
+      "name": "server/authentic-products.ts",
+      "file": "server/authentic-products.ts"
+    },
+    {
+      "type": "file",
+      "name": "server/cloudflare-worker.js",
+      "file": "server/cloudflare-worker.js"
+    },
+    {
+      "type": "file",
+      "name": "server/import-etsy-products.ts",
+      "file": "server/import-etsy-products.ts"
+    },
+    {
+      "type": "file",
+      "name": "server/scrape-etsy-images.ts",
+      "file": "server/scrape-etsy-images.ts"
+    },
+    {
+      "type": "file",
+      "name": "server/sync-etsy-products.ts",
+      "file": "server/sync-etsy-products.ts"
+    },
+    {
+      "type": "file",
+      "name": "shared/brand-config.ts",
+      "file": "shared/brand-config.ts"
+    },
+    {
+      "type": "file",
+      "name": "shared/locked-design-language.ts",
+      "file": "shared/locked-design-language.ts"
+    },
+    {
+      "type": "file",
+      "name": "shared/troves-coves-theme.ts",
+      "file": "shared/troves-coves-theme.ts"
+    },
+    {
+      "type": "file",
+      "name": "assets/assets/AdminDashboard-buwgl-7a.js",
+      "file": "assets/assets/AdminDashboard-buwgl-7a.js"
+    },
+    {
+      "type": "file",
+      "name": "assets/assets/index-Bk8AOrqM.css",
+      "file": "assets/assets/index-Bk8AOrqM.css"
+    },
+    {
+      "type": "file",
+      "name": "assets/assets/index-CggPwXqB.js",
+      "file": "assets/assets/index-CggPwXqB.js"
+    },
+    {
+      "type": "file",
+      "name": "client/public/sw.js",
+      "file": "client/public/sw.js"
+    },
+    {
+      "type": "file",
+      "name": "scripts/optimization/generate-icons.js",
+      "file": "scripts/optimization/generate-icons.js"
+    },
+    {
+      "type": "file",
+      "name": "scripts/optimization/optimize-images.js",
+      "file": "scripts/optimization/optimize-images.js"
+    },
+    {
+      "type": "file",
+      "name": "server/security/validation.ts",
+      "file": "server/security/validation.ts"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/FeatureGrid.tsx",
+      "file": "client/src/components/FeatureGrid.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/FeaturesBar.tsx",
+      "file": "client/src/components/FeaturesBar.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/LazyImage.tsx",
+      "file": "client/src/components/LazyImage.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/MobileOptimized.tsx",
+      "file": "client/src/components/MobileOptimized.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ProductCard.tsx",
+      "file": "client/src/components/ProductCard.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/Skeleton.tsx",
+      "file": "client/src/components/Skeleton.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/SkullIcon.tsx",
+      "file": "client/src/components/SkullIcon.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/hooks/use-mobile.tsx",
+      "file": "client/src/hooks/use-mobile.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/lib/logger.ts",
+      "file": "client/src/lib/logger.ts"
+    },
+    {
+      "type": "file",
+      "name": "client/src/lib/session-utils.ts",
+      "file": "client/src/lib/session-utils.ts"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/alert.tsx",
+      "file": "client/src/components/ui/alert.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/calendar.tsx",
+      "file": "client/src/components/ui/calendar.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/popover.tsx",
+      "file": "client/src/components/ui/popover.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/select.tsx",
+      "file": "client/src/components/ui/select.tsx"
+    },
+    {
+      "type": "file",
+      "name": "client/src/components/ui/typography.tsx",
+      "file": "client/src/components/ui/typography.tsx"
+    }
+  ],
+  "unusedDeps": [
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-alert-dialog",
+      "file": "package.json",
+      "line": 32
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-navigation-menu",
+      "file": "package.json",
+      "line": 36
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-popover",
+      "file": "package.json",
+      "line": 37
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-progress",
+      "file": "package.json",
+      "line": 38
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-radio-group",
+      "file": "package.json",
+      "line": 39
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-scroll-area",
+      "file": "package.json",
+      "line": 40
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-select",
+      "file": "package.json",
+      "line": 41
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-switch",
+      "file": "package.json",
+      "line": 45
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-tabs",
+      "file": "package.json",
+      "line": 46
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-toggle",
+      "file": "package.json",
+      "line": 48
+    },
+    {
+      "type": "dependency",
+      "name": "@radix-ui/react-toggle-group",
+      "file": "package.json",
+      "line": 49
+    },
+    {
+      "type": "dependency",
+      "name": "cors",
+      "file": "package.json",
+      "line": 54
+    },
+    {
+      "type": "dependency",
+      "name": "date-fns",
+      "file": "package.json",
+      "line": 55
+    },
+    {
+      "type": "dependency",
+      "name": "framer-motion",
+      "file": "package.json",
+      "line": 60
+    },
+    {
+      "type": "dependency",
+      "name": "memorystore",
+      "file": "package.json",
+      "line": 63
+    },
+    {
+      "type": "dependency",
+      "name": "next-themes",
+      "file": "package.json",
+      "line": 64
+    },
+    {
+      "type": "dependency",
+      "name": "react-day-picker",
+      "file": "package.json",
+      "line": 66
+    },
+    {
+      "type": "dependency",
+      "name": "react-icons",
+      "file": "package.json",
+      "line": 69
+    },
+    {
+      "type": "dependency",
+      "name": "tw-animate-css",
+      "file": "package.json",
+      "line": 72
+    },
+    {
+      "type": "dependency",
+      "name": "winston",
+      "file": "package.json",
+      "line": 74
+    },
+    {
+      "type": "dependency",
+      "name": "zod-validation-error",
+      "file": "package.json",
+      "line": 77
+    },
+    {
+      "type": "devDependency",
+      "name": "@replit/vite-plugin-runtime-error-modal",
+      "file": "package.json",
+      "line": 82
+    },
+    {
+      "type": "devDependency",
+      "name": "@tailwindcss/vite",
+      "file": "package.json",
+      "line": 84
+    },
+    {
+      "type": "devDependency",
+      "name": "axe-playwright",
+      "file": "package.json",
+      "line": 98
+    },
+    {
+      "type": "devDependency",
+      "name": "esbuild",
+      "file": "package.json",
+      "line": 99
+    },
+    {
+      "type": "devDependency",
+      "name": "sharp",
+      "file": "package.json",
+      "line": 107
+    }
+  ],
+  "unlistedDeps": [
+    {
+      "type": "unlisted",
+      "name": "@typescript-eslint/eslint-config-recommended",
+      "file": ".eslintrc.json"
+    },
+    {
+      "type": "unlisted",
+      "name": "nanoid",
+      "file": "server/vite.ts",
+      "line": 7
+    },
+    {
+      "type": "unlisted",
+      "name": "playwright",
+      "file": "scripts/generate-og-image.ts",
+      "line": 10
+    }
+  ],
+  "summary": "Found 206 issues"
+}

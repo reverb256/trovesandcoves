@@ -211,13 +211,13 @@ body {
       transparent 45%
     ),
     /* Slate shadow bottom-left */
-    radial-gradient(
+      radial-gradient(
         ellipse at 15% 85%,
         hsla(215, 25%, 8%, 0.15) 0%,
         transparent 40%
       ),
     /* Base - dark slate gradient */
-    linear-gradient(
+      linear-gradient(
         180deg,
         hsl(215 20% 12%) 0%,
         hsl(215 18% 16%) 50%,
@@ -240,13 +240,13 @@ body {
       transparent 50%
     ),
     /* Subtle teal accent top-right */
-    radial-gradient(
+      radial-gradient(
         circle at 85% 15%,
         hsla(180, 60%, 25%, 0.08) 0%,
         transparent 50%
       ),
     /* Gold hint center */
-    radial-gradient(
+      radial-gradient(
         circle at 50% 50%,
         hsla(43, 80%, 40%, 0.04) 0%,
         transparent 50%
@@ -2286,7 +2286,11 @@ html {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: white;
-  background: linear-gradient(135deg, hsl(var(--skull-turquoise)) 0%, hsl(176, 50%, 45%) 100%);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--skull-turquoise)) 0%,
+    hsl(176, 50%, 45%) 100%
+  );
   border: none;
   border-radius: 4px;
   cursor: pointer;

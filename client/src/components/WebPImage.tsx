@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-interface WebPImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> {
+interface WebPImageProps
+  extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   src: string;
   alt: string;
 }
@@ -11,7 +12,13 @@ interface WebPImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>,
  *
  * Usage: <WebPImage src="/images/product.png" alt="Product" className="w-full" />
  */
-export function WebPImage({ src, alt, className, style, ...imgProps }: WebPImageProps) {
+export function WebPImage({
+  src,
+  alt,
+  className,
+  style,
+  ...imgProps
+}: WebPImageProps) {
   const [useFallback, setUseFallback] = useState(false);
 
   // Convert PNG/JPG URLs to WebP
@@ -23,15 +30,20 @@ export function WebPImage({ src, alt, className, style, ...imgProps }: WebPImage
 
   // If not a PNG/JPG, or fallback triggered, use regular img
   if (useFallback || !src.match(/\.(png|jpg|jpeg)$/i)) {
-    return <img src={src} alt={alt} className={className} style={style} {...imgProps} />;
+    return (
+      <img
+        src={src}
+        alt={alt}
+        className={className}
+        style={style}
+        {...imgProps}
+      />
+    );
   }
 
   return (
     <picture className={className} style={style}>
-      <source
-        srcSet={webpSrc}
-        type="image/webp"
-      />
+      <source srcSet={webpSrc} type="image/webp" />
       <img
         src={src}
         alt={alt}

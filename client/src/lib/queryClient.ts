@@ -1,21 +1,23 @@
-import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import { QueryClient, QueryFunction } from '@tanstack/react-query';
 import {
   getEmbeddedProducts,
   getEmbeddedProduct,
   getEmbeddedFeaturedProducts,
   getEmbeddedCategories,
   searchEmbeddedProducts,
-  EMBEDDED_CATEGORIES
-} from "@shared/embedded-data";
+  EMBEDDED_CATEGORIES,
+} from '@shared/embedded-data';
 
 // Get API base URL from environment or use defaults
-const isDevelopment = import.meta.env.DEV || typeof window !== 'undefined' && window.location.hostname === 'localhost';
+const isDevelopment =
+  import.meta.env.DEV ||
+  (typeof window !== 'undefined' && window.location.hostname === 'localhost');
 
 // Check if we should use embedded data (GitHub Pages production)
-const shouldUseEmbeddedData = !isDevelopment && (
-  window.location.hostname === 'trovesandcoves.ca' ||
-  window.location.hostname === 'reverb256.github.io'
-);
+const shouldUseEmbeddedData =
+  !isDevelopment &&
+  (window.location.hostname === 'trovesandcoves.ca' ||
+    window.location.hostname === 'reverb256.github.io');
 
 // Session management with atomic get-or-create
 const SESSION_KEY = 'trovesandcoves_session';
@@ -50,25 +52,28 @@ async function throwIfResNotOk(res: Response) {
 export async function apiRequest(
   method: string,
   url: string,
-  data?: unknown | undefined,
+  data?: unknown | undefined
 ): Promise<Response> {
   // For cart operations in production, use localStorage
   if (shouldUseEmbeddedData && url.startsWith('/api/cart')) {
     // Handle cart operations via localStorage for now
     // This could be enhanced later
-    const response = new Response(
-      JSON.stringify({ success: true }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+    const response = new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
     return response as Response;
   }
 
   // For contact/newsletter in production, return success
-  if (shouldUseEmbeddedData && (url.startsWith('/api/contact') || url.startsWith('/api/newsletter'))) {
-    const response = new Response(
-      JSON.stringify({ success: true }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+  if (
+    shouldUseEmbeddedData &&
+    (url.startsWith('/api/contact') || url.startsWith('/api/newsletter'))
+  ) {
+    const response = new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
     return response as Response;
   }
 
@@ -80,23 +85,25 @@ export async function apiRequest(
   const res = await fetch(finalUrl, {
     method,
     headers: {
-      ...(data ? { "Content-Type": "application/json" } : {}),
+      ...(data ? { 'Content-Type': 'application/json' } : {}),
       'x-session-id': sessionId,
-      'x-platform': platform
+      'x-platform': platform,
     },
     body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
+    credentials: 'include',
   });
 
   await throwIfResNotOk(res);
   return res;
 }
 
-type UnauthorizedBehavior = "returnNull" | "throw";
+type UnauthorizedBehavior = 'returnNull' | 'throw';
 export const getQueryFn: <T>(options: {
   on401: UnauthorizedBehavior;
-}) => QueryFunction<T> = (options) => async ({ queryKey }) => {
-  const { on401: unauthorizedBehavior } = options;
+}) => QueryFunction<T> =
+  options =>
+  async ({ queryKey }) => {
+    const { on401: unauthorizedBehavior } = options;
     const url = queryKey[0] as string;
 
     // Use embedded data for GitHub Pages production
@@ -113,7 +120,9 @@ export const getQueryFn: <T>(options: {
 
         if (categoryParam) {
           // Find category by slug
-          const category = EMBEDDED_CATEGORIES.find(c => c.slug === categoryParam);
+          const category = EMBEDDED_CATEGORIES.find(
+            c => c.slug === categoryParam
+          );
           if (category) {
             return getEmbeddedProducts(category.id);
           }
@@ -123,7 +132,10 @@ export const getQueryFn: <T>(options: {
         }
         return getEmbeddedProducts();
       }
-      if (url.startsWith('/api/products/') && url !== '/api/products/featured') {
+      if (
+        url.startsWith('/api/products/') &&
+        url !== '/api/products/featured'
+      ) {
         const id = parseInt(url.split('/').pop()!);
         return getEmbeddedProduct(id);
       }
@@ -144,7 +156,7 @@ export const getQueryFn: <T>(options: {
         return searchEmbeddedProducts(query);
       }
 
-        // For cart/contact forms, return empty/default responses
+      // For cart/contact forms, return empty/default responses
       if (url === '/api/cart') {
         return [];
       }
@@ -165,14 +177,14 @@ export const getQueryFn: <T>(options: {
     const platform = 'development';
 
     const res = await fetch(finalUrl, {
-      credentials: "include",
+      credentials: 'include',
       headers: {
         'x-session-id': sessionId,
-        'x-platform': platform
-      }
+        'x-platform': platform,
+      },
     });
 
-    if (unauthorizedBehavior === "returnNull" && res.status === 401) {
+    if (unauthorizedBehavior === 'returnNull' && res.status === 401) {
       return null;
     }
 
@@ -183,7 +195,7 @@ export const getQueryFn: <T>(options: {
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      queryFn: getQueryFn({ on401: "throw" }),
+      queryFn: getQueryFn({ on401: 'throw' }),
       refetchInterval: false,
       refetchOnWindowFocus: false,
       staleTime: Infinity,

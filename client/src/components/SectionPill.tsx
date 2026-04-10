@@ -21,7 +21,8 @@ export default function SectionPill({
   showIcon = true,
   className = '',
 }: SectionPillProps) {
-  const baseStyle = "inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full border transition-all duration-300";
+  const baseStyle =
+    'inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full border transition-all duration-300';
 
   const variantStyles: Record<string, React.CSSProperties> = {
     turquoise: {
@@ -37,17 +38,15 @@ export default function SectionPill({
   };
 
   return (
-    <div
-      className={`${baseStyle} ${className}`}
-      style={variantStyles[variant]}
-    >
+    <div className={`${baseStyle} ${className}`} style={variantStyles[variant]}>
       {showIcon && (
         <Sparkles
           className="w-4 h-4 flex-shrink-0"
           style={{
-            color: variant === 'turquoise'
-              ? 'hsl(var(--accent-vibrant))'
-              : 'hsl(var(--gold-medium))'
+            color:
+              variant === 'turquoise'
+                ? 'hsl(var(--accent-vibrant))'
+                : 'hsl(var(--gold-medium))',
           }}
         />
       )}

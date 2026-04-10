@@ -57,26 +57,43 @@ export default function SizeGuide() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: 'hsl(var(--bg-primary))' }}>
+    <div
+      className="min-h-screen"
+      style={{ background: 'hsl(var(--bg-primary))' }}
+    >
       {/* Header */}
-      <section className="relative overflow-hidden py-24"
-                style={{ background: 'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)' }}>
-        <div className="absolute top-0 left-0 w-full h-1"
-             style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)' }} />
+      <section
+        className="relative overflow-hidden py-24"
+        style={{
+          background:
+            'linear-gradient(180deg, hsl(var(--bg-primary)) 0%, hsl(var(--bg-secondary)) 100%)',
+        }}
+      >
+        <div
+          className="absolute top-0 left-0 w-full h-1"
+          style={{
+            background:
+              'linear-gradient(90deg, transparent, hsl(var(--accent-vibrant)), transparent)',
+          }}
+        />
         <div className="relative chamber-container text-center">
           <SectionPill variant="gold" className="mb-8">
             Perfect Fit Guide
           </SectionPill>
 
-          <h1 className="text-5xl md:text-6xl font-bold mb-6"
-              style={{ color: 'hsl(var(--text-primary))' }}>
+          <h1
+            className="text-5xl md:text-6xl font-bold mb-6"
+            style={{ color: 'hsl(var(--text-primary))' }}
+          >
             Size Guide
           </h1>
 
           <SectionDivider variant="gradient" className="mb-6" />
 
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed"
-             style={{ color: 'hsl(var(--text-secondary))' }}>
+          <p
+            className="text-xl max-w-3xl mx-auto leading-relaxed"
+            style={{ color: 'hsl(var(--text-secondary))' }}
+          >
             Find your perfect fit for our crystal jewelry. Each piece is crafted
             with care to align with your style and comfort.
           </p>
@@ -98,10 +115,18 @@ export default function SizeGuide() {
                 <div
                   key={size.name}
                   className="border rounded-lg p-4"
-                  style={{ borderColor: 'hsl(var(--border-light))', backgroundColor: 'hsl(var(--bg-tertiary))' }}
+                  style={{
+                    borderColor: 'hsl(var(--border-light))',
+                    backgroundColor: 'hsl(var(--bg-tertiary))',
+                  }}
                 >
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>{size.name}</h3>
+                    <h3
+                      className="font-semibold"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
+                      {size.name}
+                    </h3>
                     <Badge
                       variant="secondary"
                       className="bg-troves-turquoise/20 text-primary text-xs"
@@ -109,10 +134,18 @@ export default function SizeGuide() {
                       {size.fit}
                     </Badge>
                   </div>
-                  <p className="text-sm font-medium mb-2" style={{ color: 'hsl(var(--accent-vibrant))' }}>
+                  <p
+                    className="text-sm font-medium mb-2"
+                    style={{ color: 'hsl(var(--accent-vibrant))' }}
+                  >
                     {size.length}
                   </p>
-                  <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>{size.description}</p>
+                  <p
+                    className="text-sm"
+                    style={{ color: 'hsl(var(--text-secondary))' }}
+                  >
+                    {size.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -131,14 +164,26 @@ export default function SizeGuide() {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b" style={{ borderColor: 'hsl(var(--border-light))' }}>
-                    <th className="text-left py-3 px-4 font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
+                  <tr
+                    className="border-b"
+                    style={{ borderColor: 'hsl(var(--border-light))' }}
+                  >
+                    <th
+                      className="text-left py-3 px-4 font-semibold"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
                       US Size
                     </th>
-                    <th className="text-left py-3 px-4 font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
+                    <th
+                      className="text-left py-3 px-4 font-semibold"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
                       Diameter
                     </th>
-                    <th className="text-left py-3 px-4 font-semibold" style={{ color: 'hsl(var(--text-primary))' }}>
+                    <th
+                      className="text-left py-3 px-4 font-semibold"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
                       Circumference
                     </th>
                   </tr>
@@ -150,13 +195,22 @@ export default function SizeGuide() {
                       className="border-b"
                       style={{ borderColor: 'hsl(var(--border-light))' }}
                     >
-                      <td className="py-3 px-4 font-medium" style={{ color: 'hsl(var(--text-primary))' }}>
+                      <td
+                        className="py-3 px-4 font-medium"
+                        style={{ color: 'hsl(var(--text-primary))' }}
+                      >
                         {ring.size}
                       </td>
-                      <td className="py-3 px-4" style={{ color: 'hsl(var(--text-secondary))' }}>
+                      <td
+                        className="py-3 px-4"
+                        style={{ color: 'hsl(var(--text-secondary))' }}
+                      >
                         {ring.diameter}
                       </td>
-                      <td className="py-3 px-4" style={{ color: 'hsl(var(--text-secondary))' }}>
+                      <td
+                        className="py-3 px-4"
+                        style={{ color: 'hsl(var(--text-secondary))' }}
+                      >
                         {ring.circumference}
                       </td>
                     </tr>
@@ -181,10 +235,16 @@ export default function SizeGuide() {
                 <div
                   key={size.size}
                   className="border rounded-lg p-4"
-                  style={{ borderColor: 'hsl(var(--border-light))', backgroundColor: 'hsl(var(--bg-tertiary))' }}
+                  style={{
+                    borderColor: 'hsl(var(--border-light))',
+                    backgroundColor: 'hsl(var(--bg-tertiary))',
+                  }}
                 >
                   <div className="flex justify-between items-center mb-2">
-                    <h3 className="font-semibold text-lg" style={{ color: 'hsl(var(--text-primary))' }}>
+                    <h3
+                      className="font-semibold text-lg"
+                      style={{ color: 'hsl(var(--text-primary))' }}
+                    >
                       {size.size}
                     </h3>
                     <Badge
@@ -194,7 +254,12 @@ export default function SizeGuide() {
                       {size.length}
                     </Badge>
                   </div>
-                  <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>Wrist: {size.wrist}</p>
+                  <p
+                    className="text-sm"
+                    style={{ color: 'hsl(var(--text-secondary))' }}
+                  >
+                    Wrist: {size.wrist}
+                  </p>
                 </div>
               ))}
             </div>
@@ -213,24 +278,46 @@ export default function SizeGuide() {
             <CardContent className="p-6">
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>
+                  <h4
+                    className="font-semibold mb-2"
+                    style={{ color: 'hsl(var(--text-primary))' }}
+                  >
                     Necklace Length
                   </h4>
-                  <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
+                  <p
+                    className="text-sm"
+                    style={{ color: 'hsl(var(--text-secondary))' }}
+                  >
                     Use a soft measuring tape around your neck where you'd like
                     the necklace to sit.
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>Ring Size</h4>
-                  <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
+                  <h4
+                    className="font-semibold mb-2"
+                    style={{ color: 'hsl(var(--text-primary))' }}
+                  >
+                    Ring Size
+                  </h4>
+                  <p
+                    className="text-sm"
+                    style={{ color: 'hsl(var(--text-secondary))' }}
+                  >
                     Measure the inner diameter of a ring that fits well, or wrap
                     string around your finger.
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2" style={{ color: 'hsl(var(--text-primary))' }}>Bracelet</h4>
-                  <p className="text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
+                  <h4
+                    className="font-semibold mb-2"
+                    style={{ color: 'hsl(var(--text-primary))' }}
+                  >
+                    Bracelet
+                  </h4>
+                  <p
+                    className="text-sm"
+                    style={{ color: 'hsl(var(--text-secondary))' }}
+                  >
                     Measure your wrist snugly, then add 0.5-1 inch for
                     comfortable movement.
                   </p>
@@ -247,11 +334,17 @@ export default function SizeGuide() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-              <p className="mb-4" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <p
+                className="mb-4"
+                style={{ color: 'hsl(var(--text-secondary))' }}
+              >
                 Need a custom size? We offer complimentary sizing adjustments
                 for most jewelry pieces.
               </p>
-              <ul className="space-y-2 text-sm" style={{ color: 'hsl(var(--text-secondary))' }}>
+              <ul
+                className="space-y-2 text-sm"
+                style={{ color: 'hsl(var(--text-secondary))' }}
+              >
                 <li className="flex items-start space-x-2">
                   <span className="text-troves-turquoise mt-1">•</span>
                   <span>Necklace extensions available</span>
@@ -280,10 +373,16 @@ export default function SizeGuide() {
         <Card variant="elevated" theme="gradient">
           <CardContent className="p-8 text-center">
             <Circle className="h-12 w-12 text-troves-turquoise mx-auto mb-4" />
-            <h3 className="text-2xl font-bold mb-4" style={{ color: 'hsl(var(--text-primary))' }}>
+            <h3
+              className="text-2xl font-bold mb-4"
+              style={{ color: 'hsl(var(--text-primary))' }}
+            >
               Perfect Fit Philosophy
             </h3>
-            <p className="mb-6 max-w-2xl mx-auto" style={{ color: 'hsl(var(--text-secondary))' }}>
+            <p
+              className="mb-6 max-w-2xl mx-auto"
+              style={{ color: 'hsl(var(--text-secondary))' }}
+            >
               At Troves & Coves, we believe your jewelry should feel as
               beautiful as it looks. The perfect fit allows you to enjoy your
               pieces comfortably while providing elegance for daily wear and

@@ -27,7 +27,14 @@ import { LucideIcon } from 'lucide-react';
  */
 interface IconCircleProps {
   icon?: LucideIcon;
-  variant?: 'turquoise' | 'turquoise-soft' | 'gold' | 'gold-soft' | 'success' | 'error' | 'outline';
+  variant?:
+    | 'turquoise'
+    | 'turquoise-soft'
+    | 'gold'
+    | 'gold-soft'
+    | 'success'
+    | 'error'
+    | 'outline';
   size?: 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl';
   children?: ReactNode;
   className?: string;

@@ -13,6 +13,7 @@
 ## Task 1: Add Newsletter Types to Shared Types
 
 **Files:**
+
 - Modify: `shared/types.ts`
 
 **Step 1: Add newsletter subscription interfaces**
@@ -70,6 +71,7 @@ git commit -m "feat: add newsletter subscription types"
 ## Task 2: Extend MemStorage with Newsletter Support
 
 **Files:**
+
 - Modify: `server/storage.ts`
 
 **Step 1: Add newsletter storage field**
@@ -157,6 +159,7 @@ git commit -m "feat: add newsletter storage to MemStorage"
 ## Task 3: Add Newsletter API Route
 
 **Files:**
+
 - Modify: `server/routes.ts`
 
 **Step 1: Add import**
@@ -164,7 +167,7 @@ git commit -m "feat: add newsletter storage to MemStorage"
 At the top of `server/routes.ts`, add to the imports from storage:
 
 ```typescript
-import { storage } from "./storage";
+import { storage } from './storage';
 ```
 
 **Step 2: Add newsletter subscription route**
@@ -173,7 +176,7 @@ Add this route after the contact submission routes (around line 150):
 
 ```typescript
 // Newsletter subscription endpoint
-app.post("/api/newsletter/subscribe", async (req, res) => {
+app.post('/api/newsletter/subscribe', async (req, res) => {
   try {
     const { email, firstName } = req.body;
 
@@ -181,7 +184,7 @@ app.post("/api/newsletter/subscribe", async (req, res) => {
     if (!email || !firstName) {
       return res.status(400).json({
         success: false,
-        message: "Email and first name are required"
+        message: 'Email and first name are required',
       });
     }
 
@@ -190,7 +193,7 @@ app.post("/api/newsletter/subscribe", async (req, res) => {
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        message: "Please enter a valid email address"
+        message: 'Please enter a valid email address',
       });
     }
 
@@ -198,34 +201,36 @@ app.post("/api/newsletter/subscribe", async (req, res) => {
     if (firstName.trim().length < 1 || firstName.trim().length > 50) {
       return res.status(400).json({
         success: false,
-        message: "First name must be between 1 and 50 characters"
+        message: 'First name must be between 1 and 50 characters',
       });
     }
 
     // Create subscription
     const subscription = await storage.createNewsletterSubscription({
       email: email.toLowerCase().trim(),
-      firstName: firstName.trim()
+      firstName: firstName.trim(),
     });
 
     res.json({
       success: true,
       discountCode: subscription.discountCode,
-      message: "Welcome to our crystal community!"
+      message: 'Welcome to our crystal community!',
     });
-
   } catch (error) {
-    if (error instanceof Error && error.message === "Email already subscribed") {
+    if (
+      error instanceof Error &&
+      error.message === 'Email already subscribed'
+    ) {
       return res.status(409).json({
         success: false,
-        message: "This email is already on our crystal journey ✨"
+        message: 'This email is already on our crystal journey ✨',
       });
     }
 
-    console.error("Newsletter subscription error:", error);
+    console.error('Newsletter subscription error:', error);
     res.status(500).json({
       success: false,
-      message: "Mystical interference occurred. Please try again."
+      message: 'Mystical interference occurred. Please try again.',
     });
   }
 });
@@ -243,6 +248,7 @@ git commit -m "feat: add newsletter subscription API endpoint"
 ## Task 4: Create Newsletter Hook
 
 **Files:**
+
 - Create: `client/src/hooks/useNewsletter.ts`
 
 **Step 1: Create the newsletter hook**
@@ -259,7 +265,9 @@ export function useNewsletter() {
   const [success, setSuccess] = useState(false);
   const [discountCode, setDiscountCode] = useState<string | null>(null);
 
-  const subscribe = async (data: SubscribeRequest): Promise<SubscribeResponse> => {
+  const subscribe = async (
+    data: SubscribeRequest
+  ): Promise<SubscribeResponse> => {
     setIsLoading(true);
     setError(null);
     setSuccess(false);
@@ -291,12 +299,11 @@ export function useNewsletter() {
       }
 
       return result;
-
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      const errorMessage =
+        err instanceof Error ? err.message : 'An error occurred';
       setError(errorMessage);
       throw err;
-
     } finally {
       setIsLoading(false);
     }
@@ -324,7 +331,7 @@ export function useNewsletter() {
     success,
     discountCode,
     copyToClipboard,
-    reset
+    reset,
   };
 }
 ```
@@ -341,6 +348,7 @@ git commit -m "feat: add useNewsletter hook"
 ## Task 5: Create Newsletter Form Component
 
 **Files:**
+
 - Create: `client/src/components/NewsletterForm.tsx`
 
 **Step 1: Create the newsletter form component**
@@ -547,6 +555,7 @@ git commit -m "feat: add NewsletterForm component"
 ## Task 6: Integrate Newsletter Form into Footer
 
 **Files:**
+
 - Modify: `client/src/components/Footer.tsx`
 
 **Step 1: Add import**
@@ -578,6 +587,7 @@ git commit -m "feat: integrate newsletter form into footer"
 ## Task 7: Write Unit Tests for Newsletter Hook
 
 **Files:**
+
 - Create: `client/src/hooks/useNewsletter.test.ts`
 
 **Step 1: Create the test file**
@@ -611,7 +621,7 @@ describe('useNewsletter', () => {
     const mockResponse = {
       success: true,
       discountCode: 'CRYSTAL-ABC12',
-      message: 'Welcome!'
+      message: 'Welcome!',
     };
 
     vi.mocked(fetch).mockResolvedValueOnce({
@@ -624,14 +634,16 @@ describe('useNewsletter', () => {
     await act(async () => {
       const response = await result.current.subscribe({
         email: 'test@example.com',
-        firstName: 'Test'
+        firstName: 'Test',
       });
       expect(response).toEqual(mockResponse);
     });
 
     expect(result.current.success).toBe(true);
     expect(result.current.discountCode).toBe('CRYSTAL-ABC12');
-    expect(localStorage.getItem('newsletterDiscountCode')).toBe('CRYSTAL-ABC12');
+    expect(localStorage.getItem('newsletterDiscountCode')).toBe(
+      'CRYSTAL-ABC12'
+    );
     expect(localStorage.getItem('newsletterEmail')).toBe('test@example.com');
   });
 
@@ -641,7 +653,7 @@ describe('useNewsletter', () => {
       status: 400,
       json: async () => ({
         success: false,
-        message: 'Please enter a valid email address'
+        message: 'Please enter a valid email address',
       }),
     } as Response);
 
@@ -651,7 +663,7 @@ describe('useNewsletter', () => {
       await expect(
         result.current.subscribe({
           email: 'invalid-email',
-          firstName: 'Test'
+          firstName: 'Test',
         })
       ).rejects.toThrow('Please enter a valid email address');
     });
@@ -666,7 +678,7 @@ describe('useNewsletter', () => {
       status: 409,
       json: async () => ({
         success: false,
-        message: 'This email is already on our crystal journey ✨'
+        message: 'This email is already on our crystal journey ✨',
       }),
     } as Response);
 
@@ -676,20 +688,22 @@ describe('useNewsletter', () => {
       await expect(
         result.current.subscribe({
           email: 'existing@example.com',
-          firstName: 'Test'
+          firstName: 'Test',
         })
       ).rejects.toThrow('This email is already on our crystal journey ✨');
     });
 
-    expect(result.current.error).toBe('This email is already on our crystal journey ✨');
+    expect(result.current.error).toBe(
+      'This email is already on our crystal journey ✨'
+    );
   });
 
   it('should copy discount code to clipboard', async () => {
     const mockWriteText = vi.fn().mockResolvedValue(true);
     Object.assign(navigator, {
       clipboard: {
-        writeText: mockWriteText
-      }
+        writeText: mockWriteText,
+      },
     });
 
     const { result } = renderHook(() => useNewsletter());
@@ -737,6 +751,7 @@ git commit -m "test: add unit tests for useNewsletter hook"
 ## Task 8: Write Unit Tests for Storage
 
 **Files:**
+
 - Create: `server/storage.test.ts`
 
 **Step 1: Create the test file**
@@ -757,7 +772,7 @@ describe('Newsletter Storage', () => {
   it('should create newsletter subscription', async () => {
     const subscription = await storage.createNewsletterSubscription({
       email: 'test@example.com',
-      firstName: 'Test'
+      firstName: 'Test',
     });
 
     expect(subscription).toBeDefined();
@@ -772,12 +787,12 @@ describe('Newsletter Storage', () => {
   it('should generate unique discount codes', async () => {
     const subscription1 = await storage.createNewsletterSubscription({
       email: 'test1@example.com',
-      firstName: 'Test1'
+      firstName: 'Test1',
     });
 
     const subscription2 = await storage.createNewsletterSubscription({
       email: 'test2@example.com',
-      firstName: 'Test2'
+      firstName: 'Test2',
     });
 
     expect(subscription1.discountCode).not.toBe(subscription2.discountCode);
@@ -786,13 +801,13 @@ describe('Newsletter Storage', () => {
   it('should reject duplicate email subscriptions', async () => {
     await storage.createNewsletterSubscription({
       email: 'test@example.com',
-      firstName: 'Test'
+      firstName: 'Test',
     });
 
     await expect(
       storage.createNewsletterSubscription({
         email: 'test@example.com',
-        firstName: 'Test'
+        firstName: 'Test',
       })
     ).rejects.toThrow('Email already subscribed');
   });
@@ -800,29 +815,32 @@ describe('Newsletter Storage', () => {
   it('should retrieve subscription by email', async () => {
     await storage.createNewsletterSubscription({
       email: 'test@example.com',
-      firstName: 'Test'
+      firstName: 'Test',
     });
 
-    const found = await storage.getNewsletterSubscriptionByEmail('test@example.com');
+    const found =
+      await storage.getNewsletterSubscriptionByEmail('test@example.com');
 
     expect(found).toBeDefined();
     expect(found?.email).toBe('test@example.com');
   });
 
   it('should return undefined for non-existent email', async () => {
-    const found = await storage.getNewsletterSubscriptionByEmail('nonexistent@example.com');
+    const found = await storage.getNewsletterSubscriptionByEmail(
+      'nonexistent@example.com'
+    );
     expect(found).toBeUndefined();
   });
 
   it('should retrieve all subscriptions', async () => {
     await storage.createNewsletterSubscription({
       email: 'test1@example.com',
-      firstName: 'Test1'
+      firstName: 'Test1',
     });
 
     await storage.createNewsletterSubscription({
       email: 'test2@example.com',
-      firstName: 'Test2'
+      firstName: 'Test2',
     });
 
     const subscriptions = await storage.getNewsletterSubscriptions();
@@ -835,12 +853,12 @@ describe('Newsletter Storage', () => {
   it('should only return active subscriptions', async () => {
     const sub1 = await storage.createNewsletterSubscription({
       email: 'test1@example.com',
-      firstName: 'Test1'
+      firstName: 'Test1',
     });
 
     await storage.createNewsletterSubscription({
       email: 'test2@example.com',
-      firstName: 'Test2'
+      firstName: 'Test2',
     });
 
     // Manually deactivate first subscription (this would be done via an update method in production)
@@ -874,6 +892,7 @@ git commit -m "test: add unit tests for newsletter storage"
 ## Task 9: Write E2E Tests for Newsletter
 
 **Files:**
+
 - Create: `client/e2e/newsletter.spec.ts`
 
 **Step 1: Create the E2E test file**
@@ -890,10 +909,14 @@ test.describe('Newsletter Signup', () => {
 
   test('displays newsletter form in footer', async ({ page }) => {
     const footer = page.locator('footer');
-    await expect(footer.getByText('Subscribe to Receive Crystal Wisdom')).toBeVisible();
+    await expect(
+      footer.getByText('Subscribe to Receive Crystal Wisdom')
+    ).toBeVisible();
     await expect(footer.getByPlaceholder('First Name')).toBeVisible();
     await expect(footer.getByPlaceholder('Email Address')).toBeVisible();
-    await expect(footer.getByRole('button', { name: 'Subscribe' })).toBeVisible();
+    await expect(
+      footer.getByRole('button', { name: 'Subscribe' })
+    ).toBeVisible();
   });
 
   test('validates email format', async ({ page }) => {
@@ -920,13 +943,19 @@ test.describe('Newsletter Signup', () => {
     const footer = page.locator('footer');
 
     await footer.getByPlaceholder('First Name').fill('Test');
-    await footer.getByPlaceholder('Email Address').fill(`test-${Date.now()}@example.com`);
+    await footer
+      .getByPlaceholder('Email Address')
+      .fill(`test-${Date.now()}@example.com`);
 
     await footer.getByRole('button', { name: 'Subscribe' }).click();
 
     // Wait for success message
-    await expect(footer.getByText('Welcome to the Crystal Community!')).toBeVisible();
-    await expect(footer.getByText(/Your exclusive 10% discount code:/)).toBeVisible();
+    await expect(
+      footer.getByText('Welcome to the Crystal Community!')
+    ).toBeVisible();
+    await expect(
+      footer.getByText(/Your exclusive 10% discount code:/)
+    ).toBeVisible();
     await expect(footer.getByText(/CRYSTAL-/)).toBeVisible();
   });
 
@@ -934,7 +963,9 @@ test.describe('Newsletter Signup', () => {
     const footer = page.locator('footer');
 
     await footer.getByPlaceholder('First Name').fill('Test');
-    await footer.getByPlaceholder('Email Address').fill(`test-${Date.now()}@example.com`);
+    await footer
+      .getByPlaceholder('Email Address')
+      .fill(`test-${Date.now()}@example.com`);
 
     await footer.getByRole('button', { name: 'Subscribe' }).click();
 
@@ -952,7 +983,9 @@ test.describe('Newsletter Signup', () => {
     await expect(footer.getByText('Copied to clipboard!')).toBeVisible();
 
     // Verify clipboard content
-    const clipboardText = await page.evaluate(() => navigator.clipboard.readText());
+    const clipboardText = await page.evaluate(() =>
+      navigator.clipboard.readText()
+    );
     expect(clipboardText).toBe(code);
   });
 
@@ -966,7 +999,9 @@ test.describe('Newsletter Signup', () => {
     await footer.getByRole('button', { name: 'Subscribe' }).click();
 
     // Wait for success
-    await expect(footer.getByText('Welcome to the Crystal Community!')).toBeVisible();
+    await expect(
+      footer.getByText('Welcome to the Crystal Community!')
+    ).toBeVisible();
 
     // Reload and try to subscribe again with same email
     await page.reload();
@@ -975,7 +1010,9 @@ test.describe('Newsletter Signup', () => {
     await footer.getByRole('button', { name: 'Subscribe' }).click();
 
     // Should show error message
-    await expect(footer.getByText(/already on our crystal journey/)).toBeVisible();
+    await expect(
+      footer.getByText(/already on our crystal journey/)
+    ).toBeVisible();
   });
 
   test('displays saved discount code', async ({ page }) => {
@@ -983,7 +1020,9 @@ test.describe('Newsletter Signup', () => {
 
     // Subscribe once
     await footer.getByPlaceholder('First Name').fill('Test');
-    await footer.getByPlaceholder('Email Address').fill(`test-${Date.now()}@example.com`);
+    await footer
+      .getByPlaceholder('Email Address')
+      .fill(`test-${Date.now()}@example.com`);
     await footer.getByRole('button', { name: 'Subscribe' }).click();
 
     await expect(footer.getByText(/CRYSTAL-/)).toBeVisible();
@@ -992,7 +1031,9 @@ test.describe('Newsletter Signup', () => {
     await page.reload();
 
     // Should show message about saved code
-    await expect(footer.getByText(/You already have a discount code saved/)).toBeVisible();
+    await expect(
+      footer.getByText(/You already have a discount code saved/)
+    ).toBeVisible();
 
     // Click to view
     await footer.getByRole('button', { name: /View Your Code/i }).click();
@@ -1023,6 +1064,7 @@ git commit -m "test: add E2E tests for newsletter feature"
 ## Task 10: Manual Testing & Verification
 
 **Files:**
+
 - None (manual verification)
 
 **Step 1: Start development server**
@@ -1083,6 +1125,7 @@ git commit -m "test: complete manual testing and verification"
 ## Task 11: Update Documentation
 
 **Files:**
+
 - Modify: `CLAUDE.md`
 
 **Step 1: Update CLAUDE.md**

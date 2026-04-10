@@ -1,16 +1,916 @@
-import{c as z,a as K,r as i,u as Q,b as Y,j as e,P as q,d as Z,e as ee,f as se,g as S,h as te,i as C,C as h,k as u,l as p,U as ae,m as j,S as re,T as ie,B as A,n as F,o as ne,p as ce,q as R,s as T,t as P,v as H,L as le,w as O,x as k,I as de,y as oe}from"./index-CggPwXqB.js";/**
+import {
+  c as z,
+  a as K,
+  r as i,
+  u as Q,
+  b as Y,
+  j as e,
+  P as q,
+  d as Z,
+  e as ee,
+  f as se,
+  g as S,
+  h as te,
+  i as C,
+  C as h,
+  k as u,
+  l as p,
+  U as ae,
+  m as j,
+  S as re,
+  T as ie,
+  B as A,
+  n as F,
+  o as ne,
+  p as ce,
+  q as R,
+  s as T,
+  t as P,
+  v as H,
+  L as le,
+  w as O,
+  x as k,
+  I as de,
+  y as oe,
+} from './index-CggPwXqB.js';
+/**
  * @license lucide-react v0.453.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const me=z("Activity",[["path",{d:"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2",key:"169zse"}]]);/**
+ */ const me = z('Activity', [
+  [
+    'path',
+    {
+      d: 'M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2',
+      key: '169zse',
+    },
+  ],
+]);
+/**
  * @license lucide-react v0.453.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const xe=z("Download",[["path",{d:"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4",key:"ih7n3h"}],["polyline",{points:"7 10 12 15 17 10",key:"2ggqvy"}],["line",{x1:"12",x2:"12",y1:"15",y2:"3",key:"1vk2je"}]]);/**
+ */ const xe = z('Download', [
+  ['path', { d: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4', key: 'ih7n3h' }],
+  ['polyline', { points: '7 10 12 15 17 10', key: '2ggqvy' }],
+  ['line', { x1: '12', x2: '12', y1: '15', y2: '3', key: '1vk2je' }],
+]);
+/**
  * @license lucide-react v0.453.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
- */const he=z("TriangleAlert",[["path",{d:"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",key:"wmoenq"}],["path",{d:"M12 9v4",key:"juzpu7"}],["path",{d:"M12 17h.01",key:"p32p05"}]]);var U="Switch",[ue,Ne]=K(U),[pe,je]=ue(U),_=i.forwardRef((t,n)=>{const{__scopeSwitch:a,name:m,checked:g,defaultChecked:f,required:o,disabled:l,value:c="on",onCheckedChange:b,form:N,...v}=t,[y,I]=i.useState(null),L=Q(n,d=>I(d)),w=i.useRef(!1),E=y?N||!!y.closest("form"):!0,[s=!1,r]=Y({prop:g,defaultProp:f,onChange:b});return e.jsxs(pe,{scope:a,checked:s,disabled:l,children:[e.jsx(q.button,{type:"button",role:"switch","aria-checked":s,"aria-required":o,"data-state":V(s),"data-disabled":l?"":void 0,disabled:l,value:c,...v,ref:L,onClick:Z(t.onClick,d=>{r(x=>!x),E&&(w.current=d.isPropagationStopped(),w.current||d.stopPropagation())})}),E&&e.jsx(ge,{control:y,bubbles:!w.current,name:m,value:c,checked:s,required:o,disabled:l,form:N,style:{transform:"translateX(-100%)"}})]})});_.displayName=U;var G="SwitchThumb",$=i.forwardRef((t,n)=>{const{__scopeSwitch:a,...m}=t,g=je(G,a);return e.jsx(q.span,{"data-state":V(g.checked),"data-disabled":g.disabled?"":void 0,...m,ref:n})});$.displayName=G;var ge=t=>{const{control:n,checked:a,bubbles:m=!0,...g}=t,f=i.useRef(null),o=ee(a),l=se(n);return i.useEffect(()=>{const c=f.current,b=window.HTMLInputElement.prototype,v=Object.getOwnPropertyDescriptor(b,"checked").set;if(o!==a&&v){const y=new Event("click",{bubbles:m});v.call(c,a),c.dispatchEvent(y)}},[o,a,m]),e.jsx("input",{type:"checkbox","aria-hidden":!0,defaultChecked:a,...g,tabIndex:-1,ref:f,style:{...t.style,...l,position:"absolute",pointerEvents:"none",opacity:0,margin:0}})};function V(t){return t?"checked":"unchecked"}var X=_,ye=$;const D=i.forwardRef(({className:t,...n},a)=>e.jsx(X,{className:S("peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input",t),...n,ref:a,children:e.jsx(ye,{className:S("pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0")})}));D.displayName=X.displayName;const fe=te("relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",{variants:{variant:{default:"bg-background text-foreground",destructive:"border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive"}},defaultVariants:{variant:"default"}}),B=i.forwardRef(({className:t,variant:n,...a},m)=>e.jsx("div",{ref:m,role:"alert",className:S(fe({variant:n}),t),...a}));B.displayName="Alert";const ve=i.forwardRef(({className:t,...n},a)=>e.jsx("h5",{ref:a,className:S("mb-1 font-medium leading-none tracking-tight",t),...n}));ve.displayName="AlertTitle";const M=i.forwardRef(({className:t,...n},a)=>e.jsx("div",{ref:a,className:S("text-sm [&_p]:leading-relaxed",t),...n}));M.displayName="AlertDescription";function we(){const[t,n]=i.useState(null),[a,m]=i.useState([]),[g,f]=i.useState([]),[o,l]=i.useState({dataRetention:90,encryptionEnabled:!0,anonymizationEnabled:!0,auditLogging:!0,complianceMode:"canadian"}),[c,b]=i.useState(!1),[N,v]=i.useState(!0);i.useEffect(()=>{y();const s=setInterval(y,3e4);return()=>clearInterval(s)},[]);const y=async()=>{try{const[s,r,d]=await Promise.all([C("GET","/api/admin/stats"),C("GET","/api/ai/status"),C("GET","/api/admin/security-events")]),[x,W,J]=await Promise.all([s.json(),r.json(),d.json()]);n(x),m(W.endpoints||[]),f(J.events||[])}catch(s){console.error("Failed to fetch dashboard data:",s)}finally{v(!1)}},I=async()=>{try{const r=await(await C("GET","/api/admin/security-report")).blob(),d=window.URL.createObjectURL(r),x=document.createElement("a");x.href=d,x.download=`security-report-${new Date().toISOString().split("T")[0]}.json`,document.body.appendChild(x),x.click(),window.URL.revokeObjectURL(d),document.body.removeChild(x)}catch(s){console.error("Failed to export security report:",s)}},L=async()=>{try{await C("POST","/api/admin/telegram-bot",{enabled:!c}),b(!c)}catch(s){console.error("Failed to toggle Telegram bot:",s)}},w=s=>{switch(s){case"healthy":return e.jsx(O,{className:"h-5 w-5 text-green-500"});case"warning":return e.jsx(he,{className:"h-5 w-5 text-yellow-500"});case"critical":return e.jsx(oe,{className:"h-5 w-5 text-red-500"});default:return e.jsx(me,{className:"h-5 w-5 text-gray-500"})}},E=s=>{switch(s){case"low":return"bg-blue-100 text-blue-800";case"medium":return"bg-yellow-100 text-yellow-800";case"high":return"bg-orange-100 text-orange-800";case"critical":return"bg-red-100 text-red-800";default:return"bg-gray-100 text-gray-800"}};return N?e.jsx("div",{className:"container mx-auto px-4 py-8",children:e.jsx("div",{className:"flex items-center justify-center h-64",children:e.jsx("div",{className:"animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full"})})}):e.jsxs("div",{className:"container mx-auto px-4 py-8 space-y-6",children:[e.jsxs("div",{className:"flex items-center justify-between",children:[e.jsx("h1",{className:"text-3xl font-bold bg-gradient-to-r from-gold to-amber-500 bg-clip-text text-transparent",children:"Admin Dashboard"}),e.jsxs("div",{className:"flex items-center gap-2",children:[t&&w(t.systemHealth),e.jsx("span",{className:"text-sm text-gray-600",children:"System Status"})]})]}),e.jsxs("div",{className:"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6",children:[e.jsxs(h,{children:[e.jsxs(u,{className:"flex flex-row items-center justify-between space-y-0 pb-2",children:[e.jsx(p,{className:"text-sm font-medium",children:"Total Users"}),e.jsx(ae,{className:"h-4 w-4 text-muted-foreground"})]}),e.jsx(j,{children:e.jsx("div",{className:"text-2xl font-bold",children:(t==null?void 0:t.totalUsers)||0})})]}),e.jsxs(h,{children:[e.jsxs(u,{className:"flex flex-row items-center justify-between space-y-0 pb-2",children:[e.jsx(p,{className:"text-sm font-medium",children:"Total Orders"}),e.jsx(re,{className:"h-4 w-4 text-muted-foreground"})]}),e.jsx(j,{children:e.jsx("div",{className:"text-2xl font-bold",children:(t==null?void 0:t.totalOrders)||0})})]}),e.jsxs(h,{children:[e.jsxs(u,{className:"flex flex-row items-center justify-between space-y-0 pb-2",children:[e.jsx(p,{className:"text-sm font-medium",children:"Revenue"}),e.jsx(ie,{className:"h-4 w-4 text-muted-foreground"})]}),e.jsx(j,{children:e.jsxs("div",{className:"text-2xl font-bold",children:["$",(t==null?void 0:t.totalRevenue)||"0.00"]})})]}),e.jsxs(h,{children:[e.jsxs(u,{className:"flex flex-row items-center justify-between space-y-0 pb-2",children:[e.jsx(p,{className:"text-sm font-medium",children:"AI Requests"}),e.jsx(A,{className:"h-4 w-4 text-muted-foreground"})]}),e.jsx(j,{children:e.jsx("div",{className:"text-2xl font-bold",children:(t==null?void 0:t.aiRequests)||0})})]}),e.jsxs(h,{children:[e.jsxs(u,{className:"flex flex-row items-center justify-between space-y-0 pb-2",children:[e.jsx(p,{className:"text-sm font-medium",children:"Security Alerts"}),e.jsx(F,{className:"h-4 w-4 text-muted-foreground"})]}),e.jsx(j,{children:e.jsx("div",{className:"text-2xl font-bold text-red-600",children:(t==null?void 0:t.securityAlerts)||0})})]})]}),e.jsxs(ne,{defaultValue:"ai-systems",className:"space-y-4",children:[e.jsxs(ce,{children:[e.jsx(R,{value:"ai-systems",children:"AI Systems"}),e.jsx(R,{value:"security",children:"Security"}),e.jsx(R,{value:"privacy",children:"Privacy & Compliance"}),e.jsx(R,{value:"telegram",children:"Telegram Bot"})]}),e.jsx(T,{value:"ai-systems",children:e.jsxs(h,{children:[e.jsx(u,{children:e.jsxs(p,{className:"flex items-center gap-2",children:[e.jsx(A,{className:"h-5 w-5"}),"AI Provider Status"]})}),e.jsx(j,{children:e.jsx("div",{className:"space-y-4",children:a.map((s,r)=>e.jsxs("div",{className:"flex items-center justify-between p-4 border rounded-lg",children:[e.jsxs("div",{className:"flex items-center gap-4",children:[e.jsx("div",{className:`w-3 h-3 rounded-full ${s.isAvailable?"bg-green-500":"bg-red-500"}`}),e.jsxs("div",{children:[e.jsx("h3",{className:"font-medium",children:s.name}),e.jsxs("p",{className:"text-sm text-gray-600",children:["Priority: ",s.priority," | Rate Limit: ",s.rateLimitRemaining||"Unlimited"]})]})]}),e.jsx("div",{className:"flex gap-2",children:s.features.map(d=>e.jsx(P,{variant:"secondary",className:"text-xs",children:d},d))})]},r))})})]})}),e.jsx(T,{value:"security",children:e.jsx("div",{className:"space-y-6",children:e.jsxs(h,{children:[e.jsxs(u,{className:"flex flex-row items-center justify-between",children:[e.jsxs(p,{className:"flex items-center gap-2",children:[e.jsx(F,{className:"h-5 w-5"}),"Security Events"]}),e.jsxs(H,{onClick:I,variant:"outline",size:"sm",children:[e.jsx(xe,{className:"h-4 w-4 mr-2"}),"Export Report"]})]}),e.jsx(j,{children:e.jsx("div",{className:"space-y-3",children:g.slice(0,10).map(s=>e.jsxs("div",{className:"flex items-center justify-between p-3 border rounded-lg",children:[e.jsxs("div",{className:"flex items-center gap-4",children:[e.jsx(P,{className:E(s.severity),children:s.severity.toUpperCase()}),e.jsxs("div",{children:[e.jsx("p",{className:"font-medium",children:s.description}),e.jsxs("p",{className:"text-sm text-gray-600",children:[s.timestamp.toLocaleString()," | Type: ",s.type]})]})]}),s.ip&&e.jsx(P,{variant:"outline",className:"text-xs",children:s.ip})]},s.id))})})]})})}),e.jsx(T,{value:"privacy",children:e.jsxs(h,{children:[e.jsx(u,{children:e.jsxs(p,{className:"flex items-center gap-2",children:[e.jsx(le,{className:"h-5 w-5"}),"Privacy & Compliance Settings"]})}),e.jsxs(j,{className:"space-y-6",children:[e.jsxs(B,{children:[e.jsx(O,{className:"h-4 w-4"}),e.jsx(M,{children:"System is compliant with PIPEDA (Personal Information Protection and Electronic Documents Act) and Canadian AI regulations."})]}),e.jsxs("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-6",children:[e.jsxs("div",{className:"space-y-4",children:[e.jsxs("div",{className:"flex items-center justify-between",children:[e.jsx(k,{htmlFor:"encryption",children:"Data Encryption"}),e.jsx(D,{id:"encryption",checked:o.encryptionEnabled,onCheckedChange:s=>l(r=>({...r,encryptionEnabled:s}))})]}),e.jsxs("div",{className:"flex items-center justify-between",children:[e.jsx(k,{htmlFor:"anonymization",children:"Data Anonymization"}),e.jsx(D,{id:"anonymization",checked:o.anonymizationEnabled,onCheckedChange:s=>l(r=>({...r,anonymizationEnabled:s}))})]}),e.jsxs("div",{className:"flex items-center justify-between",children:[e.jsx(k,{htmlFor:"audit",children:"Audit Logging"}),e.jsx(D,{id:"audit",checked:o.auditLogging,onCheckedChange:s=>l(r=>({...r,auditLogging:s}))})]})]}),e.jsxs("div",{className:"space-y-4",children:[e.jsxs("div",{children:[e.jsx(k,{htmlFor:"retention",children:"Data Retention (days)"}),e.jsx(de,{id:"retention",type:"number",value:o.dataRetention,onChange:s=>l(r=>({...r,dataRetention:Number(s.target.value)})),className:"mt-1"})]}),e.jsxs("div",{children:[e.jsx(k,{htmlFor:"compliance",children:"Compliance Framework"}),e.jsxs("select",{id:"compliance",value:o.complianceMode,onChange:s=>l(r=>({...r,complianceMode:s.target.value})),className:"w-full mt-1 p-2 border rounded-md",children:[e.jsx("option",{value:"canadian",children:"Canadian (PIPEDA + AI Act)"}),e.jsx("option",{value:"gdpr",children:"European (GDPR)"}),e.jsx("option",{value:"ccpa",children:"California (CCPA)"})]})]})]})]})]})]})}),e.jsx(T,{value:"telegram",children:e.jsxs(h,{children:[e.jsx(u,{children:e.jsxs(p,{className:"flex items-center gap-2",children:[e.jsx(A,{className:"h-5 w-5"}),"Telegram Bot Management"]})}),e.jsxs(j,{className:"space-y-6",children:[e.jsxs("div",{className:"flex items-center justify-between p-4 border rounded-lg",children:[e.jsxs("div",{children:[e.jsx("h3",{className:"font-medium",children:"Telegram Bot Status"}),e.jsx("p",{className:"text-sm text-gray-600",children:c?"Active - Monitoring system events":"Inactive"})]}),e.jsxs("div",{className:"flex items-center gap-3",children:[e.jsx(P,{variant:c?"default":"secondary",className:c?"bg-green-100 text-green-800":"",children:c?"ENABLED":"DISABLED"}),e.jsx(H,{onClick:L,variant:"outline",size:"sm",children:c?"Disable":"Enable"})]})]}),e.jsxs(B,{children:[e.jsx(A,{className:"h-4 w-4"}),e.jsx(M,{children:"The Telegram bot provides real-time notifications for security events, system alerts, and AI status updates. Configure bot token in environment variables."})]}),e.jsxs("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-4",children:[e.jsxs("div",{className:"space-y-2",children:[e.jsx("h4",{className:"font-medium",children:"Bot Capabilities"}),e.jsxs("ul",{className:"text-sm text-gray-600 space-y-1",children:[e.jsx("li",{children:"• Real-time security alerts"}),e.jsx("li",{children:"• AI system status updates"}),e.jsx("li",{children:"• Order notifications"}),e.jsx("li",{children:"• System health monitoring"})]})]}),e.jsxs("div",{className:"space-y-2",children:[e.jsx("h4",{className:"font-medium",children:"Commands"}),e.jsxs("ul",{className:"text-sm text-gray-600 space-y-1",children:[e.jsx("li",{children:"• /status - System overview"}),e.jsx("li",{children:"• /ai - AI endpoints status"}),e.jsx("li",{children:"• /security - Recent events"}),e.jsx("li",{children:"• /help - Command list"})]})]})]})]})]})})]})]})}export{we as default};
+ */ const he = z('TriangleAlert', [
+  [
+    'path',
+    {
+      d: 'm21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3',
+      key: 'wmoenq',
+    },
+  ],
+  ['path', { d: 'M12 9v4', key: 'juzpu7' }],
+  ['path', { d: 'M12 17h.01', key: 'p32p05' }],
+]);
+var U = 'Switch',
+  [ue, Ne] = K(U),
+  [pe, je] = ue(U),
+  _ = i.forwardRef((t, n) => {
+    const {
+        __scopeSwitch: a,
+        name: m,
+        checked: g,
+        defaultChecked: f,
+        required: o,
+        disabled: l,
+        value: c = 'on',
+        onCheckedChange: b,
+        form: N,
+        ...v
+      } = t,
+      [y, I] = i.useState(null),
+      L = Q(n, d => I(d)),
+      w = i.useRef(!1),
+      E = y ? N || !!y.closest('form') : !0,
+      [s = !1, r] = Y({ prop: g, defaultProp: f, onChange: b });
+    return e.jsxs(pe, {
+      scope: a,
+      checked: s,
+      disabled: l,
+      children: [
+        e.jsx(q.button, {
+          type: 'button',
+          role: 'switch',
+          'aria-checked': s,
+          'aria-required': o,
+          'data-state': V(s),
+          'data-disabled': l ? '' : void 0,
+          disabled: l,
+          value: c,
+          ...v,
+          ref: L,
+          onClick: Z(t.onClick, d => {
+            (r(x => !x),
+              E &&
+                ((w.current = d.isPropagationStopped()),
+                w.current || d.stopPropagation()));
+          }),
+        }),
+        E &&
+          e.jsx(ge, {
+            control: y,
+            bubbles: !w.current,
+            name: m,
+            value: c,
+            checked: s,
+            required: o,
+            disabled: l,
+            form: N,
+            style: { transform: 'translateX(-100%)' },
+          }),
+      ],
+    });
+  });
+_.displayName = U;
+var G = 'SwitchThumb',
+  $ = i.forwardRef((t, n) => {
+    const { __scopeSwitch: a, ...m } = t,
+      g = je(G, a);
+    return e.jsx(q.span, {
+      'data-state': V(g.checked),
+      'data-disabled': g.disabled ? '' : void 0,
+      ...m,
+      ref: n,
+    });
+  });
+$.displayName = G;
+var ge = t => {
+  const { control: n, checked: a, bubbles: m = !0, ...g } = t,
+    f = i.useRef(null),
+    o = ee(a),
+    l = se(n);
+  return (
+    i.useEffect(() => {
+      const c = f.current,
+        b = window.HTMLInputElement.prototype,
+        v = Object.getOwnPropertyDescriptor(b, 'checked').set;
+      if (o !== a && v) {
+        const y = new Event('click', { bubbles: m });
+        (v.call(c, a), c.dispatchEvent(y));
+      }
+    }, [o, a, m]),
+    e.jsx('input', {
+      type: 'checkbox',
+      'aria-hidden': !0,
+      defaultChecked: a,
+      ...g,
+      tabIndex: -1,
+      ref: f,
+      style: {
+        ...t.style,
+        ...l,
+        position: 'absolute',
+        pointerEvents: 'none',
+        opacity: 0,
+        margin: 0,
+      },
+    })
+  );
+};
+function V(t) {
+  return t ? 'checked' : 'unchecked';
+}
+var X = _,
+  ye = $;
+const D = i.forwardRef(({ className: t, ...n }, a) =>
+  e.jsx(X, {
+    className: S(
+      'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input',
+      t
+    ),
+    ...n,
+    ref: a,
+    children: e.jsx(ye, {
+      className: S(
+        'pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0'
+      ),
+    }),
+  })
+);
+D.displayName = X.displayName;
+const fe = te(
+    'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
+    {
+      variants: {
+        variant: {
+          default: 'bg-background text-foreground',
+          destructive:
+            'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',
+        },
+      },
+      defaultVariants: { variant: 'default' },
+    }
+  ),
+  B = i.forwardRef(({ className: t, variant: n, ...a }, m) =>
+    e.jsx('div', {
+      ref: m,
+      role: 'alert',
+      className: S(fe({ variant: n }), t),
+      ...a,
+    })
+  );
+B.displayName = 'Alert';
+const ve = i.forwardRef(({ className: t, ...n }, a) =>
+  e.jsx('h5', {
+    ref: a,
+    className: S('mb-1 font-medium leading-none tracking-tight', t),
+    ...n,
+  })
+);
+ve.displayName = 'AlertTitle';
+const M = i.forwardRef(({ className: t, ...n }, a) =>
+  e.jsx('div', {
+    ref: a,
+    className: S('text-sm [&_p]:leading-relaxed', t),
+    ...n,
+  })
+);
+M.displayName = 'AlertDescription';
+function we() {
+  const [t, n] = i.useState(null),
+    [a, m] = i.useState([]),
+    [g, f] = i.useState([]),
+    [o, l] = i.useState({
+      dataRetention: 90,
+      encryptionEnabled: !0,
+      anonymizationEnabled: !0,
+      auditLogging: !0,
+      complianceMode: 'canadian',
+    }),
+    [c, b] = i.useState(!1),
+    [N, v] = i.useState(!0);
+  i.useEffect(() => {
+    y();
+    const s = setInterval(y, 3e4);
+    return () => clearInterval(s);
+  }, []);
+  const y = async () => {
+      try {
+        const [s, r, d] = await Promise.all([
+            C('GET', '/api/admin/stats'),
+            C('GET', '/api/ai/status'),
+            C('GET', '/api/admin/security-events'),
+          ]),
+          [x, W, J] = await Promise.all([s.json(), r.json(), d.json()]);
+        (n(x), m(W.endpoints || []), f(J.events || []));
+      } catch (s) {
+        console.error('Failed to fetch dashboard data:', s);
+      } finally {
+        v(!1);
+      }
+    },
+    I = async () => {
+      try {
+        const r = await (await C('GET', '/api/admin/security-report')).blob(),
+          d = window.URL.createObjectURL(r),
+          x = document.createElement('a');
+        ((x.href = d),
+          (x.download = `security-report-${new Date().toISOString().split('T')[0]}.json`),
+          document.body.appendChild(x),
+          x.click(),
+          window.URL.revokeObjectURL(d),
+          document.body.removeChild(x));
+      } catch (s) {
+        console.error('Failed to export security report:', s);
+      }
+    },
+    L = async () => {
+      try {
+        (await C('POST', '/api/admin/telegram-bot', { enabled: !c }), b(!c));
+      } catch (s) {
+        console.error('Failed to toggle Telegram bot:', s);
+      }
+    },
+    w = s => {
+      switch (s) {
+        case 'healthy':
+          return e.jsx(O, { className: 'h-5 w-5 text-green-500' });
+        case 'warning':
+          return e.jsx(he, { className: 'h-5 w-5 text-yellow-500' });
+        case 'critical':
+          return e.jsx(oe, { className: 'h-5 w-5 text-red-500' });
+        default:
+          return e.jsx(me, { className: 'h-5 w-5 text-gray-500' });
+      }
+    },
+    E = s => {
+      switch (s) {
+        case 'low':
+          return 'bg-blue-100 text-blue-800';
+        case 'medium':
+          return 'bg-yellow-100 text-yellow-800';
+        case 'high':
+          return 'bg-orange-100 text-orange-800';
+        case 'critical':
+          return 'bg-red-100 text-red-800';
+        default:
+          return 'bg-gray-100 text-gray-800';
+      }
+    };
+  return N
+    ? e.jsx('div', {
+        className: 'container mx-auto px-4 py-8',
+        children: e.jsx('div', {
+          className: 'flex items-center justify-center h-64',
+          children: e.jsx('div', {
+            className:
+              'animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full',
+          }),
+        }),
+      })
+    : e.jsxs('div', {
+        className: 'container mx-auto px-4 py-8 space-y-6',
+        children: [
+          e.jsxs('div', {
+            className: 'flex items-center justify-between',
+            children: [
+              e.jsx('h1', {
+                className:
+                  'text-3xl font-bold bg-gradient-to-r from-gold to-amber-500 bg-clip-text text-transparent',
+                children: 'Admin Dashboard',
+              }),
+              e.jsxs('div', {
+                className: 'flex items-center gap-2',
+                children: [
+                  t && w(t.systemHealth),
+                  e.jsx('span', {
+                    className: 'text-sm text-gray-600',
+                    children: 'System Status',
+                  }),
+                ],
+              }),
+            ],
+          }),
+          e.jsxs('div', {
+            className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6',
+            children: [
+              e.jsxs(h, {
+                children: [
+                  e.jsxs(u, {
+                    className:
+                      'flex flex-row items-center justify-between space-y-0 pb-2',
+                    children: [
+                      e.jsx(p, {
+                        className: 'text-sm font-medium',
+                        children: 'Total Users',
+                      }),
+                      e.jsx(ae, { className: 'h-4 w-4 text-muted-foreground' }),
+                    ],
+                  }),
+                  e.jsx(j, {
+                    children: e.jsx('div', {
+                      className: 'text-2xl font-bold',
+                      children: (t == null ? void 0 : t.totalUsers) || 0,
+                    }),
+                  }),
+                ],
+              }),
+              e.jsxs(h, {
+                children: [
+                  e.jsxs(u, {
+                    className:
+                      'flex flex-row items-center justify-between space-y-0 pb-2',
+                    children: [
+                      e.jsx(p, {
+                        className: 'text-sm font-medium',
+                        children: 'Total Orders',
+                      }),
+                      e.jsx(re, { className: 'h-4 w-4 text-muted-foreground' }),
+                    ],
+                  }),
+                  e.jsx(j, {
+                    children: e.jsx('div', {
+                      className: 'text-2xl font-bold',
+                      children: (t == null ? void 0 : t.totalOrders) || 0,
+                    }),
+                  }),
+                ],
+              }),
+              e.jsxs(h, {
+                children: [
+                  e.jsxs(u, {
+                    className:
+                      'flex flex-row items-center justify-between space-y-0 pb-2',
+                    children: [
+                      e.jsx(p, {
+                        className: 'text-sm font-medium',
+                        children: 'Revenue',
+                      }),
+                      e.jsx(ie, { className: 'h-4 w-4 text-muted-foreground' }),
+                    ],
+                  }),
+                  e.jsx(j, {
+                    children: e.jsxs('div', {
+                      className: 'text-2xl font-bold',
+                      children: [
+                        '$',
+                        (t == null ? void 0 : t.totalRevenue) || '0.00',
+                      ],
+                    }),
+                  }),
+                ],
+              }),
+              e.jsxs(h, {
+                children: [
+                  e.jsxs(u, {
+                    className:
+                      'flex flex-row items-center justify-between space-y-0 pb-2',
+                    children: [
+                      e.jsx(p, {
+                        className: 'text-sm font-medium',
+                        children: 'AI Requests',
+                      }),
+                      e.jsx(A, { className: 'h-4 w-4 text-muted-foreground' }),
+                    ],
+                  }),
+                  e.jsx(j, {
+                    children: e.jsx('div', {
+                      className: 'text-2xl font-bold',
+                      children: (t == null ? void 0 : t.aiRequests) || 0,
+                    }),
+                  }),
+                ],
+              }),
+              e.jsxs(h, {
+                children: [
+                  e.jsxs(u, {
+                    className:
+                      'flex flex-row items-center justify-between space-y-0 pb-2',
+                    children: [
+                      e.jsx(p, {
+                        className: 'text-sm font-medium',
+                        children: 'Security Alerts',
+                      }),
+                      e.jsx(F, { className: 'h-4 w-4 text-muted-foreground' }),
+                    ],
+                  }),
+                  e.jsx(j, {
+                    children: e.jsx('div', {
+                      className: 'text-2xl font-bold text-red-600',
+                      children: (t == null ? void 0 : t.securityAlerts) || 0,
+                    }),
+                  }),
+                ],
+              }),
+            ],
+          }),
+          e.jsxs(ne, {
+            defaultValue: 'ai-systems',
+            className: 'space-y-4',
+            children: [
+              e.jsxs(ce, {
+                children: [
+                  e.jsx(R, { value: 'ai-systems', children: 'AI Systems' }),
+                  e.jsx(R, { value: 'security', children: 'Security' }),
+                  e.jsx(R, {
+                    value: 'privacy',
+                    children: 'Privacy & Compliance',
+                  }),
+                  e.jsx(R, { value: 'telegram', children: 'Telegram Bot' }),
+                ],
+              }),
+              e.jsx(T, {
+                value: 'ai-systems',
+                children: e.jsxs(h, {
+                  children: [
+                    e.jsx(u, {
+                      children: e.jsxs(p, {
+                        className: 'flex items-center gap-2',
+                        children: [
+                          e.jsx(A, { className: 'h-5 w-5' }),
+                          'AI Provider Status',
+                        ],
+                      }),
+                    }),
+                    e.jsx(j, {
+                      children: e.jsx('div', {
+                        className: 'space-y-4',
+                        children: a.map((s, r) =>
+                          e.jsxs(
+                            'div',
+                            {
+                              className:
+                                'flex items-center justify-between p-4 border rounded-lg',
+                              children: [
+                                e.jsxs('div', {
+                                  className: 'flex items-center gap-4',
+                                  children: [
+                                    e.jsx('div', {
+                                      className: `w-3 h-3 rounded-full ${s.isAvailable ? 'bg-green-500' : 'bg-red-500'}`,
+                                    }),
+                                    e.jsxs('div', {
+                                      children: [
+                                        e.jsx('h3', {
+                                          className: 'font-medium',
+                                          children: s.name,
+                                        }),
+                                        e.jsxs('p', {
+                                          className: 'text-sm text-gray-600',
+                                          children: [
+                                            'Priority: ',
+                                            s.priority,
+                                            ' | Rate Limit: ',
+                                            s.rateLimitRemaining || 'Unlimited',
+                                          ],
+                                        }),
+                                      ],
+                                    }),
+                                  ],
+                                }),
+                                e.jsx('div', {
+                                  className: 'flex gap-2',
+                                  children: s.features.map(d =>
+                                    e.jsx(
+                                      P,
+                                      {
+                                        variant: 'secondary',
+                                        className: 'text-xs',
+                                        children: d,
+                                      },
+                                      d
+                                    )
+                                  ),
+                                }),
+                              ],
+                            },
+                            r
+                          )
+                        ),
+                      }),
+                    }),
+                  ],
+                }),
+              }),
+              e.jsx(T, {
+                value: 'security',
+                children: e.jsx('div', {
+                  className: 'space-y-6',
+                  children: e.jsxs(h, {
+                    children: [
+                      e.jsxs(u, {
+                        className: 'flex flex-row items-center justify-between',
+                        children: [
+                          e.jsxs(p, {
+                            className: 'flex items-center gap-2',
+                            children: [
+                              e.jsx(F, { className: 'h-5 w-5' }),
+                              'Security Events',
+                            ],
+                          }),
+                          e.jsxs(H, {
+                            onClick: I,
+                            variant: 'outline',
+                            size: 'sm',
+                            children: [
+                              e.jsx(xe, { className: 'h-4 w-4 mr-2' }),
+                              'Export Report',
+                            ],
+                          }),
+                        ],
+                      }),
+                      e.jsx(j, {
+                        children: e.jsx('div', {
+                          className: 'space-y-3',
+                          children: g.slice(0, 10).map(s =>
+                            e.jsxs(
+                              'div',
+                              {
+                                className:
+                                  'flex items-center justify-between p-3 border rounded-lg',
+                                children: [
+                                  e.jsxs('div', {
+                                    className: 'flex items-center gap-4',
+                                    children: [
+                                      e.jsx(P, {
+                                        className: E(s.severity),
+                                        children: s.severity.toUpperCase(),
+                                      }),
+                                      e.jsxs('div', {
+                                        children: [
+                                          e.jsx('p', {
+                                            className: 'font-medium',
+                                            children: s.description,
+                                          }),
+                                          e.jsxs('p', {
+                                            className: 'text-sm text-gray-600',
+                                            children: [
+                                              s.timestamp.toLocaleString(),
+                                              ' | Type: ',
+                                              s.type,
+                                            ],
+                                          }),
+                                        ],
+                                      }),
+                                    ],
+                                  }),
+                                  s.ip &&
+                                    e.jsx(P, {
+                                      variant: 'outline',
+                                      className: 'text-xs',
+                                      children: s.ip,
+                                    }),
+                                ],
+                              },
+                              s.id
+                            )
+                          ),
+                        }),
+                      }),
+                    ],
+                  }),
+                }),
+              }),
+              e.jsx(T, {
+                value: 'privacy',
+                children: e.jsxs(h, {
+                  children: [
+                    e.jsx(u, {
+                      children: e.jsxs(p, {
+                        className: 'flex items-center gap-2',
+                        children: [
+                          e.jsx(le, { className: 'h-5 w-5' }),
+                          'Privacy & Compliance Settings',
+                        ],
+                      }),
+                    }),
+                    e.jsxs(j, {
+                      className: 'space-y-6',
+                      children: [
+                        e.jsxs(B, {
+                          children: [
+                            e.jsx(O, { className: 'h-4 w-4' }),
+                            e.jsx(M, {
+                              children:
+                                'System is compliant with PIPEDA (Personal Information Protection and Electronic Documents Act) and Canadian AI regulations.',
+                            }),
+                          ],
+                        }),
+                        e.jsxs('div', {
+                          className: 'grid grid-cols-1 md:grid-cols-2 gap-6',
+                          children: [
+                            e.jsxs('div', {
+                              className: 'space-y-4',
+                              children: [
+                                e.jsxs('div', {
+                                  className:
+                                    'flex items-center justify-between',
+                                  children: [
+                                    e.jsx(k, {
+                                      htmlFor: 'encryption',
+                                      children: 'Data Encryption',
+                                    }),
+                                    e.jsx(D, {
+                                      id: 'encryption',
+                                      checked: o.encryptionEnabled,
+                                      onCheckedChange: s =>
+                                        l(r => ({
+                                          ...r,
+                                          encryptionEnabled: s,
+                                        })),
+                                    }),
+                                  ],
+                                }),
+                                e.jsxs('div', {
+                                  className:
+                                    'flex items-center justify-between',
+                                  children: [
+                                    e.jsx(k, {
+                                      htmlFor: 'anonymization',
+                                      children: 'Data Anonymization',
+                                    }),
+                                    e.jsx(D, {
+                                      id: 'anonymization',
+                                      checked: o.anonymizationEnabled,
+                                      onCheckedChange: s =>
+                                        l(r => ({
+                                          ...r,
+                                          anonymizationEnabled: s,
+                                        })),
+                                    }),
+                                  ],
+                                }),
+                                e.jsxs('div', {
+                                  className:
+                                    'flex items-center justify-between',
+                                  children: [
+                                    e.jsx(k, {
+                                      htmlFor: 'audit',
+                                      children: 'Audit Logging',
+                                    }),
+                                    e.jsx(D, {
+                                      id: 'audit',
+                                      checked: o.auditLogging,
+                                      onCheckedChange: s =>
+                                        l(r => ({ ...r, auditLogging: s })),
+                                    }),
+                                  ],
+                                }),
+                              ],
+                            }),
+                            e.jsxs('div', {
+                              className: 'space-y-4',
+                              children: [
+                                e.jsxs('div', {
+                                  children: [
+                                    e.jsx(k, {
+                                      htmlFor: 'retention',
+                                      children: 'Data Retention (days)',
+                                    }),
+                                    e.jsx(de, {
+                                      id: 'retention',
+                                      type: 'number',
+                                      value: o.dataRetention,
+                                      onChange: s =>
+                                        l(r => ({
+                                          ...r,
+                                          dataRetention: Number(s.target.value),
+                                        })),
+                                      className: 'mt-1',
+                                    }),
+                                  ],
+                                }),
+                                e.jsxs('div', {
+                                  children: [
+                                    e.jsx(k, {
+                                      htmlFor: 'compliance',
+                                      children: 'Compliance Framework',
+                                    }),
+                                    e.jsxs('select', {
+                                      id: 'compliance',
+                                      value: o.complianceMode,
+                                      onChange: s =>
+                                        l(r => ({
+                                          ...r,
+                                          complianceMode: s.target.value,
+                                        })),
+                                      className:
+                                        'w-full mt-1 p-2 border rounded-md',
+                                      children: [
+                                        e.jsx('option', {
+                                          value: 'canadian',
+                                          children:
+                                            'Canadian (PIPEDA + AI Act)',
+                                        }),
+                                        e.jsx('option', {
+                                          value: 'gdpr',
+                                          children: 'European (GDPR)',
+                                        }),
+                                        e.jsx('option', {
+                                          value: 'ccpa',
+                                          children: 'California (CCPA)',
+                                        }),
+                                      ],
+                                    }),
+                                  ],
+                                }),
+                              ],
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              }),
+              e.jsx(T, {
+                value: 'telegram',
+                children: e.jsxs(h, {
+                  children: [
+                    e.jsx(u, {
+                      children: e.jsxs(p, {
+                        className: 'flex items-center gap-2',
+                        children: [
+                          e.jsx(A, { className: 'h-5 w-5' }),
+                          'Telegram Bot Management',
+                        ],
+                      }),
+                    }),
+                    e.jsxs(j, {
+                      className: 'space-y-6',
+                      children: [
+                        e.jsxs('div', {
+                          className:
+                            'flex items-center justify-between p-4 border rounded-lg',
+                          children: [
+                            e.jsxs('div', {
+                              children: [
+                                e.jsx('h3', {
+                                  className: 'font-medium',
+                                  children: 'Telegram Bot Status',
+                                }),
+                                e.jsx('p', {
+                                  className: 'text-sm text-gray-600',
+                                  children: c
+                                    ? 'Active - Monitoring system events'
+                                    : 'Inactive',
+                                }),
+                              ],
+                            }),
+                            e.jsxs('div', {
+                              className: 'flex items-center gap-3',
+                              children: [
+                                e.jsx(P, {
+                                  variant: c ? 'default' : 'secondary',
+                                  className: c
+                                    ? 'bg-green-100 text-green-800'
+                                    : '',
+                                  children: c ? 'ENABLED' : 'DISABLED',
+                                }),
+                                e.jsx(H, {
+                                  onClick: L,
+                                  variant: 'outline',
+                                  size: 'sm',
+                                  children: c ? 'Disable' : 'Enable',
+                                }),
+                              ],
+                            }),
+                          ],
+                        }),
+                        e.jsxs(B, {
+                          children: [
+                            e.jsx(A, { className: 'h-4 w-4' }),
+                            e.jsx(M, {
+                              children:
+                                'The Telegram bot provides real-time notifications for security events, system alerts, and AI status updates. Configure bot token in environment variables.',
+                            }),
+                          ],
+                        }),
+                        e.jsxs('div', {
+                          className: 'grid grid-cols-1 md:grid-cols-2 gap-4',
+                          children: [
+                            e.jsxs('div', {
+                              className: 'space-y-2',
+                              children: [
+                                e.jsx('h4', {
+                                  className: 'font-medium',
+                                  children: 'Bot Capabilities',
+                                }),
+                                e.jsxs('ul', {
+                                  className: 'text-sm text-gray-600 space-y-1',
+                                  children: [
+                                    e.jsx('li', {
+                                      children: '• Real-time security alerts',
+                                    }),
+                                    e.jsx('li', {
+                                      children: '• AI system status updates',
+                                    }),
+                                    e.jsx('li', {
+                                      children: '• Order notifications',
+                                    }),
+                                    e.jsx('li', {
+                                      children: '• System health monitoring',
+                                    }),
+                                  ],
+                                }),
+                              ],
+                            }),
+                            e.jsxs('div', {
+                              className: 'space-y-2',
+                              children: [
+                                e.jsx('h4', {
+                                  className: 'font-medium',
+                                  children: 'Commands',
+                                }),
+                                e.jsxs('ul', {
+                                  className: 'text-sm text-gray-600 space-y-1',
+                                  children: [
+                                    e.jsx('li', {
+                                      children: '• /status - System overview',
+                                    }),
+                                    e.jsx('li', {
+                                      children: '• /ai - AI endpoints status',
+                                    }),
+                                    e.jsx('li', {
+                                      children: '• /security - Recent events',
+                                    }),
+                                    e.jsx('li', {
+                                      children: '• /help - Command list',
+                                    }),
+                                  ],
+                                }),
+                              ],
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              }),
+            ],
+          }),
+        ],
+      });
+}
+export { we as default };

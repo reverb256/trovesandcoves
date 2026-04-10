@@ -13,6 +13,7 @@
 ## Task 1: Create review types and storage
 
 **Files:**
+
 - Create: `shared/types.ts` (add review types)
 - Create: `client/src/data/reviews.json`
 
@@ -100,9 +101,7 @@ export interface ReviewSummary {
     "createdAt": "2024-02-05T09:15:00Z",
     "source": "website",
     "verified": true,
-    "images": [
-      "/attached_assets/review-moonstone-1.jpg"
-    ]
+    "images": ["/attached_assets/review-moonstone-1.jpg"]
   },
   {
     "id": "4",
@@ -167,12 +166,15 @@ router.get('/', (req, res) => {
   let filtered = reviewsData;
 
   if (productId) {
-    filtered = filtered.filter((r: any) => r.productId === parseInt(productId as string));
+    filtered = filtered.filter(
+      (r: any) => r.productId === parseInt(productId as string)
+    );
   }
 
   // Sort by date descending
-  filtered = filtered.sort((a: any, b: any) =>
-    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  filtered = filtered.sort(
+    (a: any, b: any) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 
   // Apply limit
@@ -188,7 +190,8 @@ router.get('/', (req, res) => {
 router.get('/summary', (req, res) => {
   const totalReviews = reviewsData.length;
   const averageRating =
-    reviewsData.reduce((sum: number, r: any) => sum + r.rating, 0) / totalReviews;
+    reviewsData.reduce((sum: number, r: any) => sum + r.rating, 0) /
+    totalReviews;
 
   const ratingDistribution = {
     5: reviewsData.filter((r: any) => r.rating === 5).length,
@@ -241,6 +244,7 @@ git commit -m "feat: add review system
 ## Task 2: Create ReviewCard component
 
 **Files:**
+
 - Create: `client/src/components/reviews/ReviewCard.tsx`
 
 **Step 1: Write ReviewCard component**
@@ -261,7 +265,11 @@ export function ReviewCard({ review, showProduct = true }: ReviewCardProps) {
       <Star
         key={i}
         size={16}
-        className={i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}
+        className={
+          i < review.rating
+            ? 'fill-yellow-400 text-yellow-400'
+            : 'text-gray-300'
+        }
       />
     ));
   };
@@ -305,16 +313,11 @@ export function ReviewCard({ review, showProduct = true }: ReviewCardProps) {
       </div>
 
       {/* Title */}
-      {review.title && (
-        <h4 className="font-semibold mb-2">{review.title}</h4>
-      )}
+      {review.title && <h4 className="font-semibold mb-2">{review.title}</h4>}
 
       {/* Message */}
       <p className="text-on-surface-variant mb-4 relative">
-        <Quote
-          size={20}
-          className="absolute -top-1 -left-1 text-primary/20"
-        />
+        <Quote size={20} className="absolute -top-1 -left-1 text-primary/20" />
         <span className="ml-6">{review.message}</span>
       </p>
 
@@ -369,6 +372,7 @@ git commit -m "feat: add ReviewCard component
 ## Task 3: Create ReviewsSection component for home page
 
 **Files:**
+
 - Create: `client/src/components/reviews/ReviewsSection.tsx`
 - Modify: `client/src/pages/Home.tsx`
 
@@ -410,11 +414,11 @@ export function ReviewsSection() {
   }, []);
 
   const nextReview = () => {
-    setCurrentIndex((prev) => (prev + 1) % reviews.length);
+    setCurrentIndex(prev => (prev + 1) % reviews.length);
   };
 
   const prevReview = () => {
-    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+    setCurrentIndex(prev => (prev - 1 + reviews.length) % reviews.length);
   };
 
   if (loading || reviews.length === 0) {
@@ -488,9 +492,7 @@ export function ReviewsSection() {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex
-                    ? 'bg-primary w-8'
-                    : 'bg-gray-300'
+                  index === currentIndex ? 'bg-primary w-8' : 'bg-gray-300'
                 }`}
                 aria-label={`Go to review ${index + 1}`}
               />
@@ -539,7 +541,7 @@ export function ReviewsSection() {
 import { ReviewsSection } from '@/components/reviews/ReviewsSection';
 
 // Add before footer or after products section
-<ReviewsSection />
+<ReviewsSection />;
 ```
 
 **Step 3: Run TypeScript check**
@@ -567,6 +569,7 @@ git commit -m "feat: add reviews section to home page
 ## Task 4: Create CustomerPhotoGallery component
 
 **Files:**
+
 - Create: `client/src/components/social/CustomerPhotoGallery.tsx`
 - Create: `client/src/data/customer-photos.json`
 
@@ -612,10 +615,7 @@ git commit -m "feat: add reviews section to home page
 // client/src/components/social/CustomerPhotoGallery.tsx
 import { useState } from 'react';
 import { X, Instagram } from 'lucide-react';
-import {
-  Dialog,
-  DialogContent,
-} from '@/components/ui/dialog';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import customerPhotos from '@/data/customer-photos.json';
 
 interface CustomerPhoto {
@@ -627,7 +627,9 @@ interface CustomerPhoto {
 }
 
 export function CustomerPhotoGallery() {
-  const [selectedPhoto, setSelectedPhoto] = useState<CustomerPhoto | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<CustomerPhoto | null>(
+    null
+  );
 
   return (
     <>
@@ -639,14 +641,14 @@ export function CustomerPhotoGallery() {
               Share Your Style
             </h2>
             <p className="text-on-surface-variant max-w-2xl mx-auto">
-              Tag us on Instagram with #TrovesAndCoves to be featured! We love seeing
-              how you style your pieces.
+              Tag us on Instagram with #TrovesAndCoves to be featured! We love
+              seeing how you style your pieces.
             </p>
           </div>
 
           {/* Gallery Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {customerPhotos.map((photo) => (
+            {customerPhotos.map(photo => (
               <button
                 key={photo.id}
                 onClick={() => setSelectedPhoto(photo)}
@@ -684,7 +686,7 @@ export function CustomerPhotoGallery() {
       {/* Photo Modal */}
       <Dialog
         open={!!selectedPhoto}
-        onOpenChange={(open) => !open && setSelectedPhoto(null)}
+        onOpenChange={open => !open && setSelectedPhoto(null)}
       >
         <DialogContent className="max-w-2xl">
           {selectedPhoto && (
@@ -754,6 +756,7 @@ git commit -m "feat: add customer photo gallery
 ## Task 5: Add CustomerPhotoGallery to Home page
 
 **Files:**
+
 - Modify: `client/src/pages/Home.tsx`
 
 **Step 1: Add gallery to home page**
@@ -763,7 +766,7 @@ git commit -m "feat: add customer photo gallery
 import { CustomerPhotoGallery } from '@/components/social/CustomerPhotoGallery';
 
 // Add after ReviewsSection or before footer
-<CustomerPhotoGallery />
+<CustomerPhotoGallery />;
 ```
 
 **Step 2: Run TypeScript check**
@@ -784,6 +787,7 @@ git commit -m "feat: add customer gallery to home page"
 ## Task 6: Add reviews to ProductDetail page
 
 **Files:**
+
 - Modify: `client/src/pages/ProductDetail.tsx`
 
 **Step 1: Add reviews section to product detail**
@@ -813,16 +817,18 @@ useEffect(() => {
 }, [product]);
 
 // Add reviews section in the page (after product info or before related products)
-{reviews.length > 0 && (
-  <section className="mt-12">
-    <h2 className="text-2xl font-bold mb-6">Customer Reviews</h2>
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {reviews.map((review) => (
-        <ReviewCard key={review.id} review={review} showProduct={false} />
-      ))}
-    </div>
-  </section>
-)}
+{
+  reviews.length > 0 && (
+    <section className="mt-12">
+      <h2 className="text-2xl font-bold mb-6">Customer Reviews</h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {reviews.map(review => (
+          <ReviewCard key={review.id} review={review} showProduct={false} />
+        ))}
+      </div>
+    </section>
+  );
+}
 ```
 
 **Step 2: Run TypeScript check**
@@ -848,6 +854,7 @@ git commit -m "feat: add reviews to product detail page
 ## Task 7: Create TrustBadges component
 
 **Files:**
+
 - Create: `client/src/components/trust/TrustBadges.tsx`
 
 **Step 1: Write TrustBadges component**
@@ -891,7 +898,7 @@ const badges: TrustBadge[] = [
   {
     icon: <Mail size={32} />,
     title: 'Friendly Support',
-    description: 'We\'re here to help with any questions',
+    description: "We're here to help with any questions",
   },
 ];
 
@@ -929,7 +936,9 @@ export function TrustBadgesCompact() {
           <div className="text-primary flex-shrink-0">{badge.icon}</div>
           <div>
             <h4 className="font-semibold text-sm">{badge.title}</h4>
-            <p className="text-xs text-on-surface-variant">{badge.description}</p>
+            <p className="text-xs text-on-surface-variant">
+              {badge.description}
+            </p>
           </div>
         </div>
       ))}
@@ -961,6 +970,7 @@ git commit -m "feat: add TrustBadges component
 ## Task 8: Add TrustBadges to key pages
 
 **Files:**
+
 - Modify: `client/src/pages/Home.tsx`
 - Modify: `client/src/pages/Checkout.tsx`
 
@@ -971,7 +981,7 @@ git commit -m "feat: add TrustBadges component
 import { TrustBadges } from '@/components/trust/TrustBadges';
 
 // Add above reviews section
-<TrustBadges />
+<TrustBadges />;
 ```
 
 **Step 2: Add to Checkout page**
@@ -984,7 +994,7 @@ import { TrustBadgesCompact } from '@/components/trust/TrustBadges';
 <div className="mt-8 border-t pt-8">
   <h3 className="text-lg font-semibold mb-4">Why Shop With Us</h3>
   <TrustBadgesCompact />
-</div>
+</div>;
 ```
 
 **Step 3: Run TypeScript check**
@@ -1009,6 +1019,7 @@ git commit -m "feat: add trust badges to key pages
 ## Task 9: Create Instagram feed embed
 
 **Files:**
+
 - Create: `client/src/components/social/InstagramFeed.tsx`
 
 **Step 1: Write InstagramFeed component**
@@ -1088,17 +1099,33 @@ export function InstagramFeed() {
  */
 export function InstagramGrid() {
   const posts = [
-    { id: 1, image: '/attached_assets/ig-1.jpg', url: 'https://instagram.com/p/...' },
-    { id: 2, image: '/attached_assets/ig-2.jpg', url: 'https://instagram.com/p/...' },
-    { id: 3, image: '/attached_assets/ig-3.jpg', url: 'https://instagram.com/p/...' },
-    { id: 4, image: '/attached_assets/ig-4.jpg', url: 'https://instagram.com/p/...' },
+    {
+      id: 1,
+      image: '/attached_assets/ig-1.jpg',
+      url: 'https://instagram.com/p/...',
+    },
+    {
+      id: 2,
+      image: '/attached_assets/ig-2.jpg',
+      url: 'https://instagram.com/p/...',
+    },
+    {
+      id: 3,
+      image: '/attached_assets/ig-3.jpg',
+      url: 'https://instagram.com/p/...',
+    },
+    {
+      id: 4,
+      image: '/attached_assets/ig-4.jpg',
+      url: 'https://instagram.com/p/...',
+    },
   ];
 
   return (
     <section className="py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-          {posts.map((post) => (
+          {posts.map(post => (
             <a
               key={post.id}
               href={post.url}
@@ -1147,6 +1174,7 @@ git commit -m "feat: add Instagram feed components
 ## Task 10: Create social proof bar for header
 
 **Files:**
+
 - Create: `client/src/components/social/SocialProofBar.tsx`
 - Modify: `client/src/components/Header.tsx` (or equivalent)
 
@@ -1218,6 +1246,7 @@ git commit -m "feat: add social proof bar to header
 ## Task 11: Create completion report
 
 **Files:**
+
 - Create: `docs/plans/2026-03-13-social-proof-completion-report.md`
 
 **Step 1: Write completion report**
@@ -1231,6 +1260,7 @@ git commit -m "feat: add social proof bar to header
 ## Completed Tasks
 
 ### 1. Review System
+
 - [x] Review types and interface
 - [x] Sample reviews data
 - [x] Reviews API endpoints
@@ -1239,18 +1269,21 @@ git commit -m "feat: add social proof bar to header
 - [x] Product page reviews
 
 ### 2. Customer Gallery
+
 - [x] Customer photo data structure
 - [x] CustomerPhotoGallery component
 - [x] Photo modal for enlarged view
 - [x] Instagram integration
 
 ### 3. Trust Elements
+
 - [x] TrustBadges component
 - [x] Trust badges on home page
 - [x] Trust badges on checkout
 - [x] Social proof bar in header
 
 ### 4. Instagram Integration
+
 - [x] Instagram feed component
 - [x] Instagram grid component
 - [x] Follow CTA
@@ -1258,11 +1291,13 @@ git commit -m "feat: add social proof bar to header
 ## Results
 
 ### Before
+
 - No social proof displayed
 - No customer reviews visible
 - Minimal trust indicators
 
 ### After
+
 - Full review system with verified badges
 - Customer photo gallery
 - Trust badges across key pages
@@ -1270,6 +1305,7 @@ git commit -m "feat: add social proof bar to header
 - Social proof header bar
 
 ## Expected Impact
+
 - 15-20% increase in conversion from social proof
 - Higher trust scores with new visitors
 - Increased Instagram following
@@ -1288,6 +1324,7 @@ git commit -m "docs: add social proof completion report"
 ## Task 12: Test all social proof features
 
 **Files:**
+
 - Test: Manual verification
 
 **Step 1: Test review system**
@@ -1295,6 +1332,7 @@ git commit -m "docs: add social proof completion report"
 Run: `npm run dev`
 
 Test:
+
 1. Visit home page - verify reviews section displays
 2. Navigate through review carousel
 3. Check star ratings render correctly
@@ -1304,6 +1342,7 @@ Test:
 **Step 2: Test customer gallery**
 
 Test:
+
 1. Visit home page - verify gallery displays
 2. Click on photo - verify modal opens
 3. Verify Instagram links work
@@ -1312,6 +1351,7 @@ Test:
 **Step 3: Test trust badges**
 
 Test:
+
 1. Verify trust badges display on home page
 2. Verify compact version on checkout
 3. Verify social proof bar in header
@@ -1320,6 +1360,7 @@ Test:
 **Step 4: Test Instagram feed**
 
 Test:
+
 1. Verify Instagram link card displays
 2. Test link opens Instagram in new tab
 3. Verify gradient styling applies
@@ -1357,6 +1398,7 @@ Before marking this complete, verify:
 **Total Estimated Time:** 4-5 hours
 
 **Dependencies:**
+
 - None (can be done independently)
 
 **Next Phase:** Phase 7 - Testing & Quality

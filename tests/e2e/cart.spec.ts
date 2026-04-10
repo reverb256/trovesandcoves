@@ -3,14 +3,16 @@ import { test, expect } from '@playwright/test';
 test.describe('Shopping Cart', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/products');
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
   });
 
   test('cart icon is visible in navigation', async ({ page }) => {
     // Look for cart icon in header
-    const cartIcon = page.locator('a svg.lucide-shopping-cart').or(
-      page.locator('a').filter({ hasText: /cart/i })
-    );
+    const cartIcon = page
+      .locator('a svg.lucide-shopping-cart')
+      .or(page.locator('a').filter({ hasText: /cart/i }));
     await expect(cartIcon.first()).toBeVisible();
   });
 
@@ -26,17 +28,20 @@ test.describe('Shopping Cart', () => {
     const addToCartButton = page.getByRole('button', { name: /add to cart/i });
     const etsyLink = page.getByRole('link', { name: /etsy|purchase on etsy/i });
 
-    if (await addToCartButton.count() > 0 && await addToCartButton.isVisible()) {
+    if (
+      (await addToCartButton.count()) > 0 &&
+      (await addToCartButton.isVisible())
+    ) {
       // Local cart functionality
       await addToCartButton.click();
       await page.waitForTimeout(1000);
 
       // Cart badge should show item count
       const cartBadge = page.locator('.badge, [data-testid="cart-count"]');
-      if (await cartBadge.count() > 0) {
+      if ((await cartBadge.count()) > 0) {
         await expect(cartBadge.first()).toBeVisible();
       }
-    } else if (await etsyLink.count() > 0) {
+    } else if ((await etsyLink.count()) > 0) {
       // Production uses Etsy - just verify link exists
       await expect(etsyLink.first()).toBeVisible();
       console.log('Production site uses Etsy for purchases');
@@ -48,9 +53,10 @@ test.describe('Shopping Cart', () => {
 
   test('cart drawer opens when clicked', async ({ page }) => {
     // Click cart icon to open drawer
-    const cartButton = page.locator('button[aria-label*="cart"], button[aria-label*="Cart"]').or(
-      page.locator('a[href="/checkout"]')
-    ).first();
+    const cartButton = page
+      .locator('button[aria-label*="cart"], button[aria-label*="Cart"]')
+      .or(page.locator('a[href="/checkout"]'))
+      .first();
 
     if (await cartButton.isVisible()) {
       await cartButton.click();
@@ -58,7 +64,7 @@ test.describe('Shopping Cart', () => {
 
       // Cart drawer should be visible if using local cart
       const cartDrawer = page.locator('[data-testid="cart-drawer"]');
-      if (await cartDrawer.count() > 0) {
+      if ((await cartDrawer.count()) > 0) {
         await expect(cartDrawer).toBeVisible();
       }
     }
@@ -73,14 +79,18 @@ test.describe('Shopping Cart', () => {
     const addToCartButton = page.getByRole('button', { name: /add to cart/i });
 
     // Only proceed if add to cart button exists
-    if (await addToCartButton.count() > 0 && await addToCartButton.isVisible()) {
+    if (
+      (await addToCartButton.count()) > 0 &&
+      (await addToCartButton.isVisible())
+    ) {
       await addToCartButton.click();
       await page.waitForTimeout(1000);
 
       // Open cart drawer
-      const cartButton = page.locator('button[aria-label*="cart"], button[aria-label*="Cart"]').or(
-        page.locator('a[href="/checkout"]')
-      ).first();
+      const cartButton = page
+        .locator('button[aria-label*="cart"], button[aria-label*="Cart"]')
+        .or(page.locator('a[href="/checkout"]'))
+        .first();
 
       if (await cartButton.isVisible()) {
         await cartButton.click();
@@ -106,25 +116,29 @@ test.describe('Shopping Cart', () => {
     const addToCartButton = page.getByRole('button', { name: /add to cart/i });
 
     // Only proceed if add to cart button exists
-    if (await addToCartButton.count() > 0 && await addToCartButton.isVisible()) {
+    if (
+      (await addToCartButton.count()) > 0 &&
+      (await addToCartButton.isVisible())
+    ) {
       await addToCartButton.click();
       await page.waitForTimeout(1000);
 
       // Open cart drawer
-      const cartButton = page.locator('button[aria-label*="cart"], button[aria-label*="Cart"]').or(
-        page.locator('a[href="/checkout"]')
-      ).first();
+      const cartButton = page
+        .locator('button[aria-label*="cart"], button[aria-label*="Cart"]')
+        .or(page.locator('a[href="/checkout"]'))
+        .first();
 
       if (await cartButton.isVisible()) {
         await cartButton.click();
         await page.waitForTimeout(500);
 
         // Look for quantity controls
-        const increaseButton = page.getByRole('button', { name: '+' }).or(
-          page.locator('button').filter({ hasText: /increase/i })
-        );
+        const increaseButton = page
+          .getByRole('button', { name: '+' })
+          .or(page.locator('button').filter({ hasText: /increase/i }));
 
-        if (await increaseButton.count() > 0) {
+        if ((await increaseButton.count()) > 0) {
           await increaseButton.first().click();
           await page.waitForTimeout(500);
         }
@@ -144,30 +158,38 @@ test.describe('Shopping Cart', () => {
     const addToCartButton = page.getByRole('button', { name: /add to cart/i });
 
     // Only proceed if add to cart button exists
-    if (await addToCartButton.count() > 0 && await addToCartButton.isVisible()) {
+    if (
+      (await addToCartButton.count()) > 0 &&
+      (await addToCartButton.isVisible())
+    ) {
       await addToCartButton.click();
       await page.waitForTimeout(1000);
 
       // Open cart drawer
-      const cartButton = page.locator('button[aria-label*="cart"], button[aria-label*="Cart"]').or(
-        page.locator('a[href="/checkout"]')
-      ).first();
+      const cartButton = page
+        .locator('button[aria-label*="cart"], button[aria-label*="Cart"]')
+        .or(page.locator('a[href="/checkout"]'))
+        .first();
 
       if (await cartButton.isVisible()) {
         await cartButton.click();
         await page.waitForTimeout(500);
 
         // Look for remove button
-        const removeButton = page.getByRole('button', { name: /remove|delete|×/i }).or(
-          page.locator('button').filter({ hasText: /×/i })
-        );
+        const removeButton = page
+          .getByRole('button', { name: /remove|delete|×/i })
+          .or(page.locator('button').filter({ hasText: /×/i }));
 
-        if (await removeButton.count() > 0) {
-          const initialCount = await page.locator('[data-testid="cart-item"]').count();
+        if ((await removeButton.count()) > 0) {
+          const initialCount = await page
+            .locator('[data-testid="cart-item"]')
+            .count();
           await removeButton.first().click();
           await page.waitForTimeout(500);
 
-          const newCount = await page.locator('[data-testid="cart-item"]').count();
+          const newCount = await page
+            .locator('[data-testid="cart-item"]')
+            .count();
           // Count should be less or equal
           expect(newCount).toBeLessThanOrEqual(initialCount);
         }
@@ -187,25 +209,29 @@ test.describe('Shopping Cart', () => {
     const addToCartButton = page.getByRole('button', { name: /add to cart/i });
 
     // Only proceed if add to cart button exists
-    if (await addToCartButton.count() > 0 && await addToCartButton.isVisible()) {
+    if (
+      (await addToCartButton.count()) > 0 &&
+      (await addToCartButton.isVisible())
+    ) {
       await addToCartButton.click();
       await page.waitForTimeout(1000);
 
       // Open cart drawer
-      const cartButton = page.locator('button[aria-label*="cart"], button[aria-label*="Cart"]').or(
-        page.locator('a[href="/checkout"]')
-      ).first();
+      const cartButton = page
+        .locator('button[aria-label*="cart"], button[aria-label*="Cart"]')
+        .or(page.locator('a[href="/checkout"]'))
+        .first();
 
       if (await cartButton.isVisible()) {
         await cartButton.click();
         await page.waitForTimeout(500);
 
         // Look for checkout button
-        const checkoutButton = page.getByRole('button', { name: /checkout|proceed/i }).or(
-          page.locator('a').filter({ hasText: /checkout/i })
-        );
+        const checkoutButton = page
+          .getByRole('button', { name: /checkout|proceed/i })
+          .or(page.locator('a').filter({ hasText: /checkout/i }));
 
-        if (await checkoutButton.count() > 0) {
+        if ((await checkoutButton.count()) > 0) {
           await checkoutButton.first().click();
           // Should navigate to checkout
           await expect(page).toHaveURL(/\/checkout/);
@@ -229,7 +255,9 @@ test.describe('Cart API Integration', () => {
     });
 
     await page.goto('/products');
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
 
     // API calls should have been made for products
     console.log('API requests made:', apiRequests.length);
@@ -238,7 +266,9 @@ test.describe('Cart API Integration', () => {
   test('cart persists across page navigation', async ({ page }) => {
     // Add item to cart
     await page.goto('/products');
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 5000 });
+    await page.waitForSelector('[data-testid="product-card"]', {
+      timeout: 5000,
+    });
 
     const firstProduct = page.locator('[data-testid="product-card"]').first();
     await firstProduct.click();
@@ -247,7 +277,10 @@ test.describe('Cart API Integration', () => {
     const addToCartButton = page.getByRole('button', { name: /add to cart/i });
 
     // Only proceed if add to cart button exists
-    if (await addToCartButton.count() > 0 && await addToCartButton.isVisible()) {
+    if (
+      (await addToCartButton.count()) > 0 &&
+      (await addToCartButton.isVisible())
+    ) {
       await addToCartButton.click();
       await page.waitForTimeout(1000);
 
