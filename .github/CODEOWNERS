@@ -1,0 +1,18 @@
+# Code Owners for trovesandcoves
+# See https://docs.github.com/en/repositories/managing-your-repositorys-health-and-settings/defining-the-owners-of-a-codebase
+
+# All code
+* @reverb256
+
+# Configuration files
+*.config.js @reverb256
+*.config.ts @reverb256
+tsconfig.json @reverb256
+vite.config.* @reverb256
+
+# Public assets (images, fonts)
+/public/** @reverb256
+/src/assets/** @reverb256
+
+# Build and deployment
+.github/** @reverb256
