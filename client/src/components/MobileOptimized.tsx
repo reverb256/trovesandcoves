@@ -1,4 +1,5 @@
 import { useState, useEffect, memo } from 'react';
+import { useLocation } from 'wouter';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Gem, Heart, Menu, X } from 'lucide-react';
@@ -152,6 +153,7 @@ interface MobileNavigationProps {
 
 export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigationProps) {
   const isMobile = useIsMobile();
+  const [location] = useLocation();
 
   useEffect(() => {
     if (isOpen) {
@@ -187,11 +189,11 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
           />
 
           <div className={`
-            fixed top-0 left-0 h-full w-80 bg-white z-50 transform transition-transform duration-300 lg:hidden
+            fixed top-0 left-0 h-full w-80 z-50 transform transition-transform duration-300 lg:hidden
             ${isOpen ? 'translate-x-0' : '-translate-x-full'}
             shadow-2xl
-          `}>
-            <div className="p-4 border-b border-gray-200">
+          `} style={{ backgroundColor: 'hsl(var(--bg-primary))' }}>
+            <div className="p-4 border-b" style={{ borderColor: 'hsl(var(--border-light))' }}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Gem className="h-7 w-7" style={{ color: 'hsl(var(--gold-medium))' }} />
@@ -210,7 +212,7 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
               </div>
             </div>
 
-            <nav className="p-4 space-y-2">
+            <nav className="p-4 space-y-2" aria-label="Mobile navigation">
               {[
                 { href: '/', label: 'Home' },
                 { href: '/products', label: 'Shop' },
@@ -219,8 +221,9 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
                 <a
                   key={item.href}
                   href={item.href}
-                  className="block py-3 px-2 text-base font-medium border-b border-gray-100 touch-manipulation transition-colors"
+                  className="block py-3 px-2 text-base font-medium border-b touch-manipulation transition-colors" style={{ borderColor: 'hsl(var(--border-light))' }}
                   style={{ color: 'hsl(var(--text-primary))' }}
+                  aria-current={location === item.href ? 'page' : undefined}
                   onClick={onClose}
                 >
                   {item.label}

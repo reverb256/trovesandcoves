@@ -96,7 +96,7 @@ export default function SEOHead({
       { name: 'business:contact_data:country_name', content: location.country },
 
       // Additional SEO
-      { name: 'theme-color', content: '#D4AF37' },
+      { name: 'theme-color', content: '#3A8E8B' },
       { name: 'msapplication-TileColor', content: '#000000' },
       { name: 'mobile-web-app-capable', content: 'yes' },
       {

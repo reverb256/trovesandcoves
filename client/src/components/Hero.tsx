@@ -1,4 +1,11 @@
 export default function Hero() {
+  const handleCtaKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      window.location.href = '/products';
+    }
+  };
+
   return (
     <section
       className="relative min-h-[70vh] flex items-center justify-center py-24"
@@ -44,7 +51,10 @@ export default function Hero() {
           {/* CTA Button - Luxury Style */}
           <a
             href="/products"
-            className="mt-8 inline-flex items-center justify-center px-10 py-4 no-underline"
+            role="button"
+            tabIndex={0}
+            onKeyDown={handleCtaKeyDown}
+            className="mt-8 inline-flex items-center justify-center px-10 py-4 no-underline focus-visible:outline-2 focus-visible:outline-offset-2"
             style={{
               fontFamily: "Montserrat, sans-serif",
               fontWeight: 600,
