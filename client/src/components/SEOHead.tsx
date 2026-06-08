@@ -59,7 +59,6 @@ export default function SEOHead({
       ...(keywords ? [{ name: 'keywords', content: keywords }] : []),
       { name: 'author', content: 'Troves & Coves' },
       { name: 'robots', content: 'index, follow' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
 
       // Open Graph for Facebook, Discord, Messenger
       { property: 'og:title', content: title },

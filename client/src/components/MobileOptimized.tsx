@@ -85,7 +85,7 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
           className="text-base leading-snug line-clamp-2"
           style={{
             fontFamily: "'Libre Baskerville', serif",
-            color: '#1f1f1f',
+            color: 'hsl(var(--text-primary))',
             fontWeight: 500
           }}
         >
@@ -98,7 +98,7 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
             className="text-lg font-semibold"
             style={{
               fontFamily: "'Libre Baskerville', serif",
-              color: '#C9A24A'
+              color: 'hsl(var(--gold-medium))'
             }}
           >
             ${product.price}
@@ -127,7 +127,7 @@ export function MobileProductCard({ product, onAddToCart }: MobileProductCardPro
           className="block text-center text-xs tracking-wider uppercase"
           style={{
             fontFamily: "'Montserrat', sans-serif",
-            color: '#5f5f5f',
+            color: 'hsl(var(--text-secondary))',
             textDecoration: 'none',
           }}
         >
