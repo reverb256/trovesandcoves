@@ -221,8 +221,7 @@ export function MobileNavigation({ isOpen, onToggle, onClose }: MobileNavigation
                 <a
                   key={item.href}
                   href={item.href}
-                  className="block py-3 px-2 text-base font-medium border-b touch-manipulation transition-colors" style={{ borderColor: 'hsl(var(--border-light))' }}
-                  style={{ color: 'hsl(var(--text-primary))' }}
+                  className="block py-3 px-2 text-base font-medium border-b touch-manipulation transition-colors" style={{ borderColor: 'hsl(var(--border-light))', color: 'hsl(var(--text-primary))' }}
                   aria-current={location === item.href ? 'page' : undefined}
                   onClick={onClose}
                 >
