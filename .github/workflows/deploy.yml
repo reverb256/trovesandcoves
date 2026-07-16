@@ -42,6 +42,12 @@ jobs:
       - name: Ensure OG image in build output
         run: cp -f client/public/og-image.jpg dist/public/og-image.jpg
 
+      - name: Install Playwright headless shell
+        run: npx playwright install chromium-headless-shell
+
+      - name: Prerender static HTML for all routes
+        run: npx tsx scripts/prerender.ts
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

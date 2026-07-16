@@ -28,6 +28,11 @@ const cnameFile = path.join(OUTPUT_DIR, 'CNAME');
 fs.writeFileSync(cnameFile, 'trovesandcoves.ca\n');
 console.log('✅ Created CNAME file for trovesandcoves.ca');
 
+// Disable Jekyll so prerendered subdirectories (e.g. /product/1/) are served as-is
+const nojekyllFile = path.join(OUTPUT_DIR, '.nojekyll');
+fs.writeFileSync(nojekyllFile, '');
+console.log('✅ Created .nojekyll (disables Jekyll processing)');
+
 // Add 404.html for SPA routing
 const html404File = path.join(OUTPUT_DIR, '404.html');
 fs.copyFileSync(reactBuildIndex, html404File);

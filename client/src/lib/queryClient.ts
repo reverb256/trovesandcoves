@@ -11,8 +11,14 @@ import {
 // Get API base URL from environment or use defaults
 const isDevelopment = import.meta.env.DEV || typeof window !== 'undefined' && window.location.hostname === 'localhost';
 
-// Check if we should use embedded data (GitHub Pages production)
+// Check if we should use embedded data (GitHub Pages production OR local prerender)
+const isLocalhost = typeof window !== 'undefined' && (
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1' ||
+  window.location.hostname === '[::1]'
+);
 const shouldUseEmbeddedData = !isDevelopment && (
+  isLocalhost ||
   window.location.hostname === 'trovesandcoves.ca' ||
   window.location.hostname === 'reverb256.github.io'
 );
