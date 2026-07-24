@@ -165,9 +165,14 @@ export default defineConfig({
     minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          animations: ['framer-motion']
+        // Vite 8 tightened rollup's manualChunks typing to a function form.
+        // Object form { vendor: [...] } is rejected; function preserves the split.
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('framer-motion')) return 'animations';
+            if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) return 'vendor';
+          }
+          return undefined;
         }
       }
     }
