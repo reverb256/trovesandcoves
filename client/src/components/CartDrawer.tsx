@@ -114,6 +114,7 @@ export default function CartDrawer() {
                         size="sm"
                         variant="outline"
                         onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                        disabled={item.quantity <= 1}
                         className="h-8 w-8 p-0"
                       >
                         <Minus className="h-3 w-3" />
