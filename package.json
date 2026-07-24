@@ -101,7 +101,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "jsdom": "^26.1.0",
-    "postcss": "^8.4.47",
+    "postcss": "^8.5.22",
     "prettier": "^3.5.3",
     "rollup-plugin-visualizer": "^7.0.1",
     "sharp": "^0.34.5",
