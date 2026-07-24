@@ -136,6 +136,8 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
           size="icon"
           onClick={() => setIsExpanded(!isExpanded)}
           className={isExpanded ? 'bg-secondary' : ''}
+          aria-label="Toggle search filters"
+          aria-expanded={isExpanded}
         >
           <SlidersHorizontal className="h-4 w-4" />
         </Button>
@@ -148,19 +150,19 @@ export function SearchBar({ onResultsChange, onFiltersChange, initialSearch = ''
           {filters.search && (
             <Badge variant="secondary" className="gap-1">
               Search: "{filters.search}"
-              <X className="h-3 w-3 cursor-pointer" onClick={() => handleFilterChange('search', '')} />
+              <X className="h-3 w-3 cursor-pointer" role="button" aria-label="Remove search filter" onClick={() => handleFilterChange('search', '')} />
             </Badge>
           )}
           {filters.material && (
             <Badge variant="secondary" className="gap-1">
               Material: {filters.material}
-              <X className="h-3 w-3 cursor-pointer" onClick={() => handleFilterChange('material', '')} />
+              <X className="h-3 w-3 cursor-pointer" role="button" aria-label="Remove material filter" onClick={() => handleFilterChange('material', '')} />
             </Badge>
           )}
           {filters.gemstone && (
             <Badge variant="secondary" className="gap-1">
               Gemstone: {filters.gemstone}
-              <X className="h-3 w-3 cursor-pointer" onClick={() => handleFilterChange('gemstone', '')} />
+              <X className="h-3 w-3 cursor-pointer" role="button" aria-label="Remove gemstone filter" onClick={() => handleFilterChange('gemstone', '')} />
             </Badge>
           )}
           {(filters.minPrice > 0 || filters.maxPrice < 10000) && (
