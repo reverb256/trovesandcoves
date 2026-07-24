@@ -20,6 +20,8 @@
 
 This is a **production e-commerce showcase** for Troves & Coves, a Winnipeg-based handcrafted crystal jewelry business. The site is built as a static React application deployed to GitHub Pages.
 
+> **Framework decision (2026-07-24):** The previously-explored Astro SSR/static migration (`feat/astro-migration`) is **abandoned** — the branch no longer exists. Production stays on React + Vite + Wouter, prerendered to static HTML for GitHub Pages. See issues #17 / #20.
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        WORKFLOW                                 │

@@ -52,12 +52,24 @@ const STATIC_ROUTES: string[] = [
   '/style-guide',
 ];
 
-// Category slugs (server/storage.ts seedData)
-const CATEGORY_SLUGS = [
-  'crystal-necklaces',
-  'gemstone-necklaces',
-  'leather-cord-pendants',
-];
+// Category slugs — DERIVED from the same embedded data the static site actually
+// serves (shared/embedded-data.ts), so prerendered pages always match real
+// categories. Hardcoding here previously drifted from embedded-data and produced
+// dead routes (gemstone-necklaces / leather-cord-pendants) while skipping the real
+// categories (healing-crystals / wire-wrapped).
+async function getCategorySlugs(): Promise<string[]> {
+  try {
+    const mod = await import(path.resolve(ROOT, 'shared', 'embedded-data.ts'));
+    const cats = (mod as { EMBEDDED_CATEGORIES?: { slug?: string }[] }).EMBEDDED_CATEGORIES;
+    if (Array.isArray(cats)) {
+      const slugs = cats.map((c) => String(c.slug)).filter(Boolean);
+      if (slugs.length) return slugs;
+    }
+  } catch (err) {
+    console.warn('⚠️  Could not import embedded categories, falling back to crystal-necklaces:', err);
+  }
+  return ['crystal-necklaces'];
+}
 
 // Product ids: read from embedded data so we enumerate exactly what exists.
 async function getProductIds(): Promise<number[]> {
@@ -74,9 +86,9 @@ async function getProductIds(): Promise<number[]> {
   return Array.from({ length: 30 }, (_, i) => i + 1);
 }
 
-function allRoutes(productIds: number[]): string[] {
+function allRoutes(productIds: number[], categorySlugs: string[]): string[] {
   const routes = [...STATIC_ROUTES];
-  for (const slug of CATEGORY_SLUGS) routes.push(`/products/${slug}`);
+  for (const slug of categorySlugs) routes.push(`/products/${slug}`);
   for (const id of productIds) routes.push(`/product/${id}`);
   return routes;
 }
@@ -199,7 +211,8 @@ async function main(): Promise<void> {
   }
 
   const productIds = await getProductIds();
-  const routes = allRoutes(productIds);
+  const categorySlugs = await getCategorySlugs();
+  const routes = allRoutes(productIds, categorySlugs);
   console.log(`🖨️  Prerendering ${routes.length} routes (${productIds.length} products) -> static HTML`);
 
   const server = await startServer();

@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 import SEOHead from '@/components/SEOHead';
 import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';

@@ -1,4 +1,5 @@
 import { Link } from 'wouter';
+import { EMBEDDED_CATEGORIES } from '@shared/embedded-data';
 import {
   Facebook,
   Instagram,
@@ -33,10 +34,10 @@ export default function Footer() {
     },
   ];
 
+  // Category links are derived from the embedded data source-of-truth
+  // (shared/embedded-data.ts) so footer links can never drift from real slugs.
   const collections = [
-    { name: 'Crystal Necklaces', href: '/products/crystal-necklaces' },
-    { name: 'Gemstone Necklaces', href: '/products/gemstone-necklaces' },
-    { name: 'Leather Cord Pendants', href: '/products/leather-cord-pendants' },
+    ...EMBEDDED_CATEGORIES.map((c) => ({ name: c.name, href: `/products/${c.slug}` })),
     { name: 'All Products', href: '/products' },
     { name: 'Featured Items', href: '/' },
     { name: 'Contact', href: '/contact' },
