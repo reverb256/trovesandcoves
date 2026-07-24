@@ -12,7 +12,7 @@
     <!-- Favicon and Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="manifest" href="/site.webmanifest">
+    <!-- Manifest is auto-injected by vite-plugin-pwa (see vite.config.ts) -->
     <meta name="theme-color" content="#3A8E8B">
 
     <!-- Performance Resource Hints -->
@@ -128,6 +128,14 @@
     </script>
 
     <div id="root"></div>
+    <noscript>
+      <div style="padding:2rem;text-align:center;font-family:system-ui,sans-serif;">
+        <h1 style="color:#3A8E8B;">Troves & Coves</h1>
+        <p>JavaScript is required to view this website.</p>
+        <p>Please enable JavaScript in your browser settings, or visit our shop directly:</p>
+        <p><a href="https://www.etsy.com/ca/shop/TrovesandCoves" style="color:#3A8E8B;">Shop on Etsy</a> · <a href="mailto:info@trovesandcoves.ca" style="color:#3A8E8B;">Contact Us</a></p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
