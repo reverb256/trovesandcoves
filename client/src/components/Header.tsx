@@ -168,6 +168,7 @@ export default function Header() {
                 }}
                 aria-label="Toggle menu"
                 aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
               >
                 <Menu
                   className={`menu-icon w-5 h-5 ${isMobileMenuOpen ? 'hidden' : 'visible'}`}
@@ -193,6 +194,7 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       <div
+        id="mobile-menu"
         className={`mobile-menu-overlay lg:hidden ${isMobileMenuOpen ? 'open' : ''}`}
         onClick={() => setIsMobileMenuOpen(false)}
         aria-hidden={!isMobileMenuOpen}

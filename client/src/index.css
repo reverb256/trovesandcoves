@@ -1803,3 +1803,21 @@ html {
   }
 }
 
+
+/* Global focus-visible for accessibility (S2) */
+*:focus-visible {
+  outline: 2px solid hsl(var(--accent-vibrant));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px hsla(174, 70%, 40%, 0.2);
+}
+
+/* Per-component focus-visible Tailwind classes */
+.focus-visible-hero:focus-visible,
+.focus-visible-productcard:focus-visible,
+.focus-visible-cartdrawer:focus-visible,
+.focus-visible-ctabutton:focus-visible,
+.focus-visible-header:focus-visible,
+.focus-visible-footer:focus-visible {
+  outline: 2px solid hsl(var(--accent-vibrant));
+  outline-offset: 3px;
+}

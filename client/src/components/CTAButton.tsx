@@ -44,7 +44,7 @@ export default function CTAButton({
   rel,
   onClick,
 }: CTAButtonProps) {
-  const baseStyles = "inline-flex items-center justify-center gap-3 rounded-full font-medium tracking-wide transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed no-underline";
+  const baseStyles = "inline-flex items-center justify-center gap-3 rounded-full font-medium tracking-wide transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hsl(var(--accent-vibrant))";
 
   const sizeStyles: Record<string, string> = {
     sm: 'px-6 py-2.5 text-sm',
@@ -89,6 +89,7 @@ export default function CTAButton({
       fontFamily: '"Montserrat", sans-serif',
     },
     disabled: disabled || isLoading,
+    'aria-busy': isLoading,
     onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
       if (!disabled && !isLoading) {
         Object.assign(e.currentTarget.style, hoverStyles[variant]);
