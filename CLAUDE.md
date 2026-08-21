@@ -163,12 +163,18 @@ const addToCart = useCart(state => state.addToCart);
 
 | What | Where |
 |------|-------|
-| Products data | `client/src/lib/products.ts` |
+| Products data (embedded) | `shared/embedded-data.ts` |
+| Products data (server) | `server/authentic-products.ts` |
+| Products data (Etsy JSON) | `etsy-products.json` |
 | Theme variables | `client/src/lib/theme.tsx` |
 | Cart store | `client/src/lib/store.tsx` |
 | Route definitions | `client/src/App.tsx` |
 | UI components | `client/src/components/ui/` |
 | Page components | `client/src/pages/` |
+| Shared types | `shared/types.ts` |
+| Brand config | `shared/brand-config.ts` |
+| Build scripts | `scripts/` |
+| CI/CD workflows | `.github/workflows/` |
 
 ## Before Deploying
 
@@ -202,5 +208,9 @@ npm run check
 ## Related Documentation
 
 - `README.md` — Project overview, workflow, architecture decisions
+- `knowledge.md` — Quick-reference project knowledge
+- `TIMELINE.md` — Complete git history timeline
 - `package.json` — Dependencies and scripts
 - `.github/workflows/` — CI/CD configuration
+- `.github/PULL_REQUEST_TEMPLATE.md` — PR checklist
+- `.github/CODEOWNERS` — Code ownership rules

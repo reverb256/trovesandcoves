@@ -20,7 +20,7 @@
 
 This is a **production e-commerce showcase** for Troves & Coves, a Winnipeg-based handcrafted crystal jewelry business. The site is built as a static React application deployed to GitHub Pages.
 
-> **Framework decision (2026-07-24):** The previously-explored Astro SSR/static migration (`feat/astro-migration`) is **abandoned** — the branch no longer exists. Production stays on React + Vite + Wouter, prerendered to static HTML for GitHub Pages. See issues #17 / #20.
+> **Framework:** Production runs on React + Vite + Wouter, prerendered to static HTML for GitHub Pages. All SPA routes are prerendered at build time for full SEO coverage.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -99,14 +99,19 @@ trovesandcoves/
 │   └── index.html                 # HTML template
 ├── scripts/                       # Build/deployment scripts
 │   ├── postbuild-copy.cjs         # Creates CNAME, 404.html
+│   ├── prerender.ts               # Static HTML prerendering
 │   └── generate-sitemap.ts        # SEO sitemap generation
+├── shared/                        # Shared types and theme config
+├── server/                        # Development server (Vite dev)
 ├── .github/workflows/             # CI/CD
-│   ├── deploy.yml                 # Deploy to GitHub Pages
-│   ├── main.yml                   # Test on main branch
+│   ├── deploy.yml                 # Deploy to GitHub Pages (gated on typecheck + lint)
+│   ├── main.yml                   # Test + merge on main branch
+│   ├── e2e.yml                    # Playwright E2E tests
+│   ├── theme-tests.yml            # Theme toggle tests
 │   └── purge-cache.yml            # Cloudflare cache purge
 ├── package.json                   # Dependencies
 ├── vite.config.ts                 # Vite configuration
-└── tailwind.config.js             # Tailwind configuration
+└── tailwind.config.ts             # Tailwind configuration
 ```
 
 ### Local Development
@@ -138,9 +143,10 @@ npm run preview
 
 **Automatic:**
 1. Push to `prod` branch → triggers GitHub Actions
-2. Build runs: `npm run build`
-3. Output uploaded to GitHub Pages
-4. Live at https://trovesandcoves.ca
+2. **Gate:** Type-check and lint must pass before deploy proceeds
+3. Build runs: `npm run build` (includes prerendering all SPA routes)
+4. Output uploaded to GitHub Pages
+5. Live at https://trovesandcoves.ca
 
 **Manual cache purge:**
 ```bash
@@ -229,6 +235,8 @@ Edit `client/src/components/SEOHead.tsx` for meta tags, `scripts/generate-sitema
 ### Documentation Files
 
 - `CLAUDE.md` — Project-specific guidance for AI agents
+- `knowledge.md` — Quick-reference project knowledge
+- `TIMELINE.md` — Complete git history timeline
 - `.github/workflows/` — CI/CD configuration
 - `scripts/` — Build and deployment utilities
 

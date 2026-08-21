@@ -13,7 +13,8 @@ Complete chronological history of the project's development, deployment, and evo
 | `prod` | Production branch (deploys to live site) |
 | `gh-pages` | GitHub Pages deployment branch (auto-managed) |
 | `add-cache-purge` | Feature branch for cache purge workflow |
-| `feat/astro-migration` | Active Astro migration experiment |
+| `feat/ui-a11y-patches` | Accessibility and color-consistency patches |
+| `chore/vite8-ready` | Vite 8 preparation work |
 
 ---
 
@@ -182,7 +183,7 @@ Complete chronological history of the project's development, deployment, and evo
 
 ---
 
-## Phase 8: Current Work (March 2026)
+## Phase 8: Documentation & Stabilization (March 2026)
 
 *Console error fixes, documentation, and branch cleanup.*
 
@@ -194,6 +195,9 @@ Complete chronological history of the project's development, deployment, and evo
 | Mar 14 | `b23fd4b` | prod | Remove development files from prod branch |
 | Mar 14 | `a23fff7` | prod | Restore required build scripts |
 | Mar 14 | `b07c983` | prod | Add comprehensive README and CLAUDE.md |
+| Mar 14 | `1351bf3` / `cba7336` | prod | Add comprehensive git history timeline |
+| Mar 14 | `1b63abb` | main | AI SEO optimization and performance quick wins |
+| Mar 15 | `8f452fd` | main | Add strategic innovation brainstorming document |
 
 ### Fixes Applied:
 1. ✅ Duplicate "Skip to main content" links → Single link in Header.tsx
@@ -203,34 +207,82 @@ Complete chronological history of the project's development, deployment, and evo
 
 ---
 
+## Phase 9: Website Audit Fixes (April 2026)
+
+*Audit-driven fixes and workflow improvements.*
+
+| Date | Commit | Branch | Description |
+|------|--------|--------|-------------|
+| Apr 4 | `cdfc938` | main | Resolve website audit issues |
+| Apr 15 | `044161c` | prod | Merge main into prod — navigation fix, console errors, workflows, docs |
+| Apr 17 | `21edf5a` | main | Remove generated status docs |
+| Apr 18 | `4352040` | main | Bump node-version to 22 in all workflows, remove devcontainers from dependabot |
+
+---
+
+## Phase 10: GitHub Pages Migration (May–July 2026)
+
+*Transition to GitHub Pages with prerendering, accessibility audits, and dependency maintenance.*
+
+| Date | Commit | Branch | Description |
+|------|--------|--------|-------------|
+| May 18 | `197d96e` | main | chore(deps-dev): bump brace-expansion |
+| May 22 | `191f408` | main | chore(deps): bump serialize-javascript and workbox-build |
+| Jun 8 | `f365f9b` | main | Partial UI/a11y patches from previous audit run |
+| Jun 8 | `63c87c7` | main | **Apply 21 UI/accessibility patches from audit** |
+| Jun 8 | `4a507af` | main | Fix merge duplicate style props in MobileOptimized nav links |
+| Jul 16 | `ae719f9` | main | **Feat: prerender all SPA routes to static HTML for GitHub Pages** |
+| Jul 16 | `c7c3158` | main | Fix: remove broken OG-image generation step from deploy workflow |
+| Jul 24 | `7628c0a` | prod | chore(deps): bump qs and express |
+| Jul 24 | `11b9a6f` | prod | chore(deps): bump @babel/plugin-transform-modules-systemjs |
+| Jul 24 | `6bacb82` | prod | chore(deps): bump path-to-regexp |
+| Jul 24 | `3aaac7a` | prod | chore(deps): bump picomatch |
+| Jul 24 | `c8e839d` | prod | chore(deps-dev): bump flatted |
+| Jul 24 | `37905d6` | prod | **Fix: derive category slugs from embedded-data source-of-truth** |
+| Jul 24 | `9ac23f0` | prod | chore: remove agent scaffolding cruft from a11y PR |
+| Jul 24 | `74282c9` | prod | ci: gate GitHub Pages deploy on type-check + lint |
+| Jul 24 | `5efb9c2` | prod | Fix: apply PR #7 website audit fixes (cherry-pick) |
+| Jul 24 | `2bbf92d` | prod | Merge feat/ui-a11y-patches into prod |
+| Jul 24 | `1488586` | prod | chore(deps): Vite 8 upgrade — root-cause fixes for CI merge |
+| Jul 24 | `eed7343` | prod | **CI: gate GitHub Pages deploy on type-check + lint** |
+| Jul 24 | `adf5471` | prod | Fix: apply PR #7 website audit fixes (cherry-pick) |
+| Jul 24 | `2d03286` | prod | **Fix(ui): apply PR #22 accessibility + color-consistency audit patches** |
+
+**Key Decisions:**
+- Migrated CI to Node 22
+- Deploy workflow now requires type-check + lint to pass before deploying
+- Category slugs derived from embedded-data source of truth (fixes dead prerender routes + footer links)
+- OG-image generation removed from deploy workflow (was causing aborts)
+
+---
+
 ## Branch Structure Today
 
 ```
-feat/astro-migration  (8 commits)  → Astro framework experiment (NOT deployed)
-│
-├── 000c264  Initialize Astro
-├── 816e2a2  Initialize Astro with React and Tailwind
-├── a2bf897  Reorganize source structure
-├── b405bd0  Update Tailwind config
-├── 9a343a9  Create base Astro layout
-├── affe9bf  Complete Astro migration
-├── c625106  Resolve hydration issues
-└── ad293e5  Complete remaining audit tasks
+feat/ui-a11y-patches   → Accessibility patches (merged into prod)
+├── 63c87c7  Apply 21 UI/accessibility patches from audit
+└── 4a507af  Fix merge duplicate style props in MobileOptimized nav
 
-main                 (2 commits ahead of prod) → Integration branch
-│
-├── aa9c2cd  Fix console errors (deployed to prod via cherry-pick)
-└── 7550e16  Add README and CLAUDE.md (deployed to prod via cherry-pick)
+main                   → Integration branch (CI tests run here)
+├── ae719f9  Prerender all SPA routes for GitHub Pages
+├── c7c3158  Remove broken OG-image generation step
+├── 63c87c7  Apply 21 UI/accessibility patches
+└── 1b63abb  AI SEO optimization
 
-prod                 (protected, deploys to live) → Production source
-│
-├── d28db4a  Fix console errors (cherry-pick from main)
-├── b23fd4b  Remove dev files
-├── a23fff7  Restore build scripts
-└── b07c983  Add README and CLAUDE.md (cherry-pick from main)
+prod                   (protected, deploys to live) → Production source
+├── 2d03286  PR #22 accessibility + color-consistency patches
+├── adf5471  PR #7 website audit fixes
+├── eed7343  CI: gate deploy on type-check + lint
+├── 37905d6  Fix category slugs from embedded-data source-of-truth
+├── 1488586  Vite 8 upgrade
+└── (dependency bumps)
       │
       ▼
     https://trovesandcoves.ca (GitHub Pages)
+
+chore/vite8-ready      → Local branch for Vite 8 prep work
+cleanup/ui-a11y        → Local branch for UI/accessibility cleanup
+reconcile/main         → Local branch for main reconciliation
 ```
 
 ---
@@ -291,4 +343,4 @@ Current production remains on **React + Vite** stack.
 
 ---
 
-*Last updated: March 14, 2026*
+*Last updated: July 29, 2026*

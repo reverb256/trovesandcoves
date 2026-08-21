@@ -4,15 +4,23 @@
 # All code
 * @reverb256
 
+# Client application
+client/** @reverb256
+
 # Configuration files
 *.config.js @reverb256
 *.config.ts @reverb256
 tsconfig.json @reverb256
 vite.config.* @reverb256
 
+# Server & shared
+server/** @reverb256
+shared/** @reverb256
+
 # Public assets (images, fonts)
-/public/** @reverb256
-/src/assets/** @reverb256
+public/** @reverb256
+client/public/** @reverb256
 
 # Build and deployment
+scripts/** @reverb256
 .github/** @reverb256

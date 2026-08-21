@@ -1,0 +1,26 @@
+
+> trovesandcoves@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+ExpressSlowDownWarning: The behaviour of the 'delayMs' option was changed in express-slow-down v2:
+- For the old behavior, change the delayMs option to:
+
+  delayMs: (used, req) => {
+	  const delayAfter = req.slowDown.limit;
+	  return (used - delayAfter) * 500;
+  },
+
+- For the new behavior, change the delayMs option to:
+
+	delayMs: () => 500,
+
+Or set 'options.validate: {delayMs: false}' to disable this message. See https://express-rate-limit.github.io/WRN_ESD_DELAYMS/ for more information.
+    at slowDown (file:///home/j_kro/Projects/trovesandcoves/node_modules/express-slow-down/dist/index.mjs:51:18)
+    at <anonymous> (/home/j_kro/Projects/trovesandcoves/server/security/owasp-compliance.ts:60:35)
+    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+    at async node:internal/modules/esm/loader:639:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  code: 'WRN_ESD_DELAYMS',
+  help: 'https://express-rate-limit.github.io/WRN_ESD_DELAYMS/'
+}
+12:07:02 AM [express] serving on port 5000
