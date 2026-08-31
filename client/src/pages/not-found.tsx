@@ -1,4 +1,4 @@
-import { Home, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Home } from 'lucide-react';
 import CTAButton from '@/components/CTAButton';
 import SectionPill from '@/components/SectionPill';
 import SectionDivider from '@/components/SectionDivider';
@@ -10,7 +10,7 @@ export default function NotFound() {
       <div className="rounded-lg shadow-sm w-full max-w-lg p-12 text-center" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
         {/* Icon */}
         <div className="mb-8">
-          <IconCircle icon={ShoppingBag} variant="outline" size="xl" />
+          <IconCircle icon={Home} variant="outline" size="xl" />
         </div>
 
         {/* Badge */}
@@ -27,7 +27,6 @@ export default function NotFound() {
 
         <p className="text-lg mb-8 leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', color: 'hsl(var(--text-secondary))' }}>
           The page you're looking for doesn't exist or has been moved.
-          Let us help you find your way.
         </p>
 
         {/* Navigation Options */}
@@ -35,12 +34,6 @@ export default function NotFound() {
           <CTAButton variant="primary" href="/" className="w-full group">
             <Home className="w-5 h-5" />
             <span>Return Home</span>
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-          </CTAButton>
-
-          <CTAButton variant="secondary" href="/products" className="w-full">
-            <ShoppingBag className="w-5 h-5" />
-            <span>Shop the Collection</span>
           </CTAButton>
         </div>
       </div>

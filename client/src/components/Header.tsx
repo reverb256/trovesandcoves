@@ -1,18 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
-import { useCartContext } from '@/lib/store';
-import { SCROLL_THRESHOLD } from '@/constants';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import {
-  ShoppingCart,
-  Menu,
-  X,
-  Sparkles,
-} from 'lucide-react';
+import { BRAND_CONFIG } from '@shared/brand-config';
+import { Menu, X } from 'lucide-react';
+import { SCROLL_THRESHOLD } from '@/constants';
 
 export default function Header() {
   const [location] = useLocation();
-  const { itemCount } = useCartContext();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -24,12 +18,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navigation = [
-    { name: 'Shop', path: '/products' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-  ];
 
   const isActivePath = (path: string) => {
     if (path === '/' && location === '/') return true;
@@ -43,7 +31,7 @@ export default function Header() {
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg transition-all"
-        style={{ backgroundColor: 'hsl(var(--skull-turquoise))', color: 'white' }}
+        style={{ backgroundColor: BRAND_CONFIG.colors.trovesTurquoise, color: 'white' }}
       >
         Skip to main content
       </a>
@@ -94,12 +82,42 @@ export default function Header() {
 
               <div className="flex flex-col">
                 <div className="flex items-end gap-2">
-                  <span style={{ fontFamily: "'Libre Baskerville', serif", fontWeight: 700, color: "hsl(var(--accent-vibrant))", textTransform: "uppercase" }} className="text-lg">TROVES</span>
-                  <span className="text-2xl" style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-text-large))" }}>&</span>
-                  <span style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-text-large))" }} className="text-2xl">Coves</span>
+                  <span
+                    style={{
+                      fontFamily: "'Libre Baskerville', serif",
+                      fontWeight: 700,
+                      color: BRAND_CONFIG.colors.trovesTurquoise,
+                      textTransform: 'uppercase'
+                    }}
+                    className="text-lg"
+                  >
+                    TROVES
+                  </span>
+                  <span
+                    className="text-2xl"
+                    style={{
+                      fontFamily: "'Alex Brush', cursive",
+                      color: BRAND_CONFIG.colors.covesGold
+                    }}
+                  >
+                    &
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'Alex Brush', cursive",
+                      color: BRAND_CONFIG.colors.covesGold
+                    }}
+                    className="text-2xl"
+                  >
+                    COVES
+                  </span>
                 </div>
-                <span className="text-xs tracking-widest uppercase"
-                  style={{ color: "hsl(var(--text-secondary))", fontFamily: "'Montserrat', sans-serif" }}
+                <span
+                  className="text-xs tracking-widest uppercase"
+                  style={{
+                    color: BRAND_CONFIG.colors.textSecondary,
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}
                 >
                   Handcrafted Crystal Jewelry • Winnipeg
                 </span>
@@ -108,59 +126,42 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className={`desktop-nav-link relative py-2 text-sm tracking-widest uppercase ${
-                    isActivePath(item.path) ? 'active' : ''
-                  }`}
-                  style={{
-                    color: isActivePath(item.path)
-                      ? 'hsl(var(--accent-vibrant))'
-                      : 'hsl(var(--text-primary))'
-                  }}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-
-            {/* Right Section */}
-            <div className="flex items-center gap-3">
+              <Link
+                href="/about"
+                className={`relative py-2 text-sm tracking-widest uppercase ${
+                  isActivePath('/about') ? 'active' : ''
+                }`}
+                style={{
+                  color: isActivePath('/about')
+                    ? BRAND_CONFIG.colors.trovesTurquoise
+                    : BRAND_CONFIG.colors.textPrimary
+                }}
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className={`relative py-2 text-sm tracking-widest uppercase ${
+                  isActivePath('/contact') ? 'active' : ''
+                }`}
+                style={{
+                  color: isActivePath('/contact')
+                    ? BRAND_CONFIG.colors.trovesTurquoise
+                    : BRAND_CONFIG.colors.textPrimary
+                }}
+              >
+                Contact
+              </Link>
               {/* Theme Toggle */}
               <ThemeToggle />
+            </div>
 
-              {/* Cart Button */}
-              <Link href="/checkout">
-                <button
-                  aria-label="Shopping cart"
-                  className="cart-button-glow relative p-3 rounded-lg group"
-                  style={{
-                    backgroundColor: 'hsl(var(--bg-card))',
-                    border: '1px solid hsla(var(--accent-vibrant),0.2)',
-                    transition: 'border-color 0.3s ease',
-                  }}
-                >
-                  <ShoppingCart className="w-5 h-5" style={{ color: 'hsl(var(--skull-turquoise))' }} />
-                  {itemCount > 0 && (
-                    <span
-                      className="cart-badge absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 text-xs font-bold rounded-full"
-                      style={{
-                        backgroundColor: 'hsl(var(--skull-turquoise))',
-                        color: 'hsl(var(--bg-overlay))'
-                      }}
-                    >
-                      {itemCount}
-                    </span>
-                  )}
-                </button>
-              </Link>
-
-              {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle */}
+            <div className="flex items-center gap-3 lg:hidden">
+              <ThemeToggle />
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="menu-button lg:hidden rounded-lg"
+                className="menu-button rounded-lg"
                 style={{
                   backgroundColor: 'hsl(var(--bg-card))',
                   border: '1px solid hsla(var(--accent-vibrant),0.2)',
@@ -172,11 +173,11 @@ export default function Header() {
               >
                 <Menu
                   className={`menu-icon w-5 h-5 ${isMobileMenuOpen ? 'hidden' : 'visible'}`}
-                  style={{ color: 'hsl(var(--skull-turquoise))' }}
+                  style={{ color: BRAND_CONFIG.colors.trovesTurquoise }}
                 />
                 <X
                   className={`menu-icon w-5 h-5 ${isMobileMenuOpen ? 'visible' : 'hidden'}`}
-                  style={{ color: 'hsl(var(--skull-turquoise))' }}
+                  style={{ color: BRAND_CONFIG.colors.trovesTurquoise }}
                 />
               </button>
             </div>
@@ -208,23 +209,35 @@ export default function Header() {
                 style={{
                   fontFamily: "'Libre Baskerville', serif",
                   fontWeight: 700,
-                  color: "hsl(var(--accent-vibrant))",
-                  textTransform: "uppercase"
+                  color: BRAND_CONFIG.colors.trovesTurquoise,
+                  textTransform: 'uppercase'
                 }}
-              >TROVES</span>
+              >
+                TROVES
+              </span>
               <span
                 className="text-4xl sm:text-5xl"
-                style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}
-              >&</span>
+                style={{
+                  fontFamily: "'Alex Brush', cursive",
+                  color: BRAND_CONFIG.colors.covesGold
+                }}
+              >
+                &
+              </span>
               <span
                 className="text-4xl sm:text-5xl"
-                style={{ fontFamily: "'Alex Brush', cursive", color: "hsl(var(--gold-medium))" }}
-              >Coves</span>
+                style={{
+                  fontFamily: "'Alex Brush', cursive",
+                  color: BRAND_CONFIG.colors.covesGold
+                }}
+              >
+                COVES
+              </span>
             </div>
             <p
               className="text-xs sm:text-sm tracking-widest uppercase"
               style={{
-                color: "hsl(var(--text-secondary))",
+                color: BRAND_CONFIG.colors.textSecondary,
                 fontFamily: "'Montserrat', sans-serif"
               }}
             >
@@ -234,32 +247,35 @@ export default function Header() {
 
           {/* Mobile Navigation */}
           <nav className="mobile-menu-nav">
-            {navigation.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`mobile-menu-nav-item desktop-nav-link text-xl sm:text-2xl md:text-3xl tracking-widest uppercase ${
-                  isActivePath(item.path) ? 'active' : ''
-                }`}
-                style={{
-                  color: isActivePath(item.path)
-                    ? 'hsl(var(--accent-vibrant))'
-                    : 'hsl(var(--text-primary))'
-                }}
-              >
-                {item.name}
-              </Link>
-            ))}
+            <Link
+              href="/about"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`mobile-menu-nav-item text-xl sm:text-2xl md:text-3xl tracking-widest uppercase ${
+                isActivePath('/about') ? 'active' : ''
+              }`}
+              style={{
+                color: isActivePath('/about')
+                  ? BRAND_CONFIG.colors.trovesTurquoise
+                  : BRAND_CONFIG.colors.textPrimary
+              }}
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`mobile-menu-nav-item text-xl sm:text-2xl md:text-3xl tracking-widest uppercase ${
+                isActivePath('/contact') ? 'active' : ''
+              }`}
+              style={{
+                color: isActivePath('/contact')
+                  ? BRAND_CONFIG.colors.trovesTurquoise
+                  : BRAND_CONFIG.colors.textPrimary
+              }}
+            >
+              Contact
+            </Link>
           </nav>
-
-          {/* Decorative Crystal */}
-          <div className="mobile-menu-decoration mt-4 sm:mt-8 relative">
-            <Sparkles
-              className="w-8 h-8 sm:w-10 sm:h-10"
-              style={{ color: 'hsl(var(--frame-gold))' }}
-            />
-          </div>
         </div>
       </div>
     </>

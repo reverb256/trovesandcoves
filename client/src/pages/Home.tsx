@@ -1,187 +1,116 @@
-import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
-import SEOHead from '@/components/SEOHead';
-import Hero from '@/components/Hero';
-import SectionPill from '@/components/SectionPill';
-import CTAButton from '@/components/CTAButton';
-import IconCircle from '@/components/IconCircle';
-import { WebsiteSchema, OrganizationSchema, LocalBusinessSchema, FAQSchema } from '@/components/SchemaOrg';
-import { BreadcrumbSchema } from '@/components/BreadcrumbSchema';
-import type { ProductWithCategory } from '@shared/types';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { BRAND_CONFIG } from '@shared/brand-config';
 
 export default function Home() {
-  const { data: featuredProducts, isLoading } = useQuery<ProductWithCategory[]>({
-    queryKey: ['/api/products/featured'],
-  });
-
   return (
     <>
-      <BreadcrumbSchema items={[{ name: 'Home', path: '/' }]} />
-      <SEOHead path="/" />
-      <WebsiteSchema />
-      <OrganizationSchema />
-      <LocalBusinessSchema />
-      <FAQSchema />
+      {/* Hero Section - Clean Landing */}
+      <section className="relative min-h-screen flex items-center justify-center py-24">
+        <div className="chamber-container relative z-10">
+          <div className="flex flex-col items-center justify-center gap-8 text-center max-w-4xl mx-auto">
+            {/* Brand Name */}
+            <h1 className="leading-tight flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4">
+              <span
+                style={{
+                  fontFamily: BRAND_CONFIG.typography.troves.fontFamily,
+                  fontWeight: BRAND_CONFIG.typography.troves.fontWeight,
+                  color: BRAND_CONFIG.colors.trovesTurquoise,
+                  textTransform: BRAND_CONFIG.typography.troves.textTransform as 'uppercase',
+                  letterSpacing: BRAND_CONFIG.typography.troves.letterSpacing as string,
+                }}
+                className="text-4xl md:text-6xl lg:text-7xl"
+              >
+                TROVES
+              </span>
+              <span
+                className="text-4xl md:text-6xl lg:text-7xl"
+                style={{
+                  fontFamily: BRAND_CONFIG.typography.coves.fontFamily,
+                  color: BRAND_CONFIG.colors.covesGold,
+                }}
+              >
+                &amp;
+              </span>
+              <span
+                style={{
+                  fontFamily: BRAND_CONFIG.typography.coves.fontFamily,
+                  color: BRAND_CONFIG.colors.covesGold,
+                }}
+                className="text-5xl md:text-7xl lg:text-8xl"
+              >
+                COVES
+              </span>
+              <span className="hidden">| Handcrafted Crystal Jewelry • Winnipeg</span>
+            </h1>
 
-      {/* Hero Section */}
-      <div className="page-section-hero">
-        <Hero />
-      </div>
-
-      {/* Featured Collections Section */}
-      <section className="chamber-section content-layer page-section">
-        <div className="chamber-container">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            {/* Badge */}
-            <SectionPill variant="turquoise" className="mb-6">
-              Curated With Intention
-            </SectionPill>
-
-            <h2 
-              className="text-4xl md:text-6xl font-bold mb-6"
-              style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
-            >
-              The Collection
-            </h2>
-
-            <p className="text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
-              Explore our curated selection of handcrafted crystal jewelry.
-              Each piece blends elegance with natural crystal beauty—
-              crafted with intention and designed to make a statement.
-            </p>
-          </div>
-
-          {/* Products Grid */}
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="aspect-square rounded-lg animate-pulse"
-                  style={{ backgroundColor: 'hsl(var(--bg-card) / 0.5)', animationDelay: `${i * 0.1}s` }}
-                >
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-16 h-16 border-2 border-turquoise-soft border-t-[hsla(var(--accent-vibrant),0.8)] rounded-full animate-spin"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProducts?.map((product, index) => (
-                <Link
-                  key={product.id}
-                  href={`/product/${product.id}`}
-                  className="group block animate-reveal"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="rounded-lg shadow-sm hover:shadow-md transition-shadow h-full p-6" style={{ backgroundColor: 'hsl(var(--bg-card))' }}>
-                    {/* Product Image */}
-                    <div className="relative aspect-square mb-6 overflow-hidden bg-gradient-to-br from-[hsla(var(--bg-primary),0.3)] to-[hsla(var(--bg-secondary),0.5)] border border-[hsla(var(--accent-vibrant),0.1)]">
-                      <img
-                        src={product.imageUrl || '/api/placeholder/300/300'}
-                        alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[hsla(var(--bg-overlay),0.7)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                      {/* Category Badge */}
-                      {product.category && (
-                        <div className="absolute top-2 right-2 px-2 py-0.5 text-[10px] tracking-wider uppercase bg-[hsla(var(--accent-vibrant),0.2)] border border-turquoise-soft text-turquoise-bright rounded-full backdrop-blur-sm">
-                          {product.category.name}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Product Info */}
-                    <div className="text-center">
-                      <h3
-                        className="text-xl font-semibold mb-2 group-hover:opacity-90 transition-colors duration-300"
-                        style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--text-primary))' }}
-                      >
-                        {product.name}
-                      </h3>
-
-                      <p className="text-sm mb-4 line-clamp-2" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
-                        {product.description}
-                      </p>
-
-                      <div className="flex items-center justify-between pt-4" style={{ borderColor: 'hsla(174,85%,45%,0.15)' }}>
-                        <span 
-                          className="text-lg font-semibold"
-                          style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--gold-medium))' }}
-                        >
-                          ${product.price}
-                        </span>
-
-                        <div className="flex items-center gap-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-[-10px] group-hover:translate-x-0" style={{ color: 'hsl(var(--accent-vibrant))' }}>
-                          <span style={{ fontFamily: "'Montserrat', sans-serif" }}>View</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-
-          {/* View All Button */}
-          <div className="text-center mt-16">
-            <CTAButton variant="secondary" href="/products" className="group">
-              <span>View All Jewelry</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </CTAButton>
-          </div>
-        </div>
-      </section>
-
-      {/* Message Section */}
-      <section className="chamber-section content-layer page-section relative overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-20"
-            style={{ backgroundColor: 'hsla(174,85%,45%,0.02)', filter: 'blur(60px)' }}
-          ></div>
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-15"
-            style={{ backgroundColor: 'hsla(43,95%,55%,0.02)', filter: 'blur(80px)' }}
-          ></div>
-        </div>
-
-        <div className="chamber-container relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="p-12 md:p-16 rounded-2xl"
-              style={{ 
-                backgroundColor: 'hsla(var(--bg-primary),0.5)',
-                border: '1px solid hsla(174,85%,45%,0.1)'
+            {/* Tagline */}
+            <p
+              className="text-lg md:text-xl tracking-[0.25em] uppercase"
+              style={{
+                fontFamily: BRAND_CONFIG.typography.body.fontFamily,
+                color: BRAND_CONFIG.colors.textSecondary,
+                fontWeight: 500,
               }}
             >
-              {/* Decorative Icon */}
-              <div className="mb-8">
-                <IconCircle icon={Sparkles} variant="gold-soft" size="lg" className="border-2" style={{ borderColor: 'hsla(43,95%,55%,0.3)' }} />
-              </div>
+              {BRAND_CONFIG.name.tagline}
+            </p>
 
-              <h2 
-                className="text-3xl md:text-5xl font-bold mb-6"
-                style={{ fontFamily: "'Libre Baskerville', serif", color: 'hsl(var(--accent-vibrant))' }}
+            {/* Mission Statement */}
+            <p
+              className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+              style={{
+                fontFamily: BRAND_CONFIG.typography.body.fontFamily,
+                color: BRAND_CONFIG.colors.textSecondary,
+              }}
+            >
+              {BRAND_CONFIG.voice.brandVoice}
+            </p>
+
+            {/* Contact CTA */}
+            <div className="mt-4">
+              <Link
+                href="https://www.etsy.com/ca/shop/TrovesandCoves"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-10 py-4 no-underline focus-visible:outline-2 focus-visible:outline-offset-2 group"
+                style={{
+                  fontFamily: BRAND_CONFIG.typography.body.fontFamily,
+                  fontWeight: 600,
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  color: BRAND_CONFIG.colors.background,
+                  backgroundColor: BRAND_CONFIG.colors.trovesTurquoise,
+                  border: 'none',
+                  borderRadius: '4px',
+                }}
               >
-                Handcrafted With Intention
-              </h2>
+                <span>Shop on Etsy</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1 ml-2" />
+              </Link>
+            </div>
 
-              <p className="text-lg leading-relaxed mb-8" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))' }}>
-                Every crystal in our collection is chosen for its unique beauty and quality.
-                Each piece is handcrafted in Winnipeg with 14k gold-plated materials
-                and genuine crystals—designed to be timeless and made to stand out.
-              </p>
-
-              <p className="text-base" style={{ fontFamily: "'Montserrat', sans-serif", color: 'hsl(var(--text-secondary))', fontWeight: 500 }}>
-                ✨ Handcrafted with intention in Winnipeg, Canada ✨
-              </p>
+            {/* Contact Info */}
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 mt-8 text-sm">
+              <a
+                href="mailto:info@trovesandcoves.ca"
+                className="hover:underline"
+                style={{
+                  fontFamily: BRAND_CONFIG.typography.body.fontFamily,
+                  color: BRAND_CONFIG.colors.trovesTurquoise,
+                }}
+              >
+                info@trovesandcoves.ca
+              </a>
+              <span style={{ color: BRAND_CONFIG.colors.textSecondary }}>·</span>
+              <span
+                style={{
+                  fontFamily: BRAND_CONFIG.typography.body.fontFamily,
+                  color: BRAND_CONFIG.colors.textSecondary,
+                }}
+              >
+                Winnipeg, Manitoba, Canada
+              </span>
             </div>
           </div>
         </div>

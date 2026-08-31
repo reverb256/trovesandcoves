@@ -1,12 +1,6 @@
 import { Link } from 'wouter';
-import { EMBEDDED_CATEGORIES } from '@shared/embedded-data';
-import {
-  Facebook,
-  Instagram,
-  Mail,
-  MapPin,
-  ExternalLink,
-} from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, ExternalLink } from 'lucide-react';
+import { BRAND_CONFIG } from '@shared/brand-config';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -34,39 +28,53 @@ export default function Footer() {
     },
   ];
 
-  // Category links are derived from the embedded data source-of-truth
-  // (shared/embedded-data.ts) so footer links can never drift from real slugs.
-  const collections = [
-    ...EMBEDDED_CATEGORIES.map((c) => ({ name: c.name, href: `/products/${c.slug}` })),
-    { name: 'All Products', href: '/products' },
-    { name: 'Featured Items', href: '/' },
-    { name: 'Contact', href: '/contact' },
-  ];
-
-  const customerCare = [
-    { name: 'Size Guide', href: '/size-guide' },
-    { name: 'Jewelry Care', href: '/jewelry-care' },
-    { name: 'Warranty', href: '/warranty' },
-    { name: 'Returns & Exchanges', href: '/returns' },
-    { name: 'Financing', href: '/financing' },
-    { name: 'Contact Us', href: '/contact' },
-  ];
-
   return (
     <footer className="border-t pt-16 pb-8 relative overflow-hidden" style={{ borderColor: 'rgba(74, 191, 191, 0.15)', backgroundColor: 'hsl(var(--bg-primary))' }}>
       <div className="absolute top-0 left-0 w-full h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(74, 191, 191, 0.5), transparent)' }}></div>
 
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-12">
+          {/* Brand Info */}
           <div>
             <div className="flex items-baseline gap-2 mb-6">
-              <span className="text-2xl" style={{ fontFamily: 'Libre Baskerville, serif', fontWeight: 700, color: 'hsl(var(--accent-vibrant))', textTransform: 'uppercase' }}>Troves</span>
-              <span className="text-2xl" style={{ fontFamily: 'Alex Brush, cursive', color: 'hsl(var(--gold-text-large))' }}>&</span>
-              <span className="text-2xl" style={{ fontFamily: 'Alex Brush, cursive', color: 'hsl(var(--gold-text-large))' }}>Coves</span>
+              <span
+                className="text-2xl"
+                style={{
+                  fontFamily: "'Libre Baskerville', serif",
+                  fontWeight: 700,
+                  color: BRAND_CONFIG.colors.trovesTurquoise,
+                  textTransform: 'uppercase'
+                }}
+              >
+                Troves
+              </span>
+              <span
+                className="text-2xl"
+                style={{
+                  fontFamily: "'Alex Brush', cursive",
+                  color: BRAND_CONFIG.colors.covesGold
+                }}
+              >
+                &
+              </span>
+              <span
+                className="text-2xl"
+                style={{
+                  fontFamily: "'Alex Brush', cursive",
+                  color: BRAND_CONFIG.colors.covesGold
+                }}
+              >
+                Coves
+              </span>
             </div>
-            <p className="mb-6 leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-secondary))' }}>
-              Handcrafted crystal jewelry featuring 14k gold-filled wire and genuine gemstones.
-              Each piece is thoughtfully designed and crafted in Winnipeg, Canada.
+            <p
+              className="mb-6 leading-relaxed"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                color: BRAND_CONFIG.colors.textSecondary
+              }}
+            >
+              {BRAND_CONFIG.voice.brandVoice}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => {
@@ -79,7 +87,11 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 border rounded-lg transition-colors duration-300"
-                    style={{ borderColor: 'rgba(74, 191, 191, 0.2)', backgroundColor: 'rgba(74, 191, 191, 0.05)', color: 'hsl(var(--accent-vibrant))' }}
+                    style={{
+                      borderColor: 'rgba(74, 191, 191, 0.2)',
+                      backgroundColor: 'rgba(74, 191, 191, 0.05)',
+                      color: BRAND_CONFIG.colors.trovesTurquoise
+                    }}
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -88,86 +100,87 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Connect */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 tracking-wider uppercase" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-primary))' }}>
-              Collections
-            </h3>
-            <ul className="space-y-3">
-              {collections.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="hover:text-turquoise-bright transition-colors duration-300" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-secondary))' }}>
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-lg mb-6 tracking-wider uppercase" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-primary))' }}>
-              Customer Care
-            </h3>
-            <ul className="space-y-3">
-              {customerCare.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href} className="hover:text-turquoise-bright transition-colors duration-300" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-secondary))' }}>
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-lg mb-6 tracking-wider uppercase" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-primary))' }}>
+            <h3
+              className="font-semibold text-lg mb-6 tracking-wider uppercase"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                color: BRAND_CONFIG.colors.textPrimary
+              }}
+            >
               Connect
             </h3>
-            <div className="space-y-4" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-secondary))' }}>
+            <div
+              className="space-y-4"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                color: BRAND_CONFIG.colors.textSecondary
+              }}
+            >
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 flex-shrink-0" style={{ color: 'hsl(var(--accent-vibrant))' }} />
+                <Mail className="w-5 h-5 flex-shrink-0" style={{ color: BRAND_CONFIG.colors.trovesTurquoise }} />
                 <div>
-                  <div style={{ color: '#1f1f1f' }}>info@trovesandcoves.ca</div>
+                  <div style={{ color: BRAND_CONFIG.colors.textPrimary }}>info@trovesandcoves.ca</div>
                   <div className="text-sm opacity-70">We'd love to hear from you</div>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 flex-shrink-0" style={{ color: 'hsl(var(--gold-medium))' }} />
+                <MapPin className="w-5 h-5 flex-shrink-0" style={{ color: BRAND_CONFIG.colors.covesGold }} />
                 <div>
-                  <div style={{ color: '#1f1f1f' }}>Winnipeg, Manitoba</div>
+                  <div style={{ color: BRAND_CONFIG.colors.textPrimary }}>Winnipeg, Manitoba</div>
                   <div className="text-sm opacity-70">Handcrafted in Canada</div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Policies */}
+          <div>
+            <h3
+              className="font-semibold text-lg mb-6 tracking-wider uppercase"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                color: BRAND_CONFIG.colors.textPrimary
+              }}
+            >
+              Legal
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="hover:text-turquoise-bright transition-colors duration-300"
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    color: BRAND_CONFIG.colors.textSecondary
+                  }}
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="border-t pt-8" style={{ borderColor: 'rgba(225, 175, 47, 0.2)' }}>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-secondary))' }}>
-              © {currentYear} Troves & Coves. All rights reserved. |
-              <Link href="/privacy-policy" className="hover:text-turquoise-bright transition-colors ml-1">
-                Privacy Policy
-              </Link>
-            </div>
-
-            <div className="flex items-center gap-2 text-sm" style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-secondary))' }}>
-              <span style={{ color: 'hsl(var(--gold-medium))' }}>◆</span>
-              <span>Handcrafted in Winnipeg, Canada</span>
-              <span style={{ color: 'hsl(var(--gold-medium))' }}>◆</span>
-            </div>
-          </div>
-
-          <div className="flex justify-center mt-6 pt-4 border-t" style={{ borderColor: 'rgba(225, 175, 47, 0.15)' }}>
-            <a
-              href="https://reverb256.github.io"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-turquoise-bright hover:opacity-100 text-xs transition-colors duration-300"
-              style={{ fontFamily: 'Montserrat, sans-serif', color: 'hsl(var(--text-secondary))' }}
+            <div
+              className="text-sm"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                color: BRAND_CONFIG.colors.textSecondary
+              }}
             >
-              Web Design by Reverb256 ✦
-            </a>
+              © {currentYear} Troves & Coves. All rights reserved.
+            </div>
+
+            <div className="flex items-center gap-2 text-sm" style={{ fontFamily: "'Montserrat', sans-serif", color: BRAND_CONFIG.colors.textSecondary }}>
+              <span style={{ color: BRAND_CONFIG.colors.covesGold }}>◆</span>
+              <span>Handcrafted in Winnipeg, Canada</span>
+              <span style={{ color: BRAND_CONFIG.colors.covesGold }}>◆</span>
+            </div>
           </div>
         </div>
       </div>
