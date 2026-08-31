@@ -7,7 +7,6 @@ import { ThemeProvider } from '@/lib/theme';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PageTransition, { SectionReveal } from '@/components/PageTransition';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import Home from '@/pages/Home';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';

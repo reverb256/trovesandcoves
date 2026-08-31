@@ -74,7 +74,7 @@ export default function Footer() {
                 color: BRAND_CONFIG.colors.textSecondary
               }}
             >
-              {BRAND_CONFIG.voice.brandVoice}
+              {BRAND_CONFIG.aiGuidelines.brandVoice}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => {

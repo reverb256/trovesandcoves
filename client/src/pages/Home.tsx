@@ -64,7 +64,7 @@ export default function Home() {
                 color: BRAND_CONFIG.colors.textSecondary,
               }}
             >
-              {BRAND_CONFIG.voice.brandVoice}
+              {BRAND_CONFIG.aiGuidelines.brandVoice}
             </p>
 
             {/* Contact CTA */}
