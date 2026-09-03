@@ -53,7 +53,7 @@
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
-    "express": "^4.22.2",
+    "express": "^5.2.1",
     "express-rate-limit": "^7.5.0",
     "express-session": "^1.18.1",
     "express-slow-down": "^2.1.0",
