@@ -1,0 +1,46 @@
+name: PR Verify
+
+# Regression gate for the dependency-install class of breakage.
+# Incident 2026-10-16: dependabot PR #77 (vitest 3 -> 5) was merged into prod with
+# peer requirements the repo could not satisfy (@types/node >=22 AND vite >=6.4,
+# while package.json pinned @types/node 20.16.11 and vite ^5.4.14). No PR in this
+# repo ran `npm ci`, so the break was only visible after merge, on the deploy
+# workflow's "Install dependencies" step: "Deploy to GitHub Pages" run 38903984303
+# went red at 12:55Z and no site update published until this check existed.
+#
+# This job runs the deploy workflow's install + type-check + build steps on every
+# PR into prod/main, so an uninstallable or unbuildable dependency set fails
+# BEFORE merge instead of after.
+
+on:
+  pull_request:
+    branches: [ prod, main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run check
+
+      - name: Build React app
+        run: npm run build
+        env:
+          NODE_ENV: production
+          VITE_GITHUB_PAGES_URL: https://trovesandcoves.ca
